@@ -1,0 +1,158 @@
+
+.--size44
+{
+    font-size: 44px;
+}
+.--size20
+{
+    font-size: 20px;
+}
+
+.--no-border
+{
+    border: none;
+}
+
+.--no-outline
+{
+    outline: none;
+}
+
+
+.header 
+{
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 0 24px;
+}
+
+.nav 
+{
+    width: 100%;
+    background-color: var(--c10);
+}
+
+.nav .nav__top
+{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+}
+
+.nav__top .nav__top-logo
+{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    height: 100%;
+    cursor: pointer;
+    /* background-color: red; */
+}
+
+.nav__top-logo h1 
+{
+    font-size: 24px;
+    color: var(--c1);
+    user-select: none;
+}
+
+.nav__top .nav__top-input
+{
+    height: 100%;
+    /* background-color: red; */
+    width: 650px;
+}
+
+.nav__top-input form 
+{
+    width: 100%;
+    display: flex;
+}
+
+.nav__top-input input 
+{
+    font-size: 16px;
+    padding: 12px 24px;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    border-left: 1px solid var(--c3);
+    border-top: 1px solid var(--c3);
+    border-bottom: 1px solid var(--c3);
+    width: 75%;
+}
+
+.nav__top-input input::placeholder
+{
+    font-size: 16px;
+    color: var(--c3);
+}
+
+.nav__top-input button 
+{
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    width: 25%;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    border-right: 1px solid var(--c3);
+    border-top: 1px solid var(--c3);
+    border-bottom: 1px solid var(--c3);
+    background-color: var(--c6);
+    font-size: 16px;
+    color: var(--c10);
+    cursor: pointer;
+}
+
+.nav__top .nav__top-actions
+{
+    /* height: 100%; */
+}
+
+.nav__top-actions ul 
+{
+    display: flex;
+    gap: 24px;
+    color: var(--c1);
+}
+
+.nav__top-actions ul li 
+{
+    cursor: pointer;
+}
+
+.nav__line 
+{
+    width: 100%;
+    height: 1px;
+    background-color: var(--c3);
+}
+
+.nav__bottom
+{
+    width: 100%;
+}
+
+.nav__bottom ul 
+{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    padding: 12px 0;
+    font-weight: 550;
+    color: var(--c4);
+    cursor: pointer;
+}
+
+.nav__bottom ul li:hover 
+{
+    color: var(--c6);
+}
