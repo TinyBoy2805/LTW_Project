@@ -1,13 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MichiShop</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="./admin/styles/components/login.css">
 </head>
+
 <body>
-    
-    <!-- login & register here -->
-     
+    <!-- Login $ register here -->
+    <div class="login">
+        <!-- admin -->
+        <div class="login__admin">
+            <!-- Header -->
+            <header class="header">
+                <h2 class="header__title">Đăng nhập <p class="header__role">(Admin)</p>
+                </h2>
+                <div class="header__text">Chào mừng! Hãy đăng nhập ngay</div>
+            </header>
+            <!-- Form -->
+            <form action="" class="form">
+                <div class="form__input">
+                    <input type="text" placeholder="Email || Số điện thoại">
+                    <input type="password" placeholder="Mật khẩu">
+                    <div class="form__bottom">
+                        <div class="form__option">
+                            <div class="form__checkbox">
+                                <input type="checkbox" class="checkbox">
+                                <p>Lưu tôi</p>
+                            </div>
+                            <a href="#" class="form__text">Quên mật khẩu</a>
+                        </div>
+                        <a href="#" class="form__button__admin">Đăng nhập</a>
+                    </div>
+                </div>
+                <div class="form__end">
+                    <span>Hoặc đăng nhập với</span>
+                </div>
+            </form>
+            <!-- Footer -->
+            <div class="footer">
+                <div class="footer__container">
+                    <a href="#" class="footer__container__icon">
+                        <img src="admin\imgs\Google__G__logo.svg.webp" alt="Google">
+                    </a>
+                    <a href="#" class="footer__container__icon">
+                        <i class="fa-brands fa-facebook"></i>
+                    </a>
+                    <a href="#" class="footer__container__icon">
+                        <img src="admin\imgs\Instagram_Glyph_Gradient_RGB_logo.svg.png" alt="Instagram">
+                    </a>
+                </div>
+                <div class="footer__text">
+                    Chưa có tài khoản?
+                    <a href="#">Đăng ký ngay</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- customer -->
+        <div class="login__customer">
+            <!-- Header -->
+            <header class="header">
+                <h2 class="header__title">Đăng nhập <p class="header__role">(Customer)</p>
+                </h2>
+                <div class="header__text">Chào mừng! Hãy đăng nhập ngay</div>
+            </header>
+            <!-- Form -->
+            <form action="" class="form">
+                <div class="form__input">
+                    <input type="text" placeholder="Email || Số điện thoại">
+                    <input type="password" placeholder="Mật khẩu">
+                    <div class="form__bottom">
+                        <div class="form__option">
+                            <div class="form__checkbox">
+                                <input type="checkbox" class="checkbox">
+                                <p>Lưu tôi</p>
+                            </div>
+                            <a href="#" class="form__text">Quên mật khẩu</a>
+                        </div>
+                        <a href="#" class="form__button__customer">Đăng nhập</a>
+                    </div>
+                </div>
+                <div class="form__end">
+                    <span>Hoặc đăng nhập với</span>
+                </div>
+            </form>
+            <!-- Footer -->
+            <div class="footer">
+                <div class="footer__container">
+                    <a href="#" class="footer__container__icon">
+                        <img src="admin\imgs\Google__G__logo.svg.webp" alt="Google">
+                    </a>
+                    <a href="#" class="footer__container__icon">
+                        <i class="fa-brands fa-facebook"></i>
+                    </a>
+                    <a href="#" class="footer__container__icon">
+                        <img src="admin\imgs\Instagram_Glyph_Gradient_RGB_logo.svg.png" alt="Instagram">
+                    </a>
+                </div>
+                <div class="footer__text">
+                    Chưa có tài khoản?
+                    <a href="#">Đăng ký ngay</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>
