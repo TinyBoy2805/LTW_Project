@@ -21,11 +21,10 @@
 
 .header 
 {
-    width: 100vw;
-    position: fixed;
-    top: 0;
-    left: 0;
+    width: 100% ;
     padding: 0 24px;
+    background-color: var(--c10);
+    border-bottom: 1px solid var(--c3);
 }
 
 .nav 
@@ -56,7 +55,7 @@
 .nav__top-logo h1 
 {
     font-size: 24px;
-    color: var(--c1);
+    color: var(--c4);
     user-select: none;
 }
 
@@ -64,7 +63,8 @@
 {
     height: 100%;
     /* background-color: red; */
-    width: 650px;
+    width: 100%;
+    max-width: 650px;
 }
 
 .nav__top-input form 
@@ -119,13 +119,19 @@
 {
     display: flex;
     gap: 24px;
-    color: var(--c1);
+    color: var(--c4);
 }
 
 .nav__top-actions ul li 
 {
     cursor: pointer;
 }
+
+.nav__top-actions ul li:hover 
+{
+    color: var(--c6);
+}
+
 
 .nav__line 
 {
@@ -153,6 +159,11 @@
 }
 
 .nav__bottom ul li:hover 
+{
+    color: var(--c6);
+}
+
+.nav__bottom ul li.active 
 {
     color: var(--c6);
 }
