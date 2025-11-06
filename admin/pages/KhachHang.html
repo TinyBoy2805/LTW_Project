@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MichiShop - Khách hàng</title>
+  <link rel="stylesheet" href="../styles/KhachHang.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar" aria-label="Chức năng chính">
+  <h2><img src="../imgs/logo.jpg" alt="MichiShop" class="brand-logo">MichiShop</h2>
+    <nav class="sidebar__nav" aria-label="Menu chính">
+      <a href="#"><span class="sidebar_icon_link"><i class="fa-solid fa-gift"></i></span> Thống kê</a>
+      <a href="#"><span class="sidebar_icon_link"><i class="fa-solid fa-shopping-cart"></i></span> Đơn hàng</a>
+      <a href="#"><span class="sidebar_icon_link"><i class="fa-solid fa-box"></i></span> Kho hàng</a>
+      <a href="#" class="active"><span class="sidebar_icon_link"><i class="fa-solid fa-users"></i></span> Khách hàng</a>
+      <a href="#"><span class="sidebar_icon_link"><i class="fa-solid fa-gift"></i></span> Ưu đãi</a>
+      <a href="#"><span class="sidebar_icon_link"><i class="fa-solid fa-envelope"></i></span> Email</a>
+      <a href="#"><span class="sidebar_icon_link"><i class="fa-solid fa-cog"></i></span> Cài đặt</a>
+    </nav>
+    <button class="logout" type="button">Đăng Xuất</button>
+  </aside>
+
+  <!-- Main content -->
+  <main class="main">
+    <header class="header">
+      <h3>Chào mừng trở lại, CỤC ZÀNG !!!</h3>
+      <img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="user" />
+    </header>
+
+    <div class="content" aria-labelledby="customers-title">
+      <div class="content__panel">
+      <h3 id="customers-title">Khách hàng</h3>
+      <div class="tabs" role="tablist" aria-label="Lọc khách hàng">
+        <button class="active" role="tab" aria-selected="true">Tất cả khách hàng</button>
+        <button role="tab" aria-selected="false">Khách Hàng Vip</button>
+      </div>
+
+      <div class="customers" role="list">
+
+        <!-- Cards-->
+  <article class="card" role="listitem">
+          <figure class="card__figure">
+            <img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="">
+          </figure>
+          <div class="info">
+            <h4>Khoa Bruh</h4>
+            <p><i class="fa-solid fa-envelope"></i> khoabruh@gmail.com</p>
+            <p><i class="fa-solid fa-phone"></i> 0363 666 636</p>
+            <button class="detail-btn" type="button">Chi tiết</button>
+          </div>
+        </article>
+
+  <article class="card" role="listitem">
+          <figure class="card__figure">
+            <img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="">
+          </figure>
+          <div class="info">
+            <h4>Trâm Anh</h4>
+            <p><i class="fa-solid fa-envelope"></i> tramanh@example.com</p>
+            <p><i class="fa-solid fa-phone"></i> 0966 555 444</p>
+            <button class="detail-btn" type="button">Chi tiết</button>
+          </div>
+        </article>
+
+  <article class="card" role="listitem">
+          <figure class="card__figure">
+            <img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="">
+          </figure>
+          <div class="info">
+            <h4>Phương Dung</h4>
+            <p><i class="fa-solid fa-envelope"></i> phuongdung@gmail.com</p>
+            <p><i class="fa-solid fa-phone"></i> 0944 777 666</p>
+            <button class="detail-btn" type="button">Chi tiết</button>
+          </div>
+        </article>
+
+  <article class="card" role="listitem">
+          <figure class="card__figure">
+            <img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="">
+          </figure>
+          <div class="info">
+            <h4>Hoàng Nam</h4>
+            <p><i class="fa-solid fa-envelope"></i> hoangnam@gmail.com</p>
+            <p><i class="fa-solid fa-phone"></i> 0922 111 000</p>
+            <button class="detail-btn" type="button">Chi tiết</button>
+          </div>
+        </article>
+
+  <article class="card" role="listitem">
+          <figure class="card__figure">
+            <img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="">
+          </figure>
+          <div class="info">
+            <h4>Vy Oanh</h4>
+            <p><i class="fa-solid fa-envelope"></i> vyoanh@gmail.com</p>
+            <p><i class="fa-solid fa-phone"></i> 0911 222 333</p>
+            <button class="detail-btn" type="button">Chi tiết</button>
+          </div>
+        </article>
+
+        <article class="card" role="listitem">
+          <figure class="card__figure">
+            <img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="">
+          </figure>
+          <div class="info">
+            <h4>Trọng Hùng</h4>
+            <p><i class="fa-solid fa-envelope"></i> tronghung@gmail.com</p>
+            <p><i class="fa-solid fa-phone"></i> 0900 111 222</p>
+            <button class="detail-btn" type="button">Chi tiết</button>
+          </div>
+        </article>
+
+  <article class="card" role="listitem">
+          <figure class="card__figure">
+            <img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="">
+          </figure>
+          <div class="info">
+            <h4>Thành Phát</h4>
+            <p><i class="fa-solid fa-envelope"></i> thanhphat@gmail.com</p>
+            <p><i class="fa-solid fa-phone"></i> 0314 159 264</p>
+            <button class="detail-btn" type="button">Chi tiết</button>
+          </div>
+        </article>
+
+        <article class="card" role="listitem">
+          <figure class="card__figure">
+            <img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="">
+          </figure>
+          <div class="info">
+            <h4>Lê Minh</h4>
+            <p><i class="fa-solid fa-envelope"></i> leminh@gmail.com</p>
+            <p><i class="fa-solid fa-phone"></i> 0988 444 333</p>
+            <button class="detail-btn" type="button">Chi tiết</button>
+          </div>
+        </article>
+
+        <article class="card" role="listitem">
+          <figure class="card__figure">
+            <img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="">
+          </figure>
+          <div class="info">
+            <h4>Ngọc Ánh</h4>
+            <p><i class="fa-solid fa-envelope"></i> ngocanh@gmail.com</p>
+            <p><i class="fa-solid fa-phone"></i> 0977 222 111</p>
+            <button class="detail-btn" type="button">Chi tiết</button>
+          </div>
+        </article>
+
+        <article class="card" role="listitem">
+          <figure class="card__figure">
+            <img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="">
+          </figure>
+          <div class="info">
+            <h4>Minh Tú</h4>
+            <p><i class="fa-solid fa-envelope"></i> minhtu@gmail.com</p>
+            <p><i class="fa-solid fa-phone"></i> 0905 123 456</p>
+            <button class="detail-btn" type="button">Chi tiết</button>
+          </div>
+        </article>
+
+        <article class="card" role="listitem">
+          <figure class="card__figure">
+            <img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="">
+          </figure>
+          <div class="info">
+            <h4>Thư Trần</h4>
+            <p><i class="fa-solid fa-envelope"></i> thutran@gmail.com</p>
+            <p><i class="fa-solid fa-phone"></i> 0912 987 654</p>
+            <button class="detail-btn" type="button">Chi tiết</button>
+          </div>
+        </article>
+
+        <article class="card" role="listitem">
+          <figure class="card__figure">
+            <img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="">
+          </figure>
+          <div class="info">
+            <h4>Quỳnh Liên</h4>
+            <p><i class="fa-solid fa-envelope"></i> quynhlien@gmail.com</p>
+            <p><i class="fa-solid fa-phone"></i> 0933 221 110</p>
+            <button class="detail-btn" type="button">Chi tiết</button>
+          </div>
+        </article>
+
+      </div> <!-- .customers -->
+      </div> <!-- .content__panel -->
+    </div> <!-- .content -->
+  </div> <!-- .main -->
+</body>
+</html>
