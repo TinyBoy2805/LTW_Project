@@ -1,0 +1,37 @@
+.--size16
+{
+    font-size: 16px;
+}
+
+.--size64 
+{
+    font-size: 64px;
+}
+
+.--weight600
+{
+    font-weight: 600;
+}
+.--weight700
+{
+    font-weight: 700;
+}
+
+.--size44
+{
+    font-size: 44px;
+}
+.--size20
+{
+    font-size: 20px;
+}
+
+.--no-border
+{
+    border: none;
+}
+
+.--no-outline
+{
+    outline: none;
+}

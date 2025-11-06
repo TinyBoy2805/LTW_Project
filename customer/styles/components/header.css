@@ -1,22 +1,5 @@
 
-.--size44
-{
-    font-size: 44px;
-}
-.--size20
-{
-    font-size: 20px;
-}
 
-.--no-border
-{
-    border: none;
-}
-
-.--no-outline
-{
-    outline: none;
-}
 
 
 .header 
@@ -24,7 +7,7 @@
     width: 100% ;
     padding: 0 24px;
     background-color: var(--c10);
-    border-bottom: 1px solid var(--c3);
+    border-bottom: 1px solid var(--c5);
 }
 
 .nav 
