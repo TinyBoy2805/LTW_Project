@@ -135,6 +135,7 @@
     cursor: pointer;
 }
 
+
 .product__bottom-actions button:nth-child(1) i
 {
     font-size: 24px;
@@ -146,7 +147,7 @@
     flex: 1;
     background-color: var(--c6);
     color: var(--c5);
-    border: 1px solid var(--c6);
+    border: 2px solid var(--c6);
     border-radius: 50px;
     padding: 8px 12px;
     font-size: 13px;
