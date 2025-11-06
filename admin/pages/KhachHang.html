@@ -44,16 +44,17 @@
       <div class="content__panel">
       <h3 id="customers-title">Khách hàng</h3>
       <div class="tabs" role="tablist" aria-label="Lọc khách hàng">
-        <button class="active" role="tab" aria-selected="true">Tất cả khách hàng</button>
-        <button role="tab" aria-selected="false">Khách Hàng Vip</button>
+        <button class="active" role="tab" aria-selected="true" data-filter="all">Tất cả khách hàng</button>
+        <button role="tab" aria-selected="false" data-filter="vip">Khách Hàng Vip</button>
       </div>
 
       <div class="customers" role="list">
 
         <!-- Cards-->
-  <article class="card" role="listitem">
+  <article class="card vip" role="listitem">
           <figure class="card__figure">
             <img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="">
+            <span class="vip-badge" aria-hidden="true"><i class="fa-solid fa-crown"></i></span>
           </figure>
           <div class="info">
             <h4>Khoa Bruh</h4>
@@ -123,9 +124,10 @@
           </div>
         </article>
 
-  <article class="card" role="listitem">
+  <article class="card vip" role="listitem">
           <figure class="card__figure">
             <img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="">
+            <span class="vip-badge" aria-hidden="true"><i class="fa-solid fa-crown"></i></span>
           </figure>
           <div class="info">
             <h4>Thành Phát</h4>
@@ -171,9 +173,10 @@
           </div>
         </article>
 
-        <article class="card" role="listitem">
+        <article class="card vip" role="listitem">
           <figure class="card__figure">
             <img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="">
+            <span class="vip-badge" aria-hidden="true"><i class="fa-solid fa-crown"></i></span>
           </figure>
           <div class="info">
             <h4>Thư Trần</h4>
