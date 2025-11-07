@@ -9,6 +9,7 @@
     max-width: 1200px;
     height: fit-content;
     background-color: var(--c10);
+    padding-top: 120px;
 }
 
 
@@ -364,7 +365,7 @@
     display: block;
 }
 
-.main__trending-content ul 
+.main__trending-content .main__trending-content-ul 
 {
     display: flex;
     gap: 12px;
@@ -378,17 +379,17 @@
 }
 
 /* WebKit browsers (Chrome, Edge, Safari) */
-.main__trending-content ul::-webkit-scrollbar 
+.main__trending-content .main__trending-content-ul::-webkit-scrollbar 
 {
     height: 10px;
 }
 
-.main__trending-content ul::-webkit-scrollbar-track 
+.main__trending-content .main__trending-content-ul::-webkit-scrollbar-track 
 {
     background: transparent;
 }
 
-.main__trending-content ul::-webkit-scrollbar-thumb 
+.main__trending-content .main__trending-content-ul::-webkit-scrollbar-thumb 
 {
     background: rgba(0,0,0,0.18);
     border-radius: 10px;
@@ -421,7 +422,7 @@
     align-items: center;
 }
 
-.main__today-suggestion-list ul 
+.main__today-suggestion-list .main__today-suggestion-list-ul
 {
     display: flex;
     flex-wrap: wrap;

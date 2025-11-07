@@ -4,9 +4,12 @@
 @import url('./components/footer.css');
 @import url('./components/product.css');
 @import url('./components/voucher.css');
+@import url('./components/filter.css');
 @import url('./color/color.css');
 @import url('./elements/elements.css');
 @import url('./pages/Home.css');
+@import url('./pages/Products.css');
+
 
 *
 {
