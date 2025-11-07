@@ -107,7 +107,108 @@
             </div>
             <!-- contert -->
             <div class="container__content">
-                
+                <!-- first, content has 3 card to revenue overview by day, month, quarter -->
+                <h2 class="content__title">Tổng quan</h2>
+                <div class="overview">
+                    <div class="overview__header">
+                        <p class="revenue">Doanh thu</p>
+                        <p class="unit">Đơn vị: VNĐ</p>
+                    </div>
+                    <div class="overview__card">
+                        <div class="card highlight">
+                            <!-- Today revenue -->
+                            <div class="card__header__highlight">
+                                <p class="title__highlight">Hôm nay</p>
+                                <ion-icon name="cash-outline" class="icon__highlight"></ion-icon>
+                            </div>
+                            <div class="card__data">
+                                <p class="value__highlight">12,5 Triệu</p>
+                                <div class="text__highlight">
+                                    <p class="increase__highlight">↑ 15%</p>
+                                    <span>So với ngày hôm qua</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <!-- this month revenue -->
+                            <div class="card__header">
+                                <p class="title">Tháng 10</p>
+                                <ion-icon name="cash-outline" class="icon"></ion-icon>
+                            </div>
+                            <div class="card__data">
+                                <p class="value">360,36 Triệu</p>
+                                <div class="text">
+                                    <p class="decrease">↓ 36%</p>
+                                    <span>So với tháng trước</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <!-- this quarter revenue -->
+                            <div class="card__header">
+                                <p class="title">Quý 4</p>
+                                <ion-icon name="cash-outline" class="icon"></ion-icon>
+                            </div>
+                            <div class="card__data">
+                                <p class="value">12,4 Tỷ</p>
+                                <div class="text">
+                                    <p class="increase">↑ 7.4%</p>
+                                    <span>So với quý trước</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- then, content has 2 card about chart -->
+                <div class="chart">
+                    <div class="chart__pie">
+                        <!-- this card is pie chart for the number of sold products -->
+                        <div class="header">
+                            <p>Sản phẩm</p>
+                            <ion-icon name="ellipsis-horizontal" class="icon"></ion-icon>
+                        </div>
+                        <div id="pie" style="width: 100%"></div>
+                    </div>
+
+                    <div class="chart__bar">
+                        <!-- this card is bar chart for the revenue of the year -->
+                        <div class="header">
+                            <p>Biểu đồ doanh thu trong năm</p>
+                            <ion-icon name="ellipsis-horizontal" class="icon"></ion-icon>
+                        </div>
+                        <div id="bar" style=" width: 100%"></div>
+                    </div>
+                </div>
+
+                <!-- last, content has a table about top product -->
+                <div class="table">
+                    <div class="table__header">
+                        <button class="filter"><ion-icon name="filter-outline" class="icon"></ion-icon>Lọc</button>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Thứ tự</th>
+                                <th>Mã sản phẩm</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Xuất xứ</th>
+                                <th>Đơn giá</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="numerical">1</td>
+                                <td>#614232</td>
+                                <td>Sữa tươi skibidi biệt t...</td>
+                                <td class="origin"><ion-icon name="flag" class="icon"></ion-icon> Việt Nam</td>
+                                <td class="status"><span class="status__stock">Còn hàng</span></td>
+                                <td>245.000đ</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button class="table__viewmore">Xem đầy đủ</button>
+                </div>
             </div>
         </div>
     </div>
