@@ -36,6 +36,7 @@ body {
     width: 100%;
 }
 
+/* sidebar css */
 .sidebar {
     display: flex;
     flex-direction: column;
@@ -164,8 +165,7 @@ body {
 
 .sidebar__bottom .icon{
     color: #F654a9;
-    width: 24px;
-    height: 24px;
+    font-size: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -175,11 +175,60 @@ body {
     font-size: 16px;
 }
 
+/* shrink the sidebar after click the burger button */
+.sidebar {
+    transition: width 0.3s ease;
+}
+
+.container {
+    transition: all 0.3s ease;
+}
+
+.sidebar.collapsed {
+    width: 72px; 
+}
+
+.sidebar.collapsed .sidebar__header {
+    padding: 24px 0;
+    justify-content: center;
+}
+
+.sidebar.collapsed .sidebar__header h2,
+.sidebar.collapsed .sidebar__list .title,
+.sidebar.collapsed .sidebar__list .badge {
+    display: none;
+}
+
+.sidebar.collapsed .sidebar__list .list__item a {
+    justify-content: center;
+    padding: 12px 0;
+}
+
+.sidebar.collapsed .sidebar__list .section {
+    gap: 0; 
+    width: 24px;
+    justify-content: center;
+}
+
+.sidebar.collapsed .sidebar__bottom a {
+    justify-content: center;
+}
+
+.sidebar.collapsed .sidebar__bottom .title {
+    display: none; 
+}
+
+.dashboard.collapsed .container {
+    width: 100%;
+}
+
+/* container css */
 .container {
     width: 100%;
     height: 100%;
 }
 
+/* header of container css */
 .container__header{
     width: 100%;
     height: 60px;
@@ -210,6 +259,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.container__header #menu__action:hover{
+    cursor: pointer;
 }
 
 .container__header img{

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../styles/components/dashboard.css">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
 
 </head>
 
@@ -15,10 +16,12 @@
     <div class="dashboard">
         <!-- sidebar -->
         <aside class="sidebar">
+            <!-- header inclue shop's logo and shop's name -->
             <div class="sidebar__header">
                 <img src="../imgs/Google__G__logo.svg.webp" alt="Logo">
                 <h2>MiChiShop</h2>
             </div>
+            <!-- list item of sidebar -->
             <div class="sidebar__list">
                 <ul class="list">
                     <li class="list__item">
@@ -80,6 +83,7 @@
                     </li>
                 </ul>
             </div>
+            <!-- bottom has exit button -->
             <div class="sidebar__bottom">
                 <a href="../../index.html">
                     <div class="icon"><ion-icon name="exit-outline"></ion-icon></div>
@@ -90,21 +94,26 @@
         <div class="container">
             <!-- header -->
             <div class="container__header">
+                <!-- header left has sidebar expand button and hello message -->
                 <div class="header__left">
-                    <div class="icon"><ion-icon name="menu-outline"></ion-icon></div>
+                    <div class="icon" id="menu__action"><ion-icon name="menu-outline"></ion-icon></div>
                     <h3>Chào mừng trở lại, <span>MiChi Admin</span></h3>
                 </div>
+                <!-- header right has anouncement icon and the avatar of admin account -->
                 <div class="header__right">
                     <div class="icon"><ion-icon name="megaphone-outline"></ion-icon></div>
                     <div class="avatar"><img src="../imgs/Google__G__logo.svg.webp" alt="Avatar"></div>
                 </div>
             </div>
             <!-- contert -->
-            <div class="container__content"></div>
+            <div class="container__content">
+                
+            </div>
         </div>
     </div>
 
     <!-- link to javascript for burger button -->
+    <script src="../scripts/components/ExtendSidebar.js"></script>
 </body>
 
 </html>
