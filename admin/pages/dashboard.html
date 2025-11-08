@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MiChiShop</title>
-    <link rel="stylesheet" href="../styles/components/dashboard.css">
+    <link rel="stylesheet" href="../styles/pages/dashboard.css">
+    <link rel="stylesheet" href="../styles/components/header.css">
+    <link rel="stylesheet" href="../styles/components/sidebar.css">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
@@ -193,21 +195,40 @@
                                 <th>Mã sản phẩm</th>
                                 <th>Tên sản phẩm</th>
                                 <th>Xuất xứ</th>
+                                <th>Trạng thái</th>
                                 <th>Đơn giá</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td class="numerical">1</td>
-                                <td>#614232</td>
-                                <td>Sữa tươi skibidi biệt t...</td>
-                                <td class="origin"><ion-icon name="flag" class="icon"></ion-icon> Việt Nam</td>
-                                <td class="status"><span class="status__stock">Còn hàng</span></td>
-                                <td>245.000đ</td>
+                                <td class="id">#614232</td>
+                                <td class="name">Sữa tươi Vinamilk tiệt trùng</td>
+                                <td class="origin">Việt Nam</ion-icon></td>
+                                <td><span class="status status__instock">Còn hàng</span></td>
+                                <td class="price">245.000đ</td>
+                            </tr>
+                            <tr>
+                                <td class="numerical">2</td>
+                                <td class="id">#614246</td>
+                                <td class="name">Sữa bột Gold IQ+</td>
+                                <td class="origin">Mỹ</td>
+                                <td><span class="status status__instock">Còn hàng</span></td>
+                                <td>360.000đ</td>
+                            </tr>
+                            <tr>
+                                <td class="numerical">3</td>
+                                <td class="id">#614510</td>
+                                <td class="name">Bánh ăn dặm Hello World</td>
+                                <td class="origin">Ấn độ</td>
+                                <td><span class="status status__waiting">Chờ nhập hàng</span></td>
+                                <td>120.000đ</td>
                             </tr>
                         </tbody>
                     </table>
-                    <button class="table__viewmore">Xem đầy đủ</button>
+                    <div class="table__bottom">
+                        <a href=""><button class="viewmore">Xem đầy đủ</button></a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -215,6 +236,7 @@
 
     <!-- link to javascript for burger button -->
     <script src="../scripts/components/ExtendSidebar.js"></script>
+    <script src="../scripts/components/chart.js"></script>
 </body>
 
 </html>

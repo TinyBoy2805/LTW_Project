@@ -36,192 +36,6 @@ body {
     width: 100%;
 }
 
-/* sidebar css */
-.sidebar {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: 240px;
-    border-right: solid #cdcdcd 1px;
-}
-
-.sidebar__header {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    flex-direction: row;
-    gap: 10px;
-    padding: 24px;
-}
-
-.sidebar__header img {  
-    width: 24px;
-    height: 24px;
-    background-size: cover;
-    background-position: center;
-}
-
-.sidebar__header h2{
-    font-size: 16px;
-}
-
-.sidebar__list{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 0 12px 12px 12px;
-}
-
-.sidebar__list .list{
-    list-style: none;
-    width: 100%;
-}
-
-.sidebar__list .list__item{
-    width: 100%;
-    margin-bottom: 4px;
-}
-
-.sidebar__list .list__item a{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px;
-    border-radius: 30px;
-    text-decoration: none;
-    transition: 0.25s ease;
-    color: #868686;
-}
-
-.sidebar__list .icon{
-    font-size: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 400;
-}
-
-.sidebar__list .title{
-    font-size: 14px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 400;
-}
-
-.sidebar__list .list__item .active{
-    background-color: #F654a9;
-    color: #fafafa;
-}
-
-.sidebar__list .list__item .active .title{
-    font-weight: bold;
-}
-
-.sidebar__list .list__item .section{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 12px;
-}
-
-.sidebar__list .list__item .badge{
-    display: flex;
-    align-items: center;
-    justify-content: end;
-    background-color: #F654a9;
-    border-radius: 30px;
-    color: white;
-    font-size: 10px;
-    padding: 2px 6px;
-}
-
-.sidebar__bottom{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    padding: 12px;
-    margin-top: auto;
-}
-
-.sidebar__bottom a{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 100%;
-    padding: 12px;
-    gap: 12px;
-    text-decoration: none;
-    color: #868686;
-}
-
-.sidebar__bottom a:hover{
-    transform: scale(1.1);
-    opacity: 0.9;
-    color: Black;
-}
-
-.sidebar__bottom .icon{
-    color: #F654a9;
-    font-size: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.sidebar__bottom .title{
-    font-size: 16px;
-}
-
-/* shrink the sidebar after click the burger button */
-.sidebar {
-    transition: width 0.3s ease;
-}
-
-.container {
-    transition: all 0.3s ease;
-}
-
-.sidebar.collapsed {
-    width: 72px; 
-}
-
-.sidebar.collapsed .sidebar__header {
-    padding: 24px 0;
-    justify-content: center;
-}
-
-.sidebar.collapsed .sidebar__header h2,
-.sidebar.collapsed .sidebar__list .title,
-.sidebar.collapsed .sidebar__list .badge {
-    display: none;
-}
-
-.sidebar.collapsed .sidebar__list .list__item a {
-    justify-content: center;
-    padding: 12px 0;
-}
-
-.sidebar.collapsed .sidebar__list .section {
-    gap: 0; 
-    width: 24px;
-    justify-content: center;
-}
-
-.sidebar.collapsed .sidebar__bottom a {
-    justify-content: center;
-}
-
-.sidebar.collapsed .sidebar__bottom .title {
-    display: none; 
-}
-
-.dashboard.collapsed .container {
-    width: 100%;
-}
-
 /* container css */
 .container {
     width: 100%;
@@ -232,53 +46,8 @@ body {
     flex-direction: column;
 }
 
-/* header of container css */
-.container__header{
-    width: 100%;
-    height: 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 24px;
-}
-
-.header__left, .header__right{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-}
-
-.container__header .header__left h3{
-    font-size: 20px;
-    color: #F654a9;
-}
-
-.container__header .header__left span{
-    font-size: 20px;
-}
-
-.container__header .icon{
-    font-size: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.container__header #menu__action:hover{
-    cursor: pointer;
-}
-
-.container__header img{
-    width: 24px;
-    height: 24px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 /* content of container css */
-.container__content{
+.container__content {
     width: 100%;
     height: calc(100% - 60px);
     display: flex;
@@ -291,14 +60,17 @@ body {
     background-color: #f8f8f8;
 }
 
-.content__title{
+/* content title */
+.content__title {
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 20px;
     font-weight: bold;
 }
-.overview{
+
+/* 3 revenue card css */
+.overview {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -311,7 +83,7 @@ body {
     border-radius: 12px;
 }
 
-.overview__header{
+.overview__header {
     width: 100%;
     height: 20px;
     display: flex;
@@ -319,18 +91,19 @@ body {
     align-items: center;
 }
 
-.revenue{
+.revenue {
     color: #F654a9;
     font-size: 16px;
     font-weight: bold;
 }
 
-.unit{
+.unit {
     color: #868686;
     font-size: 12px;
     font-weight: 200;
 }
-.overview__card{
+
+.overview__card {
     width: 100%;
     height: 100%;
     display: flex;
@@ -340,7 +113,7 @@ body {
     gap: 24px;
 }
 
-.card{
+.card {
     width: 282px;
     height: 100%;
     padding: 16px;
@@ -352,8 +125,8 @@ body {
     border-radius: 12px;
 }
 
-.highlight{
-     width: 282px;
+.highlight {
+    width: 282px;
     height: 100%;
     padding: 16px;
     display: flex;
@@ -373,13 +146,13 @@ body {
     height: 36%;
 }
 
-.title__highlight{
+.title__highlight {
     font-size: 13px;
     font-weight: 300;
     color: white;
 }
 
-.icon__highlight{
+.icon__highlight {
     padding: 8px;
     font-size: 20px;
     background-color: #feb9da;
@@ -387,13 +160,13 @@ body {
     color: white;
 }
 
-.value__highlight{
+.value__highlight {
     font-size: 24px;
     font-weight: bold;
     color: white;
 }
 
-.text__highlight{
+.text__highlight {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -401,7 +174,7 @@ body {
     gap: 8px;
 }
 
-.increase__highlight{
+.increase__highlight {
     font-size: 10px;
     padding: 2px 6px;
     background-color: #f997c6;
@@ -413,13 +186,13 @@ body {
     font-weight: bold;
 }
 
-.text__highlight span{
+.text__highlight span {
     font-size: 10px;
     color: white;
     font-weight: 600;
 }
 
-.card__header{
+.card__header {
     width: 100%;
     height: 36px;
     display: flex;
@@ -427,13 +200,13 @@ body {
     align-items: center;
 }
 
-.card__header .title{
+.card__header .title {
     font-size: 13px;
     font-weight: 300;
     color: #868686;
 }
 
-.card__header .icon{
+.card__header .icon {
     padding: 8px;
     font-size: 20px;
     background-color: #f3f3f3;
@@ -441,7 +214,7 @@ body {
     color: #aeaeae;
 }
 
-.card__data{
+.card__data {
     display: flex;
     justify-content: start;
     align-items: start;
@@ -449,13 +222,13 @@ body {
     gap: 16px;
 }
 
-.card__data .value{
+.card__data .value {
     font-size: 24px;
     font-weight: bold;
     color: black;
 }
 
-.card__data .text{
+.card__data .text {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -463,7 +236,7 @@ body {
     gap: 8px;
 }
 
-.increase{
+.increase {
     font-size: 10px;
     padding: 2px 6px;
     background-color: #daf7d9;
@@ -475,7 +248,7 @@ body {
     font-weight: bold;
 }
 
-.decrease{
+.decrease {
     font-size: 10px;
     padding: 2px 6px;
     background-color: #fde2df;
@@ -487,13 +260,14 @@ body {
     font-weight: bold;
 }
 
-.card__data .text span{
+.card__data .text span {
     font-size: 10px;
     color: black;
     font-weight: 600;
 }
 
-.chart{
+/* chart css */
+.chart {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -502,7 +276,7 @@ body {
     height: 248px;
 }
 
-.chart__pie{
+.chart__pie {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -515,7 +289,7 @@ body {
     border-radius: 12px;
 }
 
-.chart__bar{
+.chart__bar {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -528,7 +302,7 @@ body {
     border-radius: 12px;
 }
 
-.chart .header{
+.chart .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -536,18 +310,19 @@ body {
     height: 20px;
 }
 
-.chart .header p{
+.chart .header p {
     font-size: 16px;
     font-weight: bold;
     color: black;
 }
 
-.chart .header .icon{
+.chart .header .icon {
     font-size: 20px;
     color: black;
 }
 
-#pie, #bar{
+#pie,
+#bar {
     width: 100%;
     height: 164px;
     display: flex;
@@ -555,7 +330,8 @@ body {
     align-items: center;
 }
 
-.table{
+/* table data css */
+.table {
     display: flex;
     justify-content: start;
     align-items: start;
@@ -568,3 +344,106 @@ body {
     border-radius: 12px;
 }
 
+.table__header {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    width: 100%;
+    height: 32px;
+}
+
+.filter {
+    display: flex;
+    width: auto;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    background-color: #f8f8f8;
+    border-radius: 30px;
+    padding: 8px 12px;
+    border: solid 1px #868686;
+    cursor: pointer;
+}
+
+.filter:hover {
+    text-decoration: underline;
+    background-color: #f3f3f3;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+table thead {
+    background-color: #fcfcfc;
+    color: #666;
+    text-align: left;
+}
+
+table th {
+    padding: 15px 18px;
+    font-weight: 500;
+    border-bottom: 1px solid #eee;
+}
+
+table td {
+    padding: 12px 18px;
+    border-bottom: 1px solid #f5f5f5;
+    font-size: 13px;
+}
+
+table tbody tr:hover {
+    background-color: #eaeaea;
+}
+
+.numerical {
+    font-weight: bold;
+    color: #F654a9;
+}
+
+.id {
+    font-weight: bold;
+}
+
+.status {
+    padding: 2px 6px;
+    border-radius: 12px;
+    font-weight: bold;
+}
+
+.status__instock {
+    background-color: #daf7d9;
+    color: #32c45e;
+}
+
+.status__waiting {
+    background-color: #fde2fd;
+    color: #ed3f27;
+}
+
+.table__bottom {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.table__bottom a {
+    text-decoration: none;
+}
+
+.viewmore {
+    display: flex;
+    width: auto;
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
+    background-color: #f8f8f8;
+    border-radius: 30px;
+    padding: 8px 12px;
+    border: solid 1px #868686;
+    cursor: pointer;
+}
