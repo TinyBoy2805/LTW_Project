@@ -3,6 +3,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .main__blog-header 
@@ -11,11 +12,14 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
+    align-items: flex-start;
+    width: 100%;
 }
 
 .main__blog-header h2 
 {
     font-size: 24px;
+    width: 100%;
 }
 
 .main__blog-header p
@@ -30,7 +34,7 @@
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(7, 1fr);
     gap: 8px;
-    padding: 16px;
+    padding: 0px 16px 8px 16px;
 }
 .main__parent article 
 {
@@ -182,4 +186,23 @@
     font-weight: 600;
     cursor: pointer;
     z-index: 1;
+}
+
+.main__blog .main__blog-more
+{
+    padding: 8px 20px;
+    border-radius: 6px;
+    border: 1px solid var(--c5);
+    outline: none;
+    color: var(--c1);
+    background-color: var(--c5);
+    cursor: pointer;
+    margin-bottom: 16px;
+    transition: .1s ease;
+}
+
+.main__blog .main__blog-more:hover 
+{
+    background-color: var(--c10);
+    color: var(--c1);
 }

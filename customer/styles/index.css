@@ -11,6 +11,8 @@
 @import url('./pages/Products.css');
 @import url('./pages/Contact.css');
 @import url('./pages/Blog.css');
+@import url('./pages/Voucher.css');
+@import url('./pages/ProductDetail.css');
 
 
 *
@@ -21,6 +23,7 @@
    font-family: 'Be Vietnam Pro', sans-serif;
    list-style: none;
    text-decoration: none;
+   image-rendering: pixelated;
 }
 
 body 
