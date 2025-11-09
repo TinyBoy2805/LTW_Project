@@ -198,6 +198,6 @@
     display: none;
 }
 
-.dashboard.collapsed .container {
+.main.collapsed .container {
     width: 100%;
 }

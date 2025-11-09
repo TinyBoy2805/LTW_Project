@@ -1,11 +1,11 @@
 // expand and shrink sidebar
 const menuToggle = document.getElementById('menu__action');
 const sidebar = document.querySelector('.sidebar');
-const dashboard = document.querySelector('.dashboard');
+const maincomponent = document.querySelector('.main');
 
-if (menuToggle && sidebar && dashboard) {
+if (menuToggle && sidebar && maincomponent) {
     menuToggle.addEventListener('click', () => {
         sidebar.classList.toggle('collapsed');
-        dashboard.classList.toggle('collapsed');
+        maincomponent.classList.toggle('collapsed');
     });
 }
