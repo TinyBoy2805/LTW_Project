@@ -90,6 +90,11 @@
     font-weight: 400;
 }
 
+.sidebar__list .list__item a:hover{
+    background-color: #e14d95;
+    color: white;
+}
+
 .sidebar__list .list__item .active {
     background-color: #F654a9;
     color: #fafafa;
