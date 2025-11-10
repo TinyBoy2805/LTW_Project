@@ -25,3 +25,6 @@
 .--color9 { color: var(--c9); }
 .--color10 { color: var(--c10); }
 .--star { color: var(--star);}
+.--active { color: rgb(45, 255, 45); }
+.--male { color: var(--c9);}
+.--female { color: var(--c6);}
