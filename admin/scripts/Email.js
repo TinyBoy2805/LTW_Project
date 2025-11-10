@@ -1,18 +1,18 @@
 //Sidebar toggle
 (function(){
-  // Khởi tạo toggle sidebar
+  //Khởi tạo toggle sidebar
   function initSidebarToggle(){
     const btn = document.querySelector('.sidebar-toggle');
     const sidebar = document.querySelector('.sidebar');
     if(!btn) { console.warn('UuDai.js: sidebar-toggle not found'); return; }
 
-    // Cập nhật trạng thái hiển thị
+    //Cập nhật trạng thái hiển thị
     function setStates(collapsed){
       btn.setAttribute('aria-expanded', collapsed ? 'true' : 'false');
       if(sidebar) sidebar.setAttribute('aria-hidden', collapsed ? 'true' : 'false');
     }
 
-    // Khôi phục trạng thái
+    //Khôi phục trạng thái
     try{
       const stored = localStorage.getItem('ud_sidebar_collapsed');
       if(stored === '1'){
@@ -23,7 +23,7 @@
       }
     }catch(e){ setStates(false); }
 
-    // Hàm toggle công khai
+    //Hàm toggle công khai
     window.toggleSidebar = function(){
       const collapsed = document.body.classList.toggle('sidebar-collapsed');
       setStates(collapsed);
@@ -31,7 +31,7 @@
       return collapsed;
     };
 
-    // Sự kiện click và keyboard
+    //Sự kiện click
     btn.addEventListener('click', function(){ window.toggleSidebar(); });
     btn.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); btn.click(); } });
   }
@@ -40,40 +40,67 @@
   if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initAll);
   else initAll();
 })();
-// Lọc và đánh dấu email quan trọng 
+
+//Lọc email quan trọng
 (function(){
-  const ready = fn => document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', fn) : fn();
-  ready(() => {
+  function initImportantFilter(){
+    //Lấy các phần tử cần thiết, không có thì bỏ qua
+    const btnImportant = document.querySelector('.tabs [data-filter="important"]');
+    const btnAll = document.querySelector('.tabs [data-filter="all"]');
     const mailList = document.querySelector('.mail-list');
-    const tabs = document.querySelector('.tabs');
-    if(!mailList || !tabs) return;
-
-    const applyFilter = showImportant => {
-      mailList.querySelectorAll('.mail-row').forEach(row => {
-        const important = !!row.querySelector('.star[aria-pressed="true"]');
-        row.style.display = (!showImportant || important) ? '' : 'none';
+    if(!mailList || !btnImportant) return;
+    //Ẩn các thư không có class "selected", hiển thị các thư có class "selected"
+    function showOnlySelected(){
+      mailList.querySelectorAll('.mail-row').forEach(function(row){
+        if(!row.classList.contains('selected')) row.classList.add('hidden');
+        else row.classList.remove('hidden');
       });
-    };
-
-    // Nhúng tab click + keyboard được ủy quyền
-    tabs.addEventListener('click', e => {
-      const btn = e.target.closest('button[data-filter]'); if(!btn) return;
-      tabs.querySelectorAll('button').forEach(b => b.classList.toggle('active', b===btn));
-      applyFilter(btn.dataset.filter === 'important');
+    }
+    // Xóa class hidden để hiển thị tất cả thư quan trọng
+    function showAll(){
+      mailList.querySelectorAll('.mail-row').forEach(function(row){ row.classList.remove('hidden'); });
+    }
+    // Khi nhấn nút Important
+    // Cập nhật trạng thái active cho tabs, gọi showOnlySelected để ẩn các thư không quan trọng
+      btnImportant.addEventListener('click', function(){
+      if(btnAll){ btnAll.classList.remove('active'); btnAll.setAttribute('aria-selected','false'); }
+      btnImportant.classList.add('active'); btnImportant.setAttribute('aria-selected','true');
+      showOnlySelected();
     });
-    tabs.addEventListener('keydown', e => { if((e.key==='Enter'||e.key===' ') && e.target.closest('button')) { e.preventDefault(); e.target.click(); } });
-
-    // Toggle dấu sao (delegation). Nếu đang lọc 'Quan trọng', cập nhật ngay bằng cách tái kích hoạt tab đang mở.
-    mailList.addEventListener('click', e => {
-      const star = e.target.closest('.star'); if(!star) return;
-      const pressed = star.getAttribute('aria-pressed') === 'true';
-      star.setAttribute('aria-pressed', String(!pressed));
-      const i = star.querySelector('i'); if(i) { i.classList.toggle('fa-solid'); i.classList.toggle('fa-regular'); }
-      const active = tabs.querySelector('button.active'); if(active && active.dataset.filter === 'important') active.click();
+    // Khi nhấn nút All
+    // Cập nhật trạng thái active cho tabs, gọi showAll để hiển thị tất cả thư
+      if(btnAll) btnAll.addEventListener('click', function(){
+      btnAll.classList.add('active'); btnAll.setAttribute('aria-selected','true');
+      btnImportant.classList.remove('active'); btnImportant.setAttribute('aria-selected','false');
+      showAll();
     });
+  }
+  //Nếu trang đã tải xong thì khởi tạo ngay, nếu chưa thì đợi sự kiện DOMContentLoaded
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initImportantFilter);
+  else initImportantFilter();
+})();
 
-    // Khởi tạo: áp filter theo tab đang active (nếu có)
-    const active = tabs.querySelector('button.active'); if(active) applyFilter(active.dataset.filter === 'important');
+
+//Xem email chi tiết/phản hồi 
+(function(){
+  document.addEventListener('DOMContentLoaded', function(){
+       //Lấy các phần tử cần thiết, không có thì bỏ qua
+    const mailList = document.querySelector('.mail-list');
+    const detail = document.querySelector('.mail-detail');
+    if(!mailList || !detail) return;
+       //Mỗi khi người dùng click vào bên trong .mail-list, hàm này sẽ chạy.
+    mailList.addEventListener('click', function(e){
+      //Nếu người dùng click vào checkbox hoặc biểu tượng sao, bỏ qua.
+      if(e.target.closest('.check-wrap') || e.target.tagName === 'INPUT' || e.target.closest('.star')) return;
+      //Xác định hàng email được click
+      const row = e.target.closest('.mail-row'); if(!row) return;
+      //Lấy thông tin hàng email và hiển thị trong panel chi tiết
+      detail.querySelector('.detail-subject').textContent = row.querySelector('.mail-subject strong')?.textContent || '';
+      detail.querySelector('.detail-sender').textContent = row.querySelector('.mail-sender')?.textContent || '';
+      detail.querySelector('.detail-date').textContent = row.querySelector('.mail-date')?.textContent || '';
+      detail.querySelector('.detail-message').textContent = row.querySelector('.mail-subject .preview')?.textContent || '';
+      detail.classList.add('show'); detail.setAttribute('aria-hidden','false');
+    });
   });
 })();
 

@@ -15,9 +15,9 @@
       <a href="#"><span class="sidebar_icon_link"><i class="fa-solid fa-gift"></i></span> Thống kê</a>
       <a href="#"><span class="sidebar_icon_link"><i class="fa-solid fa-shopping-cart"></i></span> Đơn hàng</a>
       <a href="#"><span class="sidebar_icon_link"><i class="fa-solid fa-box"></i></span> Kho hàng</a>
-      <a href="#" class="active"><span class="sidebar_icon_link"><i class="fa-solid fa-users"></i></span> Khách hàng</a>
-      <a href="#"><span class="sidebar_icon_link"><i class="fa-solid fa-gift"></i></span> Ưu đãi</a>
-      <a href="#"><span class="sidebar_icon_link"><i class="fa-solid fa-envelope"></i></span> Email</a>
+      <a href="KhachHang.html"><span class="sidebar_icon_link"><i class="fa-solid fa-users"></i></span> Khách hàng</a>
+      <a href="UuDai.html"><span class="sidebar_icon_link"><i class="fa-solid fa-gift"></i></span> Ưu đãi</a>
+      <a href="Email.html" class="active"><span class="sidebar_icon_link"><i class="fa-solid fa-envelope"></i></span> Email</a>
       <a href="#"><span class="sidebar_icon_link"><i class="fa-solid fa-cog"></i></span> Cài đặt</a>
     </nav>
     <button class="logout" type="button">Đăng Xuất</button>
@@ -178,6 +178,35 @@
             <div class="mail-date">26/9/2025</div>
           </article>
         </div> <!-- .mail-list --> 
+
+          <!--Xem chi tiết email hoặc phản hồi-->
+          <aside class="mail-detail" role="dialog" aria-hidden="true" aria-label="Chi tiết email">
+            <header class="detail-header">
+              <div class="detail-left">
+                <h4 class="detail-subject">Tiêu đề</h4>
+                <div class="detail-meta"><span class="detail-sender">Người gửi</span></div>
+              </div>
+              <div class="detail-right">
+                <div class="detail-date">Ngày gửi</div>
+                <button class="detail-star star" aria-pressed="false"><i class="fa-regular fa-star"></i></button>
+              <a href="Email.html"><button class="detail-close" aria-label="Đóng chi tiết"><i class="fa-solid fa-arrow-rotate-left"></i></button></a>
+              </div>
+            </header>
+
+            <div class="detail-body" tabindex="0">
+              <p class="detail-message">Nội dung email sẽ xuất hiện ở đây. Nếu bạn muốn trả lời, dùng khung trả lời bên dưới.</p>
+            </div>
+
+            <form class="detail-reply" action="#" onsubmit="return false;">
+              <label class="label">Trả lời</label>
+              <textarea class="input textarea reply-text" rows="3" placeholder="Viết phản hồi..."></textarea>
+              <div class="detail-actions">
+                <button type="button" class="btn primary reply-send">Gửi</button>
+                <button type="button" class="btn ghost reply-cancel">Hủy</button>
+                <button type="button" class="btn danger reply-delete">Xóa</button>
+              </div>
+            </form>
+          </aside>
       </div> 
     </div> <!-- .content -->
   </main>

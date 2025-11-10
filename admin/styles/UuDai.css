@@ -114,11 +114,19 @@ body {
   padding: 6px 8px;
   border-radius: 8px;
 }
-.sidebar-toggle:hover { background: #fff0f7; color: #f564a9; }
+.sidebar-toggle:hover {
+  background: #fff0f7;
+  color: #f564a9;
+}
 
 /* Trạng thái khi thu gọn sidebar */
-.sidebar { transition: width 220ms ease, padding 220ms ease; }
-.header, .main { transition: all 220ms ease; }
+.sidebar {
+  transition: width 220ms ease, padding 220ms ease;
+}
+.header,
+.main {
+  transition: all 220ms ease;
+}
 /* Để lại biểu tượng */
 body.sidebar-collapsed .sidebar {
   width: 64px;
@@ -126,13 +134,17 @@ body.sidebar-collapsed .sidebar {
   padding-right: 10px;
 }
 /* Khi thu gọn sidebar, di chuyển nội dung chính và tiêu đề tương ứng */
-body.sidebar-collapsed .main { margin-left: 104px; }
-body.sidebar-collapsed .header { left: 104px; }
+body.sidebar-collapsed .main {
+  margin-left: 104px;
+}
+body.sidebar-collapsed .header {
+  left: 104px;
+}
 
 .header__left {
-   display: flex;
-    align-items: center;
-    gap: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .header__right {
@@ -176,22 +188,44 @@ body.sidebar-collapsed .header { left: 104px; }
   padding: 24px 40px;
   background: transparent;
   position: fixed;
-  top: 72px; 
-  left: 240px; 
+  top: 72px;
+  left: 240px;
   right: 0;
   bottom: 0;
   overflow: hidden;
 }
 
 /* Khi thu gọn sidebar, di chuyển nội dung chính sang trái để căn chỉnh */
-body.sidebar-collapsed .content { left: 104px; }
+body.sidebar-collapsed .content {
+  left: 104px;
+}
 
 /* Ẩn nhãn sidebar khi thu gọn, giữ biểu tượng hiển thị */
-body.sidebar-collapsed .sidebar h2 { font-size: 0; line-height: 0; }
-body.sidebar-collapsed .sidebar h2 .brand-logo { margin-right: 0; }
-body.sidebar-collapsed .sidebar a { justify-content: center; font-size: 0; padding-left: 6px; padding-right: 6px; }
-body.sidebar-collapsed .sidebar a .sidebar_icon_link { margin-right: 0; font-size: 18px; display: inline-flex; align-items: center; justify-content: center; }
-body.sidebar-collapsed .sidebar a.active { border-radius: 12px; padding-left: 6px; padding-right: 6px; }
+body.sidebar-collapsed .sidebar h2 {
+  font-size: 0;
+  line-height: 0;
+}
+body.sidebar-collapsed .sidebar h2 .brand-logo {
+  margin-right: 0;
+}
+body.sidebar-collapsed .sidebar a {
+  justify-content: center;
+  font-size: 0;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+body.sidebar-collapsed .sidebar a .sidebar_icon_link {
+  margin-right: 0;
+  font-size: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+body.sidebar-collapsed .sidebar a.active {
+  border-radius: 12px;
+  padding-left: 6px;
+  padding-right: 6px;
+}
 
 .content__panel {
   background: #fff;
@@ -226,9 +260,18 @@ body.sidebar-collapsed .sidebar a.active { border-radius: 12px; padding-left: 6p
   font-size: 14px;
   box-shadow: 0 8px 18px rgba(245,100,169,0.12);
 }
-.new-btn:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(245,100,169,0.14); }
-.new-btn:active { transform: translateY(0); box-shadow: 0 6px 14px rgba(245,100,169,0.10); }
-.new-btn:focus { outline: none; box-shadow: 0 0 0 4px rgba(255,105,180,0.12); }
+.new-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(245,100,169,0.14);
+}
+.new-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 14px rgba(245,100,169,0.10);
+}
+.new-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(255,105,180,0.12);
+}
 
 /* ===== OFFERS ===== */
 .offers {
@@ -322,9 +365,17 @@ body.sidebar-collapsed .sidebar a.active { border-radius: 12px; padding-left: 6p
   align-self: stretch;
 }
 @media (max-width: 900px) {
-  .sidebar { display: none; }
-  .main { margin-left: 0; }
-  .header { left: 0; }
-  .customers { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+  .sidebar {
+    display: none;
+  }
+  .main {
+    margin-left: 0;
+  }
+  .header {
+    left: 0;
+  }
+  .customers {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
 }
 
