@@ -53,6 +53,7 @@ body {
     gap: 16px;
 }
 
+/* Header of form css */
 .header {
     display: flex;
     flex-direction: column;
@@ -83,6 +84,7 @@ body {
     color: #626262;
 }
 
+/* Form css */
 .form {
     display: flex;
     flex-direction: column;
@@ -186,6 +188,8 @@ body {
     background-color: #868686;
 }
 
+
+/* Bottom of form css */
 .footer {
     display: flex;
     flex-direction: column;

@@ -22,6 +22,7 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
+
 body {
     min-height: 100vh;
     display: flex;
@@ -29,11 +30,13 @@ body {
     align-items: center;
     background-color: #f8f8f8;
 }
-.register__form{
+
+/* register form css */
+.register__form {
     display: flex;
     justify-content: center;
     align-items: center;
-     width: 460px;
+    width: 460px;
     padding: 32px;
     background-color: #ffffff;
     border-radius: 24px;
@@ -43,12 +46,16 @@ body {
     flex-direction: column;
     gap: 16px;
 }
+
+/* Title of the form (the header) */
 .header__title {
     font-size: 31px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
+/* Main form */
 .form {
     display: flex;
     flex-direction: column;
@@ -110,7 +117,8 @@ body {
 .form__text:hover {
     text-decoration: underline;
 }
-.form__button{
+
+.form__button {
     background-color: #f564a9;
     width: 100%;
     height: 40px;
@@ -147,6 +155,7 @@ body {
     background-color: #868686;
 }
 
+/* Bottom of form */
 .footer {
     display: flex;
     flex-direction: column;
@@ -167,6 +176,7 @@ body {
     object-fit: contain;
     transition: 0.2s ease;
 }
+
 .footer__container__icon i {
     font-size: 24px;
     object-fit: contain;
@@ -174,7 +184,8 @@ body {
     color: blue;
 }
 
-.footer__container__icon:hover img, .footer__container__icon:hover i{
+.footer__container__icon:hover img,
+.footer__container__icon:hover i {
     transform: scale(1.1);
     opacity: 0.9;
 }
