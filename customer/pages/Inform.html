@@ -5,9 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../styles/index.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" 
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
+
     <header class="header">
         <nav class="nav">
             <div class="nav__top">
@@ -79,82 +82,68 @@
                     </ul>
                 </div>
             </div>
-            <div class="nav__line"></div>
-            <div class="nav__bottom">
+            <div class="nav__line" hidden></div>
+            <div class="nav__bottom" hidden>
                 <ul>
-                    <li><a href="./Home.html">Trang chủ</a></li>
+                    <li><a href="./Home.html" class="active">Trang chủ</a></li>
                     <li><a href="./Products.html">Sản phẩm</a></li>
                     <li><a href="./Voucher.html">Khuyến mãi</a></li>
                     <li><a href="./Blog.html">Cẩm nang</a></li>
-                    <li><a href="./Contact.html" class="active">Liên hệ</a></li>
+                    <li><a href="./Contact.html">Liên hệ</a></li>
                     <li><a href="">về cửa hàng</a></li>
                 </ul>
             </div>
         </nav>
+        
     </header>
 
     <main class="main">
+        <section class="notifications">
 
-        <section class="main__contact-top">
-            <h2>MichiShop luôn sẵn sàng phục vụ bạn!</h2>
-            <p>Nếu bạn có thắc mắc, cần tư vấn sản phẩm, hoặc muốn đặt hàng, vui lòng liên hệ với chúng tôi qua email, số điện thoại hoặc fanpage. Chúng tôi sẽ phản hồi bạn trong thời gian sớm nhất.</p>
-        </section>
-        
-        <section class="main__contact-bottom">
-            <div class="main__contact-bottom-header">
-                <h2>Liên hệ với cửa hàng</h2>
-                <p>Chúng tôi hy vọng sẽ sớm được nghe ý kiến từ bạn</p>
+            <header class="notifications-header">
+                <h2>Thông báo của bạn</h2>
+                <button class="btn-mark-all">Đánh dấu tất cả đã đọc</button>
+            </header>
+
+            <div class="notifications-list">
+
+                <!-- 1 item -->
+                <article class="notification active">
+                    <div class="icon --order">
+                        <i class="fa-solid fa-box"></i>
+                    </div>
+                    <div class="content">
+                        <h4>Đơn hàng #DH2031 đang được giao</h4>
+                        <p>Đơn hàng của bạn đã rời kho và đang trên đường đến bạn!</p>
+                        <span class="time">2 giờ trước</span>
+                    </div>
+                </article>
+
+                <article class="notification">
+                    <div class="icon --promo">
+                        <i class="fa-solid fa-gift"></i>
+                    </div>
+                    <div class="content">
+                        <h4>Ưu đãi thành viên VIP 🎁</h4>
+                        <p>Giảm 15% cho tất cả sản phẩm dinh dưỡng trẻ nhỏ, hết hạn sau 3 ngày.</p>
+                        <span class="time">1 ngày trước</span>
+                    </div>
+                </article>
+
+                <article class="notification">
+                    <div class="icon --security">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <div class="content">
+                        <h4>Đổi mật khẩu thành công</h4>
+                        <p>Bạn đã thay đổi mật khẩu tài khoản lúc 18:36.</p>
+                        <span class="time">3 ngày trước</span>
+                    </div>
+                </article>
+
             </div>
-            <div class="main__contact-bottom-mid">
-                <div class="main__contact-bottom-mid-sub">
-                    <div>
-                        <i class="fa-solid fa-envelope"></i>
-                        E-mail
-                    </div>
-                    <p>taisaodattenlaikhovay@gmail.com</p>
-                </div>
-                <div class="main__contact-bottom-mid-sub">
-                    <div>
-                        <i class="fa-solid fa-phone"></i>
-                        Số điện thoại
-                    </div>
-                    <p>0931415926</p>
-                </div>
-            </div>
 
-            <form action="" class="main__contact-bottom-form">
-                <fieldset>
-                    <div class="form-group">
-                        <label>Họ và tên lót</label>
-                        <input type="text" name="first_name">
-                    </div>
-                    <div class="form-group">
-                        <label>Tên</label>
-                        <input type="text" name="last_name">
-                    </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" name="email">
-                    </div>
-                    <div class="form-group">
-                        <label>Số điện thoại</label>
-                        <input type="tel" name="phone">
-                    </div>
-                </fieldset>
-                <fieldset>
-                    <label for="">Lời nhắn</label>
-                    <textarea name="" id=""></textarea>
-                </fieldset>
-                <button>Gửi</button>
-            </form>
-
-
-        </section>
-
-
-
-
-
+            </section>
 
     </main>
 
@@ -232,5 +221,7 @@
     </footer>
 
 
+
+    
 </body>
 </html>
