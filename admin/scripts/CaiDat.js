@@ -41,7 +41,7 @@
   else initAll();
 })();
 
-// Tabs behavior for settings page
+// Nút tabs cho trang cài đặt
 (function(){
   function initTabs(){
     const tabs = Array.from(document.querySelectorAll('.settings-tabs .tab-btn'));
@@ -49,9 +49,9 @@
     tabs.forEach(btn => btn.addEventListener('click', function(){
       const tab = btn.getAttribute('data-tab');
       if(!tab) return;
-      // set active button
+      // Cập nhật trạng thái nút
       tabs.forEach(b => b.classList.toggle('active', b === btn));
-      // show/hide panels
+      // Hiển thị/ẩn panel tương ứng
       const panels = Array.from(document.querySelectorAll('.tab-panel'));
       panels.forEach(p => {
         if(p.dataset.panel === tab){ p.classList.add('active'); p.style.display = ''; }
