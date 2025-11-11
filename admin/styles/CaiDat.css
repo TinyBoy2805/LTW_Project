@@ -325,7 +325,6 @@ body.sidebar-collapsed .content {
    align-items: center;
 }
 
-
 /* ===== 4) TAB: TÀI KHOẢN (Account) =====
    Các kiểu dùng trong tab Tài khoản: ảnh đại diện, thông tin cá nhân, form lưu */
 .settings-tabs {
@@ -570,6 +569,118 @@ body.sidebar-collapsed .content {
    font-weight: 700;
 }
 
+/* Device management card (cài đặt -> Thiết bị) */
+.device-card {
+   background: #fff;
+   border-radius: 12px;
+   padding: 16px;
+   box-shadow: 0 6px 18px rgba(16,24,40,0.04);
+}
+
+.device-card__head {
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
+}
+
+.device-card__icon {
+   width: 44px;
+   height: 44px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   border-radius: 10px;
+   background: #f3f4ff;
+   color: #5b6b8a;
+   font-size: 18px;
+}
+
+.device-card__title {
+   font-weight: 700;
+   font-size: 16px;
+}
+
+.device-card__desc {
+   font-size: 13px;
+   color: #6b7280;
+}
+
+.device-card__actions {
+   margin-top: 12px;
+}
+
+.signout-btn {
+   background: linear-gradient(90deg,#ff64b0,#f564a9);
+   color: #fff;
+   border: none;
+   padding: 10px 16px;
+   border-radius: 10px;
+}
+
+.device-list {
+   margin-top: 14px;
+   display: flex;
+   flex-direction: column;
+   gap: 8px;
+}
+
+.device-item {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   gap: 12px;
+   padding: 10px 0;
+}
+
+.device-item__left {
+   display: flex;
+   align-items: center;
+   gap: 12px;
+}
+
+.device-icon {
+   width: 36px;
+   height: 36px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   border-radius: 8px;
+   background: #fff9fb;
+   color: #222;
+}
+
+.device-meta {
+   display: flex;
+   flex-direction: column;
+}
+
+.device-name {
+   font-weight: 700;
+}
+
+.device-sub {
+   font-size: 13px;
+   color: #9aa0a6;
+}
+
+.device-item__actions {
+   color: #9aa0a6;
+   font-size: 18px;
+}
+
+.device-card__help {
+   margin-top: 8px;
+   display: flex;
+   justify-content: center;
+}
+
+.need-help {
+   background: #fff0f7;
+   color: #f564a9;
+   border: 1px solid rgba(245,100,169,0.12);
+   padding: 10px 18px;
+   border-radius: 8px;
+}
 
 /* ===== 7) TIỆN ÍCH & TÙY CHUNG =====
    Các lớp tiện ích dùng xuyên suốt: margin helpers, hidden, text-muted, sr-only */
