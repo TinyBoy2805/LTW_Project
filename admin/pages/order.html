@@ -18,7 +18,7 @@
         <aside class="sidebar">
             <!-- header inclue shop's logo and shop's name -->
             <div class="sidebar__header">
-                <img src="../imgs/Google__G__logo.svg.webp" alt="Logo">
+                <img src="../imgs/avatar.webp" alt="Logo">
                 <h2>MiChiShop</h2>
             </div>
             <!-- list item of sidebar -->
@@ -101,8 +101,49 @@
                 </div>
                 <!-- header right has anouncement icon and the avatar of admin account -->
                 <div class="header__right">
-                    <div class="icon"><ion-icon name="megaphone-outline"></ion-icon></div>
-                    <div class="avatar"><img src="../imgs/Google__G__logo.svg.webp" alt="Avatar"></div>
+                    <div class="notification__wrapper">
+                        <div class="icon" id="notification__icon">
+                            <ion-icon name="notifications-outline"></ion-icon>
+                            <span class="notification__badge">3</span>
+                        </div>
+
+                        <div class="notification__frame">
+                            <h4 class="notification__title">🔔 Thông báo mới</h4>
+                            <div class="notification__list">
+                                <div class="notification__item new">
+                                    <div class="item__icon"><ion-icon name="bag-check-outline"></ion-icon></div>
+                                    <div class="item__content">
+                                        <p class="item__text">
+                                            <strong>Đơn hàng mới:</strong> Mã O-250725 vừa được tạo.
+                                        </p>
+                                        <span class="item__time">Vài giây trước</span>
+                                    </div>
+                                </div>
+
+                                <div class="notification__item new">
+                                    <div class="item__icon alert"><ion-icon name="alert-circle-outline"></ion-icon>
+                                    </div>
+                                    <div class="item__content">
+                                        <p class="item__text">
+                                            <strong>Cảnh báo tồn kho:</strong> Sữa Bột GrowPro chỉ còn 10 sản phẩm.
+                                        </p>
+                                        <span class="item__time">5 phút trước</span>
+                                    </div>
+                                </div>
+
+                                <div class="notification__item">
+                                    <div class="item__icon review"><ion-icon name="star-outline"></ion-icon></div>
+                                    <div class="item__content">
+                                        <p class="item__text">
+                                            Có <strong>1 đánh giá 5 sao</strong> mới cho Váng sữa.
+                                        </p>
+                                        <span class="item__time">1 giờ trước</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="avatar"><img src="../imgs/avatar.webp" alt="Avatar"></div>
                 </div>
             </div>
             <!-- contert -->
@@ -113,7 +154,39 @@
                     <input type="text" placeholder="Tìm kiếm đơn hàng">
                     <div class="search__box">
                         <ion-icon name="search-outline" class="search__icon"></ion-icon>
-                        <ion-icon name="filter-outline" class="filter__icon"></ion-icon>
+                        <div class="filter__wrapper">
+                            <button class="filter__button" id="order__filter__btn">
+                                <ion-icon name="funnel-outline"></ion-icon>
+                                Lọc
+                            </button>
+                            <div class="filter__frame hidden" id="order__filter__frame">
+                                <h4 class="filter__frame__title">Bộ Lọc Đơn Hàng</h4>
+                                <div class="filter__group">
+                                    <label for="filter__order__status">Trạng thái:</label>
+                                    <select id="filter__order__status">
+                                        <option value="all">Tất cả</option>
+                                        <option value="pending">Chờ xác nhận</option>
+                                        <option value="shipping">Đang giao hàng</option>
+                                        <option value="completed">Hoàn thành</option>
+                                        <option value="cancelled">Đã hủy</option>
+                                    </select>
+                                </div>
+                                <div class="filter__group">
+                                    <label for="filter__order__date">Ngày đặt hàng:</label>
+                                    <input type="date" id="filter__order__date__from" title="Từ ngày">
+                                </div>
+                                <div class="filter__group">
+                                    <label for="filter__price__min">Tổng tiền (VNĐ):</label>
+                                    <input type="number" id="filter__price__min" placeholder="Từ">
+                                    <input type="number" id="filter__price__max" placeholder="Đến"
+                                        style="margin-top: 5px;">
+                                </div>
+                                <div class="filter__actions">
+                                    <button class="clear__button">Xóa lọc</button>
+                                    <button class="apply__button">Áp dụng</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!-- List of some orders available -->
@@ -201,6 +274,7 @@
 
     <!-- link to javascript for burger button -->
     <script src="../scripts/components/ExtendSidebar.js"></script>
+    <script src="../scripts/components/filter.js"></script>
 </body>
 
 </html>
