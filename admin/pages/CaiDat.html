@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MichiShop - Cài đặt</title>
+  <link rel="stylesheet" href="../styles/CaiDat.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar" aria-label="Chức năng chính">
+  <h2><img src="../imgs/logo.jpg" alt="MichiShop" class="brand-logo">MichiShop</h2>
+    <nav class="sidebar__nav" aria-label="Menu chính">
+      <a href="#"><span class="sidebar_icon_link"><i class="fa-solid fa-gift"></i></span> Thống kê</a>
+      <a href="#"><span class="sidebar_icon_link"><i class="fa-solid fa-shopping-cart"></i></span> Đơn hàng</a>
+      <a href="#"><span class="sidebar_icon_link"><i class="fa-solid fa-box"></i></span> Kho hàng</a>
+      <a href="KhachHang.html"><span class="sidebar_icon_link"><i class="fa-solid fa-users"></i></span> Khách hàng</a>
+      <a href="UuDai.html"><span class="sidebar_icon_link"><i class="fa-solid fa-gift"></i></span> Ưu đãi</a>
+      <a href="Email.html"><span class="sidebar_icon_link"><i class="fa-solid fa-envelope"></i></span> Email</a>
+      <a href="CaiDat.html" class="active"><span class="sidebar_icon_link"><i class="fa-solid fa-cog"></i></span> Cài đặt</a>
+    </nav>
+    <button class="logout" type="button">Đăng Xuất</button>
+  </aside>
+
+  <!-- Main content -->
+  <main class="main">
+    <header class="header">
+        <div class="header__left">
+          <button class="sidebar-toggle" type="button" aria-label="Thu gọn sidebar">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        <h3>Chào mừng trở lại, CỤC ZÀNG !!!</h3>
+        </div>
+      <div class="header__right">
+        <a href="#" class="notify-link" aria-label="Thông báo">
+          <span class="sidebar_icon_link"><i class="fa-solid fa-bell"></i></span>
+        </a>
+        <img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="user" class="user-avatar" />
+      </div>
+    </header>
+    <div class="content" aria-labelledby="settings-title">
+      <div class="content__panel">
+        <h3 id="settings-title">Cài đặt</h3>
+        
+<!-- Settings Tabs -->
+        <div class="settings-tabs-wrap">
+          <div class="settings-tabs">
+            <button class="tab-btn active" data-tab="account">Tài khoản</button>
+            <button class="tab-btn" data-tab="notifications">Thông báo</button>
+            <button class="tab-btn" data-tab="security">Bảo mật</button>
+          </div>
+
+          <div class="tab-panel-wrapper">
+        <div class="settings-grid tab-panel active" data-panel="account">
+          <!-- Left column: avatar + password -->
+          <div class="panel">
+            <div class="panel-row">
+              <div>
+                <h4>Thay đổi hồ sơ</h4>
+                <div class="panel-sub">Thay đổi ảnh đại diện của bạn tại đây</div>
+                <div class="avatar-wrap">
+                  <img class="avatar" src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="avatar">
+                  <div class="avatar-actions">
+                    <button class="btn primary" type="button">Tải lên</button>
+                    <button class="btn ghost" type="button">Đặt lại</button>
+                  </div>
+                </div>
+                <div class="panel-sub small-sub">Cho phép JPG, GIF hoặc PNG. Kích thước tối đa 800K</div>
+              </div>
+
+              <!-- change password moved to Bảo mật tab -->
+            </div>
+          </div>
+
+          <!-- Right column: personal details -->
+          <div class="panel">
+            <h4>Thông tin cá nhân</h4>
+            <div class="panel-sub">Để thay đổi thông tin cá nhân, chỉnh sửa và lưu tại đây</div>
+            <form class="mt-12">
+              <div class="form-grid">
+                <div class="form-row">
+                  <div class="label">Họ và tên</div>
+                    <input type="text" value="Sơn Tùng - MTP">
+                </div>
+                <div class="form-row">
+                  <div class="label">Tên cửa hàng</div>
+                    <input type="text" value="MichiShop">
+                </div>
+
+                <div class="form-row">
+                  <div class="label">Vị trí</div>
+                  <select>
+                    <option>Việt Nam</option>
+                    <option>Trung Quốc</option>
+                    <option>Hàn Quốc</option>
+                    <option>Nhật Bản</option>
+                  </select>
+                </div>
+                <div class="form-row">
+                  <div class="label">Tiền tệ</div>
+                  <select>
+                    <option>Việt Nam (VND)</option>
+                    <option>Trung Quốc (CNY)</option>
+                    <option>Hàn Quốc (KRW)</option>
+                    <option>Nhật Bản (JPY)</option>
+                  </select>
+                </div>
+
+                <div class="form-row">
+                  <div class="label">Email</div>
+                  <input type="email" value="michishop@beyeu123.com">
+                </div>
+                <div class="form-row">
+                  <div class="label">Số điện thoại</div>
+                  <input type="text" value="+84912345678">
+                </div>
+
+                <div class="panel-grid-full">
+                  <div class="form-row">
+                    <div class="label">Địa chỉ</div>
+                    <input type="text" value="814 Howard Street, 120065, Vietnam">
+                  </div>
+                </div>
+              </div>
+
+                <div class="form-actions">
+                <button type="button" class="btn primary">Lưu</button>
+                <button type="button" class="btn ghost">Hủy</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="settings-grid tab-panel" data-panel="notifications">
+          <div class="panel">
+            <h4>Tuỳ chọn thông báo</h4>
+            <div class="panel-sub">Chọn các thông báo bạn muốn nhận qua email. <br/> Lưu ý: bạn không thể từ chối các thông báo hệ thống như thanh toán, bảo mật hoặc pháp lý.</div>
+            <form class="mt-12">
+              <div class="form-row">
+                <div class="label">Địa chỉ Email<span class="required-star">*</span></div>
+                <input type="email" placeholder="Nhập địa chỉ email">
+                <div class="panel-sub text-muted mt-6">Bắt buộc để nhận thông báo.</div>
+              </div>
+
+              <div class="notification-list">
+                <div class="notify-item">
+                  <div class="icon-box"><i class="fa-regular fa-newspaper"></i></div>
+                  <div class="notify-body">
+                    <div class="notify-title">Bản tin của chúng tôi</div>
+                    <div class="notify-sub">Luôn cập nhật những thay đổi quan trọng</div>
+                  </div>
+                  <label class="toggle-switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                  </label>
+                </div>
+
+                <div class="notify-item">
+                  <div class="icon-box"><i class="fa-solid fa-clipboard-check"></i></div>
+                  <div class="notify-body">
+                    <div class="notify-title">Xác nhận đơn hàng</div>
+                    <div class="notify-sub">Bạn sẽ nhận được khi khách đặt hàng</div>
+                  </div>
+                  <label class="toggle-switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                  </label>
+                </div>
+
+                <div class="notify-item">
+                  <div class="icon-box"><i class="fa-solid fa-truck-fast"></i></div>
+                  <div class="notify-body">
+                    <div class="notify-title">Trạng thái đơn hàng</div>
+                    <div class="notify-sub">Bạn sẽ được thông báo khi đơn hàng thay đổi trạng thái</div>
+                  </div>
+                  <label class="toggle-switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                  </label>
+                </div>
+
+                <div class="notify-item">
+                  <div class="icon-box"><i class="fa-solid fa-box-open"></i></div>
+                  <div class="notify-body">
+                    <div class="notify-title">Đơn hàng đã giao</div>
+                    <div class="notify-sub">Bạn sẽ được thông báo khi đơn hàng được giao</div>
+                  </div>
+                  <label class="toggle-switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                  </label>
+                </div>
+
+                <div class="notify-item">
+                  <div class="icon-box"><i class="fa-regular fa-envelope"></i></div>
+                  <div class="notify-body">
+                    <div class="notify-title">Thông báo qua email</div>
+                    <div class="notify-sub">Bật nhận thông báo qua email để cập nhật</div>
+                  </div>
+                  <label class="toggle-switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                  </label>
+                </div>
+              </div>
+
+            </form>
+          </div>
+
+          <div class="right-column col-2 compact">
+            <div class="panel compact">
+              <h4>Ngày &amp; Giờ</h4>
+              <div class="panel-sub">Cài đặt múi giờ và hiển thị lịch</div>
+              <div class="mt-8 small-row">
+                <div class="meta">
+                  <div class="small-icon"><i class="fa-regular fa-clock"></i></div>
+                  <div>
+                    <div class="notify-title">Múi giờ</div>
+                    <div class="notify-sub">Chọn múi giờ hiển thị cho cửa hàng</div>
+                  </div>
+                </div>
+                <div>
+                  <label for="timezone-select" class="sr-only">Chọn múi giờ</label>
+                  <select id="timezone-select" class="select-compact" aria-label="Chọn múi giờ">
+                    <option value="asia/ho_chi_minh">Việt Nam (UTC+7)</option>
+                    <option value="asia/shanghai">Trung Quốc (UTC+8)</option>
+                    <option value="asia/seoul">Hàn Quốc (UTC+9)</option>
+                    <option value="asia/tokyo">Nhật Bản (UTC+9)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <h4>Bỏ theo dõi</h4>
+              <div class="panel-sub">Tuỳ chọn theo dõi trình duyệt</div>
+              <div class="mt-12 small-row">
+                <div class="meta">
+                  <div class="small-icon"><i class="fa-regular fa-eye-slash"></i></div>
+                  <div>
+                    <div class="notify-title">Bỏ theo dõi trình duyệt</div>
+                    <div class="notify-sub">Cookie và tuỳ chọn theo dõi trình duyệt</div>
+                  </div>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox">
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-actions mt-12 floating-actions">
+            <button class="btn save" type="button">Lưu</button>
+            <button class="btn ghost" type="button">Huỷ</button>
+          </div>
+        </div>
+
+        <div class="settings-grid tab-panel" data-panel="security">
+          <div class="panel">
+            <h4>Bảo mật</h4>
+            <div class="panel-sub">Tuỳ chọn bảo mật tài khoản</div>
+            <div class="mt-12">
+              <label class="checkbox-row"><input type="checkbox" checked> Xác thực hai yếu tố (2FA)</label>
+              <label class="checkbox-row mt-8"><input type="checkbox"> Yêu cầu đổi mật khẩu định kỳ</label>
+            </div>
+          </div>
+          <div class="panel">
+            <h4>Đổi mật khẩu</h4>
+            <div class="panel-sub">Đổi mật khẩu để bảo vệ tài khoản của bạn</div>
+            <div class="form-grid mt-6">
+              <div class="form-row">
+                <div class="label">Mật khẩu hiện tại</div>
+                <input type="password" name="current_password" placeholder="Mật khẩu hiện tại" autocomplete="current-password">
+              </div>
+              <div class="form-row">
+                <div class="label">Mật khẩu mới</div>
+                <input type="password" name="new_password" placeholder="Mật khẩu mới" autocomplete="new-password">
+              </div>
+              <div class="form-row">
+                <div class="label">Xác nhận mật khẩu</div>
+                <input type="password" name="confirm_password" placeholder="Xác nhận mật khẩu" autocomplete="new-password">
+              </div>
+            </div>
+            <div class="form-message mt-8 hidden"></div>
+            <div class="form-actions">
+              <button class="btn primary save-password" type="button">Lưu mật khẩu</button>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h4>Thiết bị đã đăng nhập</h4>
+            <div class="panel-sub">Quản lý các thiết bị đã đăng nhập vào tài khoản của bạn</div>
+            <div class="mt-12 text-muted">Không có thiết bị mới.</div>
+          </div>
+        </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    </main>
+  <script src="../scripts/CaiDat.js"></script>
+        </body>
+        </html>

@@ -173,7 +173,8 @@ body.sidebar-collapsed .header { left: 104px; }
 
 /* ===== CONTENT ===== */
 .content {
-  padding: 12px 40px;
+  /* match other pages (Email/KhachHang/UuDai) so content vertical position is consistent */
+  padding: 24px 40px;
   background: transparent;
   position: fixed;
   top: 72px; 
@@ -196,7 +197,8 @@ body.sidebar-collapsed .sidebar a.active { border-radius: 12px; padding-left: 6p
 .content__panel {
   background: #fff;
   border-radius: 18px;
-  padding: 8px 24px 160px; 
+  /* increase top padding to align with other pages; keep extra bottom padding to avoid overlap with sticky actions */
+  padding: 30px 24px 160px;
   box-shadow: 0 6px 30px rgba(16,24,40,0.04);
   display: flex;
   flex-direction: column;
