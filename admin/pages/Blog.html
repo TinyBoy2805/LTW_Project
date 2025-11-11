@@ -141,7 +141,63 @@
           </div>
         </div>
 
-    
+        <!-- Tạo bài viết -->
+        <div class="tab-panel" data-panel="create">
+          <div class="form-wrap">
+            <section class="left-panel">
+              <div class="card-form">
+                <label class="label">Tiêu đề</label>
+                <input id="blog-title" class="input" type="text" placeholder="Nhập tiêu đề" required>
+
+                <label class="label">Tác giả</label>
+                <input id="blog-author" class="input" type="text" placeholder="Tên tác giả" value="MichiShop">
+                
+                <label class="label">Danh mục</label>
+                <select id="blog-category" class="input">
+                  <option value="">-- Chọn danh mục --</option>
+                  <option value="dinh-duong">Dinh dưỡng</option>
+                  <option value="sua">Sữa</option>
+                  <option value="an-dam">Ăn dặm</option>
+                  <option value="suc-khoe">Sức khỏe</option>
+                </select>
+
+                <div class="row two">
+                  <div>
+                    <label class="label">Ngày đăng</label>
+                    <input id="blog-date" class="input" type="date">
+                  </div>
+                </div>
+
+                <label class="label">Nội dung</label>
+                <textarea id="blog-content" class="input textarea" rows="3" placeholder="Viết nội dung..."></textarea>
+              </div>
+            </section>
+
+            <aside class="right-panel">
+              <div class="images-card">
+                <h4>Hình ảnh</h4>
+                <div class="thumbs">
+                  <div class="add-thumb">+</div>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+
+      </div> <!-- .content__panel -->
+
+      <div class="actions-row">
+        <div class="actions-left">
+          <p class="note">Đảm bảo nội dung tuân thủ chính sách và không vi phạm quy định.</p>
+        </div>
+        <div class="actions-right">
+          <div class="panel-actions">
+            <div class="actions">
+              <button id="cancel-blog" class="btn ghost" type="button">Hủy</button>
+              <button id="publish-blog" class="btn primary" type="button">Đăng bài</button>
+            </div>
+          </div>
+        </div>
       </div>
       </div>
     </div>
