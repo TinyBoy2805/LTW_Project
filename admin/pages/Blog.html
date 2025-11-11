@@ -186,6 +186,48 @@
 
       </div> <!-- .content__panel -->
 
+        <!-- Chi tiết / Sửa bài viết -->
+        <aside class="blog-detail" role="dialog" aria-hidden="true" aria-label="Chi tiết bài viết">
+          <header class="detail-header">
+            <div class="detail-left">
+              <h4 class="detail-subject">Tiêu đề bài viết</h4>
+              <div class="detail-meta"><span class="detail-sender">Tác giả</span></div>
+            </div>
+            <div class="detail-right">
+              <div class="detail-date">Ngày đăng</div>
+              <button class="detail-close" aria-label="Đóng chi tiết"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+          </header>
+
+          <form class="detail-edit" action="#" onsubmit="return false;">
+            <label class="label">Tiêu đề</label>
+            <input class="input edit-title" type="text" />
+
+            <label class="label">Tác giả</label>
+            <input class="input edit-author" type="text" />
+
+            <label class="label">Danh mục</label>
+            <select class="input edit-category">
+              <option value="Dinh dưỡng">Dinh dưỡng</option>
+              <option value="Sữa">Sữa</option>
+              <option value="Ăn dặm">Ăn dặm</option>
+              <option value="Sức khỏe">Sức khỏe</option>
+            </select>
+
+            <label class="label">Ngày đăng</label>
+            <input class="input edit-date" type="date" />
+
+            <label class="label">Nội dung</label>
+            <textarea class="input textarea edit-content" rows="6"></textarea>
+
+            <div class="detail-actions">
+              <button type="button" class="btn primary edit-save">Sửa</button>
+              <button type="button" class="btn ghost edit-cancel">Hủy</button>
+              <button type="button" class="btn danger edit-delete">Xóa</button>
+            </div>
+          </form>
+        </aside>
+
       <div class="actions-row">
         <div class="actions-left">
           <p class="note">Đảm bảo nội dung tuân thủ chính sách và không vi phạm quy định.</p>

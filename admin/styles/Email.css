@@ -466,9 +466,9 @@ body.sidebar-collapsed .sidebar a.active {
   max-width: 720px;
   max-height: 78vh;
   background: #fff;
-  border: 1px solid #8a2be2;
+  border: 1px solid #111827;
   border-radius: 12px;
-  box-shadow: 0 12px 30px rgba(16,24,40,0.10);
+  box-shadow: none;
   z-index: 120;
   padding: 14px;
   overflow: auto;

@@ -586,3 +586,43 @@ body.sidebar-collapsed .sidebar a.active {
 @media (max-width: 600px) {
   .panel-actions { left: 12px; right: 12px; bottom: 12px; border-radius: 12px; }
 }
+
+/* ===== Xem Chi tiết Bài Viết Hoặc Chỉnh Sửa ===== */
+.blog-detail {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.98);
+  width: min(720px, calc(100% - 48px));
+  max-width: 720px;
+  max-height: 78vh;
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #111827;
+  box-shadow: none;
+  z-index: 120;
+  padding: 14px;
+  overflow: auto;
+  opacity: 0;
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+.blog-detail.show {
+  display: block;
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+.blog-detail .detail-header { display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.detail-subject { margin:0; color:#111827; font-size:16px; font-weight:700; }
+.detail-meta { color:#6b7280; font-weight:600; margin-top:6px; }
+.detail-right { display:flex; align-items:center; gap:12px; }
+.detail-date { color:#6b7280; font-weight:600; }
+.detail-close { background:transparent; border:none; font-size:18px; cursor:pointer; color:#111827; }
+.detail-edit { margin-top:12px; display:flex; flex-direction:column; gap:8px; }
+.detail-actions { display:flex; gap:12px; align-items:center; margin-top:8px; }
+.edit-save.btn.primary { background:#f564a9; color:white; border:none; padding:8px 14px; border-radius:20px; cursor:pointer; }
+.edit-cancel.btn.ghost { background:#fff; border:1px solid #e6e6ea; padding:8px 12px; border-radius:20px; cursor:pointer; }
+.edit-delete.btn.danger { background:#fff0f0; border:1px solid #ff7b7b; color:#c0392b; padding:8px 10px; border-radius:20px; }
+@media (max-width:900px) {
+  .blog-detail { position: fixed; top:8px; left:8px; right:8px; bottom:8px; width:auto; max-width:none; max-height:calc(100vh - 16px); transform:none; opacity:1; padding:12px; border-radius:8px; }
+}

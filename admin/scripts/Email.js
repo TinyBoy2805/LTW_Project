@@ -104,3 +104,27 @@
   });
 })();
 
+// Đóng panel chi tiết email
+(function(){
+  document.addEventListener('DOMContentLoaded', function(){
+    const detail = document.querySelector('.mail-detail');
+    if(!detail) return;
+
+    function closeDetail(e){
+      if (e && typeof e.preventDefault === 'function') e.preventDefault();
+      detail.classList.remove('show');
+      detail.setAttribute('aria-hidden','true');
+    }
+    const closeBtn = detail.querySelector('.detail-close');
+    if (closeBtn) closeBtn.addEventListener('click', closeDetail);
+    // Đóng bằng cách nhấp vào biểu tượng đóng
+    document.addEventListener('click', function(e){
+      if (e.target && e.target.closest && e.target.closest('.detail-close')) {
+        closeDetail(e);
+      }
+    });
+    // Đóng bằng phím Escape
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeDetail(e); });
+  });
+})();
+
