@@ -1,5 +1,4 @@
-
-/* ===== RESET & TOÀN CỤC ===== */
+/* ===== RESET & GLOBAL ===== */
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
@@ -8,8 +7,7 @@ body {
   width: 100%;
 }
 
-/* ===== 1) SIDEBAR (Thanh điều hướng) =====
-   Các lớp điều hướng cố định bên trái, dùng chung cho toàn trang admin */
+/* ===== SIDEBAR ===== */
 .sidebar {
   width: 200px;
   background: #ffffff;
@@ -24,219 +22,229 @@ body {
   left: 0;
   z-index: 40;
 }
+
 .sidebar h2 {
-   text-align: center;
-   font-size: 20px;
-   color: #555;
-   margin-bottom: 30px;
+  text-align: center;
+  font-size: 20px;
+  color: #555;
+  margin-bottom: 30px;
 }
 
 .sidebar a {
-   display: flex;
-   align-items: center;
-   padding: 12px 14px;
-   color: #555;
-   text-decoration: none;
-   transition: 0.2s;
+  display: flex;
+  align-items: center;
+  padding: 12px 14px;
+  color: #555;
+  text-decoration: none;
+  transition: 0.2s;
 }
 
 .sidebar h2 .brand-logo {
-   width: 36px;
-   height: 36px;
-   object-fit: contain;
-   margin-right: 10px;
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  vertical-align: middle;
+  margin-right: 10px;
 }
-
 .sidebar a:hover {
-   background-color: #fff0f7;
-   color: #f564a9;
-   border-radius: 8px;
+  background-color: #fff0f7;
+  color: #f564a9;
+  border-radius: 8px;
 }
 
 .sidebar a.active {
-   background: linear-gradient(90deg,#ff64b0,#f564a9);
-   color: #fff;
-   border-radius: 28px;
-   padding-left: 18px;
-   padding-right: 18px;
-   box-shadow: 0 6px 18px rgba(255,79,163,0.12);
+  background: linear-gradient(90deg,#ff64b0,#f564a9);
+  color: #fff;
+  border-radius: 28px;
+  padding-left: 18px;
+  padding-right: 18px;
+  box-shadow: 0 6px 18px rgba(255,79,163,0.12);
 }
 
 .sidebar a span {
-   margin-right: 10px;
+  margin-right: 10px;
 }
 
 .logout {
-   margin-top: auto;
-   padding: 20px;
-   color: #555;
-   font-weight: 700;
-   cursor: pointer;
-   margin-bottom: 20px;
-   background: #fff;
-   border: none;
+  margin-top: auto;
+  padding: 20px;
+  color: #555;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  border: none;
 }
 
-
-/* ===== 2) HEADER (Thanh tiêu đề cố định trên cùng) ===== */
+/* ===== HEADER ===== */
 .main {
-   flex: 1;
-   display: flex;
-   flex-direction: column;
-   margin-left: 240px;
-   padding-top: 72px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: 240px;
+  padding-top: 72px;
 }
 
 .header {
-   background: transparent;
-   padding: 18px 30px;
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   position: fixed;
-   top: 0;
-   left: 240px;
-   right: 0;
-   height: 72px;
-   z-index: 50;
+  background: transparent;
+  padding: 18px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 240px;
+  right: 0;
+  height: 72px;
+  z-index: 50;
 }
 
 .header h3 {
-   color: #f564a9;
-   font-size: 20px;
+  color: #f564a9;
+  font-size: 20px;
 }
 
 .sidebar-toggle {
-   background: transparent;
-   border: none;
-   cursor: pointer;
-   font-size: 18px;
-   color: #333;
-   margin-right: 12px;
-   padding: 6px 8px;
-   border-radius: 8px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #333;
+  margin-right: 12px;
+  padding: 6px 8px;
+  border-radius: 8px;
 }
-
 .sidebar-toggle:hover {
-   background: #fff0f7;
-   color: #f564a9;
+  background: #fff0f7;
+  color: #f564a9;
 }
 
-.header__left,
-.header__right {
-   display: flex;
-   align-items: center;
-   gap: 12px;
+/* Trạng thái khi thu gọn sidebar */
+.sidebar {
+  transition: width 220ms ease, padding 220ms ease;
 }
+.header,
+.main {
+  transition: all 220ms ease;
+}
+/* Để lại biểu tượng */
+body.sidebar-collapsed .sidebar {
+  width: 64px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+/* Khi thu gọn sidebar, di chuyển nội dung chính và tiêu đề tương ứng */
+body.sidebar-collapsed .main {
+  margin-left: 104px;
+}
+body.sidebar-collapsed .header {
+  left: 104px;
+}
+
+.header__left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header__right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 
 .notify-link {
-   display: inline-flex;
-   align-items: center;
-   justify-content: center;
-   padding: 8px;
-   border-radius: 8px;
-   color: #555;
-   text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 8px;
+  color: #555;
+  text-decoration: none;
+}
+
+.notify-link .sidebar_icon_link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
 }
 
 .notify-link:hover {
-   background: #fff0f7;
-   color: #f564a9;
+  background-color: #fff0f7;
+  color: #f564a9;
 }
 
 .user-avatar {
-   width: 35px;
-   height: 35px;
-   border-radius: 50%;
-   object-fit: cover;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
-/* Sidebar collapsed state (thu gọn) */
-.sidebar {
-   transition: width 220ms ease, padding 220ms ease;
-}
-
-.header,
-.main {
-   transition: all 220ms ease;
-}
-
-body.sidebar-collapsed .sidebar {
-   width: 64px;
-   padding-left: 10px;
-   padding-right: 10px;
-}
-
-body.sidebar-collapsed .main {
-   margin-left: 104px;
-}
-
-body.sidebar-collapsed .header {
-   left: 104px;
-}
-
-body.sidebar-collapsed .sidebar h2 {
-   font-size: 0;
-   line-height: 0;
-}
-
-body.sidebar-collapsed .sidebar h2 .brand-logo {
-   margin-right: 0;
-}
-
-body.sidebar-collapsed .sidebar a {
-   justify-content: center;
-   font-size: 0;
-   padding-left: 6px;
-   padding-right: 6px;
-}
-
-body.sidebar-collapsed .sidebar a .sidebar_icon_link {
-   margin-right: 0;
-   font-size: 18px;
-}
-
-body.sidebar-collapsed .sidebar a.active {
-   border-radius: 12px;
-   padding-left: 6px;
-   padding-right: 6px;
-}
-
-
-/* ===== 3) NỘI DUNG CHÍNH & PANEL CHUNG =====
-   Phần chứa nội dung chính của trang Cài đặt */
+/* ===== CONTENT ===== */
 .content {
-   padding: 24px 40px;
-   background: transparent;
-   position: fixed;
-   top: 72px;
-   left: 240px;
-   right: 0;
-   bottom: 0;
-   overflow: hidden;
+  padding: 24px 40px;
+  background: transparent;
+  position: fixed;
+  top: 72px;
+  left: 240px;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
 }
 
+/* Khi thu gọn sidebar, di chuyển nội dung chính sang trái để căn chỉnh */
 body.sidebar-collapsed .content {
-   left: 104px;
+  left: 104px;
+}
+
+/* Ẩn nhãn sidebar khi thu gọn, giữ biểu tượng hiển thị */
+body.sidebar-collapsed .sidebar h2 {
+  font-size: 0;
+  line-height: 0;
+}
+body.sidebar-collapsed .sidebar h2 .brand-logo {
+  margin-right: 0;
+}
+body.sidebar-collapsed .sidebar a {
+  justify-content: center;
+  font-size: 0;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+body.sidebar-collapsed .sidebar a .sidebar_icon_link {
+  margin-right: 0;
+  font-size: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+body.sidebar-collapsed .sidebar a.active {
+  border-radius: 12px;
+  padding-left: 6px;
+  padding-right: 6px;
 }
 
 .content__panel {
-   background: #fff;
-   border-radius: 18px;
-   padding: 30px 24px 160px;
-   box-shadow: 0 6px 30px rgba(16,24,40,0.04);
-   display: flex;
-   flex-direction: column;
-   height: 100%;
-   overflow: auto;
-   -webkit-overflow-scrolling: touch;
+  background: #fff;
+  border-radius: 18px;
+  padding: 30px;
+  box-shadow: 0 6px 30px rgba(16,24,40,0.04);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
 }
 
 .content__panel h3 {
-   margin: 0 0 8px 0;
-   color: #f564a9;
-   font-size: 20px;
-   font-weight: 700;
+  text-align: left;
+  margin: 0 0 18px 0;
+  color: #f564a9;
+  font-size: 20px;
+  font-weight: 700;
+
 }
 
 /* Layout lưới cho các panel trong Cài đặt */
@@ -325,7 +333,7 @@ body.sidebar-collapsed .content {
    align-items: center;
 }
 
-/* ===== 4) TAB: TÀI KHOẢN (Account) =====
+/* ===== TAB: TÀI KHOẢN (Account) =====
    Các kiểu dùng trong tab Tài khoản: ảnh đại diện, thông tin cá nhân, form lưu */
 .settings-tabs {
    display: flex;
@@ -355,6 +363,42 @@ body.sidebar-collapsed .content {
    display: grid;
 }
 
+/* Thanh tiêu đề + tabs cố định trong panel: chỉ thêm sticky nhỏ, không thay đổi bố cục ngoài */
+.panel-header {
+    position: sticky;
+    top: 0;
+    z-index: 60;
+    background: #fff;
+    padding-top: 6px;
+    padding-bottom: 8px;
+    /* small subtle separation so content below isn't hidden by the sticky header */
+    box-shadow: 0 6px 18px rgba(16,24,40,0.02);
+    margin-bottom: 12px;
+}
+
+/* Make the tab content area handle its own scrolling so the header stays visible
+    without moving the page's outer layout. Mirrors the pattern used in KhachHang. */
+.tab-panel-wrapper {
+   display: flex;
+   flex-direction: column;
+   flex: 1 1 auto;
+   min-height: 0; /* allow children to shrink and enable inner scrolling */
+   overflow: hidden;
+}
+
+.tab-panel {
+   display: none;
+   min-height: 0; /* important for flex children so overflow works */
+}
+
+.tab-panel.active {
+   display: grid;
+   flex: 1 1 auto;
+   overflow-y: auto;
+   -webkit-overflow-scrolling: touch;
+   padding-right: 6px; /* room for inner scrollbar */
+}
+
 .btn { display:inline-flex; align-items:center; justify-content:center; padding:8px 14px; border-radius:8px; cursor:pointer; font-weight:600; transition: transform .14s ease, box-shadow .14s ease, opacity .14s ease; }
 .btn.primary {
    background: linear-gradient(90deg,#ff64b0,#f564a9);
@@ -380,7 +424,7 @@ body.sidebar-collapsed .content {
 .panel .form-grid .form-row input[type="email"] { padding:10px 12px; }
 
 
-/* ===== 5) TAB: THÔNG BÁO (Notifications) =====
+/* ===== TAB: THÔNG BÁO (Notifications) =====
    Danh sách thông báo, công tắc, và vùng nút nổi (floating actions) */
 .notification-list {
    display: flex;
@@ -548,7 +592,7 @@ body.sidebar-collapsed .content {
 }
 
 
-/* ===== 6) TAB: BẢO MẬT (Security) =====
+/* ===== TAB: BẢO MẬT (Security) =====
    Kiểu cho phần đổi mật khẩu, checkbox bảo mật, thông báo lỗi */
 .checkbox-row {
    display: flex;
@@ -682,8 +726,8 @@ body.sidebar-collapsed .content {
    border-radius: 8px;
 }
 
-/* ===== 7) TIỆN ÍCH & TÙY CHUNG =====
-   Các lớp tiện ích dùng xuyên suốt: margin helpers, hidden, text-muted, sr-only */
+/* ===== TIỆN ÍCH & TÙY CHUNG =====*/
+
 .mt-6 { margin-top:6px !important; }
 .mt-8 { margin-top:8px !important; }
 .mt-12 { margin-top:12px !important; }

@@ -173,7 +173,6 @@ body.sidebar-collapsed .header { left: 104px; }
 
 /* ===== CONTENT ===== */
 .content {
-  /* match other pages (Email/KhachHang/UuDai) so content vertical position is consistent */
   padding: 24px 40px;
   background: transparent;
   position: fixed;

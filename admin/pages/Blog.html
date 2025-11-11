@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MichiShop - Blog</title>
+  <link rel="stylesheet" href="../styles/Blog.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar" aria-label="Chức năng chính">
+  <h2><img src="../imgs/logo.jpg" alt="MichiShop" class="brand-logo">MichiShop</h2>
+    <nav class="sidebar__nav" aria-label="Menu chính">
+      <a href="#"><span class="sidebar_icon_link"><i class="fa-solid fa-chart-line"></i></span> Thống kê</a>
+      <a href="#"><span class="sidebar_icon_link"><i class="fa-solid fa-shopping-cart"></i></span> Đơn hàng</a>
+      <a href="#"><span class="sidebar_icon_link"><i class="fa-solid fa-box"></i></span> Kho hàng</a>
+      <a href="KhachHang.html"><span class="sidebar_icon_link"><i class="fa-solid fa-users"></i></span> Khách hàng</a>
+      <a href="UuDai.html"><span class="sidebar_icon_link"><i class="fa-solid fa-gift"></i></span> Ưu đãi</a>
+      <a href="Blog.html" class="active" aria-current="page"><span class="sidebar_icon_link"><i class="fa-solid fa-blog"></i></span> Blog</a>
+      <a href="Email.html"><span class="sidebar_icon_link"><i class="fa-solid fa-envelope"></i></span> Email</a>
+      <a href="CaiDat.html"><span class="sidebar_icon_link"><i class="fa-solid fa-cog"></i></span> Cài đặt</a>
+    </nav>
+    <button class="logout" type="button">Đăng Xuất</button>
+  </aside>
+
+    <!-- Main content -->
+  <main class="main">
+    <header class="header">
+      <div class="header__left">
+        <button class="sidebar-toggle" type="button" aria-label="Thu gọn sidebar">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <h3>Chào mừng trở lại, CỤC ZÀNG !!!</h3>
+      </div>
+      <div class="header__right">
+        <a href="#" class="notify-link" aria-label="Thông báo">
+          <span class="sidebar_icon_link"><i class="fa-solid fa-bell"></i></span>
+        </a>
+        <img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="user" class="user-avatar" />
+      </div>
+    </header>
+
+    <div class="content" aria-labelledby="blog-title">
+      <div class="content__panel">
+  <div class="panel-header">
+    <h3 id="blog-heading">Blog</h3>
+
+    <div class="controls">
+      <div class="tabs" role="tablist" aria-label="Tabs blog">
+        <button class="tab-btn active" data-tab="blogs" type="button">Blogs</button>
+        <button class="tab-btn" data-tab="create" type="button">Tạo Blog</button>
+      </div>
+      <div class="search">
+        <input type="search" class="search-input" placeholder="Tìm bài viết, tiêu đề hoặc tác giả" aria-label="Tìm kiếm bài viết">
+      </div>
+    </div>
+  </div>
+
+        <div class="tab-panel active" data-panel="blogs">
+          <div class="blog-list" role="list" aria-label="Danh sách bài viết">
+            <article class="blog-card">
+              <figure class="card__figure"><img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="Sữa công thức"></figure>
+              <div class="card-content">
+                <span class="card-badge">Sữa</span>
+                <h4 class="card-title">Sữa công thức ABC: Hướng dẫn chọn cho bé 0–12 tháng</h4>
+                <p class="card-meta">Bởi: MichiShop — 12/11/2025</p>
+                <p class="card-excerpt">Bài viết hướng dẫn lựa chọn sữa công thức phù hợp theo độ tuổi, thành phần dinh dưỡng cần chú ý và mẹo chuyển đổi khi thay sữa.</p>
+              </div>
+            </article>
+
+            <article class="blog-card">
+              <figure class="card__figure"><img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="Thực phẩm dinh dưỡng"></figure>
+              <div class="card-content">
+                <span class="card-badge">Dinh dưỡng</span>
+                <h4 class="card-title">Thực phẩm bổ sung cho trẻ: Khi nào cần và loại nào an toàn?</h4>
+                <p class="card-meta">Bởi: MichiShop — 01/11/2025</p>
+                <p class="card-excerpt">Tổng hợp các loại thực phẩm bổ sung (vitamins, probiotics) cho trẻ, nguồn gốc an toàn và liều dùng gợi ý theo từng nhóm tuổi.</p>
+              </div>
+            </article>
+            
+            <article class="blog-card">
+              <figure class="card__figure"><img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="Sữa cho trẻ em"></figure>
+              <div class="card-content">
+                <span class="card-badge">Sữa</span>
+                <h4 class="card-title">So sánh các loại sữa cho trẻ 1–3 tuổi</h4>
+                <p class="card-meta">Bởi: MichiShop — 28/10/2025</p>
+                <p class="card-excerpt">Bài viết so sánh phổ biến giữa sữa tăng cân, sữa phát triển và sữa bổ sung vi chất giúp bố mẹ dễ lựa chọn.</p>
+              </div>
+            </article>
+
+            <article class="blog-card">
+              <figure class="card__figure"><img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="Dinh dưỡng trẻ"></figure>
+              <div class="card-content">
+                <span class="card-badge">Dinh dưỡng</span>
+                <h4 class="card-title">Bữa ăn cho bé 6–12 tháng: Mẹo kết hợp dinh dưỡng</h4>
+                <p class="card-meta">Bởi: MichiShop — 18/10/2025</p>
+                <p class="card-excerpt">Gợi ý thực đơn hàng tuần, tỉ lệ chất đạm, bột và rau củ để hỗ trợ tăng trưởng khỏe mạnh.</p>
+              </div>
+            </article>
+
+            <article class="blog-card">
+              <figure class="card__figure"><img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="Ăn dặm"></figure>
+              <div class="card-content">
+                <span class="card-badge">Ăn dặm</span>
+                <h4 class="card-title">Ăn dặm an toàn: Các loại thực phẩm cần tránh</h4>
+                <p class="card-meta">Bởi: MichiShop — 05/10/2025</p>
+                <p class="card-excerpt">Danh sách thực phẩm có nguy cơ dị ứng hoặc nghẹn, kèm lời khuyên chế biến an toàn cho bé.</p>
+              </div>
+            </article>
+
+            <article class="blog-card">
+              <figure class="card__figure"><img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="Sức khỏe trẻ em"></figure>
+              <div class="card-content">
+                <span class="card-badge">Sức khỏe</span>
+                <h4 class="card-title">Giữ hệ tiêu hóa khỏe mạnh cho trẻ: Probiotics và prebiotics</h4>
+                <p class="card-meta">Bởi: MichiShop — 22/09/2025</p>
+                <p class="card-excerpt">Hiểu về lợi ích của probiotics, cách bổ sung an toàn và thực phẩm giàu prebiotics tự nhiên.</p>
+              </div>
+            </article>
+
+            <article class="blog-card">
+              <figure class="card__figure"><img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="Sữa hữu cơ"></figure>
+              <div class="card-content">
+                <span class="card-badge">Sữa</span>
+                <h4 class="card-title">Sữa hữu cơ vs sữa thường: Có đáng đầu tư?</h4>
+                <p class="card-meta">Bởi: MichiShop — 10/09/2025</p>
+                <p class="card-excerpt">Phân tích chi phí-lợi ích, thành phần dinh dưỡng và tiêu chuẩn an toàn giữa hai loại sữa.</p>
+              </div>
+            </article>
+
+            <article class="blog-card">
+              <figure class="card__figure"><img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="Dinh dưỡng bé"></figure>
+              <div class="card-content">
+                <span class="card-badge">Dinh dưỡng</span>
+                <h4 class="card-title">Vitamin cần thiết cho trẻ sơ sinh: Liều lượng và nguồn thực phẩm</h4>
+                <p class="card-meta">Bởi: MichiShop — 01/09/2025</p>
+                <p class="card-excerpt">Những vitamin thường thiếu ở trẻ sơ sinh và cách bù đắp qua thực phẩm tự nhiên và bổ sung đúng cách.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+
+    
+      </div>
+      </div>
+    </div>
+  </main>
+  <script src="../scripts/Blog.js"></script>
+</body>
+</html>
