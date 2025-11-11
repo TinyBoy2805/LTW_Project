@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MiChiShop</title>
+    <link rel="stylesheet" href="../styles/pages/add__product.css">
+    <link rel="stylesheet" href="../styles/components/header.css">
+    <link rel="stylesheet" href="../styles/components/sidebar.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+
+</head>
+
+<body>
+    <div class="categories__add__product main">
+        <!-- sidebar -->
+        <aside class="sidebar">
+            <!-- header inclue shop's logo and shop's name -->
+            <div class="sidebar__header">
+                <img src="../imgs/Google__G__logo.svg.webp" alt="Logo">
+                <h2>MiChiShop</h2>
+            </div>
+            <!-- list item of sidebar -->
+            <div class="sidebar__list">
+                <ul class="list">
+                    <li class="list__item">
+                        <a href="./dashboard.html">
+                            <div class="section">
+                                <div class="icon"><ion-icon name="stats-chart-outline"></ion-icon></div>
+                                <p class="title">Thống kê</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="list__item">
+                        <a href="./order.html">
+                            <div class="section">
+                                <div class="icon"><ion-icon name="cube-outline"></ion-icon></div>
+                                <p class="title">Đơn hàng</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="list__item">
+                        <a href="" class="active">
+                            <div class="section">
+                                <div class="icon"><ion-icon name="list-outline"></ion-icon></div>
+                                <p class="title">Kho hàng</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="list__item">
+                        <a href="">
+                            <div class="section">
+                                <div class="icon"><ion-icon name="people-outline"></ion-icon></div>
+                                <p class="title">Khách hàng</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="list__item">
+                        <a href="">
+                            <div class="section">
+                                <div class="icon"><ion-icon name="gift-outline"></ion-icon></div>
+                                <p class="title">Ưu đãi</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="list__item">
+                        <a href="">
+                            <div class="section">
+                                <div class="icon"><ion-icon name="mail-outline"></ion-icon></div>
+                                <p class="title">Email</p>
+                            </div>
+                            <div class="badge">+99</div>
+                        </a>
+                    </li>
+                    <li class="list__item">
+                        <a href="">
+                            <div class="section">
+                                <div class="icon"><ion-icon name="settings-outline"></ion-icon></div>
+                                <p class="title">Cài đặt</p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- bottom has exit button -->
+            <div class="sidebar__bottom">
+                <a href="../../index.html">
+                    <div class="icon"><ion-icon name="exit-outline"></ion-icon></div>
+                    <p class="title">Đăng xuất</p>
+                </a>
+            </div>
+        </aside>
+        <div class="container">
+            <!-- header -->
+            <div class="container__header">
+                <!-- header left has sidebar expand button and hello message -->
+                <div class="header__left">
+                    <div class="icon" id="menu__action"><ion-icon name="menu-outline"></ion-icon></div>
+                    <h3>Chào mừng trở lại, <span>MiChi Admin</span></h3>
+                </div>
+                <!-- header right has anouncement icon and the avatar of admin account -->
+                <div class="header__right">
+                    <div class="icon"><ion-icon name="megaphone-outline"></ion-icon></div>
+                    <div class="avatar"><img src="../imgs/Google__G__logo.svg.webp" alt="Avatar"></div>
+                </div>
+            </div>
+            <!-- contert -->
+            <div class="container__content">
+                <div class="content__header">
+                    <a href="./categories.html"><ion-icon name="chevron-back-outline"></ion-icon></a>
+                    <h2 class="content__title">Thêm sản phẩm mới</h2>
+                </div>
+                <div class="content__body">
+                    <form class="add__product__form">
+                        <div class="form__input">
+                            <p class="product__name">Tên sản phẩm</p>
+                            <input type="text" id="product__name" name="product-name"
+                                placeholder="Ví dụ: Sữa bột GrowPro" autocomplete="off">
+                        </div>
+                        <div class="form__input">
+                            <p class="category">Tên sản phẩm</p>
+                            <select id="category" name="category">
+                                <option value="">-- Chọn Danh mục --</option>
+                                <option value="milk">Sữa bột/tươi</option>
+                                <option value="food">Thực phẩm ăn dặm</option>
+                                <option value="supplement">Thực phẩm bổ sung</option>
+                            </select>
+                        </div>
+                        <div class="two__column__input">
+                            <div class="form__input">
+                                <p class="product__price">Giá bán (VNĐ)</p>
+                                <input type="text" id="product__price" name="product-price" placeholder="Ví dụ: 125.000"
+                                    autocomplete="off">
+                            </div>
+                            <div class="form__input">
+                                <p class="product__quantity">Số lượng</p>
+                                <input type="text" id="product__quantity" name="product-quanttity"
+                                    placeholder="Ví dụ: 20" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="two__column__input">
+                            <div class="form__input">
+                                <p class="product__receipt__day">Ngày nhập kho</p>
+                                <input type="date" id="product__receipt__day" name="product-receipt-day"
+                                    autocomplete="off">
+                            </div>
+                            <div class="form__input">
+                                <p class="product__expire__day">Ngày hết hạn</p>
+                                <input type="date" id="product__expire__day" name="product-expire-day"
+                                    autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form__input description">
+                            <p class="product__description">Mô tả sản phẩm</p>
+                            <textarea type="" id="product__description" name="product-description" autocomplete="off"></textarea>
+                        </div>
+                    </form>
+                    <div class="choose__product__img">
+                        <p class="choose__product__img__title">Thêm ảnh cho sản phẩm</p>
+                        <div class="img__container">
+                            <div class="img__item">
+                                <img src="../imgs/milk__powder.webp" alt="Sữa bột GrowPro (1-3 tuổi)">
+                            </div>
+                            <div class="img__item">
+                                <img src="../imgs/cereal.webp" alt="Bột ăn dặm Rau Củ Sơ Sinh">
+                            </div>
+                            <div class="img__item">
+                                <img src="../imgs/cracker.webp" alt="Bánh ăn dặm Chuối Dẹt (9M+)">
+                            </div>
+                            <div class="img__item">
+                                <img src="../imgs/fresh__cheese.webp" alt="Phô mai tươi vị Vanila">
+                            </div>
+                            <div class="img__item">
+                                <img src="../imgs/nut__milk.webp" alt="Sữa hạt Óc Chó & Hạnh Nhân">
+                            </div>
+                            <div class="img__item">
+                                <img src="../imgs/bird__nest.jpg" alt="Yến sào chưng sẵn cho bé">
+                            </div>
+                            <div class="img__item">
+                                <img src="../imgs/whey.webp" alt="Váng sữa tự nhiên vị Dâu">
+                            </div>
+                            <div class="img__item">
+                                <img src="../imgs/milk.webp" alt="Sữa tươi Organic không đường (Thùng)">
+                            </div>
+                            <div class="add__img">
+                                <ion-icon name="add-outline"></ion-icon>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content__bottom">
+                    <p class="bottom__title">Đảm bảo rằng sản phẩm của bạn là hợp pháp và không gây hậu quả nào</p>
+                    <div class="bottom__button">
+                        <a href="./categories.html" class="cancel">Huỷ</a>
+                        <a href="./categories.html" class="add">Đưa vào danh sách</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- link to javascript for burger button -->
+    <script src="../scripts/components/ExtendSidebar.js"></script>
+    <script src="../scripts/components/chart.js"></script>
+</body>
+
+</html>

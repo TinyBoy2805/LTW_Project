@@ -27,7 +27,8 @@ body {
     height: 100vh;
 }
 
-.dashboard, .main {
+.dashboard,
+.main {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -446,4 +447,8 @@ table tbody tr:hover {
     padding: 8px 12px;
     border: solid 1px #868686;
     cursor: pointer;
+}
+
+.viewmore:hover {
+    background-color: #ECECEC;
 }

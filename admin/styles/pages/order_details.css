@@ -27,7 +27,7 @@ body {
     height: 100vh;
 }
 
-.order, .main {
+.order__details, .main {
     display: flex;
     justify-content: center;
     align-items: center;
