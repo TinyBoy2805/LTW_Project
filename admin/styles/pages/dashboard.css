@@ -99,7 +99,6 @@ body {
 }
 
 .card {
-    width: 282px;
     height: 100%;
     padding: 16px;
     display: flex;
@@ -108,10 +107,11 @@ body {
     flex-direction: column;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
     border-radius: 12px;
+    flex: 1; /* Cho phép các thẻ con mở rộng và thu hẹp bằng nhau */
+    min-width: 0; /* Đảm bảo nó có thể thu nhỏ */
 }
 
 .highlight {
-    width: 282px;
     height: 100%;
     padding: 16px;
     display: flex;
@@ -121,6 +121,8 @@ body {
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
     border-radius: 12px;
     background: linear-gradient(to right, #F564A9, #FFA3CF);
+    flex: 1; /* Cho phép các thẻ con mở rộng và thu hẹp bằng nhau */
+    min-width: 0; /* Đảm bảo nó có thể thu nhỏ */
 }
 
 .card__header__highlight {
@@ -254,11 +256,12 @@ body {
 /* chart css */
 .chart {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     flex-direction: row;
     width: 100%;
     height: 248px;
+    gap: 24px;
 }
 
 .chart__pie {
@@ -267,7 +270,7 @@ body {
     align-items: center;
     gap: 16px;
     flex-direction: column;
-    width: 344px;
+    flex: 0 0 344px;
     height: 100%;
     padding: 24px;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
@@ -280,7 +283,7 @@ body {
     align-items: center;
     gap: 16px;
     flex-direction: column;
-    width: calc(100% - 344px);
+    flex: 1;
     height: 100%;
     padding: 24px;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
