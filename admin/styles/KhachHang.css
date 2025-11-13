@@ -1,297 +1,187 @@
-/* ===== RESET & GLOBAL ===== */
+@import url('../index.css');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Be Vietnam Pro', sans-serif;
+}
+
 body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background-color: #f8f8f8;
+    height: 100vh;
+}
+.main {
   display: flex;
+  /* keep sidebar + container side-by-side like other pages */
+  flex-direction: row;
+  height: 100vh;
   width: 100%;
-}
-
-/* ===== SIDEBAR ===== */
-.sidebar {
-  width: 200px;
-  background: #ffffff;
-  height: 720px;
-  border-right: 0;
-  display: flex;
-  flex-direction: column;
-  padding: 26px 18px;
-  box-shadow: 0 2px 0 rgba(0,0,0,0.02) inset;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 40;
-}
-
-.sidebar h2 {
-  text-align: center;
-  font-size: 20px;
-  color: #555;
-  margin-bottom: 30px;
-}
-
-.sidebar a {
-  display: flex;
-  align-items: center;
-  padding: 12px 14px;
-  color: #555;
-  text-decoration: none;
-  transition: 0.2s;
-}
-
-.sidebar h2 .brand-logo {
-  width: 36px;
-  height: 36px;
-  object-fit: contain;
-  vertical-align: middle;
-  margin-right: 10px;
-}
-.sidebar a:hover {
-  background-color: #fff0f7;
-  color: #f564a9;
-  border-radius: 8px;
-}
-
-.sidebar a.active {
-  background: linear-gradient(90deg,#ff64b0,#f564a9);
-  color: #fff;
-  border-radius: 28px;
-  padding-left: 18px;
-  padding-right: 18px;
-  box-shadow: 0 6px 18px rgba(255,79,163,0.12);
-}
-
-.sidebar a span {
-  margin-right: 10px;
-}
-
-.logout {
-  margin-top: auto;
-  padding: 20px;
-  color: #555;
-  font-weight: bold;
-  cursor: pointer;
-  margin-bottom: 20px;
-  background-color: #ffffff;
-  border: none;
-}
-
-/* ===== HEADER ===== */
-.main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  margin-left: 240px;
-  padding-top: 72px;
-}
-
-.header {
-  background: transparent;
-  padding: 18px 30px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: fixed;
-  top: 0;
-  left: 240px;
-  right: 0;
-  height: 72px;
-  z-index: 50;
-}
-
-.header h3 {
-  color: #f564a9;
-  font-size: 20px;
-}
-
-.sidebar-toggle {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  font-size: 18px;
-  color: #333;
-  margin-right: 12px;
-  padding: 6px 8px;
-  border-radius: 8px;
-}
-.sidebar-toggle:hover {
-  background: #fff0f7;
-  color: #f564a9;
-}
-
-/* Trạng thái khi thu gọn sidebar */
-.sidebar {
-  transition: width 220ms ease, padding 220ms ease;
-}
-.header,
-.main {
-  transition: all 220ms ease;
-}
-/* Để lại biểu tượng */
-body.sidebar-collapsed .sidebar {
-  width: 64px;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-/* Khi thu gọn sidebar, di chuyển nội dung chính và tiêu đề tương ứng */
-body.sidebar-collapsed .main {
-  margin-left: 104px;
-}
-body.sidebar-collapsed .header {
-  left: 104px;
-}
-
-.header__left {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.header__right {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-
-.notify-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 8px;
-  border-radius: 8px;
-  color: #555;
-  text-decoration: none;
-}
-
-.notify-link .sidebar_icon_link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-}
-
-.notify-link:hover {
-  background-color: #fff0f7;
-  color: #f564a9;
-}
-
-.user-avatar {
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-/* ===== CONTENT ===== */
-.content {
-  padding: 24px 40px;
-  background: transparent;
-  position: fixed;
-  top: 72px;
-  left: 240px;
-  right: 0;
-  bottom: 0;
   overflow: hidden;
 }
 
-/* Khi thu gọn sidebar, di chuyển nội dung chính sang trái để căn chỉnh */
-body.sidebar-collapsed .content {
-  left: 104px;
+/* container css */
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
-/* Ẩn nhãn sidebar khi thu gọn, giữ biểu tượng hiển thị */
-body.sidebar-collapsed .sidebar h2 {
-  font-size: 0;
-  line-height: 0;
+/* Make .content behave like Blog page: full height scroll area with padding */
+.content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  background-color: #f8f8f8;
+  padding: 24px 24px 0 24px;
+  height: 100%;
+  /* prevent the outer content from scrolling so inner panel/list can scroll */
+  overflow: hidden;
 }
-body.sidebar-collapsed .sidebar h2 .brand-logo {
-  margin-right: 0;
+
+.container__content {
+  width: 100%;
+  height: calc(100% - 60px);
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+  /* allow content to flow; avoid adding another scroll container */
+  overflow-y: visible;
+  background-color: #f8f8f8;
 }
-body.sidebar-collapsed .sidebar a {
-  justify-content: center;
-  font-size: 0;
-  padding-left: 6px;
-  padding-right: 6px;
+
+/* Css for title of the content */
+.content__title {
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+  /* align with site content padding used elsewhere */
+  text-align: left;
+  padding-left: 24px;
+  margin-bottom: 20px;
 }
-body.sidebar-collapsed .sidebar a .sidebar_icon_link {
-  margin-right: 0;
-  font-size: 18px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+
+.content__header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 40px;
 }
-body.sidebar-collapsed .sidebar a.active {
-  border-radius: 12px;
-  padding-left: 6px;
-  padding-right: 6px;
+
+.content__header a{
+    text-decoration: none;
+    font-size: 20px;
 }
+
+.content__title{
+  /* kept for legacy but overridden by the main rule above */
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+}
+
+/* ===== NỘI DUNG CHÍNH TRANG KHÁCH HÀNG ===== */
 
 .content__panel {
-  background: #fff;
-  border-radius: 18px;
-  padding: 30px;
-  box-shadow: 0 6px 30px rgba(16,24,40,0.04);
+  /* Match Blog page panel geometry and spacing for consistent layout */
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+
   display: flex;
   flex-direction: column;
-  height: 100%;
+  flex-grow: 1;
+  min-height: 0;
+
+  /* Align horizontal sizing/margins with Blog so the white card width is identical */
+  width: calc(100% - 48px) !important;
+  margin: 0 24px !important;
+  padding: 24px !important;
+  position: relative;
   overflow: hidden;
 }
-
-.content__panel h3 {
-  text-align: left;
-  margin: 0 0 18px 0;
-  color: #f564a9;
-  font-size: 20px;
-  font-weight: 700;
-
+/* Keep the header aligned with the panel padding so tabs line up with the card grid */
+.content__panel .panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+  padding: 12px 24px; /* horizontal padding matches panel's 24px */
+  flex-shrink: 0; /* keep header fixed so .customers can scroll */
 }
 
+.content__panel .tabs { margin-left: 0; }
 .tabs {
+  /* Use separate pill buttons instead of a single full-width track so each tab rounds properly */
   display: flex;
   gap: 12px;
   margin-bottom: 24px;
+  /* no full-width track background here; each button will be a pill */
+  background: transparent;
+  padding: 0;
 }
 
 .tabs button {
-  background-color: #ffffff;
-  border: 1px solid transparent;
-  padding: 8px 20px;
-  border-radius: 22px;
+  padding: 8px 16px;
+  border: none;
+  background-color: #f0f0f0; /* each tab is a light-gray pill by default */
   cursor: pointer;
-  color: #6b7280;
   font-weight: 600;
+  color: #858585;
+  border-radius: 20px;
+  transition: all 0.15s ease;
 }
 
 .tabs button.active {
-  background-color: #f564a9;
+  background-color: #F564A9;
   color: white;
-  box-shadow: 0 8px 20px #ffffff;
+  box-shadow: 0 2px 5px rgba(245,100,169,0.5);
+}
+
+.tabs button:hover:not(.active) {
+  background-color: rgba(245,100,169,0.06);
 }
 
 /* ===== CUSTOMER CARDS ===== */
+
 .customers {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 34px;
+  /* make cards wider by using a responsive min width; this will naturally show 2 columns on typical admin widths */
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  /* vertical spacing larger, horizontal spacing a bit tighter so columns aren't too spread */
+  gap: 44px 20px; /* row-gap 44px, column-gap 20px */
+  row-gap: 44px;
   align-items: start;
-  flex: 1;
+  /* use the same inner padding as Blog's list so cards align visually */
+  padding: 0 24px 15px 24px;
+  /* allow the grid to take remaining panel space and be the only scrollable area */
+  flex: 1 1 auto;
   overflow-y: auto;
-  padding-right: 6px;
+  min-height: 0; /* allow flex children to shrink properly */
 }
 
 .card {
   background: #ffffff;
   border-radius: 14px;
   box-shadow: 0 8px 24px rgba(16,24,40,0.06);
+  /* subtle border to increase contrast and match Blog cards */
+  border: 1px solid #e0e0e0;
   overflow: hidden;
   display: grid;
-  grid-template-columns: 120px minmax(0, 1fr);
-  padding: 16px 18px;
-  gap: 10px;
+  /* increase the image column so the whole card becomes wider visually */
+  grid-template-columns: 140px minmax(0, 1fr);
+  padding: 18px 20px;
+  gap: 12px;
   box-sizing: border-box;
   min-height: 140px;
   background-position: left center;
+  /* small bottom margin to avoid cards visually touching when shadows overlap */
+  margin-bottom: 6px;
 }
 
 .card__figure {
@@ -301,7 +191,7 @@ body.sidebar-collapsed .sidebar a.active {
 }
 
 .card img {
-  width: 110px;
+  width: 130px;
   border-radius: 12px;
   object-fit: cover;
   display: block;
@@ -311,7 +201,7 @@ body.sidebar-collapsed .sidebar a.active {
 .vip-badge {
   position: absolute;
   right: 8px;
-  bottom: 8px;
+  bottom:2px;
   background: #ffd54a;
   color: #8a5a00;
   width: 28px;
@@ -357,7 +247,11 @@ body.sidebar-collapsed .sidebar a.active {
   margin: 2px 0px;
   color: #7a7a80;
   font-size: 13px;
-  overflow-wrap: anywhere;
+  /* Prevent the email/phone from wrapping to the next line — truncate with ellipsis if too long */
+  overflow-wrap: normal;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .detail-btn {
@@ -422,4 +316,31 @@ body.sidebar-collapsed .sidebar a.active {
   padding: 8px 14px;
   border-radius: 22px;
   cursor: pointer;
+}
+
+/* ===== Layout harmonization (from add_product template) ===== */
+.container__content { padding: 24px; }
+/* NOTE: .content__panel styling is defined earlier to control scrolling and layout. */
+.left-panel { flex: 0 0 463px; width: 463px; }
+.right-panel { flex: 0 0 473px; width: 473px; }
+.form-wrap { gap: 12px; }
+.two__column__input { gap: 12px; }
+.img__container { grid-template-columns: repeat(3, 1fr); }
+.img__item { aspect-ratio: 1 / 1; border-radius: 8px; }
+
+@media (max-width: 1000px) {
+  .left-panel, .right-panel { flex: none; width: 100%; }
+  .form-wrap { flex-direction: column; }
+}
+
+/* ===== Additive: harmonize main content typography with your font ===== */
+.container__content,
+.content,
+.customers,
+.card,
+.customer-detail__panel {
+  font-family: 'Be Vietnam Pro', sans-serif;
+  color: #111827;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
 }

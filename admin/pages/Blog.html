@@ -1,190 +1,319 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MichiShop - Blog</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MiChiShop</title>
+  <link rel="stylesheet" href="../components/sidebar.css" />
+  <link rel="stylesheet" href="../components/header.css" />
   <link rel="stylesheet" href="../styles/Blog.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
-  <!-- Sidebar -->
-  <aside class="sidebar" aria-label="Chức năng chính">
-  <h2><img src="../imgs/logo.jpg" alt="MichiShop" class="brand-logo">MichiShop</h2>
-    <nav class="sidebar__nav" aria-label="Menu chính">
-      <a href="#"><span class="sidebar_icon_link"><i class="fa-solid fa-chart-line"></i></span> Thống kê</a>
-      <a href="#"><span class="sidebar_icon_link"><i class="fa-solid fa-shopping-cart"></i></span> Đơn hàng</a>
-      <a href="#"><span class="sidebar_icon_link"><i class="fa-solid fa-box"></i></span> Kho hàng</a>
-      <a href="KhachHang.html"><span class="sidebar_icon_link"><i class="fa-solid fa-users"></i></span> Khách hàng</a>
-      <a href="UuDai.html"><span class="sidebar_icon_link"><i class="fa-solid fa-gift"></i></span> Ưu đãi</a>
-      <a href="Blog.html" class="active" aria-current="page"><span class="sidebar_icon_link"><i class="fa-solid fa-blog"></i></span> Blog</a>
-      <a href="Email.html"><span class="sidebar_icon_link"><i class="fa-solid fa-envelope"></i></span> Email</a>
-      <a href="CaiDat.html"><span class="sidebar_icon_link"><i class="fa-solid fa-cog"></i></span> Cài đặt</a>
-    </nav>
-    <button class="logout" type="button">Đăng Xuất</button>
-  </aside>
-
-    <!-- Main content -->
-  <main class="main">
-    <header class="header">
-      <div class="header__left">
-        <button class="sidebar-toggle" type="button" aria-label="Thu gọn sidebar">
-          <i class="fa-solid fa-bars"></i>
-        </button>
-        <h3>Chào mừng trở lại, CỤC ZÀNG !!!</h3>
+  <div class="Blog main">
+    <aside class="sidebar" aria-label="Chức năng chính">
+      <div class="sidebar__header">
+        <img src="../imgs/avatar.webp" alt="MichiShop" class="brand-logo" />
+        <h2>MichiShop</h2>
       </div>
-      <div class="header__right">
-        <a href="#" class="notify-link" aria-label="Thông báo">
-          <span class="sidebar_icon_link"><i class="fa-solid fa-bell"></i></span>
+      <div class="sidebar__list">
+        <ul class="list">
+          <li class="list__item"><a href="#">
+              <div class="section">
+                <div class="icon"><i class="fa-solid fa-chart-line"></i></div>
+                <p class="title">Thống kê</p>
+              </div>
+            </a></li>
+          <li class="list__item"><a href="#">
+              <div class="section">
+                <div class="icon"><i class="fa-solid fa-shopping-cart"></i></div>
+                <p class="title">Đơn hàng</p>
+              </div>
+            </a></li>
+          <li class="list__item"><a href="#">
+              <div class="section">
+                <div class="icon"><i class="fa-solid fa-box"></i></div>
+                <p class="title">Kho hàng</p>
+              </div>
+            </a></li>
+          <li class="list__item"><a href="KhachHang.html">
+              <div class="section">
+                <div class="icon"><i class="fa-solid fa-users"></i></div>
+                <p class="title">Khách hàng</p>
+              </div>
+            </a></li>
+          <li class="list__item"><a href="UuDai.html" class="section">
+              <div class="section">
+                <div class="icon"><i class="fa-solid fa-gift"></i></div>
+                <p class="title">Ưu đãi</p>
+              </div>
+            </a></li>
+          <li class="list__item"><a href="Blog.html" class="section active">
+              <div class="section">
+                <div class="icon"><i class="fa-solid fa-blog"></i></div>
+                <p class="title">Blog</p>
+              </div>
+            </a></li>
+          <li class="list__item"><a href="Email.html" class="section">
+              <div class="section">
+                <div class="icon"><i class="fa-solid fa-envelope"></i></div>
+                <p class="title">Email</p>
+              </div>
+              <div class="badge">+99</div>
+            </a></li>
+          <li class="list__item"><a href="CaiDat.html">
+              <div class="section">
+                <div class="icon"><i class="fa-solid fa-cog"></i></div>
+                <p class="title">Cài đặt</p>
+              </div>
+            </a></li>
+        </ul>
+      </div>
+      <div class="sidebar__bottom">
+        <a href="../../index.html">
+          <div class="icon"><i class="fa-solid fa-right-from-bracket"></i></div>
+          <p class="title">Đăng Xuất</p>
         </a>
-        <img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="user" class="user-avatar" />
       </div>
-    </header>
+    </aside>
 
-    <div class="content" aria-labelledby="blog-title">
-      <div class="content__panel">
-  <div class="panel-header">
-    <h3 id="blog-heading">Blog</h3>
-
-    <div class="controls">
-      <div class="tabs" role="tablist" aria-label="Tabs blog">
-        <button class="tab-btn active" data-tab="blogs" type="button">Blogs</button>
-        <button class="tab-btn" data-tab="create" type="button">Tạo Blog</button>
-      </div>
-      <div class="search">
-        <input type="search" class="search-input" placeholder="Tìm bài viết, tiêu đề hoặc tác giả" aria-label="Tìm kiếm bài viết">
-      </div>
-    </div>
-  </div>
-
-        <div class="tab-panel active" data-panel="blogs">
-          <div class="blog-list" role="list" aria-label="Danh sách bài viết">
-            <article class="blog-card">
-              <figure class="card__figure"><img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="Sữa công thức"></figure>
-              <div class="card-content">
-                <span class="card-badge">Sữa</span>
-                <h4 class="card-title">Sữa công thức ABC: Hướng dẫn chọn cho bé 0–12 tháng</h4>
-                <p class="card-meta">Bởi: MichiShop — 12/11/2025</p>
-                <p class="card-excerpt">Bài viết hướng dẫn lựa chọn sữa công thức phù hợp theo độ tuổi, thành phần dinh dưỡng cần chú ý và mẹo chuyển đổi khi thay sữa.</p>
-              </div>
-            </article>
-
-            <article class="blog-card">
-              <figure class="card__figure"><img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="Thực phẩm dinh dưỡng"></figure>
-              <div class="card-content">
-                <span class="card-badge">Dinh dưỡng</span>
-                <h4 class="card-title">Thực phẩm bổ sung cho trẻ: Khi nào cần và loại nào an toàn?</h4>
-                <p class="card-meta">Bởi: MichiShop — 01/11/2025</p>
-                <p class="card-excerpt">Tổng hợp các loại thực phẩm bổ sung (vitamins, probiotics) cho trẻ, nguồn gốc an toàn và liều dùng gợi ý theo từng nhóm tuổi.</p>
-              </div>
-            </article>
-            
-            <article class="blog-card">
-              <figure class="card__figure"><img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="Sữa cho trẻ em"></figure>
-              <div class="card-content">
-                <span class="card-badge">Sữa</span>
-                <h4 class="card-title">So sánh các loại sữa cho trẻ 1–3 tuổi</h4>
-                <p class="card-meta">Bởi: MichiShop — 28/10/2025</p>
-                <p class="card-excerpt">Bài viết so sánh phổ biến giữa sữa tăng cân, sữa phát triển và sữa bổ sung vi chất giúp bố mẹ dễ lựa chọn.</p>
-              </div>
-            </article>
-
-            <article class="blog-card">
-              <figure class="card__figure"><img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="Dinh dưỡng trẻ"></figure>
-              <div class="card-content">
-                <span class="card-badge">Dinh dưỡng</span>
-                <h4 class="card-title">Bữa ăn cho bé 6–12 tháng: Mẹo kết hợp dinh dưỡng</h4>
-                <p class="card-meta">Bởi: MichiShop — 18/10/2025</p>
-                <p class="card-excerpt">Gợi ý thực đơn hàng tuần, tỉ lệ chất đạm, bột và rau củ để hỗ trợ tăng trưởng khỏe mạnh.</p>
-              </div>
-            </article>
-
-            <article class="blog-card">
-              <figure class="card__figure"><img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="Ăn dặm"></figure>
-              <div class="card-content">
-                <span class="card-badge">Ăn dặm</span>
-                <h4 class="card-title">Ăn dặm an toàn: Các loại thực phẩm cần tránh</h4>
-                <p class="card-meta">Bởi: MichiShop — 05/10/2025</p>
-                <p class="card-excerpt">Danh sách thực phẩm có nguy cơ dị ứng hoặc nghẹn, kèm lời khuyên chế biến an toàn cho bé.</p>
-              </div>
-            </article>
-
-            <article class="blog-card">
-              <figure class="card__figure"><img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="Sức khỏe trẻ em"></figure>
-              <div class="card-content">
-                <span class="card-badge">Sức khỏe</span>
-                <h4 class="card-title">Giữ hệ tiêu hóa khỏe mạnh cho trẻ: Probiotics và prebiotics</h4>
-                <p class="card-meta">Bởi: MichiShop — 22/09/2025</p>
-                <p class="card-excerpt">Hiểu về lợi ích của probiotics, cách bổ sung an toàn và thực phẩm giàu prebiotics tự nhiên.</p>
-              </div>
-            </article>
-
-            <article class="blog-card">
-              <figure class="card__figure"><img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="Sữa hữu cơ"></figure>
-              <div class="card-content">
-                <span class="card-badge">Sữa</span>
-                <h4 class="card-title">Sữa hữu cơ vs sữa thường: Có đáng đầu tư?</h4>
-                <p class="card-meta">Bởi: MichiShop — 10/09/2025</p>
-                <p class="card-excerpt">Phân tích chi phí-lợi ích, thành phần dinh dưỡng và tiêu chuẩn an toàn giữa hai loại sữa.</p>
-              </div>
-            </article>
-
-            <article class="blog-card">
-              <figure class="card__figure"><img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="Dinh dưỡng bé"></figure>
-              <div class="card-content">
-                <span class="card-badge">Dinh dưỡng</span>
-                <h4 class="card-title">Vitamin cần thiết cho trẻ sơ sinh: Liều lượng và nguồn thực phẩm</h4>
-                <p class="card-meta">Bởi: MichiShop — 01/09/2025</p>
-                <p class="card-excerpt">Những vitamin thường thiếu ở trẻ sơ sinh và cách bù đắp qua thực phẩm tự nhiên và bổ sung đúng cách.</p>
-              </div>
-            </article>
-          </div>
+    <div class="container">
+      <div class="container__header">
+        <div class="header__left">
+          <button class="sidebar-toggle" type="button" aria-label="Thu gọn sidebar"><i
+              class="fa-solid fa-bars"></i></button>
+          <h3>Chào mừng trở lại, <span>Michi Admin</span></h3>
         </div>
 
-        <!-- Tạo bài viết -->
-        <div class="tab-panel" data-panel="create">
-          <div class="form-wrap">
-            <section class="left-panel">
-              <div class="card-form">
-                <label class="label">Tiêu đề</label>
-                <input id="blog-title" class="input" type="text" placeholder="Nhập tiêu đề" required>
+        <div class="header__right">
 
-                <label class="label">Tác giả</label>
-                <input id="blog-author" class="input" type="text" placeholder="Tên tác giả" value="MichiShop">
-                
-                <label class="label">Danh mục</label>
-                <select id="blog-category" class="input">
-                  <option value="">-- Chọn danh mục --</option>
-                  <option value="dinh-duong">Dinh dưỡng</option>
-                  <option value="sua">Sữa</option>
-                  <option value="an-dam">Ăn dặm</option>
-                  <option value="suc-khoe">Sức khỏe</option>
-                </select>
+          <div class="notification__wrapper">
+            <div class="icon" id="notification__icon">
+              <i class="fa-solid fa-bell"></i>
+              <span class="notification__badge">3</span>
+            </div>
 
-                <div class="row two">
-                  <div>
-                    <label class="label">Ngày đăng</label>
-                    <input id="blog-date" class="input" type="date">
+            <div class="notification__frame">
+              <h4 class="notification__title">🔔 Thông báo mới</h4>
+              <div class="notification__list">
+
+                <div class="notification__item new">
+                  <div class="item__icon"><ion-icon name="bag-check-outline"></ion-icon></div>
+                  <div class="item__content">
+                    <p class="item__text"><strong>Đơn hàng mới:</strong> Mã O-250725 vừa được tạo.</p>
+                    <span class="item__time">Vài giây trước</span>
                   </div>
                 </div>
 
-                <label class="label">Nội dung</label>
-                <textarea id="blog-content" class="input textarea" rows="3" placeholder="Viết nội dung..."></textarea>
-              </div>
-            </section>
+                <div class="notification__item new">
+                  <div class="item__icon alert"><ion-icon name="alert-circle-outline"></ion-icon></div>
+                  <div class="item__content">
+                    <p class="item__text"><strong>Cảnh báo tồn kho:</strong> Sữa Bột GrowPro chỉ còn 10 sản phẩm.</p>
+                    <span class="item__time">5 phút trước</span>
+                  </div>
+                </div>
 
-            <aside class="right-panel">
-              <div class="images-card">
-                <h4>Hình ảnh</h4>
-                <div class="thumbs">
-                  <div class="add-thumb">+</div>
+                <div class="notification__item">
+                  <div class="item__icon review"><ion-icon name="star-outline"></ion-icon></div>
+                  <div class="item__content">
+                    <p class="item__text">Có <strong>1 đánh giá 5 sao</strong> mới cho Váng sữa.</p>
+                    <span class="item__time">1 giờ trước</span>
+                  </div>
                 </div>
               </div>
-            </aside>
+            </div>
           </div>
+          <div class="avatar"><img src="../imgs/avatar.webp" alt="Avatar" /></div>
         </div>
+      </div>
 
-      </div> <!-- .content__panel -->
+      <!-- Main content -->
+      <main class="content" aria-labelledby="blog-title">
+        <h3 class="content__title">Blog</h3>
+        <div class="content__panel">
+          <div class="panel-header">
+
+            <div class="tabs" role="tablist" aria-label="Tabs blog">
+              <button class="tab-btn active" data-tab="blogs" type="button">Blogs</button>
+              <button class="tab-btn" data-tab="create" type="button">Tạo Blog</button>
+            </div>
+
+            <div class="controls">
+              <div class="search">
+                <input type="search" class="search-input" placeholder="Tìm bài viết, tiêu đề hoặc tác giả"
+                  aria-label="Tìm kiếm bài viết">
+              </div>
+            </div>
+          </div>
+          <div class="tab-panel active" data-panel="blogs">
+            <div class="blog-list" role="list" aria-label="Danh sách bài viết">
+              <article class="blog-card">
+                <figure class="card__figure"><img
+                    src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="Sữa công thức">
+                </figure>
+                <div class="card-content">
+                  <span class="card-badge">Sữa</span>
+                  <h4 class="card-title">Sữa công thức ABC: Hướng dẫn chọn cho bé 0–12 tháng</h4>
+                  <p class="card-meta">Bởi: MichiShop — 12/11/2025</p>
+                  <p class="card-excerpt">Bài viết hướng dẫn lựa chọn sữa công thức phù hợp theo độ tuổi, thành phần
+                    dinh dưỡng cần chú ý và mẹo chuyển đổi khi thay sữa.</p>
+                </div>
+              </article>
+
+              <article class="blog-card">
+                <figure class="card__figure"><img
+                    src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="Thực phẩm dinh dưỡng">
+                </figure>
+                <div class="card-content">
+                  <span class="card-badge">Dinh dưỡng</span>
+                  <h4 class="card-title">Thực phẩm bổ sung cho trẻ: Khi nào cần và loại nào an toàn?</h4>
+                  <p class="card-meta">Bởi: MichiShop — 01/11/2025</p>
+                  <p class="card-excerpt">Tổng hợp các loại thực phẩm bổ sung (vitamins, probiotics) cho trẻ, nguồn gốc
+                    an toàn và liều dùng gợi ý theo từng nhóm tuổi.</p>
+                </div>
+              </article>
+
+              <article class="blog-card">
+                <figure class="card__figure"><img
+                    src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="Sữa cho trẻ em">
+                </figure>
+                <div class="card-content">
+                  <span class="card-badge">Sữa</span>
+                  <h4 class="card-title">So sánh các loại sữa cho trẻ 1–3 tuổi</h4>
+                  <p class="card-meta">Bởi: MichiShop — 28/10/2025</p>
+                  <p class="card-excerpt">Bài viết so sánh phổ biến giữa sữa tăng cân, sữa phát triển và sữa bổ sung vi
+                    chất giúp bố mẹ dễ lựa chọn.</p>
+                </div>
+              </article>
+
+              <article class="blog-card">
+                <figure class="card__figure"><img
+                    src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="Dinh dưỡng trẻ">
+                </figure>
+                <div class="card-content">
+                  <span class="card-badge">Dinh dưỡng</span>
+                  <h4 class="card-title">Bữa ăn cho bé 6–12 tháng: Mẹo kết hợp dinh dưỡng</h4>
+                  <p class="card-meta">Bởi: MichiShop — 18/10/2025</p>
+                  <p class="card-excerpt">Gợi ý thực đơn hàng tuần, tỉ lệ chất đạm, bột và rau củ để hỗ trợ tăng trưởng
+                    khỏe mạnh.</p>
+                </div>
+              </article>
+
+              <article class="blog-card">
+                <figure class="card__figure"><img
+                    src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="Ăn dặm"></figure>
+                <div class="card-content">
+                  <span class="card-badge">Ăn dặm</span>
+                  <h4 class="card-title">Ăn dặm an toàn: Các loại thực phẩm cần tránh</h4>
+                  <p class="card-meta">Bởi: MichiShop — 05/10/2025</p>
+                  <p class="card-excerpt">Danh sách thực phẩm có nguy cơ dị ứng hoặc nghẹn, kèm lời khuyên chế biến an
+                    toàn cho bé.</p>
+                </div>
+              </article>
+
+              <article class="blog-card">
+                <figure class="card__figure"><img
+                    src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="Sức khỏe trẻ em">
+                </figure>
+                <div class="card-content">
+                  <span class="card-badge">Sức khỏe</span>
+                  <h4 class="card-title">Giữ hệ tiêu hóa khỏe mạnh cho trẻ: Probiotics và prebiotics</h4>
+                  <p class="card-meta">Bởi: MichiShop — 22/09/2025</p>
+                  <p class="card-excerpt">Hiểu về lợi ích của probiotics, cách bổ sung an toàn và thực phẩm giàu
+                    prebiotics tự nhiên.</p>
+                </div>
+              </article>
+
+              <article class="blog-card">
+                <figure class="card__figure"><img
+                    src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="Sữa hữu cơ"></figure>
+                <div class="card-content">
+                  <span class="card-badge">Sữa</span>
+                  <h4 class="card-title">Sữa hữu cơ vs sữa thường: Có đáng đầu tư?</h4>
+                  <p class="card-meta">Bởi: MichiShop — 10/09/2025</p>
+                  <p class="card-excerpt">Phân tích chi phí-lợi ích, thành phần dinh dưỡng và tiêu chuẩn an toàn giữa
+                    hai loại sữa.</p>
+                </div>
+              </article>
+
+              <article class="blog-card">
+                <figure class="card__figure"><img
+                    src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="Dinh dưỡng bé">
+                </figure>
+                <div class="card-content">
+                  <span class="card-badge">Dinh dưỡng</span>
+                  <h4 class="card-title">Vitamin cần thiết cho trẻ sơ sinh: Liều lượng và nguồn thực phẩm</h4>
+                  <p class="card-meta">Bởi: MichiShop — 01/09/2025</p>
+                  <p class="card-excerpt">Những vitamin thường thiếu ở trẻ sơ sinh và cách bù đắp qua thực phẩm tự nhiên
+                    và bổ sung đúng cách.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <!-- Tạo bài viết -->
+          <div class="tab-panel" data-panel="create">
+            <div class="content__body">
+              <div class="form-wrap">
+              <section class="left-panel">
+                <div class="card-form">
+                  <label class="label">Tiêu đề</label>
+                  <input id="blog-title" class="input" type="text" placeholder="Nhập tiêu đề" required>
+
+                  <label class="label">Tác giả</label>
+                  <input id="blog-author" class="input" type="text" placeholder="Tên tác giả" value="MichiShop">
+
+                  <label class="label">Danh mục</label>
+                  <select id="blog-category" class="input">
+                    <option value="">-- Chọn danh mục --</option>
+                    <option value="dinh-duong">Dinh dưỡng</option>
+                    <option value="sua">Sữa</option>
+                    <option value="an-dam">Ăn dặm</option>
+                    <option value="suc-khoe">Sức khỏe</option>
+                  </select>
+
+                  <div class="row two">
+                    <div>
+                      <label class="label">Ngày đăng</label>
+                      <input id="blog-date" class="input" type="date">
+                    </div>
+                  </div>
+
+                  <label class="label">Nội dung</label>
+                  <textarea id="blog-content" class="input textarea" rows="3" placeholder="Viết nội dung..."></textarea>
+                </div>
+              </section>
+
+              <aside class="right-panel">
+                <div class="images-card">
+                  <h4>Hình ảnh</h4>
+                  <div class="thumbs">
+                    <div class="add-thumb">+</div>
+                  </div>
+                </div>
+              </aside>
+              </div>
+              <!-- Actions row (shown when creating a blog) - moved inside the card so it's visible like add_product -->
+              <div class="actions-row">
+                <div class="actions-left">
+                  <p class="note">Đảm bảo nội dung tuân thủ chính sách và không vi phạm quy định.</p>
+                </div>
+                <div class="actions-right">
+                  <div class="panel-actions">
+                    <div class="actions">
+                      <button id="cancel-blog" class="btn ghost" type="button">Hủy</button>
+                      <button id="publish-blog" class="btn primary" type="button">Đăng bài</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        
+        </div> <!-- .content__panel -->
 
         <!-- Chi tiết / Sửa bài viết -->
         <aside class="blog-detail" role="dialog" aria-hidden="true" aria-label="Chi tiết bài viết">
@@ -218,7 +347,7 @@
             <input class="input edit-date" type="date" />
 
             <label class="label">Nội dung</label>
-            <textarea class="input textarea edit-content" rows="6"></textarea>
+            <textarea class="input textarea edit-content" rows="8"></textarea>
 
             <div class="detail-actions">
               <button type="button" class="btn primary edit-save">Sửa</button>
@@ -228,22 +357,12 @@
           </form>
         </aside>
 
-      <div class="actions-row">
-        <div class="actions-left">
-          <p class="note">Đảm bảo nội dung tuân thủ chính sách và không vi phạm quy định.</p>
-        </div>
-        <div class="actions-right">
-          <div class="panel-actions">
-            <div class="actions">
-              <button id="cancel-blog" class="btn ghost" type="button">Hủy</button>
-              <button id="publish-blog" class="btn primary" type="button">Đăng bài</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      </div>
+
+      </main>
     </div>
-  </main>
+  </div> <!-- .main -->
+  <script src="../scripts/ThuGonSidebar.js"></script>
   <script src="../scripts/Blog.js"></script>
 </body>
+
 </html>

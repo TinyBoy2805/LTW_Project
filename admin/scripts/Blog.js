@@ -1,53 +1,55 @@
-//Sidebar toggle
-(function(){
-  // Khởi tạo toggle sidebar
-  function initSidebarToggle(){
-    const btn = document.querySelector('.sidebar-toggle');
-    const sidebar = document.querySelector('.sidebar');
-    if(!btn) { console.warn('UuDai.js: sidebar-toggle not found'); return; }
-
-    // Cập nhật trạng thái hiển thị
-    function setStates(collapsed){
-      btn.setAttribute('aria-expanded', collapsed ? 'true' : 'false');
-      if(sidebar) sidebar.setAttribute('aria-hidden', collapsed ? 'true' : 'false');
-    }
-
-    // Khôi phục trạng thái
-    try{
-      const stored = localStorage.getItem('ud_sidebar_collapsed');
-      if(stored === '1'){
-        document.body.classList.add('sidebar-collapsed');
-        setStates(true);
-      } else {
-        setStates(false);
-      }
-    }catch(e){ setStates(false); }
-
-    // Hàm toggle công khai
-    window.toggleSidebar = function(){
-      const collapsed = document.body.classList.toggle('sidebar-collapsed');
-      setStates(collapsed);
-      try{ localStorage.setItem('ud_sidebar_collapsed', collapsed ? '1' : '0'); }catch(e){}
-      return collapsed;
-    };
-
-    // Sự kiện click và keyboard
-    btn.addEventListener('click', function(){ window.toggleSidebar(); });
-    btn.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); btn.click(); } });
-  }
-
-  function initAll(){ initSidebarToggle(); }
-  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initAll);
-  else initAll();
-})();
-
+// Tabs và modal chỉnh sửa cho trang Blog
 document.addEventListener('DOMContentLoaded', function () {
-
   // Tabs
   const tabButtons = document.querySelectorAll('.tab-btn');
   const panels = document.querySelectorAll('.tab-panel');
-
   const contentPanel = document.querySelector('.content__panel');
+
+
+  // Also force layout widths to ensure the create form uses more horizontal space.
+  // This helps when other styles (or caching) make the panel too narrow.
+  (function forceLayout() {
+    const createContent = document.getElementById('blog-content');
+    const contentPanelEl = document.querySelector('.content__panel');
+    const contentMain = document.querySelector('.content');
+    const container = document.querySelector('.container');
+    const leftPanel = document.querySelector('.left-panel');
+
+    if (createContent) {
+      createContent.style.width = '100%';
+      createContent.style.height = '80px';
+      createContent.style.resize = 'none';
+      createContent.style.overflow = 'auto';
+    }
+
+    if (contentPanelEl) {
+      contentPanelEl.style.width = 'auto';
+      contentPanelEl.style.maxWidth = '1200px';
+      contentPanelEl.style.margin = '0 24px';
+    }
+    if (contentMain) contentMain.style.width = '100%';
+    if (container) container.style.width = '100%';
+    if (leftPanel) {
+      leftPanel.style.flex = '3';
+      leftPanel.style.width = 'auto';
+    }
+    // also ensure the form-wrap is centered and sized
+    const formWrap = document.querySelector('.form-wrap');
+    const rightPanel = document.querySelector('.right-panel');
+    if (formWrap) {
+      formWrap.style.maxWidth = '1100px';
+      formWrap.style.margin = '0 auto';
+      formWrap.style.width = '100%';
+    }
+    if (leftPanel) {
+      leftPanel.style.flex = '0 0 660px';
+      leftPanel.style.width = '660px';
+    }
+    if (rightPanel) {
+      rightPanel.style.flex = '0 0 340px';
+      rightPanel.style.width = '340px';
+    }
+  })();
 
   function showPanel(name) {
     panels.forEach(p => {
@@ -66,8 +68,6 @@ document.addEventListener('DOMContentLoaded', function () {
   tabButtons.forEach(btn => {
     btn.addEventListener('click', () => showPanel(btn.dataset.tab));
   });
-
-  
   // Khi ấn vào thẻ blog -> mở modal chỉnh sửa
   const blogDetail = document.querySelector('.blog-detail');
   let activeCard = null;
@@ -121,8 +121,12 @@ document.addEventListener('DOMContentLoaded', function () {
     // đặt select category theo giá trị (so khớp options)
     const sel = blogDetail.querySelector('.edit-category');
     for (const opt of sel.options) { if (opt.text === badge) { opt.selected = true; } }
-    blogDetail.querySelector('.edit-date').value = formatDateForInput(date);
-    blogDetail.querySelector('.edit-content').value = excerpt;
+  blogDetail.querySelector('.edit-date').value = formatDateForInput(date);
+  // Normalize excerpt: remove stray newlines and collapse multiple spaces so the
+  // textarea doesn't display unexpected hard line breaks coming from the
+  // source HTML or stored content.
+  const normalized = (excerpt || '').replace(/\r?\n+/g, ' ').replace(/\s+/g, ' ').trim();
+  blogDetail.querySelector('.edit-content').value = normalized;
 
     blogDetail.classList.add('show');
     blogDetail.setAttribute('aria-hidden','false');

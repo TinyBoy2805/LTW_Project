@@ -1,53 +1,140 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MichiShop - Thêm Ưu đãi</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MiChiShop</title>
+  <link rel="stylesheet" href="../components/sidebar.css" />
+  <link rel="stylesheet" href="../components/header.css" />
   <link rel="stylesheet" href="../styles/ThemUuDai.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
-  <!-- Sidebar -->
-  <aside class="sidebar" aria-label="Chức năng chính">
-  <h2><img src="../imgs/logo.jpg" alt="MichiShop" class="brand-logo">MichiShop</h2>
-    <nav class="sidebar__nav" aria-label="Menu chính">
-      <a href="#"><span class="sidebar_icon_link"><i class="fa-solid fa-chart-line"></i></span> Thống kê</a>
-      <a href="#"><span class="sidebar_icon_link"><i class="fa-solid fa-shopping-cart"></i></span> Đơn hàng</a>
-      <a href="#"><span class="sidebar_icon_link"><i class="fa-solid fa-box"></i></span> Kho hàng</a>
-      <a href="KhachHang.html"><span class="sidebar_icon_link"><i class="fa-solid fa-users"></i></span> Khách hàng</a>
-      <a href="UuDai.html" class="active"><span class="sidebar_icon_link"><i class="fa-solid fa-gift"></i></span> Ưu đãi</a>
-      <a href="Blog.html"><span class="sidebar_icon_link"><i class="fa-solid fa-blog"></i></span> Blog</a>
-      <a href="Email.html"><span class="sidebar_icon_link"><i class="fa-solid fa-envelope"></i></span> Email</a>
-      <a href="CaiDat.html"><span class="sidebar_icon_link"><i class="fa-solid fa-cog"></i></span> Cài đặt</a>
-    </nav>
-    <button class="logout" type="button">Đăng Xuất</button>
-  </aside>
-
-    <!-- Main content -->
-  <main class="main">
-    <header class="header">
-        <div class="header__left">
-          <button class="sidebar-toggle" type="button" aria-label="Thu gọn sidebar">
-            <i class="fa-solid fa-bars"></i>
-          </button>
-        <h3>Chào mừng trở lại, CỤC ZÀNG !!!</h3>
-        </div>
-      <div class="header__right">
-        <a href="#" class="notify-link" aria-label="Thông báo">
-          <span class="sidebar_icon_link"><i class="fa-solid fa-bell"></i></span>
-        </a>
-        <img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="user" class="user-avatar" />
+  <div class="ThemUuDai main">
+    <aside class="sidebar" aria-label="Chức năng chính">
+      <div class="sidebar__header">
+        <img src="../imgs/avatar.webp" alt="MichiShop" class="brand-logo" />
+        <h2>MichiShop</h2>
       </div>
-      </header>
-      
-<!-- Main content continued -->
-      <div class="content" aria-labelledby="them-uudai-title">
-        <div class="content__panel">
-          <div class="panel-top">
-            <h3 id="them-uudai-title">Ưu đãi / Ưu đãi mới</h3>
-          </div>
+      <div class="sidebar__list">
+        <ul class="list">
+          <li class="list__item"><a href="#">
+              <div class="section">
+                <div class="icon"><i class="fa-solid fa-chart-line"></i></div>
+                <p class="title">Thống kê</p>
+              </div>
+            </a></li>
+          <li class="list__item"><a href="#">
+              <div class="section">
+                <div class="icon"><i class="fa-solid fa-shopping-cart"></i></div>
+                <p class="title">Đơn hàng</p>
+              </div>
+            </a></li>
+          <li class="list__item"><a href="#">
+              <div class="section">
+                <div class="icon"><i class="fa-solid fa-box"></i></div>
+                <p class="title">Kho hàng</p>
+              </div>
+            </a></li>
+          <li class="list__item"><a href="KhachHang.html">
+              <div class="section">
+                <div class="icon"><i class="fa-solid fa-users"></i></div>
+                <p class="title">Khách hàng</p>
+              </div>
+            </a></li>
+          <li class="list__item"><a href="UuDai.html" class="section">
+              <div class="section">
+                <div class="icon"><i class="fa-solid fa-gift"></i></div>
+                <p class="title">Ưu đãi</p>
+              </div>
+            </a></li>
+          <li class="list__item"><a href="Blog.html" class="section active">
+              <div class="section">
+                <div class="icon"><i class="fa-solid fa-blog"></i></div>
+                <p class="title">Blog</p>
+              </div>
+            </a></li>
+          <li class="list__item"><a href="Email.html" class="section">
+              <div class="section">
+                <div class="icon"><i class="fa-solid fa-envelope"></i></div>
+                <p class="title">Email</p>
+              </div>
+              <div class="badge">+99</div>
+            </a></li>
+          <li class="list__item"><a href="CaiDat.html">
+              <div class="section">
+                <div class="icon"><i class="fa-solid fa-cog"></i></div>
+                <p class="title">Cài đặt</p>
+              </div>
+            </a></li>
+        </ul>
+      </div>
+      <div class="sidebar__bottom">
+        <a href="../../index.html">
+          <div class="icon"><i class="fa-solid fa-right-from-bracket"></i></div>
+          <p class="title">Đăng Xuất</p>
+        </a>
+      </div>
+    </aside>
 
+    <div class="container">
+      <div class="container__header">
+        <div class="header__left">
+          <button class="sidebar-toggle" type="button" aria-label="Thu gọn sidebar"><i
+              class="fa-solid fa-bars"></i></button>
+          <h3>Chào mừng trở lại, <span>Michi Admin</span></h3>
+        </div>
+
+        <div class="header__right">
+
+          <div class="notification__wrapper">
+            <div class="icon" id="notification__icon">
+              <i class="fa-solid fa-bell"></i>
+              <span class="notification__badge">3</span>
+            </div>
+
+            <div class="notification__frame">
+              <h4 class="notification__title">🔔 Thông báo mới</h4>
+              <div class="notification__list">
+
+                <div class="notification__item new">
+                  <div class="item__icon"><ion-icon name="bag-check-outline"></ion-icon></div>
+                  <div class="item__content">
+                    <p class="item__text"><strong>Đơn hàng mới:</strong> Mã O-250725 vừa được tạo.</p>
+                    <span class="item__time">Vài giây trước</span>
+                  </div>
+                </div>
+
+                <div class="notification__item new">
+                  <div class="item__icon alert"><ion-icon name="alert-circle-outline"></ion-icon></div>
+                  <div class="item__content">
+                    <p class="item__text"><strong>Cảnh báo tồn kho:</strong> Sữa Bột GrowPro chỉ còn 10 sản phẩm.</p>
+                    <span class="item__time">5 phút trước</span>
+                  </div>
+                </div>
+
+                <div class="notification__item">
+                  <div class="item__icon review"><ion-icon name="star-outline"></ion-icon></div>
+                  <div class="item__content">
+                    <p class="item__text">Có <strong>1 đánh giá 5 sao</strong> mới cho Váng sữa.</p>
+                    <span class="item__time">1 giờ trước</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="avatar"><img src="../imgs/avatar.webp" alt="Avatar" /></div>
+        </div>
+      </div>
+
+      <!-- Main content -->
+      <main class="content" aria-labelledby="them-uu-dai-title">
+        <h3 class="content__title">Thêm Ưu Đãi</h3>
+        <div class="content__panel">
+
+          <div class="panel-header">
           <div class="form-wrap">
             <section class="left-panel">
               <div class="card-form">
@@ -126,6 +213,6 @@
           </div> <!-- .content -->
 
         </main>
-        <script src="../scripts/ThemUuDai.js"></script>
+  <script src="../scripts/ThuGonSidebar.js"></script>
 </body>
 </html>
