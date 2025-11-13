@@ -1,5 +1,19 @@
 @import url('../index.css');
 
+.--instock
+{
+    background-color: transparent;
+    color: #08CB00;
+}
+
+.--pending
+{
+    background-color: transparent;
+    color: rgb(232, 194, 3);
+}
+
+
+
 * {
     padding: 0;
     margin: 0;
@@ -402,15 +416,7 @@ table tbody tr:hover {
     font-weight: bold;
 }
 
-.status__instock {
-    background-color: #daf7d9;
-    color: #32c45e;
-}
 
-.status__waiting {
-    background-color: #fde2fd;
-    color: #ed3f27;
-}
 
 .table__bottom {
     width: 100%;

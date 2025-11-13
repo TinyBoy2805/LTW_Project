@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 type: 'value',
                 axisLabel: {
                     formatter: function (value) {
-                        return (value / 10).toFixed(0) + 'tr'; 
+                        return (value / 10).toFixed(0); 
                     }
                 }
             },
@@ -77,7 +77,8 @@ document.addEventListener('DOMContentLoaded', function () {
                                 { offset: 0, color: '#F654a9' }, // Màu hồng đậm ở trên
                                 { offset: 1, color: '#ffc8e2' }  // Màu hồng nhạt ở dưới
                             ]
-                        )
+                        ),
+                        borderRadius: [4, 4, 0, 0]
                     },
                     barWidth: '50%'
                 }
