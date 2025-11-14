@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MiChiShop</title>
+    <link rel="stylesheet" href="../styles/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+
+    <header class="header">
+        <nav class="nav">
+            <div class="nav__top">
+                <a class="nav__top-logo" href="./Home.html">
+                    <i class="fa-solid fa-shop --size44 --color6" ></i>
+                    <h1>MichiShop</h1>
+                </a>
+                <div class="nav__top-input">
+                    <form action="">
+                        <input type="text" placeholder="Sản phẩm bạn cần tìm..." class="--no-border --no-outline">
+                        <button class="--no-border --no-outline">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            Tìm kiếm
+                        </button>
+                    </form>
+                </div>
+                <div class="nav__top-actions">
+                    <ul>
+                        <li class="hovercart">
+                            <a href="./Cart.html" class="--color4"><i class="fa-solid fa-cart-shopping --size20"></i></a>
+                            <div class="header-cart">
+                                <ul>
+                                    <li>
+                                        <div class="item">
+                                            <div class="img-container">
+                                                <img src="https://i.pinimg.com/1200x/4b/bb/02/4bbb0223ba678e97772d02949e5f89ca.jpg" alt="">
+                                            </div>
+                                            <p>Sữa chua hy lạp</p>
+                                            <p class="--weight600 --color6">199.000₫</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="item">
+                                            <div class="img-container">
+                                                <img src="https://i.pinimg.com/1200x/4b/bb/02/4bbb0223ba678e97772d02949e5f89ca.jpg" alt="">
+                                            </div>
+                                            <p>Sữa chua hy lạp</p>
+                                            <p class="--weight600 --color6">199.000₫</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="item">
+                                            <div class="img-container">
+                                                <img src="https://i.pinimg.com/1200x/4b/bb/02/4bbb0223ba678e97772d02949e5f89ca.jpg" alt="">
+                                            </div>
+                                            <p>Sữa chua hy lạp</p>
+                                            <p class="--weight600 --color6">199.000₫</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="item">
+                                            <div class="img-container">
+                                                <img src="https://i.pinimg.com/1200x/4b/bb/02/4bbb0223ba678e97772d02949e5f89ca.jpg" alt="">
+                                            </div>
+                                            <p>Sữa chua hy lạp</p>
+                                            <p class="--weight600 --color6">199.000₫</p>
+                                        </div>
+                                    </li>
+                                    
+                                </ul>
+                                <div class="sub-info">
+                                    <p>36 sản phẩm</p>
+                                    <a href="./Cart.html">Xem giỏ hàng</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li><a href="./Inform.html" class="--color4"><i class="fa-solid fa-bell --size20"></i></a></li>
+                        <li><a href="./Profile.html" class="--color4"><i class="fa-solid fa-user-ninja --size20"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="nav__line"></div>
+            <div class="nav__bottom">
+                <ul>
+                    <li><a href="./Home.html">Trang chủ</a></li>
+                    <li><a href="./Products.html" class="active">Sản phẩm</a></li>
+                    <li><a href="./Voucher.html">Khuyến mãi</a></li>
+                    <li><a href="./Blog.html">Cẩm nang</a></li>
+                    <li><a href="./Contact.html">Liên hệ</a></li>
+                    <li><a href="">về cửa hàng</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+
+        <div class="main__content">
+            <div class="main__filter">
+                <h3 class="main__filter-heading">Bộ lọc tìm kiếm</h3>
+
+                <div class="main__filter-content">
+                    <form class="main__filter-form">
+                        <fieldset>
+                            <legend>Thương hiệu</legend>
+                            <label><input type="checkbox" name="brand" value="Meiji"> Meiji</label>
+                            <label><input type="checkbox" name="brand" value="Aptamil"> Aptamil</label>
+                            <label><input type="checkbox" name="brand" value="Friso"> Friso</label>
+                        </fieldset>
+                        <div class="main__filter-form-line"></div>
+                        <fieldset>
+                            <legend>Độ tuổi</legend>
+                            <label><input type="checkbox" name="age" value="0-6m"> 0-6 tháng</label>
+                            <label><input type="checkbox" name="age" value="6-12m"> 6-12 tháng</label>
+                            <label><input type="checkbox" name="age" value="1-3y"> 1-3 tuổi</label>
+                        </fieldset>
+                        <div class="main__filter-form-line"></div>
+                        <fieldset>
+                            <legend>Khoảng giá</legend>
+                            <label><input type="checkbox" name="price" value="below 200.000đ"> Dưới 200.000đ</label>
+                            <label><input type="checkbox" name="price" value="200.000đ – 500.000đ"> 200.000đ–500.000đ</label>
+                            <label><input type="checkbox" name="price" value="500.000đ – 1.000.000đ">500.000đ–1.000.000đ</label>
+                            <label><input type="checkbox" name="price" value="over 1.000.000đ">Trên 1.000.000đ</label>
+                        </fieldset>
+                        <div class="main__filter-form-line"></div>
+                        <fieldset>
+                            <legend>Loại sản phẩm</legend>
+                            <label><input type="checkbox" name="type" value="Sữa bột công thức">Sữa bột công thức</label>
+                            <label><input type="checkbox" name="type" value="Sữa tươi tiệt trùng">Sữa tươi tiệt trùng</label>
+                            <label><input type="checkbox" name="type" value="Sữa đặc">Sữa đặc</label>
+                            <label><input type="checkbox" name="type" value="Sữa chua uống">Sữa chua uống</label>
+                            <label><input type="checkbox" name="type" value="Thực phẩm ăn dặm ">Thực phẩm ăn dặm </label>
+                        </fieldset>
+                        <div class="main__filter-form-line"></div>
+                        <fieldset>
+                            <legend>Đặc điểm dinh dưỡng</legend>
+                            <label><input type="checkbox" name="characteristic" value="Tăng cân">Tăng cân</label>
+                            <label><input type="checkbox" name="characteristic" value="Phát triển chiều cao">Phát triển chiều cao</label>
+                            <label><input type="checkbox" name="characteristic" value="Hỗ trợ tiêu hoá">Hỗ trợ tiêu hoá</label>
+                            <label><input type="checkbox" name="characteristic" value="Không đường / Ít béo">Không đường / Ít béo</label>
+                            <label><input type="checkbox" name="characteristic" value="Organic (Hữu cơ)">Organic (Hữu cơ)</label>
+                        </fieldset>
+                        <div class="main__filter-form-line"></div>
+                        <fieldset>
+                            <legend>Khuyến mãi / Ưu đãi</legend>
+                            <label><input type="checkbox" name="discount" value="đang giảm giá">Đang giảm giá</label>
+                            <label><input type="checkbox" name="discount" value="Hàng mới ra mắt">Hàng mới ra mắt</label>
+                        </fieldset>
+                        <div class="main__filter-form-line"></div>
+                        <fieldset>
+                            <legend>Đánh giá người mua</legend>
+                            <label>
+                                <input type="checkbox" name="rating" value="5">
+                                <ul>
+                                    <li><i class="fa-solid fa-star --star"></i></li>
+                                    <li><i class="fa-solid fa-star --star"></i></li>
+                                    <li><i class="fa-solid fa-star --star"></i></li>
+                                    <li><i class="fa-solid fa-star --star"></i></li>
+                                    <li><i class="fa-solid fa-star --star"></i></li>
+                                </ul>
+                            </label>
+                            <label>
+                                <input type="checkbox" name="rating" value="5">
+                                <ul>
+                                    <li><i class="fa-solid fa-star --star"></i></li>
+                                    <li><i class="fa-solid fa-star --star"></i></li>
+                                    <li><i class="fa-solid fa-star --star"></i></li>
+                                    <li><i class="fa-solid fa-star --star"></i></li>
+                                    <li><i class="fa-solid fa-star --color3"></i></li>
+                                </ul>
+                            </label>
+                            <label>
+                                <input type="checkbox" name="rating" value="5">
+                                <ul>
+                                    <li><i class="fa-solid fa-star --star"></i></li>
+                                    <li><i class="fa-solid fa-star --star"></i></li>
+                                    <li><i class="fa-solid fa-star --star"></i></li>
+                                    <li><i class="fa-solid fa-star --color3"></i></li>
+                                    <li><i class="fa-solid fa-star --color3"></i></li>
+                                </ul>
+                            </label>
+                            <label>
+                                <input type="checkbox" name="rating" value="5">
+                                <ul>
+                                    <li><i class="fa-solid fa-star --star"></i></li>
+                                    <li><i class="fa-solid fa-star --star"></i></li>
+                                    <li><i class="fa-solid fa-star --color3"></i></li>
+                                    <li><i class="fa-solid fa-star --color3"></i></li>
+                                    <li><i class="fa-solid fa-star --color3"></i></li>
+                                </ul>
+                            </label>
+                            <label>
+                                <input type="checkbox" name="rating" value="5">
+                                <ul>
+                                    <li><i class="fa-solid fa-star --star"></i></li>
+                                    <li><i class="fa-solid fa-star --color3"></i></li>
+                                    <li><i class="fa-solid fa-star --color3"></i></li>
+                                    <li><i class="fa-solid fa-star --color3"></i></li>
+                                    <li><i class="fa-solid fa-star --color3"></i></li>
+                                </ul>
+                            </label>
+                        </fieldset>
+
+                        <div class="main__filter-form-actions">
+                            <button type="submit"><i class="fa-solid fa-rotate-right"></i></button>
+                            <button type="submit">Lọc sản phẩm</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+            <div class="main__products">
+                <ul class="main__products-ul">
+                    <li class="main__products-ul-li">
+                        <div class="product">
+                            <div class="product__top">
+                                <div class="product__image">
+                                    <img src="https://i.pinimg.com/1200x/79/df/0d/79df0de0a96063735aca1c5d5c80ca26.jpg" alt="">
+                                </div>
+                            </div>
+
+                            <div class="product__mid">
+                                <h3>Sữa tươi thanh trùng</h3>
+                                <div class="product__mid-sub1">
+                                    <ul class="product__mid-sub1-stars">
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                    </ul>
+                                    <p>98</p>
+                                </div>
+
+                                <div class="product__mid-sub2">
+                                    <p>360.000đ</p>
+                                    <p>Đã bán 3.6k+</p>
+                                </div>
+                            </div>
+
+                            <div class="product__bottom">
+                                <div class="product__bottom-actions">
+                                    <button><i class="fa-solid fa-cart-plus"></i></button>
+                                    <button>Mua ngay</button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="main__products-ul-li">
+                        <div class="product">
+                            <div class="product__top">
+                                <div class="product__image">
+                                    <img src="https://i.pinimg.com/1200x/79/df/0d/79df0de0a96063735aca1c5d5c80ca26.jpg" alt="">
+                                </div>
+                            </div>
+
+                            <div class="product__mid">
+                                <h3>Sữa tươi thanh trùng</h3>
+                                <div class="product__mid-sub1">
+                                    <ul class="product__mid-sub1-stars">
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                    </ul>
+                                    <p>98</p>
+                                </div>
+
+                                <div class="product__mid-sub2">
+                                    <p>360.000đ</p>
+                                    <p>Đã bán 3.6k+</p>
+                                </div>
+                            </div>
+
+                            <div class="product__bottom">
+                                <div class="product__bottom-actions">
+                                    <button><i class="fa-solid fa-cart-plus"></i></button>
+                                    <button>Mua ngay</button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="main__products-ul-li">
+                        <div class="product">
+                            <div class="product__top">
+                                <div class="product__image">
+                                    <img src="https://i.pinimg.com/1200x/79/df/0d/79df0de0a96063735aca1c5d5c80ca26.jpg" alt="">
+                                </div>
+                            </div>
+
+                            <div class="product__mid">
+                                <h3>Sữa tươi thanh trùng</h3>
+                                <div class="product__mid-sub1">
+                                    <ul class="product__mid-sub1-stars">
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                    </ul>
+                                    <p>98</p>
+                                </div>
+
+                                <div class="product__mid-sub2">
+                                    <p>360.000đ</p>
+                                    <p>Đã bán 3.6k+</p>
+                                </div>
+                            </div>
+
+                            <div class="product__bottom">
+                                <div class="product__bottom-actions">
+                                    <button><i class="fa-solid fa-cart-plus"></i></button>
+                                    <button>Mua ngay</button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="main__products-ul-li">
+                        <div class="product">
+                            <div class="product__top">
+                                <div class="product__image">
+                                    <img src="https://i.pinimg.com/1200x/79/df/0d/79df0de0a96063735aca1c5d5c80ca26.jpg" alt="">
+                                </div>
+                            </div>
+
+                            <div class="product__mid">
+                                <h3>Sữa tươi thanh trùng</h3>
+                                <div class="product__mid-sub1">
+                                    <ul class="product__mid-sub1-stars">
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                    </ul>
+                                    <p>98</p>
+                                </div>
+
+                                <div class="product__mid-sub2">
+                                    <p>360.000đ</p>
+                                    <p>Đã bán 3.6k+</p>
+                                </div>
+                            </div>
+
+                            <div class="product__bottom">
+                                <div class="product__bottom-actions">
+                                    <button><i class="fa-solid fa-cart-plus"></i></button>
+                                    <button>Mua ngay</button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="main__products-ul-li">
+                        <div class="product">
+                            <div class="product__top">
+                                <div class="product__image">
+                                    <img src="https://i.pinimg.com/1200x/79/df/0d/79df0de0a96063735aca1c5d5c80ca26.jpg" alt="">
+                                </div>
+                            </div>
+
+                            <div class="product__mid">
+                                <h3>Sữa tươi thanh trùng</h3>
+                                <div class="product__mid-sub1">
+                                    <ul class="product__mid-sub1-stars">
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                    </ul>
+                                    <p>98</p>
+                                </div>
+
+                                <div class="product__mid-sub2">
+                                    <p>360.000đ</p>
+                                    <p>Đã bán 3.6k+</p>
+                                </div>
+                            </div>
+
+                            <div class="product__bottom">
+                                <div class="product__bottom-actions">
+                                    <button><i class="fa-solid fa-cart-plus"></i></button>
+                                    <button>Mua ngay</button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="main__products-ul-li">
+                        <div class="product">
+                            <div class="product__top">
+                                <div class="product__image">
+                                    <img src="https://i.pinimg.com/1200x/79/df/0d/79df0de0a96063735aca1c5d5c80ca26.jpg" alt="">
+                                </div>
+                            </div>
+
+                            <div class="product__mid">
+                                <h3>Sữa tươi thanh trùng</h3>
+                                <div class="product__mid-sub1">
+                                    <ul class="product__mid-sub1-stars">
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                    </ul>
+                                    <p>98</p>
+                                </div>
+
+                                <div class="product__mid-sub2">
+                                    <p>360.000đ</p>
+                                    <p>Đã bán 3.6k+</p>
+                                </div>
+                            </div>
+
+                            <div class="product__bottom">
+                                <div class="product__bottom-actions">
+                                    <button><i class="fa-solid fa-cart-plus"></i></button>
+                                    <button>Mua ngay</button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="main__products-ul-li">
+                        <div class="product">
+                            <div class="product__top">
+                                <div class="product__image">
+                                    <img src="https://i.pinimg.com/1200x/79/df/0d/79df0de0a96063735aca1c5d5c80ca26.jpg" alt="">
+                                </div>
+                            </div>
+
+                            <div class="product__mid">
+                                <h3>Sữa tươi thanh trùng</h3>
+                                <div class="product__mid-sub1">
+                                    <ul class="product__mid-sub1-stars">
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                    </ul>
+                                    <p>98</p>
+                                </div>
+
+                                <div class="product__mid-sub2">
+                                    <p>360.000đ</p>
+                                    <p>Đã bán 3.6k+</p>
+                                </div>
+                            </div>
+
+                            <div class="product__bottom">
+                                <div class="product__bottom-actions">
+                                    <button><i class="fa-solid fa-cart-plus"></i></button>
+                                    <button>Mua ngay</button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="main__products-ul-li">
+                        <div class="product">
+                            <div class="product__top">
+                                <div class="product__image">
+                                    <img src="https://i.pinimg.com/1200x/79/df/0d/79df0de0a96063735aca1c5d5c80ca26.jpg" alt="">
+                                </div>
+                            </div>
+
+                            <div class="product__mid">
+                                <h3>Sữa tươi thanh trùng</h3>
+                                <div class="product__mid-sub1">
+                                    <ul class="product__mid-sub1-stars">
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                    </ul>
+                                    <p>98</p>
+                                </div>
+
+                                <div class="product__mid-sub2">
+                                    <p>360.000đ</p>
+                                    <p>Đã bán 3.6k+</p>
+                                </div>
+                            </div>
+
+                            <div class="product__bottom">
+                                <div class="product__bottom-actions">
+                                    <button><i class="fa-solid fa-cart-plus"></i></button>
+                                    <button>Mua ngay</button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="main__products-ul-li">
+                        <div class="product">
+                            <div class="product__top">
+                                <div class="product__image">
+                                    <img src="https://i.pinimg.com/1200x/79/df/0d/79df0de0a96063735aca1c5d5c80ca26.jpg" alt="">
+                                </div>
+                            </div>
+
+                            <div class="product__mid">
+                                <h3>Sữa tươi thanh trùng</h3>
+                                <div class="product__mid-sub1">
+                                    <ul class="product__mid-sub1-stars">
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                    </ul>
+                                    <p>98</p>
+                                </div>
+
+                                <div class="product__mid-sub2">
+                                    <p>360.000đ</p>
+                                    <p>Đã bán 3.6k+</p>
+                                </div>
+                            </div>
+
+                            <div class="product__bottom">
+                                <div class="product__bottom-actions">
+                                    <button><i class="fa-solid fa-cart-plus"></i></button>
+                                    <button>Mua ngay</button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="main__products-ul-li">
+                        <div class="product">
+                            <div class="product__top">
+                                <div class="product__image">
+                                    <img src="https://i.pinimg.com/1200x/79/df/0d/79df0de0a96063735aca1c5d5c80ca26.jpg" alt="">
+                                </div>
+                            </div>
+
+                            <div class="product__mid">
+                                <h3>Sữa tươi thanh trùng</h3>
+                                <div class="product__mid-sub1">
+                                    <ul class="product__mid-sub1-stars">
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                    </ul>
+                                    <p>98</p>
+                                </div>
+
+                                <div class="product__mid-sub2">
+                                    <p>360.000đ</p>
+                                    <p>Đã bán 3.6k+</p>
+                                </div>
+                            </div>
+
+                            <div class="product__bottom">
+                                <div class="product__bottom-actions">
+                                    <button><i class="fa-solid fa-cart-plus"></i></button>
+                                    <button>Mua ngay</button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="main__products-ul-li">
+                        <div class="product">
+                            <div class="product__top">
+                                <div class="product__image">
+                                    <img src="https://i.pinimg.com/1200x/79/df/0d/79df0de0a96063735aca1c5d5c80ca26.jpg" alt="">
+                                </div>
+                            </div>
+
+                            <div class="product__mid">
+                                <h3>Sữa tươi thanh trùng</h3>
+                                <div class="product__mid-sub1">
+                                    <ul class="product__mid-sub1-stars">
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                    </ul>
+                                    <p>98</p>
+                                </div>
+
+                                <div class="product__mid-sub2">
+                                    <p>360.000đ</p>
+                                    <p>Đã bán 3.6k+</p>
+                                </div>
+                            </div>
+
+                            <div class="product__bottom">
+                                <div class="product__bottom-actions">
+                                    <button><i class="fa-solid fa-cart-plus"></i></button>
+                                    <button>Mua ngay</button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="main__products-ul-li">
+                        <div class="product">
+                            <div class="product__top">
+                                <div class="product__image">
+                                    <img src="https://i.pinimg.com/1200x/79/df/0d/79df0de0a96063735aca1c5d5c80ca26.jpg" alt="">
+                                </div>
+                            </div>
+
+                            <div class="product__mid">
+                                <h3>Sữa tươi thanh trùng</h3>
+                                <div class="product__mid-sub1">
+                                    <ul class="product__mid-sub1-stars">
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                    </ul>
+                                    <p>98</p>
+                                </div>
+
+                                <div class="product__mid-sub2">
+                                    <p>360.000đ</p>
+                                    <p>Đã bán 3.6k+</p>
+                                </div>
+                            </div>
+
+                            <div class="product__bottom">
+                                <div class="product__bottom-actions">
+                                    <button><i class="fa-solid fa-cart-plus"></i></button>
+                                    <button>Mua ngay</button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="main__products-ul-li">
+                        <div class="product">
+                            <div class="product__top">
+                                <div class="product__image">
+                                    <img src="https://i.pinimg.com/1200x/79/df/0d/79df0de0a96063735aca1c5d5c80ca26.jpg" alt="">
+                                </div>
+                            </div>
+
+                            <div class="product__mid">
+                                <h3>Sữa tươi thanh trùng</h3>
+                                <div class="product__mid-sub1">
+                                    <ul class="product__mid-sub1-stars">
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                    </ul>
+                                    <p>98</p>
+                                </div>
+
+                                <div class="product__mid-sub2">
+                                    <p>360.000đ</p>
+                                    <p>Đã bán 3.6k+</p>
+                                </div>
+                            </div>
+
+                            <div class="product__bottom">
+                                <div class="product__bottom-actions">
+                                    <button><i class="fa-solid fa-cart-plus"></i></button>
+                                    <button>Mua ngay</button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="main__products-ul-li">
+                        <div class="product">
+                            <div class="product__top">
+                                <div class="product__image">
+                                    <img src="https://i.pinimg.com/1200x/79/df/0d/79df0de0a96063735aca1c5d5c80ca26.jpg" alt="">
+                                </div>
+                            </div>
+
+                            <div class="product__mid">
+                                <h3>Sữa tươi thanh trùng</h3>
+                                <div class="product__mid-sub1">
+                                    <ul class="product__mid-sub1-stars">
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                    </ul>
+                                    <p>98</p>
+                                </div>
+
+                                <div class="product__mid-sub2">
+                                    <p>360.000đ</p>
+                                    <p>Đã bán 3.6k+</p>
+                                </div>
+                            </div>
+
+                            <div class="product__bottom">
+                                <div class="product__bottom-actions">
+                                    <button><i class="fa-solid fa-cart-plus"></i></button>
+                                    <button>Mua ngay</button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="main__products-ul-li">
+                        <div class="product">
+                            <div class="product__top">
+                                <div class="product__image">
+                                    <img src="https://i.pinimg.com/1200x/79/df/0d/79df0de0a96063735aca1c5d5c80ca26.jpg" alt="">
+                                </div>
+                            </div>
+
+                            <div class="product__mid">
+                                <h3>Sữa tươi thanh trùng</h3>
+                                <div class="product__mid-sub1">
+                                    <ul class="product__mid-sub1-stars">
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                    </ul>
+                                    <p>98</p>
+                                </div>
+
+                                <div class="product__mid-sub2">
+                                    <p>360.000đ</p>
+                                    <p>Đã bán 3.6k+</p>
+                                </div>
+                            </div>
+
+                            <div class="product__bottom">
+                                <div class="product__bottom-actions">
+                                    <button><i class="fa-solid fa-cart-plus"></i></button>
+                                    <button>Mua ngay</button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="main__products-ul-li">
+                        <div class="product">
+                            <div class="product__top">
+                                <div class="product__image">
+                                    <img src="https://i.pinimg.com/1200x/79/df/0d/79df0de0a96063735aca1c5d5c80ca26.jpg" alt="">
+                                </div>
+                            </div>
+
+                            <div class="product__mid">
+                                <h3>Sữa tươi thanh trùng</h3>
+                                <div class="product__mid-sub1">
+                                    <ul class="product__mid-sub1-stars">
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                    </ul>
+                                    <p>98</p>
+                                </div>
+
+                                <div class="product__mid-sub2">
+                                    <p>360.000đ</p>
+                                    <p>Đã bán 3.6k+</p>
+                                </div>
+                            </div>
+
+                            <div class="product__bottom">
+                                <div class="product__bottom-actions">
+                                    <button><i class="fa-solid fa-cart-plus"></i></button>
+                                    <button>Mua ngay</button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <button class="main__products-more">Xem thêm</button>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer__top">
+
+            <div class="footer__top-col1">
+                <div class="footer__top-col1-top">
+
+                    <div class="footer__top-col1-top-logo">
+                        <i class="fa-solid fa-shop" ></i>
+                        <h3 class="--size20">MichiShop</h3>
+                    </div>
+                    <p>MiChiShop – Bé khỏe, mẹ vui, cả nhà hạnh phúc</p>
+
+                </div>
+
+                <div class="footer__top-col1-bottom">
+                    <h3>Về cửa hàng</h3>
+                    <p>MichiShop luôn muốn mang đến khách hàng những sản phẩm chất lượng và uy tín</p>
+                </div>
+            </div>
+
+            <div class="footer__top-col2">
+                <h3>Liên hệ</h3>
+                <ul>
+                    <li>Hotline: 0901 234 567</li>
+                    <li>Địa chỉ: 123 Nguyễn Văn Cừ, TP.HCM</li>
+                    <li>Giờ mở cửa: 8h - 20h</li>
+                </ul>
+            </div>
+
+            <div class="footer__top-col3">
+                <h3>Liên kết nhanh</h3>
+                <ul>
+                    <li><a href="#">Trang chủ</a></li>
+                    <li><a href="#">Sản phẩm</a></li>
+                    <li><a href="#">Khuyến mãi</a></li>
+                    <li><a href="#">Cẩm nang</a></li>
+                    <li><a href="#">Về cửa hàng</a></li>
+                    <li><a href="#">Liên hệ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer__top-col4">
+                <div class="footer__top-col4-form">
+                    <h3>Đăng kí để nhận thêm thông tin</h3>
+                    <input type="text" placeholder="Để lại email của bạn...">
+                    <button>Đăng kí!</button>
+                </div>
+            </div>
+
+        </div>
+        <div class="footer__line"></div>
+
+
+        <div class="footer__bottom">
+            <div class="footer__bottom-logos">
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+                    <i class="fa-brands fa-tiktok"></i>
+                </a>
+                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+            </div>
+            <h4>&copy; Copyright. All rights reserved.</h4>
+        </div>
+
+    </footer>
+
+</body>
+</html>

@@ -5,11 +5,13 @@
     --c3: #ACACAC;
     --c4: #858585;
     --c5: #ECECEC;
-    --c6: #F49FB6;
+    --c6: #F564A9;
     --c7: #F4D2D2;
     --c8: #FAF8F0;
-    --c9: #A6E0DE;
+    --c9: #4CD3C2;
     --c10: #ffffff;
+    --star: #FFC507;
+    --bg: #f5f5f5;
 }
 
 .--color1 { color: var(--c1); }
@@ -22,3 +24,7 @@
 .--color8 { color: var(--c8); }
 .--color9 { color: var(--c9); }
 .--color10 { color: var(--c10); }
+.--star { color: var(--star);}
+.--active { color: rgb(45, 255, 45); }
+.--male { color: var(--c9);}
+.--female { color: var(--c6);}
