@@ -1,0 +1,381 @@
+.hero 
+{
+  height: 80vh;
+  background-image: linear-gradient(to top, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.hero__content 
+{
+    width: 98%;
+    height: 98%;
+    border-radius: 6px;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.hero__title 
+{
+  font-size: 45px;
+  color: var(--c10);
+}
+
+.hero__subtitle 
+{
+  font-size: 20px;
+  color: var(--c1);
+  /* margin-bottom: 30px; */
+}
+
+.hero__btn 
+{
+    padding: 12px 16px;
+    background-color: var(--c6);
+    color: var(--c10);
+    border-radius: 10px;
+}
+
+.hero__btn:hover 
+{
+  background: var(--c10);
+  color: var(--c6);
+}
+
+
+
+/* -------------------------------- */
+/* 2. BRAND STORY */
+/* -------------------------------- */
+.story__container 
+{
+    width: 100%;
+    height: 45vh;
+    display: flex;
+    background-color: transparent;
+}
+
+.story__image
+{
+    width: 70%;
+    height: 100%;
+    padding: 12px;
+}
+
+.story__image .img__container
+{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--c10);
+    box-shadow: var(--bx1);
+}
+
+.story__image .img__container img 
+{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.story__text 
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    gap: 8px;
+}
+
+.story__text h2 
+{
+    width: 100%;
+    text-align: left;
+}
+
+.story__text p 
+{
+    width: 100%;
+    text-align: left;
+}
+
+
+
+
+/* -------------------------------- */
+/* 3. MISSION – VISION */
+/* -------------------------------- */
+.mv 
+{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px;
+}
+
+.mv h2 
+{
+    width: 100%;
+    text-align: center;
+    color: var(--c6);
+    font-size: 30px;
+}
+
+.mv .mv__content 
+{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.mv .mv__content .mv__item 
+{
+    box-shadow: var(--bx1);
+    border: 1px solid var(--10);
+    padding: 16px 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+
+
+
+
+/* -------------------------------- */
+/* 4. CORE VALUES */
+/* -------------------------------- */
+
+.values 
+{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 24px;
+}
+
+.values h2 
+{
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+    color: var(--c6);
+}
+
+.values .values__items 
+{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.values .values__items .values__item
+{
+    border: 1px solid var(--c10);
+    box-shadow: var(--bx1);
+    padding: 12px;
+    min-width: 200px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: center;
+}
+
+
+/* -------------------------------- */
+/* 5. WHY CHOOSE US */
+/* -------------------------------- */
+.why 
+{
+    width: 100%;
+    display: flex;
+    gap: 12px;
+    flex-direction: column;
+    margin-top: 20px;
+    padding: 24px;
+}
+
+.why h2 
+{
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+    color: var(--c6);
+}
+
+.why__content 
+{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+}
+
+
+.why__card 
+{
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1px solid var(--c10);
+    box-shadow: var(--bx1);
+    min-width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+
+/* -------------------------------- */
+/* 6. GALLERY */
+/* -------------------------------- */
+.gallery
+{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 24px;
+}
+
+.gallery h2 
+{
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+    color: var(--c6);
+}
+
+.gallery__content 
+{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-auto-rows: 120px; /* smaller row height for a more compact bento */
+    gap: 8px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* container for each image */
+.gallery__content .img-container 
+{
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* make image fill the container and crop to fit */
+.gallery__content .img-container img 
+{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* compact grid placement */
+.gallery__content .gallery__item1 
+{
+    grid-column: 1 / span 2;
+    grid-row: 1 / span 4;
+}
+
+.gallery__content .gallery__item2 
+{
+    grid-column: 3 / span 2;
+    grid-row: 1 / span 2;
+}
+
+.gallery__content .gallery__item3 
+{
+    grid-column: 5 / span 1;
+    grid-row: 1 / span 2;
+}
+
+.gallery__content .gallery__item4 
+{
+    grid-column: 3 / span 1;
+    grid-row: 3 / span 2;
+}
+
+.gallery__content .gallery__item5 
+{
+    grid-column: 4 / span 2;
+    grid-row: 3 / span 2;
+}
+
+
+
+
+/* -------------------------------- */
+/* 7. TESTIMONIALS */
+/* -------------------------------- */
+.testimonials 
+{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 24px;
+}
+
+.testimonials h2 
+{
+    text-align: center;
+    width: 100%;
+    color: var(--c6);
+    font-size: 30px;
+}
+
+.testimonials__cards 
+{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.testimonials__card 
+{
+    min-width: 200px;
+    min-height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1px solid var(--10);
+    box-shadow: var(--bx1);
+}
+
+
+/* -------------------------------- */
+/* 8. CONTACT */
+/* -------------------------------- */
+.contact {
+  text-align: center;
+}
+
+.contact__title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.contact p {
+  color: var(--c3);
+  margin-top: 10px;
+}

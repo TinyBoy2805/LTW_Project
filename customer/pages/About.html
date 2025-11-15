@@ -10,7 +10,6 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-
     <header class="header">
         <nav class="nav">
             <div class="nav__top">
@@ -86,65 +85,133 @@
             <div class="nav__line"></div>
             <div class="nav__bottom">
                 <ul>
-                    <li><a href="./Home.html" class="active">Trang chủ</a></li>
+                    <li><a href="./Home.html" >Trang chủ</a></li>
                     <li><a href="./Products.html">Sản phẩm</a></li>
                     <li><a href="./Voucher.html">Khuyến mãi</a></li>
                     <li><a href="./Blog.html">Cẩm nang</a></li>
                     <li><a href="./Contact.html">Liên hệ</a></li>
-                    <li><a href="">về cửa hàng</a></li>
+                    <li><a href="./About.html" class="active">về cửa hàng</a></li>
                 </ul>
             </div>
         </nav>
     </header>
-    <main class="main">
-        <section class="notifications">
 
-            <header class="notifications-header">
-                <h2>Thông báo của bạn</h2>
-                <button class="btn-mark-all">Đánh dấu tất cả đã đọc</button>
-            </header>
 
-            <div class="notifications-list">
+    <main class="main"> 
 
-                <!-- 1 item -->
-                <article class="notification active">
-                    <div class="icon --order">
-                        <i class="fa-solid fa-box"></i>
-                    </div>
-                    <div class="content">
-                        <h4>Đơn hàng #DH2031 đang được giao</h4>
-                        <p>Đơn hàng của bạn đã rời kho và đang trên đường đến bạn!</p>
-                        <span class="time">2 giờ trước</span>
-                    </div>
-                </article>
-
-                <article class="notification">
-                    <div class="icon --promo">
-                        <i class="fa-solid fa-gift"></i>
-                    </div>
-                    <div class="content">
-                        <h4>Ưu đãi thành viên VIP 🎁</h4>
-                        <p>Giảm 15% cho tất cả sản phẩm dinh dưỡng trẻ nhỏ, hết hạn sau 3 ngày.</p>
-                        <span class="time">1 ngày trước</span>
-                    </div>
-                </article>
-
-                <article class="notification">
-                    <div class="icon --security">
-                        <i class="fa-solid fa-shield-halved"></i>
-                    </div>
-                    <div class="content">
-                        <h4>Đổi mật khẩu thành công</h4>
-                        <p>Bạn đã thay đổi mật khẩu tài khoản lúc 18:36.</p>
-                        <span class="time">3 ngày trước</span>
-                    </div>
-                </article>
-
+        <!-- 1. HERO -->
+        <section class="hero">
+            <div class="hero__content">
+                <h1 class="hero__title">Cửa Hàng Dinh Dưỡng Cho Bé</h1>
+                <p class="hero__subtitle">Sản phẩm chính hãng - An toàn - Uy tín</p>
+                <a href="#" class="hero__btn">Xem sản phẩm</a>
             </div>
+        </section>
 
-            </section>
+
+        <!-- 2. BRAND STORY -->
+        <section class="story">
+            <div class="story__container">
+                <div class="story__text">
+                    <h2 class="story__title">Câu chuyện thương hiệu</h2>
+                    <p class="story__desc">Chúng tôi bắt đầu với mong muốn mang đến những sản phẩm dinh dưỡng an toàn và chất lượng nhất cho trẻ em Việt Nam...</p>
+                </div>
+                <div class="story__image">
+                    <div class="img__container">
+                        <img src="https://i.pinimg.com/736x/81/dd/7e/81dd7e81259465e27566e5536635103b.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 3. MISSION & VISION -->
+        <section class="mv">
+            <h2 class="mv__title">Sứ mệnh & Tầm nhìn</h2>
+            <div class="mv__content">
+                <div class="mv__item">
+                    <h3 class="mv__item-title">Sứ mệnh</h3>
+                    <p class="mv__item-desc">Đem đến sản phẩm chất lượng cao cho sức khoẻ trẻ nhỏ.</p>
+                </div>
+                <div class="mv__item">
+                    <h3 class="mv__item-title">Tầm nhìn</h3>
+                    <p class="mv__item-desc">Trở thành thương hiệu dinh dưỡng đáng tin cậy nhất.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 4. CORE VALUES -->
+        <section class="values">
+            <h2 class="values__title">Giá trị cốt lõi</h2>
+            <div class="values__items">
+                <div class="values__item"><i class="fa-solid fa-star"></i>Chất lượng</div>
+                <div class="values__item"><i class="fa-solid fa-shield"></i>Uy tín</div>
+                <div class="values__item"><i class="fa-regular fa-heart"></i>Tận tâm</div>
+                <div class="values__item"><i class="fa-solid fa-baby"></i>An toàn</div>
+            </div>
+        </section>
+
+
+        <!-- 5. WHY CHOOSE US -->
+        <section class="why">
+            <h2 class="why__title">Vì sao chọn chúng tôi?</h2>
+            <div class="why__content">
+                <div class="why__card">Sản phẩm chính hãng</div>
+                <div class="why__card">Giao hàng nhanh</div>
+                <div class="why__card">Giá tốt</div>
+                <div class="why__card">Hơn 500+ khách tin dùng</div>
+            </div>
+        </section>
+
+
+        <!-- 6. GALLERY -->
+        <section class="gallery">
+            <h2 class="gallery__title">Hình ảnh thực tế</h2>
+            
+            <div class="gallery__content">
+                <div class="gallery__item1">
+                    <div class="img-container">
+                        <img src="https://i.pinimg.com/1200x/da/a3/68/daa36860deb87387d8f234bc2389ff42.jpg" alt="">
+                    </div>
+                </div>
+                <div class="gallery__item2">
+                    <div class="img-container">
+                        <img src="https://i.pinimg.com/1200x/da/a3/68/daa36860deb87387d8f234bc2389ff42.jpg" alt="">
+                    </div>
+                </div>
+                <div class="gallery__item3">
+                    <div class="img-container">
+                        <img src="https://i.pinimg.com/1200x/da/a3/68/daa36860deb87387d8f234bc2389ff42.jpg" alt="">
+                    </div>
+                </div>
+                <div class="gallery__item4">
+                    <div class="img-container">
+                        <img src="https://i.pinimg.com/1200x/da/a3/68/daa36860deb87387d8f234bc2389ff42.jpg" alt="">
+                    </div>
+                </div>
+                <div class="gallery__item5">
+                    <div class="img-container">
+                        <img src="https://i.pinimg.com/1200x/da/a3/68/daa36860deb87387d8f234bc2389ff42.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+    
+        </section>
+
+
+        <!-- 7. TESTIMONIALS -->
+        <section class="testimonials">
+            <h2 class="testimonials__title">Khách hàng nói gì?</h2>
+            <div class="testimonials__cards">
+                <div class="testimonials__card">“Sản phẩm rất tốt!” - Mai</div>
+                <div class="testimonials__card">“Shop tư vấn nhiệt tình.” - Hùng</div>
+                <div class="testimonials__card">“Giao hàng nhanh.” - Linh</div>
+            </div>
+        </section>
 
     </main>
+
 
     <footer class="footer">
         <div class="footer__top">
@@ -221,6 +288,5 @@
 
 
 
-    
 </body>
 </html>

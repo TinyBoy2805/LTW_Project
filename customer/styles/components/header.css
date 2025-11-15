@@ -138,6 +138,25 @@
     /* background-color: red; */
 }
 
+.nav__top .nav__top-logo .nav__logo-img 
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    border-radius: 100px;
+}
+.nav__top .nav__top-logo .nav__logo-img img
+{
+   width: 200%;
+   height: 200%;
+   object-fit: cover;
+   
+}
+
+
 .nav__top-logo h1 
 {
     font-size: 24px;
@@ -148,7 +167,6 @@
 .nav__top .nav__top-input
 {
     height: 100%;
-    /* background-color: red; */
     width: 100%;
     max-width: 650px;
 }
