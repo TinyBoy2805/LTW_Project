@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MichiShop - Email</title>
+  <link rel="stylesheet" href="../styles/Email.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar" aria-label="Chức năng chính">
+  <h2><img src="../imgs/logo.jpg" alt="MichiShop" class="brand-logo">MichiShop</h2>
+    <nav class="sidebar__nav" aria-label="Menu chính">
+  <a href="#"><span class="sidebar_icon_link"><i class="fa-solid fa-chart-line"></i></span> Thống kê</a>
+      <a href="#"><span class="sidebar_icon_link"><i class="fa-solid fa-shopping-cart"></i></span> Đơn hàng</a>
+      <a href="#"><span class="sidebar_icon_link"><i class="fa-solid fa-box"></i></span> Kho hàng</a>
+      <a href="KhachHang.html"><span class="sidebar_icon_link"><i class="fa-solid fa-users"></i></span> Khách hàng</a>
+      <a href="UuDai.html"><span class="sidebar_icon_link"><i class="fa-solid fa-gift"></i></span> Ưu đãi</a>
+      <a href="Blog.html"><span class="sidebar_icon_link"><i class="fa-solid fa-blog"></i></span> Blog</a>
+      <a href="Email.html" class="active"><span class="sidebar_icon_link"><i class="fa-solid fa-envelope"></i></span> Email</a>
+      <a href="CaiDat.html"><span class="sidebar_icon_link"><i class="fa-solid fa-cog"></i></span> Cài đặt</a>
+    </nav>
+    <button class="logout" type="button">Đăng Xuất</button>
+  </aside>
+
+  <!-- Main content -->
+  <main class="main">
+    <header class="header">
+        <div class="header__left">
+          <button class="sidebar-toggle" type="button" aria-label="Thu gọn sidebar">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        <h3>Chào mừng trở lại, CỤC ZÀNG !!!</h3>
+        </div>
+      <div class="header__right">
+        <a href="#" class="notify-link" aria-label="Thông báo">
+          <span class="sidebar_icon_link"><i class="fa-solid fa-bell"></i></span>
+        </a>
+        <img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="user" class="user-avatar" />
+      </div>
+    </header>
+
+    <div class="content" aria-labelledby="email-title">
+      <div class="content__panel">
+        <h3 id="email-title">Email</h3>
+
+        <div class="controls">
+          <div class="tabs" role="tablist" aria-label="Lọc email">
+            <button class="active" role="tab" aria-selected="true" data-filter="all">Tất cả</button>
+            <button role="tab" aria-selected="false" data-filter="important">Quan trọng</button>
+          </div>
+
+          <div class="search">
+            <input type="search" class="search-input" placeholder="Tìm kiếm email, người gửi hoặc nội dung" aria-label="Tìm kiếm email">
+          </div>
+        </div>
+
+        <div class="mail-list" role="list" aria-label="Danh sách email">
+
+          <!-- expanded sample rows -->
+          <article class="mail-row">
+            <div class="row-left">
+              <label class="check-wrap"><input type="checkbox" /><span class="check-custom"></span></label>
+              <button class="star" aria-pressed="false" title="Đánh dấu quan trọng"><i class="fa-regular fa-star"></i></button>
+            </div>
+            <div class="mail-sender">Khoa Bruh</div>
+            <div class="mail-subject"><strong>Yêu cầu hoàn tiền</strong> <span class="preview">Tôi muốn được hoàn lại tiền cho sản phẩm bị hỏng khi giao, mong shop xử lý và hướng dẫn thủ tục hoàn tiền.</span></div>
+            <div class="mail-date">11/10/2025</div>
+          </article>
+
+          <article class="mail-row selected">
+            <div class="row-left">
+              <label class="check-wrap"><input type="checkbox" /><span class="check-custom"></span></label>
+              <button class="star" aria-pressed="true" title="Đã đánh dấu quan trọng"><i class="fa-solid fa-star"></i></button>
+            </div>
+            <div class="mail-sender">Vinamilk</div>
+            <div class="mail-subject"><strong>Thông báo nhập hàng</strong> <span class="preview">Bạn vừa có đơn hàng từ Vinamilk đã được nhập vào kho và đang chờ kiểm đếm, vui lòng kiểm tra số lượng.</span></div>
+            <div class="mail-date">11/10/2025</div>
+          </article>
+
+          <article class="mail-row">
+            <div class="row-left">
+              <label class="check-wrap"><input type="checkbox" /><span class="check-custom"></span></label>
+              <button class="star" aria-pressed="false"><i class="fa-regular fa-star"></i></button>
+            </div>
+            <div class="mail-sender">Khoa Bruh</div>
+            <div class="mail-subject"><strong>Yêu cầu hỗ trợ</strong> <span class="preview">Tôi cần giúp đỡ về việc đăng ký tài khoản vip, mong được hỗ trợ hướng dẫn chi tiết.</span></div>
+            <div class="mail-date">10/10/2025</div>
+          </article>
+ 
+          <article class="mail-row">
+            <div class="row-left">
+              <label class="check-wrap"><input type="checkbox" /><span class="check-custom"></span></label>
+              <button class="star" aria-pressed="false"><i class="fa-regular fa-star"></i></button>
+            </div>
+            <div class="mail-sender">MichiShop</div>
+            <div class="mail-subject"><strong>Khuyến mãi cuối tuần</strong> <span class="preview">Giảm 20% cho đơn hàng trên 500k áp dụng từ thứ 6 đến chủ nhật, xem chi tiết điều kiện áp dụng trong thông báo.</span></div>
+            <div class="mail-date">9/10/2025</div>
+          </article>
+
+          <article class="mail-row">
+            <div class="row-left">
+              <label class="check-wrap"><input type="checkbox" /><span class="check-custom"></span></label>
+              <button class="star" aria-pressed="false"><i class="fa-regular fa-star"></i></button>
+            </div>
+            <div class="mail-sender">Nguyễn Lan</div>
+            <div class="mail-subject"><strong>Phản hồi đơn hàng</strong> <span class="preview">Sản phẩm nhận được bị lỗi (vết bể trên bao bì), mong shop hỗ trợ đổi trả và hướng dẫn cách gửi lại hàng.</span></div>
+            <div class="mail-date">7/10/2025</div>
+          </article>
+
+          <article class="mail-row selected">
+            <div class="row-left">
+              <label class="check-wrap"><input type="checkbox" /><span class="check-custom"></span></label>
+              <button class="star" aria-pressed="true"><i class="fa-solid fa-star"></i></button>
+            </div>
+            <div class="mail-sender">Vinamilk</div>
+            <div class="mail-subject"><strong>Hoàn tất giao dịch</strong> <span class="preview">Đơn hàng #12345 đã được giao thành công tới khách hàng vào ngày 07/10/2025, cảm ơn bạn đã sử dụng dịch vụ.</span></div>
+            <div class="mail-date">7/10/2025</div>
+          </article>
+
+          <article class="mail-row">
+            <div class="row-left">
+              <label class="check-wrap"><input type="checkbox" /><span class="check-custom"></span></label>
+              <button class="star" aria-pressed="false"><i class="fa-regular fa-star"></i></button>
+            </div>
+            <div class="mail-sender">Hỗ trợ khách hàng</div>
+            <div class="mail-subject"><strong>Yêu cầu hỗ trợ</strong> <span class="preview">Tôi cần thay đổi địa chỉ giao hàng cho đơn #54321 do địa chỉ ban đầu không có người nhận, mong shop cập nhật kịp thời.</span></div>
+            <div class="mail-date">5/10/2025</div>
+          </article>
+
+          <article class="mail-row selected">
+            <div class="row-left">
+              <label class="check-wrap"><input type="checkbox" /><span class="check-custom"></span></label>
+              <button class="star" aria-pressed="true"><i class="fa-solid fa-star"></i></button>
+            </div>
+            <div class="mail-sender">Phòng Kinh Doanh</div>
+            <div class="mail-subject"><strong>Báo cáo doanh thu</strong> <span class="preview">Báo cáo tuần 8 đã được gửi, vui lòng kiểm tra số liệu doanh thu, lợi nhuận và các chi tiết liên quan.</span></div>
+            <div class="mail-date">5/10/2025</div>
+          </article>
+
+        <article class="mail-row selected">
+            <div class="row-left">
+              <label class="check-wrap"><input type="checkbox" /><span class="check-custom"></span></label>
+              <button class="star" aria-pressed="true"><i class="fa-solid fa-star"></i></button>
+            </div>
+            <div class="mail-sender">Hỗ trợ kỹ thuật</div>
+            <div class="mail-subject"><strong>Vấn đề thanh toán</strong> <span class="preview">Có giao dịch thất bại với mã #TX9988, vui lòng kiểm tra log hệ thống và liên hệ bộ phận kỹ thuật để xử lý.</span></div>
+            <div class="mail-date">28/9/2025</div>
+          </article>
+
+          <article class="mail-row">
+            <div class="row-left">
+              <label class="check-wrap"><input type="checkbox" /><span class="check-custom"></span></label>
+              <button class="star" aria-pressed="false"><i class="fa-regular fa-star"></i></button>
+            </div>
+            <div class="mail-sender">Vinamilk</div>
+            <div class="mail-subject"><strong>Khuyến mãi đặc biệt</strong> <span class="preview">Bộ quà tặng miễn phí cho 100 khách hàng đầu tiên khi mua sản phẩm chương trình, áp dụng theo điều kiện chương trình.</span></div>
+            <div class="mail-date">28/9/2025</div>
+          </article>
+
+          <article class="mail-row">
+            <div class="row-left">
+              <label class="check-wrap"><input type="checkbox" /><span class="check-custom"></span></label>
+              <button class="star" aria-pressed="false"><i class="fa-regular fa-star"></i></button>
+            </div>
+            <div class="mail-sender">Khoa Bruh</div>
+            <div class="mail-subject"><strong>Thông báo hệ thống</strong> <span class="preview">Hệ thống sẽ bảo trì vào chủ nhật tuần này từ 02:00 đến 06:00, một số dịch vụ có thể tạm ngưng trong thời gian này.</span></div>
+            <div class="mail-date">27/9/2025</div>
+          </article>
+
+          <article class="mail-row selected">
+            <div class="row-left">
+              <label class="check-wrap"><input type="checkbox" /><span class="check-custom"></span></label>
+              <button class="star" aria-pressed="true"><i class="fa-solid fa-star"></i></button>
+            </div>
+            <div class="mail-sender">Lê Thị Hoa</div>
+            <div class="mail-subject"><strong>Yêu cầu đổi trả</strong> <span class="preview">Sản phẩm nhận được bị lỗi, mong shop hỗ trợ đổi trả nhanh và cung cấp hướng dẫn gửi trả hàng miễn phí nếu đủ điều kiện.</span></div>
+            <div class="mail-date">26/9/2025</div>
+          </article>
+        </div> <!-- .mail-list --> 
+
+          <!--Xem chi tiết email hoặc phản hồi-->
+          <aside class="mail-detail" role="dialog" aria-hidden="true" aria-label="Chi tiết email">
+            <header class="detail-header">
+              <div class="detail-left">
+                <h4 class="detail-subject">Tiêu đề</h4>
+                <div class="detail-meta"><span class="detail-sender">Người gửi</span></div>
+              </div>
+              <div class="detail-right">
+                <div class="detail-date">Ngày gửi</div>
+                <button class="detail-star star" aria-pressed="false"><i class="fa-regular fa-star"></i></button>
+              <a href="Email.html"><button class="detail-close" aria-label="Đóng chi tiết"><i class="fa-solid fa-arrow-rotate-left"></i></button></a>
+              </div>
+            </header>
+            
+            <div class="detail-body" tabindex="0">
+              <p class="detail-message">Nội dung email sẽ xuất hiện ở đây. Nếu bạn muốn trả lời, dùng khung trả lời bên dưới.</p>
+            </div>
+
+            <form class="detail-reply" action="#" onsubmit="return false;">
+              <label class="label">Trả lời</label>
+              <textarea class="input textarea reply-text" rows="3" placeholder="Viết phản hồi..."></textarea>
+              <div class="detail-actions">
+                <button type="button" class="btn primary reply-send">Gửi</button>
+                <button type="button" class="btn ghost reply-cancel">Hủy</button>
+                <button type="button" class="btn danger reply-delete">Xóa</button>
+              </div>
+            </form>
+          </aside>
+      </div> 
+    </div> <!-- .content -->
+  </main>
+  <script src="../scripts/Email.js"></script>   
+</body>
+</html>

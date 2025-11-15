@@ -1,0 +1,425 @@
+/* ===== RESET & GLOBAL ===== */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f8f8f8;
+  display: flex;
+  width: 100%;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+  width: 200px;
+  background: #ffffff;
+  height: 720px;
+  border-right: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 26px 18px;
+  box-shadow: 0 2px 0 rgba(0,0,0,0.02) inset;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 40;
+}
+
+.sidebar h2 {
+  text-align: center;
+  font-size: 20px;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.sidebar a {
+  display: flex;
+  align-items: center;
+  padding: 12px 14px;
+  color: #555;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.sidebar h2 .brand-logo {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+.sidebar a:hover {
+  background-color: #fff0f7;
+  color: #f564a9;
+  border-radius: 8px;
+}
+
+.sidebar a.active {
+  background: linear-gradient(90deg,#ff64b0,#f564a9);
+  color: #fff;
+  border-radius: 28px;
+  padding-left: 18px;
+  padding-right: 18px;
+  box-shadow: 0 6px 18px rgba(255,79,163,0.12);
+}
+
+.sidebar a span {
+  margin-right: 10px;
+}
+
+.logout {
+  margin-top: auto;
+  padding: 20px;
+  color: #555;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  border: none;
+}
+
+/* ===== HEADER ===== */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: 240px;
+  padding-top: 72px;
+}
+
+.header {
+  background: transparent;
+  padding: 18px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 240px;
+  right: 0;
+  height: 72px;
+  z-index: 50;
+}
+
+.header h3 {
+  color: #f564a9;
+  font-size: 20px;
+}
+
+.sidebar-toggle {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #333;
+  margin-right: 12px;
+  padding: 6px 8px;
+  border-radius: 8px;
+}
+.sidebar-toggle:hover {
+  background: #fff0f7;
+  color: #f564a9;
+}
+
+/* Trạng thái khi thu gọn sidebar */
+.sidebar {
+  transition: width 220ms ease, padding 220ms ease;
+}
+.header,
+.main {
+  transition: all 220ms ease;
+}
+/* Để lại biểu tượng */
+body.sidebar-collapsed .sidebar {
+  width: 64px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+/* Khi thu gọn sidebar, di chuyển nội dung chính và tiêu đề tương ứng */
+body.sidebar-collapsed .main {
+  margin-left: 104px;
+}
+body.sidebar-collapsed .header {
+  left: 104px;
+}
+
+.header__left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header__right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+
+.notify-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 8px;
+  color: #555;
+  text-decoration: none;
+}
+
+.notify-link .sidebar_icon_link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.notify-link:hover {
+  background-color: #fff0f7;
+  color: #f564a9;
+}
+
+.user-avatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* ===== CONTENT ===== */
+.content {
+  padding: 24px 40px;
+  background: transparent;
+  position: fixed;
+  top: 72px;
+  left: 240px;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+
+/* Khi thu gọn sidebar, di chuyển nội dung chính sang trái để căn chỉnh */
+body.sidebar-collapsed .content {
+  left: 104px;
+}
+
+/* Ẩn nhãn sidebar khi thu gọn, giữ biểu tượng hiển thị */
+body.sidebar-collapsed .sidebar h2 {
+  font-size: 0;
+  line-height: 0;
+}
+body.sidebar-collapsed .sidebar h2 .brand-logo {
+  margin-right: 0;
+}
+body.sidebar-collapsed .sidebar a {
+  justify-content: center;
+  font-size: 0;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+body.sidebar-collapsed .sidebar a .sidebar_icon_link {
+  margin-right: 0;
+  font-size: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+body.sidebar-collapsed .sidebar a.active {
+  border-radius: 12px;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+.content__panel {
+  background: #fff;
+  border-radius: 18px;
+  padding: 30px;
+  box-shadow: 0 6px 30px rgba(16,24,40,0.04);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.content__panel h3 {
+  text-align: left;
+  margin: 0 0 18px 0;
+  color: #f564a9;
+  font-size: 20px;
+  font-weight: 700;
+
+}
+
+.tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.tabs button {
+  background-color: #ffffff;
+  border: 1px solid transparent;
+  padding: 8px 20px;
+  border-radius: 22px;
+  cursor: pointer;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.tabs button.active {
+  background-color: #f564a9;
+  color: white;
+  box-shadow: 0 8px 20px #ffffff;
+}
+
+/* ===== CUSTOMER CARDS ===== */
+.customers {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 34px;
+  align-items: start;
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(16,24,40,0.06);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  padding: 16px 18px;
+  gap: 10px;
+  box-sizing: border-box;
+  min-height: 140px;
+  background-position: left center;
+}
+
+.card__figure {
+  background-position: left center;
+  margin: 5px;
+  position: relative;
+}
+
+.card img {
+  width: 110px;
+  border-radius: 12px;
+  object-fit: cover;
+  display: block;
+  max-width: 100%;
+}
+
+.vip-badge {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  background: #ffd54a;
+  color: #8a5a00;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+}
+
+/* Lọc khách hàng VIP, ẩn các thẻ không phải VIP */
+.customers.vip-filter .card {
+  display: none;
+}
+.customers.vip-filter .card.vip {
+  display: grid;
+}
+
+/* hỗ trợ ẩn/hiện theo lớp .hidden (nhất quán với Email.css) */
+.card.hidden {
+  display: none !important;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-start;
+  justify-content: center;
+  min-width: 0; 
+  overflow: hidden;
+}
+
+.info h4 {
+  margin: 0px 0px 6px 0px;
+  color: #f564a9;
+  font-weight: 700;
+}
+
+.info p {
+  margin: 2px 0px;
+  color: #7a7a80;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.detail-btn {
+  background-color: #f564a9;
+  border: none;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 28px;
+  cursor: pointer;
+  font-size: 15px;
+  margin-top: 8px;
+  display: block;
+  width: 100%;
+  max-width: none;
+  align-self: stretch;
+}
+@media (max-width: 900px) {
+  .sidebar { display: none; }
+  .main { margin-left: 0; }
+  .header { left: 0; }
+  .customers { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+}
+
+/* ===== Xem chi tiết khách hàng ===== */
+.customer-detail {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.98);
+  width: min(720px, calc(100% - 48px));
+  max-width: 720px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: none;
+  z-index: 120;
+  transition: all 0.25s ease;
+  border: 1px solid #111827;
+}
+.customer-detail.show {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
+.customer-detail__panel { padding: 18px; }
+.customer-detail__header { display:flex; justify-content:space-between; align-items:center; }
+.customer-detail__header h4 { margin:0; color:#111827; }
+.customer-detail__form { margin-top:12px; display:flex; flex-direction:column; gap:10px; }
+.customer-detail__form .field { display:flex; flex-direction:column; }
+.customer-detail__form .label { font-size:13px; color:#6b7280; margin-bottom:6px; }
+.customer-detail__form .input { padding:10px 12px; border-radius:8px; border:1px solid gray; background:#fff; color:#111827; }
+.customer-detail__form .input[readonly] { background: #fff; }
+.customer-detail__actions { display:flex; justify-content:flex-end; gap:8px; margin-top:6px; }
+
+.customer-detail__actions .close-btn {
+  background: #fff;
+  border: 1px solid #e6e6ea;
+  color: #111827;
+  padding: 8px 14px;
+  border-radius: 22px;
+  cursor: pointer;
+}
