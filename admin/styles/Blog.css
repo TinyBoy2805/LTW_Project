@@ -14,7 +14,6 @@ body {
 /* KHỐI BAO NGOÀI CÙNG */
 .Blog.main {
   display: flex;
-  /* Sidebar và Container nằm cạnh nhau */
   flex-direction: row;
   height: 100vh;
   width: 100%;
@@ -24,56 +23,43 @@ body {
 /* KHỐI CHỨA HEADER VÀ NỘI DUNG */
 .content {
   width: 100%;
-  /* XÓA: background-color: #f8f8f8; */
-  /* Nếu bạn muốn màu nền xám hiện ra ngoài */
-
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-
-  /* Thêm padding cho tiêu đề và khoảng trống giữa tiêu đề và rìa trang */
   padding: 24px 24px 0 24px;
 }
 
 /* HEADER CỐ ĐỊNH (Không bị co lại) */
 .container__header {
   flex-shrink: 0;
-  /* Đảm bảo Header luôn giữ chiều cao 60px */
   height: 60px;
-  /* ... các style khác từ header.css ... */
 }
 
 /* NỘI DUNG CHÍNH (Content) */
 main.content {
-  /* Dùng main.content cho nội dung Email */
   flex-grow: 1;
-  /* Chiếm hết không gian còn lại sau Header */
   overflow-y: auto;
-  /* Nơi cuộn nội dung Email sẽ xảy ra */
-  /* Thêm padding/background cho nội dung Email tại đây */
   background-color: #f8f8f8;
 }
 
 /* Khối nội dung chính (Content) */
 .content {
   width: 100%;
-  /* padding: 24px 0 0 0; */
   background-color: #f8f8f8;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  /* Chiếm hết chiều cao còn lại sau Header */
   height: 100%;
 }
 
-.content__header {
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  width: 100%;
-  height: 24px;
-  gap: 12px;
+.content__header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 40px;
 }
+
 
 .content__header a {
   text-decoration: none;
@@ -93,31 +79,21 @@ main.content {
   background-color: white;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-
-  /* XÓA: margin: 0 24px 24px 24px; (Quy tắc cũ) */
-
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   min-height: 0;
-  /* Ensure the panel can expand to fill available horizontal space */
   width: calc(100% - 48px) !important;
   margin: 0 24px !important;
-  /* Add internal padding so content isn't flush to the left edge */
   padding: 24px !important;
-  /* Make room for a positioned actions-row inside the panel (mimic add_product) */
   position: relative;
-  /* reset to normal bottom padding; the actions will be positioned inside the card instead */
   padding-bottom: 24px !important;
 }
 
-/* Card container used on add_product: use same visual frame for create-tab */
 .content__body {
   display: flex;
   width: 100%;
-  /* allow the card to auto-size to content height */
   height: auto;
-  /* make the card slightly longer so the create form area extends downward like add_product */
   min-height: 480px;
   justify-content: center;
   align-items: flex-start;
@@ -127,13 +103,10 @@ main.content {
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
   padding: 24px;
   position: relative;
-  /* reserve a modest space inside the card so absolutely-positioned actions don't overlap the form */
   padding-bottom: 64px;
 }
 
-/* Ensure actions-row inside the card is visible and placed at bottom of card */
 .content__body .actions-row {
-  /* hidden by default; will be shown when .content__panel has .creating */
   display: none;
   justify-content: space-between;
   align-items: center;
@@ -142,14 +115,11 @@ main.content {
   padding: 0;
 }
 
-/* Position the actions row at the bottom of the panel (inside the white card) */
 .content__panel .actions-row {
-  /* keep empty fallback for panel-level actions */
   display: none;
 }
-/* if actions are inside the card we also want them positioned relative to the card itself */
+
 .content__body .actions-row {
-  /* hidden by default; will be shown and absolutely positioned inside the card when creating */
   display: none;
   justify-content: space-between;
   gap: 12px;
@@ -162,20 +132,19 @@ main.content {
   bottom: 24px;
 }
 
-/* Show the actions-row placed inside the card only when creating; position it in-flow at the bottom */
 .content__panel.creating .content__body .actions-row {
   display: flex;
   justify-content: space-between;
   margin-top: 18px;
-  padding: 0 24px; /* respect card padding so buttons don't sit outside */
+  padding: 0 24px; 
   box-sizing: border-box;
 }
 
 .content__panel.creating .content__body .actions-row .actions-left {
-  flex: 1 1 auto; /* allow note to take remaining space */
+  flex: 1 1 auto;
 }
 .content__panel.creating .content__body .actions-row .actions-right {
-  flex: 0 0 auto; /* keep actions size fixed and prevent stretching */
+  flex: 0 0 auto;
   margin-left: 16px;
 }
 .content__panel.creating .content__body .actions-row .panel-actions {
@@ -183,22 +152,20 @@ main.content {
   align-items: center;
 }
 .content__panel.creating .content__body .actions-row .actions .btn {
-  white-space: nowrap; /* prevent buttons from wrapping */
+  white-space: nowrap; 
 }
 
-/* Ensure form content doesn't sit under the absolute actions */
 .form-wrap { padding-bottom: 24px; }
 
-/* When the create tab is active, pull the form content up so fields sit higher in the card */
 .content__panel.creating .panel-header {
-  margin-bottom: 8px; /* reduce gap under tabs */
+  margin-bottom: 8px; 
   padding-bottom: 12px;
 }
 .content__panel.creating .content__body {
-  padding-top: 12px; /* reduce top padding inside the white card */
+  padding-top: 12px; 
 }
 .content__panel.creating .form-wrap {
-  margin-top: 0; /* remove extra top spacing */
+  margin-top: 0; 
   padding-top: 0;
   align-items: flex-start;
 }
@@ -218,9 +185,7 @@ main.content {
   display: flex;
   gap: 20px;
   align-items: center;
-  /* KHIẾN SEARCH Ở BÊN PHẢI NẾU CẦN */
   margin-left: auto;
-  /* Đẩy `.controls` (chứa search) sang phải */
 }
 
 /* Tabs */
@@ -285,8 +250,6 @@ main.content {
 .blog-list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  /* 2 cột */
-  /* slightly tighter grid so cards appear smaller overall */
   gap: 16px;
   padding: 0 24px 50px 24px;
 }
@@ -298,7 +261,6 @@ main.content {
   overflow: hidden;
   box-shadow: 0 0px 8px rgba(0, 0, 0, 0.08);
   cursor: pointer;
-  /* slightly stronger border so the card stands out more */
   border: 1px solid #e0e0e0;
 }
 
@@ -313,7 +275,6 @@ main.content {
 
 .card__figure {
   width: 28%;
-  /* allow smaller thumbnails so the card body shrinks a bit */
   min-width: 120px;
   height: 100%;
   margin: 0;
@@ -326,7 +287,6 @@ main.content {
 }
 
 .card-content {
-  /* reduce inner padding so content area becomes a bit more compact */
   padding: 12px;
   width: 72%;
   display: flex;
@@ -363,7 +323,6 @@ main.content {
   color: #4C4C4C;
   margin-top: 8px;
   line-height: 1.4;
-  /* Giới hạn hiển thị 2 dòng */
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -372,7 +331,6 @@ main.content {
 
 /* --- Tab Tạo Blog (Create Panel) --- */
 .form-wrap {
-  /* center the form area and keep a two-column layout like add_product */
   display: flex;
   gap: 24px;
   padding: 24px;
@@ -380,19 +338,17 @@ main.content {
   min-width: 0;
   width: 100%;
   max-width: 1100px;
-  margin: 0 auto; /* center the inner form */
+  margin: 0 auto; 
   align-items: flex-start;
 }
 
 .left-panel {
-  /* fixed left column for form inputs */
   flex: 0 0 660px;
   width: 660px;
   min-width: 0;
 }
 
 .right-panel {
-  /* fixed right column for images/controls */
   flex: 0 0 340px;
   width: 340px;
   min-width: 0;
@@ -434,33 +390,20 @@ main.content {
 .textarea {
   border-radius: 12px;
   resize: vertical;
-  /* make the textarea shorter by default per user's request */
   min-height: 80px;
   flex-shrink: 0;
   min-width: 0;
-
-  /* QUAN TRỌNG: Đảm bảo nó xử lý văn bản đúng */
   white-space: pre-wrap !important;
-  /* Dùng !important để ưu tiên */
   overflow: auto;
   text-overflow: clip;
-
-  /* Make textarea fill its container by default */
   width: 100%;
 }
 
 .detail-edit .textarea,
 #blog-content {
-  /* Hủy bỏ quy tắc giới hạn dòng thừa kế từ Blog Card Excerpt */
   display: block;
   -webkit-line-clamp: unset;
   -webkit-box-orient: unset;
-
-  /* XÓA CÁC THUỘC TÍNH NÀY TẠI ĐÂY (VÌ ĐÃ ĐƯA LÊN .textarea) */
-  /* overflow: auto;
-    white-space: pre-wrap;
-    width: 100%;
-    flex-shrink: 0; */
 }
 
 .row.two {
@@ -516,40 +459,26 @@ main.content {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-
   width: 0;
   height: 0;
   max-height: 0;
-
   background-color: white;
   box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
   z-index: 50;
-
   overflow: hidden;
-
-  /* Thêm viền đen và bo tròn */
   border: 1px solid var(--c1, #1C1C1C);
-  /* Viền màu đen, 1px */
   border-radius: 12px;
-  /* Bo tròn các góc */
-
-  /* Loại bỏ thanh cuộn mặc định */
   scrollbar-width: none;
-  /* For Firefox */
   -ms-overflow-style: none;
-  /* For Internet Explorer and Edge */
-
   transition: all 0.3s ease;
 }
 
-/* For Chrome, Safari and Opera */
 .blog-detail::-webkit-scrollbar {
   display: none;
 }
 
 /* Trạng thái hiển thị */
 .blog-detail.show {
-  /* increased modal width for more horizontal space */
   width: 700px;
   height: auto;
   max-height: 90vh;
@@ -559,7 +488,6 @@ main.content {
 
 .blog-detail.show .detail-subject {
   color: var(--c1, #1C1C1C);
-  /* Hoặc màu đen (black) */
 }
 
 .blog-detail .detail-left {
@@ -591,7 +519,6 @@ main.content {
   display: flex;
   align-items: center;
   gap: 15px;
-  /* Giữ nguyên hoặc giảm khoảng cách */
 }
 
 /* Ẩn ngày đăng */
@@ -614,7 +541,6 @@ main.content {
 
 .detail-edit {
   padding: 20px;
-  /* Có thể tăng lên 24px nếu muốn khoảng cách lớn hơn */
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -627,22 +553,16 @@ main.content {
   margin-top: 20px;
 }
 
-/* 2. Đảm bảo textarea hiển thị đầy đủ chiều rộng */
 .detail-edit .textarea {
   width: 100%;
-  /* prevent it from growing too tall on large content (shorter by default) */
   max-height: 40vh;
-  /* Make the edit textarea a fixed, short box and disable manual resize so user
-     doesn't have to drag it. Overflow will scroll if content is larger. */
   height: 120px;
   resize: none;
   overflow: auto;
 }
 
-/* Create-panel textarea: allow vertical resize but keep it short by default */
 #blog-content {
   width: 100% !important;
-  /* make it fixed and short so user doesn't have to drag */
   height: 80px !important;
   resize: none !important;
   overflow: auto !important;
@@ -663,9 +583,8 @@ main.content {
   display: flex;
 }
 
-/* Also support actions-row placed inside the panel */
 .content__panel.creating .actions-row {
-  display: grid; /* show as grid when creating */
+  display: grid; 
 }
 
 .note {
@@ -737,7 +656,6 @@ main.content {
 }
 
 @media (max-width: 1000px) {
-  /* On smaller screens, keep actions row inside flow */
   .content__panel .actions-row {
     position: relative;
     left: 0;
@@ -789,19 +707,16 @@ main.content {
   }
 }
 
-/* Raise the tabs/actions slightly on the Blog page so they align with Khách hàng visuals
-   (scope to .Blog to avoid changing other pages) */
+/* ===== Additive: harmonize main content typography with your font ===== */
+
 .Blog .content__panel {
-  /* reduce top padding so the tabs sit closer to the top edge like Khách hàng */
   padding-top: 12px !important;
-  /* keep the same horizontal padding and bottom padding to avoid overlap */
   padding-left: 24px !important;
   padding-right: 24px !important;
   padding-bottom: 24px !important;
 }
 
 .Blog .panel-header {
-  /* make the panel header more compact so tabs and controls move up */
   padding-top: 12px;
   padding-bottom: 12px;
   margin-bottom: 12px;

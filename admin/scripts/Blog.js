@@ -6,8 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const contentPanel = document.querySelector('.content__panel');
 
 
-  // Also force layout widths to ensure the create form uses more horizontal space.
-  // This helps when other styles (or caching) make the panel too narrow.
+// Ép bố cục để phù hợp với giao diện chỉnh sửa blog
   (function forceLayout() {
     const createContent = document.getElementById('blog-content');
     const contentPanelEl = document.querySelector('.content__panel');
@@ -33,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
       leftPanel.style.flex = '3';
       leftPanel.style.width = 'auto';
     }
-    // also ensure the form-wrap is centered and sized
+    // Chỉnh kích thước form-wrap và right-panel
     const formWrap = document.querySelector('.form-wrap');
     const rightPanel = document.querySelector('.right-panel');
     if (formWrap) {
@@ -122,9 +121,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const sel = blogDetail.querySelector('.edit-category');
     for (const opt of sel.options) { if (opt.text === badge) { opt.selected = true; } }
   blogDetail.querySelector('.edit-date').value = formatDateForInput(date);
-  // Normalize excerpt: remove stray newlines and collapse multiple spaces so the
-  // textarea doesn't display unexpected hard line breaks coming from the
-  // source HTML or stored content.
+  // chuẩn hóa nội dung excerpt để loại bỏ nhiều dòng và khoảng trắng thừa
   const normalized = (excerpt || '').replace(/\r?\n+/g, ' ').replace(/\s+/g, ' ').trim();
   blogDetail.querySelector('.edit-content').value = normalized;
 

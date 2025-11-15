@@ -33,27 +33,19 @@
     background-position: center;
 }
 .sidebar-toggle {
-    /* 1. Loại bỏ nền và viền */
     background: none;
     border: none;
-    
-    /* 2. Đảm bảo căn chỉnh và pointer */
     cursor: pointer;
-    padding: 0; /* Loại bỏ padding mặc định nếu có */
-    
-    /* 3. Tùy chỉnh màu sắc và kích thước icon (Font Awesome) */
-    color: var(--c4, #858585); /* Hoặc màu đen nếu bạn muốn nổi bật hơn */
-    font-size: 20px; /* Thiết lập kích thước mong muốn */
-    
-    /* Đảm bảo icon có thể click dễ dàng */
+    padding: 0;
+    color: var(--c4, #858585);
+    font-size: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .sidebar-toggle:hover {
-    /* Tùy chọn: Thêm hiệu ứng hover nhẹ nhàng */
-    color: var(--c6, #F564A9); /* Đổi màu sang hồng MiChiShop khi hover */
+    color: var(--c6, #F564A9);
     opacity: 0.8;
 }
 

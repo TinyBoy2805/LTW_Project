@@ -10,7 +10,7 @@
 body {
     height: 100vh;
 }
-.main {
+.KhachHang.main {
   display: flex;
   /* keep sidebar + container side-by-side like other pages */
   flex-direction: row;
@@ -59,10 +59,9 @@ body {
   font-size: 20px;
   font-weight: bold;
   color: black;
-  /* align with site content padding used elsewhere */
-  text-align: left;
-  padding-left: 24px;
   margin-bottom: 20px;
+  padding: 0 0 0 24px;
+  flex-shrink: 0;
 }
 
 .content__header{
@@ -79,7 +78,6 @@ body {
 }
 
 .content__title{
-  /* kept for legacy but overridden by the main rule above */
   font-size: 20px;
   font-weight: bold;
   color: black;
@@ -88,53 +86,48 @@ body {
 /* ===== NỘI DUNG CHÍNH TRANG KHÁCH HÀNG ===== */
 
 .content__panel {
-  /* Match Blog page panel geometry and spacing for consistent layout */
   background-color: white;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-
   display: flex;
   flex-direction: column;
   flex-grow: 1;
   min-height: 0;
-
-  /* Align horizontal sizing/margins with Blog so the white card width is identical */
   width: calc(100% - 48px) !important;
   margin: 0 24px !important;
   padding: 24px !important;
   position: relative;
   overflow: hidden;
 }
-/* Keep the header aligned with the panel padding so tabs line up with the card grid */
+
 .content__panel .panel-header {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   gap: 20px;
-  padding: 12px 24px; /* horizontal padding matches panel's 24px */
-  flex-shrink: 0; /* keep header fixed so .customers can scroll */
+  padding: 12px 24px;
+  flex-shrink: 0;
 }
 
 .content__panel .tabs { margin-left: 0; }
+
 .tabs {
-  /* Use separate pill buttons instead of a single full-width track so each tab rounds properly */
   display: flex;
-  gap: 12px;
-  margin-bottom: 24px;
-  /* no full-width track background here; each button will be a pill */
-  background: transparent;
-  padding: 0;
+  border-radius: 30px;
+  background-color: #f0f0f0;
+  padding: 4px;
 }
+
 
 .tabs button {
   padding: 8px 16px;
   border: none;
-  background-color: #f0f0f0; /* each tab is a light-gray pill by default */
+  background-color: transparent;
   cursor: pointer;
   font-weight: 600;
   color: #858585;
   border-radius: 20px;
-  transition: all 0.15s ease;
+  transition: all 0.2s;
 }
 
 .tabs button.active {
@@ -143,44 +136,34 @@ body {
   box-shadow: 0 2px 5px rgba(245,100,169,0.5);
 }
 
-.tabs button:hover:not(.active) {
-  background-color: rgba(245,100,169,0.06);
-}
 
 /* ===== CUSTOMER CARDS ===== */
 
 .customers {
   display: grid;
-  /* make cards wider by using a responsive min width; this will naturally show 2 columns on typical admin widths */
   grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  /* vertical spacing larger, horizontal spacing a bit tighter so columns aren't too spread */
-  gap: 44px 20px; /* row-gap 44px, column-gap 20px */
-  row-gap: 44px;
+  gap: 10px;
+  row-gap: 40px;
   align-items: start;
-  /* use the same inner padding as Blog's list so cards align visually */
   padding: 0 24px 15px 24px;
-  /* allow the grid to take remaining panel space and be the only scrollable area */
   flex: 1 1 auto;
   overflow-y: auto;
-  min-height: 0; /* allow flex children to shrink properly */
+  min-height: 0;
 }
 
 .card {
   background: #ffffff;
   border-radius: 14px;
   box-shadow: 0 8px 24px rgba(16,24,40,0.06);
-  /* subtle border to increase contrast and match Blog cards */
   border: 1px solid #e0e0e0;
   overflow: hidden;
   display: grid;
-  /* increase the image column so the whole card becomes wider visually */
   grid-template-columns: 140px minmax(0, 1fr);
   padding: 18px 20px;
   gap: 12px;
   box-sizing: border-box;
   min-height: 140px;
   background-position: left center;
-  /* small bottom margin to avoid cards visually touching when shadows overlap */
   margin-bottom: 6px;
 }
 
@@ -200,7 +183,7 @@ body {
 
 .vip-badge {
   position: absolute;
-  right: 8px;
+  right: 2px;
   bottom:2px;
   background: #ffd54a;
   color: #8a5a00;
@@ -222,7 +205,6 @@ body {
   display: grid;
 }
 
-/* hỗ trợ ẩn/hiện theo lớp .hidden (nhất quán với Email.css) */
 .card.hidden {
   display: none !important;
 }
@@ -247,7 +229,6 @@ body {
   margin: 2px 0px;
   color: #7a7a80;
   font-size: 13px;
-  /* Prevent the email/phone from wrapping to the next line — truncate with ellipsis if too long */
   overflow-wrap: normal;
   white-space: nowrap;
   overflow: hidden;
@@ -320,7 +301,6 @@ body {
 
 /* ===== Layout harmonization (from add_product template) ===== */
 .container__content { padding: 24px; }
-/* NOTE: .content__panel styling is defined earlier to control scrolling and layout. */
 .left-panel { flex: 0 0 463px; width: 463px; }
 .right-panel { flex: 0 0 473px; width: 473px; }
 .form-wrap { gap: 12px; }
@@ -343,4 +323,17 @@ body {
   color: #111827;
   line-height: 1.45;
   -webkit-font-smoothing: antialiased;
+}
+
+.KhachHang .content__panel {
+  padding-top: 12px !important;
+  padding-left: 24px !important;
+  padding-right: 24px !important;
+  padding-bottom: 24px !important;
+}
+
+.KhachHang .panel-header {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  margin-bottom: 12px;
 }
