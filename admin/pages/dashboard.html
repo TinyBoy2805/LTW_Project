@@ -8,9 +8,10 @@
     <link rel="stylesheet" href="../styles/pages/dashboard.css">
     <link rel="stylesheet" href="../styles/components/header.css">
     <link rel="stylesheet" href="../styles/components/sidebar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
 
 </head>
 
@@ -27,9 +28,9 @@
             <div class="sidebar__list">
                 <ul class="list">
                     <li class="list__item">
-                        <a href="" class="active">
+                        <a href="./dashboard.html" class="active">
                             <div class="section">
-                                <div class="icon"><ion-icon name="stats-chart-outline"></ion-icon></div>
+                                <div class="icon"><i class="fa-solid fa-chart-line"></i></div>
                                 <p class="title">Thống kê</p>
                             </div>
                         </a>
@@ -37,7 +38,7 @@
                     <li class="list__item">
                         <a href="./order.html">
                             <div class="section">
-                                <div class="icon"><ion-icon name="cube-outline"></ion-icon></div>
+                                <div class="icon"><i class="fa-solid fa-shopping-cart"></i></div>
                                 <p class="title">Đơn hàng</p>
                             </div>
                         </a>
@@ -45,40 +46,48 @@
                     <li class="list__item">
                         <a href="./categories.html">
                             <div class="section">
-                                <div class="icon"><ion-icon name="list-outline"></ion-icon></div>
+                                <div class="icon"><i class="fa-solid fa-box"></i></div>
                                 <p class="title">Kho hàng</p>
                             </div>
                         </a>
                     </li>
                     <li class="list__item">
-                        <a href="">
+                        <a href="./KhachHang.html">
                             <div class="section">
-                                <div class="icon"><ion-icon name="people-outline"></ion-icon></div>
+                                <div class="icon"><i class="fa-solid fa-users"></i></div>
                                 <p class="title">Khách hàng</p>
                             </div>
                         </a>
                     </li>
                     <li class="list__item">
-                        <a href="">
+                        <a href="./UuDai.html">
                             <div class="section">
-                                <div class="icon"><ion-icon name="gift-outline"></ion-icon></div>
+                                <div class="icon"><i class="fa-solid fa-gift"></i></div>
                                 <p class="title">Ưu đãi</p>
                             </div>
                         </a>
                     </li>
                     <li class="list__item">
-                        <a href="">
+                        <a href="./Email.html">
                             <div class="section">
-                                <div class="icon"><ion-icon name="mail-outline"></ion-icon></div>
+                                <div class="icon"><i class=" fa-solid fa-blog"></i></div>
+                                <p class="title">Blog</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="list__item">
+                        <a href="./Email.html">
+                            <div class="section">
+                                <div class="icon"><i class="fa-solid fa-envelope"></i></div>
                                 <p class="title">Email</p>
                             </div>
                             <div class="badge">+99</div>
                         </a>
                     </li>
                     <li class="list__item">
-                        <a href="">
+                        <a href="./CaiDat.html">
                             <div class="section">
-                                <div class="icon"><ion-icon name="settings-outline"></ion-icon></div>
+                                <div class="icon"><i class="fa-solid fa-cog"></i></div>
                                 <p class="title">Cài đặt</p>
                             </div>
                         </a>
@@ -243,7 +252,8 @@
                                 <td class="numerical">1</td>
                                 <td class="id">#614232</td>
                                 <td class="name">Sữa tươi Vinamilk tiệt trùng</td>
-                                <td class="origin"><p title="LGBT">🏳️‍🌈</p></ion-icon>
+                                <td class="origin">
+                                    <p title="LGBT">🏳️‍🌈</p></ion-icon>
                                 </td>
                                 <td><span class="status status__instock --instock">Còn hàng</span></td>
                                 <td class="price">245.000đ</td>

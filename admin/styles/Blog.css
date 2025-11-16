@@ -9,7 +9,7 @@ body {
 
 /* ===== SIDEBAR ===== */
 .sidebar {
-  width: 200px;
+  width: 240px;
   background: #ffffff;
   height: 720px;
   border-right: 0;
@@ -45,6 +45,7 @@ body {
   object-fit: contain;
   vertical-align: middle;
   margin-right: 10px;
+  border-radius: 100%;
 }
 .sidebar a:hover {
   background-color: #fff0f7;
