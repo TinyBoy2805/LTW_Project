@@ -1,5 +1,14 @@
+import product from './product.js'
+
 const tabs = document.querySelectorAll('.main__trending-tab')
 const contents = document.querySelectorAll('.main__trending-content')
+
+
+document.addEventListener("DOMContentLoaded", ()=>
+{
+    product.clickProductItem()
+})
+
 
 tabs.forEach((tab, index)=>
 {
