@@ -54,7 +54,7 @@ body {
     align-items: start;
     flex-direction: column;
     gap: 24px;
-    padding: 24px;
+    padding: 0 24px 0 24px;
     overflow-y: auto;
     background-color: #f8f8f8;
 }
@@ -62,10 +62,20 @@ body {
 /* content title */
 .content__title {
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     font-size: 20px;
     font-weight: bold;
+    width: 100%;
+    
+    position: sticky;
+    top: 0; /* Đảm bảo nó dính ngay tại mép trên của vùng cuộn (container__content) */
+    z-index: 10;
+    background-color: #f8f8f8;
+    
+    /* Thêm padding-top đã bị xóa ở phần tử cha vào đây */
+    padding: 24px 24px 24px 12px;
+    margin-bottom: -24px;
 }
 
 /* 3 revenue card css */

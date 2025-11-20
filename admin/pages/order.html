@@ -148,46 +148,51 @@
             </div>
             <!-- contert -->
             <div class="container__content">
-                <h2 class="content__title">Đơn hàng</h2>
-                <!-- Search bar for seach orders -->
-                <div class="search__filter">
-                    <input type="text" placeholder="Tìm kiếm đơn hàng">
-                    <div class="search__box">
-                        <ion-icon name="search-outline" class="search__icon"></ion-icon>
-                        <div class="filter__wrapper">
-                            <button class="filter__button" id="order__filter__btn">
-                                <ion-icon name="funnel-outline"></ion-icon>
-                                Lọc
-                            </button>
-                            <div class="filter__frame hidden" id="order__filter__frame">
-                                <h4 class="filter__frame__title">Bộ Lọc Đơn Hàng</h4>
-                                <div class="filter__group">
-                                    <label for="filter__order__status">Trạng thái:</label>
-                                    <select id="filter__order__status">
-                                        <option value="all">Tất cả</option>
-                                        <option value="pending">Chờ xác nhận</option>
-                                        <option value="shipping">Đang giao hàng</option>
-                                        <option value="completed">Hoàn thành</option>
-                                        <option value="cancelled">Đã hủy</option>
-                                    </select>
-                                </div>
-                                <div class="filter__group">
-                                    <label for="filter__order__date">Ngày đặt hàng:</label>
-                                    <input type="date" id="filter__order__date__from" title="Từ ngày">
-                                </div>
-                                <div class="filter__group">
-                                    <label for="filter__price__min">Tổng tiền (VNĐ):</label>
-                                    <input type="number" id="filter__price__min" placeholder="Từ">
-                                    <input type="number" id="filter__price__max" placeholder="Đến"
-                                        style="margin-top: 5px;">
-                                </div>
-                                <div class="filter__actions">
-                                    <button class="clear__button">Xóa lọc</button>
-                                    <button class="apply__button">Áp dụng</button>
+                <div class="sticky__header">
+                    <h2 class="content__title">Đơn hàng</h2>
+                    <!-- Search bar for seach orders -->
+                    <div class="search__filter">
+                        <input type="text" placeholder="Tìm kiếm đơn hàng">
+                        <div class="search__box">
+                            <ion-icon name="search-outline" class="search__icon"></ion-icon>
+                            <div class="line">
+                                    </div>
+                            <div class="filter__wrapper">
+                                <button class="filter__button" id="order__filter__btn">
+                                    <ion-icon name="funnel-outline"></ion-icon>
+                                    Lọc
+                                </button>
+                                <div class="filter__frame hidden" id="order__filter__frame">
+                                    <h4 class="filter__frame__title">Bộ Lọc Đơn Hàng</h4>
+                                    <div class="filter__group">
+                                        <label for="filter__order__status">Trạng thái:</label>
+                                        <select id="filter__order__status">
+                                            <option value="all">Tất cả</option>
+                                            <option value="pending">Chờ xác nhận</option>
+                                            <option value="shipping">Đang giao hàng</option>
+                                            <option value="completed">Hoàn thành</option>
+                                            <option value="cancelled">Đã hủy</option>
+                                        </select>
+                                    </div>
+                                    <div class="filter__group">
+                                        <label for="filter__order__date">Ngày đặt hàng:</label>
+                                        <input type="date" id="filter__order__date__from" title="Từ ngày">
+                                    </div>
+                                    <div class="filter__group">
+                                        <label for="filter__price__min">Tổng tiền (VNĐ):</label>
+                                        <input type="number" id="filter__price__min" placeholder="Từ">
+                                        <input type="number" id="filter__price__max" placeholder="Đến"
+                                            style="margin-top: 5px;">
+                                    </div>
+                                    <div class="filter__actions">
+                                        <button class="clear__button">Xóa lọc</button>
+                                        <button class="apply__button">Áp dụng</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
                 <!-- List of some orders available -->
                 <div class="order__list">

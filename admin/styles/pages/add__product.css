@@ -39,7 +39,7 @@ body {
     align-items: start;
     flex-direction: column;
     gap: 24px;
-    padding: 24px;
+    padding: 0 24px 0 24px;
     overflow-y: auto;
     background-color: #f8f8f8;
 }
@@ -51,6 +51,15 @@ body {
     width: 100%;
     height: 24px;
     gap: 12px;
+
+    position: sticky;
+    top: 0;
+    /* Đảm bảo nó dính ngay tại mép trên của vùng cuộn (container__content) */
+    z-index: 10;
+    background-color: #f8f8f8;
+
+    /* Thêm padding-top đã bị xóa ở phần tử cha vào đây */
+    padding: 36px 24px 24px 12px;
 }
 
 .content__header a {
@@ -94,6 +103,105 @@ body {
     justify-content: space-between;
     align-items: center;
     gap: 12px;
+}
+
+.product-units {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 8px;
+}
+
+.product-units__list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.unit-item {
+    display: flex;
+    align-items: flex-end; /* Căn chỉnh các input nằm cùng dòng */
+    width: 100%;
+    gap: 12px;
+    margin-bottom: 4px;
+}
+
+.unit-item__unit {
+    width: 40%;
+    min-width: 140px; 
+}
+
+.unit-item__qty {
+    width: 25%;
+    min-width: 80px; 
+}
+
+.unit-item__price {
+    width: 35%;
+    min-width: calc(100% - 140px - 100px);
+}
+
+.unit-item input[type="number"] {
+    padding: 8px 12px;
+    border-radius: 24px;
+    border: solid 2px #e4e4e4;
+    color: #858585;
+    width: 100%; 
+}
+
+/* Nút xóa */
+.unit-item__remove-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    color: #858585;
+    margin-bottom: 8px; /* Căn chỉnh với input */
+    transition: color 0.2s;
+}
+
+.unit-item__remove-btn:hover {
+    color: #ff4d4f; /* Màu đỏ khi hover */
+}
+
+.unit-item__remove-btn ion-icon {
+    font-size: 24px;
+}
+
+/* Nút Thêm đơn vị */
+.product-units__add-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: none;
+    border: 1px dashed #f564a9;
+    color: #f564a9;
+    padding: 8px 16px;
+    border-radius: 24px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+    width: fit-content;
+    margin-top: 8px;
+}
+
+.product-units__add-btn:hover {
+    background-color: #ffe6f0;
+}
+
+.product-units__add-btn ion-icon {
+    font-size: 18px;
+}
+
+/* Định dạng chung cho label trong form */
+.form__label {
+    font-size: 13px;
+    font-weight: 400;
+    color: #f564a9;
 }
 
 .form__input {
@@ -149,13 +257,13 @@ textarea:focus {
 
 .choose__product__img {
     display: flex;
-    height: 100%;
-    width: 473px;
-    justify-content: center;
+    justify-content: start;
     align-items: start;
-    gap: 10px;
-    padding: 24px;
     flex-direction: column;
+    width: 100%;
+    height: 100%;
+    padding: 24px;
+    gap: 24px;
 }
 
 .choose__product__img__title {
@@ -164,17 +272,21 @@ textarea:focus {
     font-weight: bold;
 }
 
-.img__container {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+.img-group__main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    gap: 12px;
 }
 
-.img__item {
-    width: 100%;
-    /* Tỷ lệ 1:1 (hình vuông) */
-    aspect-ratio: 1 / 1;
+.img-group__title {
+    font-size: 16px;
+    font-weight: 500;
+    color: #868686;
+}
+
+.main-group__item {
     position: relative;
     border-radius: 8px;
     overflow: hidden;
@@ -185,41 +297,83 @@ textarea:focus {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
-.img__item:hover {
+.main-group__item:hover {
     box-shadow: 0 0 0 2px #F654a9;
 }
 
-.img__item img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+.img-group__main img {
+    width: 152px;
+    height: 152px;
     object-fit: contain;
 }
 
-
-.add__img {
-    width: 100%;
-    aspect-ratio: 1 / 1;
+.img-group__secondary {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
-    border: 2px dashed #F654a9;
+    align-items: start;
+    gap: 12px;
+}
+
+.img-group__container {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    height: 100%;
+    position: relative;
     border-radius: 8px;
     background-color: transparent;
+    box-shadow: none;
+    padding: 0;
+}
+
+.img-group__item {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.2s;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-group__secondary img {
+    width: 72px;
+    height: 72px;
+    object-fit: cover;
+}
+
+.img-group__item:hover {
+    border-color: #f564a9;
+    box-shadow: 0 0 0 2px rgba(245, 100, 169, 0.2);
+}
+
+.add__img {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    background-color: #f0f0f0;
+    border: 2px dashed #e4e4e4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
     transition: all 0.2s;
-    position: relative;
+    font-size: 24px;
+    color: #858585;
 }
 
 .add__img:hover {
-    background-color: rgba(246, 84, 169, 0.05);
-}
-
-.add__img ion-icon {
-    font-size: 30px;
-    color: #F654a9;
+    border-color: #f564a9;
+    color: #f564a9;
 }
 
 .content__bottom {
@@ -228,6 +382,7 @@ textarea:focus {
     align-items: center;
     width: 100%;
     height: 44px;
+    padding-bottom: 24px;
 }
 
 .bottom__title {
@@ -237,7 +392,7 @@ textarea:focus {
     width: 100%;
 }
 
-.bottom__button{
+.bottom__button {
     display: flex;
     width: 100%;
     justify-content: end;
@@ -246,7 +401,7 @@ textarea:focus {
     font-size: 16px;
 }
 
-.cancel{
+.cancel {
     text-decoration: none;
     font-weight: 200;
     border-radius: 24px;
@@ -256,7 +411,7 @@ textarea:focus {
     color: black;
 }
 
-.add{
+.add {
     text-decoration: none;
     font-weight: bold;
     border-radius: 24px;
@@ -266,10 +421,10 @@ textarea:focus {
     color: white;
 }
 
-.cancel:hover{
+.cancel:hover {
     background-color: #ececec;
 }
 
-.add:hover{
+.add:hover {
     background-color: #e14d95;
 }

@@ -150,53 +150,63 @@
             </div>
             <!-- contert -->
             <div class="container__content">
-                <h2 class="content__title">Kho Hàng</h2>
-                <div class="content__header">
-                    <div class="search__filter">
-                        <input type="text" placeholder="Tìm kiếm đơn hàng">
-                        <div class="search__box">
-                            <ion-icon name="search-outline" class="search__icon"></ion-icon>
-                            <div class="filter__wrapper">
-                                <button class="filter__button" id="product__filter__btn">
-                                    <ion-icon name="funnel-outline"></ion-icon>
-                                    Lọc
-                                </button>
-                                <div class="filter__frame hidden" id="product__filter__frame">
-                                    <h4 class="filter__frame__title">Bộ Lọc Sản Phẩm</h4>
-                                    <div class="filter__group">
-                                        <label for="filter__category">Danh mục:</label>
-                                        <select id="filter__category">
-                                            <option value="all">Tất cả</option>
-                                            <option value="milk">Sữa bột/tươi</option>
-                                            <option value="food">Thực phẩm ăn dặm</option>
-                                        </select>
-                                    </div>
-                                    <div class="filter__group">
-                                        <label for="filter__status">Trạng thái:</label>
-                                        <select id="filter__status">
-                                            <option value="active">Đang bán</option>
-                                            <option value="oos">Hết hàng</option>
-                                            <option value="low">Sắp hết hàng</option>
-                                        </select>
-                                    </div>
-                                    <div class="filter__group">
-                                        <label for="filter__stock">Tồn kho:</label>
-                                        <input type="number" id="filter__stock" placeholder=">= Số lượng">
-                                    </div>
-                                    <div class="filter__actions">
-                                        <button class="clear__button">Xóa lọc</button>
-                                        <button class="apply__button">Áp dụng</button>
+                <div class="sticky__header">
+                    <h2 class="content__title">Kho Hàng</h2>
+                    <div class="content__header">
+                        <div class="search__filter">
+                            <input type="text" placeholder="Tìm kiếm đơn hàng">
+                            <div class="search__box">
+                                <ion-icon name="search-outline" class="search__icon"></ion-icon>
+                                <div class="line">
+                                </div>
+                                <div class="filter__wrapper">
+                                    <button class="filter__button" id="product__filter__btn">
+                                        <ion-icon name="funnel-outline"></ion-icon>
+                                        Lọc
+                                    </button>
+                                    <div class="filter__frame hidden" id="product__filter__frame">
+                                        <h4 class="filter__frame__title">Bộ Lọc Sản Phẩm</h4>
+                                        <div class="filter__group">
+                                            <label for="filter__category">Danh mục:</label>
+                                            <select id="filter__category">
+                                                <option value="all">Tất cả</option>
+                                                <option value="milk">Sữa bột/tươi</option>
+                                                <option value="food">Thực phẩm ăn dặm</option>
+                                            </select>
+                                        </div>
+                                        <div class="filter__group">
+                                            <label for="filter__status">Trạng thái:</label>
+                                            <select id="filter__status">
+                                                <option value="active">Đang bán</option>
+                                                <option value="oos">Hết hàng</option>
+                                                <option value="low">Sắp hết hàng</option>
+                                            </select>
+                                        </div>
+                                        <div class="filter__group">
+                                            <label for="filter__stock">Tồn kho:</label>
+                                            <input type="number" id="filter__stock" placeholder=">= Số lượng">
+                                        </div>
+                                        <div class="filter__actions">
+                                            <button class="clear__button">Xóa lọc</button>
+                                            <button class="apply__button">Áp dụng</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="action__btn">
+                            <button class="stock-history-button" id="stock__history__btn">
+                                <ion-icon name="time-outline"></ion-icon>
+                                Lịch sử nhập kho
+                            </button>
+                            <a href="./add__product.html">
+                                <button class="add__button">
+                                    <ion-icon name="add-outline"></ion-icon>
+                                    Sản phẩm mới
+                                </button>
+                            </a>
+                        </div>
                     </div>
-                    <a href="./add__product.html">
-                        <button class="add__button">
-                            <ion-icon name="add-outline"></ion-icon>
-                            Sản phẩm mới
-                        </button>
-                    </a>
                 </div>
 
                 <div class="content__grid__product">
@@ -306,12 +316,72 @@
                     </div>
                 </div>
             </div>
+
+            <div class="stock-history-overlay hidden" id="stock__history__overlay">
+                <div class="stock-history-modal">
+                    <div class="stock-history-modal__header">
+                        <h3 class="stock-history-modal__title">Lịch sử nhập kho</h3>
+                        <div class="stock-history-modal__close" id="stock__history__close">
+                            <ion-icon name="close-outline"></ion-icon>
+                        </div>
+                    </div>
+                    <div class="stock-history-modal__content">
+                        <table class="history-table">
+                            <thead class="history-table__header">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Mã SP</th>
+                                    <th>Sản phẩm</th>
+                                    <th>Số lượng nhập</th>
+                                    <th>Ngày nhập</th>
+                                </tr>
+                            </thead>
+                            <tbody class="history-table__body">
+                                <tr>
+                                    <td>1</td>
+                                    <td>SP001</td>
+                                    <td>Sữa bột GrowPro (1-3 tuổi)</td>
+                                    <td>+50</td>
+                                    <td>20/11/2025</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>SP005</td>
+                                    <td>Bánh ăn dặm Chuối Dẹt (9M+)</td>
+                                    <td>+100</td>
+                                    <td>15/11/2025</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>SP003</td>
+                                    <td>Sữa tươi Organic không đường (Thùng)</td>
+                                    <td>+40</td>
+                                    <td>10/11/2025</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>SP007</td>
+                                    <td>Yến sào chưng sẵn cho bé</td>
+                                    <td>+60</td>
+                                    <td>05/11/2025</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="history-table__pagination">
+                            <button class="pagination__btn disabled">Trước</button>
+                            <span class="pagination__info">Trang 1/5</span>
+                            <button class="pagination__btn">Sau</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <!-- link to javascript for burger button -->
     <script src="../scripts/components/ExtendSidebar.js"></script>
     <script src="../scripts/components/filter.js"></script>
+    <script src="../scripts/components/stockHistory.js"></script>
 </body>
 
 </html>
