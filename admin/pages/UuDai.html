@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,80 +12,100 @@
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
+
 <body>
   <div class="UuDai main">
-    <aside class="sidebar" aria-label="Chức năng chính">
+    <aside class="sidebar">
+      <!-- header inclue shop's logo and shop's name -->
       <div class="sidebar__header">
-        <img src="../imgs/avatar.webp" alt="MichiShop" class="brand-logo" />
-        <h2>MichiShop</h2>
+        <img src="../imgs/logo.png" alt="Logo">
+        <h2>MiChiShop</h2>
       </div>
+      <!-- list item of sidebar -->
       <div class="sidebar__list">
         <ul class="list">
-          <li class="list__item"><a href="#" class="section">
+          <li class="list__item">
+            <a href="./dashboard.html">
               <div class="section">
                 <div class="icon"><i class="fa-solid fa-chart-line"></i></div>
                 <p class="title">Thống kê</p>
               </div>
-            </a></li>
-          <li class="list__item"><a href="#" class="section">
+            </a>
+          </li>
+          <li class="list__item">
+            <a href="./order.html">
               <div class="section">
                 <div class="icon"><i class="fa-solid fa-shopping-cart"></i></div>
                 <p class="title">Đơn hàng</p>
               </div>
-            </a></li>
-          <li class="list__item"><a href="#" class="section">
+            </a>
+          </li>
+          <li class="list__item">
+            <a href="./categories.html">
               <div class="section">
                 <div class="icon"><i class="fa-solid fa-box"></i></div>
                 <p class="title">Kho hàng</p>
               </div>
-            </a></li>
-          <li class="list__item"><a href="KhachHang.html" class="section">
+            </a>
+          </li>
+          <li class="list__item">
+            <a href="./KhachHang.html">
               <div class="section">
                 <div class="icon"><i class="fa-solid fa-users"></i></div>
                 <p class="title">Khách hàng</p>
               </div>
-            </a></li>
-          <li class="list__item"><a href="UuDai.html" class="section active">
+            </a>
+          </li>
+          <li class="list__item">
+            <a href="./UuDai.html" class="active">
               <div class="section">
                 <div class="icon"><i class="fa-solid fa-gift"></i></div>
                 <p class="title">Ưu đãi</p>
               </div>
-            </a></li>
-          <li class="list__item"><a href="Blog.html" class="section">
+            </a>
+          </li>
+          <li class="list__item">
+            <a href="./Blog.html">
               <div class="section">
-                <div class="icon"><i class="fa-solid fa-blog"></i></div>
+                <div class="icon"><i class=" fa-solid fa-blog"></i></div>
                 <p class="title">Blog</p>
               </div>
-            </a></li>
-          <li class="list__item"><a href="Email.html" class="section">
+            </a>
+          </li>
+          <li class="list__item">
+            <a href="./Email.html">
               <div class="section">
                 <div class="icon"><i class="fa-solid fa-envelope"></i></div>
                 <p class="title">Email</p>
               </div>
               <div class="badge">+99</div>
-            </a></li>
-          <li class="list__item"><a href="CaiDat.html" class="section">
+            </a>
+          </li>
+          <li class="list__item">
+            <a href="./CaiDat.html">
               <div class="section">
                 <div class="icon"><i class="fa-solid fa-cog"></i></div>
                 <p class="title">Cài đặt</p>
               </div>
-            </a></li>
+            </a>
+          </li>
         </ul>
       </div>
+      <!-- bottom has exit button -->
       <div class="sidebar__bottom">
         <a href="../../index.html">
-          <div class="icon"><i class="fa-solid fa-right-from-bracket"></i></div>
-          <p class="title">Đăng Xuất</p>
+          <div class="icon"><ion-icon name="exit-outline"></ion-icon></div>
+          <p class="title">Đăng xuất</p>
         </a>
       </div>
     </aside>
 
     <div class="container">
       <div class="container__header">
+        <!-- header left has sidebar expand button and hello message -->
         <div class="header__left">
-          <button class="sidebar-toggle" type="button" aria-label="Thu gọn sidebar"><i
-              class="fa-solid fa-bars"></i></button>
-          <h3>Chào mừng trở lại, <span>Michi Admin</span></h3>
+          <div class="icon" id="menu__action"><ion-icon name="menu-outline"></ion-icon></div>
+          <h3>Chào mừng trở lại, <span>MiChi Admin</span></h3>
         </div>
 
         <div class="header__right">
@@ -129,13 +150,14 @@
         </div>
       </div>
 
+
       <!-- Main content -->
       <main class="content" aria-labelledby="uu-dai-title">
         <h3 class="content__title">Ưu Đãi</h3>
         <div class="content__panel">
           <div class="panel-header">
             <div class="toolbar">
-             <a href="ThemUuDai.html"><button class="new-btn" type="button">+ Ưu đãi mới</button></a>
+              <a href="ThemUuDai.html"><button class="new-btn" type="button">+ Ưu đãi mới</button></a>
             </div>
           </div>
 
@@ -254,5 +276,6 @@
     </div> <!-- .container -->
   </div> <!-- .UuDai.main -->
   <script src="../scripts/ThuGonSidebar.js"></script>
-  </body>
-  </html>
+</body>
+
+</html>

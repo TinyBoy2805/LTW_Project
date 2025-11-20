@@ -748,6 +748,31 @@ input[type="checkbox"]:focus {
    border-radius: 4px;
 }
 
+/* Ensure sidebar stays fixed on the left for settings page so it doesn't shift
+   when panels change height (tabs). Keep layout in-flow on small screens. */
+.CaiDat .sidebar {
+   position: fixed;
+   left: 0;
+   top: 0;
+   height: 100vh;
+   width: 208px;
+   z-index: 40;
+}
+.CaiDat .container {
+   margin-left: 208px;
+}
+/* When sidebar is collapsed (via toggle), reduce container margin accordingly */
+.CaiDat.main.collapsed .sidebar {
+   width: 72px;
+}
+.CaiDat.main.collapsed .container {
+   margin-left: 72px;
+}
+
+@media (max-width: 900px) {
+   .CaiDat .sidebar { position: static; height: auto; width: auto; }
+   .CaiDat .container { margin-left: 0; }
+}
 
 /* Responsive: điều chỉnh layout cho màn hình nhỏ */
 @media (max-width:900px) {
@@ -765,18 +790,6 @@ input[type="checkbox"]:focus {
       left: 24px;
       bottom: 24px;
    }
-}
-
-/* ===== Additive: harmonize main content typography with your font ===== */
-.container__content,
-.content,
-.settings-grid,
-.panel,
-.tab-panel {
-   font-family: 'Be Vietnam Pro', sans-serif;
-   color: #111827;
-   line-height: 1.45;
-   -webkit-font-smoothing: antialiased;
 }
 
 .CaiDat .content__panel {

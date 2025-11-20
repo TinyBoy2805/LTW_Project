@@ -5,51 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const panels = document.querySelectorAll('.tab-panel');
   const contentPanel = document.querySelector('.content__panel');
 
-
-// Ép bố cục để phù hợp với giao diện chỉnh sửa blog
-  (function forceLayout() {
-    const createContent = document.getElementById('blog-content');
-    const contentPanelEl = document.querySelector('.content__panel');
-    const contentMain = document.querySelector('.content');
-    const container = document.querySelector('.container');
-    const leftPanel = document.querySelector('.left-panel');
-
-    if (createContent) {
-      createContent.style.width = '100%';
-      createContent.style.height = '80px';
-      createContent.style.resize = 'none';
-      createContent.style.overflow = 'auto';
-    }
-
-    if (contentPanelEl) {
-      contentPanelEl.style.width = 'auto';
-      contentPanelEl.style.maxWidth = '1200px';
-      contentPanelEl.style.margin = '0 24px';
-    }
-    if (contentMain) contentMain.style.width = '100%';
-    if (container) container.style.width = '100%';
-    if (leftPanel) {
-      leftPanel.style.flex = '3';
-      leftPanel.style.width = 'auto';
-    }
-    // Chỉnh kích thước form-wrap và right-panel
-    const formWrap = document.querySelector('.form-wrap');
-    const rightPanel = document.querySelector('.right-panel');
-    if (formWrap) {
-      formWrap.style.maxWidth = '1100px';
-      formWrap.style.margin = '0 auto';
-      formWrap.style.width = '100%';
-    }
-    if (leftPanel) {
-      leftPanel.style.flex = '0 0 660px';
-      leftPanel.style.width = '660px';
-    }
-    if (rightPanel) {
-      rightPanel.style.flex = '0 0 340px';
-      rightPanel.style.width = '340px';
-    }
-  })();
-
+  // Hiển thị panel theo tên
   function showPanel(name) {
     panels.forEach(p => {
       if (p.dataset.panel === name) {
@@ -76,16 +32,16 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!dateStr) return '';
     // nếu chứa '/', giả sử dd/mm/yyyy
     if (dateStr.indexOf('/') > -1) {
-      const parts = dateStr.split('/').map(s=>s.trim());
+      const parts = dateStr.split('/').map(s => s.trim());
       if (parts.length === 3) {
-        const [d,m,y] = parts;
-        return `${y.padStart(4,'0')}-${m.padStart(2,'0')}-${d.padStart(2,'0')}`;
+        const [d, m, y] = parts;
+        return `${y.padStart(4, '0')}-${m.padStart(2, '0')}-${d.padStart(2, '0')}`;
       }
     }
     // fallback: thử Date
     const d = new Date(dateStr);
     if (!isNaN(d)) {
-      return d.toISOString().slice(0,10);
+      return d.toISOString().slice(0, 10);
     }
     return '';
   }
@@ -103,10 +59,10 @@ document.addEventListener('DOMContentLoaded', function () {
     if (meta) {
       const parts = meta.split('—');
       if (parts.length >= 2) {
-        author = parts[0].replace('Bởi:','').trim();
+        author = parts[0].replace('Bởi:', '').trim();
         date = parts[1].trim();
       } else {
-        author = meta.replace('Bởi:','').trim();
+        author = meta.replace('Bởi:', '').trim();
       }
     }
 
@@ -120,19 +76,19 @@ document.addEventListener('DOMContentLoaded', function () {
     // đặt select category theo giá trị (so khớp options)
     const sel = blogDetail.querySelector('.edit-category');
     for (const opt of sel.options) { if (opt.text === badge) { opt.selected = true; } }
-  blogDetail.querySelector('.edit-date').value = formatDateForInput(date);
-  // chuẩn hóa nội dung excerpt để loại bỏ nhiều dòng và khoảng trắng thừa
-  const normalized = (excerpt || '').replace(/\r?\n+/g, ' ').replace(/\s+/g, ' ').trim();
-  blogDetail.querySelector('.edit-content').value = normalized;
+    blogDetail.querySelector('.edit-date').value = formatDateForInput(date);
+    // chuẩn hóa nội dung excerpt để loại bỏ nhiều dòng và khoảng trắng thừa
+    const normalized = (excerpt || '').replace(/\r?\n+/g, ' ').replace(/\s+/g, ' ').trim();
+    blogDetail.querySelector('.edit-content').value = normalized;
 
     blogDetail.classList.add('show');
-    blogDetail.setAttribute('aria-hidden','false');
+    blogDetail.setAttribute('aria-hidden', 'false');
   }
 
   function closeBlogEditor() {
     if (!blogDetail) return;
     blogDetail.classList.remove('show');
-    blogDetail.setAttribute('aria-hidden','true');
+    blogDetail.setAttribute('aria-hidden', 'true');
     activeCard = null;
   }
 

@@ -20,6 +20,25 @@ body {
   overflow: hidden;
 }
 
+.Blog .sidebar {
+   position: fixed;
+   left: 0;
+   top: 0;
+   height: 100vh;
+   width: 208px;
+   z-index: 40;
+}
+.Blog .container {
+   margin-left: 208px;
+}
+/* When sidebar is collapsed (via toggle), reduce container margin accordingly */
+.Blog.main.collapsed .sidebar {
+   width: 72px;
+}
+.Blog.main.collapsed .container {
+   margin-left: 72px;
+}
+
 /* KHỐI CHỨA HEADER VÀ NỘI DUNG */
 .content {
   width: 100%;
@@ -52,12 +71,12 @@ main.content {
   height: 100%;
 }
 
-.content__header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    height: 40px;
+.content__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 40px;
 }
 
 
@@ -83,8 +102,8 @@ main.content {
   display: flex;
   flex-direction: column;
   min-height: 0;
+  margin: 0 auto !important;
   width: calc(100% - 48px) !important;
-  margin: 0 24px !important;
   padding: 24px !important;
   position: relative;
   padding-bottom: 24px !important;
@@ -136,36 +155,43 @@ main.content {
   display: flex;
   justify-content: space-between;
   margin-top: 18px;
-  padding: 0 24px; 
+  padding: 0 24px;
   box-sizing: border-box;
 }
 
 .content__panel.creating .content__body .actions-row .actions-left {
   flex: 1 1 auto;
 }
+
 .content__panel.creating .content__body .actions-row .actions-right {
   flex: 0 0 auto;
   margin-left: 16px;
 }
+
 .content__panel.creating .content__body .actions-row .panel-actions {
   display: inline-flex;
   align-items: center;
 }
+
 .content__panel.creating .content__body .actions-row .actions .btn {
-  white-space: nowrap; 
+  white-space: nowrap;
 }
 
-.form-wrap { padding-bottom: 24px; }
+.form-wrap {
+  padding-bottom: 24px;
+}
 
 .content__panel.creating .panel-header {
-  margin-bottom: 8px; 
+  margin-bottom: 8px;
   padding-bottom: 12px;
 }
+
 .content__panel.creating .content__body {
-  padding-top: 12px; 
+  padding-top: 12px;
 }
+
 .content__panel.creating .form-wrap {
-  margin-top: 0; 
+  margin-top: 0;
   padding-top: 0;
   align-items: flex-start;
 }
@@ -337,20 +363,18 @@ main.content {
   flex-grow: 1;
   min-width: 0;
   width: 100%;
-  max-width: 1100px;
-  margin: 0 auto; 
   align-items: flex-start;
 }
 
 .left-panel {
-  flex: 0 0 660px;
-  width: 660px;
+  flex: 0 0 712px;
+  width: 712px;
   min-width: 0;
 }
 
 .right-panel {
-  flex: 0 0 340px;
-  width: 340px;
+  flex: 0 0 400px;
+  width: 400px;
   min-width: 0;
 }
 
@@ -584,7 +608,7 @@ main.content {
 }
 
 .content__panel.creating .actions-row {
-  display: grid; 
+  display: grid;
 }
 
 .note {
@@ -706,8 +730,6 @@ main.content {
     width: 100%;
   }
 }
-
-/* ===== Additive: harmonize main content typography with your font ===== */
 
 .Blog .content__panel {
   padding-top: 12px !important;

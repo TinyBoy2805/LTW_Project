@@ -19,6 +19,26 @@ body {
   overflow: hidden;
 }
 
+/* Pin sidebar for this page and offset container so sidebar doesn't move when content changes */
+.ThemUuDai .sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 208px;
+  z-index: 40;
+}
+.ThemUuDai .container {
+  margin-left: 208px;
+}
+.ThemUuDai.main.collapsed .sidebar { width: 72px; }
+.ThemUuDai.main.collapsed .container { margin-left: 72px; }
+
+@media (max-width: 900px) {
+  .ThemUuDai .sidebar { position: static; height: auto; width: auto; }
+  .ThemUuDai .container { margin-left: 0; }
+}
+
 /* KHỐI CHỨA HEADER VÀ NỘI DUNG */
 .content {
   width: 100%;
@@ -181,12 +201,9 @@ main.content > a {
   display: flex;
   gap: 24px;
   padding: 24px;
-  min-height: 500px;
   flex-grow: 1;
   min-width: 0;
   width: 100%;
-  max-width: none; /* allow form to expand to panel width */
-  margin: 0; /* remove centering so it fills available space */
   align-items: flex-start;
 }
 
@@ -197,8 +214,8 @@ main.content > a {
 }
 
 .right-panel {
-  flex: 0 0 340px;
-  width: 340px;
+  flex: 0 0 400px;
+  width: 400px;
   min-width: 0;
 }
 

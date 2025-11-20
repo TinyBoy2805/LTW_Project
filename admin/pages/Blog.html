@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,80 +12,100 @@
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
+
 <body>
   <div class="Blog main">
-    <aside class="sidebar" aria-label="Chức năng chính">
+    <aside class="sidebar">
+      <!-- header inclue shop's logo and shop's name -->
       <div class="sidebar__header">
-        <img src="../imgs/avatar.webp" alt="MichiShop" class="brand-logo" />
-        <h2>MichiShop</h2>
+        <img src="../imgs/logo.png" alt="Logo">
+        <h2>MiChiShop</h2>
       </div>
+      <!-- list item of sidebar -->
       <div class="sidebar__list">
         <ul class="list">
-          <li class="list__item"><a href="#">
+          <li class="list__item">
+            <a href="./dashboard.html">
               <div class="section">
                 <div class="icon"><i class="fa-solid fa-chart-line"></i></div>
                 <p class="title">Thống kê</p>
               </div>
-            </a></li>
-          <li class="list__item"><a href="#">
+            </a>
+          </li>
+          <li class="list__item">
+            <a href="./order.html">
               <div class="section">
                 <div class="icon"><i class="fa-solid fa-shopping-cart"></i></div>
                 <p class="title">Đơn hàng</p>
               </div>
-            </a></li>
-          <li class="list__item"><a href="#">
+            </a>
+          </li>
+          <li class="list__item">
+            <a href="./categories.html">
               <div class="section">
                 <div class="icon"><i class="fa-solid fa-box"></i></div>
                 <p class="title">Kho hàng</p>
               </div>
-            </a></li>
-          <li class="list__item"><a href="KhachHang.html">
+            </a>
+          </li>
+          <li class="list__item">
+            <a href="./KhachHang.html">
               <div class="section">
                 <div class="icon"><i class="fa-solid fa-users"></i></div>
                 <p class="title">Khách hàng</p>
               </div>
-            </a></li>
-          <li class="list__item"><a href="UuDai.html" class="section">
+            </a>
+          </li>
+          <li class="list__item">
+            <a href="./UuDai.html">
               <div class="section">
                 <div class="icon"><i class="fa-solid fa-gift"></i></div>
                 <p class="title">Ưu đãi</p>
               </div>
-            </a></li>
-          <li class="list__item"><a href="Blog.html" class="section active">
-              <div class="section">
-                <div class="icon"><i class="fa-solid fa-blog"></i></div>
+            </a>
+          </li>
+          <li class="list__item">
+            <a href="./Blog.html" class="active">
+              <div class="section" >
+                <div class="icon"><i class=" fa-solid fa-blog"></i></div>
                 <p class="title">Blog</p>
               </div>
-            </a></li>
-          <li class="list__item"><a href="Email.html" class="section">
+            </a>
+          </li>
+          <li class="list__item">
+            <a href="./Email.html">
               <div class="section">
                 <div class="icon"><i class="fa-solid fa-envelope"></i></div>
                 <p class="title">Email</p>
               </div>
               <div class="badge">+99</div>
-            </a></li>
-          <li class="list__item"><a href="CaiDat.html">
+            </a>
+          </li>
+          <li class="list__item">
+            <a href="./CaiDat.html">
               <div class="section">
                 <div class="icon"><i class="fa-solid fa-cog"></i></div>
                 <p class="title">Cài đặt</p>
               </div>
-            </a></li>
+            </a>
+          </li>
         </ul>
       </div>
+      <!-- bottom has exit button -->
       <div class="sidebar__bottom">
         <a href="../../index.html">
-          <div class="icon"><i class="fa-solid fa-right-from-bracket"></i></div>
-          <p class="title">Đăng Xuất</p>
+          <div class="icon"><ion-icon name="exit-outline"></ion-icon></div>
+          <p class="title">Đăng xuất</p>
         </a>
       </div>
     </aside>
 
     <div class="container">
       <div class="container__header">
+        <!-- header left has sidebar expand button and hello message -->
         <div class="header__left">
-          <button class="sidebar-toggle" type="button" aria-label="Thu gọn sidebar"><i
-              class="fa-solid fa-bars"></i></button>
-          <h3>Chào mừng trở lại, <span>Michi Admin</span></h3>
+          <div class="icon" id="menu__action"><ion-icon name="menu-outline"></ion-icon></div>
+          <h3>Chào mừng trở lại, <span>MiChi Admin</span></h3>
         </div>
 
         <div class="header__right">
@@ -128,6 +149,7 @@
           <div class="avatar"><img src="../imgs/avatar.webp" alt="Avatar" /></div>
         </div>
       </div>
+
 
       <!-- Main content -->
       <main class="content" aria-labelledby="blog-title">
@@ -257,43 +279,44 @@
           <div class="tab-panel" data-panel="create">
             <div class="content__body">
               <div class="form-wrap">
-              <section class="left-panel">
-                <div class="card-form">
-                  <label class="label">Tiêu đề</label>
-                  <input id="blog-title" class="input" type="text" placeholder="Nhập tiêu đề" required>
+                <section class="left-panel">
+                  <div class="card-form">
+                    <label class="label">Tiêu đề</label>
+                    <input id="blog-title" class="input" type="text" placeholder="Nhập tiêu đề" required>
 
-                  <label class="label">Tác giả</label>
-                  <input id="blog-author" class="input" type="text" placeholder="Tên tác giả" value="MichiShop">
+                    <label class="label">Tác giả</label>
+                    <input id="blog-author" class="input" type="text" placeholder="Tên tác giả" value="MichiShop">
 
-                  <label class="label">Danh mục</label>
-                  <select id="blog-category" class="input">
-                    <option value="">-- Chọn danh mục --</option>
-                    <option value="dinh-duong">Dinh dưỡng</option>
-                    <option value="sua">Sữa</option>
-                    <option value="an-dam">Ăn dặm</option>
-                    <option value="suc-khoe">Sức khỏe</option>
-                  </select>
+                    <label class="label">Danh mục</label>
+                    <select id="blog-category" class="input">
+                      <option value="">-- Chọn danh mục --</option>
+                      <option value="dinh-duong">Dinh dưỡng</option>
+                      <option value="sua">Sữa</option>
+                      <option value="an-dam">Ăn dặm</option>
+                      <option value="suc-khoe">Sức khỏe</option>
+                    </select>
 
-                  <div class="row two">
-                    <div>
-                      <label class="label">Ngày đăng</label>
-                      <input id="blog-date" class="input" type="date">
+                    <div class="row two">
+                      <div>
+                        <label class="label">Ngày đăng</label>
+                        <input id="blog-date" class="input" type="date">
+                      </div>
+                    </div>
+
+                    <label class="label">Nội dung</label>
+                    <textarea id="blog-content" class="input textarea" rows="3"
+                      placeholder="Viết nội dung..."></textarea>
+                  </div>
+                </section>
+
+                <aside class="right-panel">
+                  <div class="images-card">
+                    <h4>Hình ảnh</h4>
+                    <div class="thumbs">
+                      <div class="add-thumb">+</div>
                     </div>
                   </div>
-
-                  <label class="label">Nội dung</label>
-                  <textarea id="blog-content" class="input textarea" rows="3" placeholder="Viết nội dung..."></textarea>
-                </div>
-              </section>
-
-              <aside class="right-panel">
-                <div class="images-card">
-                  <h4>Hình ảnh</h4>
-                  <div class="thumbs">
-                    <div class="add-thumb">+</div>
-                  </div>
-                </div>
-              </aside>
+                </aside>
               </div>
               <!-- Actions row -->
               <div class="actions-row">
@@ -312,7 +335,7 @@
             </div>
           </div>
 
-        
+
         </div> <!-- .content__panel -->
 
         <!-- Chi tiết / Sửa bài viết -->
