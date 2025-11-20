@@ -1,314 +1,201 @@
-/* ===== RESET & GLOBAL ===== */
-body {
+@import url('../index.css');
+
+* {
+  padding: 0;
   margin: 0;
-  font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
+  font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+body {
+  height: 100vh;
+}
+
+/* KHỐI BAO NGOÀI CÙNG */
+.Email.main {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* KHỐI CHỨA HEADER VÀ NỘI DUNG */
+.content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 24px 24px 0 24px;
+}
+
+/* HEADER CỐ ĐỊNH (Không bị co lại) */
+.container__header {
+  flex-shrink: 0;
+  height: 60px;
+}
+
+/* NỘI DUNG CHÍNH (Content) */
+main.content {
+  flex-grow: 1;
+  overflow-y: auto;
+  background-color: #f8f8f8;
+}
+
+/* Khối nội dung chính (Content) */
+.content {
+  width: 100%;
   background-color: #f8f8f8;
   display: flex;
-  width: 100%;
-}
-
-/* ===== SIDEBAR ===== */
-.sidebar {
-  width: 200px;
-  background: #ffffff;
-  height: 720px;
-  border-right: 0;
-  display: flex;
   flex-direction: column;
-  padding: 26px 18px;
-  box-shadow: 0 2px 0 rgba(0,0,0,0.02) inset;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 40;
-}
-
-.sidebar h2 {
-  text-align: center;
-  font-size: 20px;
-  color: #555;
-  margin-bottom: 30px;
-}
-
-.sidebar a {
-  display: flex;
-  align-items: center;
-  padding: 12px 14px;
-  color: #555;
-  text-decoration: none;
-  transition: 0.2s;
-}
-
-.sidebar h2 .brand-logo {
-  width: 36px;
-  height: 36px;
-  object-fit: contain;
-  vertical-align: middle;
-  margin-right: 10px;
-  border-radius: 100%;
-}
-.sidebar a:hover {
-  background-color: #fff0f7;
-  color: #f564a9;
-  border-radius: 8px;
-}
-
-.sidebar a.active {
-  background: linear-gradient(90deg,#ff64b0,#f564a9);
-  color: #fff;
-  border-radius: 28px;
-  padding-left: 18px;
-  padding-right: 18px;
-  box-shadow: 0 6px 18px rgba(255,79,163,0.12);
-}
-
-.sidebar a span {
-  margin-right: 10px;
-}
-
-.logout {
-  margin-top: auto;
-  padding: 20px;
-  color: #555;
-  font-weight: bold;
-  cursor: pointer;
-  margin-bottom: 20px;
-  background-color: #ffffff;
-  border: none;
-}
-
-/* ===== HEADER ===== */
-.main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  margin-left: 240px;
-  padding-top: 72px;
-}
-
-.header {
-  background: transparent;
-  padding: 18px 30px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: fixed;
-  top: 0;
-  left: 240px;
-  right: 0;
-  height: 72px;
-  z-index: 50;
-}
-
-.header h3 {
-  color: #f564a9;
-  font-size: 20px;
-}
-
-.sidebar-toggle {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  font-size: 18px;
-  color: #333;
-  margin-right: 12px;
-  padding: 6px 8px;
-  border-radius: 8px;
-}
-.sidebar-toggle:hover {
-  background: #fff0f7;
-  color: #f564a9;
-}
-
-/* Trạng thái khi thu gọn sidebar */
-.sidebar {
-  transition: width 220ms ease, padding 220ms ease;
-}
-.header,
-.main {
-  transition: all 220ms ease;
-}
-/* Để lại biểu tượng */
-body.sidebar-collapsed .sidebar {
-  width: 64px;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-/* Khi thu gọn sidebar, di chuyển nội dung chính và tiêu đề tương ứng */
-body.sidebar-collapsed .main {
-  margin-left: 104px;
-}
-body.sidebar-collapsed .header {
-  left: 104px;
-}
-
-.header__left {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.header__right {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-
-.notify-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 8px;
-  border-radius: 8px;
-  color: #555;
-  text-decoration: none;
-}
-
-.notify-link .sidebar_icon_link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-}
-
-.notify-link:hover {
-  background-color: #fff0f7;
-  color: #f564a9;
-}
-
-.user-avatar {
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-/* ===== CONTENT ===== */
-.content {
-  padding: 24px 40px;
-  background: transparent;
-  position: fixed;
-  top: 72px;
-  left: 240px;
-  right: 0;
-  bottom: 0;
-  overflow: hidden;
-}
-
-/* Khi thu gọn sidebar, di chuyển nội dung chính sang trái để căn chỉnh */
-body.sidebar-collapsed .content {
-  left: 104px;
-}
-
-/* Ẩn nhãn sidebar khi thu gọn, giữ biểu tượng hiển thị */
-body.sidebar-collapsed .sidebar h2 {
-  font-size: 0;
-  line-height: 0;
-}
-body.sidebar-collapsed .sidebar h2 .brand-logo {
-  margin-right: 0;
-}
-body.sidebar-collapsed .sidebar a {
-  justify-content: center;
-  font-size: 0;
-  padding-left: 6px;
-  padding-right: 6px;
-}
-body.sidebar-collapsed .sidebar a .sidebar_icon_link {
-  margin-right: 0;
-  font-size: 18px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-body.sidebar-collapsed .sidebar a.active {
-  border-radius: 12px;
-  padding-left: 6px;
-  padding-right: 6px;
-}
-
-.content__panel {
-  background: #fff;
-  border-radius: 18px;
-  padding: 30px;
-  box-shadow: 0 6px 30px rgba(16,24,40,0.04);
-  display: flex;
-  flex-direction: column;
+  flex-grow: 1;
   height: 100%;
-  overflow: hidden;
 }
 
-.content__panel h3 {
-  text-align: left;
-  margin: 0 0 18px 0;
-  color: #f564a9;
-  font-size: 20px;
-  font-weight: 700;
+.content__header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+}
 
+.content__header a {
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.content__title {
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+  margin-bottom: 20px;
+  padding: 0 0 0 24px;
+  flex-shrink: 0;
+}
+
+/* ===== NỘI DUNG CHÍNH TRANG EMAIL ===== */
+.content__panel {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  width: calc(100% - 48px) !important;
+  margin: 0 24px !important;
+  padding: 0;
+  position: relative;
+  padding-bottom: 0px !important;
+}
+
+.panel-header {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  margin-bottom: 12px;
+  justify-content: flex-start;
+  gap: 16px;
+  padding: 12px 24px 24px 24px;
+}
+
+
+.tabs {
+  display: flex;
+  border-radius: 30px;
+  background-color: #f0f0f0;
+  padding: 4px;
+}
+
+.tab-btn {
+  padding: 8px 16px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-weight: 600;
+  color: #858585;
+  border-radius: 20px;
+  transition: all 0.2s;
+}
+
+.tab-btn.active {
+  background-color: #F564A9;
+  color: white;
+  box-shadow: 0 2px 5px rgba(245, 100, 169, 0.5);
 }
 
 .tabs {
   display: flex;
-  gap: 12px;
-  margin-bottom: 24px;
+  border-radius: 30px;
+  background-color: #f0f0f0;
+  padding: 4px;
 }
 
 .tabs button {
-  background-color: #ffffff;
-  border: 1px solid transparent;
-  padding: 8px 20px;
-  border-radius: 22px;
+  padding: 8px 16px;
+  border: none;
+  background-color: transparent;
   cursor: pointer;
-  color: #6b7280;
   font-weight: 600;
+  color: #858585;
+  border-radius: 20px;
+  transition: all 0.2s;
 }
 
 .tabs button.active {
-  background-color: #f564a9;
+  background-color: #F564A9;
   color: white;
-  box-shadow: 0 8px 20px #ffffff;
+  box-shadow: 0 2px 5px rgba(245, 100, 169, 0.5);
 }
 
 /* ===== EMAIL CONTROLS & LIST ===== */
 .controls {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 18px;
+    padding: 0; 
+    margin: 0;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between;
+    gap: 20px; 
 }
 
 .search {
-  flex: 1 1 360px;
-  display: flex;
-  justify-content: flex-end;
+  position: relative;
 }
+
 .search-input {
-  width: 100%;
-  max-width: 420px;
-  padding: 12px 16px;
-  border-radius: 22px;
-  border: 1px solid #f0f0f2;
-  background: #fff;
-  outline: none;
-  font-size: 14px;
-  color: #333;
+  padding: 8px 16px;
+  border-radius: 24px;
+  border: 2px solid #e4e4e4;
+  width: 250px;
+  transition: border-color 0.3s;
 }
-.search-input::placeholder {
-  color: #c7c7cc;
+
+.search-input:focus {
+  border-color: #F564A9;
+  outline: none;
 }
 
 .mail-list {
-  overflow: auto;
-  padding-right: 6px;
   display: flex;
   flex-direction: column;
   gap: 12px;
+  padding: 0 24px 24px 24px;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 0;
+  padding-top: 0;
 }
+
 .mail-row.hidden {
   display: none !important;
 }
+
 .mail-row {
   display: grid;
   grid-template-columns: 72px 160px 1fr 120px;
@@ -317,7 +204,7 @@ body.sidebar-collapsed .sidebar a.active {
   padding: 12px 18px;
   background: #ffffff;
   border-radius: 12px;
-  box-shadow: 0 4px 14px rgba(16,24,40,0.03);
+  box-shadow: 0 4px 14px rgba(16, 24, 40, 0.03);
   transition: transform 120ms ease, box-shadow 120ms ease;
 }
 
@@ -326,15 +213,15 @@ body.sidebar-collapsed .sidebar a.active {
   align-items: center;
   gap: 12px;
 }
+
 .check-wrap {
   display: inline-flex;
   align-items: center;
   position: relative;
-  /* ensure consistent line-height so the checkbox centers with text */
   line-height: 1;
 }
+
 .check-wrap input {
-  /* keep the actual input for accessibility but hide its visuals; use .check-custom for visuals */
   appearance: none;
   -webkit-appearance: none;
   width: 18px;
@@ -348,8 +235,8 @@ body.sidebar-collapsed .sidebar a.active {
   z-index: 2;
   vertical-align: middle;
 }
+
 .check-custom {
-  /* visible checkbox box placed and centered inside the wrapper */
   position: absolute;
   left: 0;
   top: 50%;
@@ -363,14 +250,13 @@ body.sidebar-collapsed .sidebar a.active {
   z-index: 1;
 }
 
-/* Checked state: paint the visible box (.check-custom) with the pink gradient */
-.check-wrap input:checked + .check-custom{
-  background: linear-gradient(90deg,#ff64b0,#f564a9);
+.check-wrap input:checked+.check-custom {
+  background: linear-gradient(90deg, #ff64b0, #f564a9);
   border-color: #ff64b0;
 }
 
 /* Hiển thị dấu tick trắng khi checkbox được chọn (centered with transform) */
-.check-custom::after{
+.check-custom::after {
   content: '';
   position: absolute;
   left: 50%;
@@ -379,10 +265,11 @@ body.sidebar-collapsed .sidebar a.active {
   height: 10px;
   border: 2px solid transparent;
   border-width: 0 2px 2px 0;
-  transform: translate(-50%,-55%) rotate(45deg);
+  transform: translate(-50%, -55%) rotate(45deg);
   opacity: 0;
 }
-.check-wrap input:checked + .check-custom::after{
+
+.check-wrap input:checked+.check-custom::after {
   border-color: #fff;
   opacity: 1;
 }
@@ -396,6 +283,7 @@ body.sidebar-collapsed .sidebar a.active {
   padding: 6px;
   border-radius: 6px;
 }
+
 .star i {
   color: #e6e6ea;
   transition: color 120ms ease, transform 120ms ease;
@@ -413,6 +301,7 @@ body.sidebar-collapsed .sidebar a.active {
   font-weight: 700;
   color: #111827;
 }
+
 .mail-subject {
   color: #111827;
   display: flex;
@@ -421,8 +310,9 @@ body.sidebar-collapsed .sidebar a.active {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  min-width: 0; 
+  min-width: 0;
 }
+
 .mail-subject .preview {
   color: #6b7280;
   font-weight: 500;
@@ -433,6 +323,7 @@ body.sidebar-collapsed .sidebar a.active {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 .mail-date {
   text-align: right;
   color: #6b7280;
@@ -443,14 +334,17 @@ body.sidebar-collapsed .sidebar a.active {
   .mail-row {
     grid-template-columns: 56px 1fr 96px;
   }
+
   .mail-sender {
     display: none;
   }
+
   .search {
     order: 2;
     width: 100%;
   }
-  .controls { 
+
+  .controls {
     flex-direction: column;
     align-items: stretch;
   }
@@ -467,50 +361,58 @@ body.sidebar-collapsed .sidebar a.active {
   max-width: 720px;
   max-height: 78vh;
   background: #fff;
-  border: 1px solid #8a2be2;
+  border: 1px solid #111827;
   border-radius: 12px;
-  box-shadow: 0 12px 30px rgba(16,24,40,0.10);
+  box-shadow: none;
   z-index: 120;
   padding: 14px;
   overflow: auto;
   opacity: 0;
   transition: opacity 180ms ease, transform 180ms ease;
 }
+
 .mail-detail.show {
   display: block;
   opacity: 1;
   transform: translate(-50%, -50%) scale(1);
 }
+
 .mail-detail .detail-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 12px;
 }
+
 .mail-detail .detail-left {
   display: flex;
   flex-direction: column;
 }
+
 .detail-subject {
   margin: 0;
   color: #111827;
   font-size: 16px;
   font-weight: 700;
 }
+
 .detail-meta {
   color: #6b7280;
   font-weight: 600;
   margin-top: 6px;
 }
+
 .detail-right {
   display: flex;
   align-items: center;
   gap: 12px;
 }
+
 .detail-date {
   color: #6b7280;
   font-weight: 600;
 }
+
 .detail-close {
   background: transparent;
   border: none;
@@ -518,29 +420,34 @@ body.sidebar-collapsed .sidebar a.active {
   cursor: pointer;
   color: #111827;
 }
+
 .detail-body {
   margin-top: 12px;
   color: #111827;
   line-height: 1.5;
   min-height: 180px;
 }
+
 .detail-reply {
   margin-top: 12px;
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
+
 .detail-actions {
   display: flex;
   gap: 12px;
   align-items: center;
 }
+
 .reply-text {
   padding: 8px;
   border-radius: 8px;
   border: 1px solid #e6e6ea;
   font-size: 14px;
 }
+
 .reply-send.btn.primary {
   background: #f564a9;
   color: white;
@@ -550,6 +457,7 @@ body.sidebar-collapsed .sidebar a.active {
   cursor: pointer;
   font-size: 14px;
 }
+
 .reply-cancel.btn.ghost {
   background: #fff;
   border: 1px solid #e6e6ea;
@@ -558,6 +466,7 @@ body.sidebar-collapsed .sidebar a.active {
   cursor: pointer;
   font-size: 14px;
 }
+
 .reply-delete.btn.danger {
   background: #fff0f0;
   border: 1px solid #ff7b7b;
@@ -566,6 +475,7 @@ body.sidebar-collapsed .sidebar a.active {
   border-radius: 20px;
   font-size: 14px;
 }
+
 @media (max-width: 900px) {
   .mail-detail {
     position: fixed;
@@ -583,3 +493,91 @@ body.sidebar-collapsed .sidebar a.active {
   }
 }
 
+.content {
+  padding: 24px;
+}
+
+.content__panel {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: stretch;
+}
+
+.left-panel {
+  flex: 0 0 463px;
+  width: 463px;
+}
+
+.right-panel {
+  flex: 0 0 473px;
+  width: 473px;
+}
+
+.form-wrap {
+  gap: 12px;
+}
+
+.two__column__input {
+  gap: 12px;
+}
+
+.img__container {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.img__item {
+  aspect-ratio: 1 / 1;
+  border-radius: 8px;
+}
+
+@media (max-width: 1000px) {
+
+  .left-panel,
+  .right-panel {
+    flex: none;
+    width: 100%;
+  }
+
+  .form-wrap {
+    flex-direction: column;
+  }
+}
+
+/* Ensure sidebar stays fixed on the left for settings page so it doesn't shift
+   when panels change height (tabs). Keep layout in-flow on small screens. */
+.Email .sidebar {
+   position: fixed;
+   left: 0;
+   top: 0;
+   height: 100vh;
+   width: 208px;
+   z-index: 40;
+}
+.Email .container {
+   margin-left: 208px;
+}
+/* When sidebar is collapsed (via toggle), reduce container margin accordingly */
+.Email.main.collapsed .sidebar {
+   width: 72px;
+}
+.Email.main.collapsed .container {
+   margin-left: 72px;
+}
+
+.Email .content__panel {
+  padding-top: 12px !important;
+  padding-left: 24px !important;
+  padding-right: 24px !important;
+  padding-bottom: 24px !important;
+}
+
+.Email .panel-header {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+}
