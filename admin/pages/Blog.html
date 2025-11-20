@@ -66,7 +66,7 @@
           </li>
           <li class="list__item">
             <a href="./Blog.html" class="active">
-              <div class="section" >
+              <div class="section">
                 <div class="icon"><i class=" fa-solid fa-blog"></i></div>
                 <p class="title">Blog</p>
               </div>
@@ -163,9 +163,45 @@
             </div>
 
             <div class="controls">
-              <div class="search">
-                <input type="search" class="search-input" placeholder="Tìm bài viết, tiêu đề hoặc tác giả"
-                  aria-label="Tìm kiếm bài viết">
+              <div class="search__filter">
+                <input type="text" placeholder="Tìm kiếm bài viết (Tiêu đề, Tác giả,...)">
+                <div class="search__box">
+                  <ion-icon name="search-outline" class="search__icon"></ion-icon>
+                  <div class="line"></div>
+                  <div class="filter__wrapper">
+                    <button class="filter__button" id="blog__filter__btn">
+                      <ion-icon name="funnel-outline"></ion-icon>
+                      Lọc
+                    </button>
+                    <div class="filter__frame hidden" id="blog__filter__frame">
+                      <h4 class="filter__frame__title">Bộ Lọc Bài Viết</h4>
+                      <div class="filter__group">
+                        <label for="filter__blog__status">Trạng thái:</label>
+                        <select id="filter__blog__status">
+                          <option value="all">Tất cả</option>
+                          <option value="published">Đã đăng</option>
+                          <option value="draft">Bản nháp</option>
+                        </select>
+                      </div>
+                      <div class="filter__group">
+                        <label for="filter__blog__category">Chủ đề:</label>
+                        <select id="filter__blog__category">
+                          <option value="all">Tất cả</option>
+                          <option value="nutrition">Dinh dưỡng</option>
+                          <option value="babycare">Chăm sóc bé</option>
+                        </select>
+                      </div>
+                      <div class="filter__group">
+                        <label for="filter__blog__date">Ngày đăng:</label>
+                        <input type="date" id="filter__blog__date__from" title="Từ ngày">
+                      </div>
+                      <div class="filter__actions">
+                        <button class="clear__button">Xóa lọc</button>
+                        <button class="apply__button">Áp dụng</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -386,6 +422,7 @@
   </div> <!-- .main -->
   <script src="../scripts/components/extendSidebar.js"></script>
   <script src="../scripts/page/Blog.js"></script>
+  <script src="../scripts/components/filter.js"></script>
 </body>
 
 </html>

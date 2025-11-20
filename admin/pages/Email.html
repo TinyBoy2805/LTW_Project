@@ -163,9 +163,41 @@
                 <button role="tab" aria-selected="false" data-filter="important">Quan trọng</button>
               </div>
 
-              <div class="search">
-                <input type="search" class="search-input" placeholder="Tìm kiếm email, người gửi hoặc nội dung"
-                  aria-label="Tìm kiếm email">
+              <div class="search__filter">
+                <input type="text" placeholder="Tìm kiếm email (Tiêu đề, Người gửi,...)">
+                <div class="search__box">
+                  <ion-icon name="search-outline" class="search__icon"></ion-icon>
+                  <div class="line"></div>
+                  <div class="filter__wrapper">
+                    <button class="filter__button" id="email__filter__btn">
+                      <ion-icon name="funnel-outline"></ion-icon>
+                      Lọc
+                    </button>
+                    <div class="filter__frame hidden" id="email__filter__frame">
+                      <h4 class="filter__frame__title">Bộ Lọc Email</h4>
+
+                      <div class="filter__group">
+                        <label for="filter__email__status">Trạng thái:</label>
+                        <select id="filter__email__status">
+                          <option value="all">Tất cả</option>
+                          <option value="unread">Chưa đọc</option>
+                          <option value="read">Đã đọc</option>
+                          <option value="important">Quan trọng</option>
+                        </select>
+                      </div>
+
+                      <div class="filter__group">
+                        <label for="filter__email__date">Ngày nhận:</label>
+                        <input type="date" id="filter__email__date__from" title="Từ ngày">
+                      </div>
+
+                      <div class="filter__actions">
+                        <button class="clear__button">Xóa lọc</button>
+                        <button class="apply__button">Áp dụng</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
 
             </div>
@@ -339,7 +371,7 @@
               <a href="Email.html"><button class="detail-close" aria-label="Đóng chi tiết"><i
                     class="fa-solid fa-arrow-rotate-left"></i></button></a>
             </div>
-          </header>
+            </header>
 
             <form class="detail-reply" action="#" onsubmit="return false;">
               <label class="label">Trả lời</label>
@@ -354,8 +386,9 @@
       </main>
     </div>
   </div> <!-- .Email.main -->
-    <script src="../scripts/components/extendSidebar.js"></script>
-    <script src="../scripts/page/Email.js"></script>
+  <script src="../scripts/components/extendSidebar.js"></script>
+  <script src="../scripts/page/Email.js"></script>
+  <script src="../scripts/components/filter.js"></script>
 </body>
 
 </html>

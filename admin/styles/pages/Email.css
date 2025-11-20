@@ -160,23 +160,139 @@ main.content {
     justify-content: space-between;
     gap: 20px; 
 }
-
-.search {
-  position: relative;
+.search__filter{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 348px;
+    height: 40px;
+    border-radius: 16px;
+    padding: 8px 12px;
+    background-color: white;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
 }
 
-.search-input {
-  padding: 8px 16px;
-  border-radius: 24px;
-  border: 2px solid #e4e4e4;
-  width: 250px;
-  transition: border-color 0.3s;
+input{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+    border: none;
+    font-size: 13px;
+    padding: 8px, 12px;
+    width: 100%;
+    color: #626262;
 }
 
-.search-input:focus {
-  border-color: #F564A9;
-  outline: none;
+.search__box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
 }
+
+.search__icon{
+    font-size: 20px;
+    margin-right: 12px;
+    cursor: pointer;
+    color: #626262;
+}
+.filter__wrapper {
+    position: relative; 
+    display: inline-block; 
+}
+
+.filter__button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 24px;
+    background-color: white;
+    color: #f564a9; /* Giữ màu sắc thương hiệu */
+    font-weight: 500;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.line{
+    width: 1px;
+    height: 20px;
+    background-color: #868686;
+    border-radius: 100px;
+}
+
+.filter__frame {
+    position: absolute;
+    top: 100%; 
+    right: 0;
+    z-index: 20;
+    width: 280px; 
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    margin-top: 10px; 
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.filter__frame.hidden {
+    opacity: 0;
+    visibility: hidden; 
+}
+
+.filter__frame__title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #eee;
+}
+
+.filter__group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.filter__group label {
+    font-size: 12px;
+    font-weight: 500;
+    color: #f564a9;
+}
+
+.filter__group select,
+.filter__group input[type="number"],
+.filter__group input[type="date"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 13px;
+    transition: border-color 0.2s;
+}
+
+.filter__actions {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+}
+
+.clear__button {
+    background-color: #f7f7f7;
+    color: #626262;
+}
+
+.apply__button {
+    background-color: #f564a9;
+    color: white;
+}
+
 
 .mail-list {
   display: flex;
