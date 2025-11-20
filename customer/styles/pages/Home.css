@@ -3,6 +3,8 @@
     font-weight: 550;
 }
 
+
+
 .main 
 {
     width: 100%;
@@ -10,6 +12,11 @@
     height: fit-content;
     background-color: var(--c10);
     margin-top: 120px;
+}
+
+.main.active 
+{
+    margin-top: 75px;
 }
 
 
@@ -72,7 +79,8 @@
 {
     width: 100%;
     display: flex;
-    gap: 24px;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .main__hero-banner-content-sub1 ul li 
@@ -87,30 +95,24 @@
 
 .main__hero-banner-content-sub1 ul li:nth-child(1)
 {
-    background-color: var(--c6);
-    color: var(--c5);
+    background-color: var(--c10);
+    color: var(--c6);
     border: 2px solid var(--c6);
 }
 
 .main__hero-banner-content-sub1 ul li:nth-child(1):hover 
 {
     border: 2px solid var(--c6);
-    color: var(--c6);
-    background-color: var(--c10);
+    color: var(--c10);
+    background-color: var(--c6);
 }
 
 
 .main__hero-banner-content-sub1 ul li:nth-child(2)
 {
-    border: 2px solid var(--c6);
+    border: none;
     color: var(--c6);
-}
-
-.main__hero-banner-content-sub1 ul li:nth-child(2):hover
-{
-    background-color: var(--c6);
-    color: var(--c5);
-    border: 2px solid var(--c6);
+    font-size: 24px;
 }
 
 
@@ -221,7 +223,7 @@
 
 .main__categories ul li:hover 
 {
-    background-color: var(--c5);
+    background-color: var(--c10);
     color: var(--c6);
 }
 .main__categories ul li:hover a

@@ -16,6 +16,12 @@
     top: 0;
     left: 0;
     z-index: 1000;
+    box-shadow: var(--bx1);
+}
+
+.header.active 
+{
+    height: fit-content;
 }
 
 .header-cart
@@ -110,6 +116,11 @@
     border-radius: 8px;
 }
 
+.header-cart .sub-info a:hover
+{
+    color: var(--c10);
+}
+
 
 
 
@@ -143,15 +154,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
     overflow: hidden;
     border-radius: 100px;
+    border: 2px solid var(--c10);
+    box-shadow: var(--bx1);
 }
 .nav__top .nav__top-logo .nav__logo-img img
 {
-   width: 200%;
-   height: 200%;
+   width: 150%;
+   height: 150%;
    object-fit: cover;
    
 }
@@ -160,7 +173,9 @@
 .nav__top-logo h1 
 {
     font-size: 24px;
-    color: var(--c4);
+    background: linear-gradient(45deg, var(--c6), var(--c6));
+    background-clip: text;
+    color: transparent;
     user-select: none;
 }
 
@@ -210,9 +225,11 @@
     border-bottom: 1px solid var(--c3);
     background-color: var(--c6);
     font-size: 16px;
+    border: 1px solid var(--c6);
     color: var(--c10);
     cursor: pointer;
 }
+
 
 .nav__top .nav__top-actions
 {
@@ -236,6 +253,10 @@
     color: var(--c6);
 }
 
+.nav__top-actions ul li a:hover
+{
+    color: var(--c6);
+}
 
 .nav__top .nav__top-actions .hovercart:hover .header-cart 
 {
@@ -248,6 +269,7 @@
 {
     width: 100%;
     height: 1px;
+    border-radius: 100px;
     background-color: var(--c3);
 }
 

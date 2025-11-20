@@ -1,6 +1,6 @@
 .hero 
 {
-  height: 80vh;
+  height: 50vh;
   background-image: linear-gradient(to top, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
   display: flex;
   justify-content: center;
@@ -91,14 +91,16 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 16px;
+    padding: 24px;
     gap: 8px;
 }
 
 .story__text h2 
 {
     width: 100%;
+    font-size: 30px;
     text-align: left;
+    color: var(--c6);
 }
 
 .story__text p 
@@ -191,6 +193,7 @@
     align-items: center;
     gap: 12px;
     justify-content: center;
+    border-radius: 10px;
 }
 
 
@@ -234,6 +237,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 8px;
 }
 
 
@@ -349,33 +353,61 @@
     justify-content: space-around;
 }
 
+.testimonials__cards ul 
+{
+    width: 100%;
+    overflow-x: auto;
+    display: flex;
+    gap: 12px;
+    padding: 8px;
+}
+.testimonials__cards ul li
+{
+    flex: 0 0 auto;
+    min-width: 250px;
+}
+
+
 .testimonials__card 
 {
-    min-width: 200px;
-    min-height: 100px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 12px 16px;
+    flex-direction: column;
+    /* max-width: 250px; */
+    /* border: 1px solid var(--c4); */
+    box-shadow: var(--bx1);
     border-radius: 10px;
-    border: 1px solid var(--10);
+    padding: 12px;
+    gap: 8px;
+}
+
+.testimonials__card .card__top 
+{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.testimonials__card .card__top .img-container
+{
+    width: 40px;
+    height: 40px;
+    border-radius: 100px;
+    overflow: hidden;
+    border: 1px solid var(--c10);
     box-shadow: var(--bx1);
 }
-
-
-/* -------------------------------- */
-/* 8. CONTACT */
-/* -------------------------------- */
-.contact {
-  text-align: center;
+.testimonials__card .card__top .img-container img
+{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.contact__title {
-  font-size: 2rem;
-  margin-bottom: 20px;
+.testimonials__card .card__bottom
+{
+    width: 100%;
 }
-
-.contact p {
-  color: var(--c3);
-  margin-top: 10px;
+.testimonials__card .card__bottom p
+{
+    width: 100%;
 }

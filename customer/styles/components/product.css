@@ -4,9 +4,16 @@
     height: fit-content;
     border-radius: 12px;
     overflow: hidden;
-    border: 1px solid var(--c5);
+    border: 2px solid transparent;
     display: flex;
     flex-direction: column;
+    transition: .2s ease;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+}
+
+.product:hover 
+{
+    border: 2px solid var(--c6);
 }
 
 

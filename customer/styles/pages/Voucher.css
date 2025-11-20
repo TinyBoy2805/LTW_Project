@@ -3,7 +3,7 @@
   text-align: center;
   background: linear-gradient(135deg, #f564a9, #f88cc0);
   color: #fff;
-  border-radius: 12px;
+  /* border-radius: 12px; */
   padding: 44px 16px; 
   margin-bottom: 32px; 
 }
@@ -33,7 +33,7 @@
 {
   padding: 8px 16px; 
   border: 1px solid #ddd;
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
   transition: all 0.2s ease;
 }
