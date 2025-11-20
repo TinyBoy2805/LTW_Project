@@ -179,7 +179,7 @@
                                 <option value="supplement">Thực phẩm bổ sung</option>
                             </select>
                         </div>
-                        <div class="two__column__input">
+                        <!-- <div class="two__column__input">
                             <div class="form__input">
                                 <p class="product__price">Giá bán (VNĐ)</p>
                                 <input type="text" id="product__price" name="product-price" placeholder="Ví dụ: 125.000"
@@ -190,7 +190,63 @@
                                 <input type="text" id="product__quantity" name="product-quanttity"
                                     placeholder="Ví dụ: 20" autocomplete="off">
                             </div>
+                        </div> -->
+                        <div class="product-units">
+                            <div class="product-units__list" id="unit-input-list">
+                                <div class="unit-item" data-unit-id="1">
+                                    <div class="form__input unit-item__unit">
+                                        <p class="form__label">Đơn vị</p>
+                                        <select name="unit-type[]" class="unit-item__select">
+                                            <option value="le">Lẻ (Hộp/Gói)</option>
+                                            <option value="loc">Lốc</option>
+                                            <option value="thung">Thùng</option>
+                                        </select>
+                                    </div>
+                                    <div class="form__input unit-item__qty">
+                                        <p class="form__label">Số lượng</p>
+                                        <input type="number" name="unit-qty[]" placeholder="Số lượng" value="1" min="1">
+                                    </div>
+                                    <div class="form__input unit-item__price">
+                                        <p class="form__label">Giá nhập (VNĐ)</p>
+                                        <input type="text" name="unit-price[]" placeholder="Giá nhập"
+                                            autocomplete="off">
+                                    </div>
+                                    <button type="button" class="unit-item__remove-btn" style="display: none;">
+                                        <ion-icon name="close-circle-outline"></ion-icon>
+                                    </button>
+                                </div>
+
+                            </div>
+
+                            <button type="button" id="add-unit-btn" class="product-units__add-btn">
+                                <ion-icon name="add-circle-outline"></ion-icon>
+                                Thêm đơn vị nhập khác
+                            </button>
                         </div>
+                        <template id="unit-item-template">
+                            <div class="unit-item">
+                                <div class="form__input unit-item__unit">
+                                    <p class="form__label">Đơn vị</p>
+                                    <select name="unit-type[]" class="unit-item__select">
+                                        <option value="le">Lẻ (Hộp/Gói)</option>
+                                        <option value="loc">Lốc</option>
+                                        <option value="thung">Thùng</option>
+                                    </select>
+                                </div>
+                                <div class="form__input unit-item__qty">
+                                    <p class="form__label">Số lượng</p>
+                                    <input type="number" name="unit-qty[]" placeholder="Số lượng" min="1">
+                                </div>
+                                <div class="form__input unit-item__price">
+                                    <p class="form__label">Giá nhập (VNĐ)</p>
+                                    <input type="text" name="unit-price[]" placeholder="Giá nhập" autocomplete="off">
+                                </div>
+                                <button type="button" class="unit-item__remove-btn">
+                                    <ion-icon name="close-circle-outline"></ion-icon>
+                                </button>
+                            </div>
+                        </template>
+
                         <div class="two__column__input">
                             <div class="form__input">
                                 <p class="product__receipt__day">Ngày nhập kho</p>
@@ -203,6 +259,7 @@
                                     autocomplete="off">
                             </div>
                         </div>
+
                         <div class="form__input description">
                             <p class="product__description">Mô tả sản phẩm</p>
                             <textarea type="" id="product__description" name="product-description"
@@ -211,33 +268,28 @@
                     </form>
                     <div class="choose__product__img">
                         <p class="choose__product__img__title">Thêm ảnh cho sản phẩm</p>
-                        <div class="img__container">
-                            <div class="img__item">
-                                <img src="../imgs/milk__powder.webp" alt="Sữa bột GrowPro (1-3 tuổi)">
+                        <div class="img-group__main">
+                            <p class="img-group__title">1. Chọn ảnh chính cho sản phẩm (Tối đa 1)</p>
+                            <div class="main-group__item">
+                                <img src="../imgs/milk__powder.webp" alt="Sữa bột GrowPro (Ảnh chính)">
                             </div>
-                            <div class="img__item">
-                                <img src="../imgs/cereal.webp" alt="Bột ăn dặm Rau Củ Sơ Sinh">
-                            </div>
-                            <div class="img__item">
-                                <img src="../imgs/cracker.webp" alt="Bánh ăn dặm Chuối Dẹt (9M+)">
-                            </div>
-                            <div class="img__item">
-                                <img src="../imgs/fresh__cheese.webp" alt="Phô mai tươi vị Vanila">
-                            </div>
-                            <div class="img__item">
-                                <img src="../imgs/nut__milk.webp" alt="Sữa hạt Óc Chó & Hạnh Nhân">
-                            </div>
-                            <div class="img__item">
-                                <img src="../imgs/bird__nest.jpg" alt="Yến sào chưng sẵn cho bé">
-                            </div>
-                            <div class="img__item">
-                                <img src="../imgs/whey.webp" alt="Váng sữa tự nhiên vị Dâu">
-                            </div>
-                            <div class="img__item">
-                                <img src="../imgs/milk.webp" alt="Sữa tươi Organic không đường (Thùng)">
-                            </div>
-                            <div class="add__img">
-                                <ion-icon name="add-outline"></ion-icon>
+                        </div>
+
+                        <div class="img-group__secondary">
+                            <p class="img-group__title">2. Chọn ảnh phụ cho sản phẩm (Tối đa 4)</p>
+                            <div class="img-group__container">
+                                <div class="img-group__item secondary-item">
+                                    <img src="../imgs/cereal.webp" alt="Bột ăn dặm Rau Củ">
+                                </div>
+                                <div class="img-group__item secondary-item">
+                                    <img src="../imgs/cracker.webp" alt="Bánh ăn dặm Chuối Dẹt">
+                                </div>
+                                <div class="img-group__item secondary-item">
+                                    <img src="../imgs/fresh__cheese.webp" alt="Phô mai tươi">
+                                </div>
+                                <div class="add__img">
+                                    <ion-icon name="add-outline"></ion-icon>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -255,6 +307,7 @@
 
     <!-- link to javascript for burger button -->
     <script src="../scripts/components/ExtendSidebar.js"></script>
+    <script src="../scripts/components/addProductUnit.js"></script>
 </body>
 
 </html>

@@ -40,7 +40,7 @@ body {
     align-items: start;
     flex-direction: column;
     gap: 8px;
-    padding: 24px;
+    padding: 0 24px 0 24px;
     overflow-y: auto;
     background-color: #f8f8f8;
 }
@@ -50,6 +50,14 @@ body {
     justify-content: space-between;
     align-items: center;
     width: 100%;
+
+    position: sticky;
+    top: 0; /* Đảm bảo nó dính ngay tại mép trên của vùng cuộn (container__content) */
+    z-index: 10;
+    background-color: #f8f8f8;
+    
+    /* Thêm padding-top đã bị xóa ở phần tử cha vào đây */
+    padding: 24px 24px 12px 12px;
 }
 
 .header__title {
