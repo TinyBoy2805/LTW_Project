@@ -293,6 +293,16 @@ input{
     color: white;
 }
 
+.clear__button,
+.apply__button {
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    cursor: pointer;
+    border: none;
+    font-weight: 600;
+    transition: opacity 0.2s;
+}
 
 .mail-list {
   display: flex;
