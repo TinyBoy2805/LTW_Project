@@ -225,9 +225,12 @@ body {
   color: #7a7a80;
   font-size: 13px;
   overflow-wrap: anywhere;
+<<<<<<< HEAD
   white-space: nowrap; /* force single-line */
   overflow: hidden;
   text-overflow: ellipsis; /* show ... when overflowing */
+=======
+>>>>>>> fde10e231e2f566d6bd809a5f494693c22c2f1d6
 }
 
 .time-pill {

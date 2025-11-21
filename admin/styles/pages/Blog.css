@@ -355,6 +355,7 @@ input{
   width: fit-content;
 }
 
+<<<<<<< HEAD
 /* Draft badge: gray / muted to look like a draft row */
 .card-badge.draft {
   background-color: #f2f2f2; 
@@ -363,6 +364,8 @@ input{
   box-shadow: none;
 }
 
+=======
+>>>>>>> fde10e231e2f566d6bd809a5f494693c22c2f1d6
 .card-title {
   font-size: 15px;
   font-weight: 700;
@@ -417,9 +420,16 @@ input{
 }
 
 .label {
+<<<<<<< HEAD
   font-size: 15px;
   font-weight: 500;
   color: #f564a9;
+=======
+  font-size: 14px;
+  font-weight: 500;
+  color: #f564a9;
+  margin-bottom: -5px;
+>>>>>>> fde10e231e2f566d6bd809a5f494693c22c2f1d6
   width: fit-content;
 }
 
@@ -491,8 +501,13 @@ input{
 }
 
 .add-thumb {
+<<<<<<< HEAD
   width: 110px;
   height: 110px;
+=======
+  width: 80px;
+  height: 80px;
+>>>>>>> fde10e231e2f566d6bd809a5f494693c22c2f1d6
   border: 2px dashed #F564A9;
   border-radius: 8px;
   display: flex;
@@ -692,6 +707,7 @@ input{
   background-color: #cc0000;
 }
 
+<<<<<<< HEAD
 /* Secondary button used for "Lưu bản nháp" placed between Cancel and Publish */
 .btn.secondary {
   background-color: white;
@@ -703,6 +719,8 @@ input{
   background-color: rgba(245, 100, 169, 0.06);
 }
 
+=======
+>>>>>>> fde10e231e2f566d6bd809a5f494693c22c2f1d6
 /* --- Responsive cho màn hình nhỏ hơn --- */
 @media (max-width: 1200px) {
   .blog-list {

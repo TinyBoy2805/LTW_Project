@@ -229,7 +229,11 @@ main.content > a {
   font-size: 14px;
   font-weight: 500;
   color: #f564a9;
+<<<<<<< HEAD
   margin-bottom: -7px;
+=======
+  margin-bottom: -8px;
+>>>>>>> fde10e231e2f566d6bd809a5f494693c22c2f1d6
   width: fit-content;
 }
 
