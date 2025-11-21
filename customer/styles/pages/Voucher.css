@@ -1,0 +1,53 @@
+.promo-banner 
+{
+  text-align: center;
+  background: linear-gradient(135deg, #f564a9, #f88cc0);
+  color: #fff;
+  /* border-radius: 12px; */
+  padding: 44px 16px; 
+  margin-bottom: 32px; 
+}
+
+.promo-banner h2 
+{
+  font-size: 28px; 
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.promo-banner p 
+{
+  font-size: 16px; 
+  margin: 0;
+}
+
+.promo-filter ul 
+{
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  list-style: none;
+}
+
+.promo-filter li 
+{
+  padding: 8px 16px; 
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.promo-filter li:hover 
+{
+  border-color: var(--c6);
+  color: var(--c6);
+}
+
+.promo-filter li.active 
+{
+  background: var(--c6);
+  color: var(--c10);
+  border-color: var(--c6);
+}
+

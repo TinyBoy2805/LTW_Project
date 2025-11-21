@@ -1,0 +1,915 @@
+@import url('../index.css');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+body {
+  height: 100vh;
+}
+
+/* KHỐI BAO NGOÀI CÙNG */
+.Blog.main {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.Blog .sidebar {
+   position: fixed;
+   left: 0;
+   top: 0;
+   height: 100vh;
+   width: 208px;
+   z-index: 40;
+}
+.Blog .container {
+   margin-left: 208px;
+}
+/* When sidebar is collapsed (via toggle), reduce container margin accordingly */
+.Blog.main.collapsed .sidebar {
+   width: 72px;
+}
+.Blog.main.collapsed .container {
+   margin-left: 72px;
+}
+
+/* KHỐI CHỨA HEADER VÀ NỘI DUNG */
+.content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 24px 24px 0 24px;
+}
+
+/* HEADER CỐ ĐỊNH (Không bị co lại) */
+.container__header {
+  flex-shrink: 0;
+  height: 60px;
+}
+
+/* NỘI DUNG CHÍNH (Content) */
+main.content {
+  flex-grow: 1;
+  overflow-y: auto;
+  background-color: #f8f8f8;
+}
+
+/* Khối nội dung chính (Content) */
+.content {
+  width: 100%;
+  background-color: #f8f8f8;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+}
+
+.content__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+}
+
+
+.content__header a {
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.content__title {
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+  margin-bottom: 20px;
+  padding: 0 0 0 24px;
+  flex-shrink: 0;
+}
+
+.content__panel {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  margin: 0 auto !important;
+  width: calc(100% - 48px) !important;
+  padding: 24px !important;
+  position: relative;
+  padding-bottom: 24px !important;
+  height: 100%;
+}
+
+.content__body {
+  display: flex;
+  width: 100%;
+  height: auto;
+  min-height: 480px;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
+  padding: 24px;
+  position: relative;
+  padding-bottom: 64px;
+}
+
+.content__body .actions-row {
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 18px;
+  padding: 0;
+}
+
+.content__panel .actions-row {
+  display: none;
+}
+
+.content__body .actions-row {
+  display: none;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  z-index: 5;
+  width: 100%;
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 24px;
+}
+
+.content__panel.creating .content__body .actions-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 18px;
+  padding: 0 24px;
+  box-sizing: border-box;
+}
+
+.content__panel.creating .content__body .actions-row .actions-left {
+  flex: 1 1 auto;
+}
+
+.content__panel.creating .content__body .actions-row .actions-right {
+  flex: 0 0 auto;
+  margin-left: 16px;
+}
+
+.content__panel.creating .content__body .actions-row .panel-actions {
+  display: inline-flex;
+  align-items: center;
+}
+
+.content__panel.creating .content__body .actions-row .actions .btn {
+  white-space: nowrap;
+}
+
+.form-wrap {
+  padding-bottom: 24px;
+}
+
+.content__panel.creating .panel-header {
+  margin-bottom: 8px;
+  padding-bottom: 12px;
+}
+
+.content__panel.creating .content__body {
+  padding-top: 12px;
+}
+
+.content__panel.creating .form-wrap {
+  margin-top: 0;
+  padding-top: 0;
+  align-items: flex-start;
+}
+
+/* --- Header Nội dung (Panel) --- */
+.panel-header {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  margin-bottom: 20px;
+  justify-content: flex-start;
+  gap: 20px;
+  padding: 24px 24px 20px 24px;
+}
+
+.controls {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-left: auto;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  border-radius: 30px;
+  background-color: #f0f0f0;
+  padding: 4px;
+}
+
+.tab-btn {
+  padding: 8px 16px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-weight: 600;
+  color: #858585;
+  border-radius: 20px;
+  transition: all 0.2s;
+}
+
+.tab-btn.active {
+  background-color: #F564A9;
+  color: white;
+  box-shadow: 0 2px 5px rgba(245, 100, 169, 0.5);
+}
+
+/* Search */
+.search__filter{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 348px;
+    height: 40px;
+    border-radius: 16px;
+    padding: 8px 12px;
+    background-color: white;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
+}
+
+input{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+    border: none;
+    font-size: 13px;
+    padding: 8px, 12px;
+    width: 100%;
+    color: #626262;
+}
+
+.search__box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.search__icon{
+    font-size: 20px;
+    margin-right: 12px;
+    cursor: pointer;
+    color: #626262;
+}
+
+/* --- Tab Content --- */
+.tab-panel {
+  display: none;
+  flex-grow: 1;
+  overflow-y: auto;
+  min-height: 0;
+  padding: 0;
+}
+
+.tab-panel.active {
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  height: 100%;
+  width: 100%;
+}
+
+/* --- Blog Card List (Tab Blogs) --- */
+.blog-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  padding: 0 24px 50px 24px;
+}
+
+.blog-card {
+  display: flex;
+  background-color: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0px 8px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  border: 1px solid #e0e0e0;
+}
+
+.blog-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(245, 100, 169, 0.2);
+}
+
+.content__panel.creating .search {
+  display: none;
+}
+
+.card__figure {
+  width: 28%;
+  min-width: 120px;
+  height: 100%;
+  margin: 0;
+}
+
+.card__figure img {
+  width: 100% !important;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 12px;
+  width: 72%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.card-badge {
+  display: inline-block;
+  background-color: #F564A9;
+  color: white;
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 10px;
+  font-weight: 600;
+  width: fit-content;
+}
+
+/* Draft badge: gray / muted to look like a draft row */
+.card-badge.draft {
+  background-color: #f2f2f2; 
+  color: #6b6b6b; 
+  border: 1px solid #e6e6e6;
+  box-shadow: none;
+}
+
+.card-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1C1C1C;
+  margin: 0;
+}
+
+.card-meta {
+  font-size: 12px;
+  color: #A4A4A4;
+  margin: 0;
+}
+
+.card-excerpt {
+  font-size: 13px;
+  color: #4C4C4C;
+  margin-top: 8px;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* --- Tab Tạo Blog (Create Panel) --- */
+.form-wrap {
+  display: flex;
+  gap: 24px;
+  padding: 24px;
+  flex-grow: 1;
+  min-width: 0;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.left-panel {
+  flex: 0 0 712px;
+  width: 712px;
+  min-width: 0;
+}
+
+.right-panel {
+  flex: 0 0 400px;
+  width: 400px;
+  min-width: 0;
+}
+
+.card-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.label {
+  font-size: 15px;
+  font-weight: 500;
+  color: #f564a9;
+  width: fit-content;
+}
+
+.input {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  padding: 10px 15px;
+  border-radius: 24px;
+  border: 2px solid #e4e4e4;
+  color: #4C4C4C;
+  transition: border-color 0.3s;
+  flex-shrink: 0;
+}
+
+.input:focus,
+.input:hover {
+  border-color: #F564A9;
+  outline: none;
+}
+
+.textarea {
+  border-radius: 12px;
+  resize: vertical;
+  min-height: 80px;
+  flex-shrink: 0;
+  min-width: 0;
+  white-space: pre-wrap !important;
+  overflow: auto;
+  text-overflow: clip;
+  width: 100%;
+}
+
+.detail-edit .textarea,
+#blog-content {
+  display: block;
+  -webkit-line-clamp: unset;
+  -webkit-box-orient: unset;
+}
+
+.row.two {
+  display: flex;
+  gap: 20px;
+}
+
+.row.two>div {
+  flex: 1;
+}
+
+/* Images Card */
+.images-card {
+  border: 1px solid #e4e4e4;
+  border-radius: 12px;
+  padding: 15px;
+  background-color: #fcfcfc;
+}
+
+.images-card h4 {
+  color: #f564a9;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.thumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.add-thumb {
+  width: 110px;
+  height: 110px;
+  border: 2px dashed #F564A9;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  color: #F564A9;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.add-thumb:hover {
+  background-color: rgba(245, 100, 169, 0.05);
+}
+
+/* --- Blog Detail / Edit Modal (Sidebar) --- */
+.blog-detail {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  max-height: 0;
+  background-color: white;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  z-index: 50;
+  overflow: hidden;
+  border: 1px solid var(--c1, #1C1C1C);
+  border-radius: 12px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  transition: all 0.3s ease;
+}
+
+.blog-detail::-webkit-scrollbar {
+  display: none;
+}
+
+/* Trạng thái hiển thị */
+.blog-detail.show {
+  width: 700px;
+  height: auto;
+  max-height: 90vh;
+  overflow-y: auto;
+  transform: translate(-50%, -50%);
+}
+
+.blog-detail.show .detail-subject {
+  color: var(--c1, #1C1C1C);
+}
+
+.blog-detail .detail-left {
+  display: none;
+}
+
+.detail-header {
+  display: flex;
+  justify-content: flex-end;
+  /* Căn nút đóng sang phải */
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.detail-subject {
+  font-size: 18px;
+  font-weight: 700;
+  color: #F564A9;
+  margin: 0;
+}
+
+.detail-meta {
+  font-size: 13px;
+  color: #A4A4A4;
+}
+
+.detail-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Ẩn ngày đăng */
+.blog-detail .detail-date {
+  display: none;
+}
+
+.detail-close {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #A4A4A4;
+  transition: color 0.2s;
+}
+
+.detail-close:hover {
+  color: #F564A9;
+}
+
+.detail-edit {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.detail-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.detail-edit .textarea {
+  width: 100%;
+  max-height: 40vh;
+  height: 120px;
+  resize: none;
+  overflow: auto;
+}
+
+#blog-content {
+  width: 100% !important;
+  height: 80px !important;
+  resize: none !important;
+  overflow: auto !important;
+}
+
+/* --- Action Row dưới cùng --- */
+.actions-row {
+  display: none;
+  /* Mặc định ẩn, chỉ hiện khi ở tab "Tạo Blog" */
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px 0 24px;
+  width: 100%;
+}
+
+/* Hiển thị actions-row khi đang tạo blog */
+.content__panel.creating~.actions-row {
+  display: flex;
+}
+
+.content__panel.creating .actions-row {
+  display: grid;
+}
+
+.note {
+  font-size: 13px;
+  color: #f564a9;
+  font-weight: 200;
+}
+
+.actions-right {
+  display: flex;
+  gap: 12px;
+}
+
+/* Buttons */
+.btn {
+  padding: 10px 20px;
+  border-radius: 24px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn.primary {
+  background-color: #F564A9;
+  color: white;
+  border: 1px solid #F564A9;
+}
+
+.btn.primary:hover {
+  background-color: #e14d95;
+}
+
+.btn.ghost {
+  background-color: transparent;
+  color: #4C4C4C;
+  border: 1px solid #e4e4e4;
+}
+
+.btn.ghost:hover {
+  background-color: #f0f0f0;
+}
+
+.btn.danger {
+  background-color: #ff4d4d;
+  color: white;
+  border: 1px solid #ff4d4d;
+}
+
+.btn.danger:hover {
+  background-color: #cc0000;
+}
+
+/* Secondary button used for "Lưu bản nháp" placed between Cancel and Publish */
+.btn.secondary {
+  background-color: white;
+  color: #F564A9;
+  border: 1px solid #F564A9;
+}
+
+.btn.secondary:hover {
+  background-color: rgba(245, 100, 169, 0.06);
+}
+
+/* --- Responsive cho màn hình nhỏ hơn --- */
+@media (max-width: 1200px) {
+  .blog-list {
+    grid-template-columns: 1fr;
+    /* 1 cột trên màn hình nhỏ */
+  }
+
+  .form-wrap {
+    flex-direction: column;
+  }
+
+  .left-panel,
+  .right-panel {
+    flex: none;
+    width: 100%;
+  }
+}
+
+@media (max-width: 1000px) {
+  .content__panel .actions-row {
+    position: relative;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    grid-template-columns: 1fr;
+    margin-top: 12px;
+  }
+}
+
+@media (max-width: 900px) {
+  .detail-right {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 5px;
+  }
+
+  .detail-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+  }
+
+  .detail-date {
+    margin-top: 5px;
+  }
+
+  .blog-detail.show {
+    width: 100%;
+    /* Modal chiếm toàn màn hình trên mobile */
+  }
+}
+
+@media (max-width: 700px) {
+  .panel-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .controls {
+    width: 100%;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .search-input {
+    width: 100%;
+  }
+}
+
+.Blog .content__panel {
+  padding-top: 12px !important;
+  padding-left: 24px !important;
+  padding-right: 24px !important;
+  padding-bottom: 24px !important;
+}
+
+.Blog .panel-header {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+}
+
+.filter__wrapper {
+    /* Đảm bảo khung lọc (absolute) được định vị theo wrapper này */
+    position: relative; 
+    display: inline-block; 
+}
+
+.filter__button {
+    /* Style cho nút Lọc */
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 24px;
+    background-color: white;
+    color: #f564a9;
+    font-weight: 500;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.line{
+    width: 1px;
+    height: 20px;
+    background-color: #868686;
+    border-radius: 100px;
+}
+
+.filter__button ion-icon {
+    font-size: 16px;
+}
+
+.filter__frame {
+    /* Khung Lọc (Filter Frame) */
+    position: absolute;
+    top: 100%; /* Đặt ngay dưới nút */
+    right: 0;
+    z-index: 20;
+    width: 280px; 
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    margin-top: 10px; 
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+/* Ẩn frame và không cho tương tác khi chưa click */
+.filter__frame.hidden {
+    opacity: 0;
+    visibility: hidden; 
+}
+
+.filter__frame__title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #eee;
+}
+
+.filter__group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.filter__group label {
+    font-size: 12px;
+    font-weight: 500;
+    color: #f564a9;
+}
+
+.filter__group select,
+.filter__group input[type="number"],
+.filter__group input[type="date"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 13px;
+    transition: border-color 0.2s;
+}
+
+.filter__group select:focus,
+.filter__group input:focus {
+    border-color: #f564a9;
+    outline: none;
+}
+
+.filter__actions {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+}
+
+.clear__button,
+.apply__button {
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    cursor: pointer;
+    border: none;
+    font-weight: 600;
+    transition: opacity 0.2s;
+}
+
+.clear__button {
+    background-color: #f7f7f7;
+    color: #626262;
+}
+
+.apply__button {
+    background-color: #f564a9;
+    color: white;
+}
+
+.action__btn{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
