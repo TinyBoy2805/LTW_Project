@@ -354,6 +354,13 @@ input{
   font-weight: 600;
   width: fit-content;
 }
+/* Draft badge: gray / muted to look like a draft row */
+.card-badge.draft {
+  background-color: #f2f2f2; 
+  color: #6b6b6b; 
+  border: 1px solid #e6e6e6;
+  box-shadow: none;
+}
 
 .card-title {
   font-size: 15px;
@@ -409,10 +416,9 @@ input{
 }
 
 .label {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500;
   color: #f564a9;
-  margin-bottom: -5px;
   width: fit-content;
 }
 
@@ -484,8 +490,8 @@ input{
 }
 
 .add-thumb {
-  width: 80px;
-  height: 80px;
+  width: 110px;
+  height: 110px;
   border: 2px dashed #F564A9;
   border-radius: 8px;
   display: flex;
@@ -683,6 +689,16 @@ input{
 
 .btn.danger:hover {
   background-color: #cc0000;
+}
+/* Secondary button used for "Lưu bản nháp" placed between Cancel and Publish */
+.btn.secondary {
+  background-color: white;
+  color: #F564A9;
+  border: 1px solid #F564A9;
+}
+
+.btn.secondary:hover {
+  background-color: rgba(245, 100, 169, 0.06);
 }
 
 /* --- Responsive cho màn hình nhỏ hơn --- */

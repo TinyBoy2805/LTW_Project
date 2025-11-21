@@ -19,10 +19,20 @@ document.addEventListener('DOMContentLoaded', function () {
     if (contentPanel) {
       contentPanel.classList.toggle('creating', name === 'create');
     }
+    // Ẩn/hiện thanh tìm kiếm/lọc phụ thuộc tab
+    const searchFilter = document.querySelector('.search__filter');
+    if (searchFilter) {
+      // Ẩn thanh lọc khi đang ở tab 'create' (Tạo Blog), hiện ở tab 'blogs'
+      searchFilter.style.display = (name === 'create') ? 'none' : '';
+    }
+
   }
   tabButtons.forEach(btn => {
     btn.addEventListener('click', () => showPanel(btn.dataset.tab));
   });
+  // đảm bảo trạng thái ban đầu khớp với tab đang active (nếu có)
+  const initialActive = document.querySelector('.tab-btn.active');
+  if (initialActive) showPanel(initialActive.dataset.tab);
   // Khi ấn vào thẻ blog -> mở modal chỉnh sửa
   const blogDetail = document.querySelector('.blog-detail');
   let activeCard = null;
@@ -49,37 +59,38 @@ document.addEventListener('DOMContentLoaded', function () {
   function openBlogEditor(card) {
     activeCard = card;
     const title = card.querySelector('.card-title')?.textContent || '';
-    const badge = card.querySelector('.card-badge')?.textContent || '';
     const meta = card.querySelector('.card-meta')?.textContent || '';
-    const excerpt = card.querySelector('.card-excerpt')?.textContent || '';
-
-    // dữ liệu meta dự kiến như "Bởi: Author — dd/mm/yyyy"
-    let author = '';
+    const rawExcerpt = card.querySelector('.card-excerpt')?.textContent || '';
+    const excerpt = rawExcerpt.replace(/\s+/g, ' ').trim();
+    const linkEl = card.querySelector('.card-link');
+    const link = linkEl ? (linkEl.getAttribute('href') || linkEl.textContent.trim()) : '';
     let date = '';
     if (meta) {
-      const parts = meta.split('—');
-      if (parts.length >= 2) {
-        author = parts[0].replace('Bởi:', '').trim();
-        date = parts[1].trim();
-      } else {
-        author = meta.replace('Bởi:', '').trim();
-      }
+      const m = meta.match(/(\d{1,2}\/\d{1,2}\/\d{4})|(\d{4}-\d{2}-\d{2})/);
+      if (m) date = m[0];
     }
 
     // điền dữ liệu vào modal
     if (!blogDetail) return;
-    blogDetail.querySelector('.detail-subject').textContent = title || 'Tiêu đề bài viết';
-    blogDetail.querySelector('.detail-sender').textContent = author || '';
+    blogDetail.querySelector('.detail-subject').textContent = (title || 'Tiêu đề bài viết').trim();
+    // clear sender (author) since author is not used in new workflow
+    blogDetail.querySelector('.detail-sender').textContent = '';
     blogDetail.querySelector('.detail-date').textContent = date || '';
     blogDetail.querySelector('.edit-title').value = title;
-    blogDetail.querySelector('.edit-author').value = author;
-    // đặt select category theo giá trị (so khớp options)
-    const sel = blogDetail.querySelector('.edit-category');
-    for (const opt of sel.options) { if (opt.text === badge) { opt.selected = true; } }
+    const editLink = blogDetail.querySelector('.edit-link');
+    if (editLink) editLink.value = link || '';
     blogDetail.querySelector('.edit-date').value = formatDateForInput(date);
-    // chuẩn hóa nội dung excerpt để loại bỏ nhiều dòng và khoảng trắng thừa
-    const normalized = (excerpt || '').replace(/\r?\n+/g, ' ').replace(/\s+/g, ' ').trim();
-    blogDetail.querySelector('.edit-content').value = normalized;
+    const editContent = blogDetail.querySelector('.edit-content');
+    if (editContent) editContent.value = excerpt;
+
+    // If this card is a draft, change the save button to 'Đăng' and mark as publish mode
+    const saveBtn = blogDetail.querySelector('.edit-save');
+    const badge = card.querySelector('.card-badge');
+    const isDraft = badge && (badge.classList.contains('draft') || /nháp/i.test(badge.textContent || ''));
+    if (saveBtn) {
+      saveBtn.textContent = isDraft ? 'Đăng' : 'Cập nhật';
+      saveBtn.dataset.publish = isDraft ? '1' : '0';
+    }
 
     blogDetail.classList.add('show');
     blogDetail.setAttribute('aria-hidden', 'false');

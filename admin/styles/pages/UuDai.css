@@ -79,7 +79,7 @@ body {
   color: black;
 }
 
-/* ===== NỘI DUNG CHÍNH TRANG KHÁCH HÀNG ===== */
+/* ===== NỘI DUNG CHÍNH TRANG ƯU ĐÃI ===== */
 
 .content__panel {
   background-color: white;
@@ -144,7 +144,7 @@ body {
   -webkit-overflow-scrolling: touch;
   width: 100%;
   box-sizing: border-box;
-  padding: 0 24px 50px 24px;
+  padding: 0 24px 5px 24px;
 }
 
 .panel-header {
@@ -225,6 +225,9 @@ body {
   color: #7a7a80;
   font-size: 13px;
   overflow-wrap: anywhere;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; 
 }
 
 .time-pill {
@@ -270,17 +273,6 @@ body {
   .form-wrap { flex-direction: column; }
 }
 
-/* ===== Additive: harmonize main content typography with your font ===== */
-.container__content,
-.content,
-.offers,
-.card {
-  font-family: 'Be Vietnam Pro', sans-serif;
-  color: #111827;
-  line-height: 1.45;
-  -webkit-font-smoothing: antialiased;
-}
-
 .UuDai .content__panel {
   padding-top: 12px !important;
   padding-left: 24px !important;
@@ -293,3 +285,166 @@ body {
   padding-bottom: 12px;
   margin-bottom: 12px;
 }
+
+.offer-detail.blog-detail {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  max-height: 0;
+  background-color: white;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  z-index: 80;
+  overflow: hidden;
+  border: 1px solid var(--c1, #1C1C1C);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.offer-detail.blog-detail.show {
+  width: 700px;
+  height: auto;
+  max-height: 90vh;
+  overflow-y: auto;
+  transform: translate(-50%, -50%);
+}
+
+.offer-detail.blog-detail .detail-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.offer-detail.blog-detail .detail-subject {
+  font-size: 18px;
+  font-weight: 700;
+  color: #F564A9;
+  margin: 0;
+}
+
+.offer-detail.blog-detail .detail-meta {
+  font-size: 13px;
+  color: #A4A4A4;
+}
+
+.offer-detail.blog-detail .detail-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.offer-detail.blog-detail .detail-close {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #A4A4A4;
+  transition: color 0.2s;
+}
+
+.offer-detail.blog-detail .detail-close:hover { color: #F564A9; }
+
+.offer-detail.blog-detail .detail-edit {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.offer-detail.blog-detail .detail-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* Buttons inside the offer modal to match Blog appearance */
+.offer-detail.blog-detail .btn {
+  padding: 10px 20px;
+  border-radius: 24px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.offer-detail.blog-detail .btn.primary {
+  background-color: #F564A9;
+  color: white;
+  border: 1px solid #F564A9;
+}
+.offer-detail.blog-detail .btn.primary:hover { background-color: #e14d95; }
+
+.offer-detail.blog-detail .btn.ghost {
+  background-color: transparent;
+  color: #4C4C4C;
+  border: 1px solid #e4e4e4;
+}
+.offer-detail.blog-detail .btn.ghost:hover { background-color: #f0f0f0; }
+
+.offer-detail.blog-detail .btn.danger {
+  background-color: #ff4d4d;
+  color: white;
+  border: 1px solid #ff4d4d;
+}
+.offer-detail.blog-detail .btn.danger:hover { background-color: #cc0000; }
+
+.offer-detail.blog-detail .btn.secondary {
+  background-color: white;
+  color: #F564A9;
+  border: 1px solid #F564A9;
+}
+.offer-detail.blog-detail .btn.secondary:hover { background-color: rgba(245,100,169,0.06); }
+
+/* form controls (scoped) */
+.offer-detail.blog-detail .label {
+  font-size: 15px;
+  font-weight: 500;
+  color: #f564a9;
+  width: fit-content;
+}
+
+.offer-detail.blog-detail .input {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  padding: 10px 15px;
+  border-radius: 24px;
+  border: 2px solid #e4e4e4;
+  color: #4C4C4C;
+  transition: border-color 0.3s;
+}
+
+.offer-detail.blog-detail .input:focus,
+.offer-detail.blog-detail .input:hover {
+  border-color: #F564A9;
+  outline: none;
+}
+
+.offer-detail.blog-detail .textarea {
+  border-radius: 12px;
+  resize: vertical;
+  min-height: 80px;
+  white-space: pre-wrap !important;
+  overflow: auto;
+  width: 100%;
+}
+
+.offer-detail.blog-detail .detail-edit .textarea {
+  width: 100%;
+  max-height: 40vh;
+  height: 80px;
+  resize: none;
+}
+
+.offer-detail.blog-detail .detail-subject {
+  text-align: center;
+  width: 100%;
+}
+
+/* Hide the visible title in the modal body so header shows only the close button */
+.offer-detail.blog-detail .detail-subject { display: none; }
