@@ -163,7 +163,7 @@
 
           <div class="offers">
             <!-- offer item -->
-            <article class="card" role="listitem">
+            <article class="card" role="listitem" data-category="sua" data-customer="tat-ca">
               <figure class="card__figure">
                 <img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="">
               </figure>
@@ -176,7 +176,7 @@
               </div>
             </article>
 
-            <article class="card" role="listitem">
+            <article class="card" role="listitem" data-category="sua" data-customer="tat-ca">
               <figure class="card__figure">
                 <img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="">
               </figure>
@@ -189,7 +189,7 @@
               </div>
             </article>
 
-            <article class="card" role="listitem">
+            <article class="card" role="listitem" data-category="an-dam" data-customer="tat-ca">
               <figure class="card__figure">
                 <img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="">
               </figure>
@@ -202,7 +202,7 @@
               </div>
             </article>
 
-            <article class="card" role="listitem">
+            <article class="card" role="listitem" data-category="sua" data-customer="tat-ca">
               <figure class="card__figure">
                 <img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="">
               </figure>
@@ -215,7 +215,7 @@
               </div>
             </article>
 
-            <article class="card vip" role="listitem">
+            <article class="card vip" role="listitem" data-category="sua" data-customer="vip">
               <figure class="card__figure">
                 <img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="">
                 <span class="vip-badge" aria-hidden="true"><i class="fa-solid fa-crown"></i></span>
@@ -229,7 +229,7 @@
               </div>
             </article>
 
-            <article class="card vip" role="listitem">
+            <article class="card vip" role="listitem" data-category="sua" data-customer="vip">
               <figure class="card__figure">
                 <img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="">
                 <span class="vip-badge" aria-hidden="true"><i class="fa-solid fa-crown"></i></span>
@@ -243,7 +243,7 @@
               </div>
             </article>
 
-            <article class="card vip" role="listitem">
+            <article class="card vip" role="listitem" data-category="sua" data-customer="vip">
               <figure class="card__figure">
                 <img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="">
                 <span class="vip-badge" aria-hidden="true"><i class="fa-solid fa-crown"></i></span>
@@ -257,7 +257,7 @@
               </div>
             </article>
 
-            <article class="card" role="listitem">
+            <article class="card" role="listitem" data-category="sua" data-customer="thuong">
               <figure class="card__figure">
                 <img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="">
               </figure>
@@ -272,10 +272,56 @@
 
           </div> <!-- .offers -->
         </div> <!-- .content__panel -->
-      </main>
+          </main>
+
+          <!-- Offer detail / Edit modal -->
+          <aside class="offer-detail blog-detail" role="dialog" aria-hidden="true" aria-label="Chi tiết ưu đãi">
+            <header class="detail-header">
+              <button class="detail-close" aria-label="Đóng chi tiết"><i class="fa-solid fa-xmark"></i></button>
+            </header>
+
+            <form class="detail-edit" action="#" onsubmit="return false;">
+              <h4 class="detail-subject">Tiêu đề ưu đãi</h4>
+              <label class="label">Tiêu đề</label>
+              <input class="input edit-title" type="text" />
+
+              <label class="label">Mô tả</label>
+              <textarea class="input textarea edit-desc" rows="3" placeholder="Tóm tắt ngắn gọn ưu đãi"></textarea>
+
+              <label class="label">Mặt hàng</label>
+              <select class="input edit-category">
+                <option value="">-- Mặt hàng --</option>
+                <option value="sua">Sữa</option>
+                <option value="an-dam">Đồ ăn dặm</option>
+                <option value="thuc-uong">Thức uống dinh dưỡng</option>
+                <option value="dung-cu">Dụng cụ</option>
+              </select>
+
+              <label class="label">Khách hàng</label>
+              <select class="input edit-customer">
+                <option value="">-- Khách hàng --</option>
+                <option value="tat-ca">Tất cả</option>
+                <option value="thuong">Thường</option>
+                <option value="vip">Vip</option>
+              </select>
+
+              <label class="label">Áp dụng cho đơn từ</label>
+              <input class="input edit-min" type="text" />
+
+              <label class="label">Hạn sử dụng</label>
+              <input class="input edit-expiry" type="date" />
+
+              <div class="detail-actions">
+                <button type="button" class="btn primary edit-save">Lưu</button>
+                <button type="button" class="btn ghost edit-cancel">Hủy</button>
+                <button type="button" class="btn danger edit-delete">Xóa</button>
+              </div>
+            </form>
+          </aside>
     </div> <!-- .container -->
   </div> <!-- .UuDai.main -->
   <script src="../scripts/components/extendSidebar.js"></script>
+  <script src="../scripts/page/UuDai.js"></script>
 </body>
 
 </html>
