@@ -73,12 +73,18 @@
 .carousel button 
 {
     position:absolute;
-    height: 100%;
+    /* height: 100%; */
+    width: 30px;
+    height: 30px;
     padding: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: none;
+    border-radius: 50%;
     background-color: rgba(0, 0, 0, 0.3);
     color: var(--c10);
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
     cursor: pointer;
 }
@@ -90,14 +96,16 @@
 
 .carousel button:nth-child(1)
 {
-    top: 0;
-    left: 0;
+    top: 50%;
+    left: 8px;
+    transform: translateY(-50%);
 }
 
 .carousel button:nth-child(2)
 {
-    top: 0;
-    right: 0;
+    top: 50%;
+    right: 8px;
+    transform: translateY(-50%);
 }
 
 .carousel .img-container
@@ -111,6 +119,10 @@
     width: 100%;
     height: 100%;
     background-color: var(--c4);
+    border: 2px solid var(--c10);
+    box-shadow: var(--bx1);
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .img-slider img 
@@ -218,7 +230,7 @@
 
 .section1-right .actions button 
 {
-    padding: 12px 16px;
+    padding: 4px 8px;
     font-size: 14px;
     cursor: pointer;
     display: flex;
@@ -243,8 +255,11 @@
 
 .section1-right .actions button:nth-child(2)
 {
-    background-color: var(--c6);
-    color: var(--c10);
+    border: none;
+    background-color: var(--c10);
+    color: var(--c6);
+    font-size: 24px;
+    font-weight: bolder;
 }
 
 .section1-right .actions button:nth-child(2):hover 
@@ -274,6 +289,13 @@
 .main__product-description .product-description-header h3 
 {
     font-size: 20px;
+}
+
+ 
+.title-line
+{
+    flex: 1;
+    border-top: 2px dashed var(--c4);
 }
 
 .main__product-description .description
@@ -377,6 +399,32 @@
     flex-direction: column;
 }
 
+.main__comment .comment-more-button 
+{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.main__comment .main__today-suggestion-more 
+{
+    padding: 8px 20px;
+    border-radius: 6px;
+    border: 1px solid var(--c5);
+    outline: none;
+    color: var(--c1);
+    background-color: var(--c5);
+    cursor: pointer;
+    margin-bottom: 16px;
+    transition: .1s ease;
+}
+
+.main__comment .main__today-suggestion-more:hover 
+{
+    background-color: var(--c10);
+    color: var(--c1);
+}
+
 .comment-item 
 {
     display: flex;
@@ -395,7 +443,7 @@
     width: 40px;
     height: 40px;
     border-radius: 100px;
-    border: 1px solid var(--c4);
+    border: 1px solid var(--c3);
     overflow: hidden;
 }
 
@@ -487,6 +535,11 @@
     border: none;
     color: var(--c4);
     cursor: pointer;
+}
+
+.comment-right-sub4 button i.active 
+{
+    color: var(--c6);
 }
 
 .main__another 

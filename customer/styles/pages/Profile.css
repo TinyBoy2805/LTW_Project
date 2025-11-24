@@ -11,7 +11,7 @@
 .sidebar 
 {
     /* background-color: blue; */
-    width: 200px;
+    min-width: 200px;
     height: auto;
     border-right: 1px solid var(--c5);
 }
@@ -293,6 +293,7 @@
 #purchase-info
 {
     width: 100%;
+    max-width: 100%;
     display: flex;
     flex-direction: column;
     padding: 24px;
@@ -301,7 +302,7 @@
 #purchase-info .nav 
 {
     width: 100%;
-    background-color: transparent;
+    border-radius: 10px;
 }
 
 #purchase-info .nav ul 
@@ -328,16 +329,60 @@
     color: var(--c6);
 }
 
-#purchase-info .content
+#purchase-info .content 
 {
+    width: 1000px;
     margin-top: 12px;
     display: none;
 }
-
-#purchase-info .content.active
+#purchase-info .content.active 
 {
     display: block;
 }
+
+#purchase-info .content.active .content-list 
+{
+    display: flex;
+    gap: 12px;
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 8px;
+}
+
+/* WebKit browsers (Chrome, Edge, Safari) */
+#purchase-info .content.active ul::-webkit-scrollbar 
+{
+    height: 10px;
+}
+
+#purchase-info .content.active ul::-webkit-scrollbar-track 
+{
+    background: transparent;
+}
+
+#purchase-info .content.active ul::-webkit-scrollbar-thumb 
+{
+    background: rgba(0,0,0,0.18);
+    border-radius: 10px;
+    border: 2px solid transparent; /* creates padding effect */
+    background-clip: padding-box;
+}
+
+#purchase-info .content.active ul::-webkit-scrollbar-thumb:hover 
+{
+    background: rgba(0,0,0,0.32);
+}
+
+#purchase-info .content.active ul::-webkit-scrollbar-corner 
+{
+    background: transparent;
+}
+
+
+
+
+
+
 
 
 /* ///////////////////////////////////// */
@@ -362,6 +407,11 @@
     gap: 12px;
 }
 
+#security-info .container .content
+{
+    width: 100%;
+    display: flex;
+}
 
 #security-info .container .content ul 
 {
@@ -426,3 +476,175 @@
 }
 
 
+
+.order-card 
+{
+  width: 350px;
+  background-color: var(--c10);
+  border-radius: 12px;
+  box-shadow: var(--bx1);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border: 2px solid var(--c10);
+}
+
+.order-card:hover
+{
+    border: 2px solid var(--c6);
+}
+
+.order-header 
+{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.order-id 
+{
+  font-weight: 600;
+  color: var(--c4);
+}
+
+.order-status 
+{
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  color: #fff;
+}
+
+.order-status.delivered { background-color: #4eec53; }
+.order-status.pending { background-color: #ffc710; }
+.order-status.cancelled { background-color: #ff483b; }
+
+.order-body 
+{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.product-info
+{
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.product-info img 
+{
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 2px solid var(--c10);
+  box-shadow: var(--bx1);
+}
+
+.product-details 
+{
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.product-name 
+{
+  font-weight: 600;
+  color: var(--c1);
+}
+
+.product-quantity 
+{
+  font-size: 0.85rem;
+  color: var(--c4);
+}
+
+.order-summary
+{
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+}
+
+.order-summary p 
+{
+  margin: 0;
+  font-size: 13px;
+  color: var(--c4);
+}
+
+
+
+
+#voucher-info {
+    padding: 20px;
+}
+
+.section-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 16px;
+    color: var(--color6);
+}
+
+.voucher-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.voucher-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    border-radius: 14px;
+    padding: 16px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    border: 1px solid var(--border);
+}
+
+.voucher-left {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.voucher-icon {
+    font-size: 32px;
+}
+
+.voucher-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--c6);
+}
+
+.voucher-desc {
+    font-size: 14px;
+    color: var(--c4);
+}
+
+.voucher-exp {
+    font-size: 13px;
+    color: #999;
+}
+
+.voucher-btn {
+    background: var(--color6);
+    color: var(--c6);
+    border: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.voucher-btn:hover {
+    opacity: 0.85;
+}

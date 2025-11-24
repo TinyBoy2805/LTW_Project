@@ -87,7 +87,7 @@
             <div class="nav__line"></div>
             <div class="nav__bottom">
                 <ul>
-                    <li><a href="./Home.html" class="active">Trang chủ</a></li>
+                    <li><a href="./Home.html" class="">Trang chủ</a></li>
                     <li><a href="./Products.html">Sản phẩm</a></li>
                     <li><a href="./Voucher.html">Khuyến mãi</a></li>
                     <li><a href="./Blog.html">Cẩm nang</a></li>
@@ -100,11 +100,11 @@
 
     <main class="main">
 
-        <section class="main__payment">
+        <section class="main__payment active">
             <h2>Thanh toán đơn hàng</h2>
 
             <!-- 🧾 Bắt đầu form -->
-            <form action="/checkout" method="POST" class="payment__form">
+            <form class="payment__form">
 
                 <!-- 1️⃣ Thông tin khách hàng -->
                 <div class="payment__user-info">
@@ -224,13 +224,13 @@
                     <ul class="methods">
                         <li>
                             <label>
-                                <input type="radio" name="payment_method" value="cod" required>
+                                <input type="radio" name="payment_method" value="cod" required checked>
                                 Thanh toán khi nhận hàng
                             </label>
                         </li>
-                        <li>
+                        <li style="display: none;">
                             <label>
-                                <input type="radio" name="payment_method" value="bank">
+                                <input type="radio" name="payment_method" value="bank" > 
                                 Chuyển khoản ngân hàng
                             </label>
                         </li>
@@ -248,7 +248,7 @@
                 </div>
 
                 <div class="action">
-                    <button>Thanh toán</button>
+                    <button class="pay-btn">Thanh toán</button>
                 </div>
                 
             </form>
@@ -256,6 +256,23 @@
 
             </section>
 
+            <section class="payment__result">
+                <div class="payment-icon">✔</div>
+
+                <h2 class="payment-title">Thanh toán thành công!</h2>
+                <p class="payment-desc">Cảm ơn bạn đã mua hàng. Đơn hàng của bạn đang được xử lý.</p>
+
+                <div class="payment-info">
+                    <p><strong>Mã đơn hàng:</strong> #DH235678</p>
+                    <p><strong>Tổng tiền:</strong> 1.200.000₫</p>
+                    <p><strong>Phương thức thanh toán:</strong> Ví điện tử</p>
+                </div>
+
+                <div class="payment-actions">
+                    <a href="./Profile.html" class="btn-primary">Xem đơn hàng</a>
+                    <a href="./Home.html" class="btn-secondary">Tiếp tục mua sắm</a>
+                </div>
+            </section>
 
 
 
@@ -337,4 +354,5 @@
 
 
 </body>
+<script src="../scripts/Payment.js"></script>
 </html>

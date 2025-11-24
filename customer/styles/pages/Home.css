@@ -25,6 +25,7 @@
     width: 100%;
     height: fit-content;
     display: flex;
+    /* justify-content: center; */
 }
 
 .main__hero-banner .main__hero-banner-content
@@ -107,6 +108,11 @@
     background-color: var(--c6);
 }
 
+.main__hero-banner-content-sub1 ul li:nth-child(1):hover a 
+{
+    color: var(--c10);
+}
+
 
 .main__hero-banner-content-sub1 ul li:nth-child(2)
 {
@@ -168,6 +174,8 @@
     object-fit: contain;
     border-radius: 10px;
     overflow: hidden;
+    border: 2px solid var(--c10);
+    box-shadow: var(--bx1);
 }
 
 .main__hero-banner-image-container img 
@@ -597,5 +605,14 @@
 .main__contact-list ul li:hover 
 {
     background-color: var(--c6);
-    color: var(--c5);
+}
+
+.main__contact-list ul li a 
+{
+    color: var(--c6);
+}
+
+.main__contact-list ul li:hover a 
+{
+    color: var(--c10);
 }
