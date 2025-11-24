@@ -31,10 +31,14 @@
     background-size: cover;
     background-position: center;
     border-radius: 100%;
+    border-radius: 100%;
+    border: solid white 2px;
+    box-shadow: 4px 4px 10px 0 rgba(0, 0, 0, 0.08);
 }
 
 .sidebar__header h2 {
     font-size: 16px;
+    color: #F654a9;
 }
 
 .sidebar__list {
@@ -83,7 +87,7 @@
     transition: .3s;
 }
 
-.sidebar__list .list__item a:hover{
+.sidebar__list .list__item a:hover {
     background-color: #e14d95;
     color: white;
 }
@@ -97,15 +101,13 @@
     font-weight: bold;
 }
 
-.sidebar__list .list__item a
-{
+.sidebar__list .list__item a {
     overflow: hidden;
 }
 
 
 
-.sidebar__list .list__item a .title.active 
-{
+.sidebar__list .list__item a .title.active {
     opacity: 0;
     visibility: hidden;
     transform: translateX(-1000%);
