@@ -76,7 +76,7 @@ body {
 .content__body {
     display: flex;
     width: 100%;
-    height: 498px;
+    height: auto;
     justify-content: center;
     align-items: center;
     gap: 10px;
@@ -87,7 +87,7 @@ body {
 
 .add__product__form {
     display: flex;
-    width: 463px;
+    width: 50%;
     height: 100%;
     justify-content: start;
     align-items: start;
@@ -120,7 +120,7 @@ body {
 
 .unit-item {
     display: flex;
-    align-items: flex-end; /* Căn chỉnh các input nằm cùng dòng */
+    align-items: flex-end; 
     width: 100%;
     gap: 12px;
     margin-bottom: 4px;
@@ -260,7 +260,7 @@ textarea:focus {
     justify-content: start;
     align-items: start;
     flex-direction: column;
-    width: 100%;
+    width: 50%;
     height: 100%;
     padding: 24px;
     gap: 24px;
