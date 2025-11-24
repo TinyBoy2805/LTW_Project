@@ -1,11 +1,12 @@
 .promo-banner 
 {
   text-align: center;
-  background: linear-gradient(135deg, #f564a9, #f88cc0);
+  background: linear-gradient(135deg, #a64cff, #ffa0ce);
   color: #fff;
   /* border-radius: 12px; */
   padding: 44px 16px; 
   margin-bottom: 32px; 
+  border-bottom: 4px dashed var(--c10);
 }
 
 .promo-banner h2 

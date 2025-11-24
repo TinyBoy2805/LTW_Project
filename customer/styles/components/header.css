@@ -46,11 +46,13 @@
     width: 100%;
     height: fit-content;
     padding: 8px;
+    
 }
 
 .header-cart ul li 
 {
     width: 100%;
+    
 }
 
 .header-cart ul li .item 
@@ -103,6 +105,7 @@
 {
     font-size: 13px;
     color: var(--c4);
+    
 }
 
 
@@ -248,6 +251,7 @@
     cursor: pointer;
 }
 
+
 .nav__top-actions ul li:hover 
 {
     color: var(--c6);
@@ -307,6 +311,7 @@
 .nav__bottom ul li a
 {
     color: var(--c4);
+    text-transform: capitalize;
 }
 .nav__bottom ul li a:hover
 {
