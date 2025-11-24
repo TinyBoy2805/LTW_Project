@@ -1,0 +1,457 @@
+@import url('../index.css');
+
+.--instock
+{
+    background-color: transparent;
+    color: #08CB00;
+}
+
+.--pending
+{
+    background-color: transparent;
+    color: rgb(232, 194, 3);
+}
+
+
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+body {
+    height: 100vh;
+}
+
+.dashboard,
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    height: inherit;
+    width: 100%;
+}
+
+/* container css */
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* content of container css */
+.container__content {
+    width: 100%;
+    height: calc(100% - 60px);
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    flex-direction: column;
+    gap: 24px;
+    padding: 0 24px 0 24px;
+    overflow-y: auto;
+    background-color: #f8f8f8;
+}
+
+/* content title */
+.content__title {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    width: 100%;
+    
+    position: sticky;
+    top: 0; /* Đảm bảo nó dính ngay tại mép trên của vùng cuộn (container__content) */
+    z-index: 10;
+    background-color: #f8f8f8;
+    
+    /* Thêm padding-top đã bị xóa ở phần tử cha vào đây */
+    padding: 24px 24px 24px 12px;
+    margin-bottom: -24px;
+}
+
+/* 3 revenue card css */
+.overview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 212px;
+    padding: 24px;
+    gap: 12px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+}
+
+.overview__header {
+    width: 100%;
+    height: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.revenue {
+    color: #F654a9;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.unit {
+    color: #868686;
+    font-size: 12px;
+    font-weight: 200;
+}
+
+.overview__card {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    gap: 24px;
+}
+
+.card {
+    height: 100%;
+    padding: 16px;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    flex-direction: column;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    flex: 1; /* Cho phép các thẻ con mở rộng và thu hẹp bằng nhau */
+    min-width: 0; /* Đảm bảo nó có thể thu nhỏ */
+}
+
+.highlight {
+    height: 100%;
+    padding: 16px;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    flex-direction: column;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    background: linear-gradient(to right, #F564A9, #FFA3CF);
+    flex: 1; /* Cho phép các thẻ con mở rộng và thu hẹp bằng nhau */
+    min-width: 0; /* Đảm bảo nó có thể thu nhỏ */
+}
+
+.card__header__highlight {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 36%;
+}
+
+.title__highlight {
+    font-size: 13px;
+    font-weight: 300;
+    color: white;
+}
+
+.icon__highlight {
+    padding: 8px;
+    font-size: 20px;
+    background-color: #feb9da;
+    border-radius: 100%;
+    color: white;
+}
+
+.value__highlight {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+}
+
+.text__highlight {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.increase__highlight {
+    font-size: 10px;
+    padding: 2px 6px;
+    background-color: #f997c6;
+    border-radius: 12px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.text__highlight span {
+    font-size: 10px;
+    color: white;
+    font-weight: 600;
+}
+
+.card__header {
+    width: 100%;
+    height: 36px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card__header .title {
+    font-size: 13px;
+    font-weight: 300;
+    color: #868686;
+}
+
+.card__header .icon {
+    padding: 8px;
+    font-size: 20px;
+    background-color: #f3f3f3;
+    border-radius: 100%;
+    color: #aeaeae;
+}
+
+.card__data {
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.card__data .value {
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+}
+
+.card__data .text {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.increase {
+    font-size: 10px;
+    padding: 2px 6px;
+    background-color: #daf7d9;
+    border-radius: 12px;
+    color: #08CB00;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.decrease {
+    font-size: 10px;
+    padding: 2px 6px;
+    background-color: #fde2df;
+    border-radius: 12px;
+    color: #ed3f27;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.card__data .text span {
+    font-size: 10px;
+    color: black;
+    font-weight: 600;
+}
+
+/* chart css */
+.chart {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    height: 248px;
+    gap: 24px;
+}
+
+.chart__pie {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    flex-direction: column;
+    flex: 0 0 344px;
+    height: 100%;
+    padding: 24px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+}
+
+.chart__bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    flex-direction: column;
+    flex: 1;
+    height: 100%;
+    padding: 24px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+}
+
+.chart .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 20px;
+}
+
+.chart .header p {
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+}
+
+.chart .header .icon {
+    font-size: 20px;
+    color: black;
+}
+
+#pie,
+#bar {
+    width: 100%;
+    height: 164px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* table data css */
+.table {
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    gap: 16px;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    padding: 24px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+}
+
+.table__header {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    width: 100%;
+    height: 32px;
+}
+
+.filter {
+    display: flex;
+    width: auto;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    background-color: #f8f8f8;
+    border-radius: 30px;
+    padding: 8px 12px;
+    border: solid 1px #868686;
+    cursor: pointer;
+}
+
+.filter:hover {
+    text-decoration: underline;
+    background-color: #f3f3f3;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+table thead {
+    background-color: #fcfcfc;
+    color: #666;
+    text-align: left;
+}
+
+table th {
+    padding: 15px 18px;
+    font-weight: 500;
+    border-bottom: 1px solid #eee;
+}
+
+table td {
+    padding: 12px 18px;
+    border-bottom: 1px solid #f5f5f5;
+    font-size: 13px;
+}
+
+table tbody tr:hover {
+    background-color: #eaeaea;
+}
+
+.numerical {
+    font-weight: bold;
+    color: #F654a9;
+}
+
+.id {
+    font-weight: bold;
+}
+
+.status {
+    padding: 2px 6px;
+    border-radius: 12px;
+    font-weight: bold;
+}
+
+
+
+.table__bottom {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.table__bottom a {
+    text-decoration: none;
+}
+
+.viewmore {
+    display: flex;
+    width: auto;
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
+    background-color: #f8f8f8;
+    border-radius: 30px;
+    padding: 8px 12px;
+    border: solid 1px #868686;
+    cursor: pointer;
+}
+
+.viewmore:hover {
+    background-color: #ECECEC;
+}

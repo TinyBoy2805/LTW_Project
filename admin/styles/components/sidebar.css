@@ -1,0 +1,223 @@
+@import url('../index.css');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+/* sidebar css */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 240px;
+    border-right: solid #cdcdcd 1px;
+}
+
+.sidebar__header {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+    padding: 24px;
+}
+
+.sidebar__header img {
+    width: 48px;
+    height: 48px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 100%;
+    border-radius: 100%;
+    border: solid white 2px;
+    box-shadow: 4px 4px 10px 0 rgba(0, 0, 0, 0.08);
+}
+
+.sidebar__header h2 {
+    font-size: 16px;
+    color: #F654a9;
+}
+
+.sidebar__list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 12px 12px 12px;
+}
+
+.sidebar__list .list {
+    list-style: none;
+    width: 100%;
+}
+
+.sidebar__list .list__item {
+    width: 100%;
+    margin-bottom: 4px;
+}
+
+.sidebar__list .list__item a {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: 0.25s ease;
+    color: #868686;
+}
+
+.sidebar__list .icon {
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 400;
+}
+
+.sidebar__list .title {
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 400;
+    transition: .3s;
+}
+
+.sidebar__list .list__item a:hover {
+    background-color: #e14d95;
+    color: white;
+}
+
+.sidebar__list .list__item .active {
+    background-color: #F654a9;
+    color: #fafafa;
+}
+
+.sidebar__list .list__item .active .title {
+    font-weight: bold;
+}
+
+.sidebar__list .list__item a {
+    overflow: hidden;
+}
+
+
+
+.sidebar__list .list__item a .title.active {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-1000%);
+}
+
+.sidebar__list .list__item .section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+}
+
+.sidebar__list .list__item .badge {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    background-color: #F654a9;
+    border-radius: 30px;
+    color: white;
+    font-size: 10px;
+    padding: 2px 6px;
+}
+
+.sidebar__bottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 12px;
+    margin-top: auto;
+}
+
+.sidebar__bottom a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    padding: 12px;
+    gap: 12px;
+    text-decoration: none;
+    color: #868686;
+}
+
+.sidebar__bottom a:hover {
+    transform: scale(1.1);
+    opacity: 0.9;
+    color: Black;
+}
+
+.sidebar__bottom .icon {
+    color: #F654a9;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sidebar__bottom .title {
+    font-size: 16px;
+}
+
+/* shrink the sidebar after click the burger button */
+.sidebar {
+    transition: width 0.3s ease;
+}
+
+.container {
+    transition: all 0.3s ease;
+}
+
+.sidebar.collapsed {
+    width: 72px;
+}
+
+.sidebar.collapsed .sidebar__header {
+    padding: 24px 0;
+    justify-content: center;
+}
+
+.sidebar.collapsed .sidebar__header h2,
+.sidebar.collapsed .sidebar__list .title,
+.sidebar.collapsed .sidebar__list .badge {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+}
+
+
+
+.sidebar.collapsed .sidebar__list .list__item a {
+    justify-content: center;
+    padding: 12px 0;
+}
+
+.sidebar.collapsed .sidebar__list .section {
+    gap: 0;
+    width: 24px;
+    justify-content: center;
+}
+
+.sidebar.collapsed .sidebar__bottom a {
+    justify-content: center;
+}
+
+.sidebar.collapsed .sidebar__bottom .title {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.main.collapsed .container {
+    width: 100%;
+}
