@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Thiết lập cho trang Email (Email.html)
     setupFilterToggle('email__filter__btn', 'email__filter__frame');
 
-    // Thiết lập cho trang Blog (Blog.html)
+    // Thiết lập cho trang Bài viết (BaiViet.html)
     setupFilterToggle('blog__filter__btn', 'blog__filter__frame');
 
 

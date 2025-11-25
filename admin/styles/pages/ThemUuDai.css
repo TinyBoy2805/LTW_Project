@@ -12,7 +12,6 @@ body {
 }
 
 .ThemUuDai.main {
-  display: flex;
   flex-direction: row;
   height: 100vh;
   width: 100%;
@@ -208,15 +207,15 @@ main.content > a {
 }
 
 .left-panel {
-  flex: 0 0 660px;
-  width: 660px;
+  /* make the form take full available width now that images were removed */
+  flex: 1 1 auto;
+  width: 100%;
   min-width: 0;
 }
 
 .right-panel {
-  flex: 0 0 400px;
-  width: 400px;
-  min-width: 0;
+  /* images panel removed — hide any remaining right-panel markup */
+  display: none !important;
 }
 
 .card-form {
@@ -301,49 +300,12 @@ main.content > a {
   width: 100%;
 }
 
-.images-card {
-  border: 1px solid #e4e4e4;
-  border-radius: 12px;
-  padding: 15px;
-  background-color: #fcfcfc;
-}
-
-.images-card h4 {
-  color: #f564a9;
-  font-weight: 600;
-  margin-bottom: 10px;
-}
-
-.thumbs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.add-thumb {
-  width: 80px;
-  height: 80px;
-  border: 2px dashed #F564A9;
-  border-radius: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 30px;
-  color: #F564A9;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.add-thumb:hover {
-  background-color: rgba(245, 100, 169, 0.05);
-}
-
+/* image UI removed — keep styles here in case needed later (but keep them inert) */
+.images-card,
+.thumbs,
+.add-thumb,
 .thumbs img {
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
-  border-radius: 8px;
-  display: block;
+  display: none !important;
 }
 
 .content__panel.creating .content__body .actions-row .note {
