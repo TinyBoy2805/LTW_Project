@@ -8,11 +8,17 @@
 }
 
 body {
-    min-height: 100vh;
+    min-height: 100%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #f8f8f8;
+    background-image: url('../../imgs/background.png');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 /* register form css */
@@ -96,6 +102,7 @@ body {
 .form__option p {
     font-size: 12px;
     font-style: italic;
+    text-align: left;
 }
 
 .form__text {
@@ -197,7 +204,7 @@ body {
     text-decoration: underline;
 }
 
-img {
+.header img {
     width: 100px;
     height: 100px;
     display: flex;
