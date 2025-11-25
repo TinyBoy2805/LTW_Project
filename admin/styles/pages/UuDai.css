@@ -188,6 +188,26 @@ body {
   max-width: 100%;
 }
 
+/* Promo icon (replace images) */
+.promo-icon {
+  width: 140px;
+  height: 140px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  box-sizing: border-box;
+  background: linear-gradient(180deg, #eaf7ee 0%, #ffffff 100%);
+  color: #16a34a; /* green */
+  font-size: 40px;
+}
+.promo-icon i { color: #16a34a; font-size: 40px; }
+.promo-shipping { box-shadow: inset 0 0 0 1px rgba(22,163,74,0.06); }
+.promo-discount { box-shadow: inset 0 0 0 1px rgba(22,163,74,0.06); }
+
+/* hide old img if any exist (defensive) */
+.card__figure img { display: none; }
+
 .vip-badge {
   position: absolute;
   right: 3px;
@@ -300,7 +320,8 @@ body {
   overflow: hidden;
   border: 1px solid var(--c1, #1C1C1C);
   border-radius: 12px;
-  transition: all 0.3s ease;
+  transition: none; /* disable opening animation per request */
+  display: none;
 }
 
 .offer-detail.blog-detail.show {
@@ -423,6 +444,21 @@ body {
 .offer-detail.blog-detail .input:hover {
   border-color: #F564A9;
   outline: none;
+}
+
+.offer-detail.blog-detail select.input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding-right: 44px; 
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='%23F564A9' d='M5 7l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 14px;
+}
+
+.offer-detail.blog-detail input[type="date"].input {
+  padding-right: 36px;
 }
 
 .offer-detail.blog-detail .textarea {

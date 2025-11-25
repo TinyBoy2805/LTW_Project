@@ -12,7 +12,6 @@ body {
 }
 .KhachHang.main {
   display: flex;
-  /* keep sidebar + container side-by-side like other pages */
   flex-direction: row;
   height: 100vh;
   width: 100%;
@@ -135,6 +134,38 @@ body {
   color: white;
   box-shadow: 0 2px 5px rgba(245,100,169,0.5);
 }
+
+/* Tab buttons (clickable) */
+.tab-btn{
+  display:inline-flex;
+  padding:8px 16px;
+  border-radius:20px;
+  cursor:pointer;
+  font-weight:600;
+  color:#858585;
+  background: transparent;
+  border: none;
+}
+.tab-btn:hover{ color:#6b6b6b; }
+
+/* Active state for tab buttons (mirrors .tabs button.active) */
+.tab-btn.active{
+  background-color: #F564A9;
+  color: white;
+  box-shadow: 0 2px 5px rgba(245,100,169,0.5);
+}
+
+/* Default visibility: show all, hide vip */
+.customers-all{ display: grid; }
+.customers-vip{ display: none; }
+
+/* When VIP radio is checked, show vip container and hide all */
+#kh_tab_vip:checked ~ .customers-all{ display: none; }
+#kh_tab_vip:checked ~ .customers-vip{ display: grid; }
+
+/* When All radio is checked, show all and hide vip explicitly (redundant but explicit) */
+#kh_tab_all:checked ~ .customers-all{ display: grid; }
+#kh_tab_all:checked ~ .customers-vip{ display: none; }
 
 
 /* ===== CUSTOMER CARDS ===== */

@@ -160,6 +160,10 @@ main.content {
     justify-content: space-between;
     gap: 20px; 
 }
+
+.controls--right {
+  justify-content: flex-end;
+}
 .search__filter{
     display: flex;
     justify-content: space-between;

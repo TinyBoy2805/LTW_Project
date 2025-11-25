@@ -1,119 +1,36 @@
-//Lọc khách hàng VIP
 (function(){
-  function initVipFilter(){
-    //Lấy các phần tử cần thiết, không có thì bỏ qua
-    const tabs = Array.from(document.querySelectorAll('.tabs button[data-filter]'));
-    const customers = document.querySelector('.customers');
-    if(!tabs.length || !customers) return;
+  // Chuyển đổi trạng thái nút tab khi chọn tab khác
+  function initTabButtons(){
+    const tabBtns = Array.from(document.querySelectorAll('.tab-btn'));
+    if(!tabBtns.length) return;
 
-    //Lấy tất cả thẻ khách hàng
-    const cards = Array.from(customers.querySelectorAll('.card'));
-
-    //Ẩn các thẻ không có class "vip", hiển thị các thẻ có class "vip"
-    function showOnlyVip(){
-      cards.forEach(c => c.classList.toggle('hidden', !c.classList.contains('vip')));
+    function updateActive(){
+      tabBtns.forEach(b => {
+        const targetId = b.getAttribute('data-target');
+        const radio = document.getElementById(targetId);
+        if(radio && radio.checked) b.classList.add('active');
+        else b.classList.remove('active');
+      });
     }
 
-    //Xóa class hidden để hiển thị tất cả thẻ khách hàng
-    function showAll(){
-      cards.forEach(c => c.classList.remove('hidden'));
-    }
-
-    //Xử lý sự kiện click trên các tab
-    tabs.forEach(btn => {
+    tabBtns.forEach(btn => {
       btn.addEventListener('click', function(){
-        tabs.forEach(b => { 
-          b.classList.toggle('active', b === btn); 
-          b.setAttribute('aria-selected', b === btn ? 'true' : 'false'); 
-        });
-        const filter = btn.getAttribute('data-filter') || 'all';
-        if(filter === 'vip') showOnlyVip();
-        else showAll();
+        const target = btn.getAttribute('data-target');
+        const r = document.getElementById(target);
+        if(r) r.checked = true;
+        updateActive();
       });
     });
 
-    //Cập nhật trạng thái ban đầu từ tab active
-    const active = tabs.find(t => t.classList.contains('active')) || tabs[0];
-    if(active){
-      const f = active.getAttribute('data-filter') || 'all';
-      if(f === 'vip') showOnlyVip();
-      else showAll();
-    }
+    // Cập nhật trạng thái ban đầu
+    updateActive();
+    // Giữ đồng bộ nếu các radio thay đổi
+    const radios = Array.from(document.querySelectorAll('input[name="kh_tab"]'));
+    radios.forEach(r => r.addEventListener('change', updateActive));
   }
 
-  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initVipFilter);
-  else initVipFilter();
-})();
-
-
-// Xem chi tiết khách hàng
-(function(){
-  // Lấy text node sau icon trong thẻ p
-  function getTextAfterIcon(p){
-    if(!p) return '';
-    for(const n of p.childNodes){
-      if(n.nodeType === Node.TEXT_NODE && n.textContent.trim()) 
-        return n.textContent.trim();
-    }
-    return p.textContent.trim();
-  }
-
-  // Hiển thị chi tiết khách hàng trong modal
-  function openDetail(card){
-    const modal = document.querySelector('.customer-detail');
-    if(!modal) return;
-
-    // Lấy thông tin từ thẻ card
-    const name = card.querySelector('h4')?.textContent?.trim() || '';
-    const ps = card.querySelectorAll('.info p');
-  const email = getTextAfterIcon(ps[0]) || '';
-  const phone = getTextAfterIcon(ps[1]) || '';
-  // Read address from hidden input inside the card (keeps it in DOM but not visible)
-  const addrInput = card.querySelector('input.card-address');
-  const address = addrInput ? (addrInput.value || '') : '';
-
-    // Gán dữ liệu vào form trong modal
-    modal.querySelector('.input.name').value = name;
-    modal.querySelector('.input.email').value = email;
-    modal.querySelector('.input.phone').value = phone;
-    modal.querySelector('.input.address').value = address;
-
-    // Hiển thị modal
-    modal.classList.add('show');
-    modal.setAttribute('aria-hidden', 'false');
-  }
-
-  // Ẩn chi tiết khách hàng
-  function closeDetail(){
-    const modal = document.querySelector('.customer-detail');
-    if(!modal) return;
-    modal.classList.remove('show');
-    modal.setAttribute('aria-hidden', 'true');
-  }
-
-  function init(){
-    const customers = document.querySelector('.customers');
-    const modal = document.querySelector('.customer-detail');
-    const closeBtn = modal?.querySelector('.close-btn');
-    if(!customers || !modal || !closeBtn) return;
-
-    // Nhấn nút xem chi tiết
-    customers.addEventListener('click', function(e){
-      const btn = e.target.closest('.detail-btn');
-      if(!btn) return;
-      const card = btn.closest('.card');
-      if(!card) return;
-      openDetail(card);
-    });
-
-    // Nhấn nút "Đóng" trong modal
-    closeBtn.addEventListener('click', function(){
-      closeDetail();
-    });
-  }
-
+  // Hiển thị chi tiết khách hàng trong modal 
   if(document.readyState === 'loading')
-    document.addEventListener('DOMContentLoaded', init);
-  else
-    init();
+    document.addEventListener('DOMContentLoaded', function(){ initTabButtons(); });
+  else{ initTabButtons(); }
 })();
