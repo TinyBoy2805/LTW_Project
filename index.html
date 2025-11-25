@@ -22,24 +22,23 @@
             <!-- Header -->
             <header class="header">
                 <img src="./admin/imgs/logo.png" alt="avatar">
-                <h2 class="header__title">Đăng nhập <p class="header__role">(Admin)</p>
-                </h2>
+                <h2 class="header__title">Đăng nhập</h2>
                 <div class="header__text">Chào mừng! Hãy đăng nhập ngay</div>
             </header>
             <!-- Form -->
-            <form action="" class="form">
+            <form action="" class="form" id="Login-form">
                 <div class="form__input">
                     <input type="text" placeholder="Email hoặc số điện thoại">
                     <input type="password" placeholder="Mật khẩu">
                     <div class="form__bottom">
                         <div class="form__option">
                             <div class="form__checkbox">
-                                <input type="checkbox" class="checkbox">
-                                <p>Lưu tôi</p>
+                                <input type="checkbox" class="checkbox" id="adminCheckbox">
+                                <p>Đăng nhập với vai trò Admin</p>
                             </div>
                             <a href="./forgot__password.html" class="form__text">Quên mật khẩu</a>
                         </div>
-                        <a href="./admin/pages/dashboard.html" class="form__button">Đăng nhập</a>
+                        <a href="" class="form__button" id="loginButton">Đăng nhập</a>
                     </div>
                 </div>
                 <div class="form__end">
@@ -67,15 +66,13 @@
         </div>
 
         <!-- customer -->
-        <div class="login__form">
-            <!-- Header -->
+        <!-- <div class="login__form">
             <header class="header">
                 <img src="./admin/imgs/logo.png" alt="avatar">
                 <h2 class="header__title">Đăng nhập <p class="header__role">(Customer)</p>
                 </h2>
                 <div class="header__text">Chào mừng! Hãy đăng nhập ngay</div>
             </header>
-            <!-- Form -->
             <form action="" class="form">
                 <div class="form__input">
                     <input type="text" placeholder="Email hoặc số điện thoại">
@@ -95,7 +92,6 @@
                     <span>Hoặc đăng nhập với</span>
                 </div>
             </form>
-            <!-- Footer -->
             <div class="footer">
                 <div class="footer__container">
                     <a href="#" class="footer__container__icon">
@@ -113,8 +109,9 @@
                     <a href="register.html">Đăng ký ngay</a>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
+    <script src="/admin/scripts/components/login.js"></script>
 </body>
 
 </html>
