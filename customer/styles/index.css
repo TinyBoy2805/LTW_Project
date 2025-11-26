@@ -18,6 +18,8 @@
 @import url('./pages/Inform.css');
 @import url('./pages/Payment.css');
 @import url('./pages/About.css');
+@import url('./pages/OrderDetail.css');
+@import url('../styles/components/totopbtn.css');
 
 *
 {

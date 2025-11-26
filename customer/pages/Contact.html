@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
+    <div class="scroll-to-top-btn"><i class="fa-solid fa-circle-up"></i></div>
     <header class="header">
         <nav class="nav">
             <div class="nav__top">
@@ -75,8 +76,23 @@
                                 </div>
                             </div>
                         </li>
-                        <li><a href="./Inform.html" class="--color4"><i class="fa-solid fa-bell --size20"></i></a></li>
-                        <li><a href="./Profile.html" class="--color4"><i class="fa-solid fa-user-ninja --size20"></i></a></li>
+                        <li><a href="./Inform.html" class="--color4"><i class="fa-solid fa-bell --size20"></i></a><div class="notif-count">2</div></li>
+                        <li class="hover-avt">
+                            <div class="container">
+                                <a href="./Profile.html" class="--color4"><i class="fa-solid fa-user-ninja --size20"></i></a>
+                                <ul class="avt-options">
+                                    <li onclick="window.location.href='./Profile.html'">
+                                        <div class="avt-container">
+                                            <img src="https://i.pinimg.com/736x/5f/83/3d/5f833de6a6b1d8032037b6a24a5321b6.jpg" alt="">
+                                        </div>
+                                        <h4>Nguyễn Văn A</h4>
+                                    </li>
+                                    <li>
+                                        <button onclick="window.location.href='../../index.html'">Đăng xuất</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -190,12 +206,12 @@
             <div class="footer__top-col3">
                 <h3>Liên kết nhanh</h3>
                 <ul>
-                    <li><a href="#">Trang chủ</a></li>
-                    <li><a href="#">Sản phẩm</a></li>
-                    <li><a href="#">Khuyến mãi</a></li>
-                    <li><a href="#">Cẩm nang</a></li>
-                    <li><a href="#">Về cửa hàng</a></li>
-                    <li><a href="#">Liên hệ</a></li>
+                     <li><a href="./Home.html">Trang chủ</a></li>
+                    <li><a href="./Products.html">Sản phẩm</a></li>
+                    <li><a href="./Voucher.html">Khuyến mãi</a></li>
+                    <li><a href="./Blog.html">Cẩm nang</a></li>
+                    <li><a href="./About.html">Về cửa hàng</a></li>
+                    <li><a href="./Contact.html">Liên hệ</a></li>
                 </ul>
             </div>
 
@@ -233,4 +249,5 @@
 
 
 </body>
+<script type="module" src="../scripts/main.js"></script>
 </html>

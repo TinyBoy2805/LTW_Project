@@ -10,9 +10,8 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-
-    <div class="scroll-to-top-btn"><i class="fa-solid fa-circle-up"></i></div>
-    <header class="header">
+        <div class="scroll-to-top-btn"><i class="fa-solid fa-circle-up"></i></div>
+        <header class="header">
         <nav class="nav">
             <div class="nav__top">
                 <a class="nav__top-logo" href="./Home.html">
@@ -107,179 +106,163 @@
                     <li><a href="./Voucher.html">Khuyến mãi</a></li>
                     <li><a href="./Blog.html">Cẩm nang</a></li>
                     <li><a href="./Contact.html">Liên hệ</a></li>
-                    <li><a href="./About.html">về cửa hàng</a></li>
+                    <li><a href="">về cửa hàng</a></li>
                 </ul>
             </div>
         </nav>
     </header>
-    
+
+
     <main class="main">
 
-        <div class="cart">
-            <div class="cart__header">
-                <h2 class="cart__title">Giỏ hàng</h2>
-                <a href="./Products.html" class="cart__link">&lt; Tiếp tục mua hàng</a>
-            </div>
+            <section class="order__header">
+                <h2 class="order__title --color9">Chi tiết đơn hàng</h2>
+                <p class="order__subtitle">Theo dõi trạng thái & thông tin thanh toán</p>
+            </section>
 
-            <table class="cart__table" aria-label="Giỏ hàng">
-                <thead class="cart__table-head">
+            <section class="payment__user-info --p24">
+                <h3 class="--color6">Thông tin giao hàng</h3>
+                <ul class="payment__customer-info">
+                    <li>
+                        <p class="--color3">Số điện thoại</p>
+                        <p class="--color1">0931415926</p>
+                        <input type="hidden" name="phone" value="0931415926">
+                    </li>
+                    <li>
+                        <p class="--color3">Địa chỉ</p>
+                        <p class="--color1">36C, 18 Lái Thiêu, Khu Phố Hoà Long, TP. Thuận An, TPHCM</p>
+                        <input type="hidden" name="address" value="36C, 18 Lái Thiêu, Khu Phố Hoà Long, TP. Thuận An, TPHCM">
+                    </li>
+                    <li>
+                        <p class="--color3">Email</p>
+                        <p class="--color1">tonguyenhoangphuc67@gmail.com</p>
+                        <input type="hidden" name="email" value="tonguyenhoangphuc67@gmail.com">
+                    </li>
+                </ul>
+            </section>
+
+
+            <!-- 2️⃣ Giỏ hàng -->
+            <section class="cart">
+                <table class="cart__table" aria-label="Giỏ hàng">
+                    <thead class="cart__table-head">
                     <tr class="cart__row cart__row--head">
-                        <th class="--text-center"><input type="checkbox" name="" id=""></th>
                         <th class="--text-left">Sản phẩm</th>
                         <th class="--text-center">Đơn giá</th>
                         <th class="--text-center">Số lượng</th>
                         <th class="--text-center">Thành tiền</th>
-                        <th class="--text-center">Thao tác</th>
                     </tr>
-                </thead>
+                    </thead>
 
-                <tbody class="cart__table-body">
+                    <tbody class="cart__table-body">
                     <tr class="cart__row">
-
-                        <td class="cart__select --text-center">
-                            <input type="checkbox" class="cart__select-input" aria-label="Chọn sản phẩm">
-                        </td>
-
                         <td class="cart__product --text-left">
-                            <img src="https://i.pinimg.com/1200x/4b/bb/02/4bbb0223ba678e97772d02949e5f89ca.jpg" alt="Tên sản phẩm" class="cart__product-thumb" width="60" height="60">
-                            <div class="cart__product-info">
-                                <div class="cart__product-name">Sữa chua Hy Lạp</div>
-                                <div class="cart__product-variant">Vị: Nho • Loại: chai</div>
-                            </div>
+                        <img src="https://i.pinimg.com/1200x/4b/bb/02/4bbb0223ba678e97772d02949e5f89ca.jpg" alt="Tên sản phẩm" class="cart__product-thumb" width="60" height="60">
+                        <div class="cart__product-info">
+                            <div class="cart__product-name">Sữa chua Hy Lạp</div>
+                            <div class="cart__product-variant">Vị: Nho • Loại: chai</div>
+                            <input type="hidden" name="product_name[]" value="Sữa chua Hy Lạp - Vị Nho - Chai">
+                        </div>
                         </td>
-
                         <td class="cart__price --text-center">199.000₫</td>
-
                         <td class="cart__quantity --text-center">
-                            <input type="number" class="cart__quantity-input" min="1" value="1" aria-label="Số lượng sản phẩm A">
+                        <input type="number" class="cart__quantity-input" name="product_quantity[]" min="1" value="1" aria-label="Số lượng sản phẩm" readonly>
                         </td>
-
                         <td class="cart__subtotal --text-center">199.000₫</td>
-
-                        <td class="cart__action --text-center">
-                            <button type="button" class="cart__remove-btn" aria-label="Xóa sản phẩm">
-                                <i class="fa fa-trash"></i>
-                            </button>
-                        </td>
-
                     </tr>
+
                     <tr class="cart__row">
-
-                        <td class="cart__select --text-center">
-                            <input type="checkbox" class="cart__select-input" aria-label="Chọn sản phẩm">
-                        </td>
-
                         <td class="cart__product --text-left">
-                            <img src="https://i.pinimg.com/1200x/4b/bb/02/4bbb0223ba678e97772d02949e5f89ca.jpg" alt="Tên sản phẩm" class="cart__product-thumb" width="60" height="60">
-                            <div class="cart__product-info">
-                                <div class="cart__product-name">Sữa chua Hy Lạp</div>
-                                <div class="cart__product-variant">Vị: Nho • Loại: chai</div>
-                            </div>
+                        <img src="https://i.pinimg.com/1200x/4b/bb/02/4bbb0223ba678e97772d02949e5f89ca.jpg" alt="Tên sản phẩm" class="cart__product-thumb" width="60" height="60">
+                        <div class="cart__product-info">
+                            <div class="cart__product-name">Sữa chua Hy Lạp</div>
+                            <div class="cart__product-variant">Vị: Nho • Loại: chai</div>
+                            <input type="hidden" name="product_name[]" value="Sữa chua Hy Lạp - Vị Nho - Chai">
+                        </div>
                         </td>
-
                         <td class="cart__price --text-center">199.000₫</td>
-
                         <td class="cart__quantity --text-center">
-                            <input type="number" class="cart__quantity-input" min="1" value="1" aria-label="Số lượng sản phẩm A">
+                        <input type="number" class="cart__quantity-input" name="product_quantity[]" min="1" value="1" readonly>
                         </td>
-
                         <td class="cart__subtotal --text-center">199.000₫</td>
-
-                        <td class="cart__action --text-center">
-                            <button type="button" class="cart__remove-btn" aria-label="Xóa sản phẩm">
-                                <i class="fa fa-trash"></i>
-                            </button>
-                        </td>
-
                     </tr>
+
                     <tr class="cart__row">
-
-                        <td class="cart__select --text-center">
-                            <input type="checkbox" class="cart__select-input" aria-label="Chọn sản phẩm">
-                        </td>
-
                         <td class="cart__product --text-left">
-                            <img src="https://i.pinimg.com/1200x/4b/bb/02/4bbb0223ba678e97772d02949e5f89ca.jpg" alt="Tên sản phẩm" class="cart__product-thumb" width="60" height="60">
-                            <div class="cart__product-info">
-                                <div class="cart__product-name">Sữa chua Hy Lạp</div>
-                                <div class="cart__product-variant">Vị: Nho • Loại: chai</div>
-                            </div>
+                        <img src="https://i.pinimg.com/1200x/4b/bb/02/4bbb0223ba678e97772d02949e5f89ca.jpg" alt="Tên sản phẩm" class="cart__product-thumb" width="60" height="60">
+                        <div class="cart__product-info">
+                            <div class="cart__product-name">Sữa chua Hy Lạp</div>
+                            <div class="cart__product-variant">Vị: Nho • Loại: chai</div>
+                            <input type="hidden" name="product_name[]" value="Sữa chua Hy Lạp - Vị Nho - Chai">
+                        </div>
                         </td>
-
                         <td class="cart__price --text-center">199.000₫</td>
-
                         <td class="cart__quantity --text-center">
-                            <input type="number" class="cart__quantity-input" min="1" value="1" aria-label="Số lượng sản phẩm A">
+                        <input type="number" class="cart__quantity-input" name="product_quantity[]" min="1" value="1" readonly>
                         </td>
-
                         <td class="cart__subtotal --text-center">199.000₫</td>
-
-                        <td class="cart__action --text-center">
-                            <button type="button" class="cart__remove-btn" aria-label="Xóa sản phẩm">
-                                <i class="fa fa-trash"></i>
-                            </button>
-                        </td>
-
                     </tr>
-                    <tr class="cart__row">
+                    </tbody>
+                </table>
+            </section>
 
-                        <td class="cart__select --text-center">
-                            <input type="checkbox" class="cart__select-input" aria-label="Chọn sản phẩm">
-                        </td>
-
-                        <td class="cart__product --text-left">
-                            <img src="https://i.pinimg.com/1200x/4b/bb/02/4bbb0223ba678e97772d02949e5f89ca.jpg" alt="Tên sản phẩm" class="cart__product-thumb" width="60" height="60">
-                            <div class="cart__product-info">
-                                <div class="cart__product-name">Sữa chua Hy Lạp</div>
-                                <div class="cart__product-variant">Vị: Nho • Loại: chai</div>
-                            </div>
-                        </td>
-
-                        <td class="cart__price --text-center">199.000₫</td>
-
-                        <td class="cart__quantity --text-center">
-                            <input type="number" class="cart__quantity-input" min="1" value="1" aria-label="Số lượng sản phẩm A">
-                        </td>
-
-                        <td class="cart__subtotal --text-center">199.000₫</td>
-
-                        <td class="cart__action --text-center">
-                            <button type="button" class="cart__remove-btn" aria-label="Xóa sản phẩm">
-                                <i class="fa fa-trash"></i>
-                            </button>
-                        </td>
-
-                    </tr>
-                </tbody>
-
-                <tfoot class="cart__table-foot">
-                    <tr>
-                        <td colspan="4" class="cart__note">Mã giảm giá có thể áp dụng ở bước thanh toán.</td>
-                        <td class="cart__total-label">Tổng:</td>
-                        <td class="cart__total-value">199.000₫</td>
-                    </tr>
-                    <tr>
-                        <td colspan="3"></td>
-                        <td></td>
-                        <td></td>
-                        <td class="cart__actions">
-                            <button onclick="location.href='./Payment.html'">Thanh toán</button>
-                        </td>
-                    </tr>
-                </tfoot>
-            </table>
-
-            <div class="cart__empty" hidden>
-                <p>Giỏ hàng của bạn đang trống.</p>
-                <a class="cart__btn cart__btn--continue" href="./Products.html">Tiếp tục mua sắm</a>
+        <section class="order__info-card">
+            <div class="order__row">
+                <span class="order__label --color4">Mã đơn hàng:</span>
+                <span class="order__value ">#ORD-983122</span>
             </div>
-        </div>
 
+            <div class="order__row">
+                <span class="order__label --color4">Ngày tạo:</span>
+                <span class="order__value">2025-11-26 14:32</span>
+            </div>
 
+            <div class="order__row">
+                <span class="order__label --color4">Địa chỉ giao hàng:</span>
+                <span class="order__value">123 Nguyễn Văn Cừ, Q5, TP.HCM</span>
+            </div>
+
+            <div class="order__row">
+                <span class="order__label --color4">Trạng thái đơn hàng:</span>
+                <span class="order__status --star">Đang xử lý</span>
+            </div>
+
+            <div class="order__row">
+                <span class="order__label --color4">Thanh toán:</span>
+                <span class="order__status --active">Đã thanh toán</span>
+            </div>
+        </section>
+
+        <section class="order__summary">
+            <h2 class="order__section-title --color6">Tóm tắt thanh toán</h2>
+
+            <div class="order__summary-list">
+                <div class="order__summary-row">
+                    <span class="order__summary-label">Tổng tiền hàng:</span>
+                    <span class="order__summary-value">350.000đ</span>
+                </div>
+                <div class="order__summary-row">
+                    <span class="order__summary-label">Phí vận chuyển:</span>
+                    <span class="order__summary-value">25.000đ</span>
+                </div>
+                <div class="order__summary-row">
+                    <span class="order__summary-label">Giảm phí vận chuyển:</span>
+                    <span class="order__summary-value">-25.000đ</span>
+                </div>
+                <div class="order__summary-row">
+                    <span class="order__summary-label">Tổng giảm giá:</span>
+                    <span class="order__summary-value">-50.000đ</span>
+                </div>
+                <div class="order__summary-row ">
+                    <span class="order__summary-label">Thành tiền:</span>
+                    <span class="order__summary-final">300.000đ</span>
+                </div>
+            </div>
+        </section>
     </main>
 
 
-    <footer class="footer">
+        <footer class="footer">
         <div class="footer__top">
 
             <div class="footer__top-col1">
@@ -311,7 +294,7 @@
             <div class="footer__top-col3">
                 <h3>Liên kết nhanh</h3>
                 <ul>
-                    <li><a href="./Home.html">Trang chủ</a></li>
+                     <li><a href="./Home.html">Trang chủ</a></li>
                     <li><a href="./Products.html">Sản phẩm</a></li>
                     <li><a href="./Voucher.html">Khuyến mãi</a></li>
                     <li><a href="./Blog.html">Cẩm nang</a></li>
@@ -351,8 +334,6 @@
         </div>
 
     </footer>
-
-
 
 
 </body>

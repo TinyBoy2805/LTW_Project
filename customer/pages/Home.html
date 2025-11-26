@@ -10,56 +10,8 @@
 </head>
 <body>
 
-    <template class="voucher__template">
-            <div class="voucher">
-                <div class="voucher__left">
-                    <p class="--size20"><i class="fa-solid fa-money-bill"></i>Ưu đãi giảm giá </p>
-                    <p class="--size64 --weight700">-50%</p>
-                    <p class="--size16">Cho đơn có giá trị từ 200.000VND</p>
-                </div>
-                <div class="voucher__right">
-                    <button>Nhận ưu đãi</button>
-                    <p>HSD: 22/12/2029</p>
-                </div>
-            </div>
-    </template>
-
-
-    <template class="product__template">
-        <div class="product">
-            <div class="product__top">
-                <div class="product__image">
-                    <img src="https://i.pinimg.com/1200x/79/df/0d/79df0de0a96063735aca1c5d5c80ca26.jpg" alt="">
-                </div>
-            </div>
-
-            <div class="product__mid">
-                <h3>Sữa tươi thanh trùng</h3>
-                <div class="product__mid-sub1">
-                    <ul class="product__mid-sub1-stars">
-                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
-                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
-                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
-                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
-                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
-                    </ul>
-                    <p>98</p>
-                </div>
-
-                <div class="product__mid-sub2">
-                    <p>360.000đ</p>
-                    <p>Đã bán 3.6k+</p>
-                </div>
-            </div>
-
-            <div class="product__bottom">
-                <div class="product__bottom-actions">
-                    <button><i class="fa-solid fa-cart-plus"></i></button>
-                    <button>Mua ngay</button>
-                </div>
-            </div>
-        </div>
-    </template>
+    
+    <div class="scroll-to-top-btn"><i class="fa-solid fa-circle-up"></i></div>
 
 
 
@@ -130,8 +82,24 @@
                                 </div>
                             </div>
                         </li>
-                        <li><a href="./Inform.html" class="--color4"><i class="fa-solid fa-bell --size20"></i></a></li>
-                        <li><a href="./Profile.html" class="--color4"><i class="fa-solid fa-user-ninja --size20"></i></a></li>
+                        <li><a href="./Inform.html" class="--color4"><i class="fa-solid fa-bell --size20"></i></a><div class="notif-count">2</div></li>
+                        <li class="hover-avt">
+                            <div class="container">
+                                <a href="./Profile.html" class="--color4"><i class="fa-solid fa-user-ninja --size20"></i></a>
+                                <ul class="avt-options">
+                                    <li onclick="window.location.href='./Profile.html'">
+                                        <div class="avt-container">
+                                            <img src="https://i.pinimg.com/736x/5f/83/3d/5f833de6a6b1d8032037b6a24a5321b6.jpg" alt="">
+                                        </div>
+                                        <h4>Nguyễn Văn A</h4>
+                                    </li>
+                                    <li>
+                                        <button onclick="window.location.href='../../index.html'">Đăng xuất</button>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -1537,12 +1505,12 @@
             <div class="footer__top-col3">
                 <h3>Liên kết nhanh</h3>
                 <ul>
-                    <li><a href="#">Trang chủ</a></li>
-                    <li><a href="#">Sản phẩm</a></li>
-                    <li><a href="#">Khuyến mãi</a></li>
-                    <li><a href="#">Cẩm nang</a></li>
-                    <li><a href="#">Về cửa hàng</a></li>
-                    <li><a href="#">Liên hệ</a></li>
+                    <li><a href="./Home.html">Trang chủ</a></li>
+                    <li><a href="./Products.html">Sản phẩm</a></li>
+                    <li><a href="./Voucher.html">Khuyến mãi</a></li>
+                    <li><a href="./Blog.html">Cẩm nang</a></li>
+                    <li><a href="./About.html">Về cửa hàng</a></li>
+                    <li><a href="./Contact.html">Liên hệ</a></li>
                 </ul>
             </div>
 
@@ -1579,6 +1547,7 @@
     </footer>
 
 </body>
-<script type="module" src="../scripts/Home.js"></script>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script type="module" src="../scripts/main.js"></script>
+<script type="module" src="../scripts/Home.js"></script>
 </html>

@@ -65,3 +65,12 @@
 {
     outline: none;
 }
+
+.--p8
+{
+    padding: 8px;
+}
+.--p24
+{
+    padding: 24px;
+}

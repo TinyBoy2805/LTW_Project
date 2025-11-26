@@ -10,6 +10,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
+    <div class="scroll-to-top-btn"><i class="fa-solid fa-circle-up"></i></div>
     <header class="header">
         <nav class="nav">
             <div class="nav__top">
@@ -77,8 +78,23 @@
                                 </div>
                             </div>
                         </li>
-                        <li><a href="./Inform.html" class="--color4"><i class="fa-solid fa-bell --size20"></i></a></li>
-                        <li><a href="./Profile.html" class="--color4"><i class="fa-solid fa-user-ninja --size20"></i></a></li>
+                        <li><a href="./Inform.html" class="--color4"><i class="fa-solid fa-bell --size20"></i></a><div class="notif-count">2</div></li>
+                        <li class="hover-avt">
+                            <div class="container">
+                                <a href="./Profile.html" class="--color4"><i class="fa-solid fa-user-ninja --size20"></i></a>
+                                <ul class="avt-options">
+                                    <li onclick="window.location.href='./Profile.html'">
+                                        <div class="avt-container">
+                                            <img src="https://i.pinimg.com/736x/5f/83/3d/5f833de6a6b1d8032037b6a24a5321b6.jpg" alt="">
+                                        </div>
+                                        <h4>Nguyễn Văn A</h4>
+                                    </li>
+                                    <li>
+                                        <button onclick="window.location.href='../../index.html'">Đăng xuất</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -118,7 +134,7 @@
                 </div>
                 <div class="story__image">
                     <div class="img__container">
-                        <img src="https://i.pinimg.com/1200x/42/68/69/426869944a40cf7ac4c031f992e4b259.jpg" alt="">
+                        <img src="https://i.pinimg.com/1200x/d9/61/b7/d961b721f227bda82af61b0d4a1302a8.jpg" alt="">
                     </div>
                 </div>
             </div>
@@ -172,27 +188,27 @@
             <div class="gallery__content">
                 <div class="gallery__item1">
                     <div class="img-container">
-                        <img src="https://i.pinimg.com/736x/19/10/41/191041df4d89bcc66b2535e671538054.jpg" alt="">
+                        <img src="https://i.pinimg.com/736x/a4/b0/01/a4b0014c6c5b19dc590af71e5eab20dc.jpg" alt="">
                     </div>
                 </div>
                 <div class="gallery__item2">
                     <div class="img-container">
-                        <img src="https://i.pinimg.com/736x/19/10/41/191041df4d89bcc66b2535e671538054.jpg" alt="">
+                        <img src="https://i.pinimg.com/1200x/b1/66/f6/b166f6afba5b9a9b5a1a21990e76530b.jpg" alt="">
                     </div>
                 </div>
                 <div class="gallery__item3">
                     <div class="img-container">
-                        <img src="https://i.pinimg.com/736x/19/10/41/191041df4d89bcc66b2535e671538054.jpg" alt="">
+                        <img src="https://i.pinimg.com/1200x/e4/1d/9a/e41d9a0ca2e0190929891781e7af847f.jpg" alt="">
                     </div>
                 </div>
                 <div class="gallery__item4">
                     <div class="img-container">
-                        <img src="https://i.pinimg.com/736x/19/10/41/191041df4d89bcc66b2535e671538054.jpg" alt="">
+                        <img src="https://i.pinimg.com/736x/ac/67/12/ac67124c321a1b5ea307b1c035b5da75.jpg" alt="">
                     </div>
                 </div>
                 <div class="gallery__item5">
                     <div class="img-container">
-                        <img src="https://i.pinimg.com/736x/19/10/41/191041df4d89bcc66b2535e671538054.jpg" alt="">
+                        <img src="https://i.pinimg.com/1200x/b1/66/f6/b166f6afba5b9a9b5a1a21990e76530b.jpg" alt="">
                     </div>
                 </div>
             </div>
@@ -380,12 +396,12 @@
             <div class="footer__top-col3">
                 <h3>Liên kết nhanh</h3>
                 <ul>
-                    <li><a href="#">Trang chủ</a></li>
-                    <li><a href="#">Sản phẩm</a></li>
-                    <li><a href="#">Khuyến mãi</a></li>
-                    <li><a href="#">Cẩm nang</a></li>
-                    <li><a href="#">Về cửa hàng</a></li>
-                    <li><a href="#">Liên hệ</a></li>
+                     <li><a href="./Home.html">Trang chủ</a></li>
+                    <li><a href="./Products.html">Sản phẩm</a></li>
+                    <li><a href="./Voucher.html">Khuyến mãi</a></li>
+                    <li><a href="./Blog.html">Cẩm nang</a></li>
+                    <li><a href="./About.html">Về cửa hàng</a></li>
+                    <li><a href="./Contact.html">Liên hệ</a></li>
                 </ul>
             </div>
 
@@ -424,4 +440,5 @@
 
 
 </body>
+<script type="module" src="../scripts/main.js"></script>
 </html>
