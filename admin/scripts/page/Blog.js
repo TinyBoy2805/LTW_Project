@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
   tabButtons.forEach(btn => {
     btn.addEventListener('click', () => showPanel(btn.dataset.tab));
   });
-  // đảm bảo trạng thái ban đầu khớp với tab đang active (nếu có)
+  // Đảm bảo trạng thái ban đầu khớp với tab đang active (nếu có)
   const initialActive = document.querySelector('.tab-btn.active');
   if (initialActive) showPanel(initialActive.dataset.tab);
 
