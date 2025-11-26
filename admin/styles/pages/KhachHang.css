@@ -172,12 +172,11 @@ body {
 
 .customers {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 10px;
-  row-gap: 40px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 16px; 
+  row-gap: 18px; 
   align-items: start;
-  padding: 0 24px 15px 24px;
-  flex: 1 1 auto;
+  padding: 0 24px 12px 24px;
   overflow-y: auto;
   min-height: 0;
 }
@@ -190,12 +189,12 @@ body {
   overflow: hidden;
   display: grid;
   grid-template-columns: 140px minmax(0, 1fr);
-  padding: 18px 20px;
+  padding: 14px 16px; /* slightly reduced padding */
   gap: 12px;
   box-sizing: border-box;
-  min-height: 140px;
+  min-height: 120px; /* reduced min-height to tighten rows */
   background-position: left center;
-  margin-bottom: 6px;
+  margin-bottom: 46px;
 }
 
 .card__figure {

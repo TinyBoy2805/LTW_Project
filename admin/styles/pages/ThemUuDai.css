@@ -221,7 +221,7 @@ main.content > a {
 .card-form {
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: 14px;
 }
 
 .label {
@@ -281,6 +281,17 @@ main.content > a {
   color: #4C4C4C;
   transition: border-color 0.3s;
   flex-shrink: 0;
+}
+
+/* make native select arrow sit closer to the right edge */
+.card-form select.input,
+.card-form select {
+  /* reduce right padding so the arrow appears nearer to the edge */
+  padding-right: 8px;
+  /* ensure the select still looks consistent */
+  -webkit-appearance: auto;
+  -moz-appearance: auto;
+  appearance: auto;
 }
 
 .input:focus,
