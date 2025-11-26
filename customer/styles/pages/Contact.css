@@ -7,23 +7,26 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: linear-gradient(135deg, rgb(47, 53, 127), rgb(55, 72, 255));
+    /* background: linear-gradient(135deg, rgb(47, 53, 127), rgb(55, 72, 255)); */
     position: relative;
     justify-content: center;
     gap: 12px;
+    background-color: var(--c10);
+    opacity: 0.8;
+    background: radial-gradient(circle, transparent 20%, var(--c10) 20%, var(--c10) 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, var(--c10) 20%, var(--c10) 80%, transparent 80%, transparent) 25px 25px, linear-gradient(var(--c6) 2px, transparent 2px) 0 -1px, linear-gradient(90deg, var(--c6) 2px, var(--c10) 2px) -1px 0;
+    background-size: 50px 50px, 50px 50px, 25px 25px, 25px 25px;
 }
 
 .main__contact-top::before
 {
     content: "";
-    width: 100%;
-    height: 100%;
+    width: 95%;
+    height: 90%;
     position: absolute;
-    background-color: rgba(0, 0, 0, 0.076);
+    background-color: rgba(0, 0, 0, 0.5);
     z-index: 10;
-    top: 0;
-    left: 0;
     pointer-events: none;
+    border-radius: 10px;
 }
 
 .main__contact-top h2
@@ -32,7 +35,7 @@
     text-align: center;
     color: var(--c9);
     z-index: 20;
-    font-size: 30px;
+    font-size: 35px;
 }
 
 .main__contact-top p
