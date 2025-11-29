@@ -19,6 +19,8 @@
     margin: 0;
     box-sizing: border-box;
     font-family: 'Be Vietnam Pro', sans-serif;
+    list-style: none;
+    text-decoration: none;
 }
 
 body {
@@ -27,6 +29,12 @@ body {
     display: flex;
     flex-direction: column;
     background-color: #f8f8f8;
+}
+
+.login-btn a
+{
+    font-size: 14px;
+    color: var(--c6);
 }
 
 .page-login {

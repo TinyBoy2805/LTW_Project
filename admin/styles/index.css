@@ -1,2 +1,14 @@
 @import url('./color/color.css');
 @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap');
+
+
+
+.--is-login
+{
+    display: none;
+}
+
+.--is-not-login
+{
+    display: block;
+}
