@@ -1,0 +1,375 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../styles/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" 
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    
+    <div class="scroll-to-top-btn"><i class="fa-solid fa-circle-up"></i></div>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav__top">
+                <a class="nav__top-logo" href="Home.jsp">
+                    <div class="nav__logo-img">
+                        <img src="../imgs/Gemini_Generated_Image_c648fqc648fqc648.png" alt="">
+                    </div>
+                    <h1>MichiShop</h1>
+                </a>
+                <div class="nav__top-input">
+                    <form action="">
+                        <input type="text" placeholder="Sản phẩm bạn cần tìm..." class="--no-border --no-outline">
+                        <button class="--no-border --no-outline">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            Tìm kiếm
+                        </button>
+                    </form>
+                </div>
+                <div class="nav__top-actions">
+                    <ul>
+                        <li class="hovercart">
+                            <a href="Cart.jsp" class="--color4"><i class="fa-solid fa-cart-shopping --size20"></i></a>
+                            <div class="header-cart">
+                                <ul>
+                                    <li>
+                                        <div class="item">
+                                            <div class="img-container">
+                                                <img src="https://i.pinimg.com/1200x/4b/bb/02/4bbb0223ba678e97772d02949e5f89ca.jpg" alt="">
+                                            </div>
+                                            <p>Sữa chua hy lạp</p>
+                                            <p class="--weight600 --color6">199.000₫</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="item">
+                                            <div class="img-container">
+                                                <img src="https://i.pinimg.com/1200x/4b/bb/02/4bbb0223ba678e97772d02949e5f89ca.jpg" alt="">
+                                            </div>
+                                            <p>Sữa chua hy lạp</p>
+                                            <p class="--weight600 --color6">199.000₫</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="item">
+                                            <div class="img-container">
+                                                <img src="https://i.pinimg.com/1200x/4b/bb/02/4bbb0223ba678e97772d02949e5f89ca.jpg" alt="">
+                                            </div>
+                                            <p>Sữa chua hy lạp</p>
+                                            <p class="--weight600 --color6">199.000₫</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="item">
+                                            <div class="img-container">
+                                                <img src="https://i.pinimg.com/1200x/4b/bb/02/4bbb0223ba678e97772d02949e5f89ca.jpg" alt="">
+                                            </div>
+                                            <p>Sữa chua hy lạp</p>
+                                            <p class="--weight600 --color6">199.000₫</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="sub-info">
+                                    <p>36 sản phẩm</p>
+                                    <a href="Cart.jsp">Xem giỏ hàng</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li><a href="Inform.jsp" class="--color4"><i class="fa-solid fa-bell --size20"></i></a><div class="notif-count">2</div></li>
+                        <li class="hover-avt">
+                            <div class="container">
+                                <a href="Profile.jsp" class="--color4"><i class="fa-solid fa-user-ninja --size20"></i></a>
+                                <ul class="avt-options">
+                                    <li onclick="window.location.href='Profile.jsp'">
+                                        <div class="avt-container">
+                                            <img src="https://i.pinimg.com/736x/5f/83/3d/5f833de6a6b1d8032037b6a24a5321b6.jpg" alt="">
+                                        </div>
+                                        <h4>Nguyễn Văn A</h4>
+                                    </li>
+                                    <li>
+                                        <button onclick="window.location.href='../../index.jsp'">Đăng xuất</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="nav__line"></div>
+            <div class="nav__bottom">
+                <ul>
+                    <li><a href="Home.jsp" class="">Trang chủ</a></li>
+                    <li><a href="Products.jsp">Sản phẩm</a></li>
+                    <li><a href="Voucher.jsp">Khuyến mãi</a></li>
+                    <li><a href="Blog.jsp">Cẩm nang</a></li>
+                    <li><a href="Contact.jsp">Liên hệ</a></li>
+                    <li><a href="About.jsp">về cửa hàng</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+
+        <section class="main__payment active">
+            <h2>Thanh toán đơn hàng</h2>
+
+            <!-- 🧾 Bắt đầu form -->
+            <form class="payment__form">
+
+                <!-- 1️⃣ Thông tin khách hàng -->
+                <div class="payment__user-info">
+                    <h3 class="--color6">Thông tin giao hàng</h3>
+                    <ul class="payment__customer-info">
+                        <li><button type="button"><i class="fa-solid fa-pen-to-square"></i></button></li>
+                        <li>
+                            <p class="--color3">Số điện thoại</p>
+                            <p class="--color1">0931415926</p>
+                            <input type="hidden" name="phone" value="0931415926">
+                        </li>
+                        <li>
+                            <p class="--color3">Địa chỉ</p>
+                            <p class="--color1">36C, 18 Lái Thiêu, Khu Phố Hoà Long, TP. Thuận An, TPHCM</p>
+                            <input type="hidden" name="address" value="36C, 18 Lái Thiêu, Khu Phố Hoà Long, TP. Thuận An, TPHCM">
+                        </li>
+                        <li>
+                            <p class="--color3">Email</p>
+                            <p class="--color1">tonguyenhoangphuc67@gmail.com</p>
+                            <input type="hidden" name="email" value="tonguyenhoangphuc67@gmail.com">
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="line"></div>
+
+                <!-- 2️⃣ Giỏ hàng -->
+                <div class="cart">
+                    <table class="cart__table" aria-label="Giỏ hàng">
+                        <thead class="cart__table-head">
+                        <tr class="cart__row cart__row--head">
+                            <th class="--text-left">Sản phẩm</th>
+                            <th class="--text-center">Đơn giá</th>
+                            <th class="--text-center">Số lượng</th>
+                            <th class="--text-center">Thành tiền</th>
+                        </tr>
+                        </thead>
+
+                        <tbody class="cart__table-body">
+                        <tr class="cart__row">
+                            <td class="cart__product --text-left">
+                            <img src="https://i.pinimg.com/1200x/4b/bb/02/4bbb0223ba678e97772d02949e5f89ca.jpg" alt="Tên sản phẩm" class="cart__product-thumb" width="60" height="60">
+                            <div class="cart__product-info">
+                                <div class="cart__product-name">Sữa chua Hy Lạp</div>
+                                <div class="cart__product-variant">Vị: Nho • Loại: chai</div>
+                                <input type="hidden" name="product_name[]" value="Sữa chua Hy Lạp - Vị Nho - Chai">
+                            </div>
+                            </td>
+                            <td class="cart__price --text-center">199.000₫</td>
+                            <td class="cart__quantity --text-center">
+                            <input type="number" class="cart__quantity-input" name="product_quantity[]" min="1" value="1" aria-label="Số lượng sản phẩm" readonly>
+                            </td>
+                            <td class="cart__subtotal --text-center">199.000₫</td>
+                        </tr>
+
+                        <tr class="cart__row">
+                            <td class="cart__product --text-left">
+                            <img src="https://i.pinimg.com/1200x/4b/bb/02/4bbb0223ba678e97772d02949e5f89ca.jpg" alt="Tên sản phẩm" class="cart__product-thumb" width="60" height="60">
+                            <div class="cart__product-info">
+                                <div class="cart__product-name">Sữa chua Hy Lạp</div>
+                                <div class="cart__product-variant">Vị: Nho • Loại: chai</div>
+                                <input type="hidden" name="product_name[]" value="Sữa chua Hy Lạp - Vị Nho - Chai">
+                            </div>
+                            </td>
+                            <td class="cart__price --text-center">199.000₫</td>
+                            <td class="cart__quantity --text-center">
+                            <input type="number" class="cart__quantity-input" name="product_quantity[]" min="1" value="1" readonly>
+                            </td>
+                            <td class="cart__subtotal --text-center">199.000₫</td>
+                        </tr>
+
+                        <tr class="cart__row">
+                            <td class="cart__product --text-left">
+                            <img src="https://i.pinimg.com/1200x/4b/bb/02/4bbb0223ba678e97772d02949e5f89ca.jpg" alt="Tên sản phẩm" class="cart__product-thumb" width="60" height="60">
+                            <div class="cart__product-info">
+                                <div class="cart__product-name">Sữa chua Hy Lạp</div>
+                                <div class="cart__product-variant">Vị: Nho • Loại: chai</div>
+                                <input type="hidden" name="product_name[]" value="Sữa chua Hy Lạp - Vị Nho - Chai">
+                            </div>
+                            </td>
+                            <td class="cart__price --text-center">199.000₫</td>
+                            <td class="cart__quantity --text-center">
+                            <input type="number" class="cart__quantity-input" name="product_quantity[]" min="1" value="1" readonly>
+                            </td>
+                            <td class="cart__subtotal --text-center">199.000₫</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- 3️⃣ Mã giảm giá -->
+                <div class="payment__voucher-container">
+                    <h3>Mã giảm giá</h3>
+                    <div class="payment__choose-voucher">
+                        <p><i class="fa-solid fa-ticket-simple"></i> Voucher</p>
+                        <button type="button">Chọn voucher</button>
+                    </div>
+
+                    <div class="payment__voucher-info">
+                        <div class="payment__chosen-info">
+                        Đã chọn <span class="--color6">1</span> mã
+                        </div>
+                        <ul class="payment__chosen-voucher">
+                        <li class="--color9">Phí giao hàng -15k</li>
+                        <li class="--color6">Giảm 20%</li>
+                        <li class="--color6">Giảm 22%</li>
+                        <li class="--color6">Giảm 29%</li>
+                        </ul>
+                    </div>
+
+                    <input type="hidden" name="voucher_code" value="VOUCHER2025">
+                </div>
+
+                <!-- 4️⃣ Phương thức thanh toán -->
+                <div class="payment__method">
+                    <h3 class="--color6">Phương thức thanh toán</h3>
+                    <ul class="methods">
+                        <li>
+                            <label>
+                                <input type="radio" name="payment_method" value="cod" required>
+                                Thanh toán khi nhận hàng
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="radio" name="payment_method" value="bank" > 
+                                Chuyển khoản ngân hàng
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="payment__final-info">
+                    <h3 class="final-title">Tổng kết đơn hàng</h3>
+                    <ul class="final-list">
+                        <li><p>Tổng tiền hàng</p><p>597.000₫</p></li>
+                        <li><p>Phí vận chuyển</p><p>35.000₫</p></li>
+                        <li><p>Tổng cộng voucher giảm giá</p><p>-35.000₫</p></li>
+                        <li><p>Tổng thanh toán</p><p>597.000₫</p></li>
+                    </ul>
+                </div>
+
+                <div class="action">
+                    <button class="pay-btn">Thanh toán</button>
+                </div>
+                
+            </form>
+            <!-- 🧾 Kết thúc form -->
+
+            </section>
+
+            <section class="payment__result">
+                <div class="payment-icon">✔</div>
+
+                <h2 class="payment-title">Thanh toán thành công!</h2>
+                <p class="payment-desc">Cảm ơn bạn đã mua hàng. Đơn hàng của bạn đang được xử lý.</p>
+
+                <div class="payment-info">
+                    <p><strong>Mã đơn hàng:</strong> #DH235678</p>
+                    <p><strong>Tổng tiền:</strong> 1.200.000₫</p>
+                    <p><strong>Phương thức thanh toán:</strong> Ví điện tử</p>
+                </div>
+
+                <div class="payment-actions">
+                    <a href="OrderDetail.jsp" class="btn-primary">Xem đơn hàng</a>
+                    <a href="Home.jsp" class="btn-secondary">Tiếp tục mua sắm</a>
+                </div>
+            </section>
+
+
+
+    </main>
+
+
+    <footer class="footer">
+        <div class="footer__top">
+
+            <div class="footer__top-col1">
+                <div class="footer__top-col1-top">
+
+                    <div class="footer__top-col1-top-logo">
+                        <i class="fa-solid fa-shop" ></i>
+                        <h3 class="--size20">MichiShop</h3>
+                    </div>
+                    <p>MiChiShop – Bé khỏe, mẹ vui, cả nhà hạnh phúc</p>
+
+                </div>
+
+                <div class="footer__top-col1-bottom">
+                    <h3>Về cửa hàng</h3>
+                    <p>MichiShop luôn muốn mang đến khách hàng những sản phẩm chất lượng và uy tín</p>
+                </div>
+            </div>
+
+            <div class="footer__top-col2">
+                <h3>Liên hệ</h3>
+                <ul>
+                    <li>Hotline: 0901 234 567</li>
+                    <li>Địa chỉ: 123 Nguyễn Văn Cừ, TP.HCM</li>
+                    <li>Giờ mở cửa: 8h - 20h</li>
+                </ul>
+            </div>
+
+            <div class="footer__top-col3">
+                <h3>Liên kết nhanh</h3>
+                <ul>
+                    <li><a href="Home.jsp">Trang chủ</a></li>
+                    <li><a href="Products.jsp">Sản phẩm</a></li>
+                    <li><a href="Voucher.jsp">Khuyến mãi</a></li>
+                    <li><a href="Blog.jsp">Cẩm nang</a></li>
+                    <li><a href="About.jsp">Về cửa hàng</a></li>
+                    <li><a href="Contact.jsp">Liên hệ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer__top-col4">
+                <div class="footer__top-col4-form">
+                    <h3>Đăng kí để nhận thêm thông tin</h3>
+                    <input type="text" placeholder="Để lại email của bạn...">
+                    <button>Đăng kí!</button>
+                </div>
+            </div>
+
+        </div>
+        <div class="footer__line"></div>
+
+
+        <div class="footer__bottom">
+            <div class="footer__bottom-logos">
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+                    <i class="fa-brands fa-tiktok"></i>
+                </a>
+                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+            </div>
+            <h4>&copy; Copyright. All rights reserved.</h4>
+        </div>
+
+    </footer>
+
+
+</body>
+<script type="module" src="../scripts/main.js"></script>
+<script src="../scripts/Payment.js"></script>
+</html>
