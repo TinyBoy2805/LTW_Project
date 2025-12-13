@@ -214,7 +214,7 @@
             <h4 class="site-footer__copyright">&copy; Copyright. All rights reserved.</h4>
         </div>
     </footer>
-    <script src="/admin/scripts/components/login.js"></script>
 </body>
+<script src="./admin/scripts/components/login.js"></script>
 
 </html>
