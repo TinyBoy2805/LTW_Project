@@ -209,7 +209,7 @@
                     <div class="order__card">
                         <div class="order__img">
                             <img src="../imgs/milk__powder.webp" alt="Trà sữa" />
-                            <span class="order__status">Đã xác nhận</span>
+                            <span class="order__status confirm">Đã xác nhận</span>
                         </div>
                         <div class="order__detail">
                             <div class="detail__top">
@@ -228,7 +228,7 @@
                     <div class="order__card">
                         <div class="order__img">
                             <img src="../imgs/cereal.webp" alt="Trà sữa" />
-                            <span class="order__status">Đang giao</span>
+                            <span class="order__status shipping">Đang giao</span>
                         </div>
                         <div class="order__detail">
                             <div class="detail__top">
@@ -247,7 +247,7 @@
                     <div class="order__card">
                         <div class="order__img">
                             <img src="../imgs/whey.webp" alt="Trà sữa" />
-                            <span class="order__status">Đã giao</span>
+                            <span class="order__status deliveried">Đã giao</span>
                         </div>
                         <div class="order__detail">
                             <div class="detail__top">
@@ -266,7 +266,7 @@
                     <div class="order__card">
                         <div class="order__img">
                             <img src="../imgs/milk.webp" alt="Trà sữa" />
-                            <span class="order__status">Đã hủy</span>
+                            <span class="order__status cancel">Đã hủy</span>
                         </div>
                         <div class="order__detail">
                             <div class="detail__top">

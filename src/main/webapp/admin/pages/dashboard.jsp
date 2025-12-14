@@ -234,9 +234,6 @@
 
                 <!-- last, content has a table about top product -->
                 <div class="table">
-                    <div class="table__header">
-                        <button class="filter"><ion-icon name="filter-outline" class="icon"></ion-icon>Lọc</button>
-                    </div>
                     <table>
                         <thead>
                             <tr>
@@ -253,7 +250,7 @@
                                 <td class="numerical">1</td>
                                 <td class="id">#614232</td>
                                 <td class="name">Sữa tươi Vinamilk tiệt trùng</td>
-                                <td class="origin"><ion-icon name="flag-outline" title="Việt Nam"></ion-icon></td>
+                                <td class="origin"><img src="https://flagcdn.com/w40/vn.png" alt="Việt Nam"></td>
                                 <td><span class="status status__instock --instock">Còn hàng</span></td>
                                 <td class="price">245.000đ</td>
                             </tr>
@@ -261,7 +258,7 @@
                                 <td class="numerical">2</td>
                                 <td class="id">#614246</td>
                                 <td class="name">Sữa bột Gold IQ+</td>
-                                <td class="origin"><ion-icon name="flag-outline" title="Mỹ"></ion-icon></td>
+                                <td class="origin"><img src="https://flagcdn.com/w40/us.png" alt="Mỹ"></td>
                                 <td><span class="status status__instock --instock">Còn hàng</span></td>
                                 <td>360.000đ</td>
                             </tr>
@@ -269,7 +266,7 @@
                                 <td class="numerical">3</td>
                                 <td class="id">#614510</td>
                                 <td class="name">Váng sữa hương Vani</td>
-                                <td class="origin"><ion-icon name="flag-outline" title="Nga"></ion-icon></td>
+                                <td class="origin"><img src="https://flagcdn.com/w40/ru.png" alt="Nga"></td>
                                 <td><span class="status status__waiting --pending">Chờ nhập hàng</span></td>
                                 <td>120.000đ</td>
                             </tr>

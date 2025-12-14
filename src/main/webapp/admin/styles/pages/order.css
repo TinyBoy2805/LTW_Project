@@ -50,13 +50,11 @@ body {
     justify-content: start;
     align-items: start;
     gap: 24px;
-    /* === CÁC THAY ĐỔI TRỌNG TÂM === */
     position: sticky;
-    top: 0; /* Đảm bảo nó dính ngay tại mép trên của vùng cuộn (container__content) */
+    top: 0;
     z-index: 10;
     background-color: #f8f8f8;
-    
-    /* Thêm padding-top đã bị xóa ở phần tử cha vào đây */
+
     padding: 24px 24px 24px 12px;
 }
 
@@ -95,7 +93,7 @@ input{
     outline: none;
     border: none;
     font-size: 13px;
-    padding: 8px, 12px;
+    padding: 8px 12px;
     width: 100%;
     color: #626262;
 }
@@ -160,9 +158,24 @@ input{
     font-size: 10px;
     font-weight: 500;
     color: white;
-    background-color: #f564a9;
     bottom: 20px;
     right: 20px;
+}
+
+.confirm{
+    background-color: #bda24e;
+}
+
+.shipping{
+    background-color: #4CAF50;
+}
+
+.deliveried{
+    background-color: #f564a9;
+}
+
+.cancel{
+    background-color: #FF4D4D;
 }
 
 /* Order's info */
@@ -245,16 +258,12 @@ input{
     color: white;
 }
 
-/* --- VỊ TRÍ: CUỐI FILE CSS, sau tất cả các style khác --- */
-
 .filter__wrapper {
-    /* Quan trọng: Cho phép khung lọc (absolute) neo vào wrapper này */
     position: relative; 
     display: inline-block; 
 }
 
 .filter__button {
-    /* Style cho nút Lọc (icon và text) */
     display: flex;
     align-items: center;
     gap: 5px;
@@ -281,9 +290,8 @@ input{
 }
 
 .filter__frame {
-    /* Khung Lọc (Filter Frame) */
     position: absolute;
-    top: 100%; /* Đặt ngay dưới nút */
+    top: 100%;
     right: 0;
     z-index: 20;
     width: 280px; 
@@ -295,7 +303,6 @@ input{
     transition: opacity 0.3s, visibility 0.3s;
 }
 
-/* Quan trọng: Ẩn frame và không cho tương tác */
 .filter__frame.hidden {
     opacity: 0;
     visibility: hidden; 
