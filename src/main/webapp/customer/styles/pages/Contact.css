@@ -7,23 +7,23 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* background: linear-gradient(135deg, rgb(47, 53, 127), rgb(55, 72, 255)); */
     position: relative;
     justify-content: center;
     gap: 12px;
-    background-color: var(--c10);
-    opacity: 0.8;
-    background: radial-gradient(circle, transparent 20%, var(--c10) 20%, var(--c10) 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, var(--c10) 20%, var(--c10) 80%, transparent 80%, transparent) 25px 25px, linear-gradient(var(--c6) 2px, transparent 2px) 0 -1px, linear-gradient(90deg, var(--c6) 2px, var(--c10) 2px) -1px 0;
-    background-size: 50px 50px, 50px 50px, 25px 25px, 25px 25px;
+    background: url("../../imgs/bg1.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-bottom: 3px dashed var(--c10);
 }
 
 .main__contact-top::before
 {
     content: "";
-    width: 95%;
+    width: 97%;
     height: 90%;
     position: absolute;
-    background-color: rgba(0, 0, 0, 0.5);
+    /*background-color: rgba(0,0,0,0.5);*/
     z-index: 10;
     pointer-events: none;
     border-radius: 10px;
@@ -33,7 +33,7 @@
 {
     width: 100%;
     text-align: center;
-    color: var(--c9);
+    color: var(--c6);
     z-index: 20;
     font-size: 35px;
 }
@@ -43,7 +43,7 @@
     width: 100%;
     text-align: justify;
     text-align: center;
-    color: var(--c5);
+    color: var(--c1);
     z-index: 20;
     max-width: 1000px;
     line-height: 1.5;

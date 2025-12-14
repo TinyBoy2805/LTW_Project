@@ -7,21 +7,12 @@
   align-items: center;
   text-align: center;
   border-bottom: 2px dashed var(--c10);
-    background-color: #e5e5f7;
-    opacity: 0.6;
-    background: repeating-linear-gradient( -45deg, var(--c6), var(--c6) 6.5px, var(--c10) 6.5px, var(--c10) 32.5px );
-    position: relative;
+    background: url("../../imgs/bg3.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-.hero::before
-{
-    content: "";
-    position: absolute;
-    width: 95%;
-    height: 90%;
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
-}
 
 .hero__content 
 {
@@ -46,8 +37,9 @@
 
 .hero__subtitle 
 {
-  font-size: 16px;
-  color: var(--c10);
+  font-size: 20px;
+  color: var(--c1);
+    font-weight: bold;
   /* margin-bottom: 30px; */
 }
 
