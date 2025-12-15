@@ -373,6 +373,14 @@
   <script src="../scripts/components/extendSidebar.js"></script>
   <script src="../scripts/components/modalDetail.js"></script>
   <script src="../scripts/components/filter.js"></script>
+  <script>
+    // Ngăn checkbox trigger modal
+    document.querySelectorAll('.check-wrap, .check-wrap input, .star').forEach(el => {
+      el.addEventListener('click', function(e) {
+        e.stopPropagation();
+      });
+    });
+  </script>
 </body>
 
 </html>

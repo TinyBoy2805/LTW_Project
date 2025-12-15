@@ -160,6 +160,12 @@
               <button type="button" class="tab-btn" data-target="kh_tab_all" aria-selected="true">Tất cả khách
                 hàng</button>
             </div>
+            <div class="search__filter">
+              <div class="search__box">
+                <i class="fa-solid fa-magnifying-glass search__icon"></i>
+                <input type="text" id="customer-search" placeholder="Tìm kiếm khách hàng" />
+              </div>
+            </div>
           </div>
 
           <!-- Radio inputs must be siblings of the customers containers for CSS ~ selector to work -->
