@@ -186,10 +186,6 @@
                         </select>
                       </div>
                       <!-- 'Chủ đề' filter removed as requested -->
-                      <div class="filter__group">
-                        <label for="filter__blog__date">Ngày đăng:</label>
-                        <input type="date" id="filter__blog__date__from" title="Từ ngày">
-                      </div>
                       <div class="filter__actions">
                         <button class="clear__button">Xóa lọc</button>
                         <button class="apply__button">Áp dụng</button>

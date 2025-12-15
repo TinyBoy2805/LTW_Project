@@ -47,8 +47,7 @@ body {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  padding: 24px 24px 0 24px;
-}
+  padding: 24px 24px 0 24px;  scrollbar-gutter: stable;}
 
 /* HEADER CỐ ĐỊNH (Không bị co lại) */
 .container__header {
@@ -320,11 +319,12 @@ input {
   box-shadow: 0 0px 8px rgba(0, 0, 0, 0.08);
   cursor: pointer;
   border: 1px solid #e0e0e0;
+  transition: all 0.25s ease-out;
 }
 
 .blog-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(245, 100, 169, 0.2);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 .content__panel.creating .search {

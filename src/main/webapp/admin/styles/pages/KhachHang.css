@@ -121,12 +121,13 @@ body {
 .tabs button {
   padding: 8px 16px;
   border: none;
-  background-color: transparent;
+  background-color: #F564A9;
   cursor: pointer;
   font-weight: 600;
-  color: #858585;
+  color: white;
   border-radius: 20px;
   transition: all 0.2s;
+  box-shadow: 0 2px 5px rgba(245,100,169,0.5);
 }
 
 .tabs button.active {
@@ -142,11 +143,11 @@ body {
   border-radius:20px;
   cursor:pointer;
   font-weight:600;
-  color:#858585;
-  background: transparent;
+  color: white;
+  background: #F564A9;
   border: none;
+  box-shadow: 0 2px 5px rgba(245,100,169,0.5);
 }
-.tab-btn:hover{ color:#6b6b6b; }
 
 /* Active state for tab buttons (mirrors .tabs button.active) */
 .tab-btn.active{
