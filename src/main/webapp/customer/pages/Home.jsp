@@ -112,7 +112,7 @@
                     <li><a href="Voucher.jsp">Khuyến mãi</a></li>
                     <li><a href="Blog.jsp">Cẩm nang</a></li>
                     <li><a href="Contact.jsp">Liên hệ</a></li>
-                    <li><a href="About.jsp">về cửa hàng</a></li>
+                    <li><a href="About.jsp">Về cửa hàng</a></li>
                 </ul>
             </div>
         </nav>

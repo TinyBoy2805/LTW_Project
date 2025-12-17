@@ -22,7 +22,8 @@ request .getRequestDispatcher("index.jsp").forward(request, response);
        AuthService as = new AuthService();
        User u = as.checkLogin(name, password_hashed);
 if(u!=null){
-    request.getSession().setAttribute("user", u);
+    HttpSession session = request.getSession();
+    session.setAttribute("auth", u);
     response.sendRedirect("home.jsp");
 }else{
     request.setAttribute("error", "Invalid name or password_hashed");
