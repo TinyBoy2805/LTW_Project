@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -80,16 +82,17 @@
                     <button class="tab-list__button" data-form="register">Đăng ký</button>
                 </div>
 
-                <form id="login-form" class="auth-form auth-form--active">
+                <form id="login-form" class="auth-form auth-form--active" action="login">
+                    <p class = "text-danger">${error}</p>
                     <!-- <h2 class="auth-form__title">Đăng nhập</h2> -->
                     <div class="input-group">
                         <label for="login-email" class="input-group__label">Email hoặc Số điện thoại</label>
-                        <input type="email" id="login-email" name="email"
+                        <input type="email" id="login-email" name="name"
                             placeholder="" class="input-group__input">
                     </div>
                     <div class="input-group">
                         <label for="login-password" class="input-group__label">Mật khẩu</label>
-                        <input type="password" id="login-password" name="password" placeholder=""
+                        <input type="password" id="login-password" name="password_hashed" placeholder=""
                             class="input-group__input">
                     </div>
                     <div class="auth-form__row auth-form__row--between">
