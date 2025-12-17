@@ -231,40 +231,38 @@
               </div>
             </article>
 
-            <article class="card" role="listitem" data-category="sua" data-customer="tat-ca" data-promo="discount" data-toggle="detail" data-target=".offer-detail">
+            <article class="card" role="listitem" data-category="sua" data-customer="tat-ca" data-promo="shipping" data-toggle="detail" data-target=".offer-detail">
               <figure class="card__figure">
-                <div class="promo-icon promo-discount" aria-hidden="true"><i class="fa-solid fa-credit-card"></i></div>
+                <div class="promo-icon promo-shipping" aria-hidden="true"><i class="fa-solid fa-truck"></i></div>
               </figure>
               <div class="info">
-                <h4>Ưu đãi quà tặng kèm</h4>
-                <p>Tặng quà kèm khi mua sữa bột và sản phẩm dinh dưỡng cho bé (số lượng có hạn).</p>
+                <h4>Miễn phí vận chuyển toàn quốc</h4>
+                <p>Miễn phí giao hàng cho đơn hàng sữa bột và sản phẩm dinh dưỡng cho bé.</p>
                 <p class="muted">Áp dụng cho đơn từ: 299.000đ</p>
                 <p class="muted">Hạn sử dụng: 30/11/2025</p>
                 <button class="time-pill" type="button">Thời hạn ưu đãi còn: 2 ngày</button>
               </div>
             </article>
 
-            <article class="card vip" role="listitem" data-category="sua" data-customer="vip" data-promo="discount" data-toggle="detail" data-target=".offer-detail">
+            <article class="card" role="listitem" data-category="sua" data-customer="tat-ca" data-promo="discount" data-toggle="detail" data-target=".offer-detail">
               <figure class="card__figure">
                 <div class="promo-icon promo-discount" aria-hidden="true"><i class="fa-solid fa-credit-card"></i></div>
-                <span class="vip-badge" aria-hidden="true"><i class="fa-solid fa-crown"></i></span>
               </figure>
               <div class="info">
-                <h4>Ưu đãi VIP A</h4>
-                <p>Giảm giá đặc biệt cho khách VIP - chỉ trong hôm nay.</p>
+                <h4>Ưu đãi Flash Sale</h4>
+                <p>Giảm giá đặc biệt - chỉ trong hôm nay.</p>
                 <p class="muted">Áp dụng cho đơn từ: 500.000đ</p>
                 <p class="muted">Hạn sử dụng: 10/11/2025</p>
                 <button class="time-pill" type="button">Thời hạn: 1 ngày</button>
               </div>
             </article>
 
-            <article class="card vip" role="listitem" data-category="sua" data-customer="vip" data-promo="discount" data-toggle="detail" data-target=".offer-detail">
+            <article class="card" role="listitem" data-category="sua" data-customer="tat-ca" data-promo="discount" data-toggle="detail" data-target=".offer-detail">
               <figure class="card__figure">
                 <div class="promo-icon promo-discount" aria-hidden="true"><i class="fa-solid fa-credit-card"></i></div>
-                <span class="vip-badge" aria-hidden="true"><i class="fa-solid fa-crown"></i></span>
               </figure>
               <div class="info">
-                <h4>Ưu đãi VIP B</h4>
+                <h4>Voucher giảm giá 30%</h4>
                 <p>Voucher giảm 30% dành cho khách hàng thân thiết.</p>
                 <p class="muted">Áp dụng cho đơn từ: 1 sản phẩm</p>
                 <p class="muted">Hạn sử dụng: 20/11/2025</p>
@@ -272,26 +270,25 @@
               </div>
             </article>
 
-            <article class="card vip" role="listitem" data-category="sua" data-customer="vip" data-promo="discount" data-toggle="detail" data-target=".offer-detail">
+            <article class="card" role="listitem" data-category="sua" data-customer="tat-ca" data-promo="shipping" data-toggle="detail" data-target=".offer-detail">
               <figure class="card__figure">
-                <div class="promo-icon promo-discount" aria-hidden="true"><i class="fa-solid fa-credit-card"></i></div>
-                <span class="vip-badge" aria-hidden="true"><i class="fa-solid fa-crown"></i></span>
+                <div class="promo-icon promo-shipping" aria-hidden="true"><i class="fa-solid fa-truck"></i></div>
               </figure>
               <div class="info">
-                <h4>Ưu đãi VIP C</h4>
-                <p>Gói quà tặng kèm cho khách VIP đặt mua online.</p>
+                <h4>Giảm 50% phí ship</h4>
+                <p>Giảm 50% phí vận chuyển khi đặt mua online.</p>
                 <p class="muted">Áp dụng cho đơn từ: 300.000đ</p>
                 <p class="muted">Hạn sử dụng: 01/12/2025</p>
                 <button class="time-pill" type="button">Thời hạn: 21 ngày</button>
               </div>
             </article>
 
-            <article class="card" role="listitem" data-category="sua" data-customer="thuong" data-promo="discount" data-toggle="detail" data-target=".offer-detail">
+            <article class="card" role="listitem" data-category="sua" data-customer="tat-ca" data-promo="discount" data-toggle="detail" data-target=".offer-detail">
               <figure class="card__figure">
                 <div class="promo-icon promo-discount" aria-hidden="true"><i class="fa-solid fa-credit-card"></i></div>
               </figure>
               <div class="info">
-                <h4>Ưu đãi thường D</h4>
+                <h4>Giảm giá đơn hàng</h4>
                 <p>Ưu đãi giảm giá dành cho mọi khách hàng.</p>
                 <p class="muted">Áp dụng cho đơn từ: 150.000đ</p>
                 <p class="muted">Hạn sử dụng: 31/12/2025</p>

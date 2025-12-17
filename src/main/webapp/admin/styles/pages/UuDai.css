@@ -208,22 +208,6 @@ body {
 /* hide old img if any exist (defensive) */
 .card__figure img { display: none; }
 
-.vip-badge {
-  position: absolute;
-  right: 3px;
-  bottom: 21px;
-  background: #ffd54a;
-  color: #8a5a00;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
-}
-
 .info {
   display: flex;
   flex-direction: column;

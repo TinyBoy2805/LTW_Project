@@ -221,7 +221,7 @@ main.content > a {
 .card-form {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 16px;
 }
 
 .label {
@@ -240,7 +240,7 @@ main.content > a {
 .row.two>div {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
 }
 
 /* Chips (small category/customer buttons) */

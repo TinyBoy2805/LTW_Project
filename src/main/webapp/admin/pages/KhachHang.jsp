@@ -159,23 +159,25 @@
             <div class="tabs" role="tablist" aria-label="Lọc khách hàng">
               <button type="button" class="tab-btn" data-target="kh_tab_all" aria-selected="true">Tất cả khách
                 hàng</button>
-              <button type="button" class="tab-btn" data-target="kh_tab_vip" aria-selected="false">Khách hàng
-                Vip</button>
+            </div>
+            <div class="search__filter">
+              <div class="search__box">
+                <i class="fa-solid fa-magnifying-glass search__icon"></i>
+                <input type="text" id="customer-search" placeholder="Tìm kiếm khách hàng" />
+              </div>
             </div>
           </div>
 
           <!-- Radio inputs must be siblings of the customers containers for CSS ~ selector to work -->
           <input type="radio" name="kh_tab" id="kh_tab_all" checked hidden>
-          <input type="radio" name="kh_tab" id="kh_tab_vip" hidden>
 
           <!-- All customers (default) -->
           <div class="customers customers-all" role="list">
 
             <!-- Cards-->
-            <article class="card vip" role="listitem">
+            <article class="card" role="listitem">
               <figure class="card__figure">
                 <img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="">
-                <span class="vip-badge" aria-hidden="true"><i class="fa-solid fa-crown"></i></span>
               </figure>
               <div class="info">
                 <input type="hidden" class="card-address" value="123 Lê Lợi, Quận 1, TP. HCM">
@@ -251,10 +253,9 @@
               </div>
             </article>
 
-            <article class="card vip" role="listitem">
+            <article class="card" role="listitem">
               <figure class="card__figure">
                 <img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="">
-                <span class="vip-badge" aria-hidden="true"><i class="fa-solid fa-crown"></i></span>
               </figure>
               <div class="info">
                 <input type="hidden" class="card-address" value="55 Trần Hưng Đạo, Quận 1, TP. HCM">
@@ -304,10 +305,9 @@
               </div>
             </article>
 
-            <article class="card vip" role="listitem">
+            <article class="card" role="listitem">
               <figure class="card__figure">
                 <img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="">
-                <span class="vip-badge" aria-hidden="true"><i class="fa-solid fa-crown"></i></span>
               </figure>
               <div class="info">
                 <input type="hidden" class="card-address" value="101 Nguyễn Thị Minh Khai, Quận 3, TP. HCM">
@@ -332,51 +332,6 @@
             </article>
 
           </div> <!-- .customers -->
-
-          <!-- VIP customers: hard-coded 3 cards -->
-          <div class="customers customers-vip" role="list" aria-hidden="true">
-            <article class="card vip" role="listitem">
-              <figure class="card__figure">
-                <img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="">
-                <span class="vip-badge" aria-hidden="true"><i class="fa-solid fa-crown"></i></span>
-              </figure>
-              <div class="info">
-                <input type="hidden" class="card-address" value="123 Lê Lợi, Quận 1, TP. HCM">
-                <h4>Khoa Bruh</h4>
-                <p><i class="fa-solid fa-envelope"></i> khoabruh@gmail.com</p>
-                <p><i class="fa-solid fa-phone"></i> 0363 666 636</p>
-                 <button class="detail-btn" type="button" data-toggle="detail" data-target=".customer-detail">Chi tiết</button>
-              </div>
-            </article>
-
-            <article class="card vip" role="listitem">
-              <figure class="card__figure">
-                <img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="">
-                <span class="vip-badge" aria-hidden="true"><i class="fa-solid fa-crown"></i></span>
-              </figure>
-              <div class="info">
-                <input type="hidden" class="card-address" value="55 Trần Hưng Đạo, Quận 1, TP. HCM">
-                <h4>Thành Phát</h4>
-                <p><i class="fa-solid fa-envelope"></i> thanhphat@gmail.com</p>
-                <p><i class="fa-solid fa-phone"></i> 0314 159 264</p>
-                  <button class="detail-btn" type="button" data-toggle="detail" data-target=".customer-detail">Chi tiết</button>
-              </div>
-            </article>
-
-            <article class="card vip" role="listitem">
-              <figure class="card__figure">
-                <img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="">
-                <span class="vip-badge" aria-hidden="true"><i class="fa-solid fa-crown"></i></span>
-              </figure>
-              <div class="info">
-                <input type="hidden" class="card-address" value="101 Nguyễn Thị Minh Khai, Quận 3, TP. HCM">
-                <h4>Thư Trần</h4>
-                <p><i class="fa-solid fa-envelope"></i> thutran@gmail.com</p>
-                <p><i class="fa-solid fa-phone"></i> 0912 987 654</p>
-                 <button class="detail-btn" type="button" data-toggle="detail" data-target=".customer-detail">Chi tiết</button>
-              </div>
-            </article>
-          </div> <!-- .customers-vip -->
         </div> <!-- .content__panel -->
     </div> <!-- .content -->
     </main> <!-- .main -->

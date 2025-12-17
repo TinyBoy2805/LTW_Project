@@ -182,11 +182,6 @@
                         </select>
                       </div>
 
-                      <div class="filter__group">
-                        <label for="filter__email__date">Ngày nhận:</label>
-                        <input type="date" id="filter__email__date__from" title="Từ ngày">
-                      </div>
-
                       <div class="filter__actions">
                         <button class="clear__button">Xóa lọc</button>
                         <button class="apply__button">Áp dụng</button>
@@ -378,6 +373,14 @@
   <script src="../scripts/components/extendSidebar.js"></script>
   <script src="../scripts/components/modalDetail.js"></script>
   <script src="../scripts/components/filter.js"></script>
+  <script>
+    // Ngăn checkbox trigger modal
+    document.querySelectorAll('.check-wrap, .check-wrap input, .star').forEach(el => {
+      el.addEventListener('click', function(e) {
+        e.stopPropagation();
+      });
+    });
+  </script>
 </body>
 
 </html>
