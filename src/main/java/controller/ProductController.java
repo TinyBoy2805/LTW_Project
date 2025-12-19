@@ -32,7 +32,7 @@ public class ProductController extends HttpServlet
 
         request.setAttribute("products", products);
 
-        request.getRequestDispatcher("/Products.jsp").forward(request, response);
+        request.getRequestDispatcher("/customer/pages/Products.jsp").forward(request, response);
     }
 
     @Override

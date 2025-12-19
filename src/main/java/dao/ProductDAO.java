@@ -6,30 +6,51 @@ import java.util.List;
 import java.util.Map;
 import org.jdbi.v3.core.statement.PreparedBatch;
 
-public class ProductDAO extends BaseDao {
+public class ProductDAO extends BaseDao
+{
     static Map<Integer, Product> data = new HashMap<>();
-    static {
-        data.put(1, new Product(1, "Product 1", 100));
-        data.put(2, new Product(2, "Product 2", 200));
-        data.put(3, new Product(3, "Product 3", 300));
-    }
-    public List<Product> getListProduct() {
-        return get().withHandle(h -> h.createQuery("SELECT * FROM products")
+
+    public List<Product> getListProduct()
+    {
+        String query =
+                "SELECT \n" +
+                "    p.id,\n" +
+                "    pi.product_id AS productId,\n" +
+                "    pi.img_url AS url,\n" +
+                "    p.name,\n" +
+                "    p.description,\n" +
+                "    b.name AS brand,\n" +
+                "    c.name AS category,\n" +
+                "    p.price,\n" +
+                "    p.buy_count AS buyCount,\n" +
+                "    p.start_date AS startDate,\n" +
+                "    p.end_date AS endDate,\n" +
+                "    p.quantity\n" +
+                "FROM product_images pi\n" +
+                "JOIN products p ON pi.product_id = p.id\n" +
+                "JOIN brands b ON p.brand_id = b.id\n" +
+                "JOIN categories c ON p.category_id = c.id;";
+
+        return get().withHandle(h -> h.createQuery(query)
                     .mapToBean(Product.class)
                     .list());
     }
 
-    public Product getProduct(int id) {
+    public Product getProduct(int id)
+    {
         return get().withHandle(h -> h.createQuery("SELECT * FROM products WHERE id = :id")
         .bind("id", id)
         .mapToBean(Product.class)
              .first());
 
     }
-    public void insert(List<Product> products) {
-        get().useHandle(handle -> {
+    public void insert(List<Product> products)
+    {
+        get().useHandle(handle ->
+        {
             PreparedBatch batch = handle.prepareBatch ("insert into products(id,name,price) values(:id,:name,:price)");
-            products.forEach(product -> {
+            products.forEach(product ->
+            {
                 batch.bindBean(product).add();
             });
             batch.execute();

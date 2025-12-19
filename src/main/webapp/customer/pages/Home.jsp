@@ -108,7 +108,7 @@
             <div class="nav__bottom">
                 <ul>
                     <li><a href="./Home.jsp" class="active">Trang chủ</a></li>
-                    <li><a href="Products.jsp">Sản phẩm</a></li>
+                    <li><a href="/LTW_Project/product">Sản phẩm</a></li>
                     <li><a href="Voucher.jsp">Khuyến mãi</a></li>
                     <li><a href="Blog.jsp">Cẩm nang</a></li>
                     <li><a href="Contact.jsp">Liên hệ</a></li>
