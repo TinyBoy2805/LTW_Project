@@ -343,6 +343,12 @@ body {
     display: none;
 }
 
+.text-danger p{
+    color: red !important;
+    font-size: 12px !important;
+    font-weight: 300 !important;
+}
+
 .auth-form__title {
     margin-top: 0;
     padding-bottom: 12px;

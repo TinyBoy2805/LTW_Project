@@ -165,7 +165,7 @@
               <section class="left-panel">
                 <div class="card-form">
                   <label class="label">Tên ưu đãi</label>
-                  <textarea class="input textarea" rows="1"></textarea>
+                  <input type="text" class="input" placeholder="Nhập tên ưu đãi" />
 
                   <label class="label">Mặt hàng</label>
                   <div class="chips">
@@ -173,13 +173,6 @@
                     <button type="button" class="chip">Đồ ăn dặm</button>
                     <button type="button" class="chip">Cháo dinh dưỡng</button>
                     <button type="button" class="chip">Thức uống dinh dưỡng</button>
-                  </div>
-
-                  <label class="label">Khách hàng</label>
-                  <div class="chips">
-                    <button type="button" class="chip">Tất cả</button>
-                    <button type="button" class="chip">Thường</button>
-                    <button type="button" class="chip">Vip</button>
                   </div>
 
                   <label class="label">Phân loại ưu đãi</label>
@@ -198,14 +191,14 @@
                     </div>
                     <div>
                       <label class="label">Số lượng</label>
-                      <input type="number" class="input" min="1" value="Nhập số lượng" />
+                      <input type="number" class="input" min="0" step="1" value="0" />
                     </div>
                   </div>
                   <label class="label">Hạn ưu đãi đến hết ngày</label>
                   <input type="date" class="input" value="Thời gian ưu đãi" />
 
                   <label class="label">Mô tả</label>
-                  <textarea class="input textarea" rows="2"></textarea>
+                  <textarea class="input textarea" rows="4" placeholder="Nhập mô tả ưu đãi"></textarea>
                 </div>
               </section>
 

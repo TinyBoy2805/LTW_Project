@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,212 +10,221 @@
     <title>Đăng nhập/Đăng ký - MiChiShop</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-        crossorigin="anonymous">
+          crossorigin="anonymous">
     <link rel="stylesheet" href="admin/styles/pages/login.css">
 </head>
 
 <body>
 
-    <div class="page-login">
-        <header class="header">
-            <nav class="nav">
-                <div class="nav__top">
-                    <a class="nav__top-logo" href="#">
-                        <div class="nav__logo-img">
-                            <img src="admin/imgs/logo.png" alt="">
-                        </div>
-                        <h1>MichiShop</h1>
-                    </a>
-                    <div class="nav__top-input">
-                        <form action="#">
-                            <input type="text" placeholder="Sản phẩm bạn cần tìm..." class="--no-border --no-outline">
-                            <button class="--no-border --no-outline">
-                                <i class="fa-solid fa-magnifying-glass"></i>
-                                Tìm kiếm
-                            </button>
-                        </form>
+<div class="page-login">
+    <header class="header">
+        <nav class="nav">
+            <div class="nav__top">
+                <a class="nav__top-logo" href="#">
+                    <div class="nav__logo-img">
+                        <img src="admin/imgs/logo.png" alt="">
                     </div>
-                    <div class="nav__top-actions">
-                        <ul>
-                            <li class="hovercart">
-                                <a href="#" class="--color4"><i class="fa-solid fa-cart-shopping --size20"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="--color4"><i class="fa-solid fa-bell --size20"></i></a>
-                            </li>
-                            <li class="hover-avt --is-login">
-                                <a href="#" class="--color4"><i class="fa-solid fa-user-ninja --size20"></i></a>
-                            </li>
-                            <li class="login-btn --is-not-login"><a href="./index.jsp">Đăng nhập</a></li>
-                        </ul>
-                    </div>
+                    <h1>MichiShop</h1>
+                </a>
+                <div class="nav__top-input">
+                    <form action="#">
+                        <input type="text" placeholder="Sản phẩm bạn cần tìm..." class="--no-border --no-outline">
+                        <button class="--no-border --no-outline">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            Tìm kiếm
+                        </button>
+                    </form>
                 </div>
-                <div class="nav__line"></div>
-                <div class="nav__bottom">
+                <div class="nav__top-actions">
                     <ul>
-                        <li><a href="customer/pages/Home.jsp" class="">Trang chủ</a></li>
-                        <li><a href="customer/pages/Products.jsp">Sản phẩm</a></li>
-                        <li><a href="customer/pages/Voucher.jsp">Khuyến mãi</a></li>
-                        <li><a href="customer/pages/Blog.jsp">Cẩm nang</a></li>
-                        <li><a href="customer/pages/Contact.jsp">Liên hệ</a></li>
-                        <li><a href="customer/pages/About.jsp">về cửa hàng</a></li>
+                        <li class="hovercart">
+                            <a href="#" class="--color4"><i class="fa-solid fa-cart-shopping --size20"></i></a>
+                        </li>
+                        <li>
+                            <a href="#" class="--color4"><i class="fa-solid fa-bell --size20"></i></a>
+                        </li>
+                        <li class="hover-avt --is-login">
+                            <a href="#" class="--color4"><i class="fa-solid fa-user-ninja --size20"></i></a>
+                        </li>
+                        <li class="login-btn --is-not-login"><a href="./index.jsp">Đăng nhập</a></li>
                     </ul>
                 </div>
-            </nav>
-        </header>
+            </div>
+            <div class="nav__line"></div>
+            <div class="nav__bottom">
+                <ul>
+                    <li><a href="customer/pages/Home.jsp" class="">Trang chủ</a></li>
+                    <li><a href="customer/pages/Products.jsp">Sản phẩm</a></li>
+                    <li><a href="customer/pages/Voucher.jsp">Khuyến mãi</a></li>
+                    <li><a href="customer/pages/Blog.jsp">Cẩm nang</a></li>
+                    <li><a href="customer/pages/Contact.jsp">Liên hệ</a></li>
+                    <li><a href="customer/pages/About.jsp">về cửa hàng</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
 
-        <main class="main-content">
-            <div class="welcome-section">
-                <h1 class="welcome-section__title">Chào mừng đến với MichiShop</h1>
-                <p class="welcome-section__text">Nơi cung cấp sữa, thực phẩm dinh dưỡng tốt nhất cho bé yêu </p>
-                <div class="product-showcase">
-                    <img src="admin/imgs/michishop.png" alt="MichiShop - Dinh dưỡng cho bé"
-                         class="product-showcase__banner-image">
-                </div>
-                <p class="welcome-section__promotion-text">Khám phá ngay các sản phẩm, ưu đãi hấp dẫn cùng MichiShop!
-                </p>
+    <main class="main-content">
+        <div class="welcome-section">
+            <h1 class="welcome-section__title">Chào mừng đến với MichiShop</h1>
+            <p class="welcome-section__text">Nơi cung cấp sữa, thực phẩm dinh dưỡng tốt nhất cho bé yêu </p>
+            <div class="product-showcase">
+                <img src="admin/imgs/michishop.png" alt="MichiShop - Dinh dưỡng cho bé"
+                     class="product-showcase__banner-image">
+            </div>
+            <p class="welcome-section__promotion-text">Khám phá ngay các sản phẩm, ưu đãi hấp dẫn cùng MichiShop!
+            </p>
+        </div>
+
+        <div class="form-section">
+            <div class="tab-list">
+                <button class="tab-list__button ${activeTab == 'register' ? '' : 'tab-list__button--active'}" data-form="login">Đăng nhập</button>
+                <button class="tab-list__button ${activeTab == 'register' ? 'tab-list__button--active' : ''}" data-form="register">Đăng ký</button>
             </div>
 
-            <div class="form-section">
-                <div class="tab-list">
-                    <button class="tab-list__button tab-list__button--active" data-form="login">Đăng nhập</button>
-                    <button class="tab-list__button" data-form="register">Đăng ký</button>
+            <form id="login-form" class="auth-form ${activeTab == 'register' ? 'auth-form--hidden' : 'auth-form--active'}" action="login">
+                <!-- <h2 class="auth-form__title">Đăng nhập</h2> -->
+                <div class="input-group">
+                    <label for="login-email" class="input-group__label">Email hoặc Số điện thoại</label>
+                    <input type="email" id="login-email" name="name"
+                           placeholder="" class="input-group__input">
                 </div>
+                <div class="input-group">
+                    <label for="login-password" class="input-group__label">Mật khẩu</label>
+                    <input type="password" id="login-password" name="password_hashed" placeholder=""
+                           class="input-group__input">
+                </div>
+                <div class="auth-form__row auth-form__row--between">
+                    <label class="small-checkbox"><input type="checkbox" name="is_admin" id="admin-checkbox"
+                                                         class="small-checkbox__input"> Đăng
+                        nhập với vai trò Admin</label>
+                    <a href="forgot__password.jsp" class="forgot-password">Quên mật khẩu?</a>
+                </div>
+                <button type="submit" class="auth-form__submit-btn">Đăng nhập</button>
+            </form>
 
-                <form id="login-form" class="auth-form auth-form--active">
-                    <!-- <h2 class="auth-form__title">Đăng nhập</h2> -->
-                    <div class="input-group">
-                        <label for="login-email" class="input-group__label">Email hoặc Số điện thoại</label>
-                        <input type="email" id="login-email" name="email"
-                            placeholder="" class="input-group__input">
-                    </div>
-                    <div class="input-group">
-                        <label for="login-password" class="input-group__label">Mật khẩu</label>
-                        <input type="password" id="login-password" name="password" placeholder=""
-                            class="input-group__input">
-                    </div>
-                    <div class="auth-form__row auth-form__row--between">
-                        <label class="small-checkbox"><input type="checkbox" name="is_admin" id="admin-checkbox"
-                                class="small-checkbox__input"> Đăng
-                            nhập với vai trò Admin</label>
-                        <a href="forgot__password.jsp" class="forgot-password">Quên mật khẩu?</a>
-                    </div>
-                    <button type="submit" class="auth-form__submit-btn">Đăng nhập</button>
-                </form>
+            <form id="register-form" class="auth-form  ${activeTab == 'register' ? 'auth-form--active' : 'auth-form--hidden'}" action="register" method="post">
+                <!-- <h2 class="auth-form__title">Đăng ký tài khoản mới</h2> -->
+                <c:if test="${not empty error}">
+                    <p class="text-danger">${error}</p>
+                </c:if>
+                <div class="input-group">
+                    <label for="reg-name" class="input-group__label">Họ và tên</label>
+                    <input type="text" id="reg-name" name="name" placeholder=""
+                           class="input-group__input" required>
+                </div>
+                <div class="input-group">
+                    <label for="reg-email" class="input-group__label">Email</label>
+                    <input type="email" id="reg-email" name="email" placeholder=""
+                           class="input-group__input" required>
+                </div>
+                <div class="input-group">
+                    <label for="reg-phone" class="input-group__label">Số điện thoại</label>
+                    <input type="tel" id="reg-phone" name="phone" placeholder=""
+                           class="input-group__input" required>
+                </div>
+                <div class="input-group">
+                    <label for="reg-password" class="input-group__label">Mật khẩu</label>
+                    <input type="password" id="reg-password" name="password" placeholder=""
+                           class="input-group__input" required>
+                </div>
+                <div class="input-group">
+                    <label for="reg-confirm-password" class="input-group__label">Xác nhận mật khẩu</label>
+                    <input type="password" id="reg-confirm-password" name="confirm_password"
+                           placeholder="" class="input-group__input" required>
+                </div>
+                <button type="submit" class="auth-form__submit-btn auth-form__submit-btn--register">Đăng ký</button>
+            </form>
+        </div>
+    </main>
 
-                <form id="register-form" class="auth-form auth-form--hidden">
-                    <!-- <h2 class="auth-form__title">Đăng ký tài khoản mới</h2> -->
-                    <div class="input-group">
-                        <label for="reg-name" class="input-group__label">Họ và tên</label>
-                        <input type="text" id="reg-name" name="name" placeholder=""
-                            class="input-group__input">
-                    </div>
-                    <div class="input-group">
-                        <label for="reg-email" class="input-group__label">Email</label>
-                        <input type="email" id="reg-email" name="email" placeholder=""
-                            class="input-group__input">
-                    </div>
-                    <div class="input-group">
-                        <label for="reg-phone" class="input-group__label">Số điện thoại</label>
-                        <input type="tel" id="reg-phone" name="phone" placeholder=""
-                            class="input-group__input">
-                    </div>
-                    <div class="input-group">
-                        <label for="reg-password" class="input-group__label">Mật khẩu</label>
-                        <input type="password" id="reg-password" name="password" placeholder=""
-                            class="input-group__input">
-                    </div>
-                    <div class="input-group">
-                        <label for="reg-confirm-password" class="input-group__label">Xác nhận mật khẩu</label>
-                        <input type="password" id="reg-confirm-password" name="confirm_password"
-                            placeholder="" class="input-group__input">
-                    </div>
-                    <button type="submit" class="auth-form__submit-btn auth-form__submit-btn--register">Đăng ký</button>
-                </form>
+</div>
+<footer class="site-footer">
+    <div class="site-footer__top">
+
+        <div class="site-footer__col site-footer__col--1">
+            <div class="site-footer__col1-top">
+
+                <div class="site-footer__col1-top-logo">
+                    <i class="fa-solid fa-shop"></i>
+                    <h3 class="--size20">MichiShop</h3>
+                </div>
+                <p class="site-footer__text">MiChiShop – Bé khỏe, mẹ vui, cả nhà hạnh phúc</p>
+
             </div>
-        </main>
+
+            <div class="site-footer__col1-bottom">
+                <h3 class="site-footer__heading">Về cửa hàng</h3>
+                <p class="site-footer__text">MichiShop luôn muốn mang đến khách hàng những sản phẩm chất lượng và uy
+                    tín</p>
+            </div>
+        </div>
+
+        <div class="site-footer__col site-footer__col--2">
+            <h3 class="site-footer__heading">Liên hệ</h3>
+            <ul class="site-footer__list">
+                <li class="site-footer__list-item">Hotline: 0901 234 567</li>
+                <li class="site-footer__list-item">Địa chỉ: 123 Nguyễn Văn Cừ, TP.HCM</li>
+                <li class="site-footer__list-item">Giờ mở cửa: 8h - 20h</li>
+            </ul>
+        </div>
+
+        <div class="site-footer__col site-footer__col--3">
+            <h3 class="site-footer__heading">Liên kết nhanh</h3>
+            <ul class="site-footer__list">
+                <li class="site-footer__list-item"><a href="customer/pages/Home.jsp" class="site-footer__link">Trang
+                    chủ</a>
+                </li>
+                <li class="site-footer__list-item"><a href="customer/pages/Products.jsp" class="site-footer__link">Sản
+                    phẩm</a>
+                </li>
+                <li class="site-footer__list-item"><a href="customer/pages/Voucher.jsp" class="site-footer__link">Khuyến
+                    mãi</a>
+                </li>
+                <li class="site-footer__list-item"><a href="customer/pages/Blog.jsp" class="site-footer__link">Cẩm
+                    nang</a></li>
+                <li class="site-footer__list-item"><a href="customer/pages/About.jsp" class="site-footer__link">Về cửa
+                    hàng</a>
+                </li>
+                <li class="site-footer__list-item"><a href="customer/pages/Contact.jsp" class="site-footer__link">Liên
+                    hệ</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="site-footer__col site-footer__col--4">
+            <div class="site-footer__form-newsletter">
+                <h3 class="site-footer__heading">Đăng kí để nhận thêm thông tin</h3>
+                <input type="text" placeholder="Để lại email của bạn..." class="site-footer__input">
+                <button class="site-footer__button">Đăng kí!</button>
+            </div>
+        </div>
 
     </div>
-    <footer class="site-footer">
-        <div class="site-footer__top">
+    <div class="site-footer__line"></div>
 
-            <div class="site-footer__col site-footer__col--1">
-                <div class="site-footer__col1-top">
-
-                    <div class="site-footer__col1-top-logo">
-                        <i class="fa-solid fa-shop"></i>
-                        <h3 class="--size20">MichiShop</h3>
-                    </div>
-                    <p class="site-footer__text">MiChiShop – Bé khỏe, mẹ vui, cả nhà hạnh phúc</p>
-
-                </div>
-
-                <div class="site-footer__col1-bottom">
-                    <h3 class="site-footer__heading">Về cửa hàng</h3>
-                    <p class="site-footer__text">MichiShop luôn muốn mang đến khách hàng những sản phẩm chất lượng và uy
-                        tín</p>
-                </div>
-            </div>
-
-            <div class="site-footer__col site-footer__col--2">
-                <h3 class="site-footer__heading">Liên hệ</h3>
-                <ul class="site-footer__list">
-                    <li class="site-footer__list-item">Hotline: 0901 234 567</li>
-                    <li class="site-footer__list-item">Địa chỉ: 123 Nguyễn Văn Cừ, TP.HCM</li>
-                    <li class="site-footer__list-item">Giờ mở cửa: 8h - 20h</li>
-                </ul>
-            </div>
-
-            <div class="site-footer__col site-footer__col--3">
-                <h3 class="site-footer__heading">Liên kết nhanh</h3>
-                <ul class="site-footer__list">
-                    <li class="site-footer__list-item"><a href="customer/pages/Home.jsp" class="site-footer__link">Trang chủ</a>
-                    </li>
-                    <li class="site-footer__list-item"><a href="customer/pages/Products.jsp" class="site-footer__link">Sản phẩm</a>
-                    </li>
-                    <li class="site-footer__list-item"><a href="customer/pages/Voucher.jsp" class="site-footer__link">Khuyến mãi</a>
-                    </li>
-                    <li class="site-footer__list-item"><a href="customer/pages/Blog.jsp" class="site-footer__link">Cẩm nang</a></li>
-                    <li class="site-footer__list-item"><a href="customer/pages/About.jsp" class="site-footer__link">Về cửa hàng</a>
-                    </li>
-                    <li class="site-footer__list-item"><a href="customer/pages/Contact.jsp" class="site-footer__link">Liên hệ</a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="site-footer__col site-footer__col--4">
-                <div class="site-footer__form-newsletter">
-                    <h3 class="site-footer__heading">Đăng kí để nhận thêm thông tin</h3>
-                    <input type="text" placeholder="Để lại email của bạn..." class="site-footer__input">
-                    <button class="site-footer__button">Đăng kí!</button>
-                </div>
-            </div>
-
+    <div class="site-footer__bottom">
+        <div class="site-footer__social-logos">
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook"
+               class="site-footer__social-link">
+                <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram"
+               class="site-footer__social-link">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" aria-label="TikTok"
+               class="site-footer__social-link">
+                <i class="fa-brands fa-tiktok"></i>
+            </a>
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube"
+               class="site-footer__social-link">
+                <i class="fa-brands fa-youtube"></i>
+            </a>
         </div>
-        <div class="site-footer__line"></div>
-
-        <div class="site-footer__bottom">
-            <div class="site-footer__social-logos">
-                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook"
-                    class="site-footer__social-link">
-                    <i class="fa-brands fa-facebook-f"></i>
-                </a>
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram"
-                    class="site-footer__social-link">
-                    <i class="fa-brands fa-instagram"></i>
-                </a>
-                <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" aria-label="TikTok"
-                    class="site-footer__social-link">
-                    <i class="fa-brands fa-tiktok"></i>
-                </a>
-                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube"
-                    class="site-footer__social-link">
-                    <i class="fa-brands fa-youtube"></i>
-                </a>
-            </div>
-            <h4 class="site-footer__copyright">&copy; Copyright. All rights reserved.</h4>
-        </div>
-    </footer>
+        <h4 class="site-footer__copyright">&copy; Copyright. All rights reserved.</h4>
+    </div>
+</footer>
 </body>
 <script src="./admin/scripts/components/login.js"></script>
 

@@ -1,5 +1,3 @@
-
-
 const $ = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)
 
@@ -20,24 +18,43 @@ $$('.tab-list__button').forEach(button => {
         }
     });
 });
+//
+// (function () {
+//
+//     const loginForm = document.getElementById('login-form');
+//     if (!loginForm) return;
+//
+//     loginForm.addEventListener('submit', function (ev) {
+//         ev.preventDefault();
+//
+//         const isAdmin = !!this.querySelector('#admin-checkbox')?.checked;
+//
+//         if (isAdmin) {
+//             window.location.href = '../../../admin/pages/dashboard.jsp';
+//
+//         } else {
+//
+//             window.location.href = '../../../customer/pages/Home.jsp';
+//
+//         }
+//     });
+// })();
 
-(function () {
+document.addEventListener('DOMContentLoaded', () => {
+    const adminCheckbox = document.getElementById('adminCheckbox');
+    const loginButton = document.getElementById('loginButton');
+    const headerRole = document.getElementById('headerRole');
 
-    const loginForm = document.getElementById('login-form');
-    if (!loginForm) return;
+    const ADMIN_URL = './admin/pages/dashboard.html';
+    const CUSTOMER_URL = './customer/pages/Home.html';
 
-    loginForm.addEventListener('submit', function (ev) {
-        ev.preventDefault();
+    const updateLoginState = () => {
+        const isChecked = adminCheckbox.checked;
 
-        const isAdmin = !!this.querySelector('#admin-checkbox')?.checked;
+        loginButton.href = isChecked ? ADMIN_URL : CUSTOMER_URL;
+    };
 
-        if (isAdmin) {
-            window.location.href = '../../../admin/pages/dashboard.jsp';
+    adminCheckbox.addEventListener('change', updateLoginState);
 
-        } else {
-
-            window.location.href = '../../../customer/pages/Home.jsp';
-
-        }
-    });
-})();
+    updateLoginState();
+});
