@@ -40,22 +40,4 @@ public abstract class BaseDao {
     //     };
     //     System.out.println(dao.get());
     // }
-
-    protected Connection getConnection() throws SQLException {
-        try {
-            Properties props = new Properties();
-            InputStream is = getClass()
-                    .getClassLoader()
-                    .getResourceAsStream("db.properties");
-            props.load(is);
-
-            String url = props.getProperty("db.url");
-            String user = props.getProperty("db.username");
-            String pass = props.getProperty("db.password");
-
-            return DriverManager.getConnection(url, user, pass);
-        } catch (IOException e) {
-            throw new SQLException(e);
-        }
-    }
 }

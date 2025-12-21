@@ -1,54 +1,65 @@
 package dao;
 
+import model.Role;
 import model.User;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class AuthDao extends BaseDao {
 
+//    public User getUserByName(String name) {
+//        return get().withHandle(h -> h.createQuery("SELECT * FROM users WHERE name = :name")
+//                .bind("name", name)
+//                .mapToBean(User.class)
+//                .stream()
+//                .findFirst()
+//                .orElse(null));
+//    }
+
     public User getUserByName(String name) {
-      return get().withHandle(h -> h.createQuery("SELECT * FROM users WHERE name = :name")
-        .bind("name", name)
-        .mapToBean(User.class)
-        .stream()
-        .findFirst()
-        .orElse(null));
+        return get().withHandle(h ->
+                h.createQuery("SELECT * FROM users WHERE name = :name")
+                        .bind("name", name)
+                        .map((rs, ctx) -> {
+                            User u = new User();
+                            u.setId(rs.getInt("id"));
+                            u.setName(rs.getString("name"));
+                            u.setEmail(rs.getString("email"));
+                            u.setRole(Role.valueOf(rs.getString("role")));
+                            u.setPassword_hashed(rs.getString("password_hashed"));
+                            u.setPhone_number(rs.getString("phone_number"));
+                            u.setAvt_url(rs.getString("avt_url"));
+                            return u;
+                        })
+                        .findFirst()
+                        .orElse(null)
+        );
     }
 
     public boolean existsByEmail(String email) {
-        String sql = "SELECT id FROM users WHERE email = ?";
-        try (Connection c = getConnection();
-             PreparedStatement ps = c.prepareStatement(sql)) {
-
-            ps.setString(1, email);
-            ResultSet rs = ps.executeQuery();
-            return rs.next();
-
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        return get().withHandle(h ->
+                h.createQuery("SELECT 1 FROM users WHERE email = :email")
+                        .bind("email", email)
+                        .mapTo(Integer.class)
+                        .findFirst()
+                        .isPresent()
+        );
     }
 
     public void insert(User user) {
-        String sql = """
-                INSERT INTO users(name, email,role, password, phone)
-                VALUES (?, ?, ?, ?, ?)
-                """;
-
-        try (Connection c = getConnection();
-             PreparedStatement ps = c.prepareStatement(sql)) {
-
-            ps.setString(1, user.getName());
-            ps.setString(2, user.getEmail());
-            ps.setBoolean(3, user.getRole());
-            ps.setString(4, user.getPassword_hashed());
-            ps.setString(5, user.getPhone_number());
-
-            ps.executeUpdate();
-
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        get().useHandle(h ->
+                h.createUpdate("""
+                                    INSERT INTO users(name, email, role, password_hashed, phone_number)
+                                    VALUES (:name, :email, :role, :password, :phone)
+                                """)
+                        .bind("name", user.getName())
+                        .bind("email", user.getEmail())
+                        .bind("role", user.getRole().name())
+                        .bind("password", user.getPassword_hashed())
+                        .bind("phone", user.getPhone_number())
+                        .execute()
+        );
     }
 }

@@ -1,6 +1,7 @@
 package service;
 
 import dao.AuthDao;
+import model.Role;
 import model.User;
 
 public class AuthService {
@@ -32,7 +33,7 @@ public class AuthService {
         User user = new User();
         user.setName(name);
         user.setEmail(email);
-        user.setRole(false);
+        user.setRole(Role.customer);
         user.setPassword_hashed(password);
         user.setPhone_number(phone);
 
