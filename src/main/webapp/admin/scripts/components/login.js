@@ -1,21 +1,15 @@
-
-
 const $ = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)
 
 
-// Script cơ bản để chuyển đổi giữa form Đăng nhập và Đăng ký
 $$('.tab-list__button').forEach(button => {
     button.addEventListener('click', function () {
-        // Loại bỏ active khỏi tất cả các nút và form
         $$('.tab-list__button').forEach(btn => btn.classList.remove('tab-list__button--active'));
         $$('.auth-form').forEach(form => form.classList.remove('auth-form--active'));
         $$('.auth-form').forEach(form => form.classList.add('auth-form--hidden'));
 
-        // Thêm active vào nút được click
         this.classList.add('tab-list__button--active');
 
-        // Hiển thị form tương ứng
         const targetFormId = this.getAttribute('data-form') + '-form';
         const targetForm = document.getElementById(targetFormId);
         if (targetForm) {
@@ -24,28 +18,43 @@ $$('.tab-list__button').forEach(button => {
         }
     });
 });
+//
+// (function () {
+//
+//     const loginForm = document.getElementById('login-form');
+//     if (!loginForm) return;
+//
+//     loginForm.addEventListener('submit', function (ev) {
+//         ev.preventDefault();
+//
+//         const isAdmin = !!this.querySelector('#admin-checkbox')?.checked;
+//
+//         if (isAdmin) {
+//             window.location.href = '../../../admin/pages/dashboard.jsp';
+//
+//         } else {
+//
+//             window.location.href = '../../../customer/pages/Home.jsp';
+//
+//         }
+//     });
+// })();
 
-// Redirect on login submit based on admin checkbox
-(function () {
+document.addEventListener('DOMContentLoaded', () => {
+    const adminCheckbox = document.getElementById('adminCheckbox');
+    const loginButton = document.getElementById('loginButton');
+    const headerRole = document.getElementById('headerRole');
 
-    const loginForm = document.getElementById('login-form');
-    if (!loginForm) return;
+    const ADMIN_URL = './admin/pages/dashboard.html';
+    const CUSTOMER_URL = './customer/pages/Home.html';
 
-    loginForm.addEventListener('submit', function (ev) {
-        ev.preventDefault();
+    const updateLoginState = () => {
+        const isChecked = adminCheckbox.checked;
 
-        // Lấy giá trị của checkbox admin (sử dụng ID đã đổi)
-        const isAdmin = !!this.querySelector('#admin-checkbox')?.checked;
+        loginButton.href = isChecked ? ADMIN_URL : CUSTOMER_URL;
+    };
 
-        if (isAdmin) {
-            // redirect to admin dashboard (same folder)
-            window.location.href = '../../../admin/pages/dashboard.jsp';
+    adminCheckbox.addEventListener('change', updateLoginState);
 
-        } else {
-
-            // redirect to customer home
-            window.location.href = '../../../customer/pages/Home.jsp';
-
-        }
-    });
-})();
+    updateLoginState();
+});

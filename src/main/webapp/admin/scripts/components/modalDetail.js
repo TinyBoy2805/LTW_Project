@@ -11,7 +11,6 @@
     console.log('[modalDetail] openModal called for:', modal);
     modal.classList.add(SHOW_CLASS);
     modal.setAttribute('aria-hidden', 'false');
-    // Mở modal và khóa cuộn trang
     try { modal.style.display = modal.style.display || 'block'; } catch (e) {}
     try { document.body.style.overflow = 'hidden'; } catch (e) {}
     var body = modal.querySelector('.detail-body');
@@ -34,7 +33,6 @@
   }
 
   function handleDocumentClick(e) {
-    // Mở trigger: data-toggle="detail"
     var trigger = e.target.closest('[' + OPEN_ATTR + '="' + TOGGLE_VALUE + '"]');
     if (trigger) {
       console.log('[modalDetail] trigger clicked:', trigger);
@@ -45,7 +43,6 @@
       return;
     }
 
-    // Đóng trigger: data-dismiss hoặc .detail-close
     var closeBtn = e.target.closest('[' + CLOSE_ATTR + ']') || e.target.closest('.detail-close') || e.target.closest('.close-btn');
     if (closeBtn) {
       var modalEl = closeBtn.closest('.detail-modal') || closeBtn.closest('.mail-detail') || closeBtn.closest('.blog-detail') || closeBtn.closest('.offer-detail') || closeBtn.closest('.customer-detail');
@@ -53,7 +50,6 @@
       return;
     }
 
-    // Đóng khi click ra ngoài nội dung modal
     var openModalElem = document.querySelector(MODAL_SELECTOR + '.' + SHOW_CLASS);
     if (openModalElem && e.target === openModalElem) {
       closeModal(openModalElem);

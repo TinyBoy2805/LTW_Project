@@ -164,7 +164,7 @@
                     <h2 class="content__title">Kho Hàng</h2>
                     <div class="content__header">
                         <div class="search__filter">
-                            <input type="text" placeholder="Tìm kiếm đơn hàng">
+                            <input type="text" placeholder="Tìm kiếm sản phẩm">
                             <div class="search__box">
                                 <ion-icon name="search-outline" class="search__icon"></ion-icon>
                                 <div class="line">

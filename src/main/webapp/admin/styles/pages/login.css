@@ -279,7 +279,6 @@ body {
     text-align: center;
 }
 
-/* Form Section */
 .form-section {
     flex: 1;
     min-width: 300px;
@@ -288,8 +287,6 @@ body {
     justify-content: center;
 }
 
-/* Password reset page: lower / vertically center the forms in the right column
-   so they align better with the banner on the left. */
 .password-reset-section {
     display: flex;
     flex-direction: column;
@@ -338,13 +335,18 @@ body {
     background-color: var(--c6);
 }
 
-/* Form Styles */
 .auth-form {
     padding: 10px 0;
 }
 
 .auth-form--hidden {
     display: none;
+}
+
+.text-danger p{
+    color: red !important;
+    font-size: 12px !important;
+    font-weight: 300 !important;
 }
 
 .auth-form__title {
@@ -388,7 +390,6 @@ body {
     margin: 0;
 }
 
-/* ensure checkbox and forgot-password align within the same flex row */
 .auth-form__row {
     display: flex;
     align-items: center;
@@ -431,7 +432,6 @@ body {
     background-color: #e35a9a;
 }
 
-/* Footer copied from customer site styles (Block: site-footer) */
 .site-footer {
     width: 100%;
     background-color: var(--c10);

@@ -1,6 +1,7 @@
 package service;
 
 import dao.AuthDao;
+import model.Role;
 import model.User;
 
 public class AuthService {
@@ -15,4 +16,28 @@ public class AuthService {
        return null;
     }
 
+    public String register(String name,
+                           String email,
+                           String phone,
+                           String password,
+                           String confirmPassword) {
+
+        if (!password.equals(confirmPassword)) {
+            return "Mật khẩu xác nhận không khớp";
+        }
+
+        if (authDao.existsByEmail(email)) {
+            return "Email đã tồn tại";
+        }
+
+        User user = new User();
+        user.setName(name);
+        user.setEmail(email);
+        user.setRole(Role.customer);
+        user.setPassword_hashed(password);
+        user.setPhone_number(phone);
+
+        authDao.insert(user);
+        return null;
+    }
 }

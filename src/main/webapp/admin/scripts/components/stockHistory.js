@@ -3,21 +3,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeBtn = document.getElementById('stock__history__close');
     const overlay = document.getElementById('stock__history__overlay');
 
-    // Xử lý mở Overlay
     if (openBtn && overlay) {
         openBtn.addEventListener('click', () => {
-            overlay.classList.remove('hidden'); // Xóa class 'hidden' để hiện Overlay
+            overlay.classList.remove('hidden');
         });
     }
 
-    // Xử lý đóng Overlay bằng nút X
     if (closeBtn && overlay) {
         closeBtn.addEventListener('click', () => {
-            overlay.classList.add('hidden'); // Thêm class 'hidden' để ẩn Overlay
+            overlay.classList.add('hidden');
         });
     }
 
-    // Xử lý đóng Overlay khi click ra ngoài
     if (overlay) {
         overlay.addEventListener('click', (e) => {
             if (e.target === overlay) {
