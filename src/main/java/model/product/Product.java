@@ -3,13 +3,14 @@ package model;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Product implements Serializable {
+public class Product implements Serializable
+{
     private int id;
-    private int productId;  // Thêm field này cho product_images.product_id
+    private int productId;
     private String name;
     private String description;
     private int price;
-    private String url;  // img_url từ product_images
+    private String url;
     private String brand;
     private String category;
     private int buyCount;
@@ -17,14 +18,13 @@ public class Product implements Serializable {
     private LocalDate startDate;
     private LocalDate endDate;
 
-    // Constructor rỗng (BẮT BUỘC cho JDBI)
-    public Product() {
-    }
+    public Product(){}
 
-    // Constructor đầy đủ
-    public Product(int id, int productId, String name, String description, int price, String url, 
+
+    public Product(int id, int productId, String name, String description, int price, String url,
                    String brand, String category, int buyCount, int quantity,
-                   LocalDate startDate, LocalDate endDate) {
+                   LocalDate startDate, LocalDate endDate)
+    {
         this.id = id;
         this.productId = productId;
         this.name = name;
@@ -40,7 +40,8 @@ public class Product implements Serializable {
     }
 
     // Getters
-    public int getId() {
+    public int getId()
+    {
         return id;
     }
 
@@ -88,12 +89,12 @@ public class Product implements Serializable {
         return endDate;
     }
 
-    // Setters (BẮT BUỘC cho JDBI)
     public void setId(int id) {
         this.id = id;
     }
 
-    public void setProductId(int productId) {
+    public void setProductId(int productId)
+    {
         this.productId = productId;
     }
 
