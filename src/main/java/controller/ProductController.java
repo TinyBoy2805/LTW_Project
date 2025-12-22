@@ -16,28 +16,53 @@ public class ProductController extends HttpServlet
 {
 
     private ProductService productService = new ProductService();
-
+    private final int PAGE_SIZE = 16;
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        List<Product> products = null;
+        String pageParam = request.getParameter("page");
+        int page = 1;
+        
+        if (pageParam != null && !pageParam.isEmpty())
+        {
+            try
+            {
+                page = Integer.parseInt(pageParam);
+                if (page < 1) page = 1;
+            } catch (NumberFormatException e)
+            {
+                page = 1;
+            }
+        }
+
         try
         {
-             products = productService.getProducts();
+            List<Product> products = productService.getProductByPage(page, PAGE_SIZE);
+
+            int totalProducts = productService.getTotalProducts();
+            int totalPages = (int) Math.ceil((double) totalProducts / PAGE_SIZE);
+
+            if (page > totalPages && totalPages > 0)
+            {
+                page = totalPages;
+                products = productService.getProductByPage(page, PAGE_SIZE);
+            }
+            
+            request.setAttribute("products", products);
+            request.setAttribute("currentPage", page);
+            request.setAttribute("totalPages", totalPages);
+            
+            request.getRequestDispatcher("/customer/pages/Products.jsp").forward(request, response);
         } catch (SQLException e)
         {
             throw new RuntimeException(e);
         }
-
-
-        request.setAttribute("products", products);
-
-        request.getRequestDispatcher("/customer/pages/Products.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-
+        doGet(request, response);
     }
 }

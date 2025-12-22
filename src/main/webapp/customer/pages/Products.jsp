@@ -270,7 +270,52 @@
                         </li>
                     </c:forEach>
                 </ul>
-                <button class="main__products-more">Xem thêm</button>
+                
+
+                <div class="pagination">
+
+                    <c:choose>
+                        <c:when test="${currentPage > 1}">
+                            <a href="${pageContext.request.contextPath}/product?page=${currentPage - 1}" class="pagination__btn">
+                                <i class="fa-solid fa-chevron-left"></i> Prev
+                            </a>
+                        </c:when>
+                        <c:otherwise>
+                            <span class="pagination__btn pagination__btn--disabled">
+                                <i class="fa-solid fa-chevron-left"></i> Prev
+                            </span>
+                        </c:otherwise>
+                    </c:choose>
+
+                    <div class="pagination__numbers">
+                        <c:forEach var="i" begin="${currentPage - 1}" end="${currentPage + 1}">
+                            <c:if test="${i >= 1 && i <= totalPages}">
+                                <a href="${pageContext.request.contextPath}/product?page=${i}" 
+                                   class="pagination__number ${i == currentPage ? 'pagination__number--active' : ''}">
+                                   ${i}
+                                </a>
+                            </c:if>
+                        </c:forEach>
+
+                        <c:if test="${currentPage + 1 < totalPages}">
+                            <a href="${pageContext.request.contextPath}/product?page=${currentPage + 1}" 
+                               class="pagination__dots">...</a>
+                        </c:if>
+                    </div>
+
+                    <c:choose>
+                        <c:when test="${currentPage < totalPages}">
+                            <a href="${pageContext.request.contextPath}/product?page=${currentPage + 1}" class="pagination__btn">
+                                Next <i class="fa-solid fa-chevron-right"></i>
+                            </a>
+                        </c:when>
+                        <c:otherwise>
+                            <span class="pagination__btn pagination__btn--disabled">
+                                Next <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </c:otherwise>
+                    </c:choose>
+                </div>
             </div>
         </div>
 
