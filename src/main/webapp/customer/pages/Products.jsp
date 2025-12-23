@@ -103,7 +103,7 @@
             <div class="nav__line"></div>
             <div class="nav__bottom">
                 <ul>
-                    <li><a href="${pageContext.request.contextPath}/customer/pages/Home.jsp" >Trang chủ</a></li>
+                    <li><a href="${pageContext.request.contextPath}/home" >Trang chủ</a></li>
                     <li><a href="${pageContext.request.contextPath}/product" class="active">Sản phẩm</a></li>
                     <li><a href="${pageContext.request.contextPath}/customer/pages/Voucher.jsp">Khuyến mãi</a></li>
                     <li><a href="${pageContext.request.contextPath}/customer/pages/Blog.jsp">Cẩm nang</a></li>
@@ -234,29 +234,50 @@
                 <ul class="main__products-ul">
                     <c:forEach var="p" items="${products}">
                         <li class="main__products-ul-li">
-                            <div class="product">
+                            <div class="product" title="${p.name}">
                                 <div class="product__top">
                                     <div class="product__image">
-                                        <img src="${p.url}" alt="">
+                                        <img src="${p.img_url}" alt="">
                                     </div>
                                 </div>
 
                                 <div class="product__mid">
-                                    <h3>${p.name}</h3>
+                                    <h3 title="${p.name}">${p.name}</h3>
                                     <div class="product__mid-sub1">
                                         <ul class="product__mid-sub1-stars">
-                                            <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
-                                            <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
-                                            <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
-                                            <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
-                                            <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                            <c:choose>
+                                                <c:when test="${p.avg_rating < 5 && p.avg_rating > 0}">
+                                                    <c:forEach var="i" begin="0" end="${p.avg_rating}">
+                                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                                    </c:forEach>
+                                                    <c:forEach var="i" begin="${p.avg_rating}" end="${4}">
+                                                        <li class="product__mid-sub1-stars-item --color2"><i class="fa-solid fa-star hidden"></i></li>
+                                                    </c:forEach>
+                                                </c:when>
+
+                                                <c:when test="${p.avg_rating == 5}">
+                                                    <c:forEach var="i" begin="0" end="${4}">
+                                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star"></i></li>
+                                                    </c:forEach>
+                                                </c:when>
+
+                                                <c:when test="${p.avg_rating == 0}">
+                                                    <c:forEach var="i" begin="0" end="${4}">
+                                                        <li class="product__mid-sub1-stars-item"><i class="fa-solid fa-star hidden"></i></li>
+                                                    </c:forEach>
+                                                </c:when>
+                                            </c:choose>
+
                                         </ul>
-                                        <p>98</p>
+                                        <p>${p.avg_rating}</p>
+
                                     </div>
 
                                     <div class="product__mid-sub2">
-                                        <p>${p.price}đ</p>
-                                        <p>Đã bán 3.6k+</p>
+                                        <p>
+                                            <fmt:formatNumber value="${p.price}" type="number" groupingUsed="true"/>đ
+                                        </p>
+                                        <p>Đã bán ${p.buy_count}</p>
                                     </div>
                                 </div>
 
@@ -396,5 +417,5 @@
 
 </body>
 <script type="module" src="${pageContext.request.contextPath}/customer/scripts/main.js"></script>
-<script src="${pageContext.request.contextPath}/customer/scripts/Products.js" type="module"></script>
+<%--<script src="${pageContext.request.contextPath}/customer/scripts/Products.js" type="module"></script>--%>
 </html>

@@ -53,7 +53,7 @@
                 <div class="nav__line"></div>
                 <div class="nav__bottom">
                     <ul>
-                        <li><a href="customer/pages/Home.jsp" class="">Trang chủ</a></li>
+                        <li><a href="${pageContext.request.contextPath}/home" class="">Trang chủ</a></li>
                         <li><a href="customer/pages/Products.jsp">Sản phẩm</a></li>
                         <li><a href="customer/pages/Voucher.jsp">Khuyến mãi</a></li>
                         <li><a href="customer/pages/Blog.jsp">Cẩm nang</a></li>

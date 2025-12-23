@@ -3,12 +3,12 @@ package controller;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import model.Product;
+import model.product.Product;
+import model.product.ProductCard;
 import service.ProductService;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "ProductController", value = "/product")
@@ -38,7 +38,12 @@ public class ProductController extends HttpServlet
 
         try
         {
-            List<Product> products = productService.getProductByPage(page, PAGE_SIZE);
+            List<ProductCard> products = productService.getProductByPage(page, PAGE_SIZE);
+
+            for(ProductCard pc: products)
+            {
+                pc.setAvg_rating(Math.floor(pc.getAvg_rating()));
+            }
 
             int totalProducts = productService.getTotalProducts();
             int totalPages = (int) Math.ceil((double) totalProducts / PAGE_SIZE);
@@ -47,6 +52,10 @@ public class ProductController extends HttpServlet
             {
                 page = totalPages;
                 products = productService.getProductByPage(page, PAGE_SIZE);
+                for(ProductCard pc: products)
+                {
+                    pc.setAvg_rating(Math.floor(pc.getAvg_rating()));
+                }
             }
             
             request.setAttribute("products", products);

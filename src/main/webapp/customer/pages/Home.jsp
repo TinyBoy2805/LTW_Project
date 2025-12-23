@@ -1,11 +1,15 @@
+<%@ page import="java.time.format.DateTimeFormatter" %>
+<%@ page import="java.time.LocalDate" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MichiShop</title>
-    <link rel="stylesheet" href="../styles/index.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/customer/styles/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
@@ -22,7 +26,7 @@
             <div class="nav__top">
                 <a class="nav__top-logo" href="./Home.jsp">
                     <div class="nav__logo-img">
-                        <img src="../imgs/Gemini_Generated_Image_c648fqc648fqc648.png" alt="">
+                        <img src="${pageContext.request.contextPath}/customer/imgs/Gemini_Generated_Image_c648fqc648fqc648.png" alt="">
                     </div>
                     <h1>MichiShop</h1>
                 </a>
@@ -107,12 +111,12 @@
             <div class="nav__line"></div>
             <div class="nav__bottom">
                 <ul>
-                    <li><a href="./Home.jsp" class="active">Trang chủ</a></li>
-                    <li><a href="/LTW_Project/product">Sản phẩm</a></li>
-                    <li><a href="Voucher.jsp">Khuyến mãi</a></li>
-                    <li><a href="Blog.jsp">Cẩm nang</a></li>
-                    <li><a href="Contact.jsp">Liên hệ</a></li>
-                    <li><a href="About.jsp">Về cửa hàng</a></li>
+                    <li><a href="${pageContext.request.contextPath}/home" class="active">Trang chủ</a></li>
+                    <li><a href="${pageContext.request.contextPath}/product">Sản phẩm</a></li>
+                    <li><a href="${pageContext.request.contextPath}/customer/pages/Voucher.jsp">Khuyến mãi</a></li>
+                    <li><a href="${pageContext.request.contextPath}/customer/pages/Blog.jsp">Cẩm nang</a></li>
+                    <li><a href="${pageContext.request.contextPath}/customer/pages/Contact.jsp">Liên hệ</a></li>
+                    <li><a href="${pageContext.request.contextPath}/customer/pages/About.jsp">về cửa hàng</a></li>
                 </ul>
             </div>
         </nav>
@@ -128,7 +132,7 @@
                     <h2><span>Sữa & Thực phẩm</span> dinh dưỡng cho trẻ nhỏ</h2>
                     <p>Chúng tôi đồng hành cùng hành trình khôn lớn của bé yêu – mang đến những sản phẩm sữa và thực phẩm dinh dưỡng chính hãng, an toàn và giàu yêu thương, để mỗi bữa ăn, mỗi giọt sữa đều trở thành nguồn năng lượng trong lành nuôi dưỡng tương lai khỏe mạnh và hạnh phúc cho con.</p>
                     <ul>
-                        <li><a href="Products.jsp" class="--color6">Khám phá sản phẩm của chúng tôi</a></li>
+                        <li><a href="${pageContext.request.contextPath}/product" class="--color6">Khám phá sản phẩm của chúng tôi</a></li>
                         <li><a href="About.jsp" class="--color6"><i class="fa-solid fa-circle-info"></i></a></li>
                     </ul>
                 </div>
@@ -138,7 +142,7 @@
                 <div class="main__hero-banner-content-sub2">
                     <ul>
                         <li>
-                            <h4>1,8 nghìn</h4>
+                            <h4>${user_count_formatted}</h4>
                             <p>Người dùng tin cậy</p>
                         </li>
                         <li>
@@ -146,7 +150,7 @@
                             <p>Cam kết sản phẩm an toàn</p>
                         </li>
                         <li>
-                            <h4><i class="fa-solid fa-star"></i> 4.8</h4>
+                            <h4><i class="fa-solid fa-star"></i> ${avg_rating}</h4>
                             <p>Từ 3 nghìn đánh giá</p>
                         </li>
                     </ul>
@@ -156,7 +160,7 @@
 
             <div class="main__hero-banner-image">
                 <div class="main__hero-banner-image-container">
-                    <img src="../imgs/herobanner2.jpg" alt="">
+                    <img src="${pageContext.request.contextPath}/customer/imgs/herobanner2.jpg" alt="">
                 </div>
             </div>
 
@@ -165,25 +169,18 @@
         <section class="main__categories">
             <h3>Danh mục sản phẩm</h3>
             <div class="main__categories-list">
-                <ul>
-                    <li><i class="fa-solid fa-icons"></i><a href="Products.jsp" title="Sữa bột">Sữa bột</a></li>
-                    <li><i class="fa-solid fa-icons"></i><a href="Products.jsp" title="Sữa nước">Sữa nước</a></li>
-                    <li><i class="fa-solid fa-icons"></i><a href="Products.jsp" title="Sữa công thức">Sữa công thức</a></li>
-                    <li><i class="fa-solid fa-icons"></i><a href="Products.jsp" title="Sữa chua & Váng sữa">Sữa chua & Váng sữa</a></li>
-                    <li><i class="fa-solid fa-icons"></i><a href="Products.jsp" title="Bột ăn dặm">Bột ăn dặm</a></li>
-                    <li><i class="fa-solid fa-icons"></i><a href="Products.jsp" title="Cháo dinh dưỡng">Cháo dinh dưỡng</a></li>
-                    <li><i class="fa-solid fa-icons"></i><a href="Products.jsp" title="Snack dinh dưỡng">Snack dinh dưỡng</a></li>
-                    <li><i class="fa-solid fa-icons"></i><a href="Products.jsp" title="Đồ uống dinh dưỡng">Đồ uống dinh dưỡng</a></li>
-                    <li><i class="fa-solid fa-icons"></i><a href="Products.jsp" title="Dầu ăn cho bé">Dầu ăn cho bé</a></li>
-                    <li><i class="fa-solid fa-icons"></i><a href="Products.jsp" title="Sữa lon">Sữa lon</a></li>
-                    <li><i class="fa-solid fa-icons"></i><a href="Products.jsp" title="Thực phẩm bổ sung">Thực phẩm bổ sung</a></li>
-                    <li><i class="fa-solid fa-icons"></i><a href="Products.jsp" title="Kẹo">Kẹo</a></li>
+                <button class="left-btn"><</button>
+                <button class="right-btn">></button>
+                <ul data-total="${categories.size()}">
+                    <c:forEach var="c" items="${categories}">
+                        <li><i class="fa-solid fa-icons"></i><a href="${pageContext.request.contextPath}/customer/pages/Products.jsp" title="Sữa bột">${c}</a></li>
+                    </c:forEach>
                 </ul>
             </div>
         </section>
 <!-- <i class="fa-solid fa-gift"></i> -->
  <!-- <i class="fa-solid fa-money-bill"></i> -->
-
+<%--        <i class="fa-regular fa-truck"></i>--%>
 
 
 
@@ -192,149 +189,40 @@
             <h3>Ưu đãi -  Khuyến mãi</h3>
             <div class="main_vouchers-list">
                 <ul>
-                    <li>    
-                        <div class="voucher">
-                            <div class="voucher__left">
-                                <p class="--size20"><i class="fa-solid fa-money-bill"></i>Ưu đãi giảm giá </p>
-                                <p class="--size64 --weight700">-50%</p>
-                                <p class="--size16">Cho đơn có giá trị từ 200.000VND</p>
+
+                    <c:forEach var="v" items="${vouchers}">
+                        <li>
+                            <div class="voucher">
+                                <c:set var="voucher_color" value="background: var(--c9)" scope="page"/>
+                                <c:set var="voucher_text" value="phí ship"/>
+                                <c:set var="voucher_icon" value="fa-regular fa-truck"/>
+                                <c:if test="${v.voucher_type == 'DISCOUNT'}">
+                                    <c:set var="voucher_color" value="background: var(--c7)" scope="page"/>
+                                    <c:set var="voucher_text" value="giảm giá"/>
+                                    <c:set var="voucher_icon" value="fa-solid fa-money-bill"/>
+                                </c:if>
+
+                                <div class="voucher__left" style="${voucher_color}">
+                                    <p class="--size20">
+                                        Ưu đãi ${voucher_text}
+                                        <i class="${voucher_icon}"></i>
+                                    </p>
+                                    <p class="--size64 --weight700">-<fmt:formatNumber value="${v.discount_percentage}" type="number" maxFractionDigits="0" pattern="#,###"/>%</p>
+                                    <p class="--size16">
+                                        Áp dụng cho đơn từ
+                                        <fmt:formatNumber value="${v.min_order_value}" type="number" maxFractionDigits="0" pattern="#,###"/> đ
+                                    </p>
+                                    <p class="left__info">còn lại: ${v.current_amount}</p>
+                                </div>
+                                <div class="voucher__right">
+                                    <button type="button" onclick="">Nhận ưu đãi</button>
+                                    <p>HSD: ${v.end_date}</p>
+                                </div>
                             </div>
-                            <div class="voucher__right">
-                                <button href="">Nhận ưu đãi</button>
-                                <p>HSD: 22/12/2029</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>    
-                        <div class="voucher">
-                            <div class="voucher__left">
-                                <p class="--size20"><i class="fa-solid fa-money-bill"></i>Ưu đãi giảm giá </p>
-                                <p class="--size64 --weight700">-50%</p>
-                                <p class="--size16">Cho đơn có giá trị từ 200.000VND</p>
-                            </div>
-                            <div class="voucher__right">
-                                <button href="">Nhận ưu đãi</button>
-                                <p>HSD: 22/12/2029</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>    
-                        <div class="voucher">
-                            <div class="voucher__left">
-                                <p class="--size20"><i class="fa-solid fa-money-bill"></i>Ưu đãi giảm giá </p>
-                                <p class="--size64 --weight700">-50%</p>
-                                <p class="--size16">Cho đơn có giá trị từ 200.000VND</p>
-                            </div>
-                            <div class="voucher__right">
-                                <button href="">Nhận ưu đãi</button>
-                                <p>HSD: 22/12/2029</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>    
-                        <div class="voucher">
-                            <div class="voucher__left">
-                                <p class="--size20"><i class="fa-solid fa-money-bill"></i>Ưu đãi giảm giá </p>
-                                <p class="--size64 --weight700">-50%</p>
-                                <p class="--size16">Cho đơn có giá trị từ 200.000VND</p>
-                            </div>
-                            <div class="voucher__right">
-                                <button href="">Nhận ưu đãi</button>
-                                <p>HSD: 22/12/2029</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>    
-                        <div class="voucher">
-                            <div class="voucher__left">
-                                <p class="--size20"><i class="fa-solid fa-money-bill"></i>Ưu đãi giảm giá </p>
-                                <p class="--size64 --weight700">-50%</p>
-                                <p class="--size16">Cho đơn có giá trị từ 200.000VND</p>
-                            </div>
-                            <div class="voucher__right">
-                                <button href="">Nhận ưu đãi</button>
-                                <p>HSD: 22/12/2029</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>    
-                        <div class="voucher">
-                            <div class="voucher__left">
-                                <p class="--size20"><i class="fa-solid fa-money-bill"></i>Ưu đãi giảm giá </p>
-                                <p class="--size64 --weight700">-50%</p>
-                                <p class="--size16">Cho đơn có giá trị từ 200.000VND</p>
-                            </div>
-                            <div class="voucher__right">
-                                <button href="">Nhận ưu đãi</button>
-                                <p>HSD: 22/12/2029</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>    
-                        <div class="voucher">
-                            <div class="voucher__left">
-                                <p class="--size20"><i class="fa-solid fa-money-bill"></i>Ưu đãi giảm giá </p>
-                                <p class="--size64 --weight700">-50%</p>
-                                <p class="--size16">Cho đơn có giá trị từ 200.000VND</p>
-                            </div>
-                            <div class="voucher__right">
-                                <button href="">Nhận ưu đãi</button>
-                                <p>HSD: 22/12/2029</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>    
-                        <div class="voucher">
-                            <div class="voucher__left">
-                                <p class="--size20"><i class="fa-solid fa-money-bill"></i>Ưu đãi giảm giá </p>
-                                <p class="--size64 --weight700">-50%</p>
-                                <p class="--size16">Cho đơn có giá trị từ 200.000VND</p>
-                            </div>
-                            <div class="voucher__right">
-                                <button href="">Nhận ưu đãi</button>
-                                <p>HSD: 22/12/2029</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>    
-                        <div class="voucher">
-                            <div class="voucher__left">
-                                <p class="--size20"><i class="fa-solid fa-money-bill"></i>Ưu đãi giảm giá </p>
-                                <p class="--size64 --weight700">-50%</p>
-                                <p class="--size16">Cho đơn có giá trị từ 200.000VND</p>
-                            </div>
-                            <div class="voucher__right">
-                                <button href="">Nhận ưu đãi</button>
-                                <p>HSD: 22/12/2029</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>    
-                        <div class="voucher">
-                            <div class="voucher__left">
-                                <p class="--size20"><i class="fa-solid fa-money-bill"></i>Ưu đãi giảm giá </p>
-                                <p class="--size64 --weight700">-50%</p>
-                                <p class="--size16">Cho đơn có giá trị từ 200.000VND</p>
-                            </div>
-                            <div class="voucher__right">
-                                <button href="">Nhận ưu đãi</button>
-                                <p>HSD: 22/12/2029</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>    
-                        <div class="voucher">
-                            <div class="voucher__left">
-                                <p class="--size20"><i class="fa-solid fa-money-bill"></i>Ưu đãi giảm giá </p>
-                                <p class="--size64 --weight700">-50%</p>
-                                <p class="--size16">Cho đơn có giá trị từ 200.000VND</p>
-                            </div>
-                            <div class="voucher__right">
-                                <button href="">Nhận ưu đãi</button>
-                                <p>HSD: 22/12/2029</p>
-                            </div>
-                        </div>
-                    </li>
+                        </li>
+                    </c:forEach>
+
+
                 </ul>
             </div>
         </section>
@@ -1549,6 +1437,6 @@
 
 </body>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-<script type="module" src="../scripts/main.js"></script>
-<script type="module" src="../scripts/Home.js"></script>
+<script type="module" src="${pageContext.request.contextPath}/customer/scripts/main.js"></script>
+<script type="module" src="${pageContext.request.contextPath}/customer/scripts/Home.js"></script>
 </html>

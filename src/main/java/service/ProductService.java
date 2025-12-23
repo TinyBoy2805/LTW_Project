@@ -1,7 +1,9 @@
 package service;
 
 import dao.ProductDAO;
-import model.Product;
+import model.product.Product;
+import model.product.ProductCard;
+
 import java.sql.SQLException;
 import java.util.List;
 
@@ -13,7 +15,7 @@ public class ProductService
         return this.db.getListProduct();
     }
 
-    public List<Product> getProductByPage(int page, int pageSize) throws SQLException
+    public List<ProductCard> getProductByPage(int page, int pageSize) throws SQLException
     {
         return this.db.getProductByPage(page, pageSize);
     }
