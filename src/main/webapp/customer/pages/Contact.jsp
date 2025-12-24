@@ -122,50 +122,110 @@
                 <h2>Liên hệ với cửa hàng</h2>
                 <p>Chúng tôi hy vọng sẽ sớm được nghe ý kiến từ bạn</p>
             </div>
-            <div class="main__contact-bottom-mid">
-                <div class="main__contact-bottom-mid-sub">
-                    <div>
-                        <i class="fa-solid fa-envelope"></i>
-                        E-mail
+            
+            <div class="main__contact-container">
+                <!-- Left Side - Contact Info -->
+                <div class="main__contact-info">
+                    <div class="contact-info-card">
+                        <div class="contact-info-icon">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div class="contact-info-content">
+                            <h3>Email</h3>
+                            <p>taisaodattenlaikhovay@gmail.com</p>
+                            <span>Phản hồi trong 24h</span>
+                        </div>
                     </div>
-                    <p>taisaodattenlaikhovay@gmail.com</p>
-                </div>
-                <div class="main__contact-bottom-mid-sub">
-                    <div>
-                        <i class="fa-solid fa-phone"></i>
-                        Số điện thoại
+
+                    <div class="contact-info-card">
+                        <div class="contact-info-icon">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div class="contact-info-content">
+                            <h3>Điện thoại</h3>
+                            <p>0931 415 926</p>
+                            <span>Hỗ trợ 24/7</span>
+                        </div>
                     </div>
-                    <p>0931415926</p>
+
+                    <div class="contact-info-card">
+                        <div class="contact-info-icon">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div class="contact-info-content">
+                            <h3>Địa chỉ</h3>
+                            <p>123 Nguyễn Văn Cừ, Q5</p>
+                            <span>TP. Hồ Chí Minh</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-info-card">
+                        <div class="contact-info-icon">
+                            <i class="fa-solid fa-clock"></i>
+                        </div>
+                        <div class="contact-info-content">
+                            <h3>Giờ làm việc</h3>
+                            <p>Thứ 2 - Chủ nhật</p>
+                            <span>8:00 AM - 8:00 PM</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-social">
+                        <h4>Theo dõi chúng tôi</h4>
+                        <div class="contact-social-links">
+                            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                            <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- Right Side - Form -->
+                <form action="" class="main__contact-form">
+                    <div class="form-header">
+                        <h3>Gửi tin nhắn cho chúng tôi</h3>
+                        <p>Điền thông tin bên dưới và chúng tôi sẽ liên hệ lại sớm nhất</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Họ và tên <span class="required">*</span></label>
+                        <input type="text" name="fullname" placeholder="Nguyễn Văn A" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Email <span class="required">*</span></label>
+                            <input type="email" name="email" placeholder="example@gmail.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Số điện thoại <span class="required">*</span></label>
+                            <input type="tel" name="phone" placeholder="0931 415 926" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Chủ đề</label>
+                        <select name="subject">
+                            <option value="">Chọn chủ đề</option>
+                            <option value="product">Tư vấn sản phẩm</option>
+                            <option value="order">Đặt hàng</option>
+                            <option value="complaint">Khiếu nại</option>
+                            <option value="other">Khác</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Lời nhắn <span class="required">*</span></label>
+                        <textarea name="message" placeholder="Nhập nội dung tin nhắn của bạn..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="form-submit">
+                        <span>Gửi tin nhắn</span>
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </form>
             </div>
-
-            <form action="" class="main__contact-bottom-form">
-                <fieldset>
-                    <div class="form-group">
-                        <label>Họ và tên lót</label>
-                        <input type="text" name="first_name">
-                    </div>
-                    <div class="form-group">
-                        <label>Tên</label>
-                        <input type="text" name="last_name">
-                    </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" name="email">
-                    </div>
-                    <div class="form-group">
-                        <label>Số điện thoại</label>
-                        <input type="tel" name="phone">
-                    </div>
-                </fieldset>
-                <fieldset>
-                    <label for="">Lời nhắn</label>
-                    <textarea name="" id=""></textarea>
-                </fieldset>
-                <button>Gửi</button>
-            </form>
-
-
         </section>
 
 
