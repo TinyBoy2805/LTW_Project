@@ -1,5 +1,6 @@
 package controller;
 
+import exception.RegisterError;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
@@ -34,19 +35,31 @@ public class RegisterController extends HttpServlet {
         String password = req.getParameter("password");
         String confirmPassword = req.getParameter("confirm_password");
 
-        String error = authService.register(name, email, phone, password, confirmPassword);
+        RegisterError error = authService.register(
+                name, email, phone, password, confirmPassword
+        );
 
-        if (error != null) {
-            req.setAttribute("error", error);
-            try {
-                req.setAttribute("activeTab", "register");
-                req.getRequestDispatcher("index.jsp").forward(req, resp);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+        if (error != RegisterError.NONE) {
+            req.setAttribute("activeTab", "register");
+            switch (error) {
+                case PASSWORD_MISMATCH ->
+                        req.setAttribute("error", "Mật khẩu xác nhận không khớp");
+                case INVALID_EMAIL_FORMAT ->
+                        req.setAttribute("error", "Email không đúng định dạng");
+                case WEAK_PASSWORD ->
+                        req.setAttribute("error", "Mật khẩu phải từ 8 ký tự và chứa chữ, số, ký tự đặc biệt");
+                case EMAIL_EXIST ->
+                        req.setAttribute("error", "Email đã tồn tại");
+                case PHONE_ISVALID ->
+                        req.setAttribute("error", "Số điện thoại không hợp lệ");
             }
-            return;
+            try {
+                req.getRequestDispatcher("index.jsp").forward(req, resp);
+                return;
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         }
-
         try {
             resp.sendRedirect("index.jsp");
         } catch (IOException e) {

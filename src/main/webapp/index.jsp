@@ -11,7 +11,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
           crossorigin="anonymous">
-    <link rel="stylesheet" href="admin/styles/pages/login.css">
+    <link rel="stylesheet" href="admin/styles/pages/login.css?v=1.1">
 </head>
 
 <body>
@@ -58,7 +58,7 @@
                     <li><a href="customer/pages/Voucher.jsp">Khuyến mãi</a></li>
                     <li><a href="customer/pages/Blog.jsp">Cẩm nang</a></li>
                     <li><a href="customer/pages/Contact.jsp">Liên hệ</a></li>
-                    <li><a href="customer/pages/About.jsp">về cửa hàng</a></li>
+                    <li><a href="customer/pages/About.jsp">Về cửa hàng</a></li>
                 </ul>
             </div>
         </nav>
@@ -111,27 +111,27 @@
                 <div class="input-group">
                     <label for="reg-name" class="input-group__label">Họ và tên</label>
                     <input type="text" id="reg-name" name="name" placeholder=""
-                           class="input-group__input" required>
+                           class="input-group__input">
                 </div>
                 <div class="input-group">
                     <label for="reg-email" class="input-group__label">Email</label>
-                    <input type="email" id="reg-email" name="email" placeholder=""
-                           class="input-group__input" required>
+                    <input type="text" id="reg-email" name="email" placeholder=""
+                           class="input-group__input">
                 </div>
                 <div class="input-group">
                     <label for="reg-phone" class="input-group__label">Số điện thoại</label>
-                    <input type="tel" id="reg-phone" name="phone" placeholder=""
-                           class="input-group__input" required>
+                    <input type="text" id="reg-phone" name="phone" placeholder=""
+                           class="input-group__input">
                 </div>
                 <div class="input-group">
                     <label for="reg-password" class="input-group__label">Mật khẩu</label>
                     <input type="password" id="reg-password" name="password" placeholder=""
-                           class="input-group__input" required>
+                           class="input-group__input">
                 </div>
                 <div class="input-group">
                     <label for="reg-confirm-password" class="input-group__label">Xác nhận mật khẩu</label>
                     <input type="password" id="reg-confirm-password" name="confirm_password"
-                           placeholder="" class="input-group__input" required>
+                           placeholder="" class="input-group__input">
                 </div>
                 <button type="submit" class="auth-form__submit-btn auth-form__submit-btn--register">Đăng ký</button>
             </form>
