@@ -157,7 +157,7 @@
       <div class="container__content">
         <h3 class="content__title">
           <a href="./Blog.jsp" class="back-icon">
-            <i class="fa-solid fa-arrow-left"></i>
+            <i class="fa-solid fa-chevron-left"></i>
           </a>
           Quản lý bài viết
         </h3>
@@ -167,25 +167,25 @@
                 <div class="card-form">
                   <label class="label">Tiêu đề</label>
                   <div class="input-with-icon">
-                    <input id="edit-title" class="input" type="text" placeholder="Nhập tiêu đề">
+                    <input id="edit-title" class="input" type="text" placeholder="Nhập tiêu đề" value="Sữa công thức: Hướng dẫn chọn cho bé 0–12 tháng">
                     <i class="fa-solid fa-pen input-icon"></i>
                   </div>
 
                   <label class="label">Link bài viết</label>
                   <div class="input-with-icon">
-                    <input id="edit-link" class="input" type="url" placeholder="https://...">
+                    <input id="edit-link" class="input" type="url" placeholder="https://..." value="http://michishop.local/blog/sua-cong-thuc-abc">
                     <i class="fa-solid fa-pen input-icon"></i>
                   </div>
 
                   <label class="label">Ngày đăng</label>
                   <div class="input-with-icon">
-                    <input id="edit-date" class="input" type="date">
+                    <input id="edit-date" class="input" type="date" value="2025-11-12">
                     <i class="fa-solid fa-pen input-icon"></i>
                   </div>
 
                   <label class="label">Nội dung (mô tả ngắn)</label>
                   <div class="input-with-icon">
-                    <textarea id="edit-content" class="input textarea" rows="3" placeholder="Tóm tắt, đoạn mô tả sẽ hiển thị trên card"></textarea>
+                    <textarea id="edit-content" class="input textarea" rows="3" placeholder="Tóm tắt, đoạn mô tả sẽ hiển thị trên card">Bài viết hướng dẫn lựa chọn sữa công thức phù hợp theo độ tuổi, thành phần dinh dưỡng cần chú ý và mẹo chuyển đổi khi thay sữa.</textarea>
                     <i class="fa-solid fa-pen input-icon"></i>
                   </div>
                 </div>
@@ -193,9 +193,12 @@
 
               <aside class="right-panel">
                 <div class="images-card">
-                  <h4>Hình ảnh</h4>
+                  <div class="images-card-header">
+                    <h4>Hình ảnh</h4>
+                    <i class="fa-solid fa-pen input-icon"></i>
+                  </div>
                   <div class="thumbs">
-                    <img id="blog-image" class="blog-thumb-image" src="" alt="Hình ảnh bài viết">
+                    <img id="blog-image" class="blog-thumb-image visible" src="https://media.vietnamplus.vn/images/ed1918d4cf848798286fdbd286ae25b434bfe5fe1202c90591deb8e201814798f805af93601147e13a81d0f60f99424f/thuc-pham-bo-sung4.jpg" alt="Hình ảnh bài viết">
                   </div>
                 </div>
               </aside>
@@ -218,58 +221,6 @@
         </div>
       </div>
     </div>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const defaultBlogData = {
-        title: 'Sữa công thức: Hướng dẫn chọn cho bé 0–12 tháng',
-        link: 'http://michishop.local/blog/sua-cong-thuc-abc',
-        date: '2025-11-12',
-        content: 'Bài viết hướng dẫn lựa chọn sữa công thức phù hợp theo độ tuổi, thành phần dinh dưỡng cần chú ý và mẹo chuyển đổi khi thay sữa.',
-        image: 'https://media.vietnamplus.vn/images/ed1918d4cf848798286fdbd286ae25b434bfe5fe1202c90591deb8e201814798f805af93601147e13a81d0f60f99424f/thuc-pham-bo-sung4.jpg'
-      };
-
-      const urlParams = new URLSearchParams(window.location.search);
-      const blogData = {
-        title: decodeURIComponent(urlParams.get('title') || defaultBlogData.title),
-        link: decodeURIComponent(urlParams.get('link') || defaultBlogData.link),
-        date: urlParams.get('date') || defaultBlogData.date,
-        content: decodeURIComponent(urlParams.get('content') || defaultBlogData.content),
-        image: decodeURIComponent(urlParams.get('image') || defaultBlogData.image)
-      };
-
-      document.getElementById('edit-title').value = blogData.title;
-      document.getElementById('edit-link').value = blogData.link;
-      document.getElementById('edit-date').value = blogData.date;
-      document.getElementById('edit-content').value = blogData.content;
-
-      if (blogData.image) {
-        const imgElement = document.getElementById('blog-image');
-        imgElement.src = blogData.image;
-        imgElement.classList.add('visible');
-      }
-
-      document.getElementById('cancel-blog').addEventListener('click', function () {
-        window.location.href = './Blog.jsp';
-      });
-
-      document.getElementById('btn-update').addEventListener('click', function () {
-        const updatedTitle = document.getElementById('edit-title').value;
-        const updatedLink = document.getElementById('edit-link').value;
-        const updatedDate = document.getElementById('edit-date').value;
-        const updatedContent = document.getElementById('edit-content').value;
-
-        alert(`Bài viết đã được cập nhật:\n- Tiêu đề: ${updatedTitle}\n- Ngày: ${updatedDate}`);
-      });
-
-      document.getElementById('btn-delete').addEventListener('click', function () {
-        if (confirm('Bạn có chắc chắn muốn xóa bài viết này?')) {
-          alert('Bài viết đã được xóa');
-          window.location.href = './Blog.jsp';
-        }
-      });
-    });
-  </script>
 
   <script src="../scripts/components/extendSidebar.js"></script>
 </body>

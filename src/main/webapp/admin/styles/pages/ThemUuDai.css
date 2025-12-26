@@ -87,6 +87,26 @@ main.content {
   margin-bottom: 20px;
   padding: 0 0 0 24px;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.back-icon {
+  color: #000000;
+  font-size: 20px;
+  text-decoration: none;
+  transition: color 0.2s;
+  display: inline-flex;
+  align-items: center;
+}
+
+.content__title .back-icon i {
+  color: #000000 !important;
+}
+
+.back-icon:hover {
+  color: #333333;
 }
 
 /* If the title is wrapped by a link (e.g. the back link), remove underline */

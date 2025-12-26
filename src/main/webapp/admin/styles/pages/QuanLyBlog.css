@@ -185,6 +185,13 @@ body {
   overflow: auto;
   text-overflow: clip;
   width: 100%;
+  line-height: 1.5;
+  word-spacing: normal;
+  letter-spacing: normal;
+}
+
+.input-with-icon .textarea {
+  padding-right: 40px;
 }
 
 /* Images Card */
@@ -195,10 +202,28 @@ body {
   background-color: #fcfcfc;
 }
 
+.images-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.images-card-header .input-icon {
+  color: #f564a9;
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.images-card-header .input-icon:hover {
+  color: #e14d95;
+}
+
 .images-card h4 {
   color: #f564a9;
   font-weight: 600;
-  margin-bottom: 10px;
+  margin-bottom: 0;
 }
 
 .thumbs {
@@ -288,7 +313,7 @@ body {
 }
 
 .back-icon {
-  color: #ec4899;
+  color: #000000;
   font-size: 20px;
   text-decoration: none;
   transition: color 0.2s;
@@ -297,7 +322,7 @@ body {
 }
 
 .back-icon:hover {
-  color: #db2777;
+  color: #333333;
 }
 
 .input-with-icon {
