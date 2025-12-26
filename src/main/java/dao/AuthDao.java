@@ -51,14 +51,15 @@ public class AuthDao extends BaseDao {
     public void insert(User user) {
         get().useHandle(h ->
                 h.createUpdate("""
-                                    INSERT INTO users(name, email, role, password_hashed, phone_number)
-                                    VALUES (:name, :email, :role, :password, :phone)
+                                    INSERT INTO users(name, email, role, password_hashed, phone_number, salt)
+                                    VALUES (:name, :email, :role, :password, :phone, :salt)
                                 """)
                         .bind("name", user.getName())
                         .bind("email", user.getEmail())
                         .bind("role", user.getRole().name())
                         .bind("password", user.getPassword_hashed())
                         .bind("phone", user.getPhone_number())
+                        .bind("salt", user.getSalt())
                         .execute()
         );
     }

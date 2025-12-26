@@ -35,9 +35,4 @@ public abstract class BaseDao {
         }
         jdbi = Jdbi.create(dataSource);
     }
-    // public static void main(String[] args) {
-    //     BaseDao dao = new BaseDao() {
-    //     };
-    //     System.out.println(dao.get());
-    // }
 }
