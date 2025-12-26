@@ -157,6 +157,12 @@
         <h3 class="content__title">Thông Báo</h3>
         <div class="content__panel">
           <div class="panel-header">
+            <div class="compose-left">
+              <button type="button" class="compose-btn" id="compose__btn">
+                <i class="fa-solid fa-pen-to-square"></i>
+                Soạn thư
+              </button>
+            </div>
 
             <div class="controls controls--right">
               <div class="search__filter">

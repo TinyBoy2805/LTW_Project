@@ -94,10 +94,34 @@ main.content {
   flex-shrink: 0;
   align-items: center;
   margin-bottom: 12px;
-  justify-content: flex-start;
+  justify-content: space-between;
   gap: 16px;
   padding: 12px 24px 24px 24px;
 }
+
+/* Compose (Soạn thư) button */
+.compose-left { display: flex; align-items: center; }
+.compose-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background-color: #F564A9;
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(245, 100, 169, 0.4);
+  white-space: nowrap;
+}
+.compose-btn i { font-size: 14px; }
+.compose-btn:hover { filter: brightness(0.95); }
+.compose-btn:active { transform: translateY(1px); }
+
+/* Ensure right-side controls don't occupy full width inside header */
+.panel-header .controls { width: auto; flex: 1 1 auto; justify-content: flex-end; }
 
 
 .tabs {
@@ -489,7 +513,7 @@ input{
 /* =====Xem chi tiết email / phản hồi===== */
 .mail-detail {
   display: none;
-  position: fixed;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(0.98);
@@ -562,6 +586,13 @@ input{
   color: #111827;
   line-height: 1.5;
   min-height: 180px;
+  outline: none;
+  border: none;
+}
+
+.detail-body:focus {
+  outline: none;
+  border: none;
 }
 
 .detail-reply {
@@ -582,6 +613,21 @@ input{
   border-radius: 8px;
   border: 1px solid #e6e6ea;
   font-size: 14px;
+  outline: none;
+}
+
+.reply-text:focus {
+  border-color: #f564a9;
+  outline: none;
+}
+
+textarea.reply-text {
+  outline: none !important;
+}
+
+textarea.reply-text:focus {
+  outline: none !important;
+  border-color: #f564a9;
 }
 
 .reply-send.btn.primary {
