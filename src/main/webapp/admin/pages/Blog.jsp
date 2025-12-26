@@ -437,7 +437,6 @@
     </div>
   </div> <!-- .main -->
   <script src="../scripts/components/extendSidebar.js"></script>
-  <script src="../scripts/components/modalDetail.js"></script>
   <script src="../scripts/page/Blog.js"></script>
   <script src="../scripts/components/filter.js"></script>
 </body>
