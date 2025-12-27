@@ -25,5 +25,9 @@ public class ProductService
         return this.db.getTotalProducts();
     }
 
+    public Product getOneProduct(int id)
+    {
+        return this.db.getProduct(id);
+    }
 
 }

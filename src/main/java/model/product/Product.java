@@ -1,6 +1,7 @@
 package model.product;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.time.LocalDate;
 
 public class Product implements Serializable
@@ -15,15 +16,13 @@ public class Product implements Serializable
     private String category;
     private int buyCount;
     private int quantity;
-    private LocalDate startDate;
-    private LocalDate endDate;
+    private Date startDate;
+    private Date endDate;
+    private boolean isActive;
 
     public Product(){}
 
-
-    public Product(int id, int productId, String name, String description, int price, String url,
-                   String brand, String category, int buyCount, int quantity,
-                   LocalDate startDate, LocalDate endDate)
+    public Product(int id, int productId, String name, String description, int price, String url, String brand, String category, int buyCount, Date startDate, Date endDate, int quantity, boolean isActive)
     {
         this.id = id;
         this.productId = productId;
@@ -34,119 +33,132 @@ public class Product implements Serializable
         this.brand = brand;
         this.category = category;
         this.buyCount = buyCount;
-        this.quantity = quantity;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.quantity = quantity;
+        this.isActive = isActive;
     }
 
-    // Getters
-    public int getId()
-    {
+    public int getId() {
         return id;
-    }
-
-    public int getProductId() {
-        return productId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public int getBuyCount() {
-        return buyCount;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public LocalDate getStartDate() {
-        return startDate;
-    }
-
-    public LocalDate getEndDate() {
-        return endDate;
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public void setProductId(int productId)
-    {
+    public int getProductId() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
         this.productId = productId;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getPrice() {
+        return price;
     }
 
     public void setPrice(int price) {
         this.price = price;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getBrand() {
+        return brand;
     }
 
     public void setBrand(String brand) {
         this.brand = brand;
     }
 
+    public String getCategory() {
+        return category;
+    }
+
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public int getBuyCount() {
+        return buyCount;
     }
 
     public void setBuyCount(int buyCount) {
         this.buyCount = buyCount;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
+
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
-    public void setStartDate(LocalDate startDate) {
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
-    public void setEndDate(LocalDate endDate) {
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
+    }
+
+    public boolean getIsActive() {
+        return this.isActive;
+    }
+
+    public void setIsActive(boolean active) {
+        isActive = active;
     }
 
     @Override
     public String toString() {
         return "Product{" +
-                "id=" + id +
-                ", productId=" + productId +
-                ", name='" + name + '\'' +
+                "id=" + id + '\n'+
+                ", productId=" + productId + '\n'+
+                ", name='" + name + '\n' +
+                ", description='" + description + '\n' +
                 ", price=" + price +
-                ", brand='" + brand + '\'' +
-                ", category='" + category + '\'' +
+                ", url='" + url + '\n' +
+                ", brand='" + brand + '\n' +
+                ", category='" + category + '\n' +
+                ", buyCount=" + buyCount + '\n'+
+                ", quantity=" + quantity + '\n'+
+                ", startDate=" + startDate + '\n'+
+                ", endDate=" + endDate + '\n'+
+                ", isActive=" + isActive + '\n'+
                 '}';
     }
 }

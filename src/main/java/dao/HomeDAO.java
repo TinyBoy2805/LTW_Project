@@ -1,6 +1,7 @@
 package dao;
 
 import model.Voucher;
+import model.product.ProductCard;
 
 import java.util.List;
 
@@ -66,6 +67,91 @@ public class HomeDAO extends BaseDao
                             .list()
                 );
     }
+
+
+    public List<ProductCard> getSearchTrendings()
+    {
+        String query =
+                "SELECT \n" +
+                "    p.id, \n" +
+                "    p.name, \n" +
+                "    p.price, \n" +
+                "    p.buy_count, \n" +
+                "    AVG(r.rating) as avg_rating, \n" +
+                "    p.is_active, \n" +
+                "    pi.img_url\n" +
+                "FROM search_histories s\n" +
+                "INNER JOIN products p ON p.name LIKE CONCAT('%', s.keyword, '%')\n" +
+                "LEFT JOIN product_images pi ON pi.product_id = p.id\n" +
+                "LEFT JOIN reviews r ON r.product_id = p.id \n" +
+                "WHERE p.is_active = 1\n" +
+                "GROUP BY p.id, p.name, p.price, p.buy_count, p.is_active, pi.img_url\n" +
+                "ORDER BY sum(s.times) DESC\n" +
+                "LIMIT 10;";
+
+
+        return get().withHandle(h->
+            h.createQuery(query)
+                    .mapToBean(ProductCard.class)
+                    .list()
+        );
+
+
+    }
+
+    public List<ProductCard> getSellTrendings()
+    {
+        String query =
+                "SELECT \n" +
+                "    p.id, \n" +
+                "    p.name, \n" +
+                "    p.price, \n" +
+                "    p.buy_count, \n" +
+                "    AVG(r.rating) as avg_rating, \n" +
+                "    p.is_active, \n" +
+                "    pi.img_url\n" +
+                "from products p\n" +
+                "LEFT JOIN product_images pi ON pi.product_id = p.id\n" +
+                "LEFT JOIN reviews r ON r.product_id = p.id \n" +
+                "WHERE p.is_active = 1\n" +
+                "GROUP BY p.id\n" +
+                "order by buy_count desc\n" +
+                "limit 10;";
+
+        return get().withHandle(h->
+                h.createQuery(query)
+                        .mapToBean(ProductCard.class)
+                        .list()
+        );
+
+    }
+
+    public List<ProductCard> getRatingTrendings()
+    {
+        String query =
+                "SELECT \n" +
+                "    p.id, \n" +
+                "    p.name, \n" +
+                "    p.price, \n" +
+                "    p.buy_count, \n" +
+                "    AVG(r.rating) as avg_rating, \n" +
+                "    p.is_active, \n" +
+                "    pi.img_url\n" +
+                "from products p\n" +
+                "LEFT JOIN product_images pi ON pi.product_id = p.id\n" +
+                "LEFT JOIN reviews r ON r.product_id = p.id \n" +
+                "WHERE p.is_active = 1\n" +
+                "GROUP BY p.id\n" +
+                "order by avg_rating desc\n" +
+                "limit 10;";
+
+        return get().withHandle(h->
+                h.createQuery(query)
+                        .mapToBean(ProductCard.class)
+                        .list()
+        );
+    }
+
 
 
 

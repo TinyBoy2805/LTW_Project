@@ -73,11 +73,30 @@ public class ProductDAO extends BaseDao
 
     public Product getProduct(int id)
     {
-        return get().withHandle(h -> h.createQuery("SELECT * FROM products WHERE id = :id")
-        .bind("id", id)
-        .mapToBean(Product.class)
-             .first());
+        String query = "SELECT \n" +
+                "    p.id,\n" +
+                "    pi.product_id AS productId,\n" +
+                "    pi.img_url AS url,\n" +
+                "    p.name,\n" +
+                "    p.description,\n" +
+                "    b.name AS brand,\n" +
+                "    c.name AS category,\n" +
+                "    p.price,\n" +
+                "    p.buy_count AS buyCount,\n" +
+                "    p.start_date AS startDate,\n" +
+                "    p.end_date AS endDate,\n" +
+                "    p.quantity,\n" +
+                "    p.is_active AS isActive\n" +
+                "FROM product_images pi\n" +
+                "JOIN products p ON pi.product_id = p.id\n" +
+                "JOIN brands b ON p.brand_id = b.id\n" +
+                "JOIN categories c ON p.category_id = c.id\n" +
+                "WHERE p.id=:id AND p.is_active = 1";
 
+        return get().withHandle(h -> h.createQuery(query)
+            .bind("id", id)
+            .mapToBean(Product.class)
+                 .first());
     }
     public void insert(List<Product> products)
     {
@@ -91,9 +110,8 @@ public class ProductDAO extends BaseDao
             batch.execute();
         });
     }
-    // public static void main(String[] args) {
-    //     ProductDAO dao = new ProductDAO();
-    //     List<Product> products = dao.getListProduct();
-    //     dao.insert(products);
-    // }
+
+
+
+
 }

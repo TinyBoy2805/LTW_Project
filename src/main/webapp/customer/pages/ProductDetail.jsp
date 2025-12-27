@@ -1,3 +1,4 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -5,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MichiShop</title>
-    <link rel="stylesheet" href="../styles/index.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/customer/styles/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
@@ -15,7 +16,7 @@
             <div class="nav__top">
                 <a class="nav__top-logo" href="Home.jsp">
                     <div class="nav__logo-img">
-                        <img src="../imgs/Gemini_Generated_Image_c648fqc648fqc648.png" alt="">
+                        <img src="${pageContext.request.contextPath}/customer/imgs/Gemini_Generated_Image_c648fqc648fqc648.png" alt="">
                     </div>
                     <h1>MichiShop</h1>
                 </a>
@@ -117,9 +118,9 @@
             <div class="main__product-detail-breadcrumb">
                 <ul>
                     <li class="--size20 --color4">&lt;</li>
-                    <li class="--pointer"><a href="Products.jsp" class="--color6">Sản phẩm</a></li>
+                    <li class="--pointer"><a href="${pageContext.request.contextPath}/product" class="--color6">Sản phẩm</a></li>
                     <li class="--color4">/</li>
-                    <li class="--color9 --pointer">Sữa tươi thanh trùng</li>
+                    <li class="--color9 --pointer">${product.name}</li>
                 </ul>
             </div>
 
@@ -130,28 +131,28 @@
                         <button>&lt;</button>
                         <button>&gt;</button>
                         <div class="carousel-counter">
+                            <div ></div>
                             <div class="active"></div>
-                            <div></div>
                             <div></div>
                         </div>
                         <div class="img-container">
                             <div class="img-slider">
-                                <img src="https://i.pinimg.com/1200x/79/df/0d/79df0de0a96063735aca1c5d5c80ca26.jpg">
+                                <img src="${product.url}">
                             </div>
                         </div>
                     </div>    
                 </div>
 
                 <div class="section1-right">
-                    <h3>Sữa thanh trùng</h3>
+                    <h3>${product.name}</h3>
 
                     <ul>
                         <li><i class="fa-solid fa-star --star"></i> <strong class="--color1">4.9</strong></li>
-                        <li><strong class="--color1">3618</strong> lượt đánh giá</li>
-                        <li>đã bán <strong class="--color1">1638</strong></li>
+                        <li><strong class="--color1">3618</strong> &nbsp; lượt đánh giá</li>
+                        <li>đã bán &nbsp;<strong class="--color1">${product.buyCount}</strong></li>
                     </ul>
 
-                    <p class="price">360.000đ</p>
+                    <p class="price"><fmt:formatNumber value="${product.price}" type="number" groupingUsed="true"/>đ</p>
 
                     <ul>
                         <li>Số lượng</li>
@@ -160,7 +161,7 @@
                             <p>18</p>
                             <button>+</button>
                         </li>
-                        <li>còn lại <strong class="--color1">36</strong></li>
+                        <li>còn lại <strong class="--color1"> &nbsp; ${product.quantity}</strong></li>
                     </ul>
 
                     <div class="actions">
@@ -180,42 +181,43 @@
                     <div class="title-line"></div>
                 </div>
                 <div class="description">
-                    <p><strong>Mô tả ngắn:</strong> Sữa thanh trùng Michi — nguồn dinh dưỡng tinh khiết, giàu protein và canxi, hỗ trợ phát triển chiều cao, tăng cường sức đề kháng và giúp trẻ ăn ngon miệng hơn.</p>
+                    <p>${product.description}</p>
+<%--                    <p><strong>Mô tả ngắn:</strong> Sữa thanh trùng Michi — nguồn dinh dưỡng tinh khiết, giàu protein và canxi, hỗ trợ phát triển chiều cao, tăng cường sức đề kháng và giúp trẻ ăn ngon miệng hơn.</p>--%>
 
-                    <h4>Thành phần chính</h4>
-                    <ul>
-                        <li>Sữa tươi thanh trùng 100%</li>
-                        <li>Whey protein, vitamin A, D, B12</li>
-                        <li>Canxi, sắt, kẽm</li>
-                        <li>Không chất bảo quản, không màu tổng hợp</li>
-                    </ul>
+<%--                    <h4>Thành phần chính</h4>--%>
+<%--                    <ul>--%>
+<%--                        <li>Sữa tươi thanh trùng 100%</li>--%>
+<%--                        <li>Whey protein, vitamin A, D, B12</li>--%>
+<%--                        <li>Canxi, sắt, kẽm</li>--%>
+<%--                        <li>Không chất bảo quản, không màu tổng hợp</li>--%>
+<%--                    </ul>--%>
 
-                    <h4>Công dụng nổi bật</h4>
-                    <ul>
-                        <li>Hỗ trợ phát triển xương và răng</li>
-                        <li>Tăng cường hệ miễn dịch</li>
-                        <li>Cung cấp năng lượng, hỗ trợ tăng cân nhẹ và phát triển thể chất</li>
-                        <li>Dễ tiêu hóa, phù hợp cho trẻ em và người lớn cần bổ sung dinh dưỡng</li>
-                    </ul>
+<%--                    <h4>Công dụng nổi bật</h4>--%>
+<%--                    <ul>--%>
+<%--                        <li>Hỗ trợ phát triển xương và răng</li>--%>
+<%--                        <li>Tăng cường hệ miễn dịch</li>--%>
+<%--                        <li>Cung cấp năng lượng, hỗ trợ tăng cân nhẹ và phát triển thể chất</li>--%>
+<%--                        <li>Dễ tiêu hóa, phù hợp cho trẻ em và người lớn cần bổ sung dinh dưỡng</li>--%>
+<%--                    </ul>--%>
 
-                    <h4>Hướng dẫn sử dụng</h4>
-                    <p>Pha 1 phần sữa với 3 phần nước ấm (35–40°C). Uống 1–2 ly/ngày hoặc theo hướng dẫn của chuyên gia dinh dưỡng.</p>
+<%--                    <h4>Hướng dẫn sử dụng</h4>--%>
+<%--                    <p>Pha 1 phần sữa với 3 phần nước ấm (35–40°C). Uống 1–2 ly/ngày hoặc theo hướng dẫn của chuyên gia dinh dưỡng.</p>--%>
 
-                    <h4>Bảo quản & Lưu ý</h4>
-                    <ul>
-                        <li>Bảo quản lạnh 0–4°C sau khi mở, sử dụng trong 48 giờ.</li>
-                        <li>Không dùng nếu phát hiện mùi, màu hoặc vị lạ.</li>
-                        <li>Chống chỉ định với người dị ứng sữa bò hoặc không dung nạp lactose nặng.</li>
-                        <li>Tham khảo ý kiến bác sĩ cho trẻ dưới 6 tháng hoặc có vấn đề sức khỏe đặc biệt.</li>
-                    </ul>
+<%--                    <h4>Bảo quản & Lưu ý</h4>--%>
+<%--                    <ul>--%>
+<%--                        <li>Bảo quản lạnh 0–4°C sau khi mở, sử dụng trong 48 giờ.</li>--%>
+<%--                        <li>Không dùng nếu phát hiện mùi, màu hoặc vị lạ.</li>--%>
+<%--                        <li>Chống chỉ định với người dị ứng sữa bò hoặc không dung nạp lactose nặng.</li>--%>
+<%--                        <li>Tham khảo ý kiến bác sĩ cho trẻ dưới 6 tháng hoặc có vấn đề sức khỏe đặc biệt.</li>--%>
+<%--                    </ul>--%>
 
-                    <h4>Chứng nhận & Cam kết</h4>
-                    <p>Sản phẩm được kiểm nghiệm an toàn thực phẩm, không chứa chất bảo quản và tuân thủ tiêu chuẩn vệ sinh.</p>
+<%--                    <h4>Chứng nhận & Cam kết</h4>--%>
+<%--                    <p>Sản phẩm được kiểm nghiệm an toàn thực phẩm, không chứa chất bảo quản và tuân thủ tiêu chuẩn vệ sinh.</p>--%>
 
-                    <div class="product-meta">
-                        <p><strong>Khối lượng:</strong> 1L &nbsp; <strong>HSD:</strong> 7 ngày từ ngày sản xuất (đóng lạnh)</p>
-                        <p><strong>Mã sản phẩm:</strong> MS-12345</p>
-                    </div>
+<%--                    <div class="product-meta">--%>
+<%--                        <p><strong>Khối lượng:</strong> 1L &nbsp; <strong>HSD:</strong> 7 ngày từ ngày sản xuất (đóng lạnh)</p>--%>
+<%--                        <p><strong>Mã sản phẩm:</strong> MS-12345</p>--%>
+<%--                    </div>--%>
                 </div>
             </section>
 
@@ -687,82 +689,11 @@
     </main>
 
 
-    <footer class="footer">
-        <div class="footer__top">
-
-            <div class="footer__top-col1">
-                <div class="footer__top-col1-top">
-
-                    <div class="footer__top-col1-top-logo">
-                        <i class="fa-solid fa-shop" ></i>
-                        <h3 class="--size20">MichiShop</h3>
-                    </div>
-                    <p>MiChiShop – Bé khỏe, mẹ vui, cả nhà hạnh phúc</p>
-
-                </div>
-
-                <div class="footer__top-col1-bottom">
-                    <h3>Về cửa hàng</h3>
-                    <p>MichiShop luôn muốn mang đến khách hàng những sản phẩm chất lượng và uy tín</p>
-                </div>
-            </div>
-
-            <div class="footer__top-col2">
-                <h3>Liên hệ</h3>
-                <ul>
-                    <li>Hotline: 0901 234 567</li>
-                    <li>Địa chỉ: 123 Nguyễn Văn Cừ, TP.HCM</li>
-                    <li>Giờ mở cửa: 8h - 20h</li>
-                </ul>
-            </div>
-
-            <div class="footer__top-col3">
-                <h3>Liên kết nhanh</h3>
-                <ul>
-                     <li><a href="Home.jsp">Trang chủ</a></li>
-                    <li><a href="Products.jsp">Sản phẩm</a></li>
-                    <li><a href="Voucher.jsp">Khuyến mãi</a></li>
-                    <li><a href="Blog.jsp">Cẩm nang</a></li>
-                    <li><a href="About.jsp">Về cửa hàng</a></li>
-                    <li><a href="Contact.jsp">Liên hệ</a></li>
-                </ul>
-            </div>
-
-            <div class="footer__top-col4">
-                <div class="footer__top-col4-form">
-                    <h3>Đăng kí để nhận thêm thông tin</h3>
-                    <input type="text" placeholder="Để lại email của bạn...">
-                    <button>Đăng kí!</button>
-                </div>
-            </div>
-
-        </div>
-        <div class="footer__line"></div>
-
-
-        <div class="footer__bottom">
-            <div class="footer__bottom-logos">
-                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                    <i class="fa-brands fa-facebook-f"></i>
-                </a>
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                    <i class="fa-brands fa-instagram"></i>
-                </a>
-                <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
-                    <i class="fa-brands fa-tiktok"></i>
-                </a>
-                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-                    <i class="fa-brands fa-youtube"></i>
-                </a>
-            </div>
-            <h4>&copy; Copyright. All rights reserved.</h4>
-        </div>
-
-    </footer>
+    <jsp:include page="/customer/components/Footer.jsp"/>
 
 
 
     
 </body>
-<script type="module" src="../scripts/main.js"></script>
+<script type="module" src="${pageContext.request.contextPath}/customer/scripts/main.js"></script>
 </html>

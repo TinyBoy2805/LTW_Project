@@ -1,13 +1,16 @@
 package controller;
 
+import com.google.gson.Gson;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import model.Voucher;
 import model.VoucherType;
+import model.product.ProductCard;
 import service.HomeService;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "HomeController", value = "/home")
@@ -18,20 +21,46 @@ public class HomeController extends HttpServlet
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        int amountUsers = this.homeService.getAmountUsers();
-        int avg_rating = this.homeService.getAvgRating();
-        List<String> categories = this.homeService.getCategories();
-        List<Voucher> vouchers = this.homeService.getVouchers();
 
-        // Format user count
-        String formattedUserCount = formatNumber(amountUsers);
 
-        request.setAttribute("user_count_formatted", formattedUserCount);
-        request.setAttribute("avg_rating", avg_rating);
-        request.setAttribute("categories", categories);
-        request.setAttribute("vouchers", vouchers);
-        request.setAttribute("voucherTypes", VoucherType.values());
+        //top tim kiem - top danh gia - top luot ban
+        String trending_type = request.getParameter("trending_type");
+        if(trending_type != null)
+        {
+            List<ProductCard> products = null;
+            switch (trending_type)
+            {
+                case "search":
+                    products = this.homeService.getSearchTrendings();
+                    break;
+                case "buy_count":
+                    products = this.homeService.getSellTrendings();
+                    break;
+                case "rating":
+                    products = this.homeService.getRatingTrendings();
+                    break;
+                default:
+                    products = new ArrayList<>();
+                    break;
+            }
 
+
+            Gson gson = new Gson();
+            String json = gson.toJson(products);
+
+
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(json);
+            return;
+        }
+
+
+
+
+
+
+        this.setHomeData(request);
         request.getRequestDispatcher("/customer/pages/Home.jsp").forward(request, response);
     }
 
@@ -41,15 +70,20 @@ public class HomeController extends HttpServlet
         doGet(request, response);
     }
 
-    /**
-     * Format number to Vietnamese format with units (nghìn, triệu, tỷ)
-     * Examples:
-     * 500 -> "500"
-     * 1200 -> "1.2 nghìn"
-     * 15000 -> "15 nghìn"
-     * 1200000 -> "1.2 triệu"
-     * 1500000000 -> "1.5 tỷ"
-     */
+
+
+    private void setHomeData(HttpServletRequest request)
+    {
+        request.setAttribute("user_count_formatted", formatNumber(this.homeService.getAmountUsers()));
+        request.setAttribute("avg_rating", this.homeService.getAvgRating());
+        request.setAttribute("categories", this.homeService.getCategories());
+        request.setAttribute("vouchers", this.homeService.getVouchers());
+
+    }
+
+
+
+
     private String formatNumber(int number)
     {
         if (number < 1000)

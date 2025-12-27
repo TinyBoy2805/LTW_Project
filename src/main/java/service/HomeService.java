@@ -2,6 +2,7 @@ package service;
 
 import dao.HomeDAO;
 import model.Voucher;
+import model.product.ProductCard;
 
 import java.util.List;
 
@@ -29,6 +30,19 @@ public class HomeService
         return this.homeDao.getVouchers();
     }
 
+    public List<ProductCard> getSearchTrendings()
+    {
+        return this.homeDao.getSearchTrendings();
+    }
 
+    public List<ProductCard> getSellTrendings()
+    {
+        return this.homeDao.getSellTrendings();
+    }
+
+    public List<ProductCard> getRatingTrendings()
+    {
+        return this.homeDao.getRatingTrendings();
+    }
 
 }
