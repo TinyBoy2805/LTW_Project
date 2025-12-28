@@ -6,37 +6,38 @@ import exception.RegisterError;
 import model.Role;
 import model.User;
 
+import java.util.Random;
+
 public class AuthService {
     AuthDao authDao = new AuthDao();
+    EmailService mailService = new EmailService();
 
-    public LoginError checkLogin(String name, String password) {
-            User u = authDao.getUserByName(name);
-//        if (u != null && u.getPassword_hashed().equals(password_hashed)) {
-//            u.setPassword_hashed(null);
-//            return u;
-//        }
-//        return null;
+    public LoginError checkLogin(String input, String password) {
+        User u = authDao.getUserByEmailOrPhone(input);
 
-            if( u == null ) {
-                return LoginError.INVALID_USERNAME; //Wrong username -> Login failed
-            }
+        if (u == null) {
+            return LoginError.INVALID_USERNAME; //Wrong username -> Login failed
+        }
 
-            //hash input password with salt of user to check
-            String hashInput = HashPassword.hashPasswordWithSalt(password, u.getSalt());
-            if( !hashInput.equals(u.getPassword_hashed()) ) {
-                return LoginError.WRONG_PASSWORD; //Wrong password -> Login failed
-            }
+        //hash input password with salt of user to check
+        String hashInput = HashPassword.hashPasswordWithSalt(password, u.getSalt());
+        if (!hashInput.equals(u.getPassword_hashed())) {
+            return LoginError.WRONG_PASSWORD; //Wrong password -> Login failed
+        }
 
-            return LoginError.NONE;
+        return LoginError.NONE;
     }
 
-    public User getUserData(String name){
-        User u = authDao.getUserByName(name);
-        if( u != null ) {
-            //not fail -> set hashpass to null to avoid session include the hashpass
-            u.setPassword_hashed(null);
+    public User getUserData(String input) {
+        if (isValidEmail(input) || isValidPhonenumber(input)) {
+            User u = authDao.getUserByEmailOrPhone(input);
+            if (u != null) {
+                //not fail -> set hashpass to null to avoid session include the hashpass
+                //u.setPassword_hashed(null);
+                return u;
+            }
         }
-        return u;
+        return null;
     }
 
     public boolean isValidEmail(String email) {
@@ -110,8 +111,14 @@ public class AuthService {
         user.setPassword_hashed(hashPassword);
         user.setPhone_number(phone);
         user.setSalt(salt);
+        user.setVerified(0);
 
         authDao.insert(user);
+
+        String otp = String.valueOf(new Random().nextInt(900000) + 100000);
+        authDao.saveOTP(email, otp);
+        mailService.sendVerification(email, otp);
+
         return RegisterError.NONE;
     }
 }

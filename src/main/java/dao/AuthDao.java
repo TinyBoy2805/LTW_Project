@@ -18,11 +18,34 @@ public class AuthDao extends BaseDao {
 //                .orElse(null));
 //    }
 
-    public User getUserByName(String name) {
-        return get().withHandle(h ->
-                h.createQuery("SELECT * FROM users WHERE name = :name")
-                        .bind("name", name)
+//    public User getUserByName(String name) {
+//        return get().withHandle(h ->
+//                h.createQuery("SELECT * FROM users WHERE name = :name")
+//                        .bind("name", name)
+//                        .map((rs, ctx) -> {
+//                            User u = new User();
+//                            u.setId(rs.getInt("id"));
+//                            u.setName(rs.getString("name"));
+//                            u.setEmail(rs.getString("email"));
+//                            u.setRole(Role.valueOf(rs.getString("role")));
+//                            u.setPassword_hashed(rs.getString("password_hashed"));
+//                            u.setPhone_number(rs.getString("phone_number"));
+//                            u.setAvt_url(rs.getString("avt_url"));
+//                            return u;
+//                        })
+//                        .findFirst()
+//                        .orElse(null)
+//        );
+//    }
+
+    public User getUserByEmailOrPhone(String value) {
+        return get().withHandle(h -> //get() : get connection to db from BaseDao
+                //lambda function that return User
+                h.createQuery("SELECT * FROM users WHERE email = :v OR phone_number = :v")
+                        .bind("v", value)
+                        //bind variable v into SQL with input info (value)
                         .map((rs, ctx) -> {
+                            //user mapping function -> Change a single line into User
                             User u = new User();
                             u.setId(rs.getInt("id"));
                             u.setName(rs.getString("name"));
@@ -31,10 +54,13 @@ public class AuthDao extends BaseDao {
                             u.setPassword_hashed(rs.getString("password_hashed"));
                             u.setPhone_number(rs.getString("phone_number"));
                             u.setAvt_url(rs.getString("avt_url"));
+                            u.setSalt(rs.getString("salt"));
                             return u;
                         })
                         .findFirst()
+                        //take the first record that be found
                         .orElse(null)
+                        //if no result is found, return null
         );
     }
 
@@ -63,4 +89,33 @@ public class AuthDao extends BaseDao {
                         .execute()
         );
     }
+
+    public void activateAccount(String email) {
+        get().useHandle(h ->
+                h.createUpdate("UPDATE users SET verified = 1 WHERE email = :email")
+                        .bind("email", email)
+                        .execute()
+        );
+    }
+
+    public void saveOTP(String email, String otp) {
+        String sql = "UPDATE users SET otp=:otp WHERE email=:email";
+        get().withHandle(h -> h.createUpdate(sql)
+                .bind("otp", otp).bind("email", email).execute());
+    }
+
+    public String getOTP(String email) {
+        String sql = "SELECT otp FROM users WHERE email=:email";
+        return get().withHandle(h ->
+                h.createQuery(sql).bind("email", email)
+                        .mapTo(String.class).findOne().orElse(null)
+        );
+    }
+
+    public void updateVerified(String email) {
+        String sql = "UPDATE users SET verified=1, otp=NULL WHERE email=:email";
+        get().withHandle(h -> h.createUpdate(sql)
+                .bind("email", email).execute());
+    }
+
 }

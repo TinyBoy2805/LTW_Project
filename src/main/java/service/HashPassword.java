@@ -50,5 +50,12 @@ public class HashPassword {
             return null;
         }
     }
+
+    public static void main(String[] args) {
+        String salt = generateSalt();
+        String password = hashPasswordWithSalt("michiadmin", salt);
+        System.out.println(password);
+        System.out.println(salt);
+    }
 }
 
