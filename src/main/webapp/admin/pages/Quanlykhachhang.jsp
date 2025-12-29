@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,9 +7,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MiChiShop - Quản lý khách hàng</title>
-  <link rel="stylesheet" href="../styles/components/header.css" />
-  <link rel="stylesheet" href="../styles/components/sidebar.css" />
-  <link rel="stylesheet" href="../styles/pages/Quanlykhachhang.css" />
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/styles/components/header.css" />
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/styles/components/sidebar.css" />
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/styles/pages/Quanlykhachhang.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
@@ -94,7 +95,7 @@
       </div>
       <!-- bottom has exit button -->
       <div class="sidebar__bottom">
-        <a href="../../../../../index.html">
+        <a href="${pageContext.request.contextPath}/index.jsp">
           <div class="icon"><ion-icon name="exit-outline"></ion-icon></div>
           <p class="title">Đăng xuất</p>
         </a>
@@ -158,6 +159,9 @@
             <i class="fa-solid fa-chevron-left"></i>
           </a>
           Quản lý khách hàng
+          <c:if test="${not empty customer.name}">
+            <span class="customer-name-header">${customer.name}</span>
+          </c:if>
         </h3>
         
         <div class="content__body">
@@ -172,40 +176,28 @@
             <div class="profile-field">
               <label>Họ và tên:</label>
               <div class="field-content">
-                <input type="text" class="field-input" value="Khoa Bruh">
-                <button class="edit-field-btn" type="button">
-                  <i class="fa-solid fa-pen"></i>
-                </button>
+                <input type="text" class="field-input" value="${customer.name}" readonly>
               </div>
             </div>
 
             <div class="profile-field">
               <label>Email:</label>
               <div class="field-content">
-                <input type="email" class="field-input" value="khoabruh@gmail.com">
-                <button class="edit-field-btn" type="button">
-                  <i class="fa-solid fa-pen"></i>
-                </button>
+                <input type="email" class="field-input" value="${customer.email}" readonly>
               </div>
             </div>
 
             <div class="profile-field">
               <label>Số điện thoại:</label>
               <div class="field-content">
-                <input type="text" class="field-input" value="0123456789">
-                <button class="edit-field-btn" type="button">
-                  <i class="fa-solid fa-pen"></i>
-                </button>
+                <input type="text" class="field-input" value="${customer.phone_number}" readonly>
               </div>
             </div>
 
             <div class="profile-field">
               <label>Địa chỉ:</label>
               <div class="field-content">
-                <input type="text" class="field-input" value="123, đường ABC, Quận 1, TP. Hồ Chí Minh">
-                <button class="edit-field-btn" type="button">
-                  <i class="fa-solid fa-pen"></i>
-                </button>
+                <input type="text" class="field-input" value="${empty customer.address ? 'Chưa cập nhật' : customer.address}" readonly>
               </div>
             </div>
           </div>
@@ -242,7 +234,7 @@
             <aside class="right-panel">
               <div class="profile-avatar-card">
                 <div class="avatar-container">
-                  <img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="User Avatar">
+                  <img src="${empty customer.avt_url ? '../imgs/logo.png' : customer.avt_url}" alt="User Avatar">
                 </div>
                 <button class="edit-avatar-btn" type="button">
                   <i class="fa-solid fa-pen"></i> Đổi ảnh đại diện

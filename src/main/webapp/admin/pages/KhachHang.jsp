@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,9 +7,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MiChiShop</title>
-  <link rel="stylesheet" href="../styles/components/header.css" />
-  <link rel="stylesheet" href="../styles/components/sidebar.css" />
-  <link rel="stylesheet" href="../styles/pages/KhachHang.css" />
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/styles/components/header.css" />
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/styles/components/sidebar.css" />
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/styles/pages/KhachHang.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
@@ -19,7 +20,7 @@
     <aside class="sidebar">
       <!-- header inclue shop's logo and shop's name -->
       <div class="sidebar__header">
-        <img src="../imgs/logo.png" alt="Logo">
+        <img src="${pageContext.request.contextPath}/admin/imgs/logo.png" alt="Logo">
         <h2>MiChiShop</h2>
       </div>
       <!-- list item of sidebar -->
@@ -94,7 +95,7 @@
       </div>
       <!-- bottom has exit button -->
       <div class="sidebar__bottom">
-        <a href="../../../../../index.html">
+        <a href="../../index.jsp">
           <div class="icon"><ion-icon name="exit-outline"></ion-icon></div>
           <p class="title">Đăng xuất</p>
         </a>
@@ -147,7 +148,7 @@
               </div>
             </div>
           </div>
-          <div class="avatar"><img src="../imgs/logo.png" alt="Avatar" /></div>
+          <div class="avatar"><img src="${pageContext.request.contextPath}/admin/imgs/logo.png" alt="Avatar" /></div>
         </div>
       </div>
 
@@ -173,169 +174,33 @@
 
           <!-- All customers (default) -->
           <div class="customers customers-all" role="list">
-
-            <!-- Cards-->
-            <article class="card" role="listitem">
-              <figure class="card__figure">
-                <img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="">
-              </figure>
-              <div class="info">
-                <input type="hidden" class="card-address" value="123 Lê Lợi, Quận 1, TP. HCM">
-                <h4>Khoa Bruh</h4>
-                <p><i class="fa-solid fa-envelope"></i> khoabruh@gmail.com</p>
-                <p><i class="fa-solid fa-phone"></i> 0363 666 636</p>
-                <button class="detail-btn" type="button" onclick="window.location.href='Quanlykhachhang.jsp'">Chi tiết</button>
-              </div>
-            </article>
-
-            <article class="card" role="listitem">
-              <figure class="card__figure">
-                <img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="">
-              </figure>
-              <div class="info">
-                <input type="hidden" class="card-address" value="45 Nguyễn Huệ, Quận 1, TP. HCM">
-                <h4>Trâm Anh</h4>
-                <p><i class="fa-solid fa-envelope"></i> tramanh@gmail.com</p>
-                <p><i class="fa-solid fa-phone"></i> 0966 555 444</p>
-                <button class="detail-btn" type="button" onclick="window.location.href='Quanlykhachhang.jsp'">Chi tiết</button>
-              </div>
-            </article>
-
-            <article class="card" role="listitem">
-              <figure class="card__figure">
-                <img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="">
-              </figure>
-              <div class="info">
-                <input type="hidden" class="card-address" value="78 Trần Phú, Hà Nội">
-                <h4>Phương Dung</h4>
-                <p><i class="fa-solid fa-envelope"></i> phuongdung@gmail.com</p>
-                <p><i class="fa-solid fa-phone"></i> 0944 777 666</p>
-                <button class="detail-btn" type="button" onclick="window.location.href='Quanlykhachhang.jsp'">Chi tiết</button>
-              </div>
-            </article>
-
-            <article class="card" role="listitem">
-              <figure class="card__figure">
-                <img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="">
-              </figure>
-              <div class="info">
-                <input type="hidden" class="card-address" value="12 Võ Văn Kiệt, Quận 5, TP. HCM">
-                <h4>Hoàng Nam</h4>
-                <p><i class="fa-solid fa-envelope"></i> hoangnam@gmail.com</p>
-                <p><i class="fa-solid fa-phone"></i> 0922 111 000</p>
-                <button class="detail-btn" type="button" onclick="window.location.href='Quanlykhachhang.jsp'">Chi tiết</button>
-              </div>
-            </article>
-
-            <article class="card" role="listitem">
-              <figure class="card__figure">
-                <img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="">
-              </figure>
-              <div class="info">
-                <input type="hidden" class="card-address" value="89 Điện Biên Phủ, Quận 3, TP. HCM">
-                <h4>Vy Oanh</h4>
-                <p><i class="fa-solid fa-envelope"></i> vyoanh@gmail.com</p>
-                <p><i class="fa-solid fa-phone"></i> 0911 222 333</p>
-                <button class="detail-btn" type="button" onclick="window.location.href='Quanlykhachhang.jsp'">Chi tiết</button>
-              </div>
-            </article>
-
-            <article class="card" role="listitem">
-              <figure class="card__figure">
-                <img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="">
-              </figure>
-              <div class="info">
-                <input type="hidden" class="card-address" value="200 Phan Đình Phùng, TP. Đà Nẵng">
-                <h4>Trọng Hùng</h4>
-                <p><i class="fa-solid fa-envelope"></i> tronghung@gmail.com</p>
-                <p><i class="fa-solid fa-phone"></i> 0900 111 222</p>
-                <button class="detail-btn" type="button" onclick="window.location.href='Quanlykhachhang.jsp'">Chi tiết</button>
-              </div>
-            </article>
-
-            <article class="card" role="listitem">
-              <figure class="card__figure">
-                <img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="">
-              </figure>
-              <div class="info">
-                <input type="hidden" class="card-address" value="55 Trần Hưng Đạo, Quận 1, TP. HCM">
-                <h4>Thành Phát</h4>
-                <p><i class="fa-solid fa-envelope"></i> thanhphat@gmail.com</p>
-                <p><i class="fa-solid fa-phone"></i> 0314 159 264</p>
-                <button class="detail-btn" type="button" onclick="window.location.href='Quanlykhachhang.jsp'">Chi tiết</button>
-              </div>
-            </article>
-
-            <article class="card" role="listitem">
-              <figure class="card__figure">
-                <img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="">
-              </figure>
-              <div class="info">
-                <input type="hidden" class="card-address" value="9 Nguyễn Trãi, Quận 1, TP. HCM">
-                <h4>Lê Minh</h4>
-                <p><i class="fa-solid fa-envelope"></i> leminh@gmail.com</p>
-                <p><i class="fa-solid fa-phone"></i> 0988 444 333</p>
-                <button class="detail-btn" type="button" onclick="window.location.href='Quanlykhachhang.jsp'">Chi tiết</button>
-              </div>
-            </article>
-
-            <article class="card" role="listitem">
-              <figure class="card__figure">
-                <img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="">
-              </figure>
-              <div class="info">
-                <input type="hidden" class="card-address" value="34 Lý Thái Tổ, Hà Nội">
-                <h4>Ngọc Ánh</h4>
-                <p><i class="fa-solid fa-envelope"></i> ngocanh@gmail.com</p>
-                <p><i class="fa-solid fa-phone"></i> 0977 222 111</p>
-                <button class="detail-btn" type="button" onclick="window.location.href='Quanlykhachhang.jsp'">Chi tiết</button>
-              </div>
-            </article>
-
-            <article class="card" role="listitem">
-              <figure class="card__figure">
-                <img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="">
-              </figure>
-              <div class="info">
-                <input type="hidden" class="card-address" value="17 Lê Duẩn, TP. Huế">
-                <h4>Minh Tú</h4>
-                <p><i class="fa-solid fa-envelope"></i> minhtu@gmail.com</p>
-                <p><i class="fa-solid fa-phone"></i> 0905 123 456</p>
-                <button class="detail-btn" type="button" onclick="window.location.href='Quanlykhachhang.jsp'">Chi tiết</button>
-              </div>
-            </article>
-
-            <article class="card" role="listitem">
-              <figure class="card__figure">
-                <img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="">
-              </figure>
-              <div class="info">
-                <input type="hidden" class="card-address" value="101 Nguyễn Thị Minh Khai, Quận 3, TP. HCM">
-                <h4>Thư Trần</h4>
-                <p><i class="fa-solid fa-envelope"></i> thutran@gmail.com</p>
-                <p><i class="fa-solid fa-phone"></i> 0912 987 654</p>
-                <button class="detail-btn" type="button" onclick="window.location.href='Quanlykhachhang.jsp'">Chi tiết</button>
-              </div>
-            </article>
-
-            <article class="card" role="listitem">
-              <figure class="card__figure">
-                <img src="https://cdn2.fptshop.com.vn/unsafe/Anh_meo_cute_36_19f3349915.jpg" alt="">
-              </figure>
-              <div class="info">
-                <input type="hidden" class="card-address" value="17 Lê Duẩn, TP. Huế">
-                <h4>Quỳnh Liên</h4>
-                <p><i class="fa-solid fa-envelope"></i> quynhlien@gmail.com</p>
-                <p><i class="fa-solid fa-phone"></i> 0933 221 110</p>
-                <button class="detail-btn" type="button" onclick="window.location.href='Quanlykhachhang.jsp'">Chi tiết</button>
-              </div>
-            </article>
-
+            <c:choose>
+              <c:when test="${not empty customers}">
+                <c:forEach var="customer" items="${customers}">
+                  <article class="card" role="listitem">
+                    <figure class="card__figure">
+                      <img src="${empty customer.avt_url ? '../imgs/logo.png' : customer.avt_url}" alt="Avatar">
+                    </figure>
+                    <div class="info">
+                      <h4>${customer.name}</h4>
+                      <p><i class="fa-solid fa-envelope"></i> ${customer.email}</p>
+                      <p><i class="fa-solid fa-phone"></i> ${customer.phone_number}</p>
+                      <button class="detail-btn" type="button"
+                              onclick="window.location.href='customer-detail?id=${customer.id}'">
+                        Chi tiết
+                      </button>
+                    </div>
+                  </article>
+                </c:forEach>
+              </c:when>
+              <c:otherwise>
+                <p>Chưa có khách hàng nào.</p>
+              </c:otherwise>
+            </c:choose>
           </div> <!-- .customers -->
         </div> <!-- .content__panel -->
     </div> <!-- .content -->
     <script src="../scripts/components/extendSidebar.js"></script>
-    <script src="../scripts/page/KhachHang.js"></script>
 </body>
 
 </html>

@@ -6,6 +6,7 @@ import model.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.List;
 
 public class AuthDao extends BaseDao {
 
@@ -20,7 +21,11 @@ public class AuthDao extends BaseDao {
 
     public User getUserByName(String name) {
         return get().withHandle(h ->
-                h.createQuery("SELECT * FROM users WHERE name = :name")
+                h.createQuery("""
+                        SELECT *, COALESCE(avatar_url, avt_url) AS avt_url
+                        FROM users
+                        WHERE name = :name
+                        """)
                         .bind("name", name)
                         .map((rs, ctx) -> {
                             User u = new User();
@@ -63,4 +68,35 @@ public class AuthDao extends BaseDao {
                         .execute()
         );
     }
+
+    // Lấy danh sách tất cả người dùng có vai trò là khách hàng
+    public List<User> getAllCustomers() {
+         return get().withHandle(handle ->
+             handle.createQuery("""
+                  SELECT id, name, email, phone_number,
+                      avt_url,
+                      role
+                  FROM users
+                  WHERE role = 'customer'
+                  """)
+                .mapToBean(User.class)
+                .list()
+         );
+    }
+
+    // Lấy chi tiết 1 khách hàng theo ID
+    public User getUserById(int id) {
+        return get().withHandle(handle ->
+            handle.createQuery("""
+                    SELECT *, avt_url
+                    FROM users
+                    WHERE id = :id
+                    """)
+                  .bind("id", id)
+                  .mapToBean(User.class)
+                  .findOne()
+                  .orElse(null)
+        );
+    }
 }
+

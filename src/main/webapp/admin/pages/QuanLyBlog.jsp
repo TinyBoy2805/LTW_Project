@@ -5,9 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quản Lý Bài Viết - MiChiShop</title>
-  <link rel="stylesheet" href="../styles/pages/QuanLyBlog.css" />
-  <link rel="stylesheet" href="../styles/components/header.css" />
-  <link rel="stylesheet" href="../styles/components/sidebar.css" />
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/styles/pages/QuanLyBlog.css" />
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/styles/components/header.css" />
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/styles/components/sidebar.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
@@ -92,7 +92,7 @@
       </div>
       <!-- bottom has exit button -->
       <div class="sidebar__bottom">
-        <a href="../../../../../index.html">
+        <a href="${pageContext.request.contextPath}/index.jsp">
           <div class="icon"><ion-icon name="exit-outline"></ion-icon></div>
           <p class="title">Đăng xuất</p>
         </a>
