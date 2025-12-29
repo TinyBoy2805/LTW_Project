@@ -86,17 +86,17 @@ public class AuthDao extends BaseDao {
 
     // Lấy chi tiết 1 khách hàng theo ID
     public User getUserById(int id) {
-        return get().withHandle(handle ->
-            handle.createQuery("""
-                    SELECT *, avt_url
+            return get().withHandle(handle ->
+                handle.createQuery("""
+                    SELECT id, name, email, role, phone_number, avt_url
                     FROM users
                     WHERE id = :id
                     """)
-                  .bind("id", id)
-                  .mapToBean(User.class)
-                  .findOne()
-                  .orElse(null)
-        );
+                .bind("id", id)
+                .mapToBean(User.class)
+                .findOne()
+                .orElse(null)
+            );
     }
 }
 
