@@ -1,11 +1,14 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: PC
-  Date: 12/27/2025
-  Time: 5:31 PM
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+
+
+<%
+    String activeTab = (String)request.getAttribute("activeTab");
+%>
+
+
+
 <header class="header">
     <nav class="nav">
         <div class="nav__top">
@@ -96,12 +99,12 @@
         <div class="nav__line"></div>
         <div class="nav__bottom">
             <ul>
-                <li><a href="${pageContext.request.contextPath}/home" class="active">Trang chủ</a></li>
-                <li><a href="${pageContext.request.contextPath}/product">Sản phẩm</a></li>
-                <li><a href="${pageContext.request.contextPath}/customer/pages/Voucher.jsp">Khuyến mãi</a></li>
-                <li><a href="${pageContext.request.contextPath}/customer/pages/Blog.jsp">Cẩm nang</a></li>
-                <li><a href="${pageContext.request.contextPath}/customer/pages/Contact.jsp">Liên hệ</a></li>
-                <li><a href="${pageContext.request.contextPath}/customer/pages/About.jsp">về cửa hàng</a></li>
+                <li><a href="${pageContext.request.contextPath}/home" class="<%= "home".equals(activeTab) ? "active":""%>">Trang chủ</a></li>
+                <li><a href="${pageContext.request.contextPath}/product" class="<%= "product".equals(activeTab) ? "active":""%>">Sản phẩm</a></li>
+                <li><a href="${pageContext.request.contextPath}/customer/pages/Voucher.jsp" class="<%= "voucher".equals(activeTab) ? "active":""%>">Khuyến mãi</a></li>
+                <li><a href="${pageContext.request.contextPath}/customer/pages/Blog.jsp" class="<%= "blog".equals(activeTab) ? "active":""%>">Cẩm nang</a></li>
+                <li><a href="${pageContext.request.contextPath}/customer/pages/Contact.jsp" class="<%= "contact".equals(activeTab) ? "active":""%>">Liên hệ</a></li>
+                <li><a href="${pageContext.request.contextPath}/customer/pages/About.jsp" class="<%= "about".equals(activeTab) ? "active":""%>">về cửa hàng</a></li>
             </ul>
         </div>
     </nav>

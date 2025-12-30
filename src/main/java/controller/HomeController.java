@@ -10,21 +10,25 @@ import model.product.ProductCard;
 import service.HomeService;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "HomeController", value = "/home")
 public class HomeController extends HttpServlet
 {
+    private int PAGE_SIZE = 16;
     private HomeService homeService = new HomeService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
 
-
+        Gson gson = new Gson();
         //top tim kiem - top danh gia - top luot ban
         String trending_type = request.getParameter("trending_type");
+        String pageParam = request.getParameter("page");
+        int page = 1;
         if(trending_type != null)
         {
             List<ProductCard> products = null;
@@ -44,15 +48,45 @@ public class HomeController extends HttpServlet
                     break;
             }
 
-
-            Gson gson = new Gson();
             String json = gson.toJson(products);
-
 
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             response.getWriter().write(json);
             return;
+        }
+
+
+        if(pageParam != null && !pageParam.isEmpty())
+        {
+            try
+            {
+                page = Integer.parseInt(pageParam);
+                if (page < 1) page = 1;
+            } catch (NumberFormatException e)
+            {
+                page = 1;
+            }
+
+            try
+            {
+                List<ProductCard> products = homeService.getProductByPage(page, PAGE_SIZE);
+
+                for(ProductCard pc: products)
+                {
+                    pc.setAvg_rating(Math.floor(pc.getAvg_rating()));
+                }
+
+                String json = gson.toJson(products);
+                response.setContentType("application/json");
+                response.setCharacterEncoding("UTF-8");
+                response.getWriter().write(json);
+                return;
+
+            } catch (IOException e)
+            {
+                throw new RuntimeException(e);
+            }
         }
 
 

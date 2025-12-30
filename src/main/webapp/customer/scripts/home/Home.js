@@ -1,8 +1,18 @@
-import {getDataByTrending} from "../home/getTrending.js";
+    import {getDataByTrending} from "./home-trending.js";
+    import {getProductsByPage} from "./home-product.js";
+
 
     const $ = document.querySelector.bind(document)
     const $$ = document.querySelectorAll.bind(document)
 
+
+    //////////////////DECLARE VARIABLES//////////////////////////////
+    const searchBtn = $("#search_trending")
+    const sellBtn = $("#sell_trending")
+    const ratingBtn = $("#rating_trending")
+
+    const productCardTemplate = $("#product-card__template")
+    const trending_container = $('.main__trending-content-ul')
 
     const tabs = $$('.main__trending-tab')
     const contents = $$('.main__trending-content')
@@ -13,6 +23,10 @@ import {getDataByTrending} from "../home/getTrending.js";
 
     const leftBtn = mainCateList.querySelector('.left-btn')
     const rightBtn = mainCateList.querySelector('.right-btn')
+
+
+    //////////////////////CATEGORY SLIDER//////////////////////////
+
 
     let currentIndex = 0
     const maxIndex = parseInt(mainCateListUl.getAttribute("data-total")) - Math.floor(1200 / 200)
@@ -45,7 +59,7 @@ import {getDataByTrending} from "../home/getTrending.js";
     updateSlider()
 
 
-///////////////////////////////////////////////////////////////
+//////////////////////TRENDING TAB EFFECT/////////////////////////
 
 tabs.forEach((tab, index)=>
 {
@@ -69,21 +83,13 @@ tabs.forEach((tab, index)=>
     })
 })
 
-//////////////////////////////////////////////////////////////////
+//////////////////////////////HOME TRENDING////////////////////////////////
 
 
-
-    const searchBtn = $("#search_trending")
-    const sellBtn = $("#sell_trending")
-    const ratingBtn = $("#rating_trending")
-
-    const productCardTemplate = $("#product-card__template")
-    const container = $('.main__trending-content-ul')
-
-    const renderProductCard = (data)=>
+    const renderProductCard = (data, container)=>
     {
         container.innerHTML = ''
-        data.forEach(p =>
+        for(const p of data)
         {
             const clone = productCardTemplate.content.cloneNode(true)
 
@@ -114,12 +120,8 @@ tabs.forEach((tab, index)=>
                 starTag.innerHTML = `<i class="fa-solid fa-star hidden"></i>`
                 starContainer.appendChild(starTag)
             }
-
-
-
-            
             container.appendChild(clone)
-        })
+        }
     }
 
     function formatPrice(price)
@@ -130,7 +132,7 @@ tabs.forEach((tab, index)=>
     async function callSearchTrendingFirst()
     {
         const data = await getDataByTrending('search')
-        renderProductCard(data)
+        renderProductCard(data, trending_container)
     }
 
     window.addEventListener('load', async ()=>
@@ -144,7 +146,7 @@ tabs.forEach((tab, index)=>
         {
             const data = await getDataByTrending('search')
             console.log(data)
-            renderProductCard(data)
+            renderProductCard(data, trending_container)
 
         }catch (err)
         {
@@ -159,7 +161,7 @@ tabs.forEach((tab, index)=>
         {
             const data = await getDataByTrending('buy_count')
             console.log(data)
-            renderProductCard(data)
+            renderProductCard(data, trending_container)
         }catch (err)
         {
             console.log(err)
@@ -172,7 +174,7 @@ tabs.forEach((tab, index)=>
         {
             const data = await getDataByTrending('rating')
             console.log(data)
-            renderProductCard(data)
+            renderProductCard(data, trending_container)
         }catch (err)
         {
             console.log(err)
@@ -180,8 +182,55 @@ tabs.forEach((tab, index)=>
     })
 
 
+///////////////////////////////GET PRODUCTS/////////////////////////////////////
+
+    const moreButton = document.querySelector("#home-more-button");
+    let page = 1;
+    let products = []
+    const product_container = document.querySelector(".main__today-suggestion-list-ul")
 
 
+    window.addEventListener("load", async ()=>
+    {
+        const data = await getProductsByPage(page);
+        products = data
+        renderProductCard(products, product_container)
+    })
+
+
+    moreButton.addEventListener("click", async ()=>
+    {
+        page++;
+        const data = await getProductsByPage(page);
+        console.log("page: " + page + "data: ", data)
+        products = [...products, ...data]
+        renderProductCard(products, product_container)
+    })
+
+/////////////////////REVIEW STORE////////////////////////////////////
+
+    const review_form = document.querySelector(".main__rating-form")
+
+    const starContainer = review_form.querySelector("ul")
+    const stars = starContainer.querySelectorAll("li")
+
+    stars.forEach((star, index) => //bị ngược index
+    {
+
+        star.addEventListener("click", ()=>
+        {
+            for(let i=4; i>=0; i--)
+            {
+                stars[i].querySelector("i").classList.remove("--star")
+            }
+
+            for(let i=4; i>=index; i--)
+            {
+                stars[i].querySelector("i").classList.add("--star")
+            }
+        })
+
+    })
 
 
 

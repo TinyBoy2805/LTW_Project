@@ -1,6 +1,7 @@
 package service;
 
 import dao.HomeDAO;
+import dao.ProductDAO;
 import model.Voucher;
 import model.product.ProductCard;
 
@@ -9,6 +10,7 @@ import java.util.List;
 public class HomeService
 {
     private HomeDAO homeDao = new HomeDAO();
+    private ProductDAO productDao = new ProductDAO();
 
     public int getAmountUsers()
     {
@@ -44,5 +46,12 @@ public class HomeService
     {
         return this.homeDao.getRatingTrendings();
     }
+
+    public List<ProductCard> getProductByPage(int page, int pageSize)
+    {
+        return this.productDao.getProductByPage(page, pageSize);
+    }
+
+
 
 }

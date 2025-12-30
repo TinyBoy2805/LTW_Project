@@ -13,7 +13,7 @@
         <div class="product">
             <div class="product__top">
                 <div class="product__image">
-                    <img src="https://i.pinimg.com/1200x/79/df/0d/79df0de0a96063735aca1c5d5c80ca26.jpg" alt="">
+                    <img src="https://i.pinimg.com/1200x/79/df/0d/79df0de0a96063735aca1c5d5c80ca26.jpg" alt="" loading="lazy">
                 </div>
             </div>
 
