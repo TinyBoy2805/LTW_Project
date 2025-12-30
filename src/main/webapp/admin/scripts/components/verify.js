@@ -3,15 +3,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     forms.forEach(form => {
         form.addEventListener('submit', function(ev) {
-            ev.preventDefault();
             const step = this.querySelector('.submit-button')?.getAttribute('data-next-step');
-            if (step === "2") {
-                document.getElementById("verify-step-1").classList.add("reset-form--hidden");
-                document.getElementById("verify-step-2").classList.remove("reset-form--hidden");
+
+            //if verify is completed -> Verified layout
+            if (step === "2" && !document.querySelector(".text-danger")) {
+                return;
             }
+
+            ev.preventDefault(); //have error -> keep this page
         });
     });
 
+    //otp input
     const otpInputs = document.querySelectorAll('.otp-input-group__input');
     otpInputs.forEach((input, i) => {
         input.addEventListener('input', () => {

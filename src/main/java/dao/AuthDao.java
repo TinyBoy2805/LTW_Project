@@ -55,6 +55,7 @@ public class AuthDao extends BaseDao {
                             u.setPhone_number(rs.getString("phone_number"));
                             u.setAvt_url(rs.getString("avt_url"));
                             u.setSalt(rs.getString("salt"));
+                            u.setVerified(rs.getInt("verified"));
                             return u;
                         })
                         .findFirst()
@@ -77,8 +78,8 @@ public class AuthDao extends BaseDao {
     public void insert(User user) {
         get().useHandle(h ->
                 h.createUpdate("""
-                                    INSERT INTO users(name, email, role, password_hashed, phone_number, salt)
-                                    VALUES (:name, :email, :role, :password, :phone, :salt)
+                                    INSERT INTO users(name, email, role, password_hashed, phone_number, salt, verified)
+                                    VALUES (:name, :email, :role, :password, :phone, :salt, 0)
                                 """)
                         .bind("name", user.getName())
                         .bind("email", user.getEmail())
@@ -90,6 +91,7 @@ public class AuthDao extends BaseDao {
         );
     }
 
+    //service continue to call DAO to activate account into db
     public void activateAccount(String email) {
         get().useHandle(h ->
                 h.createUpdate("UPDATE users SET verified = 1 WHERE email = :email")
@@ -98,24 +100,24 @@ public class AuthDao extends BaseDao {
         );
     }
 
-    public void saveOTP(String email, String otp) {
-        String sql = "UPDATE users SET otp=:otp WHERE email=:email";
-        get().withHandle(h -> h.createUpdate(sql)
-                .bind("otp", otp).bind("email", email).execute());
-    }
-
-    public String getOTP(String email) {
-        String sql = "SELECT otp FROM users WHERE email=:email";
-        return get().withHandle(h ->
-                h.createQuery(sql).bind("email", email)
-                        .mapTo(String.class).findOne().orElse(null)
-        );
-    }
-
-    public void updateVerified(String email) {
-        String sql = "UPDATE users SET verified=1, otp=NULL WHERE email=:email";
-        get().withHandle(h -> h.createUpdate(sql)
-                .bind("email", email).execute());
-    }
+//    public void saveOTP(String email, String otp) {
+//        String sql = "UPDATE users SET otp=:otp WHERE email=:email";
+//        get().withHandle(h -> h.createUpdate(sql)
+//                .bind("otp", otp).bind("email", email).execute());
+//    }
+//
+//    public String getOTP(String email) {
+//        String sql = "SELECT otp FROM users WHERE email=:email";
+//        return get().withHandle(h ->
+//                h.createQuery(sql).bind("email", email)
+//                        .mapTo(String.class).findOne().orElse(null)
+//        );
+//    }
+//
+//    public void updateVerified(String email) {
+//        String sql = "UPDATE users SET verified=1, otp=NULL WHERE email=:email";
+//        get().withHandle(h -> h.createUpdate(sql)
+//                .bind("email", email).execute());
+//    }
 
 }

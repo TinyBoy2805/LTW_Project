@@ -55,6 +55,11 @@ public class LoginController extends HttpServlet {
                 request.getRequestDispatcher("index.jsp").forward(request, response);
                 return;
             }
+            case NOT_VERIFIED -> {
+                request.setAttribute("loginError", "Tài khoản chưa kích hoạt, vui lòng kiểm tra email");
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+                return;
+            }
             case NONE -> {
                 User u = authService.getUserData(account);
                 HttpSession session = request.getSession();

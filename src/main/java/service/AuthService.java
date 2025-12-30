@@ -6,11 +6,11 @@ import exception.RegisterError;
 import model.Role;
 import model.User;
 
+import jakarta.servlet.http.HttpSession;
 import java.util.Random;
 
 public class AuthService {
     AuthDao authDao = new AuthDao();
-    EmailService mailService = new EmailService();
 
     public LoginError checkLogin(String input, String password) {
         User u = authDao.getUserByEmailOrPhone(input);
@@ -24,6 +24,8 @@ public class AuthService {
         if (!hashInput.equals(u.getPassword_hashed())) {
             return LoginError.WRONG_PASSWORD; //Wrong password -> Login failed
         }
+
+        if (u.getVerified() == 0) return LoginError.NOT_VERIFIED;
 
         return LoginError.NONE;
     }
@@ -115,10 +117,12 @@ public class AuthService {
 
         authDao.insert(user);
 
-        String otp = String.valueOf(new Random().nextInt(900000) + 100000);
-        authDao.saveOTP(email, otp);
-        mailService.sendVerification(email, otp);
-
         return RegisterError.NONE;
     }
+
+    //when user submit info -> controller call to service to activate account
+    public void activateAccount(String email) {
+        authDao.activateAccount(email);
+    }
+
 }

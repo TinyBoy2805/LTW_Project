@@ -11,7 +11,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
           crossorigin="anonymous">
-    <link rel="stylesheet" href="admin/styles/pages/verify.css">
+    <link rel="stylesheet" href="admin/styles/pages/verify.css?v=1.1">
 </head>
 
 <body>
@@ -82,8 +82,6 @@
                 <h2 class="reset-form__title">Nhập mã OTP</h2>
                 <p class="reset-form__instruction">Nhập 6 số OTP được gửi tới email của bạn.</p>
 
-                <input type="hidden" name="email" value="${email}">
-
                 <div class="otp-input-group">
                     <label class="otp-input-group__label">Mã OTP</label>
                     <div class="otp-input-group__inputs">
@@ -97,7 +95,7 @@
                 </div>
 
                 <c:if test="${not empty error}">
-                    <p>${error}</p>
+                    <p class="text-danger">${error}</p>
                 </c:if>
                 <button type="submit" class="submit-button" data-next-step="2">Xác minh</button>
                 <a href="resend-otp?email=${email}" class="reset-form__link reset-form__link--resend">Gửi lại mã OTP</a>
@@ -199,6 +197,12 @@
     </div>
 </footer>
 </body>
-<script src="./admin/scripts/components/login.js"></script>
-<script src="./admin/scripts/components/showPassword.js"></script>
+<script src="./admin/scripts/components/verify.js"></script>
+<c:if test="${verifiedSuccess == true}">
+    <script>
+        document.getElementById("verify-step-1").style.display = "none";
+        document.getElementById("verify-step-2").classList.remove("reset-form--hidden");
+        document.getElementById("verify-step-2").style.display = "block";
+    </script>
+</c:if>
 </html>

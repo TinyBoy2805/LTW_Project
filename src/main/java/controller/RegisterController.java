@@ -5,6 +5,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import service.AuthService;
+import service.MailService;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -13,10 +14,12 @@ import java.io.UnsupportedEncodingException;
 public class RegisterController extends HttpServlet {
 
     private AuthService authService;
+    private MailService mailService;
 
     @Override
     public void init() {
-        authService = new AuthService();
+        this.authService = new AuthService();
+        this.mailService = new MailService();
     }
 
     @Override
@@ -24,23 +27,27 @@ public class RegisterController extends HttpServlet {
             throws ServletException {
 
         try {
+            //ensure request body supports Vietnamese input (UTF-8)
             req.setCharacterEncoding("UTF-8");
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException(e);
         }
 
+        //receive form input from UI
         String name = req.getParameter("name");
         String email = req.getParameter("email");
         String phone = req.getParameter("phone");
         String password = req.getParameter("password");
         String confirmPassword = req.getParameter("confirm_password");
 
+        //service layer handles validation + insert account (not verified yet)
         RegisterError error = authService.register(
                 name, email, phone, password, confirmPassword
         );
 
+        //if validation fails → send user back to register form with error message
         if (error != RegisterError.NONE) {
-            req.setAttribute("activeTab", "register");
+            req.setAttribute("activeTab", "register"); //keep register tab active after redirect
             switch (error) {
                 case PASSWORD_MISMATCH ->
                         req.setAttribute("error", "Mật khẩu xác nhận không khớp");
@@ -60,8 +67,24 @@ public class RegisterController extends HttpServlet {
                 throw new RuntimeException(ex);
             }
         }
+
+        //create otp send to user email
+        //in this situation, register controller take responsibility to create the otp code for user
+        String otp = String.format("%06d", new java.util.Random().nextInt(999999));
+
+        //create session to save info of otp code, email receive otp and the use-time of the otp code
+        HttpSession session = req.getSession();
+
+        session.setAttribute("otp_code", otp);
+        session.setAttribute("otp_email", email);
+        session.setAttribute("otp_expire", System.currentTimeMillis() + 5 * 60 * 1000);
+
+        //call service to send otp to user
+        mailService.sendOTP(email, otp);
+        req.setAttribute("email", email);
+
         try {
-            resp.sendRedirect("index.jsp");
+            req.getRequestDispatcher("verify.jsp").forward(req, resp);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
