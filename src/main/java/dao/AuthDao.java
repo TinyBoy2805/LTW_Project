@@ -98,5 +98,18 @@ public class AuthDao extends BaseDao {
                 .orElse(null)
             );
     }
+    // Tìm kiếm khách hàng theo tên
+    public List<User> searchCustomersByName(String keyword) {
+        return get().withHandle(handle ->
+            handle.createQuery("""
+                SELECT id, name, email, phone_number, avt_url, role
+                FROM users
+                WHERE role = 'customer' AND LOWER(name) LIKE CONCAT('%', LOWER(:keyword), '%')
+            """)
+            .bind("keyword", keyword)
+            .mapToBean(User.class)
+            .list()
+        );
+    }
 }
 

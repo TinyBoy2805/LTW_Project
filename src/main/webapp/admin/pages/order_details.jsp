@@ -51,7 +51,7 @@
                     </a>
                 </li>
                 <li class="list__item">
-                    <a href="KhachHang.jsp">
+                    <a href="${pageContext.request.contextPath}/khachhang">
                         <div class="section">
                             <div class="icon"><i class="fa-solid fa-users"></i></div>
                             <p class="title">Khách hàng</p>

@@ -51,7 +51,7 @@
             </a>
           </li>
           <li class="list__item">
-            <a href="./Quanlykhachhang.jsp" class="active">
+            <a href="${pageContext.request.contextPath}/khachhang" class="active">
               <div class="section">
                 <div class="icon"><i class="fa-solid fa-users"></i></div>
                 <p class="title">Khách hàng</p>
@@ -155,7 +155,7 @@
       <!-- Main content -->
       <main class="content" aria-labelledby="customer-title">
         <h3 class="content__title">
-          <a href="${pageContext.request.contextPath}/admin-customers" class="back-icon">
+          <a href="${pageContext.request.contextPath}/khachhang" class="back-icon">
             <i class="fa-solid fa-chevron-left"></i>
           </a>
           Quản lý khách hàng

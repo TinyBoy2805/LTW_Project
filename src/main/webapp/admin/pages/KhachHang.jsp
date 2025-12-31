@@ -51,7 +51,7 @@
             </a>
           </li>
           <li class="list__item">
-            <a href="./KhachHang.jsp" class="active">
+            <a href="${pageContext.request.contextPath}/khachhang" class="active">
               <div class="section">
                 <div class="icon"><i class="fa-solid fa-users"></i></div>
                 <p class="title">Khách hàng</p>
@@ -158,14 +158,17 @@
         <div class="content__panel">
           <div class="panel-header">
             <div class="tabs" role="tablist" aria-label="Lọc khách hàng">
-              <button type="button" class="tab-btn" data-target="kh_tab_all" aria-selected="true">Tất cả khách
-                hàng</button>
+              <form method="get" action="${pageContext.request.contextPath}/khachhang" style="display:inline;">
+                <button type="submit" class="tab-btn" aria-selected="true">Tất cả khách hàng</button>
+              </form>
             </div>
             <div class="search__filter">
-              <div class="search__box">
-                <i class="fa-solid fa-magnifying-glass search__icon"></i>
-                <input type="text" id="customer-search" placeholder="Tìm kiếm khách hàng" />
-              </div>
+              <form method="get" action="${pageContext.request.contextPath}/khachhang" class="search__box search__box--form">
+                <input type="text" name="search" id="customer-search" placeholder="Tìm kiếm khách hàng" value="${search != null ? search : ''}" class="search__input" />
+                <button type="submit" class="search__submit">
+                  <i class="fa-solid fa-search"></i>
+                </button>
+              </form>
             </div>
           </div>
 
@@ -186,7 +189,7 @@
                       <p><i class="fa-solid fa-envelope"></i> ${customer.email}</p>
                       <p><i class="fa-solid fa-phone"></i> ${customer.phone_number}</p>
                       <button class="detail-btn" type="button"
-                              onclick="window.location.href='customer-detail?id=${customer.id}'">
+                              onclick="window.location.href='${pageContext.request.contextPath}/quanlykhachhang?id=${customer.id}'">
                         Chi tiết
                       </button>
                     </div>

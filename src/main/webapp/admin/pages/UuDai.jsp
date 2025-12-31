@@ -50,7 +50,7 @@
             </a>
           </li>
           <li class="list__item">
-            <a href="KhachHang.jsp">
+            <a href="${pageContext.request.contextPath}/khachhang">
               <div class="section">
                 <div class="icon"><i class="fa-solid fa-users"></i></div>
                 <p class="title">Khách hàng</p>
@@ -103,7 +103,6 @@
 
     <div class="container">
       <div class="container__header">
-        <!-- header left has sidebar expand button and hello message -->
         <div class="header__left">
           <div class="icon" id="menu__action"><ion-icon name="menu-outline"></ion-icon></div>
           <h3>Chào mừng trở lại, <span>MiChi Admin</span></h3>
@@ -163,7 +162,6 @@
           </div>
 
           <div class="offers">
-            <!-- offer item -->
             <a class="card-link" href="QuanLyUuDai.jsp" aria-label="Xem chi tiết ưu đãi dành cho sữa bột">
               <article class="card" role="listitem" data-category="sua" data-customer="tat-ca" data-promo="discount">
                 <figure class="card__figure">
@@ -194,7 +192,6 @@
               </article>
             </a>
 
-            <!-- New shipping promo card -->
             <a class="card-link" href="QuanLyUuDai.jsp" aria-label="Xem chi tiết ưu đãi vận chuyển nhanh">
               <article class="card" role="listitem" data-category="all" data-customer="tat-ca" data-promo="shipping">
                 <figure class="card__figure">
@@ -210,7 +207,6 @@
               </article>
             </a>
 
-            <!-- Another new shipping promo card -->
             <a class="card-link" href="QuanLyUuDai.jsp" aria-label="Xem chi tiết ưu đãi miễn phí vận chuyển cho đơn đầu">
               <article class="card" role="listitem" data-category="all" data-customer="tat-ca" data-promo="shipping">
                 <figure class="card__figure">
@@ -316,11 +312,11 @@
               </article>
             </a>
 
-          </div> <!-- .offers -->
-        </div> <!-- .content__panel -->
+          </div> 
+        </div> 
       </main>
-    </div> <!-- .container -->
-  </div> <!-- .UuDai.main -->
+    </div>
+  </div> 
   <script src="../scripts/components/extendSidebar.js"></script>
 </body>
 

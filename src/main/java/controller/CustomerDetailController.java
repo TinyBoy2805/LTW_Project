@@ -9,7 +9,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "CustomerDetailController", value = "/customer-detail")
+@WebServlet(name = "CustomerDetailController", value = "/quanlykhachhang")
 public class CustomerDetailController extends HttpServlet {
     private final AuthDao authDao = new AuthDao();
     private final AddressDao addressDao = new AddressDao();

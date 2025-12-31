@@ -50,7 +50,7 @@
             </a>
           </li>
           <li class="list__item">
-            <a href="KhachHang.jsp">
+            <a href="${pageContext.request.contextPath}/khachhang">
               <div class="section">
                 <div class="icon"><i class="fa-solid fa-users"></i></div>
                 <p class="title">Khách hàng</p>
@@ -103,7 +103,6 @@
 
     <div class="container">
       <div class="container__header">
-        <!-- header left has sidebar expand button and hello message -->
         <div class="header__left">
           <div class="icon" id="menu__action"><ion-icon name="menu-outline"></ion-icon></div>
           <h3>Chào mừng trở lại, <span>MiChi Admin</span></h3>
@@ -202,11 +201,9 @@
                   <textarea class="input textarea" rows="4" placeholder="Nhập mô tả ưu đãi"></textarea>
                 </div>
               </section>
-
-              <!-- images removed: keep form-only layout as requested -->
             </div>
 
-            <!-- Actions row (shown when creating) - move inside content__body to match Blog layout -->
+    
             <div class="actions-row">
               <div class="actions-left">
                 <p class="note">Đảm bảo rằng sản phẩm của bạn là hợp pháp và không gây hậu quả nào</p>
@@ -223,7 +220,7 @@
 
           </div>
 
-        </div> <!-- .content__panel -->
+        </div>
 
       </main>
       <script src="../scripts/components/extendSidebar.js"></script>
