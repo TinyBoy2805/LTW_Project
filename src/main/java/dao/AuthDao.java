@@ -111,5 +111,22 @@ public class AuthDao extends BaseDao {
             .list()
         );
     }
+    // Cập nhật thông tin khách hàng
+    public void updateUserInfo(int id, String name, String email, String phoneNumber) {
+        get().useHandle(h ->
+            h.createUpdate("""
+                UPDATE users
+                SET name = :name,
+                    email = :email,
+                    phone_number = :phoneNumber
+                WHERE id = :id
+            """)
+            .bind("id", id)
+            .bind("name", name)
+            .bind("email", email)
+            .bind("phoneNumber", phoneNumber)
+            .execute()
+        );
+    }
 }
 

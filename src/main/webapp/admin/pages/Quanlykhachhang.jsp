@@ -161,6 +161,7 @@
           Quản lý khách hàng
         </h3>
         
+        <form id="customer-edit-form" method="post" action="${pageContext.request.contextPath}/quanlykhachhang?id=${customer.id}">
         <div class="content__body">
           <div class="form-wrap">
             <!-- Left Panel: Form -->
@@ -173,30 +174,42 @@
             <div class="profile-field">
               <label>Họ và tên:</label>
               <div class="field-content">
-                <input type="text" class="field-input" value="${customer.name}" readonly>
+                <input type="text" class="field-input" name="name" id="name" value="${customer.name}" readonly>
+                <i class="fa-solid fa-pen input-icon" title="Chỉnh sửa họ tên"></i>
               </div>
             </div>
 
             <div class="profile-field">
               <label>Email:</label>
               <div class="field-content">
-                <input type="email" class="field-input" value="${customer.email}" readonly>
+                <input type="email" class="field-input" name="email" id="email" value="${customer.email}" readonly>
+                <i class="fa-solid fa-pen input-icon" title="Chỉnh sửa email"></i>
               </div>
             </div>
 
             <div class="profile-field">
               <label>Số điện thoại:</label>
               <div class="field-content">
-                <input type="text" class="field-input" value="${customer.phone_number}" readonly>
+                <input type="text" class="field-input" name="phone_number" id="phone_number" value="${customer.phone_number}" readonly>
+                <i class="fa-solid fa-pen input-icon" title="Chỉnh sửa số điện thoại"></i>
               </div>
             </div>
 
             <div class="profile-field">
               <label>Địa chỉ:</label>
               <div class="field-content">
-                  <input type="text" class="field-input" 
-                    value="${empty address ? 'Chưa cập nhật' : (address.houseNumber + ', ' + address.road + ', ' + address.district + ', ' + address.city)}" 
-                    readonly>
+                <c:choose>
+                  <c:when test="${not empty address}">
+                    <input type="text" class="field-input" name="address_full" id="address_full"
+                      value="${address.houseNumber}, ${address.road}, ${address.district}, ${address.city}"
+                      readonly placeholder="Số nhà, Đường, Quận/Huyện, Tỉnh/TP">
+                  </c:when>
+                  <c:otherwise>
+                    <input type="text" class="field-input" name="address_full" id="address_full"
+                      value="" readonly placeholder="Số nhà, Đường, Quận/Huyện, Tỉnh/TP">
+                  </c:otherwise>
+                </c:choose>
+                <i class="fa-solid fa-pen input-icon" title="Chỉnh sửa địa chỉ"></i>
               </div>
             </div>
           </div>
@@ -249,16 +262,17 @@
           <button class="cancel-btn" type="button">
             <i class="fa-solid fa-times"></i> Hủy
           </button>
-          <button class="update-info-btn" type="button">
+          <button class="update-info-btn" type="submit">
             <i class="fa-solid fa-check"></i> Cập nhật
           </button>
         </div>
+        </form>
       </main>
     </div>
   </div>
 
-  <script src="../scripts/components/extendSidebar.js"></script>
-  <script src="../scripts/page/Quanlykhachhang.js"></script>
+  <script src="${pageContext.request.contextPath}/admin/scripts/components/extendSidebar.js"></script>
+  <script src="${pageContext.request.contextPath}/admin/scripts/page/Quanlykhachhang.js"></script>
 </body>
 
 </html>

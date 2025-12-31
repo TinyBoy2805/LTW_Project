@@ -1,10 +1,4 @@
-/* Customer name in header (moved from inline style) */
-.customer-name-header {
-  font-weight: 400;
-  font-size: 14px;
-  margin-left: 8px;
-  color: #6b7280;
-}
+
 @import url('../index.css');
 
 * {
@@ -456,6 +450,39 @@ body {
   justify-content: center;
   gap: 8px;
   transition: all 0.2s;
+}
+/* Edit icon for each field */
+/* Đồng bộ icon bút chì với trang blog */
+.field-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.input-icon {
+  position: absolute;
+  right: 15px;
+  color: #f564a9;
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 0.2s;
+  pointer-events: auto; 
+  z-index: 10; 
+}
+
+.field-input {
+  padding-right: 40px !important; 
+}
+.input-icon:hover {
+  color: #e14d95;
+}
+/* Customer name in header (moved from inline style) */
+.customer-name-header {
+  font-weight: 400;
+  font-size: 14px;
+  margin-left: 8px;
+  color: #6b7280;
 }
 
 .update-info-btn:hover {
