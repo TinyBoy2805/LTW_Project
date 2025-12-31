@@ -15,49 +15,10 @@
 <body>
   <div class="Blog main">
     <aside class="sidebar">
-      <!-- header inclue shop's logo and shop's name -->
-      <div class="sidebar__header">
-        <img src="../imgs/logo.png" alt="Logo">
-        <h2>MiChiShop</h2>
-      </div>
-      <!-- list item of sidebar -->
-      <div class="sidebar__list">
-        <ul class="list">
-          <li class="list__item">
-            <a href="dashboard.jsp">
-              <div class="section">
-                <div class="icon"><i class="fa-solid fa-chart-line"></i></div>
-                <p class="title">Thống kê</p>
-              </div>
-            </a>
-          </li>
-          <li class="list__item">
-            <a href="order.jsp">
-              <div class="section">
-                <div class="icon"><i class="fa-solid fa-shopping-cart"></i></div>
-                <p class="title">Đơn hàng</p>
-              </div>
-            </a>
-          </li>
-          <li class="list__item">
-            <a href="categories.jsp">
-              <div class="section">
-                <div class="icon"><i class="fa-solid fa-box"></i></div>
-                <p class="title">Kho hàng</p>
-              </div>
-            </a>
-          </li>
-          <li class="list__item">
-            <a href="${pageContext.request.contextPath}/khachhang">
-              <div class="section">
-                <div class="icon"><i class="fa-solid fa-users"></i></div>
-                <p class="title">Khách hàng</p>
-              </div>
-            </a>
-          </li>
-          <li class="list__item">
-            <a href="UuDai.jsp">
-              <div class="section">
+      <%@ include file="../components/sidebar.jsp" %>
+    </aside>
+    <div class="container">
+      <%@ include file="../components/header.jsp" %>
                 <div class="icon"><i class="fa-solid fa-gift"></i></div>
                 <p class="title">Ưu đãi</p>
               </div>
