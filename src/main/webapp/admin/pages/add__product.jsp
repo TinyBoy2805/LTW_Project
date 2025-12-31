@@ -19,7 +19,7 @@
 <body>
     <div class="categories__add__product main">
         <aside class="sidebar">
-            <@% request.setAttribute("activePage", "categories"); %>
+            <% request.setAttribute("activePage", "categories"); %>
             <%@ include file="../components/sidebar.jsp" %>
         </aside>
         <div class="container">
