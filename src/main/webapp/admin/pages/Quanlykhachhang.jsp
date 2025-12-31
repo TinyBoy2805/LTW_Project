@@ -20,7 +20,7 @@
     <aside class="sidebar">
       <!-- header inclue shop's logo and shop's name -->
       <div class="sidebar__header">
-        <img src="../imgs/logo.png" alt="Logo">
+        <img src="${pageContext.request.contextPath}/admin/imgs/logo.png" alt="Logo">
         <h2>MiChiShop</h2>
       </div>
       <!-- list item of sidebar -->
@@ -148,20 +148,17 @@
               </div>
             </div>
           </div>
-          <div class="avatar"><img src="../imgs/logo.png" alt="Avatar" /></div>
+          <div class="avatar"><img src="${pageContext.request.contextPath}/admin/imgs/logo.png" alt="Avatar" /></div>
         </div>
       </div>
 
       <!-- Main content -->
       <main class="content" aria-labelledby="customer-title">
         <h3 class="content__title">
-          <a href="./KhachHang.jsp" class="back-icon">
+          <a href="${pageContext.request.contextPath}/admin-customers" class="back-icon">
             <i class="fa-solid fa-chevron-left"></i>
           </a>
           Quản lý khách hàng
-          <c:if test="${not empty customer.name}">
-            <span class="customer-name-header">${customer.name}</span>
-          </c:if>
         </h3>
         
         <div class="content__body">
@@ -197,7 +194,9 @@
             <div class="profile-field">
               <label>Địa chỉ:</label>
               <div class="field-content">
-                <input type="text" class="field-input" value="${empty customer.address ? 'Chưa cập nhật' : customer.address}" readonly>
+                  <input type="text" class="field-input" 
+                    value="${empty address ? 'Chưa cập nhật' : (address.houseNumber + ', ' + address.road + ', ' + address.district + ', ' + address.city)}" 
+                    readonly>
               </div>
             </div>
           </div>
