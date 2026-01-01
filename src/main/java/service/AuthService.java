@@ -6,9 +6,6 @@ import exception.RegisterError;
 import model.Role;
 import model.User;
 
-import jakarta.servlet.http.HttpSession;
-import java.util.Random;
-
 public class AuthService {
     AuthDao authDao = new AuthDao();
 
@@ -76,12 +73,11 @@ public class AuthService {
          */
     }
 
-    public RegisterError register(String name,
+    public RegisterError validate(String name,
                                   String email,
                                   String phone,
                                   String password,
-                                  String confirmPassword) {
-
+                                  String confirmPassword){
         if (!password.equals(confirmPassword)) {
             return RegisterError.PASSWORD_MISMATCH;
         }
@@ -101,6 +97,16 @@ public class AuthService {
         if (!isValidPhonenumber(phone)) {
             return RegisterError.PHONE_ISVALID;
         }
+        return RegisterError.NONE;
+    }
+
+    public void register(String name,
+                                  String email,
+                                  String phone,
+                                  String password,
+                                  String confirmPassword) {
+
+
 
         //generate salt then hash the password to store to database
         String salt = HashPassword.generateSalt();
@@ -116,8 +122,7 @@ public class AuthService {
         user.setVerified(0);
 
         authDao.insert(user);
-
-        return RegisterError.NONE;
+    
     }
 
     //when user submit info -> controller call to service to activate account
@@ -125,4 +130,24 @@ public class AuthService {
         authDao.activateAccount(email);
     }
 
+    public boolean updateUserEmail(String oldEmail, String newEmail) {
+
+        //check format first
+        if (!isValidEmail(newEmail)) {
+            return false;
+        }
+
+        //check if new email already taken by another user
+        if (authDao.existsByEmail(newEmail)) {
+            return false;
+        }
+
+        //passed -> update db
+        authDao.updateEmail(oldEmail, newEmail);
+        return true;
+    }
+
+    public boolean existsByEmail(String newEmail) {
+        return authDao.existsByEmail(newEmail);
+    }
 }

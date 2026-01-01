@@ -87,12 +87,12 @@
                 <div class="input-group">
                     <label for="login-email" class="input-group__label">Email hoặc Số điện thoại</label>
                     <input type="text" id="login-email" name="input"
-                           placeholder="" class="input-group__input">
+                           placeholder="" class="input-group__input" autocomplete="off" required>
                 </div>
                 <div class="input-group password-wrapper">
                     <label for="login-password" class="input-group__label">Mật khẩu</label>
                     <input type="password" id="login-password" name="password_hashed" placeholder=""
-                           class="input-group__input">
+                           class="input-group__input" autocomplete="off" required>
                     <i class="fa-solid fa-eye-slash toggle-password" data-target="login-password"></i>
                 </div>
                 <div class="auth-form__row auth-form__row--between">
@@ -112,28 +112,28 @@
                 <div class="input-group">
                     <label for="reg-name" class="input-group__label">Họ và tên</label>
                     <input type="text" id="reg-name" name="name" placeholder=""
-                           class="input-group__input">
+                           class="input-group__input" autocomplete="off" required>
                 </div>
                 <div class="input-group">
                     <label for="reg-email" class="input-group__label">Email</label>
                     <input type="text" id="reg-email" name="email" placeholder=""
-                           class="input-group__input">
+                           class="input-group__input" autocomplete="off" required>
                 </div>
                 <div class="input-group">
                     <label for="reg-phone" class="input-group__label">Số điện thoại</label>
                     <input type="text" id="reg-phone" name="phone" placeholder=""
-                           class="input-group__input">
+                           class="input-group__input" autocomplete="off" required>
                 </div>
                 <div class="input-group password-wrapper">
                     <label for="reg-password" class="input-group__label">Mật khẩu</label>
                     <input type="password" id="reg-password" name="password" placeholder=""
-                           class="input-group__input">
+                           class="input-group__input" autocomplete="off" required>
                     <i class="fa-solid fa-eye-slash toggle-password" data-target="reg-password"></i>
                 </div>
                 <div class="input-group password-wrapper">
                     <label for="reg-password" class="input-group__label">Xác nhận mật khẩu</label>
                     <input type="password" id="reg-confirm-password" name="confirm_password"
-                           placeholder="" class="input-group__input">
+                           placeholder="" class="input-group__input" autocomplete="off" required>
                     <i class="fa-solid fa-eye-slash toggle-password" data-target="reg-confirm-password"></i>
                 </div>
                 <c:if test="${not empty error}">

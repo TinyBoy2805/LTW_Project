@@ -53,7 +53,7 @@ public class HashPassword {
 
     public static void main(String[] args) {
         String salt = generateSalt();
-        String password = hashPasswordWithSalt("michiadmin", salt);
+        String password = hashPasswordWithSalt("michiadmin2025@", salt);
         System.out.println(password);
         System.out.println(salt);
     }

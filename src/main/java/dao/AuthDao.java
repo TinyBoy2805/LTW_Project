@@ -9,35 +9,6 @@ import java.sql.ResultSet;
 
 public class AuthDao extends BaseDao {
 
-//    public User getUserByName(String name) {
-//        return get().withHandle(h -> h.createQuery("SELECT * FROM users WHERE name = :name")
-//                .bind("name", name)
-//                .mapToBean(User.class)
-//                .stream()
-//                .findFirst()
-//                .orElse(null));
-//    }
-
-//    public User getUserByName(String name) {
-//        return get().withHandle(h ->
-//                h.createQuery("SELECT * FROM users WHERE name = :name")
-//                        .bind("name", name)
-//                        .map((rs, ctx) -> {
-//                            User u = new User();
-//                            u.setId(rs.getInt("id"));
-//                            u.setName(rs.getString("name"));
-//                            u.setEmail(rs.getString("email"));
-//                            u.setRole(Role.valueOf(rs.getString("role")));
-//                            u.setPassword_hashed(rs.getString("password_hashed"));
-//                            u.setPhone_number(rs.getString("phone_number"));
-//                            u.setAvt_url(rs.getString("avt_url"));
-//                            return u;
-//                        })
-//                        .findFirst()
-//                        .orElse(null)
-//        );
-//    }
-
     public User getUserByEmailOrPhone(String value) {
         return get().withHandle(h -> //get() : get connection to db from BaseDao
                 //lambda function that return User
@@ -99,6 +70,17 @@ public class AuthDao extends BaseDao {
                         .execute()
         );
     }
+
+    //update email for user
+    public void updateEmail(String oldEmail, String newEmail) {
+        get().useHandle(h ->
+                h.createUpdate("UPDATE users SET email = :new, verified = 0 WHERE email = :old")
+                        .bind("old", oldEmail)
+                        .bind("new", newEmail)
+                        .execute()
+        );
+    }
+
 
 //    public void saveOTP(String email, String otp) {
 //        String sql = "UPDATE users SET otp=:otp WHERE email=:email";

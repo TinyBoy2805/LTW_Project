@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="admin/styles/pages/verify.css?v=1.1">
 </head>
 
-<body>
+<body data-verifiedsuccess="${verifiedSuccess}" data-emailchanged="${emailChangeSuccess}">
 
 <div class="page-login">
     <header class="header">
@@ -67,7 +67,7 @@
     <main class="main-content">
         <div class="welcome-section">
             <h1>Xác minh tài khoản</h1>
-            <p>Một mã OTP đã được gửi đến email: <b>${email}</b></p>
+            <p>Một mã OTP đã được gửi đến email: <b id="email-display-header">${email != null ? email : sessionScope.otp_email}</b></p>
             <div class="product-showcase">
                 <img src="admin/imgs/michishop.png" alt="MichiShop - Dinh dưỡng cho bé"
                      class="product-showcase__banner-image">
@@ -83,25 +83,47 @@
                 <p class="reset-form__instruction">Nhập 6 số OTP được gửi tới email của bạn.</p>
 
                 <div class="otp-input-group">
-                    <label class="otp-input-group__label">Mã OTP</label>
                     <div class="otp-input-group__inputs">
-                        <input type="text" maxlength="1" class="otp-input-group__input" name="d1">
-                        <input type="text" maxlength="1" class="otp-input-group__input" name="d2">
-                        <input type="text" maxlength="1" class="otp-input-group__input" name="d3">
-                        <input type="text" maxlength="1" class="otp-input-group__input" name="d4">
-                        <input type="text" maxlength="1" class="otp-input-group__input" name="d5">
-                        <input type="text" maxlength="1" class="otp-input-group__input" name="d6">
+                        <input type="text" maxlength="1" class="otp-input-group__input" name="d1" autocomplete="off">
+                        <input type="text" maxlength="1" class="otp-input-group__input" name="d2" autocomplete="off">
+                        <input type="text" maxlength="1" class="otp-input-group__input" name="d3" autocomplete="off">
+                        <input type="text" maxlength="1" class="otp-input-group__input" name="d4" autocomplete="off">
+                        <input type="text" maxlength="1" class="otp-input-group__input" name="d5" autocomplete="off">
+                        <input type="text" maxlength="1" class="otp-input-group__input" name="d6" autocomplete="off">
                     </div>
                 </div>
 
+                <input type="hidden" name="oldEmail" value="${sessionScope.otp_email}">
                 <c:if test="${not empty error}">
                     <p class="text-danger">${error}</p>
                 </c:if>
                 <button type="submit" class="submit-button" data-next-step="2">Xác minh</button>
                 <a href="resend-otp?email=${email}" class="reset-form__link reset-form__link--resend">Gửi lại mã OTP</a>
+                <p class="change-email">
+                    Chưa nhận được mã?
+                    <span id="open-change-email" class="change-email__link">Đổi email</span>
+                </p>
             </form>
 
-            <form id="verify-step-2" class="reset-form reset-form--hidden">
+            <form id="verify-step-2" class="reset-form reset-form--hidden" action="change-email" method="post">
+                <h2 class="reset-form__title">Cập nhật lại email</h2>
+
+                <div class="input-group">
+                    <label for="new-email" class="input-group__label">Email mới</label>
+                    <input type="hidden" name="oldEmail" value="${sessionScope.otp_email}">
+                    <input type="text" id="new-email" name="newEmail" placeholder=""
+                           class="input-group__input" class="input-group__input" required>
+                </div>
+
+                <c:if test="${not empty emailError}">
+                    <p class="text-danger">${emailError}</p>
+                </c:if>
+
+                <button type="submit" class="submit-button">Cập nhật</button>
+                <p id="back-to-otp" class="reset-form__link" style="text-align: left">Quay lại</p>
+            </form>
+
+            <form id="verify-step-3" class="reset-form reset-form--hidden">
                 <h2 class="reset-form__title">Xác minh thành công!</h2>
                 <p class="reset-form__instruction reset-form__instruction--success">Tài khoản đã được kích hoạt.</p>
                 <a href="index.jsp" class="submit-button">Đi đến đăng nhập</a>
@@ -198,11 +220,4 @@
 </footer>
 </body>
 <script src="./admin/scripts/components/verify.js"></script>
-<c:if test="${verifiedSuccess == true}">
-    <script>
-        document.getElementById("verify-step-1").style.display = "none";
-        document.getElementById("verify-step-2").classList.remove("reset-form--hidden");
-        document.getElementById("verify-step-2").style.display = "block";
-    </script>
-</c:if>
 </html>

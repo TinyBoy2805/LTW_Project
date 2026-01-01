@@ -13,5 +13,5 @@ public class MailConfig {
     }
 
     public static final String APP_EMAIL = "23130041@st.hcmuaf.edu.vn"; // Gmail App
-    public static final String APP_PASSWORD = "gncyfvgjihubirxo"; // App Password
+    public static final String APP_PASSWORD = "uvdlltzktezrbyog"; // App Password
 }
