@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,9 +43,17 @@
                     <label class="label">Tên ưu đãi</label>
                     <input type="text" class="input" name="description" placeholder="Nhập tên/mô tả ưu đãi" required />
 
+                    <label class="label">Áp dụng cho danh mục</label>
+                    <select name="category_id" class="input">
+                      <option value="">Áp dụng tất cả</option>
+                      <c:forEach var="cat" items="${categories}">
+                        <option value="${cat.id}">${cat.name}</option>
+                      </c:forEach>
+                    </select>
+
                     <label class="label">Phân loại ưu đãi</label>
                     <select id="offer-type" name="voucher_type" class="input" required>
-                      <option value="product">Giảm giá sản phẩm</option>
+                      <option value="discount">Giảm giá sản phẩm</option>
                       <option value="shipping">Giảm giá ship</option>
                     </select>
 

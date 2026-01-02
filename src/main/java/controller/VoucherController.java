@@ -1,7 +1,9 @@
 package controller;
 
 import dao.VoucherDao;
+import dao.CategoryDao;
 import model.Voucher;
+import model.Category;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -16,11 +18,14 @@ import java.util.List;
 @WebServlet(name = "VoucherController", urlPatterns = {"/uudai", "/themuudai"})
 public class VoucherController extends HttpServlet {
     private final VoucherDao voucherDao = new VoucherDao();
+    private final CategoryDao categoryDao = new CategoryDao();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String servletPath = request.getServletPath();
         if ("/themuudai".equals(servletPath)) {
+            List<Category> categories = categoryDao.findAll();
+            request.setAttribute("categories", categories);
             request.getRequestDispatcher("admin/pages/ThemUuDai.jsp").forward(request, response);
             return;
         }
