@@ -39,7 +39,7 @@
       </a>
     </li>
     <li class="list__item">
-      <a href="UuDai.jsp">
+      <a href="${pageContext.request.contextPath}/uudai">
         <div class="section">
           <div class="icon"><i class="fa-solid fa-gift"></i></div>
           <p class="title">Ưu đãi</p>

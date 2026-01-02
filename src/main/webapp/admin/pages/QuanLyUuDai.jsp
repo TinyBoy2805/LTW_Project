@@ -59,6 +59,25 @@
 
                   <div class="row two">
                     <div>
+                      <label class="label">Giảm tiền (vnđ)</label>
+                      <div class="input-with-icon">
+                        <div class="inline currency-wrap">
+                          <input type="number" class="input currency-input" min="0" step="1000" value="0" aria-label="Giảm tiền" />
+                        </div>
+                        <i class="fa-solid fa-pen input-icon"></i>
+                      </div>
+                    </div>
+                    <div>
+                      <label class="label">Giảm %</label>
+                      <div class="input-with-icon">
+                        <input type="number" class="input" min="0" max="100" step="1.0" value="0" />
+                        <i class="fa-solid fa-pen input-icon"></i>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row two">
+                    <div>
                       <label class="label">Áp dụng cho đơn giá từ</label>
                       <div class="input-with-icon">
                         <div class="inline currency-wrap">

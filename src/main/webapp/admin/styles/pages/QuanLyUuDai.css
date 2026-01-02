@@ -9,12 +9,14 @@
 
 body {
   height: 100vh;
+  background-color: #f8f8f8;
+  overflow: hidden;
 }
 
 .QuanLyUuDai.main {
-  flex-direction: row;
-  height: 100vh;
+  display: flex;
   width: 100%;
+  height: 100vh;
   overflow: hidden;
 }
 
@@ -29,6 +31,10 @@ body {
 }
 .QuanLyUuDai .container {
   margin-left: 208px;
+  width: calc(100% - 208px);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 .QuanLyUuDai.main.collapsed .sidebar { width: 72px; }
 .QuanLyUuDai.main.collapsed .container { margin-left: 72px; }
@@ -40,11 +46,13 @@ body {
 
 /* KHỐI CHỨA HEADER VÀ NỘI DUNG */
 .content {
-  width: 100%;
   display: flex;
   flex-direction: column;
+  width: 100%;
   flex-grow: 1;
-  padding: 24px 24px 0 24px;
+  height: calc(100vh - 60px);
+  padding: 24px;
+  overflow: hidden;
 }
 
 .container__header {
@@ -63,7 +71,9 @@ main.content {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  height: 100%;
+  height: calc(100vh - 60px);
+  padding: 24px;
+  overflow: hidden;
 }
 
 .content__header {
@@ -89,6 +99,7 @@ main.content {
   display: flex;
   align-items: center;
   gap: 15px;
+  text-decoration: none;
 }
 
 .back-icon {
@@ -119,88 +130,57 @@ main.content > a {
   background-color: white;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin: 0 24px 24px 24px;
+  padding: 32px;
+  overflow-y: auto;
   flex-grow: 1;
-  display: flex;
   min-height: 0;
-  width: calc(100% - 48px) !important;
-  margin: 0 24px !important;
-  padding: 24px !important;
-  position: relative;
-  padding-bottom: 24px !important;
-  overflow: visible;
+  display: flex;
+  flex-direction: column;
+}
+
+.content__panel::-webkit-scrollbar {
+  width: 10px;
+}
+
+.content__panel::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 10px;
+}
+
+.content__panel::-webkit-scrollbar-thumb {
+  background: #c4c4c4;
+  border-radius: 10px;
+}
+
+.content__panel::-webkit-scrollbar-thumb:hover {
+  background: #a9a9a9;
 }
 
 .content__body {
   display: flex;
-  width: 100%;
+  flex-direction: column;
   height: auto;
-  min-height: 720px;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 10px;
-  border-radius: 0;
-  background-color: transparent;
-  box-shadow: none;
-  padding: 24px 24px 0 24px;
-  position: relative;
-}
-
-.content__body .actions-row {
-  display: none;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  margin-top: 18px;
-  padding: 0;
-}
-
-.content__body .actions-row {
-  display: none;
-  justify-content: space-between;
-  gap: 12px;
-  align-items: center;
-  z-index: 50;
-  width: 100%;
-  position: absolute;
-  left: 24px;
-  right: 24px;
-  bottom: 120px;
-}
-
-/* show actions row when managing */
-.content__panel.managing .content__body .actions-row {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 18px;
-  padding: 0 24px;
-  box-sizing: border-box;
-  position: absolute;
-  bottom: 142px;
-  left: 24px;
-  right: 24px;
-  z-index: 50;
-}
-
-.content__panel.managing .content__body .actions-row .actions-left {
-  flex: 1 1 auto;
-}
-
-.content__panel.managing .content__body .actions-row .actions-right {
-  flex: 0 0 auto;
-  margin-left: 16px;
-}
-
-.content__panel.managing .content__body .actions-row .panel-actions {
-  display: inline-flex;
-  align-items: center;
-}
-
-.content__panel.managing .content__body .actions-row .actions .btn {
-  white-space: nowrap;
+  min-height: 0;
+  padding-bottom: 24px;
 }
 
 .form-wrap {
-  padding-bottom: 24px;
+  padding-bottom: 80px;
+}
+
+.actions-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 24px;
+  border-top: 1px solid #eee;
+  margin-top: 20px;
+  flex-shrink: 0;
+}
+.actions-right {
+  display: flex;
+  gap: 12px;
 }
 
 .content__panel.managing .panel-header {
@@ -338,7 +318,7 @@ main.content > a {
   padding: 10px 15px;
   border-radius: 24px;
   border: 2px solid #e4e4e4;
-  color: #4C4C4C;
+  color: #777;
   transition: border-color 0.3s;
   flex-shrink: 0;
 }
@@ -367,6 +347,13 @@ main.content > a {
   overflow: auto;
   text-overflow: clip;
   width: 100%;
+  color: #777;
+}
+
+.input::placeholder,
+textarea::placeholder {
+  color: #b3b3b3;
+  opacity: 1;
 }
 
 /* image UI removed — keep styles here in case needed later (but keep them inert) */

@@ -25,72 +25,89 @@
    
       <!-- Main content -->
       <main class="content" aria-labelledby="them-uu-dai-title">
-        <a href="UuDai.jsp">
+        <a href="${pageContext.request.contextPath}/uudai">
           <h3 class="content__title"><i class="fa-solid fa-chevron-left"></i>Thêm Ưu Đãi</h3>
         </a>
         <div class="content__panel creating">
           <div class="panel-header"></div>
 
-          <div class="content__body">
-            <div class="form-wrap">
-              <section class="left-panel">
-                <div class="card-form">
-                  <label class="label">Tên ưu đãi</label>
-                  <input type="text" class="input" placeholder="Nhập tên ưu đãi" />
+          <form method="post" action="${pageContext.request.contextPath}/uudai">
+            <div class="content__body">
+              <div class="form-wrap">
+                <section class="left-panel">
+                  <div class="card-form">
+                    <label class="label">Mã ưu đãi</label>
+                    <input type="text" class="input" name="code" placeholder="Nhập mã ưu đãi" required />
 
-                  <label class="label">Mặt hàng</label>
-                  <div class="chips">
-                    <button type="button" class="chip">Tất cả</button>
-                    <button type="button" class="chip">Sữa</button>
-                    <button type="button" class="chip">Đồ ăn dặm</button>
-                    <button type="button" class="chip">Cháo dinh dưỡng</button>
-                    <button type="button" class="chip">Thức uống dinh dưỡng</button>
-                  </div>
+                    <label class="label">Tên ưu đãi</label>
+                    <input type="text" class="input" name="description" placeholder="Nhập tên/mô tả ưu đãi" required />
 
-                  <label class="label">Phân loại ưu đãi</label>
-                  <select id="offer-type" name="offer_type" class="input">
-                    <option value="product">Giảm giá sản phẩm</option>
-                    <option value="shipping">Giảm giá ship</option>
-                  </select>
+                    <label class="label">Phân loại ưu đãi</label>
+                    <select id="offer-type" name="voucher_type" class="input" required>
+                      <option value="product">Giảm giá sản phẩm</option>
+                      <option value="shipping">Giảm giá ship</option>
+                    </select>
 
-                  <div class="row two">
-                    <div>
-                      <label class="label">Áp dụng cho đơn giá từ</label>
-                      <div class="inline currency-wrap">
-                        <input type="number" class="input currency-input" min="0" step="1000" value="0"
-                          aria-label="Áp dụng cho đơn giá từ" />
+                    <div class="row two">
+                      <div>
+                        <label class="label">Giảm tiền (vnđ)</label>
+                        <div class="inline currency-wrap">
+                          <input type="number" class="input currency-input" name="discount_amount" min="0" step="1000" value="0"
+                            aria-label="Giảm tiền" />
+                        </div>
+                      </div>
+                      <div>
+                        <label class="label">Giảm %</label>
+                        <input type="number" class="input" name="discount_percentage" min="0" max="100" step="1" value="0" />
                       </div>
                     </div>
-                    <div>
-                      <label class="label">Số lượng</label>
-                      <input type="number" class="input" min="0" step="1" value="0" />
+
+                    <div class="row two">
+                      <div>
+                        <label class="label">Áp dụng cho đơn từ (vnđ)</label>
+                        <div class="inline currency-wrap">
+                          <input type="number" class="input currency-input" name="min_order_value" min="0" step="1000" value="0"
+                            aria-label="Áp dụng cho đơn giá từ" />
+                        </div>
+                      </div>
+                      <div>
+                        <label class="label">Số lượng</label>
+                        <input type="number" class="input" name="usage_limit" min="0" step="1" value="0" />
+                      </div>
+                    </div>
+
+                    <div class="row two">
+                      <div>
+                        <label class="label">Ngày bắt đầu</label>
+                        <input type="date" class="input" name="start_date" />
+                      </div>
+                      <div>
+                        <label class="label">Ngày kết thúc</label>
+                        <input type="date" class="input" name="end_date" />
+                      </div>
+                    </div>
+
+                    <label class="label">Mô tả chi tiết</label>
+                    <textarea class="input textarea" name="description_detail" rows="4" placeholder="Nhập mô tả ưu đãi"></textarea>
+                  </div>
+                </section>
+              </div>
+
+              <div class="actions-row">
+                <div class="actions-left">
+                  <p class="note">Đảm bảo rằng sản phẩm của bạn là hợp pháp và không gây hậu quả nào</p>
+                </div>
+                <div class="actions-right">
+                  <div class="panel-actions">
+                    <div class="actions">
+                      <a href="${pageContext.request.contextPath}/uudai" class="btn ghost" style="text-decoration:none; display:inline-block; text-align:center;">Hủy</a>
+                      <button class="btn primary" type="submit">Đăng ưu đãi</button>
                     </div>
                   </div>
-                  <label class="label">Hạn ưu đãi đến hết ngày</label>
-                  <input type="date" class="input" value="Thời gian ưu đãi" />
-
-                  <label class="label">Mô tả</label>
-                  <textarea class="input textarea" rows="4" placeholder="Nhập mô tả ưu đãi"></textarea>
-                </div>
-              </section>
-            </div>
-
-    
-            <div class="actions-row">
-              <div class="actions-left">
-                <p class="note">Đảm bảo rằng sản phẩm của bạn là hợp pháp và không gây hậu quả nào</p>
-              </div>
-              <div class="actions-right">
-                <div class="panel-actions">
-                  <div class="actions">
-                    <button class="btn ghost">Hủy</button>
-                    <button class="btn primary">Lưu ưu đãi</button>
-                  </div>
                 </div>
               </div>
             </div>
-
-          </div>
+          </form>
 
         </div>
 
