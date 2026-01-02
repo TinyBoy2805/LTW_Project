@@ -167,7 +167,9 @@
             <h3 class="main__today-suggestion-heading">Gợi ý hôm nay</h3>
             <div class="main__today-suggestion-list">
                 <ul class="main__today-suggestion-list-ul">
-
+                    <form action="${pageContext.request.contextPath}/product-detail" method="post" style="display: none;" id="product__form">
+                        <input type="hidden" value="" name="product_id" id="product__id">
+                    </form>
                 </ul>
                 <button class="main__today-suggestion-more" id="home-more-button">Xem thêm</button>
             </div>
@@ -189,8 +191,8 @@
                     <h4>Nhận xét</h4>
                     <textarea name="" id=""></textarea>
                 </fieldset>
-                <button type="submit">Gửi đánh giá</button>
-            </form>    
+                <button>Gửi đánh giá</button>
+            </form>
         </section>
 
 

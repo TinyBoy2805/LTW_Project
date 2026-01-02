@@ -43,7 +43,7 @@
                                 </div>
 
                                 <div class="product__mid">
-                                    <h3 title="${p.name}">${p.name}</h3>
+                                    <h3 title="${p.name}" >${p.name}</h3>
                                     <div class="product__mid-sub1">
                                         <ul class="product__mid-sub1-stars">
                                             <c:choose>

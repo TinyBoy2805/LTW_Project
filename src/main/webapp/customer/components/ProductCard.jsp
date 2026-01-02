@@ -9,7 +9,9 @@
 
 
 <template id="product-card__template">
+
     <li class="main__trending-content-ul-li">
+<%--     <input type="hidden" value="" id="holder">--%>
         <div class="product">
             <div class="product__top">
                 <div class="product__image">

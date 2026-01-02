@@ -4,17 +4,13 @@ import com.google.gson.Gson;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import model.Voucher;
-import model.VoucherType;
 import model.product.ProductCard;
 import service.HomeService;
-
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "HomeController", value = "/home")
+@WebServlet(name = "HomeController", value = "/home/*")
 public class HomeController extends HttpServlet
 {
     private int PAGE_SIZE = 16;
@@ -24,14 +20,64 @@ public class HomeController extends HttpServlet
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
 
+        String pathInfo = request.getPathInfo(); // Lấy phần sau /home/
+
+//        System.out.println(pathInfo);
+        if (pathInfo == null || pathInfo.equals("/"))
+        {
+            this.setHomeData(request);
+            request.getRequestDispatcher("/customer/pages/Home.jsp").forward(request, response);
+            return;
+        }
+
+        String action = pathInfo.substring(1);
+//        System.out.println(action);
+
+        switch (action)
+        {
+            case "trending":
+                this.showTrending(request, response);
+                return;
+            case "product":
+                this.showProductByPage(request, response);
+                return;
+            default:
+                response.sendError(HttpServletResponse.SC_NOT_FOUND);
+                return;
+        }
+
+//        this.setHomeData(request);
+//        request.getRequestDispatcher("/customer/pages/Home.jsp").forward(request, response);
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    {
+        doGet(request, response);
+    }
+
+
+
+    private void setHomeData(HttpServletRequest request)
+    {
+        request.setAttribute("user_count_formatted", formatNumber(this.homeService.getAmountUsers()));
+        request.setAttribute("avg_rating", this.homeService.getAvgRating());
+        request.setAttribute("categories", this.homeService.getCategories());
+        request.setAttribute("vouchers", this.homeService.getVouchers());
+
+    }
+
+
+    private void showTrending(HttpServletRequest request, HttpServletResponse response) throws IOException
+    {
         Gson gson = new Gson();
         //top tim kiem - top danh gia - top luot ban
         String trending_type = request.getParameter("trending_type");
-        String pageParam = request.getParameter("page");
-        int page = 1;
+
+        List<ProductCard> products = new ArrayList<>();
         if(trending_type != null)
         {
-            List<ProductCard> products = null;
             switch (trending_type)
             {
                 case "search":
@@ -53,10 +99,14 @@ public class HomeController extends HttpServlet
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             response.getWriter().write(json);
-            return;
         }
+    }
 
-
+    private void showProductByPage(HttpServletRequest request, HttpServletResponse response)
+    {
+        Gson gson = new Gson();
+        String pageParam = request.getParameter("page");
+        int page = 1;
         if(pageParam != null && !pageParam.isEmpty())
         {
             try
@@ -67,56 +117,28 @@ public class HomeController extends HttpServlet
             {
                 page = 1;
             }
-
-            try
-            {
-                List<ProductCard> products = homeService.getProductByPage(page, PAGE_SIZE);
-
-                for(ProductCard pc: products)
-                {
-                    pc.setAvg_rating(Math.floor(pc.getAvg_rating()));
-                }
-
-                String json = gson.toJson(products);
-                response.setContentType("application/json");
-                response.setCharacterEncoding("UTF-8");
-                response.getWriter().write(json);
-                return;
-
-            } catch (IOException e)
-            {
-                throw new RuntimeException(e);
-            }
         }
 
+        try
+        {
+            List<ProductCard> products = homeService.getProductByPage(page, PAGE_SIZE);
 
+            for(ProductCard pc: products)
+            {
+                pc.setAvg_rating(Math.floor(pc.getAvg_rating()));
+            }
 
+            String json = gson.toJson(products);
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(json);
 
-
-
-        this.setHomeData(request);
-        request.getRequestDispatcher("/customer/pages/Home.jsp").forward(request, response);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-    {
-        doGet(request, response);
-    }
-
-
-
-    private void setHomeData(HttpServletRequest request)
-    {
-        request.setAttribute("user_count_formatted", formatNumber(this.homeService.getAmountUsers()));
-        request.setAttribute("avg_rating", this.homeService.getAvgRating());
-        request.setAttribute("categories", this.homeService.getCategories());
-        request.setAttribute("vouchers", this.homeService.getVouchers());
+        } catch (IOException e)
+        {
+            throw new RuntimeException(e);
+        }
 
     }
-
-
-
 
     private String formatNumber(int number)
     {
