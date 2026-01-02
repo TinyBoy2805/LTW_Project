@@ -1,4 +1,4 @@
-// Tabs và modal chỉnh sửa cho trang Blog
+// Tabs và điều hướng tới trang quản lý bài viết
 document.addEventListener('DOMContentLoaded', function () {
   // Tabs
   const tabButtons = document.querySelectorAll('.tab-btn');
@@ -31,5 +31,33 @@ document.addEventListener('DOMContentLoaded', function () {
   // Đảm bảo trạng thái ban đầu khớp với tab đang active (nếu có)
   const initialActive = document.querySelector('.tab-btn.active');
   if (initialActive) showPanel(initialActive.dataset.tab);
+
+  // Xử lý click vào blog card để chuyển tới trang quản lý
+  const blogCards = document.querySelectorAll('.blog-card.blog-clickable');
+  blogCards.forEach(card => {
+    card.addEventListener('click', function() {
+      // Lấy dữ liệu từ card
+      const title = this.querySelector('.card-title')?.textContent || '';
+      const content = this.querySelector('.card-excerpt')?.textContent || '';
+      const date = this.querySelector('.card-meta')?.textContent?.replace('Ngày: ', '') || '';
+      const link = this.querySelector('.card-link')?.textContent || '';
+      const image = this.querySelector('.card__figure img')?.src || '';
+
+      // Tạo URL query parameters
+      const params = new URLSearchParams({
+        title: title,
+        content: content,
+        date: date,
+        link: link,
+        image: image
+      });
+
+      // Chuyển hướng tới trang QuanLyBlog
+      window.location.href = './QuanLyBlog.jsp?' + params.toString();
+    });
+
+    // Thêm cursor pointer cho phép tương tác
+    card.style.cursor = 'pointer';
+  });
 
 });

@@ -6,9 +6,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MiChiShop</title>
-  <link rel="stylesheet" href="../styles/components/sidebar.css" />
-  <link rel="stylesheet" href="../styles/components/header.css" />
-  <link rel="stylesheet" href="../styles/pages/Blog.css" />
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/styles/components/sidebar.css" />
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/styles/components/header.css" />
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/styles/pages/Blog.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
@@ -17,140 +17,11 @@
 <body>
   <div class="Blog main">
     <aside class="sidebar">
-      <!-- header inclue shop's logo and shop's name -->
-      <div class="sidebar__header">
-        <img src="../imgs/logo.png" alt="Logo">
-        <h2>MiChiShop</h2>
-      </div>
-      <!-- list item of sidebar -->
-      <div class="sidebar__list">
-        <ul class="list">
-          <li class="list__item">
-            <a href="dashboard.jsp">
-              <div class="section">
-                <div class="icon"><i class="fa-solid fa-chart-line"></i></div>
-                <p class="title">Thống kê</p>
-              </div>
-            </a>
-          </li>
-          <li class="list__item">
-            <a href="order.jsp">
-              <div class="section">
-                <div class="icon"><i class="fa-solid fa-shopping-cart"></i></div>
-                <p class="title">Đơn hàng</p>
-              </div>
-            </a>
-          </li>
-          <li class="list__item">
-            <a href="categories.jsp">
-              <div class="section">
-                <div class="icon"><i class="fa-solid fa-box"></i></div>
-                <p class="title">Kho hàng</p>
-              </div>
-            </a>
-          </li>
-          <li class="list__item">
-            <a href="KhachHang.jsp">
-              <div class="section">
-                <div class="icon"><i class="fa-solid fa-users"></i></div>
-                <p class="title">Khách hàng</p>
-              </div>
-            </a>
-          </li>
-          <li class="list__item">
-            <a href="UuDai.jsp">
-              <div class="section">
-                <div class="icon"><i class="fa-solid fa-gift"></i></div>
-                <p class="title">Ưu đãi</p>
-              </div>
-            </a>
-          </li>
-          <li class="list__item">
-            <a href="./Blog.jsp" class="active">
-              <div class="section">
-                <div class="icon"><i class=" fa-solid fa-blog"></i></div>
-                <p class="title">Bài viết</p>
-              </div>
-            </a>
-          </li>
-          <li class="list__item">
-            <a href="Email.jsp">
-              <div class="section">
-                <div class="icon"><i class="fa-solid fa-envelope"></i></div>
-                <p class="title">Thông Báo</p>
-              </div>
-              <div class="badge">+99</div>
-            </a>
-          </li>
-          <li class="list__item">
-            <a href="CaiDat.jsp">
-              <div class="section">
-                <div class="icon"><i class="fa-solid fa-cog"></i></div>
-                <p class="title">Cài đặt</p>
-              </div>
-            </a>
-          </li>
-        </ul>
-      </div>
-      <!-- bottom has exit button -->
-      <div class="sidebar__bottom">
-        <a href="../../../../../index.html">
-          <div class="icon"><ion-icon name="exit-outline"></ion-icon></div>
-          <p class="title">Đăng xuất</p>
-        </a>
-      </div>
+      <% request.setAttribute("activePage", "blog"); %>
+      <%@ include file="../components/sidebar.jsp" %>
     </aside>
-
     <div class="container">
-      <div class="container__header">
-        <!-- header left has sidebar expand button and hello message -->
-        <div class="header__left">
-          <div class="icon" id="menu__action"><ion-icon name="menu-outline"></ion-icon></div>
-          <h3>Chào mừng trở lại, <span>MiChi Admin</span></h3>
-        </div>
-
-        <div class="header__right">
-
-          <div class="notification__wrapper">
-            <div class="icon" id="notification__icon">
-              <ion-icon name="notifications-outline"></ion-icon>
-              <span class="notification__badge">3</span>
-            </div>
-
-            <div class="notification__frame">
-              <h4 class="notification__title">🔔 Thông báo mới</h4>
-              <div class="notification__list">
-
-                <div class="notification__item new">
-                  <div class="item__icon"><ion-icon name="bag-check-outline"></ion-icon></div>
-                  <div class="item__content">
-                    <p class="item__text"><strong>Đơn hàng mới:</strong> Mã O-250725 vừa được tạo.</p>
-                    <span class="item__time">Vài giây trước</span>
-                  </div>
-                </div>
-
-                <div class="notification__item new">
-                  <div class="item__icon alert"><ion-icon name="alert-circle-outline"></ion-icon></div>
-                  <div class="item__content">
-                    <p class="item__text"><strong>Cảnh báo tồn kho:</strong> Sữa Bột GrowPro chỉ còn 10 sản phẩm.</p>
-                    <span class="item__time">5 phút trước</span>
-                  </div>
-                </div>
-
-                <div class="notification__item">
-                  <div class="item__icon review"><ion-icon name="star-outline"></ion-icon></div>
-                  <div class="item__content">
-                    <p class="item__text">Có <strong>1 đánh giá 5 sao</strong> mới cho Váng sữa.</p>
-                    <span class="item__time">1 giờ trước</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="avatar"><img src="../imgs/logo.png" alt="Avatar" /></div>
-        </div>
-      </div>
-
+      <%@ include file="../components/header.jsp" %>
 
       <!-- Main content -->
       <main class="content" aria-labelledby="blog-title">
@@ -198,7 +69,7 @@
           </div>
           <div class="tab-panel active" data-panel="blogs">
             <div class="blog-list" role="list" aria-label="Danh sách bài viết">
-              <article class="blog-card" data-toggle="detail" data-target=".blog-detail">
+              <article class="blog-card blog-clickable" role="button" tabindex="0">
                 <figure class="card__figure"><img
                     src="https://media.vietnamplus.vn/images/ed1918d4cf848798286fdbd286ae25b434bfe5fe1202c90591deb8e201814798f805af93601147e13a81d0f60f99424f/thuc-pham-bo-sung4.jpg"
                     alt="Sữa công thức">
@@ -213,7 +84,7 @@
                 </div>
               </article>
 
-              <article class="blog-card" data-toggle="detail" data-target=".blog-detail">
+              <article class="blog-card blog-clickable" role="button" tabindex="0">
                 <figure class="card__figure"><img src="https://vsh.org.vn/pic/News/images/che-do-dinh-duong-covid19.jpg"
                     alt="Thực phẩm dinh dưỡng">
                 </figure>
@@ -227,7 +98,7 @@
                 </div>
               </article>
 
-              <article class="blog-card" data-toggle="detail" data-target=".blog-detail">
+              <article class="blog-card blog-clickable" role="button" tabindex="0">
                 <figure class="card__figure"><img
                     src="https://www.vinmec.com/static/uploads/small_20200819_035119_590444_vi_sao_tre_bi_hep_m_max_1800x1800_jpg_c0ced03362.jpg"
                     alt="Sữa cho trẻ em">
@@ -242,7 +113,7 @@
                 </div>
               </article>
 
-              <article class="blog-card" data-toggle="detail" data-target=".blog-detail">
+              <article class="blog-card blog-clickable" role="button" tabindex="0">
                 <figure class="card__figure"><img
                     src="https://file.hstatic.net/200000460185/file/440293054_1486400732293385_283475967119864188_n_bc649692da824bb9ac0a7108d2f0e813_grande.jpg"
                     alt="Dinh dưỡng trẻ">
@@ -257,7 +128,7 @@
                 </div>
               </article>
 
-              <article class="blog-card" data-toggle="detail" data-target=".blog-detail">
+              <article class="blog-card blog-clickable" role="button" tabindex="0">
                 <figure class="card__figure"><img
                     src="https://nreci.org/wp-content/uploads/2023/01/hinh-anh-thap-dinh-duong-cho-tre-mam-non-1.webp"
                     alt="Ăn dặm"></figure>
@@ -271,7 +142,7 @@
                 </div>
               </article>
 
-              <article class="blog-card" data-toggle="detail" data-target=".blog-detail">
+              <article class="blog-card blog-clickable" role="button" tabindex="0">
                 <figure class="card__figure"><img
                     src="https://suckhoedoisong.qltns.mediacdn.vn/Images/nguyenkhanh/2020/03/26/mon-an-cho-tre-.jpg"
                     alt="Sức khỏe trẻ em">
@@ -286,7 +157,7 @@
                 </div>
               </article>
 
-              <article class="blog-card" data-toggle="detail" data-target=".blog-detail">
+              <article class="blog-card blog-clickable" role="button" tabindex="0">
                 <figure class="card__figure"><img
                     src="https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/17/sua-16606738764131624047533.jpg"
                     alt="Sữa hữu cơ"></figure>
@@ -300,7 +171,7 @@
                 </div>
               </article>
 
-              <article class="blog-card" data-toggle="detail" data-target=".blog-detail">
+              <article class="blog-card blog-clickable" role="button" tabindex="0">
                 <figure class="card__figure"><img
                     src="https://www.vinmec.com/static/uploads/small_20210518_170321_275704_cham_soc_tre_max_1800x1800_jpg_b9b9632ddc.jpg"
                     alt="Dinh dưỡng bé">
@@ -315,7 +186,7 @@
                 </div>
               </article>
               <!-- Bản nháp -->
-              <article class="blog-card" data-toggle="detail" data-target=".blog-detail">
+              <article class="blog-card blog-clickable" role="button" tabindex="0">
                 <figure class="card__figure"><img
                     src="https://bau.vn/wp-content/uploads/2022/04/luoc-trung-cai-sua-meo-vat-dan-gian-mot-phat-an-ngay-3.jpg"
                     alt="Bản nháp 1">
@@ -330,7 +201,7 @@
                 </div>
               </article>
 
-              <article class="blog-card" data-toggle="detail" data-target=".blog-detail">
+              <article class="blog-card blog-clickable" role="button" tabindex="0">
                 <figure class="card__figure"><img
                     src="https://www.cleanipedia.com/images/5iwkm8ckyw6v/3LVycqdEjr9gmm5HYHuzcf/ed822419b50cf144131b0aa3c649c029/NDA0ZmE3MTE1YjYzMGU0MWU1YTQ0MWQ1ZDJhZDUzYmUtMTgwMHctMTIwMGguanBn/1200w/ng%C6%B0%E1%BB%9Di-ph%E1%BB%A5-n%E1%BB%AF-%C4%91ang-cho-em-b%C3%A9-%C4%83n..jpg"
                     alt="Bản nháp 2">
@@ -432,48 +303,11 @@
 
         </div> <!-- .content__panel -->
 
-        <!-- Chi tiết / Sửa bài viết -->
-        <aside class="blog-detail" role="dialog" aria-hidden="true" aria-label="Chi tiết bài viết">
-          <header class="detail-header">
-            <div class="detail-left">
-              <h4 class="detail-subject">Sữa công thức: Hướng dẫn chọn cho bé 0–12 tháng</h4>
-              <div class="detail-meta"><span class="detail-sender"></span></div>
-            </div>
-            <div class="detail-right">
-              <div class="detail-date">12/11/2025</div>
-              <button class="detail-close" aria-label="Đóng chi tiết"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-          </header>
-
-          <form class="detail-edit" action="#" onsubmit="return false;">
-            <label class="label">Tiêu đề</label>
-            <input class="input edit-title" type="text" value="Sữa công thức: Hướng dẫn chọn cho bé 0–12 tháng" />
-
-            <label class="label">Link bài viết</label>
-            <input class="input edit-link" type="url" placeholder="https://..."
-              value="http://michishop.local/blog/sua-cong-thuc-abc" />
-
-            <label class="label">Ngày đăng</label>
-            <input class="input edit-date" type="date" value="2025-11-12" />
-
-            <label class="label">Nội dung (mô tả ngắn)</label>
-            <textarea class="input textarea edit-content" rows="3"
-              placeholder="Tóm tắt, đoạn mô tả sẽ hiển thị trên card">Bài viết hướng dẫn lựa chọn sữa công thức phù hợp theo độ tuổi, thành phần dinh dưỡng cần chú ý và mẹo chuyển đổi khi thay sữa.</textarea>
-
-            <div class="detail-actions">
-              <button type="button" class="btn primary edit-save">Cập nhật</button>
-              <button type="button" class="btn ghost edit-cancel">Hủy</button>
-              <button type="button" class="btn danger edit-delete">Xóa</button>
-            </div>
-          </form>
-        </aside>
-
 
       </main>
     </div>
   </div> <!-- .main -->
   <script src="../scripts/components/extendSidebar.js"></script>
-  <script src="../scripts/components/modalDetail.js"></script>
   <script src="../scripts/page/Blog.js"></script>
   <script src="../scripts/components/filter.js"></script>
 </body>
