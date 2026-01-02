@@ -11,7 +11,7 @@ body {
   height: 100vh;
 }
 
-.ThemUuDai.main {
+.QuanLyUuDai.main {
   flex-direction: row;
   height: 100vh;
   width: 100%;
@@ -19,7 +19,7 @@ body {
 }
 
 /* Pin sidebar for this page and offset container so sidebar doesn't move when content changes */
-.ThemUuDai .sidebar {
+.QuanLyUuDai .sidebar {
   position: fixed;
   left: 0;
   top: 0;
@@ -27,15 +27,15 @@ body {
   width: 208px;
   z-index: 40;
 }
-.ThemUuDai .container {
+.QuanLyUuDai .container {
   margin-left: 208px;
 }
-.ThemUuDai.main.collapsed .sidebar { width: 72px; }
-.ThemUuDai.main.collapsed .container { margin-left: 72px; }
+.QuanLyUuDai.main.collapsed .sidebar { width: 72px; }
+.QuanLyUuDai.main.collapsed .container { margin-left: 72px; }
 
 @media (max-width: 900px) {
-  .ThemUuDai .sidebar { position: static; height: auto; width: auto; }
-  .ThemUuDai .container { margin-left: 0; }
+  .QuanLyUuDai .sidebar { position: static; height: auto; width: auto; }
+  .QuanLyUuDai .container { margin-left: 0; }
 }
 
 /* KHỐI CHỨA HEADER VÀ NỘI DUNG */
@@ -74,7 +74,6 @@ main.content {
   height: 40px;
 }
 
-
 .content__header a {
   text-decoration: none;
   font-size: 20px;
@@ -87,6 +86,27 @@ main.content {
   margin-bottom: 20px;
   padding: 0 0 0 24px;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.back-icon {
+  color: #000000;
+  font-size: 20px;
+  text-decoration: none;
+  transition: color 0.2s;
+  display: inline-flex;
+  align-items: center;
+}
+
+.back-icon:hover {
+  color: #333333;
+}
+
+/* ensure nested font-awesome icon inherits black color consistently */
+.content__title .back-icon i {
+  color: #000000 !important;
 }
 
 /* If the title is wrapped by a link (e.g. the back link), remove underline */
@@ -107,6 +127,7 @@ main.content > a {
   padding: 24px !important;
   position: relative;
   padding-bottom: 24px !important;
+  overflow: visible;
 }
 
 .content__body {
@@ -120,9 +141,8 @@ main.content > a {
   border-radius: 0;
   background-color: transparent;
   box-shadow: none;
-  padding: 24px; /* give the inner area breathing room */
+  padding: 24px 24px 0 24px;
   position: relative;
-  padding-bottom: 24px;
 }
 
 .content__body .actions-row {
@@ -147,32 +167,35 @@ main.content > a {
   bottom: 120px;
 }
 
-.content__panel.creating .content__body .actions-row {
+/* show actions row when managing */
+.content__panel.managing .content__body .actions-row {
   display: flex;
   justify-content: space-between;
   margin-top: 18px;
   padding: 0 24px;
   box-sizing: border-box;
-
-  bottom: 120px;
+  position: absolute;
+  bottom: 142px;
+  left: 24px;
+  right: 24px;
   z-index: 50;
 }
 
-.content__panel.creating .content__body .actions-row .actions-left {
+.content__panel.managing .content__body .actions-row .actions-left {
   flex: 1 1 auto;
 }
 
-.content__panel.creating .content__body .actions-row .actions-right {
+.content__panel.managing .content__body .actions-row .actions-right {
   flex: 0 0 auto;
   margin-left: 16px;
 }
 
-.content__panel.creating .content__body .actions-row .panel-actions {
+.content__panel.managing .content__body .actions-row .panel-actions {
   display: inline-flex;
   align-items: center;
 }
 
-.content__panel.creating .content__body .actions-row .actions .btn {
+.content__panel.managing .content__body .actions-row .actions .btn {
   white-space: nowrap;
 }
 
@@ -180,18 +203,19 @@ main.content > a {
   padding-bottom: 24px;
 }
 
-.content__panel.creating .panel-header {
+.content__panel.managing .panel-header {
   margin-bottom: 8px;
   padding-bottom: 12px;
 }
 
-.content__panel.creating .content__body {
-  padding-top: 12px;
+.content__panel.managing .content__body {
+  padding-top: 0;
 }
 
-.content__panel.creating .form-wrap {
+.content__panel.managing .form-wrap {
   margin-top: 0;
   padding-top: 0;
+  padding-bottom: 0;
   align-items: flex-start;
 }
 
@@ -207,14 +231,12 @@ main.content > a {
 }
 
 .left-panel {
-  /* make the form take full available width now that images were removed */
   flex: 1 1 auto;
   width: 100%;
   min-width: 0;
 }
 
 .right-panel {
-  /* images panel removed — hide any remaining right-panel markup */
   display: none !important;
 }
 
@@ -237,7 +259,7 @@ main.content > a {
   gap: 28px;
 }
 
-.row.two>div {
+.row.two > div {
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -261,7 +283,6 @@ main.content > a {
   cursor: pointer;
   font-size: 13px;
   color: #4C4C4C;
-  transition: all 0.3s ease;
 }
 
 .chips .chip:hover,
@@ -273,17 +294,41 @@ main.content > a {
 /* Active state: highlight selected chip in pink */
 .chip.active,
 .chips .chip.active {
-  background: #F564A9 !important;
-  border-color: #F564A9 !important;
-  color: #fff !important;
+  background: #F564A9;
+  border-color: #F564A9;
+  color: #fff;
 }
 
-.chip.active:hover,
-.chips .chip.active:hover {
-  background: #F564A9 !important;
-  border-color: #F564A9 !important;
+/* Input with icon for edit functionality */
+.input-with-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
 }
 
+.input-with-icon .input {
+  padding-right: 45px;
+  width: 100%;
+}
+
+.input-with-icon .input-icon {
+  position: absolute;
+  right: 15px;
+  color: #F564A9;
+  cursor: pointer;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+.input-with-icon .input-icon:hover {
+  color: #e04a95;
+}
+
+/* Special handling for currency-wrap inside input-with-icon */
+.input-with-icon .currency-wrap {
+  flex: 1;
+}
 
 .input {
   white-space: nowrap;
@@ -301,9 +346,7 @@ main.content > a {
 /* make native select arrow sit closer to the right edge */
 .card-form select.input,
 .card-form select {
-  /* reduce right padding so the arrow appears nearer to the edge */
   padding-right: 8px;
-  /* ensure the select still looks consistent */
   -webkit-appearance: auto;
   -moz-appearance: auto;
   appearance: auto;
@@ -334,12 +377,12 @@ main.content > a {
   display: none !important;
 }
 
-.content__panel.creating .content__body .actions-row .note {
+.content__panel.managing .content__body .actions-row .note {
   color: #F564A9;
   font-size: 13px;
 }
 
-.ThemUuDai .btn {
+.QuanLyUuDai .btn {
   padding: 10px 18px;
   border-radius: 24px;
   font-weight: 600;
@@ -350,30 +393,41 @@ main.content > a {
   color: #4C4C4C;
 }
 
-.ThemUuDai .btn.primary,
-.content__panel.creating .content__body .actions-row .btn.primary {
+.QuanLyUuDai .btn.primary,
+.content__panel.managing .content__body .actions-row .btn.primary {
   background-color: #F564A9;
   color: #fff;
   border-color: #F564A9;
 }
 
-.ThemUuDai .btn.primary:hover {
+.QuanLyUuDai .btn.primary:hover {
   background-color: #e14d95;
   transform: translateY(-2px);
 }
 
-.ThemUuDai .btn.ghost,
-.content__panel.creating .content__body .actions-row .btn.ghost {
+.QuanLyUuDai .btn.ghost,
+.content__panel.managing .content__body .actions-row .btn.ghost {
   background-color: #ffffff;
   color: #4C4C4C;
   border: 1px solid #e4e4e4;
 }
 
-.ThemUuDai .btn.ghost:hover {
+.QuanLyUuDai .btn.ghost:hover {
   background-color: #fafafa;
   transform: translateY(-1px);
 }
 
+.QuanLyUuDai .btn.danger,
+.content__panel.managing .content__body .actions-row .btn.danger {
+  background-color: #ff4d4d;
+  color: #fff;
+  border: 1px solid #ff4d4d;
+}
+
+.QuanLyUuDai .btn.danger:hover {
+  background-color: #cc0000;
+  transform: translateY(-1px);
+}
 
 .actions-row {
   display: none;
@@ -397,32 +451,12 @@ main.content > a {
 
 @media (max-width: 1000px) {
   .content__panel .actions-row {
-    position: relative;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    grid-template-columns: 1fr;
-    margin-top: 12px;
+    position: static;
+    margin-top: 18px;
+    padding: 0 12px;
   }
-}
 
-.ThemUuDai .content__panel {
-  padding-top: 0px !important;
-  padding-left: 24px !important;
-  padding-right: 24px !important;
-  padding-bottom: 96px !important;
-  margin: 0 26px !important;
-  width: calc(100% - 24px) !important;
-}
-
-@media (max-width: 1200px) {
-  .form-wrap {
-    min-height: auto;
+  .content__body {
+    padding: 16px;
   }
-}
-
-.ThemUuDai .panel-header {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  margin-bottom: 12px;
 }

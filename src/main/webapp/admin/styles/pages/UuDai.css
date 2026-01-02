@@ -10,6 +10,15 @@
 body {
     height: 100vh;
 }
+/* Remove underlines only in main content area, not sidebar */
+.UuDai .content a,
+.UuDai .content a:link,
+.UuDai .content a:visited,
+.UuDai .content a:hover,
+.UuDai .content a:active,
+.UuDai .content a:focus {
+  text-decoration: none !important;
+}
 .UuDai.main {
   display: flex;
   flex-direction: row;
@@ -147,6 +156,31 @@ body {
   padding: 0 24px 5px 24px;
 }
 
+/* Make entire card clickable without changing existing visuals */
+.card-link {
+  display: block;
+  text-decoration: none !important;
+  color: inherit;
+}
+
+.card-link:link,
+.card-link:visited,
+.card-link:hover,
+.card-link:active {
+  text-decoration: none !important;
+  color: inherit;
+}
+
+.card-link * {
+  text-decoration: none !important;
+  color: inherit;
+}
+
+.card-link:focus-visible {
+  outline: 2px solid #f564a9;
+  outline-offset: 4px;
+}
+
 .panel-header {
   position: sticky;
   top: 0;
@@ -216,6 +250,7 @@ body {
   justify-content: center;
   min-width: 0; 
   overflow: hidden;
+  text-decoration: none !important;
 }
 
 .info h4 {

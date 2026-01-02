@@ -6,6 +6,7 @@ import model.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.List;
 
 public class AuthDao extends BaseDao {
 
@@ -102,4 +103,64 @@ public class AuthDao extends BaseDao {
 //                .bind("email", email).execute());
 //    }
 
+    // Lấy danh sách tất cả người dùng có vai trò là khách hàng
+    public List<User> getAllCustomers() {
+         return get().withHandle(handle ->
+             handle.createQuery("""
+                  SELECT id, name, email, phone_number,
+                      avt_url,
+                      role
+                  FROM users
+                  WHERE role = 'customer'
+                  """)
+                .mapToBean(User.class)
+                .list()
+         );
+    }
+
+    // Lấy chi tiết 1 khách hàng theo ID
+    public User getUserById(int id) {
+            return get().withHandle(handle ->
+                handle.createQuery("""
+                    SELECT id, name, email, role, phone_number, avt_url
+                    FROM users
+                    WHERE id = :id
+                    """)
+                .bind("id", id)
+                .mapToBean(User.class)
+                .findOne()
+                .orElse(null)
+            );
+    }
+    // Tìm kiếm khách hàng theo tên
+    public List<User> searchCustomersByName(String keyword) {
+        return get().withHandle(handle ->
+            handle.createQuery("""
+                SELECT id, name, email, phone_number, avt_url, role
+                FROM users
+                WHERE role = 'customer' AND LOWER(name) LIKE CONCAT('%', LOWER(:keyword), '%')
+            """)
+            .bind("keyword", keyword)
+            .mapToBean(User.class)
+            .list()
+        );
+    }
+    // Cập nhật thông tin khách hàng
+    public void updateUserInfo(int id, String name, String email, String phoneNumber) {
+        get().useHandle(h ->
+            h.createUpdate("""
+                UPDATE users
+                SET name = :name,
+                    email = :email,
+                    phone_number = :phoneNumber
+                WHERE id = :id
+            """)
+            .bind("id", id)
+            .bind("name", name)
+            .bind("email", email)
+            .bind("phoneNumber", phoneNumber)
+            .execute()
+        );
+    }
 }
+
