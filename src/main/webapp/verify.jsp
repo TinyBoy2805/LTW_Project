@@ -11,10 +11,10 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
           crossorigin="anonymous">
-    <link rel="stylesheet" href="admin/styles/pages/login.css?v=1.1">
+    <link rel="stylesheet" href="admin/styles/pages/verify.css?v=1.1">
 </head>
 
-<body>
+<body data-verifiedsuccess="${verifiedSuccess}" data-emailchanged="${emailChangeSuccess}">
 
 <div class="page-login">
     <header class="header">
@@ -66,8 +66,8 @@
 
     <main class="main-content">
         <div class="welcome-section">
-            <h1 class="welcome-section__title">Chào mừng đến với MichiShop</h1>
-            <p class="welcome-section__text">Nơi cung cấp sữa, thực phẩm dinh dưỡng tốt nhất cho bé yêu </p>
+            <h1>Xác minh tài khoản</h1>
+            <p>Một mã OTP đã được gửi đến email: <b id="email-display-header">${email != null ? email : sessionScope.otp_email}</b></p>
             <div class="product-showcase">
                 <img src="admin/imgs/michishop.png" alt="MichiShop - Dinh dưỡng cho bé"
                      class="product-showcase__banner-image">
@@ -77,69 +77,56 @@
         </div>
 
         <div class="form-section">
-            <div class="tab-list">
-                <button class="tab-list__button ${activeTab == 'register' ? '' : 'tab-list__button--active'}" data-form="login">Đăng nhập</button>
-                <button class="tab-list__button ${activeTab == 'register' ? 'tab-list__button--active' : ''}" data-form="register">Đăng ký</button>
-            </div>
 
-            <form id="login-form" class="auth-form ${activeTab == 'register' ? 'auth-form--hidden' : 'auth-form--active'}" action="login" method="post">
-                <!-- <h2 class="auth-form__title">Đăng nhập</h2> -->
-                <div class="input-group">
-                    <label for="login-email" class="input-group__label">Email hoặc Số điện thoại</label>
-                    <input type="text" id="login-email" name="input"
-                           placeholder="" class="input-group__input" autocomplete="off" required>
-                </div>
-                <div class="input-group password-wrapper">
-                    <label for="login-password" class="input-group__label">Mật khẩu</label>
-                    <input type="password" id="login-password" name="password_hashed" placeholder=""
-                           class="input-group__input" autocomplete="off" required>
-                    <i class="fa-solid fa-eye-slash toggle-password" data-target="login-password"></i>
-                </div>
-                <div class="auth-form__row auth-form__row--between">
-                    <label class="small-checkbox"><input type="checkbox" name="is_admin" id="admin-checkbox"
-                                                         class="small-checkbox__input"> Đăng
-                        nhập với vai trò Admin</label>
-                    <a href="forgot__password.jsp" class="forgot-password">Quên mật khẩu?</a>
-                </div>
-                <c:if test="${not empty loginError}">
-                    <p class="text-danger">${loginError}</p>
-                </c:if>
-                <button type="submit" class="auth-form__submit-btn">Đăng nhập</button>
-            </form>
+            <form id="verify-step-1" class="reset-form reset-form--active" action="verify" method="post">
+                <h2 class="reset-form__title">Nhập mã OTP</h2>
+                <p class="reset-form__instruction">Nhập 6 số OTP được gửi tới email của bạn.</p>
 
-            <form id="register-form" class="auth-form  ${activeTab == 'register' ? 'auth-form--active' : 'auth-form--hidden'}" action="register" method="post">
-                <!-- <h2 class="auth-form__title">Đăng ký tài khoản mới</h2> -->
-                <div class="input-group">
-                    <label for="reg-name" class="input-group__label">Họ và tên</label>
-                    <input type="text" id="reg-name" name="name" placeholder=""
-                           class="input-group__input" autocomplete="off" required>
+                <div class="otp-input-group">
+                    <div class="otp-input-group__inputs">
+                        <input type="text" maxlength="1" class="otp-input-group__input" name="d1" autocomplete="off">
+                        <input type="text" maxlength="1" class="otp-input-group__input" name="d2" autocomplete="off">
+                        <input type="text" maxlength="1" class="otp-input-group__input" name="d3" autocomplete="off">
+                        <input type="text" maxlength="1" class="otp-input-group__input" name="d4" autocomplete="off">
+                        <input type="text" maxlength="1" class="otp-input-group__input" name="d5" autocomplete="off">
+                        <input type="text" maxlength="1" class="otp-input-group__input" name="d6" autocomplete="off">
+                    </div>
                 </div>
-                <div class="input-group">
-                    <label for="reg-email" class="input-group__label">Email</label>
-                    <input type="text" id="reg-email" name="email" placeholder=""
-                           class="input-group__input" autocomplete="off" required>
-                </div>
-                <div class="input-group">
-                    <label for="reg-phone" class="input-group__label">Số điện thoại</label>
-                    <input type="text" id="reg-phone" name="phone" placeholder=""
-                           class="input-group__input" autocomplete="off" required>
-                </div>
-                <div class="input-group password-wrapper">
-                    <label for="reg-password" class="input-group__label">Mật khẩu</label>
-                    <input type="password" id="reg-password" name="password" placeholder=""
-                           class="input-group__input" autocomplete="off" required>
-                    <i class="fa-solid fa-eye-slash toggle-password" data-target="reg-password"></i>
-                </div>
-                <div class="input-group password-wrapper">
-                    <label for="reg-password" class="input-group__label">Xác nhận mật khẩu</label>
-                    <input type="password" id="reg-confirm-password" name="confirm_password"
-                           placeholder="" class="input-group__input" autocomplete="off" required>
-                    <i class="fa-solid fa-eye-slash toggle-password" data-target="reg-confirm-password"></i>
-                </div>
+
+                <input type="hidden" name="oldEmail" value="${sessionScope.otp_email}">
                 <c:if test="${not empty error}">
                     <p class="text-danger">${error}</p>
                 </c:if>
-                <button type="submit" class="auth-form__submit-btn auth-form__submit-btn--register">Đăng ký</button>
+                <button type="submit" class="submit-button" data-next-step="2">Xác minh</button>
+                <a href="resend-otp?email=${email}" class="reset-form__link reset-form__link--resend">Gửi lại mã OTP</a>
+                <p class="change-email">
+                    Chưa nhận được mã?
+                    <span id="open-change-email" class="change-email__link">Đổi email</span>
+                </p>
+            </form>
+
+            <form id="verify-step-2" class="reset-form reset-form--hidden" action="change-email" method="post">
+                <h2 class="reset-form__title">Cập nhật lại email</h2>
+
+                <div class="input-group">
+                    <label for="new-email" class="input-group__label">Email mới</label>
+                    <input type="hidden" name="oldEmail" value="${sessionScope.otp_email}">
+                    <input type="text" id="new-email" name="newEmail" placeholder=""
+                           class="input-group__input" class="input-group__input" required>
+                </div>
+
+                <c:if test="${not empty emailError}">
+                    <p class="text-danger">${emailError}</p>
+                </c:if>
+
+                <button type="submit" class="submit-button">Cập nhật</button>
+                <p id="back-to-otp" class="reset-form__link" style="text-align: left">Quay lại</p>
+            </form>
+
+            <form id="verify-step-3" class="reset-form reset-form--hidden">
+                <h2 class="reset-form__title">Xác minh thành công!</h2>
+                <p class="reset-form__instruction reset-form__instruction--success">Tài khoản đã được kích hoạt.</p>
+                <a href="index.jsp" class="submit-button">Đi đến đăng nhập</a>
             </form>
         </div>
     </main>
@@ -232,6 +219,5 @@
     </div>
 </footer>
 </body>
-<script src="./admin/scripts/components/login.js"></script>
-<script src="./admin/scripts/components/showPassword.js"></script>
+<script src="./admin/scripts/components/verify.js"></script>
 </html>

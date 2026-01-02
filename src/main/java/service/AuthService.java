@@ -9,34 +9,34 @@ import model.User;
 public class AuthService {
     AuthDao authDao = new AuthDao();
 
-    public LoginError checkLogin(String name, String password) {
-            User u = authDao.getUserByName(name);
-//        if (u != null && u.getPassword_hashed().equals(password_hashed)) {
-//            u.setPassword_hashed(null);
-//            return u;
-//        }
-//        return null;
+    public LoginError checkLogin(String input, String password) {
+        User u = authDao.getUserByEmailOrPhone(input);
 
-            if( u == null ) {
-                return LoginError.INVALID_USERNAME; //Wrong username -> Login failed
-            }
+        if (u == null) {
+            return LoginError.INVALID_USERNAME; //Wrong username -> Login failed
+        }
 
-            //hash input password with salt of user to check
-            String hashInput = HashPassword.hashPasswordWithSalt(password, u.getSalt());
-            if( !hashInput.equals(u.getPassword_hashed()) ) {
-                return LoginError.WRONG_PASSWORD; //Wrong password -> Login failed
-            }
+        //hash input password with salt of user to check
+        String hashInput = HashPassword.hashPasswordWithSalt(password, u.getSalt());
+        if (!hashInput.equals(u.getPassword_hashed())) {
+            return LoginError.WRONG_PASSWORD; //Wrong password -> Login failed
+        }
 
-            return LoginError.NONE;
+        if (u.getVerified() == 0) return LoginError.NOT_VERIFIED;
+
+        return LoginError.NONE;
     }
 
-    public User getUserData(String name){
-        User u = authDao.getUserByName(name);
-        if( u != null ) {
-            //not fail -> set hashpass to null to avoid session include the hashpass
-            u.setPassword_hashed(null);
+    public User getUserData(String input) {
+        if (isValidEmail(input) || isValidPhonenumber(input)) {
+            User u = authDao.getUserByEmailOrPhone(input);
+            if (u != null) {
+                //not fail -> set hashpass to null to avoid session include the hashpass
+                //u.setPassword_hashed(null);
+                return u;
+            }
         }
-        return u;
+        return null;
     }
 
     public boolean isValidEmail(String email) {
@@ -73,12 +73,11 @@ public class AuthService {
          */
     }
 
-    public RegisterError register(String name,
+    public RegisterError validate(String name,
                                   String email,
                                   String phone,
                                   String password,
-                                  String confirmPassword) {
-
+                                  String confirmPassword){
         if (!password.equals(confirmPassword)) {
             return RegisterError.PASSWORD_MISMATCH;
         }
@@ -98,6 +97,16 @@ public class AuthService {
         if (!isValidPhonenumber(phone)) {
             return RegisterError.PHONE_ISVALID;
         }
+        return RegisterError.NONE;
+    }
+
+    public void register(String name,
+                                  String email,
+                                  String phone,
+                                  String password,
+                                  String confirmPassword) {
+
+
 
         //generate salt then hash the password to store to database
         String salt = HashPassword.generateSalt();
@@ -110,8 +119,35 @@ public class AuthService {
         user.setPassword_hashed(hashPassword);
         user.setPhone_number(phone);
         user.setSalt(salt);
+        user.setVerified(0);
 
         authDao.insert(user);
-        return RegisterError.NONE;
+    
+    }
+
+    //when user submit info -> controller call to service to activate account
+    public void activateAccount(String email) {
+        authDao.activateAccount(email);
+    }
+
+    public boolean updateUserEmail(String oldEmail, String newEmail) {
+
+        //check format first
+        if (!isValidEmail(newEmail)) {
+            return false;
+        }
+
+        //check if new email already taken by another user
+        if (authDao.existsByEmail(newEmail)) {
+            return false;
+        }
+
+        //passed -> update db
+        authDao.updateEmail(oldEmail, newEmail);
+        return true;
+    }
+
+    public boolean existsByEmail(String newEmail) {
+        return authDao.existsByEmail(newEmail);
     }
 }

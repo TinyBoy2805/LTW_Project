@@ -31,8 +31,7 @@ body {
     background-color: #f8f8f8;
 }
 
-.login-btn a
-{
+.login-btn a {
     font-size: 14px;
     color: var(--c6);
 }
@@ -232,7 +231,7 @@ body {
     background-color: #fff;
     padding: 40px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--bx1);
     margin-top: 150px;
     min-width: 1020px;
 }
@@ -243,15 +242,15 @@ body {
     border-right: 1px solid #eee;
 }
 
-.welcome-section__title {
-    color: var(--c6);
+.welcome-section h1 {
     font-size: 28px;
-    margin-bottom: 10px;
+    font-weight: bold;
+    color: var(--c6);
 }
 
-.welcome-section__text {
+.welcome-section p {
+    margin: 12px 0;
     font-size: 16px;
-    margin-bottom: 20px;
 }
 
 .product-showcase {
@@ -268,92 +267,69 @@ body {
 }
 
 .product-showcase__banner-image {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 4px;
-    object-fit: cover;
-}
-
-.welcome-section__promotion-text {
-    font-size: 16px;
-    margin-top: 15px;
-    text-align: center;
-}
-
-.form-section {
-    flex: 1;
-    min-width: 300px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.password-reset-section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 12px;
-    padding-left: 18px;
-}
-
-.tab-list {
-    display: flex;
-    margin-bottom: 20px;
-    border-bottom: 2px solid #ddd;
-}
-
-.tab-list__button {
-    flex: 1;
-    padding: 10px 0;
-    border: none;
-    background: none;
-    cursor: pointer;
-    font-size: 18px;
-    font-weight: bold;
-    color: #555;
-    transition: color 0.3s;
-    position: relative;
-}
-
-.tab-list__button--active {
-    color: var(--c6);
-}
-
-.tab-list__button--active::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
     width: 100%;
-    height: 2px;
-    background-color: var(--c6);
+    max-width: 850px;
+    border-radius: 6px;
 }
 
-.auth-form {
+.reset-form {
     padding: 10px 0;
     min-width: 340px;
 }
 
-.auth-form--hidden {
+.reset-form--hidden {
     display: none;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    padding: 0;
 }
 
-.text-danger{
-    color: #ed2222;
-    font-size: 14px ;
-    font-weight: 200 ;
+.reset-form--active {
+    display: block;
+    opacity: 1;
+    height: auto;
+}
+
+.reset-form__title {
+    font-size: 22px;
+    color: var(--c1);
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.reset-form__instruction {
+    text-align: center;
+    font-size: 14px;
+    color: var(--c4);
+    margin-bottom: 18px;
+}
+
+.reset-form__instruction--success {
+    color: var(--c6);
+    font-weight: bold;
+}
+
+.otp-input-group__inputs {
     display: flex;
     justify-content: center;
-    align-items: center;
-    padding: 8px 0 4px 0;
+    gap: 10px;
+    margin-bottom: 18px;
 }
 
-.auth-form__title {
-    margin-top: 0;
-    padding-bottom: 12px;
+.otp-input-group__input {
+    width: 42px;
+    height: 50px;
+    text-align: center;
     font-size: 22px;
-    color: #333;
+    border-radius: 8px;
+    border: 1px solid var(--c3);
+    font-weight: bold;
+}
+
+.otp-input-group__input:focus {
+    border-color: var(--c6);
+    outline: none;
 }
 
 .input-group {
@@ -378,82 +354,88 @@ body {
     position: relative;
 }
 
-.password-wrapper {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-}
-
-.toggle-password {
-    position: absolute;
-    right: 15px;
-    top: 36px;
-    transform: translateY(0);
-    cursor: pointer;
-    color: var(--c4);
-    z-index: 10;
-}
-
-.password-wrapper .input-group__input{
-    padding-right: 45px;
-}
-
-.small-checkbox {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-style: italic;
-    font-size: 13px;
-    color: #666;
-}
-
-.small-checkbox__input {
-    width: 16px;
-    height: 16px;
-    vertical-align: middle;
-    margin: 0;
-}
-
-.auth-form__row {
-    display: flex;
-    align-items: center;
-}
-
-.auth-form__row--between {
-    justify-content: space-between;
-    font-size: 13px;
-    color: #666;
-}
-
-.forgot-password {
-    display: inline-block;
-    margin: 0;
-    align-self: center;
-    text-decoration: none;
+.submit-button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 16px;
+    background-color: var(--c6);
+    color: white;
     font-size: 14px;
-    color: var(--c6);
+    font-weight: 200;
+    cursor: pointer;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.forgot-password:hover {
+.change-email-input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid var(--c3);
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.change-email-input:focus {
+    border-color: var(--c6);
+    outline: none;
+}
+
+.submit-button--update {
+    background-color: var(--c6);
+}
+
+.submit-button:hover {
+    background-color: #e35a9a;
+}
+
+.reset-form__link {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 12px;
+    color: var(--c6);
+    cursor: pointer;
+    font-weight: lighter;
+}
+
+.reset-form__link:hover {
+    color: #ff69b4;
+    cursor: pointer;
     text-decoration: underline;
 }
 
-.auth-form__submit-btn {
+.change-email {
     width: 100%;
-    padding: 12px;
-    background-color: var(--c6);
-    color: white;
-    border: none;
-    border-radius: 16px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    text-align: center;
+    font-size: 14px;
+    color: black;
+    font-weight: lighter;
     margin-top: 12px;
+    display: flex;
+    justify-content: center;
+    gap: 6px;
 }
 
-.auth-form__submit-btn:hover {
-    background-color: #e35a9a;
+.change-email__link {
+    color: var(--c6);
+    cursor: pointer;
+}
+
+.change-email__link:hover {
+    text-decoration: underline;
+    color: #ff69b4;
+}
+
+.text-danger {
+    color: #ed2222;
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 6px;
 }
 
 .site-footer {
@@ -665,7 +647,7 @@ body {
     color: var(--c6);
 }
 
-@media (max-width:900px) {
+@media (max-width: 900px) {
     .site-footer__top {
         grid-template-columns: 1fr;
     }

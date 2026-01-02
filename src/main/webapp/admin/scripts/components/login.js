@@ -18,6 +18,25 @@ $$('.tab-list__button').forEach(button => {
         }
     });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const adminCheckbox = document.getElementById('adminCheckbox');
+    const loginButton = document.getElementById('loginButton');
+
+    const ADMIN_URL = './admin/pages/dashboard.html';
+    const CUSTOMER_URL = './customer/pages/Home.html';
+
+    const updateLoginState = () => {
+        const isChecked = adminCheckbox.checked;
+
+        loginButton.href = isChecked ? ADMIN_URL : CUSTOMER_URL;
+    };
+
+    adminCheckbox.addEventListener('change', updateLoginState);
+
+    updateLoginState();
+});
+
 //
 // (function () {
 //
@@ -40,21 +59,3 @@ $$('.tab-list__button').forEach(button => {
 //     });
 // })();
 
-document.addEventListener('DOMContentLoaded', () => {
-    const adminCheckbox = document.getElementById('adminCheckbox');
-    const loginButton = document.getElementById('loginButton');
-    const headerRole = document.getElementById('headerRole');
-
-    const ADMIN_URL = './admin/pages/dashboard.html';
-    const CUSTOMER_URL = './customer/pages/Home.html';
-
-    const updateLoginState = () => {
-        const isChecked = adminCheckbox.checked;
-
-        loginButton.href = isChecked ? ADMIN_URL : CUSTOMER_URL;
-    };
-
-    adminCheckbox.addEventListener('change', updateLoginState);
-
-    updateLoginState();
-});
