@@ -23,6 +23,15 @@ public class AddressDao extends BaseDao {
                 .orElse(null)
         );
     }
+
+    // Xóa địa chỉ gắn với người dùng (dùng trước khi xóa user để tránh lỗi ràng buộc khóa ngoại)
+    public void deleteAddressByUserId(long userId) {
+        get().useHandle(h ->
+            h.createUpdate("DELETE FROM addresses WHERE user_id = :userId")
+                .bind("userId", userId)
+                .execute()
+        );
+    }
     // Cập nhật địa chỉ khách hàng
     public void updateAddress(long userId, String houseNumber, String road, String district, String city) {
         int updated = get().withHandle(h ->

@@ -18,44 +18,11 @@
 <body>
   <div class="Quanlykhachhang main">
     <aside class="sidebar">
+      <% request.setAttribute("activePage", "khachhang"); %>
       <%@ include file="../components/sidebar.jsp" %>
     </aside>
     <div class="container">
       <%@ include file="../components/header.jsp" %>
-
-            <div class="notification__frame">
-              <h4 class="notification__title">🔔 Thông báo mới</h4>
-              <div class="notification__list">
-
-                <div class="notification__item new">
-                  <div class="item__icon"><ion-icon name="bag-check-outline"></ion-icon></div>
-                  <div class="item__content">
-                    <p class="item__text"><strong>Đơn hàng mới:</strong> Mã O-250725 vừa được tạo.</p>
-                    <span class="item__time">Vài giây trước</span>
-                  </div>
-                </div>
-
-                <div class="notification__item new">
-                  <div class="item__icon alert"><ion-icon name="alert-circle-outline"></ion-icon></div>
-                  <div class="item__content">
-                    <p class="item__text"><strong>Cảnh báo tồn kho:</strong> Sữa Bột GrowPro chỉ còn 10 sản phẩm.</p>
-                    <span class="item__time">5 phút trước</span>
-                  </div>
-                </div>
-
-                <div class="notification__item">
-                  <div class="item__icon review"><ion-icon name="star-outline"></ion-icon></div>
-                  <div class="item__content">
-                    <p class="item__text">Có <strong>1 đánh giá 5 sao</strong> mới cho Váng sữa.</p>
-                    <span class="item__time">1 giờ trước</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="avatar"><img src="${pageContext.request.contextPath}/admin/imgs/logo.png" alt="Avatar" /></div>
-        </div>
-      </div>
 
       <!-- Main content -->
       <main class="content" aria-labelledby="customer-title">
@@ -136,7 +103,7 @@
                 <button class="reset-btn" type="button">
                   <i class="fa-solid fa-question-circle"></i> Đổi mật khẩu
                 </button>
-                <button class="delete-btn" type="button">
+                <button class="delete-btn" type="button" onclick="handleDelete('${customer.id}', '${customer.name}')">
                   <i class="fa-solid fa-trash"></i> Xóa tài khoản
                 </button>
                 <button class="email-btn" type="button">
@@ -158,7 +125,6 @@
                 </button>
               </div>
             </aside>
-            </aside>
           </div>
         </div>
 
@@ -172,10 +138,14 @@
           </button>
         </div>
         </form>
-      </main>
+   </main>
     </div>
   </div>
-
+  <!-- Form để xóa tài khoản khách hàng -->
+              <form id="hidden-delete-form" method="post" action="${pageContext.request.contextPath}/quanlykhachhang" style="display:none;">
+              <input type="hidden" name="id" id="delete-id">
+              <input type="hidden" name="action" value="delete">
+            </form>
   <script src="${pageContext.request.contextPath}/admin/scripts/components/extendSidebar.js"></script>
   <script src="${pageContext.request.contextPath}/admin/scripts/page/Quanlykhachhang.js"></script>
 </body>

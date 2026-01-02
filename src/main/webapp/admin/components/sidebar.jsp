@@ -7,7 +7,7 @@
 <div class="sidebar__list">
   <ul class="list">
     <li class="list__item">
-      <a href="dashboard.jsp" class="<%= "dashboard".equals(request.getAttribute("activePage")) ? "active" : "" %>">
+      <a href="dashboard.jsp">
         <div class="section">
           <div class="icon"><i class="fa-solid fa-chart-line"></i></div>
           <p class="title">Thống kê</p>
@@ -15,7 +15,7 @@
       </a>
     </li>
     <li class="list__item">
-      <a href="order.jsp" class="<%= "order".equals(request.getAttribute("activePage")) ? "active" : "" %>">
+      <a href="order.jsp">
         <div class="section">
           <div class="icon"><i class="fa-solid fa-shopping-cart"></i></div>
           <p class="title">Đơn hàng</p>
@@ -23,7 +23,7 @@
       </a>
     </li>
     <li class="list__item">
-      <a href="categories.jsp" class="<%= "categories".equals(request.getAttribute("activePage")) ? "active" : "" %>">
+      <a href="categories.jsp">
         <div class="section">
           <div class="icon"><i class="fa-solid fa-box"></i></div>
           <p class="title">Kho hàng</p>
@@ -31,7 +31,7 @@
       </a>
     </li>
     <li class="list__item">
-      <a href="${pageContext.request.contextPath}/khachhang" class="<%= "khachhang".equals(request.getAttribute("activePage")) ? "active" : "" %>">
+      <a href="${pageContext.request.contextPath}/khachhang" class="active">
         <div class="section">
           <div class="icon"><i class="fa-solid fa-users"></i></div>
           <p class="title">Khách hàng</p>
@@ -39,7 +39,7 @@
       </a>
     </li>
     <li class="list__item">
-      <a href="UuDai.jsp" class="<%= "uudai".equals(request.getAttribute("activePage")) ? "active" : "" %>">
+      <a href="UuDai.jsp">
         <div class="section">
           <div class="icon"><i class="fa-solid fa-gift"></i></div>
           <p class="title">Ưu đãi</p>
@@ -47,7 +47,7 @@
       </a>
     </li>
     <li class="list__item">
-      <a href="Blog.jsp" class="<%= "blog".equals(request.getAttribute("activePage")) ? "active" : "" %>">
+      <a href="Blog.jsp">
         <div class="section">
           <div class="icon"><i class=" fa-solid fa-blog"></i></div>
           <p class="title">Bài Viết</p>
@@ -55,7 +55,7 @@
       </a>
     </li>
     <li class="list__item">
-      <a href="Email.jsp" class="<%= "email".equals(request.getAttribute("activePage")) ? "active" : "" %>">
+      <a href="Email.jsp">
         <div class="section">
           <div class="icon"><i class="fa-solid fa-envelope"></i></div>
           <p class="title">Thông Báo</p>
@@ -64,7 +64,7 @@
       </a>
     </li>
     <li class="list__item">
-      <a href="CaiDat.jsp" class="<%= "caidat".equals(request.getAttribute("activePage")) ? "active" : "" %>">
+      <a href="CaiDat.jsp">
         <div class="section">
           <div class="icon"><i class="fa-solid fa-cog"></i></div>
           <p class="title">Cài đặt</p>

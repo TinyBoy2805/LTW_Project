@@ -128,5 +128,14 @@ public class AuthDao extends BaseDao {
             .execute()
         );
     }
+    
+    // Xóa tài khoản người dùng
+    public void deleteUser(int id) {
+        get().useHandle(h ->
+            h.createUpdate("DELETE FROM users WHERE id = :id")
+            .bind("id", id)
+            .execute()
+        );
+    }
 }
 

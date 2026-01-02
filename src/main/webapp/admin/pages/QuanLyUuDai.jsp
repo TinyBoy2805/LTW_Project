@@ -17,44 +17,12 @@
 <body>
   <div class="QuanLyUuDai main">
     <aside class="sidebar">
+      <% request.setAttribute("activePage", "uudai"); %>
       <%@ include file="../components/sidebar.jsp" %>
     </aside>
     <div class="container">
       <%@ include file="../components/header.jsp" %>
-              <h4 class="notification__title">🔔 Thông báo mới</h4>
-              <div class="notification__list">
-
-                <div class="notification__item new">
-                  <div class="item__icon"><ion-icon name="bag-check-outline"></ion-icon></div>
-                  <div class="item__content">
-                    <p class="item__text"><strong>Đơn hàng mới:</strong> Mã O-250725 vừa được tạo.</p>
-                    <span class="item__time">Vài giây trước</span>
-                  </div>
-                </div>
-
-                <div class="notification__item new">
-                  <div class="item__icon alert"><ion-icon name="alert-circle-outline"></ion-icon></div>
-                  <div class="item__content">
-                    <p class="item__text"><strong>Cảnh báo tồn kho:</strong> Sữa Bột GrowPro chỉ còn 10 sản phẩm.</p>
-                    <span class="item__time">5 phút trước</span>
-                  </div>
-                </div>
-
-                <div class="notification__item">
-                  <div class="item__icon review"><ion-icon name="star-outline"></ion-icon></div>
-                  <div class="item__content">
-                    <p class="item__text">Có <strong>1 đánh giá 5 sao</strong> mới cho Váng sữa.</p>
-                    <span class="item__time">1 giờ trước</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="avatar"><img src="../imgs/logo.png" alt="Avatar" /></div>
-        </div>
-      </div>
-
-
+     
       <!-- Main content -->
       <main class="content" aria-labelledby="quan-ly-uu-dai-title">
         <h3 class="content__title" id="quan-ly-uu-dai-title">

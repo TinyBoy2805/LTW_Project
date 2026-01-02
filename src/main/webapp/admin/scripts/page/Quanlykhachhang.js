@@ -9,7 +9,6 @@ document.querySelectorAll('.field-input').forEach((input) => {
     }
   });
 });
-
 // Lưu giá trị ban đầu của tất cả input
 const editableInputs = document.querySelectorAll('.field-input');
 editableInputs.forEach(input => {
@@ -43,3 +42,10 @@ document.querySelectorAll('.toggle-switch').forEach(toggleSwitch => {
     toggleInput.checked = !toggleInput.checked;
   });
 });
+// Xử lý xóa tài khoản khách hàng
+function handleDelete(id, name) {
+    if (confirm(`Bạn có chắc chắn muốn xóa tài khoản "${name}"?`)) {
+        document.getElementById('delete-id').value = id;
+        document.getElementById('hidden-delete-form').submit();
+    }
+}

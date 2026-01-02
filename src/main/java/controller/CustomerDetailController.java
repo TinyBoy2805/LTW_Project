@@ -43,9 +43,19 @@ public class CustomerDetailController extends HttpServlet {
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
         String idParam = request.getParameter("id");
         int id = Integer.parseInt(idParam);
-
+        
+        // Xử lý xóa tài khoản
+        if ("delete".equals(action)) {
+            addressDao.deleteAddressByUserId(id);
+            authDao.deleteUser(id);
+            response.sendRedirect(request.getContextPath() + "/khachhang");
+            return;
+        }
+        
+        // Xử lý cập nhật thông tin
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String phone = request.getParameter("phone_number");
