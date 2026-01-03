@@ -54,7 +54,7 @@
                     <label class="label">Phân loại ưu đãi</label>
                     <select id="offer-type" name="voucher_type" class="input" required>
                       <option value="product">Giảm giá sản phẩm</option>
-                      <option value="shipping">Giảm giá ship</option>
+                      <option value="ship">Giảm giá ship</option>
                     </select>
 
                     <div class="row two">

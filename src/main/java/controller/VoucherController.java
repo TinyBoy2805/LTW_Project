@@ -73,6 +73,41 @@ public class VoucherController extends HttpServlet {
                 response.sendRedirect(request.getContextPath() + "/uudai");
                 return;
             }
+
+            if ("update".equals(action)) {
+                String idParam = request.getParameter("id");
+                Integer id = null;
+                try { id = Integer.parseInt(idParam); } catch (NumberFormatException ignored) { }
+
+                Long categoryId = parseLong(request.getParameter("category_id"));
+                if (id == null || categoryId == null) {
+                    // Reload with error and original data
+                    Voucher voucher = (id != null) ? voucherDao.findById(id) : null;
+                    List<Category> categories = categoryDao.findAll();
+                    request.setAttribute("voucher", voucher);
+                    request.setAttribute("categories", categories);
+                    request.setAttribute("error", "Thiếu dữ liệu bắt buộc. Vui lòng kiểm tra lại.");
+                    request.getRequestDispatcher("admin/pages/QuanLyUuDai.jsp").forward(request, response);
+                    return;
+                }
+
+                Voucher voucher = parseVoucher(request);
+                voucher.setId(id != null ? id.longValue() : null);
+                voucher.setCategoryId(categoryId);
+                // Ensure voucher_type matches DB enum; fallback to existing if invalid
+                String t = voucher.getVoucherType();
+                if (t == null || !("discount".equalsIgnoreCase(t) || "shipping".equalsIgnoreCase(t))) {
+                    Voucher existing = voucherDao.findById(id);
+                    if (existing != null) {
+                        voucher.setVoucherType(existing.getVoucherType());
+                    } else {
+                        voucher.setVoucherType(null);
+                    }
+                }
+                voucherDao.update(voucher);
+                response.sendRedirect(request.getContextPath() + "/uudai");
+                return;
+            }
         }
 
         response.sendRedirect(request.getContextPath() + "/uudai");

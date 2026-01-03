@@ -39,12 +39,12 @@
                 <div class="card-form">
                   <label class="label">Tên ưu đãi</label>
                   <div class="input-with-icon">
-                    <input type="text" class="input" name="name" value="${voucher.code}" />
+                    <input type="text" class="input" name="code" form="updateForm" value="${voucher.code}" />
                     <i class="fa-solid fa-pen input-icon"></i>
                   </div>
 
                   <label class="label">Áp dụng cho danh mục</label>
-                  <select name="category_id" class="input">
+                  <select name="category_id" class="input" form="updateForm">
                     <option value="">Áp dụng tất cả</option>
                     <c:forEach var="cat" items="${categories}">
                       <option value="${cat.id}" ${voucher.categoryId == cat.id ? 'selected' : ''}>${cat.name}</option>
@@ -52,8 +52,8 @@
                   </select>
 
                   <label class="label">Phân loại ưu đãi</label>
-                  <select id="offer-type" name="offer_type" class="input">
-                    <option value="product" ${voucher.voucherType == 'product' ? 'selected' : ''}>Giảm giá sản phẩm</option>
+                  <select id="offer-type" name="voucher_type" class="input" form="updateForm">
+                    <option value="discount" ${voucher.voucherType == 'discount' ? 'selected' : ''}>Giảm giá sản phẩm</option>
                     <option value="shipping" ${voucher.voucherType == 'shipping' ? 'selected' : ''}>Giảm giá ship</option>
                   </select>
 
@@ -61,14 +61,14 @@
                     <div>
                       <label class="label">Giảm tiền (vnđ)</label>
                       <div class="input-with-icon">
-                        <input type="number" class="input" name="discount_amount" min="0" step="1000" value="${voucher.discountAmount}" aria-label="Giảm tiền" />
+                        <input type="number" class="input" name="discount_amount" form="updateForm" min="0" step="1000" value="${voucher.discountAmount}" aria-label="Giảm tiền" />
                         <i class="fa-solid fa-pen input-icon"></i>
                       </div>
                     </div>
                     <div>
                       <label class="label">Giảm %</label>
                       <div class="input-with-icon">
-                        <input type="number" class="input" name="discount_percentage" min="0" max="100" step="1.0" value="${voucher.discountPercentage}" />
+                        <input type="number" class="input" name="discount_percentage" form="updateForm" min="0" max="100" step="1.0" value="${voucher.discountPercentage}" />
                         <i class="fa-solid fa-pen input-icon"></i>
                       </div>
                     </div>
@@ -78,7 +78,7 @@
                     <div>
                       <label class="label">Áp dụng cho đơn giá từ</label>
                       <div class="input-with-icon">
-                        <input type="number" class="input" name="min_order_value" min="0" step="1000" value="${voucher.minOrderValue}"
+                        <input type="number" class="input" name="min_order_value" form="updateForm" min="0" step="1000" value="${voucher.minOrderValue}"
                           aria-label="Áp dụng cho đơn giá từ" />
                         <i class="fa-solid fa-pen input-icon"></i>
                       </div>
@@ -86,20 +86,26 @@
                     <div>
                       <label class="label">Số lượng</label>
                       <div class="input-with-icon">
-                        <input type="number" class="input" name="usage_limit" min="0" step="1" value="${voucher.usageLimit}" />
+                        <input type="number" class="input" name="usage_limit" form="updateForm" min="0" step="1" value="${voucher.usageLimit}" />
                         <i class="fa-solid fa-pen input-icon"></i>
                       </div>
                     </div>
                   </div>
+                  <label class="label">Áp dụng từ ngày</label>
+                  <div class="input-with-icon">
+                    <input type="date" class="input" name="start_date" form="updateForm" value="${voucher.startDate}" />
+                    <i class="fa-solid fa-pen input-icon"></i>
+                  </div>
+
                   <label class="label">Hạn ưu đãi đến hết ngày</label>
                   <div class="input-with-icon">
-                    <input type="date" class="input" name="end_date" value="${voucher.endDate}" />
+                    <input type="date" class="input" name="end_date" form="updateForm" value="${voucher.endDate}" />
                     <i class="fa-solid fa-pen input-icon"></i>
                   </div>
 
                   <label class="label">Mô tả</label>
                   <div class="input-with-icon">
-                    <textarea class="input textarea" name="description" rows="4">${voucher.description}</textarea>
+                    <textarea class="input textarea" name="description" form="updateForm" rows="4">${voucher.description}</textarea>
                     <i class="fa-solid fa-pen input-icon"></i>
                   </div>
                 </div>
@@ -114,13 +120,16 @@
                 <p class="note">Đảm bảo rằng sản phẩm của bạn là hợp pháp và không gây hậu quả nào</p>
               </div>
               <div class="actions-right">
-                <button class="btn ghost" type="button" onclick="window.location.href='${pageContext.request.contextPath}/uudai'">Hủy</button>
+                <button class="btn ghost" type="button" onclick="window.location.href='${pageContext.request.contextPath}/quanlyuudai?id=${voucher.id}'">Hủy</button>
                 <form action="${pageContext.request.contextPath}/quanlyuudai" method="post" style="display:inline-flex; gap:12px; align-items:center;">
                   <input type="hidden" name="action" value="delete" />
                   <input type="hidden" name="id" value="${voucher.id}" />
                   <button class="btn danger" type="submit">Xóa</button>
-                  <!-- Placeholder for future update submit -->
-                  <button class="btn primary" type="button">Cập nhật</button>
+                </form>
+                <form id="updateForm" action="${pageContext.request.contextPath}/quanlyuudai" method="post" style="display:inline-flex; gap:12px; align-items:center;">
+                  <input type="hidden" name="action" value="update" />
+                  <input type="hidden" name="id" value="${voucher.id}" />
+                  <button class="btn primary" type="submit">Cập nhật</button>
                 </form>
               </div>
             </div>

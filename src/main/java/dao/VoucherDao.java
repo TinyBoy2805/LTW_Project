@@ -73,4 +73,27 @@ public class VoucherDao extends BaseDao {
                         .execute()
         );
     }
+
+    public int update(Voucher voucher) {
+        return get().withHandle(h ->
+                h.createUpdate("""
+                        UPDATE vouchers SET
+                            category_id = :categoryId,
+                            code = :code,
+                            description = :description,
+                            discount_amount = :discountAmount,
+                            discount_percentage = :discountPercentage,
+                            start_date = :startDate,
+                            end_date = :endDate,
+                            usage_limit = :usageLimit,
+                            current_amount = :currentAmount,
+                            min_order_value = :minOrderValue,
+                            voucher_type = :voucherType
+                        WHERE id = :id
+                        """
+                )
+                .bindBean(voucher)
+                .execute()
+        );
+    }
 }
