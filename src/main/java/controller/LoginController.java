@@ -1,7 +1,6 @@
 package controller;
 
 import exception.LoginError;
-import exception.RegisterError;
 import service.AuthService;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -27,40 +26,52 @@ public class LoginController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        String name = request.getParameter("name");
-//        String password_hashed = request.getParameter("password_hashed");
-//        AuthService as = new AuthService();
-//        User u = as.checkLogin(name, password_hashed);
-//        if (u != null) {
-//            HttpSession session = request.getSession();
-//            session.setAttribute("auth", u);
-//            response.sendRedirect("home.jsp");
-//        } else {
-//            request.setAttribute("error", "Invalid name or password_hashed");
-//            request.getRequestDispatcher("index.jsp").forward(request, response);
-//        }
 
-            String name = request.getParameter("name");
-            String password = request.getParameter("password");
+        String account = request.getParameter("input");
+        String password = request.getParameter("password_hashed");
+        boolean isAdmin = request.getParameter("is_admin") != null;
 
-            LoginError error = authService.checkLogin(name, password);
-                switch (error) {
-                    case INVALID_USERNAME ->
-                            request.setAttribute("error", "Tên đăng nhập không tồn tại");
-                    case WRONG_PASSWORD ->
-                            request.setAttribute("error", "Sai mật khẩu");
-                    case NONE -> {
-                            User u = authService.getUserData(name);
-                            HttpSession session = request.getSession();
-                            session.setAttribute("auth", u);
-                            response.sendRedirect("home.jsp");
-                    }
-                }
-                try {
+        LoginError error = authService.checkLogin(account, password);
+        switch (error) {
+            case INVALID_USERNAME -> {
+                request.setAttribute("loginError", "Tài khoản không tồn tại");
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+                return;
+            }
+            case WRONG_PASSWORD -> {
+                request.setAttribute("loginError", "Sai mật khẩu");
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+                return;
+            }
+            case NOT_VERIFIED -> {
+                request.setAttribute("loginError", "Tài khoản chưa kích hoạt, vui lòng kiểm tra email");
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+                return;
+            }
+            case NONE -> {
+                User u = authService.getUserData(account);
+                HttpSession session = request.getSession();
+                session.setAttribute("auth", u);
+                boolean isAdminAccount = u.getRole().name().equalsIgnoreCase("admin");
+
+                if (isAdminAccount && !isAdmin) {
+                    request.setAttribute("loginError", "Tài khoản này là Admin, vui lòng chọn 'Đăng nhập với vai trò Admin'.");
                     request.getRequestDispatcher("index.jsp").forward(request, response);
                     return;
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
                 }
+                if (isAdminAccount && isAdmin) {
+                    response.sendRedirect("admin/pages/dashboard.jsp");
+                    return;
+                }
+                response.sendRedirect("customer/pages/Home.jsp");
+                return;
+            }
+        }
+        try {
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+            return;
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
     }
 }

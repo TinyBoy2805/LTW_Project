@@ -24,7 +24,7 @@ public class AddressDao extends BaseDao {
         );
     }
 
-    // Xóa địa chỉ gắn với người dùng (dùng trước khi xóa user để tránh lỗi ràng buộc khóa ngoại)
+    // Xóa địa chỉ gắn với người dùng
     public void deleteAddressByUserId(long userId) {
         get().useHandle(h ->
             h.createUpdate("DELETE FROM addresses WHERE user_id = :userId")
