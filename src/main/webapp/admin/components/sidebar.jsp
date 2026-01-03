@@ -1,5 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%-- Sidebar dùng chung cho các trang admin --%>
+<c:set var="uri" value="${pageContext.request.requestURI}" />
 <div class="sidebar__header">
   <img src="${pageContext.request.contextPath}/admin/imgs/logo.png" alt="Logo">
   <h2>MiChiShop</h2>
@@ -7,7 +10,7 @@
 <div class="sidebar__list">
   <ul class="list">
     <li class="list__item">
-      <a href="dashboard.jsp">
+      <a href="dashboard.jsp" class="${fn:contains(uri, '/admin/pages/dashboard.jsp') ? 'active' : ''}">
         <div class="section">
           <div class="icon"><i class="fa-solid fa-chart-line"></i></div>
           <p class="title">Thống kê</p>
@@ -15,7 +18,7 @@
       </a>
     </li>
     <li class="list__item">
-      <a href="order.jsp">
+      <a href="order.jsp" class="${fn:contains(uri, '/admin/pages/order.jsp') ? 'active' : ''}">
         <div class="section">
           <div class="icon"><i class="fa-solid fa-shopping-cart"></i></div>
           <p class="title">Đơn hàng</p>
@@ -23,7 +26,7 @@
       </a>
     </li>
     <li class="list__item">
-      <a href="categories.jsp">
+      <a href="categories.jsp" class="${fn:contains(uri, '/admin/pages/categories.jsp') ? 'active' : ''}">
         <div class="section">
           <div class="icon"><i class="fa-solid fa-box"></i></div>
           <p class="title">Kho hàng</p>
@@ -31,7 +34,7 @@
       </a>
     </li>
     <li class="list__item">
-      <a href="${pageContext.request.contextPath}/khachhang" class="active">
+      <a href="${pageContext.request.contextPath}/khachhang" class="${fn:contains(uri, '/khachhang') ? 'active' : ''}">
         <div class="section">
           <div class="icon"><i class="fa-solid fa-users"></i></div>
           <p class="title">Khách hàng</p>
@@ -39,7 +42,7 @@
       </a>
     </li>
     <li class="list__item">
-      <a href="${pageContext.request.contextPath}/uudai">
+      <a href="${pageContext.request.contextPath}/uudai" class="${fn:contains(uri, '/uudai') || fn:contains(uri, '/quanlyuudai') || fn:contains(uri, '/themuudai') || fn:contains(uri, '/admin/pages/UuDai.jsp') || fn:contains(uri, '/admin/pages/ThemUuDai.jsp') || fn:contains(uri, '/admin/pages/QuanLyUuDai.jsp') ? 'active' : ''}">
         <div class="section">
           <div class="icon"><i class="fa-solid fa-gift"></i></div>
           <p class="title">Ưu đãi</p>
@@ -47,7 +50,7 @@
       </a>
     </li>
     <li class="list__item">
-      <a href="Blog.jsp">
+      <a href="Blog.jsp" class="${fn:contains(uri, '/admin/pages/Blog.jsp') ? 'active' : ''}">
         <div class="section">
           <div class="icon"><i class=" fa-solid fa-blog"></i></div>
           <p class="title">Bài Viết</p>
@@ -55,7 +58,7 @@
       </a>
     </li>
     <li class="list__item">
-      <a href="Email.jsp">
+      <a href="Email.jsp" class="${fn:contains(uri, '/admin/pages/Email.jsp') ? 'active' : ''}">
         <div class="section">
           <div class="icon"><i class="fa-solid fa-envelope"></i></div>
           <p class="title">Thông Báo</p>
@@ -64,7 +67,7 @@
       </a>
     </li>
     <li class="list__item">
-      <a href="CaiDat.jsp">
+      <a href="CaiDat.jsp" class="${fn:contains(uri, '/admin/pages/CaiDat.jsp') ? 'active' : ''}">
         <div class="section">
           <div class="icon"><i class="fa-solid fa-cog"></i></div>
           <p class="title">Cài đặt</p>

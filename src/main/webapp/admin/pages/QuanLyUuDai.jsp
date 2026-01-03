@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -34,7 +35,7 @@
 
           <div class="content__body">
             <div class="form-wrap">
-              <section class="left-panel">
+              <div class="left-panel">
                 <div class="card-form">
                   <label class="label">Tên ưu đãi</label>
                   <div class="input-with-icon">
@@ -42,14 +43,13 @@
                     <i class="fa-solid fa-pen input-icon"></i>
                   </div>
 
-                  <label class="label">Mặt hàng</label>
-                  <div class="chips">
-                    <button type="button" class="chip">Tất cả</button>
-                    <button type="button" class="chip active">Sữa</button>
-                    <button type="button" class="chip">Đồ ăn dặm</button>
-                    <button type="button" class="chip">Cháo dinh dưỡng</button>
-                    <button type="button" class="chip">Thức uống dinh dưỡng</button>
-                  </div>
+                  <label class="label">Áp dụng cho danh mục</label>
+                  <select name="category_id" class="input">
+                    <option value="">Áp dụng tất cả</option>
+                    <c:forEach var="cat" items="${categories}">
+                      <option value="${cat.id}">${cat.name}</option>
+                    </c:forEach>
+                  </select>
 
                   <label class="label">Phân loại ưu đãi</label>
                   <select id="offer-type" name="offer_type" class="input">
@@ -61,9 +61,7 @@
                     <div>
                       <label class="label">Giảm tiền (vnđ)</label>
                       <div class="input-with-icon">
-                        <div class="inline currency-wrap">
-                          <input type="number" class="input currency-input" min="0" step="1000" value="0" aria-label="Giảm tiền" />
-                        </div>
+                        <input type="number" class="input" min="0" step="1000" value="0" aria-label="Giảm tiền" />
                         <i class="fa-solid fa-pen input-icon"></i>
                       </div>
                     </div>
@@ -80,10 +78,8 @@
                     <div>
                       <label class="label">Áp dụng cho đơn giá từ</label>
                       <div class="input-with-icon">
-                        <div class="inline currency-wrap">
-                          <input type="number" class="input currency-input" min="0" step="1000" value="200000"
-                            aria-label="Áp dụng cho đơn giá từ" />
-                        </div>
+                        <input type="number" class="input" min="0" step="1000" value="200000"
+                          aria-label="Áp dụng cho đơn giá từ" />
                         <i class="fa-solid fa-pen input-icon"></i>
                       </div>
                     </div>
@@ -107,7 +103,10 @@
                     <i class="fa-solid fa-pen input-icon"></i>
                   </div>
                 </div>
-              </section>
+              </div>
+              <div class="right-panel">
+                <%-- Right panel content can go here if needed in the future --%>
+              </div>
             </div>
 
             <div class="actions-row">
@@ -115,16 +114,11 @@
                 <p class="note">Đảm bảo rằng sản phẩm của bạn là hợp pháp và không gây hậu quả nào</p>
               </div>
               <div class="actions-right">
-                <div class="panel-actions">
-                  <div class="actions">
-                    <button class="btn ghost" type="button">Hủy</button>
-                    <button class="btn danger" type="button">Xóa</button>
-                    <button class="btn primary" type="button">Cập nhật</button>
-                  </div>
-                </div>
+                <button class="btn ghost" type="button">Hủy</button>
+                <button class="btn danger" type="button">Xóa</button>
+                <button class="btn primary" type="button">Cập nhật</button>
               </div>
             </div>
-
           </div>
 
         </div> <!-- .content__panel -->

@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.List;
 
-@WebServlet(name = "VoucherController", urlPatterns = {"/uudai", "/themuudai"})
+@WebServlet(name = "VoucherController", urlPatterns = {"/uudai", "/themuudai", "/quanlyuudai"})
 public class VoucherController extends HttpServlet {
     private final VoucherDao voucherDao = new VoucherDao();
     private final CategoryDao categoryDao = new CategoryDao();
@@ -27,6 +27,15 @@ public class VoucherController extends HttpServlet {
             List<Category> categories = categoryDao.findAll();
             request.setAttribute("categories", categories);
             request.getRequestDispatcher("admin/pages/ThemUuDai.jsp").forward(request, response);
+            return;
+        }
+
+        if ("/quanlyuudai".equals(servletPath)) {
+            String idParam = request.getParameter("id");
+            request.setAttribute("voucherId", idParam);
+            List<Category> categories = categoryDao.findAll();
+            request.setAttribute("categories", categories);
+            request.getRequestDispatcher("admin/pages/QuanLyUuDai.jsp").forward(request, response);
             return;
         }
 

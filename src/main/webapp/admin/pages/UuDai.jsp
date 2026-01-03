@@ -40,6 +40,7 @@
             </c:if>
 
             <c:forEach items="${vouchers}" var="voucher">
+              <a class="card-link" href="${pageContext.request.contextPath}/quanlyuudai?id=${voucher.id}" title="Quản lý ưu đãi">
               <article class="card" role="listitem" data-promo="${voucher.voucherType}">
                 <figure class="card__figure">
                   <c:choose>
@@ -72,6 +73,7 @@
                   </c:if>
                 </div>
               </article>
+              </a>
             </c:forEach>
           </div>
         </div>
