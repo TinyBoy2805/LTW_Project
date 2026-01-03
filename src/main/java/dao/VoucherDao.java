@@ -46,4 +46,23 @@ public class VoucherDao extends BaseDao {
                         .execute()
         );
     }
+
+    public Voucher findById(int id) {
+        return get().withHandle(h ->
+                h.createQuery("""
+                        SELECT id, category_id, code, description,
+                               discount_amount, discount_percentage,
+                               start_date, end_date,
+                               usage_limit, current_amount,
+                               min_order_value, voucher_type
+                        FROM vouchers
+                        WHERE id = :id
+                        """
+                )
+                .bind("id", id)
+                .mapToBean(Voucher.class)
+                .findOne()
+                .orElse(null)
+        );
+    }
 }

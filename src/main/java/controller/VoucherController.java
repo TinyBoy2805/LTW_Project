@@ -32,8 +32,15 @@ public class VoucherController extends HttpServlet {
 
         if ("/quanlyuudai".equals(servletPath)) {
             String idParam = request.getParameter("id");
-            request.setAttribute("voucherId", idParam);
+            Voucher voucher = null;
+            if (idParam != null && !idParam.isEmpty()) {
+                try {
+                    int id = Integer.parseInt(idParam);
+                    voucher = voucherDao.findById(id);
+                } catch (NumberFormatException ignored) { }
+            }
             List<Category> categories = categoryDao.findAll();
+            request.setAttribute("voucher", voucher);
             request.setAttribute("categories", categories);
             request.getRequestDispatcher("admin/pages/QuanLyUuDai.jsp").forward(request, response);
             return;
