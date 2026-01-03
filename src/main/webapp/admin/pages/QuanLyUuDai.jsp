@@ -114,9 +114,14 @@
                 <p class="note">Đảm bảo rằng sản phẩm của bạn là hợp pháp và không gây hậu quả nào</p>
               </div>
               <div class="actions-right">
-                <button class="btn ghost" type="button">Hủy</button>
-                <button class="btn danger" type="button">Xóa</button>
-                <button class="btn primary" type="button">Cập nhật</button>
+                <button class="btn ghost" type="button" onclick="window.location.href='${pageContext.request.contextPath}/uudai'">Hủy</button>
+                <form action="${pageContext.request.contextPath}/quanlyuudai" method="post" style="display:inline-flex; gap:12px; align-items:center;">
+                  <input type="hidden" name="action" value="delete" />
+                  <input type="hidden" name="id" value="${voucher.id}" />
+                  <button class="btn danger" type="submit">Xóa</button>
+                  <!-- Placeholder for future update submit -->
+                  <button class="btn primary" type="button">Cập nhật</button>
+                </form>
               </div>
             </div>
           </div>

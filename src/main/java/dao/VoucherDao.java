@@ -65,4 +65,12 @@ public class VoucherDao extends BaseDao {
                 .orElse(null)
         );
     }
+
+    public int deleteById(int id) {
+        return get().withHandle(h ->
+                h.createUpdate("DELETE FROM vouchers WHERE id = :id")
+                        .bind("id", id)
+                        .execute()
+        );
+    }
 }

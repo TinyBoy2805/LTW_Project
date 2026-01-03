@@ -44,8 +44,8 @@
                     <input type="text" class="input" name="description" placeholder="Nhập tên/mô tả ưu đãi" required />
 
                     <label class="label">Áp dụng cho danh mục</label>
-                    <select name="category_id" class="input">
-                      <option value="">Áp dụng tất cả</option>
+                    <select name="category_id" class="input" required>
+                      <option value="" disabled selected>Chọn danh mục</option>
                       <c:forEach var="cat" items="${categories}">
                         <option value="${cat.id}">${cat.name}</option>
                       </c:forEach>
@@ -53,7 +53,7 @@
 
                     <label class="label">Phân loại ưu đãi</label>
                     <select id="offer-type" name="voucher_type" class="input" required>
-                      <option value="discount">Giảm giá sản phẩm</option>
+                      <option value="product">Giảm giá sản phẩm</option>
                       <option value="shipping">Giảm giá ship</option>
                     </select>
 

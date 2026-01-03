@@ -62,6 +62,19 @@ public class VoucherController extends HttpServlet {
             return;
         }
 
+        if ("/quanlyuudai".equals(servletPath)) {
+            String action = request.getParameter("action");
+            if ("delete".equals(action)) {
+                String idParam = request.getParameter("id");
+                try {
+                    int id = Integer.parseInt(idParam);
+                    voucherDao.deleteById(id);
+                } catch (NumberFormatException ignored) { }
+                response.sendRedirect(request.getContextPath() + "/uudai");
+                return;
+            }
+        }
+
         response.sendRedirect(request.getContextPath() + "/uudai");
     }
 
