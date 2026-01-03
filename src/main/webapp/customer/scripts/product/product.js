@@ -9,7 +9,7 @@ const clickProductItem = () =>
     {
         item.addEventListener('click', ()=>
         {
-            window.location.href = '../pages/ProductDetail.jsp'
+            window.location.href = '../../pages/ProductDetail.jsp'
         })
     })
    

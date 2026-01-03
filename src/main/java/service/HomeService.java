@@ -53,5 +53,8 @@ public class HomeService
     }
 
 
-
+    public void saveStoreReview(String review, int stars)
+    {
+        this.homeDao.saveStoreReview(review, stars);
+    }
 }

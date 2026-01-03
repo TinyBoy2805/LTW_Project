@@ -12,16 +12,16 @@
 <header class="header">
     <nav class="nav">
         <div class="nav__top">
-            <a class="nav__top-logo" href="./Home.jsp">
+            <a class="nav__top-logo" href="${pageContext.request.contextPath}/customer/pages/Home.jsp">
                 <div class="nav__logo-img">
                     <img src="${pageContext.request.contextPath}/customer/imgs/Gemini_Generated_Image_c648fqc648fqc648.png" alt="">
                 </div>
                 <h1>MichiShop</h1>
             </a>
             <div class="nav__top-input">
-                <form action="Products.jsp">
-                    <input type="text" placeholder="Sản phẩm bạn cần tìm..." class="--no-border --no-outline">
-                    <button class="--no-border --no-outline">
+                <form action="Products.jsp" id="search_form">
+                    <input type="text" placeholder="Sản phẩm bạn cần tìm..." class="--no-border --no-outline" id="search_bar">
+                    <button class="--no-border --no-outline" type="submit">
                         <i class="fa-solid fa-magnifying-glass"></i>
                         Tìm kiếm
                     </button>
@@ -109,3 +109,6 @@
         </div>
     </nav>
 </header>
+
+<script src="${pageContext.request.contextPath}/customer/scripts/header.js" defer></script>
+

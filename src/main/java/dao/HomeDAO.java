@@ -153,7 +153,19 @@ public class HomeDAO extends BaseDao
     }
 
 
+    public void saveStoreReview(String review, int stars)
+    {
+        String query = "INSERT INTO store_reviews(store_id, user_id, rating, comment, created_at)\n" +
+                        "VALUES \n" +
+                        "(:store_id, :user_id,  :rating, :comment, NOW())";
 
-
-
+        get().useHandle(h->
+            h.createUpdate(query)
+            .bind("store_id", 1)
+            .bind("user_id", 1)
+            .bind("rating", stars)
+            .bind("comment", review)
+            .execute()
+        );
+    }
 }

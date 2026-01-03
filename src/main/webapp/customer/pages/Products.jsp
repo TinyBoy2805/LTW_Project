@@ -15,6 +15,9 @@
     <title>MiChiShop</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/customer/styles/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script>
+        window.APP_CONTEXT_PATH = `${pageContext.request.contextPath}`;
+    </script>
 </head>
 <body>
 
@@ -103,12 +106,12 @@
                     <c:choose>
                         <c:when test="${currentPage > 1}">
                             <a href="${pageContext.request.contextPath}/product?page=${currentPage - 1}" class="pagination__btn">
-                                <i class="fa-solid fa-chevron-left"></i> Prev
+                                <i class="fa-solid fa-chevron-left"></i>
                             </a>
                         </c:when>
                         <c:otherwise>
                             <span class="pagination__btn pagination__btn--disabled">
-                                <i class="fa-solid fa-chevron-left"></i> Prev
+                                <i class="fa-solid fa-chevron-left"></i>
                             </span>
                         </c:otherwise>
                     </c:choose>
@@ -132,12 +135,12 @@
                     <c:choose>
                         <c:when test="${currentPage < totalPages}">
                             <a href="${pageContext.request.contextPath}/product?page=${currentPage + 1}" class="pagination__btn">
-                                Next <i class="fa-solid fa-chevron-right"></i>
+                                 <i class="fa-solid fa-chevron-right"></i>
                             </a>
                         </c:when>
                         <c:otherwise>
                             <span class="pagination__btn pagination__btn--disabled">
-                                Next <i class="fa-solid fa-chevron-right"></i>
+                                 <i class="fa-solid fa-chevron-right"></i>
                             </span>
                         </c:otherwise>
                     </c:choose>
@@ -149,7 +152,8 @@
 
     <jsp:include page="/customer/components/Footer.jsp"/>
 
-</body>
 <script type="module" src="${pageContext.request.contextPath}/customer/scripts/main.js"></script>
+<script type="module" src="${pageContext.request.contextPath}/customer/scripts/product/product.js"></script>
 <%--<script src="${pageContext.request.contextPath}/customer/scripts/Products.js" type="module"></script>--%>
+</body>
 </html>

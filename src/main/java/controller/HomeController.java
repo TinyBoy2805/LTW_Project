@@ -41,6 +41,9 @@ public class HomeController extends HttpServlet
             case "product":
                 this.showProductByPage(request, response);
                 return;
+            case "review":
+                this.saveStoreReview(request, response);
+                return;
             default:
                 response.sendError(HttpServletResponse.SC_NOT_FOUND);
                 return;
@@ -50,6 +53,8 @@ public class HomeController extends HttpServlet
 //        request.getRequestDispatcher("/customer/pages/Home.jsp").forward(request, response);
 
     }
+
+
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
@@ -68,6 +73,16 @@ public class HomeController extends HttpServlet
 
     }
 
+
+    private void saveStoreReview(HttpServletRequest request, HttpServletResponse response)
+    {
+        System.out.println("đã nhận");
+        String review = request.getParameter("review");
+        int stars = Integer.parseInt(request.getParameter("stars"));
+
+
+        this.homeService.saveStoreReview(review, stars);
+    }
 
     private void showTrending(HttpServletRequest request, HttpServletResponse response) throws IOException
     {

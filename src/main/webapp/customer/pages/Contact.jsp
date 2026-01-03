@@ -12,6 +12,9 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../styles/index.css">
+    <script>
+        window.APP_CONTEXT_PATH = `${pageContext.request.contextPath}`;
+    </script>
 </head>
 <body>
     <div class="scroll-to-top-btn"><i class="fa-solid fa-circle-up"></i></div>
@@ -62,7 +65,7 @@
                         </div>
                         <div class="contact-info-content">
                             <h3>Địa chỉ</h3>
-                            <p>123 Nguyễn Văn Cừ, Q5</p>
+                            <p>Khu phố 6, Phường Linh Trung, TP. Thủ Đức</p>
                             <span>TP. Hồ Chí Minh</span>
                         </div>
                     </div>
@@ -81,10 +84,10 @@
                     <div class="contact-social">
                         <h4>Theo dõi chúng tôi</h4>
                         <div class="contact-social-links">
-                            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                            <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-                            <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                            <a href="https://www.facebook.com" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="https://www.instagram.com" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="https://www.tiktok.com" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                            <a href="https://www.youtube.com" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
                         </div>
                     </div>
                 </div>
@@ -117,6 +120,11 @@
                         <select name="subject">
                             <option value="">Chọn chủ đề</option>
                             <option value="product">Tư vấn sản phẩm</option>
+                            <option value="product">Hoàn trả sản phẩm</option>
+                            <option value="product">Hoàn tiền</option>
+                            <option value="product">Giảm giá sản phẩm</option>
+                            <option value="product">Không thể liên hệ</option>
+                            <option value="product">Lỗi mua hàng</option>
                             <option value="order">Đặt hàng</option>
                             <option value="complaint">Khiếu nại</option>
                             <option value="other">Khác</option>
@@ -146,6 +154,6 @@
     <jsp:include page="/customer/components/Footer.jsp"/>
 
 
-</body>
 <script type="module" src="../scripts/main.js"></script>
+</body>
 </html>

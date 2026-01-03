@@ -1,5 +1,6 @@
 package controller;
 
+import com.google.gson.Gson;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -11,7 +12,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet(name = "ProductController", value = "/product")
+@WebServlet(name = "ProductController", value = "/product/*")
 public class ProductController extends HttpServlet
 {
 
@@ -21,9 +22,58 @@ public class ProductController extends HttpServlet
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+        String pathInfo = request.getPathInfo(); // Lấy phần sau /product/
+
+        if (pathInfo == null || pathInfo.equals("/"))
+        {
+            this.showProductByPage(request, response);
+            return;
+        }
+
+        String action = pathInfo.substring(1);
+        System.out.println("action: " + action);
+
+        switch (action)
+        {
+            case "search":
+                this.searchProductsByName(request, response);
+                return;
+            default:
+                response.sendError(HttpServletResponse.SC_NOT_FOUND);
+                return;
+        }
+
+    }
+
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    {
+        doGet(request, response);
+    }
+
+    private void searchProductsByName(HttpServletRequest request, HttpServletResponse response) throws IOException
+    {
+        Gson gson = new Gson();
+        String productName = request.getParameter("name");
+        System.out.println("product name: " + productName);
+        List<ProductCard> products = this.productService.getProductsByName(productName);
+
+        String json = gson.toJson(products);
+        System.out.println(json);
+
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
+    }
+
+
+
+    private void showProductByPage(HttpServletRequest request, HttpServletResponse response)
+    {
         String pageParam = request.getParameter("page");
         int page = 1;
-        
+
         if (pageParam != null && !pageParam.isEmpty())
         {
             try
@@ -57,21 +107,24 @@ public class ProductController extends HttpServlet
                     pc.setAvg_rating(Math.floor(pc.getAvg_rating()));
                 }
             }
-            
+
             request.setAttribute("products", products);
             request.setAttribute("currentPage", page);
             request.setAttribute("totalPages", totalPages);
-            
+
             request.getRequestDispatcher("/customer/pages/Products.jsp").forward(request, response);
         } catch (SQLException e)
+        {
+            throw new RuntimeException(e);
+        } catch (ServletException e)
+        {
+            throw new RuntimeException(e);
+        } catch (IOException e)
         {
             throw new RuntimeException(e);
         }
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-    {
-        doGet(request, response);
-    }
+
+
 }

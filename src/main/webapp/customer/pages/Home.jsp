@@ -201,11 +201,11 @@
             <h3>Các vấn đề thường gặp</h3>
             <div class="main__contact-list">
                 <ul>
-                    <li><a href="Contact.jsp">Hoàn trả sản phẩm</a></li>
-                    <li><a href="Contact.jsp">Hoàn tiền</a></li>
-                    <li><a href="Contact.jsp">Giảm giá sản phẩm</a></li>
-                    <li><a href="Contact.jsp">Không thể liên hệ</a></li>
-                    <li><a href="Contact.jsp">Lỗi mua hàng</a></li>
+                    <li><a href="${pageContext.request.contextPath}/customer/pages/Contact.jsp">Hoàn trả sản phẩm</a></li>
+                    <li><a href="${pageContext.request.contextPath}/customer/pages/Contact.jsp">Hoàn tiền</a></li>
+                    <li><a href="${pageContext.request.contextPath}/customer/pages/Contact.jsp">Giảm giá sản phẩm</a></li>
+                    <li><a href="${pageContext.request.contextPath}/customer/pages/Contact.jsp">Không thể liên hệ</a></li>
+                    <li><a href="${pageContext.request.contextPath}/customer/pages/Contact.jsp">Lỗi mua hàng</a></li>
                 </ul>
             </div>
         </section>
