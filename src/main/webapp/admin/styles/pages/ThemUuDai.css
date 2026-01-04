@@ -261,12 +261,27 @@ main.content > a {
   cursor: pointer;
   font-size: 13px;
   color: #4C4C4C;
+  transition: all 0.3s ease;
 }
 
 .chips .chip:hover,
 .chip:hover {
   background: #fff;
   border-color: rgba(245,100,169,0.25);
+}
+
+/* Active state: highlight selected chip in pink */
+.chip.active,
+.chips .chip.active {
+  background: #F564A9 !important;
+  border-color: #F564A9 !important;
+  color: #fff !important;
+}
+
+.chip.active:hover,
+.chips .chip.active:hover {
+  background: #F564A9 !important;
+  border-color: #F564A9 !important;
 }
 
 

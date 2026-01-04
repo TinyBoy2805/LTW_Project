@@ -1,0 +1,462 @@
+@import url('../index.css');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+body {
+  height: 100vh;
+}
+
+.QuanLyUuDai.main {
+  flex-direction: row;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Pin sidebar for this page and offset container so sidebar doesn't move when content changes */
+.QuanLyUuDai .sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 208px;
+  z-index: 40;
+}
+.QuanLyUuDai .container {
+  margin-left: 208px;
+}
+.QuanLyUuDai.main.collapsed .sidebar { width: 72px; }
+.QuanLyUuDai.main.collapsed .container { margin-left: 72px; }
+
+@media (max-width: 900px) {
+  .QuanLyUuDai .sidebar { position: static; height: auto; width: auto; }
+  .QuanLyUuDai .container { margin-left: 0; }
+}
+
+/* KHỐI CHỨA HEADER VÀ NỘI DUNG */
+.content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 24px 24px 0 24px;
+}
+
+.container__header {
+  flex-shrink: 0;
+  height: 60px;
+}
+
+main.content {
+  flex-grow: 1;
+  background-color: #f8f8f8;
+}
+
+.content {
+  width: 100%;
+  background-color: #f8f8f8;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+}
+
+.content__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+}
+
+.content__header a {
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.content__title {
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+  margin-bottom: 20px;
+  padding: 0 0 0 24px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.back-icon {
+  color: #000000;
+  font-size: 20px;
+  text-decoration: none;
+  transition: color 0.2s;
+  display: inline-flex;
+  align-items: center;
+}
+
+.back-icon:hover {
+  color: #333333;
+}
+
+/* ensure nested font-awesome icon inherits black color consistently */
+.content__title .back-icon i {
+  color: #000000 !important;
+}
+
+/* If the title is wrapped by a link (e.g. the back link), remove underline */
+main.content > a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.content__panel {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  flex-grow: 1;
+  display: flex;
+  min-height: 0;
+  width: calc(100% - 48px) !important;
+  margin: 0 24px !important;
+  padding: 24px !important;
+  position: relative;
+  padding-bottom: 24px !important;
+  overflow: visible;
+}
+
+.content__body {
+  display: flex;
+  width: 100%;
+  height: auto;
+  min-height: 720px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 10px;
+  border-radius: 0;
+  background-color: transparent;
+  box-shadow: none;
+  padding: 24px 24px 0 24px;
+  position: relative;
+}
+
+.content__body .actions-row {
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 18px;
+  padding: 0;
+}
+
+.content__body .actions-row {
+  display: none;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  z-index: 50;
+  width: 100%;
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 120px;
+}
+
+/* show actions row when managing */
+.content__panel.managing .content__body .actions-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 18px;
+  padding: 0 24px;
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 142px;
+  left: 24px;
+  right: 24px;
+  z-index: 50;
+}
+
+.content__panel.managing .content__body .actions-row .actions-left {
+  flex: 1 1 auto;
+}
+
+.content__panel.managing .content__body .actions-row .actions-right {
+  flex: 0 0 auto;
+  margin-left: 16px;
+}
+
+.content__panel.managing .content__body .actions-row .panel-actions {
+  display: inline-flex;
+  align-items: center;
+}
+
+.content__panel.managing .content__body .actions-row .actions .btn {
+  white-space: nowrap;
+}
+
+.form-wrap {
+  padding-bottom: 24px;
+}
+
+.content__panel.managing .panel-header {
+  margin-bottom: 8px;
+  padding-bottom: 12px;
+}
+
+.content__panel.managing .content__body {
+  padding-top: 0;
+}
+
+.content__panel.managing .form-wrap {
+  margin-top: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  align-items: flex-start;
+}
+
+/* Create form layout */
+.form-wrap {
+  display: flex;
+  gap: 24px;
+  padding: 24px;
+  flex-grow: 1;
+  min-width: 0;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.left-panel {
+  flex: 1 1 auto;
+  width: 100%;
+  min-width: 0;
+}
+
+.right-panel {
+  display: none !important;
+}
+
+.card-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #f564a9;
+  margin-bottom: -7px;
+  width: fit-content;
+}
+
+.row.two {
+  display: flex;
+  gap: 28px;
+}
+
+.row.two > div {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Chips (small category/customer buttons) */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.chips .chip,
+.chip {
+  padding: 5px 10px;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid #e4e4e4;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.03);
+  cursor: pointer;
+  font-size: 13px;
+  color: #4C4C4C;
+}
+
+.chips .chip:hover,
+.chip:hover {
+  background: #fff;
+  border-color: rgba(245,100,169,0.25);
+}
+
+/* Active state: highlight selected chip in pink */
+.chip.active,
+.chips .chip.active {
+  background: #F564A9;
+  border-color: #F564A9;
+  color: #fff;
+}
+
+/* Input with icon for edit functionality */
+.input-with-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.input-with-icon .input {
+  padding-right: 45px;
+  width: 100%;
+}
+
+.input-with-icon .input-icon {
+  position: absolute;
+  right: 15px;
+  color: #F564A9;
+  cursor: pointer;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+.input-with-icon .input-icon:hover {
+  color: #e04a95;
+}
+
+/* Special handling for currency-wrap inside input-with-icon */
+.input-with-icon .currency-wrap {
+  flex: 1;
+}
+
+.input {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  padding: 10px 15px;
+  border-radius: 24px;
+  border: 2px solid #e4e4e4;
+  color: #4C4C4C;
+  transition: border-color 0.3s;
+  flex-shrink: 0;
+}
+
+/* make native select arrow sit closer to the right edge */
+.card-form select.input,
+.card-form select {
+  padding-right: 8px;
+  -webkit-appearance: auto;
+  -moz-appearance: auto;
+  appearance: auto;
+}
+
+.input:focus,
+.input:hover {
+  border-color: #F564A9;
+  outline: none;
+}
+
+.textarea {
+  border-radius: 12px;
+  resize: vertical;
+  flex-shrink: 0;
+  min-width: 0;
+  white-space: pre-wrap !important;
+  overflow: auto;
+  text-overflow: clip;
+  width: 100%;
+}
+
+/* image UI removed — keep styles here in case needed later (but keep them inert) */
+.images-card,
+.thumbs,
+.add-thumb,
+.thumbs img {
+  display: none !important;
+}
+
+.content__panel.managing .content__body .actions-row .note {
+  color: #F564A9;
+  font-size: 13px;
+}
+
+.QuanLyUuDai .btn {
+  padding: 10px 18px;
+  border-radius: 24px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background-color 0.15s ease, transform 0.12s ease;
+  background: #fff;
+  color: #4C4C4C;
+}
+
+.QuanLyUuDai .btn.primary,
+.content__panel.managing .content__body .actions-row .btn.primary {
+  background-color: #F564A9;
+  color: #fff;
+  border-color: #F564A9;
+}
+
+.QuanLyUuDai .btn.primary:hover {
+  background-color: #e14d95;
+  transform: translateY(-2px);
+}
+
+.QuanLyUuDai .btn.ghost,
+.content__panel.managing .content__body .actions-row .btn.ghost {
+  background-color: #ffffff;
+  color: #4C4C4C;
+  border: 1px solid #e4e4e4;
+}
+
+.QuanLyUuDai .btn.ghost:hover {
+  background-color: #fafafa;
+  transform: translateY(-1px);
+}
+
+.QuanLyUuDai .btn.danger,
+.content__panel.managing .content__body .actions-row .btn.danger {
+  background-color: #ff4d4d;
+  color: #fff;
+  border: 1px solid #ff4d4d;
+}
+
+.QuanLyUuDai .btn.danger:hover {
+  background-color: #cc0000;
+  transform: translateY(-1px);
+}
+
+.actions-row {
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px 0 24px;
+  width: 100%;
+}
+
+@media (max-width: 1200px) {
+  .form-wrap {
+    flex-direction: column;
+  }
+
+  .left-panel,
+  .right-panel {
+    flex: none;
+    width: 100%;
+  }
+}
+
+@media (max-width: 1000px) {
+  .content__panel .actions-row {
+    position: static;
+    margin-top: 18px;
+    padding: 0 12px;
+  }
+
+  .content__body {
+    padding: 16px;
+  }
+}

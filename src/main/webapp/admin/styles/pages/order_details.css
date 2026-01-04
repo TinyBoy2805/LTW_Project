@@ -44,6 +44,15 @@ body {
     background-color: #f8f8f8;
 }
 
+.content__info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    gap: 8px;
+}
+
 /* content's header css */
 .content__header{
     display: flex;
@@ -54,17 +63,20 @@ body {
     gap: 12px;
 
     position: sticky;
-    top: 0; /* Đảm bảo nó dính ngay tại mép trên của vùng cuộn (container__content) */
+    top: 0;
     z-index: 10;
     background-color: #f8f8f8;
-    
-    /* Thêm padding-top đã bị xóa ở phần tử cha vào đây */
+
     padding: 36px 24px 24px 12px;
 }
 
 .content__header a{
     text-decoration: none;
     font-size: 20px;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .content__title{
@@ -76,11 +88,11 @@ body {
 /* Order and order's infomation css */
 .orders{
     display: flex;
-    justify-content: start;
+    justify-content: center;
     align-items: center;
     flex-direction: row;
     background-color: white;
-    width: 100%;
+    width: 720px;
     height: 190px;
     border-radius: 12px;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
@@ -109,9 +121,12 @@ body {
     font-size: 10px;
     font-weight: 500;
     color: white;
-    background-color: #f564a9;
     bottom: 20px;
     right: 20px;
+}
+
+.confirm{
+    background-color: #bda24e;
 }
 
 .orders__info{
@@ -132,6 +147,7 @@ body {
     align-items: center;
     width: 100%;
     height: fit-content;
+    color: #252525;
 }
 
 .order-sumary__details{
@@ -148,6 +164,7 @@ body {
     align-items: end;
     height: 100%;
     margin-top: 20px;
+    color: #252525;
 }
 
 
@@ -187,7 +204,7 @@ body {
 
 /* Customer infomation css */
 .customer{
-    width: 100%;
+    width: 720px;
     height: auto;
     background-color: white;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
@@ -203,6 +220,7 @@ body {
 .customer__name{
     font-size: 24px;
     font-weight: bold;
+    color: #252525;
 }
 
 .customer__info{
@@ -212,7 +230,8 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 8px;
+    gap: 12px;
+    color: #252525;
 }
 
 .info{

@@ -18,146 +18,13 @@
 
 <body>
     <div class="dashboard main">
-        <!-- sidebar -->
         <aside class="sidebar">
-            <!-- header inclue shop's logo and shop's name -->
-            <div class="sidebar__header">
-                <img src="../imgs/logo.png" alt="Logo">
-                <h2>MiChiShop</h2>
-            </div>
-            <!-- list item of sidebar -->
-            <div class="sidebar__list">
-                <ul class="list">
-                    <li class="list__item">
-                        <a href="./dashboard.jsp" class="active">
-                            <div class="section">
-                                <div class="icon"><i class="fa-solid fa-chart-line"></i></div>
-                                <p class="title">Thống kê</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="list__item">
-                        <a href="order.jsp">
-                            <div class="section">
-                                <div class="icon"><i class="fa-solid fa-shopping-cart"></i></div>
-                                <p class="title">Đơn hàng</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="list__item">
-                        <a href="categories.jsp">
-                            <div class="section">
-                                <div class="icon"><i class="fa-solid fa-box"></i></div>
-                                <p class="title">Kho hàng</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="list__item">
-                        <a href="KhachHang.jsp">
-                            <div class="section">
-                                <div class="icon"><i class="fa-solid fa-users"></i></div>
-                                <p class="title">Khách hàng</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="list__item">
-                        <a href="UuDai.jsp">
-                            <div class="section">
-                                <div class="icon"><i class="fa-solid fa-gift"></i></div>
-                                <p class="title">Ưu đãi</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="list__item">
-                        <a href="Blog.jsp">
-                            <div class="section">
-                                <div class="icon"><i class=" fa-solid fa-blog"></i></div>
-                                <p class="title">Bài Viết</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="list__item">
-                        <a href="Email.jsp">
-                            <div class="section">
-                                <div class="icon"><i class="fa-solid fa-envelope"></i></div>
-                                <p class="title">Thông báo</p>
-                            </div>
-                            <div class="badge">+99</div>
-                        </a>
-                    </li>
-                    <li class="list__item">
-                        <a href="CaiDat.jsp">
-                            <div class="section">
-                                <div class="icon"><i class="fa-solid fa-cog"></i></div>
-                                <p class="title">Cài đặt</p>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <!-- bottom has exit button -->
-            <div class="sidebar__bottom">
-                <a href="../../../../../index.html">
-                    <div class="icon"><ion-icon name="exit-outline"></ion-icon></div>
-                    <p class="title">Đăng xuất</p>
-                </a>
-            </div>
+            <% request.setAttribute("activePage", "dashboard"); %>
+            <%@ include file="../components/sidebar.jsp" %>
         </aside>
         <div class="container">
-            <!-- header -->
-            <div class="container__header">
-                <!-- header left has sidebar expand button and hello message -->
-                <div class="header__left">
-                    <div class="icon" id="menu__action"><ion-icon name="menu-outline"></ion-icon></div>
-                    <h3>Chào mừng trở lại, <span>MiChi Admin</span></h3>
-                </div>
-                <!-- header right has anouncement icon and the avatar of admin account -->
-                <div class="header__right">
-                    <div class="notification__wrapper">
-                        <div class="icon" id="notification__icon">
-                            <ion-icon name="notifications-outline"></ion-icon>
-                            <span class="notification__badge">3</span>
-                        </div>
+            <%@ include file="../components/header.jsp" %>
 
-                        <div class="notification__frame">
-                            <h4 class="notification__title">🔔 Thông báo mới</h4>
-                            <div class="notification__list">
-                                <div class="notification__item new">
-                                    <div class="item__icon"><ion-icon name="bag-check-outline"></ion-icon></div>
-                                    <div class="item__content">
-                                        <p class="item__text">
-                                            <strong>Đơn hàng mới:</strong> Mã O-250725 vừa được tạo.
-                                        </p>
-                                        <span class="item__time">Vài giây trước</span>
-                                    </div>
-                                </div>
-
-                                <div class="notification__item new">
-                                    <div class="item__icon alert"><ion-icon name="alert-circle-outline"></ion-icon>
-                                    </div>
-                                    <div class="item__content">
-                                        <p class="item__text">
-                                            <strong>Cảnh báo tồn kho:</strong> Sữa Bột GrowPro chỉ còn 10 sản phẩm.
-                                        </p>
-                                        <span class="item__time">5 phút trước</span>
-                                    </div>
-                                </div>
-
-                                <div class="notification__item">
-                                    <div class="item__icon review"><ion-icon name="star-outline"></ion-icon></div>
-                                    <div class="item__content">
-                                        <p class="item__text">
-                                            Có <strong>1 đánh giá 5 sao</strong> mới cho Váng sữa.
-                                        </p>
-                                        <span class="item__time">1 giờ trước</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="avatar"><img src="../imgs/logo.png" alt="Avatar"></div>
-                </div>
-            </div>
             <!-- contert -->
             <div class="container__content">
                 <!-- first, content has 3 card to revenue overview by day, month, quarter -->
@@ -234,9 +101,6 @@
 
                 <!-- last, content has a table about top product -->
                 <div class="table">
-                    <div class="table__header">
-                        <button class="filter"><ion-icon name="filter-outline" class="icon"></ion-icon>Lọc</button>
-                    </div>
                     <table>
                         <thead>
                             <tr>
@@ -253,7 +117,7 @@
                                 <td class="numerical">1</td>
                                 <td class="id">#614232</td>
                                 <td class="name">Sữa tươi Vinamilk tiệt trùng</td>
-                                <td class="origin"><ion-icon name="flag-outline" title="Việt Nam"></ion-icon></td>
+                                <td class="origin"><img src="https://flagcdn.com/w40/vn.png" alt="Việt Nam"></td>
                                 <td><span class="status status__instock --instock">Còn hàng</span></td>
                                 <td class="price">245.000đ</td>
                             </tr>
@@ -261,7 +125,7 @@
                                 <td class="numerical">2</td>
                                 <td class="id">#614246</td>
                                 <td class="name">Sữa bột Gold IQ+</td>
-                                <td class="origin"><ion-icon name="flag-outline" title="Mỹ"></ion-icon></td>
+                                <td class="origin"><img src="https://flagcdn.com/w40/us.png" alt="Mỹ"></td>
                                 <td><span class="status status__instock --instock">Còn hàng</span></td>
                                 <td>360.000đ</td>
                             </tr>
@@ -269,7 +133,7 @@
                                 <td class="numerical">3</td>
                                 <td class="id">#614510</td>
                                 <td class="name">Váng sữa hương Vani</td>
-                                <td class="origin"><ion-icon name="flag-outline" title="Nga"></ion-icon></td>
+                                <td class="origin"><img src="https://flagcdn.com/w40/ru.png" alt="Nga"></td>
                                 <td><span class="status status__waiting --pending">Chờ nhập hàng</span></td>
                                 <td>120.000đ</td>
                             </tr>

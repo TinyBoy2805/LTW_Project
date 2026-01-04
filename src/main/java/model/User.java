@@ -1,17 +1,21 @@
 package model;
 
+import com.oracle.wls.shaded.org.apache.xpath.objects.XString;
+
 import java.io.Serializable;
 
 public class User implements Serializable {
     private int id;
     private String name;
     private String email;
-    private Boolean role; // true: admin, false: user
+    private Role role; // admin, user
     private String password_hashed;
     private String phone_number;
     private String avt_url;
+    private String salt;
+    private int verified;
 
-    public User(int id, String name, String email, Boolean role, String password_hashed, String phone_number, String avt_url) {
+    public User(int id, String name, String email, Role role, String password_hashed, String phone_number, String avt_url, String salt, int verified) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -19,7 +23,11 @@ public class User implements Serializable {
         this.password_hashed = password_hashed;
         this.phone_number = phone_number;
         this.avt_url = avt_url;
+        this.salt = salt;
+        this.verified = verified;
     }
+
+    public User() {}
 
         public int getId() {
             return id;
@@ -39,29 +47,22 @@ public class User implements Serializable {
         public void setEmail(String email) {
             this.email = email;
         }
-        public Boolean getRole() {
+        public Role getRole() {
             return role;
         }
-        public void setRole(Boolean role){
-            this.role = role;
-        }
+        public void setRole(Role role){this.role = role;}
         public String getPassword_hashed() {
             return password_hashed;
         }
-        public void setPassword_hashed(String password_hashed){
-            this.password_hashed = password_hashed;
-        }
+        public void setPassword_hashed(String password_hashed){this.password_hashed = password_hashed;}
         public String getPhone_number() {
             return phone_number;
         }
-        public void setPhone_number(String phone_number){
-            this.phone_number = phone_number;
-        }
-
-        public String getAvt_url() {
-            return avt_url;
-        }
-        public void setAvt_url(String avt_url){
-            this.avt_url = avt_url;
-        }
+        public void setPhone_number(String phone_number){this.phone_number = phone_number;}
+        public String getAvt_url() {return avt_url;}
+        public void setAvt_url(String avt_url){this.avt_url = avt_url;}
+        public String getSalt() {return salt;}
+        public void setSalt(String salt){this.salt = salt;}
+        public int getVerified() {return verified;}
+        public void setVerified(int verified){this.verified = verified;}
     }
