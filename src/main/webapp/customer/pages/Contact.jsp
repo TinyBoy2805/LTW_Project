@@ -1,4 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+<%
+    request.setAttribute("activeTab", "contact");
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,109 +12,15 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../styles/index.css">
+    <script>
+        window.APP_CONTEXT_PATH = `${pageContext.request.contextPath}`;
+    </script>
 </head>
 <body>
     <div class="scroll-to-top-btn"><i class="fa-solid fa-circle-up"></i></div>
-    <header class="header">
-        <nav class="nav">
-            <div class="nav__top">
-                <a class="nav__top-logo" href="Home.jsp">
-                    <div class="nav__logo-img">
-                        <img src="../imgs/Gemini_Generated_Image_c648fqc648fqc648.png" alt="">
-                    </div>
-                    <h1>MichiShop</h1>
-                </a>
-                <div class="nav__top-input">
-                    <form action="">
-                        <input type="text" placeholder="Sản phẩm bạn cần tìm..." class="--no-border --no-outline">
-                        <button class="--no-border --no-outline">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                            Tìm kiếm
-                        </button>
-                    </form>
-                </div>
-                <div class="nav__top-actions">
-                    <ul>
-                        <li class="hovercart">
-                            <a href="Cart.jsp" class="--color4"><i class="fa-solid fa-cart-shopping --size20"></i></a>
-                            <div class="header-cart">
-                                <ul>
-                                    <li>
-                                        <div class="item">
-                                            <div class="img-container">
-                                                <img src="https://i.pinimg.com/1200x/4b/bb/02/4bbb0223ba678e97772d02949e5f89ca.jpg" alt="">
-                                            </div>
-                                            <p>Sữa chua hy lạp</p>
-                                            <p class="--weight600 --color6">199.000₫</p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="item">
-                                            <div class="img-container">
-                                                <img src="https://i.pinimg.com/1200x/4b/bb/02/4bbb0223ba678e97772d02949e5f89ca.jpg" alt="">
-                                            </div>
-                                            <p>Sữa chua hy lạp</p>
-                                            <p class="--weight600 --color6">199.000₫</p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="item">
-                                            <div class="img-container">
-                                                <img src="https://i.pinimg.com/1200x/4b/bb/02/4bbb0223ba678e97772d02949e5f89ca.jpg" alt="">
-                                            </div>
-                                            <p>Sữa chua hy lạp</p>
-                                            <p class="--weight600 --color6">199.000₫</p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="item">
-                                            <div class="img-container">
-                                                <img src="https://i.pinimg.com/1200x/4b/bb/02/4bbb0223ba678e97772d02949e5f89ca.jpg" alt="">
-                                            </div>
-                                            <p>Sữa chua hy lạp</p>
-                                            <p class="--weight600 --color6">199.000₫</p>
-                                        </div>
-                                    </li>
-                                </ul>
-                                <div class="sub-info">
-                                    <p>36 sản phẩm</p>
-                                    <a href="Cart.jsp">Xem giỏ hàng</a>
-                                </div>
-                            </div>
-                        </li>
-                        <li><a href="Inform.jsp" class="--color4"><i class="fa-solid fa-bell --size20"></i></a><div class="notif-count">2</div></li>
-                        <li class="hover-avt">
-                            <div class="container">
-                                <a href="Profile.jsp" class="--color4"><i class="fa-solid fa-user-ninja --size20"></i></a>
-                                <ul class="avt-options">
-                                    <li onclick="window.location.href='Profile.jsp'">
-                                        <div class="avt-container">
-                                            <img src="https://i.pinimg.com/736x/5f/83/3d/5f833de6a6b1d8032037b6a24a5321b6.jpg" alt="">
-                                        </div>
-                                        <h4>Nguyễn Văn A</h4>
-                                    </li>
-                                    <li>
-                                        <button onclick="window.location.href='../../index.jsp'">Đăng xuất</button>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="nav__line"></div>
-            <div class="nav__bottom">
-                <ul>
-                    <li><a href="Home.jsp" >Trang chủ</a></li>
-                    <li><a href="Products.jsp">Sản phẩm</a></li>
-                    <li><a href="Voucher.jsp">Khuyến mãi</a></li>
-                    <li><a href="Blog.jsp">Cẩm nang</a></li>
-                    <li><a href="./Contact.jsp" class="active">Liên hệ</a></li>
-                    <li><a href="About.jsp">về cửa hàng</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
+
+    <jsp:include page="/customer/components/Header.jsp"/>
+
     <main class="main">
 
         <section class="main__contact-top">
@@ -122,50 +33,115 @@
                 <h2>Liên hệ với cửa hàng</h2>
                 <p>Chúng tôi hy vọng sẽ sớm được nghe ý kiến từ bạn</p>
             </div>
-            <div class="main__contact-bottom-mid">
-                <div class="main__contact-bottom-mid-sub">
-                    <div>
-                        <i class="fa-solid fa-envelope"></i>
-                        E-mail
+            
+            <div class="main__contact-container">
+                <!-- Left Side - Contact Info -->
+                <div class="main__contact-info">
+                    <div class="contact-info-card">
+                        <div class="contact-info-icon">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div class="contact-info-content">
+                            <h3>Email</h3>
+                            <p>taisaodattenlaikhovay@gmail.com</p>
+                            <span>Phản hồi trong 24h</span>
+                        </div>
                     </div>
-                    <p>taisaodattenlaikhovay@gmail.com</p>
-                </div>
-                <div class="main__contact-bottom-mid-sub">
-                    <div>
-                        <i class="fa-solid fa-phone"></i>
-                        Số điện thoại
+
+                    <div class="contact-info-card">
+                        <div class="contact-info-icon">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div class="contact-info-content">
+                            <h3>Điện thoại</h3>
+                            <p>0931 415 926</p>
+                            <span>Hỗ trợ 24/7</span>
+                        </div>
                     </div>
-                    <p>0931415926</p>
+
+                    <div class="contact-info-card">
+                        <div class="contact-info-icon">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div class="contact-info-content">
+                            <h3>Địa chỉ</h3>
+                            <p>Khu phố 6, Phường Linh Trung, TP. Thủ Đức</p>
+                            <span>TP. Hồ Chí Minh</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-info-card">
+                        <div class="contact-info-icon">
+                            <i class="fa-solid fa-clock"></i>
+                        </div>
+                        <div class="contact-info-content">
+                            <h3>Giờ làm việc</h3>
+                            <p>Thứ 2 - Chủ nhật</p>
+                            <span>8:00 AM - 8:00 PM</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-social">
+                        <h4>Theo dõi chúng tôi</h4>
+                        <div class="contact-social-links">
+                            <a href="https://www.facebook.com" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="https://www.instagram.com" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="https://www.tiktok.com" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                            <a href="https://www.youtube.com" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- Right Side - Form -->
+                <form action="" class="main__contact-form">
+                    <div class="form-header">
+                        <h3>Gửi tin nhắn cho chúng tôi</h3>
+                        <p>Điền thông tin bên dưới và chúng tôi sẽ liên hệ lại sớm nhất</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Họ và tên <span class="required">*</span></label>
+                        <input type="text" name="fullname" placeholder="Nguyễn Văn A" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Email <span class="required">*</span></label>
+                            <input type="email" name="email" placeholder="example@gmail.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Số điện thoại <span class="required">*</span></label>
+                            <input type="tel" name="phone" placeholder="0931 415 926" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Chủ đề</label>
+                        <select name="subject">
+                            <option value="">Chọn chủ đề</option>
+                            <option value="product">Tư vấn sản phẩm</option>
+                            <option value="product">Hoàn trả sản phẩm</option>
+                            <option value="product">Hoàn tiền</option>
+                            <option value="product">Giảm giá sản phẩm</option>
+                            <option value="product">Không thể liên hệ</option>
+                            <option value="product">Lỗi mua hàng</option>
+                            <option value="order">Đặt hàng</option>
+                            <option value="complaint">Khiếu nại</option>
+                            <option value="other">Khác</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Lời nhắn <span class="required">*</span></label>
+                        <textarea name="message" placeholder="Nhập nội dung tin nhắn của bạn..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="form-submit">
+                        <span>Gửi tin nhắn</span>
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </form>
             </div>
-
-            <form action="" class="main__contact-bottom-form">
-                <fieldset>
-                    <div class="form-group">
-                        <label>Họ và tên lót</label>
-                        <input type="text" name="first_name">
-                    </div>
-                    <div class="form-group">
-                        <label>Tên</label>
-                        <input type="text" name="last_name">
-                    </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" name="email">
-                    </div>
-                    <div class="form-group">
-                        <label>Số điện thoại</label>
-                        <input type="tel" name="phone">
-                    </div>
-                </fieldset>
-                <fieldset>
-                    <label for="">Lời nhắn</label>
-                    <textarea name="" id=""></textarea>
-                </fieldset>
-                <button>Gửi</button>
-            </form>
-
-
         </section>
 
 
@@ -175,80 +151,9 @@
 
     </main>
 
-    <footer class="footer">
-        <div class="footer__top">
-
-            <div class="footer__top-col1">
-                <div class="footer__top-col1-top">
-
-                    <div class="footer__top-col1-top-logo">
-                        <i class="fa-solid fa-shop" ></i>
-                        <h3 class="--size20">MichiShop</h3>
-                    </div>
-                    <p>MiChiShop – Bé khỏe, mẹ vui, cả nhà hạnh phúc</p>
-
-                </div>
-
-                <div class="footer__top-col1-bottom">
-                    <h3>Về cửa hàng</h3>
-                    <p>MichiShop luôn muốn mang đến khách hàng những sản phẩm chất lượng và uy tín</p>
-                </div>
-            </div>
-
-            <div class="footer__top-col2">
-                <h3>Liên hệ</h3>
-                <ul>
-                    <li>Hotline: 0901 234 567</li>
-                    <li>Địa chỉ: 123 Nguyễn Văn Cừ, TP.HCM</li>
-                    <li>Giờ mở cửa: 8h - 20h</li>
-                </ul>
-            </div>
-
-            <div class="footer__top-col3">
-                <h3>Liên kết nhanh</h3>
-                <ul>
-                     <li><a href="Home.jsp">Trang chủ</a></li>
-                    <li><a href="Products.jsp">Sản phẩm</a></li>
-                    <li><a href="Voucher.jsp">Khuyến mãi</a></li>
-                    <li><a href="Blog.jsp">Cẩm nang</a></li>
-                    <li><a href="About.jsp">Về cửa hàng</a></li>
-                    <li><a href="./Contact.jsp">Liên hệ</a></li>
-                </ul>
-            </div>
-
-            <div class="footer__top-col4">
-                <div class="footer__top-col4-form">
-                    <h3>Đăng kí để nhận thêm thông tin</h3>
-                    <input type="text" placeholder="Để lại email của bạn...">
-                    <button>Đăng kí!</button>
-                </div>
-            </div>
-
-        </div>
-        <div class="footer__line"></div>
+    <jsp:include page="/customer/components/Footer.jsp"/>
 
 
-        <div class="footer__bottom">
-            <div class="footer__bottom-logos">
-                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                    <i class="fa-brands fa-facebook-f"></i>
-                </a>
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                    <i class="fa-brands fa-instagram"></i>
-                </a>
-                <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
-                    <i class="fa-brands fa-tiktok"></i>
-                </a>
-                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-                    <i class="fa-brands fa-youtube"></i>
-                </a>
-            </div>
-            <h4>&copy; Copyright. All rights reserved.</h4>
-        </div>
-
-    </footer>
-
-
-</body>
 <script type="module" src="../scripts/main.js"></script>
+</body>
 </html>

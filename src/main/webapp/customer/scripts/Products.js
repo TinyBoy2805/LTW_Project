@@ -1,4 +1,4 @@
-import product from './product.js'
+import product from './product/product.js'
 
 
 document.addEventListener("DOMContentLoaded", ()=>
