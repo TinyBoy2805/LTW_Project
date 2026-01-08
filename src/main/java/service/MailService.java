@@ -11,10 +11,13 @@ public class MailService {
     public MailService() {
     }
 
-    public static EmailStatus sendOTP(String to, String otp) {
+    public EmailStatus sendOTP(String to, String otp) {
 
-        final String username = "23130041@st.hcmuaf.edu.vn"; //the email that send otp to user
-        final String password = "uvdlltzktezrbyog"; //app password for send email with smtp
+//        final String username = "23130041@st.hcmuaf.edu.vn"; //the email that send otp to user
+//        final String password = "uvdlltzktezrbyog"; //app password for send email with smtp
+
+        final String username = "michishop2025@gmail.com"; //the email that send otp to user
+        final String password = "xlqrduewarveryej"; //app password for send email with smtp
 
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");
@@ -126,8 +129,8 @@ public class MailService {
         }
     }
 
-    public static void main(String[] args) {
-        EmailStatus St = sendOTP("test@gmail.com", "123456");
-        System.out.println(St);
-    }
+//    public static void main(String[] args) {
+//        EmailStatus St = sendOTP("test@gmail.com", "123456");
+//        System.out.println(St);
+//    }
 }

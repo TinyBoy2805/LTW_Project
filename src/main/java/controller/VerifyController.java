@@ -22,6 +22,7 @@ public class VerifyController extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = req.getSession();
+        String flow = (String) session.getAttribute("flow");
 
         //combine all OTP input fields into 1 string (6 digits)
         String userOtp = req.getParameter("d1")+req.getParameter("d2")+req.getParameter("d3")+
@@ -35,17 +36,15 @@ public class VerifyController extends HttpServlet {
 
         //when the otp is expire
         if (expire == null || System.currentTimeMillis() > expire) {
-            req.setAttribute("error", "Mã OTP đã hết hạn.");
+            fail(flow, req, resp, "Mã OTP đã hết hạn");
             req.setAttribute("email", email);
-            req.getRequestDispatcher("verify.jsp").forward(req, resp);
             return;
         }
 
         //wrong otp code
         if (!userOtp.equals(otp)) {
-            req.setAttribute("error", "Mã OTP không đúng.");
+            fail(flow, req, resp, "Mã OTP không đúng");
             req.setAttribute("email", email);
-            req.getRequestDispatcher("verify.jsp").forward(req, resp);
             return;
         }
 
@@ -53,14 +52,33 @@ public class VerifyController extends HttpServlet {
         System.out.println("Email đang thực hiện activate: " + email);
         authService.activateAccount(email);
 
+        if ("register".equals(flow)) {
+            authService.activateAccount((String) session.getAttribute("otp_email"));
+            req.setAttribute("verifiedSuccess", true);
+            req.getRequestDispatcher("verify.jsp").forward(req, resp);
+            return;
+        }
+
+        if ("forgot".equals(flow)) {
+            req.setAttribute("step", 3);
+            req.getRequestDispatcher("forgot__password.jsp").forward(req, resp);
+        }
+
         //remove otp out of session
         session.removeAttribute("otp_code");
         session.removeAttribute("otp_email");
         session.removeAttribute("otp_expire");
 
-        //flag for JSP → switch UI to success confirmation mode
-        req.setAttribute("verifiedSuccess", true);
-        req.setAttribute("email", email);
-        req.getRequestDispatcher("verify.jsp").forward(req, resp);
+    }
+
+    private void fail(String flow, HttpServletRequest req, HttpServletResponse resp, String message) throws ServletException, IOException {
+        req.setAttribute("error", message);
+
+        if ("forgot".equals(flow)) {
+            req.setAttribute("step", 2);
+            req.getRequestDispatcher("forgo__password.jsp").forward(req, resp);
+        } else {
+            req.getRequestDispatcher("verify.jsp").forward(req, resp);
+        }
     }
 }

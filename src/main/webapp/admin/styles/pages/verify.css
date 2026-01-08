@@ -272,6 +272,14 @@ body {
     border-radius: 6px;
 }
 
+.form-section {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .reset-form {
     padding: 10px 0;
     min-width: 340px;
@@ -368,24 +376,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.change-email-input {
-    width: 100%;
-    padding: 12px;
-    border-radius: 12px;
-    border: 1px solid var(--c3);
-    font-size: 14px;
-    margin-bottom: 12px;
-}
-
-.change-email-input:focus {
-    border-color: var(--c6);
-    outline: none;
-}
-
-.submit-button--update {
-    background-color: var(--c6);
 }
 
 .submit-button:hover {

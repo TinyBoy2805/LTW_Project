@@ -1,5 +1,6 @@
 package dao;
 
+import com.oracle.wls.shaded.org.apache.xpath.objects.XString;
 import model.Role;
 import model.User;
 
@@ -10,39 +11,39 @@ import java.util.List;
 
 public class AuthDao extends BaseDao {
 
-    public User getUserByName(String name)
-    {
-      return get().withHandle(h -> h.createQuery("SELECT * FROM users WHERE name = :name")
-        .bind("name", name)
-        .mapToBean(User.class)
-        .stream()
-        .findFirst()
-        .orElse(null));
+    public User getUserByName(String name) {
+        return get().withHandle(h -> h.createQuery("SELECT * FROM users WHERE name = :name")
+                .bind("name", name)
+                .mapToBean(User.class)
+                .stream()
+                .findFirst()
+                .orElse(null));
     }
+
     public User getUserByEmailOrPhone(String value) {
         return get().withHandle(h -> //get() : get connection to db from BaseDao
-                //lambda function that return User
-                h.createQuery("SELECT * FROM users WHERE email = :v OR phone_number = :v")
-                        .bind("v", value)
-                        //bind variable v into SQL with input info (value)
-                        .map((rs, ctx) -> {
-                            //user mapping function -> Change a single line into User
-                            User u = new User();
-                            u.setId(rs.getInt("id"));
-                            u.setName(rs.getString("name"));
-                            u.setEmail(rs.getString("email"));
-                            u.setRole(Role.valueOf(rs.getString("role")));
-                            u.setPassword_hashed(rs.getString("password_hashed"));
-                            u.setPhone_number(rs.getString("phone_number"));
-                            u.setAvt_url(rs.getString("avt_url"));
-                            u.setSalt(rs.getString("salt"));
-                            u.setVerified(rs.getInt("verified"));
-                            return u;
-                        })
-                        .findFirst()
-                        //take the first record that be found
-                        .orElse(null)
-                        //if no result is found, return null
+                        //lambda function that return User
+                        h.createQuery("SELECT * FROM users WHERE email = :v OR phone_number = :v")
+                                .bind("v", value)
+                                //bind variable v into SQL with input info (value)
+                                .map((rs, ctx) -> {
+                                    //user mapping function -> Change a single line into User
+                                    User u = new User();
+                                    u.setId(rs.getInt("id"));
+                                    u.setName(rs.getString("name"));
+                                    u.setEmail(rs.getString("email"));
+                                    u.setRole(Role.valueOf(rs.getString("role")));
+                                    u.setPassword_hashed(rs.getString("password_hashed"));
+                                    u.setPhone_number(rs.getString("phone_number"));
+                                    u.setAvt_url(rs.getString("avt_url"));
+                                    u.setSalt(rs.getString("salt"));
+                                    u.setVerified(rs.getInt("verified"));
+                                    return u;
+                                })
+                                .findFirst()
+                                //take the first record that be found
+                                .orElse(null)
+                //if no result is found, return null
         );
     }
 
@@ -114,61 +115,76 @@ public class AuthDao extends BaseDao {
 
     // Lấy danh sách tất cả người dùng có vai trò là khách hàng
     public List<User> getAllCustomers() {
-         return get().withHandle(handle ->
-             handle.createQuery("""
-                  SELECT id, name, email, phone_number,
-                      avt_url,
-                      role
-                  FROM users
-                  WHERE role = 'customer'
-                  """)
-                .mapToBean(User.class)
-                .list()
-         );
+        return get().withHandle(handle ->
+                handle.createQuery("""
+                                SELECT id, name, email, phone_number,
+                                    avt_url,
+                                    role
+                                FROM users
+                                WHERE role = 'customer'
+                                """)
+                        .mapToBean(User.class)
+                        .list()
+        );
     }
 
     // Lấy chi tiết 1 khách hàng theo ID
     public User getUserById(int id) {
-            return get().withHandle(handle ->
+        return get().withHandle(handle ->
                 handle.createQuery("""
-                    SELECT id, name, email, role, phone_number, avt_url
-                    FROM users
-                    WHERE id = :id
-                    """)
-                .bind("id", id)
-                .mapToBean(User.class)
-                .findOne()
-                .orElse(null)
-            );
+                                SELECT id, name, email, role, phone_number, avt_url
+                                FROM users
+                                WHERE id = :id
+                                """)
+                        .bind("id", id)
+                        .mapToBean(User.class)
+                        .findOne()
+                        .orElse(null)
+        );
     }
+
     // Tìm kiếm khách hàng theo tên
     public List<User> searchCustomersByName(String keyword) {
         return get().withHandle(handle ->
-            handle.createQuery("""
-                SELECT id, name, email, phone_number, avt_url, role
-                FROM users
-                WHERE role = 'customer' AND LOWER(name) LIKE CONCAT('%', LOWER(:keyword), '%')
-            """)
-            .bind("keyword", keyword)
-            .mapToBean(User.class)
-            .list()
+                handle.createQuery("""
+                                    SELECT id, name, email, phone_number, avt_url, role
+                                    FROM users
+                                    WHERE role = 'customer' AND LOWER(name) LIKE CONCAT('%', LOWER(:keyword), '%')
+                                """)
+                        .bind("keyword", keyword)
+                        .mapToBean(User.class)
+                        .list()
         );
     }
+
     // Cập nhật thông tin khách hàng
     public void updateUserInfo(int id, String name, String email, String phoneNumber) {
         get().useHandle(h ->
-            h.createUpdate("""
-                UPDATE users
-                SET name = :name,
-                    email = :email,
-                    phone_number = :phoneNumber
-                WHERE id = :id
-            """)
-            .bind("id", id)
-            .bind("name", name)
-            .bind("email", email)
-            .bind("phoneNumber", phoneNumber)
-            .execute()
+                h.createUpdate("""
+                                    UPDATE users
+                                    SET name = :name,
+                                        email = :email,
+                                        phone_number = :phoneNumber
+                                    WHERE id = :id
+                                """)
+                        .bind("id", id)
+                        .bind("name", name)
+                        .bind("email", email)
+                        .bind("phoneNumber", phoneNumber)
+                        .execute()
+        );
+    }
+
+    public void updatePassword(String email, String hashPassword) {
+        get().useHandle(h ->
+                h.createUpdate("""
+                                UPDATE users
+                                SET password_hashed = :password
+                                WHERE email = :email
+                                """)
+                        .bind("password", hashPassword)
+                        .bind("email", email)
+                        .execute()
         );
     }
 }
