@@ -1,36 +1,66 @@
 package model;
 
-import java.math.BigDecimal;
-import java.sql.Date;
+import java.io.Serializable;
+import java.time.LocalDate;
 
-public class Voucher {
-    private Long id;
-    private Long categoryId;
+
+public class Voucher implements Serializable
+{
+    private int id;
+    private String category_name;
+    private String name;
     private String code;
     private String description;
-    private BigDecimal discountAmount;
-    private Double discountPercentage;
-    private Date startDate;
-    private Date endDate;
-    private Integer usageLimit;
-    private Integer currentAmount;
-    private BigDecimal minOrderValue;
-    private String voucherType; // "shipping" hoặc "product"
+    private double discount_amount;
+    private double discount_percentage;
+    private LocalDate start_date;
+    private LocalDate end_date;
+    private  int usage_limt;
+    private  int current_amount;
+    private double min_order_value;
+    private VoucherType voucher_type;
 
-    public Long getId() {
+    public Voucher() {}
+
+    public Voucher(int id, String category_name, String name, String code, String description, double discount_amount, double discount_percentage, LocalDate start_date, LocalDate end_date, int usage_limt, int current_amount, double min_order_value, VoucherType voucher_type)
+    {
+        this.id = id;
+        this.category_name = category_name;
+        this.name = name;
+        this.code = code;
+        this.description = description;
+        this.discount_amount = discount_amount;
+        this.discount_percentage = discount_percentage;
+        this.start_date = start_date;
+        this.end_date = end_date;
+        this.usage_limt = usage_limt;
+        this.current_amount = current_amount;
+        this.min_order_value = min_order_value;
+        this.voucher_type = voucher_type;
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Long getCategoryId() {
-        return categoryId;
+    public String getCategory_name() {
+        return category_name;
     }
 
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
+    public void setCategory_name(String category_name) {
+        this.category_name = category_name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getCode() {
@@ -49,67 +79,67 @@ public class Voucher {
         this.description = description;
     }
 
-    public BigDecimal getDiscountAmount() {
-        return discountAmount;
+    public double getDiscount_amount() {
+        return discount_amount;
     }
 
-    public void setDiscountAmount(BigDecimal discountAmount) {
-        this.discountAmount = discountAmount;
+    public void setDiscount_amount(double discount_amount) {
+        this.discount_amount = discount_amount;
     }
 
-    public Double getDiscountPercentage() {
-        return discountPercentage;
+    public double getDiscount_percentage() {
+        return discount_percentage;
     }
 
-    public void setDiscountPercentage(Double discountPercentage) {
-        this.discountPercentage = discountPercentage;
+    public void setDiscount_percentage(double discount_percentage) {
+        this.discount_percentage = discount_percentage;
     }
 
-    public Date getStartDate() {
-        return startDate;
+    public LocalDate getStart_date() {
+        return start_date;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
+    public void setStart_date(LocalDate start_date) {
+        this.start_date = start_date;
     }
 
-    public Date getEndDate() {
-        return endDate;
+    public LocalDate getEnd_date() {
+        return end_date;
     }
 
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
+    public void setEnd_date(LocalDate end_date) {
+        this.end_date = end_date;
     }
 
-    public Integer getUsageLimit() {
-        return usageLimit;
+    public int getUsage_limt() {
+        return usage_limt;
     }
 
-    public void setUsageLimit(Integer usageLimit) {
-        this.usageLimit = usageLimit;
+    public void setUsage_limt(int usage_limt) {
+        this.usage_limt = usage_limt;
     }
 
-    public Integer getCurrentAmount() {
-        return currentAmount;
+    public int getCurrent_amount() {
+        return current_amount;
     }
 
-    public void setCurrentAmount(Integer currentAmount) {
-        this.currentAmount = currentAmount;
+    public void setCurrent_amount(int current_amount) {
+        this.current_amount = current_amount;
     }
 
-    public BigDecimal getMinOrderValue() {
-        return minOrderValue;
+    public double getMin_order_value() {
+        return min_order_value;
     }
 
-    public void setMinOrderValue(BigDecimal minOrderValue) {
-        this.minOrderValue = minOrderValue;
+    public void setMin_order_value(double min_order_value) {
+        this.min_order_value = min_order_value;
     }
 
-    public String getVoucherType() {
-        return voucherType;
+    public VoucherType getVoucher_type() {
+        return voucher_type;
     }
 
-    public void setVoucherType(String voucherType) {
-        this.voucherType = voucherType;
+    public void setVoucher_type(VoucherType voucher_type) {
+        this.voucher_type = voucher_type;
     }
 }

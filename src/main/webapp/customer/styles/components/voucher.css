@@ -35,6 +35,18 @@
     
 }
 
+.voucher__left .left__info
+{
+    color: var(--c5);
+    width: 100%;
+    text-align: right;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 13px;
+}
+
+
 .voucher__right
 {
     width: 20%;

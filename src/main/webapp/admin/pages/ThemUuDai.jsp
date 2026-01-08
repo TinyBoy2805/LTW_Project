@@ -37,11 +37,8 @@
               <div class="form-wrap">
                 <section class="left-panel">
                   <div class="card-form">
-                    <label class="label">Mã ưu đãi</label>
-                    <input type="text" class="input" name="code" placeholder="Nhập mã ưu đãi" required />
-
                     <label class="label">Tên ưu đãi</label>
-                    <input type="text" class="input" name="description" placeholder="Nhập tên/mô tả ưu đãi" required />
+                    <input type="text" class="input" name="code" placeholder="Nhập tên ưu đãi" required />
 
                     <label class="label">Áp dụng cho danh mục</label>
                     <select name="category_id" class="input" required>
@@ -53,8 +50,8 @@
 
                     <label class="label">Phân loại ưu đãi</label>
                     <select id="offer-type" name="voucher_type" class="input" required>
-                      <option value="product">Giảm giá sản phẩm</option>
-                      <option value="ship">Giảm giá ship</option>
+                      <option value="discount">Giảm giá sản phẩm</option>
+                      <option value="shipping">Giảm giá ship</option>
                     </select>
 
                     <div class="row two">
@@ -97,11 +94,11 @@
                     </div>
 
                     <label class="label">Mô tả chi tiết</label>
-                    <textarea class="input textarea" name="description_detail" rows="4" placeholder="Nhập mô tả ưu đãi"></textarea>
+                    <textarea class="input textarea" name="description" rows="4" placeholder="Nhập mô tả ưu đãi"></textarea>
                   </div>
                 </section>
               </div>
-
+ 
               <div class="actions-row">
                 <div class="actions-left">
                   <p class="note">Đảm bảo rằng sản phẩm của bạn là hợp pháp và không gây hậu quả nào</p>

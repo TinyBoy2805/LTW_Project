@@ -41,10 +41,10 @@
 
             <c:forEach items="${vouchers}" var="voucher">
               <a class="card-link" href="${pageContext.request.contextPath}/quanlyuudai?id=${voucher.id}" title="Quản lý ưu đãi">
-              <article class="card" role="listitem" data-promo="${voucher.voucherType}">
+              <article class="card" role="listitem" data-promo="${voucher.voucher_type}">
                 <figure class="card__figure">
                   <c:choose>
-                    <c:when test="${voucher.voucherType == 'shipping'}">
+                    <c:when test="${voucher.voucher_type.name() == 'SHIPPING'}">
                       <div class="promo-icon promo-shipping" aria-hidden="true"><i class="fa-solid fa-truck"></i></div>
                     </c:when>
                     <c:otherwise>
@@ -55,21 +55,21 @@
                 <div class="info">
                   <h4>${voucher.code != null ? voucher.code : 'Ưu đãi'}</h4>
                   <p>${voucher.description}</p>
-                  <p class="muted">Loại: ${voucher.voucherType == 'shipping' ? 'Giảm giá ship' : 'Giảm giá sản phẩm'}</p>
-                  <c:if test="${voucher.minOrderValue != null}">
-                    <p class="muted">Áp dụng cho đơn từ: ${voucher.minOrderValue}</p>
+                  <p class="muted">Loại: ${voucher.voucher_type.name() == 'SHIPPING' ? 'Giảm giá ship' : 'Giảm giá sản phẩm'}</p>
+                  <c:if test="${voucher.min_order_value != null}">
+                    <p class="muted">Áp dụng cho đơn từ: ${voucher.min_order_value}</p>
                   </c:if>
-                  <c:if test="${voucher.discountAmount != null}">
-                    <p class="muted">Giảm tiền: ${voucher.discountAmount}</p>
+                  <c:if test="${voucher.discount_amount != null}">
+                    <p class="muted">Giảm tiền: ${voucher.discount_amount}</p>
                   </c:if>
-                  <c:if test="${voucher.discountPercentage != null}">
-                    <p class="muted">Giảm %: ${voucher.discountPercentage}%</p>
+                  <c:if test="${voucher.discount_percentage != null}">
+                    <p class="muted">Giảm %: ${voucher.discount_percentage}%</p>
                   </c:if>
-                  <c:if test="${voucher.endDate != null}">
-                    <p class="muted">Hạn sử dụng: ${voucher.endDate}</p>
+                  <c:if test="${voucher.end_date != null}">
+                    <p class="muted">Hạn sử dụng: ${voucher.end_date}</p>
                   </c:if>
-                  <c:if test="${voucher.usageLimit != null}">
-                    <p class="muted">Số lượng: ${voucher.usageLimit}</p>
+                  <c:if test="${voucher.usage_limt != null}">
+                    <p class="muted">Số lượng: ${voucher.usage_limt}</p>
                   </c:if>
                 </div>
               </article>

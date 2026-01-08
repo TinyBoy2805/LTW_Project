@@ -45,30 +45,30 @@
 
                   <label class="label">Áp dụng cho danh mục</label>
                   <select name="category_id" class="input" form="updateForm">
-                    <option value="">Áp dụng tất cả</option>
+                    <option value="">Chọn danh mục</option>
                     <c:forEach var="cat" items="${categories}">
-                      <option value="${cat.id}" ${voucher.categoryId == cat.id ? 'selected' : ''}>${cat.name}</option>
+                      <option value="${cat.id}" ${voucher.category_name == cat.id ? 'selected' : ''}>${cat.name}</option>
                     </c:forEach>
                   </select>
 
                   <label class="label">Phân loại ưu đãi</label>
                   <select id="offer-type" name="voucher_type" class="input" form="updateForm">
-                    <option value="discount" ${voucher.voucherType == 'discount' ? 'selected' : ''}>Giảm giá sản phẩm</option>
-                    <option value="shipping" ${voucher.voucherType == 'shipping' ? 'selected' : ''}>Giảm giá ship</option>
+                    <option value="discount" ${voucher.voucher_type != null and voucher.voucher_type.name() == 'DISCOUNT' ? 'selected' : ''}>Giảm giá sản phẩm</option>
+                    <option value="shipping" ${voucher.voucher_type != null and voucher.voucher_type.name() == 'SHIPPING' ? 'selected' : ''}>Giảm giá ship</option>
                   </select>
 
                   <div class="row two">
                     <div>
                       <label class="label">Giảm tiền (vnđ)</label>
                       <div class="input-with-icon">
-                        <input type="number" class="input" name="discount_amount" form="updateForm" min="0" step="1000" value="${voucher.discountAmount}" aria-label="Giảm tiền" />
+                        <input type="number" class="input" name="discount_amount" form="updateForm" min="0" step="1000" value="${voucher.discount_amount}" aria-label="Giảm tiền" />
                         <i class="fa-solid fa-pen input-icon"></i>
                       </div>
                     </div>
                     <div>
                       <label class="label">Giảm %</label>
                       <div class="input-with-icon">
-                        <input type="number" class="input" name="discount_percentage" form="updateForm" min="0" max="100" step="1.0" value="${voucher.discountPercentage}" />
+                        <input type="number" class="input" name="discount_percentage" form="updateForm" min="0" max="100" step="1.0" value="${voucher.discount_percentage}" />
                         <i class="fa-solid fa-pen input-icon"></i>
                       </div>
                     </div>
@@ -78,7 +78,7 @@
                     <div>
                       <label class="label">Áp dụng cho đơn giá từ</label>
                       <div class="input-with-icon">
-                        <input type="number" class="input" name="min_order_value" form="updateForm" min="0" step="1000" value="${voucher.minOrderValue}"
+                        <input type="number" class="input" name="min_order_value" form="updateForm" min="0" step="1000" value="${voucher.min_order_value}"
                           aria-label="Áp dụng cho đơn giá từ" />
                         <i class="fa-solid fa-pen input-icon"></i>
                       </div>
@@ -86,30 +86,29 @@
                     <div>
                       <label class="label">Số lượng</label>
                       <div class="input-with-icon">
-                        <input type="number" class="input" name="usage_limit" form="updateForm" min="0" step="1" value="${voucher.usageLimit}" />
+                        <input type="number" class="input" name="usage_limit" form="updateForm" min="0" step="1" value="${voucher.usage_limt}" />
                         <i class="fa-solid fa-pen input-icon"></i>
                       </div>
                     </div>
                   </div>
                   <label class="label">Áp dụng từ ngày</label>
                   <div class="input-with-icon">
-                    <input type="date" class="input" name="start_date" form="updateForm" value="${voucher.startDate}" />
+                    <input type="date" class="input" name="start_date" form="updateForm" value="${voucher.start_date}" />
                     <i class="fa-solid fa-pen input-icon"></i>
                   </div>
 
                   <label class="label">Hạn ưu đãi đến hết ngày</label>
                   <div class="input-with-icon">
-                    <input type="date" class="input" name="end_date" form="updateForm" value="${voucher.endDate}" />
+                    <input type="date" class="input" name="end_date" form="updateForm" value="${voucher.end_date}" />
                     <i class="fa-solid fa-pen input-icon"></i>
                   </div>
 
-                  <label class="label">Mô tả</label>
+                  <label class="label">Mô tả chi tiết</label>
                   <div class="input-with-icon">
                     <textarea class="input textarea" name="description" form="updateForm" rows="4">${voucher.description}</textarea>
                     <i class="fa-solid fa-pen input-icon"></i>
                   </div>
-                </div>
-              </div>
+
               <div class="right-panel">
                 <%-- Right panel content can go here if needed in the future --%>
               </div>

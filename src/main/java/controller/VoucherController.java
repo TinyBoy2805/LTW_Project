@@ -81,7 +81,6 @@ public class VoucherController extends HttpServlet {
 
                 Long categoryId = parseLong(request.getParameter("category_id"));
                 if (id == null || categoryId == null) {
-                    // Reload with error and original data
                     Voucher voucher = (id != null) ? voucherDao.findById(id) : null;
                     List<Category> categories = categoryDao.findAll();
                     request.setAttribute("voucher", voucher);
@@ -92,18 +91,20 @@ public class VoucherController extends HttpServlet {
                 }
 
                 Voucher voucher = parseVoucher(request);
-                voucher.setId(id != null ? id.longValue() : null);
-                voucher.setCategoryId(categoryId);
-                // Ensure voucher_type matches DB enum; fallback to existing if invalid
-                String t = voucher.getVoucherType();
-                if (t == null || !("discount".equalsIgnoreCase(t) || "shipping".equalsIgnoreCase(t))) {
+                voucher.setId(id != null ? id : 0);
+                voucher.setCategory_name(categoryId != null ? String.valueOf(categoryId) : null);
+                String typeParam = request.getParameter("voucher_type");
+                model.VoucherType type = null;
+                try {
+                    if (typeParam != null) type = model.VoucherType.valueOf(typeParam.trim().toUpperCase());
+                } catch (IllegalArgumentException ignored) {}
+                if (type == null) {
                     Voucher existing = voucherDao.findById(id);
                     if (existing != null) {
-                        voucher.setVoucherType(existing.getVoucherType());
-                    } else {
-                        voucher.setVoucherType(null);
+                        type = existing.getVoucher_type();
                     }
                 }
+                voucher.setVoucher_type(type);
                 voucherDao.update(voucher);
                 response.sendRedirect(request.getContextPath() + "/uudai");
                 return;
@@ -115,18 +116,28 @@ public class VoucherController extends HttpServlet {
 
     private Voucher parseVoucher(HttpServletRequest request) {
         Voucher voucher = new Voucher();
-        voucher.setCategoryId(parseLong(request.getParameter("category_id")));
+        voucher.setCategory_name(trimToNull(request.getParameter("category_id")));
         voucher.setCode(trimToNull(request.getParameter("code")));
         voucher.setDescription(trimToNull(request.getParameter("description")));
-        voucher.setDiscountAmount(parseBigDecimal(request.getParameter("discount_amount")));
-        voucher.setDiscountPercentage(parseDouble(request.getParameter("discount_percentage")));
-        voucher.setStartDate(parseDate(request.getParameter("start_date")));
-        voucher.setEndDate(parseDate(request.getParameter("end_date")));
-        voucher.setUsageLimit(parseInt(request.getParameter("usage_limit")));
-        Integer usageLimit = voucher.getUsageLimit();
-        voucher.setCurrentAmount(usageLimit != null ? usageLimit : null);
-        voucher.setMinOrderValue(parseBigDecimal(request.getParameter("min_order_value")));
-        voucher.setVoucherType(trimToNull(request.getParameter("voucher_type")));
+        Double discountAmount = parseDouble(request.getParameter("discount_amount"));
+        if (discountAmount != null) voucher.setDiscount_amount(discountAmount);
+        Double discountPercentage = parseDouble(request.getParameter("discount_percentage"));
+        if (discountPercentage != null) voucher.setDiscount_percentage(discountPercentage);
+        java.sql.Date sqlStartDate = parseDate(request.getParameter("start_date"));
+        java.sql.Date sqlEndDate = parseDate(request.getParameter("end_date"));
+        voucher.setStart_date(sqlStartDate != null ? sqlStartDate.toLocalDate() : null);
+        voucher.setEnd_date(sqlEndDate != null ? sqlEndDate.toLocalDate() : null);
+        Integer usageLimit = parseInt(request.getParameter("usage_limit"));
+        if (usageLimit != null) voucher.setUsage_limt(usageLimit);
+        voucher.setCurrent_amount(usageLimit != null ? usageLimit : 0);
+        Double minOrderValue = parseDouble(request.getParameter("min_order_value"));
+        if (minOrderValue != null) voucher.setMin_order_value(minOrderValue);
+        String typeParam = request.getParameter("voucher_type");
+        model.VoucherType type = null;
+        try {
+            if (typeParam != null) type = model.VoucherType.valueOf(typeParam.trim().toUpperCase());
+        } catch (IllegalArgumentException ignored) {}
+        voucher.setVoucher_type(type);
         return voucher;
     }
 
@@ -160,13 +171,6 @@ public class VoucherController extends HttpServlet {
         }
     }
 
-    private BigDecimal parseBigDecimal(String val) {
-        try {
-            return val != null && !val.trim().isEmpty() ? new BigDecimal(val.trim()) : null;
-        } catch (NumberFormatException e) {
-            return null;
-        }
-    }
 
     private Date parseDate(String val) {
         try {
