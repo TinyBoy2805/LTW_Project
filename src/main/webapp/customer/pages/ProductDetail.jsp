@@ -12,21 +12,24 @@
     <title>MichiShop</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/customer/styles/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script>
+        window.APP_CONTEXT_PATH = `${pageContext.request.contextPath}`;
+    </script>
 </head>
 <body>
     <div class="scroll-to-top-btn"><i class="fa-solid fa-circle-up"></i></div>
     <header class="header active">
         <nav class="nav">
             <div class="nav__top">
-                <a class="nav__top-logo" href="Home.jsp">
+                <a class="nav__top-logo" href="${pageContext.request.contextPath}/customer/pages/Home.jsp">
                     <div class="nav__logo-img">
                         <img src="${pageContext.request.contextPath}/customer/imgs/Gemini_Generated_Image_c648fqc648fqc648.png" alt="">
                     </div>
                     <h1>MichiShop</h1>
                 </a>
                 <div class="nav__top-input">
-                    <form action="">
-                        <input type="text" placeholder="Sản phẩm bạn cần tìm..." class="--no-border --no-outline">
+                    <form action="" id="search_form">
+                        <input id="search_bar" type="text" placeholder="Sản phẩm bạn cần tìm..." class="--no-border --no-outline">
                         <button class="--no-border --no-outline">
                             <i class="fa-solid fa-magnifying-glass"></i>
                             Tìm kiếm
@@ -698,6 +701,7 @@
 
 
     
-</body>
 <script type="module" src="${pageContext.request.contextPath}/customer/scripts/main.js"></script>
+<script type="module" src="${pageContext.request.contextPath}/customer/scripts/header.js"></script>
+</body>
 </html>

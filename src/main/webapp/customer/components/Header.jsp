@@ -3,9 +3,9 @@
 
 
 
-<%
-    String activeTab = (String)request.getAttribute("activeTab");
-%>
+<%--<%--%>
+<%--    String activeTab = (String)request.getAttribute("activeTab");--%>
+<%--%>--%>
 
 
 
@@ -20,7 +20,7 @@
             </a>
             <div class="nav__top-input">
                 <form action="Products.jsp" id="search_form">
-                    <input type="text" placeholder="Sản phẩm bạn cần tìm..." class="--no-border --no-outline" id="search_bar">
+                    <input type="text" placeholder="Sản phẩm bạn cần tìm..." class="--no-border --no-outline" id="search_bar" value="${not empty searchKeyword ? searchKeyword : ''}">
                     <button class="--no-border --no-outline" type="submit">
                         <i class="fa-solid fa-magnifying-glass"></i>
                         Tìm kiếm
@@ -99,12 +99,12 @@
         <div class="nav__line"></div>
         <div class="nav__bottom">
             <ul>
-                <li><a href="${pageContext.request.contextPath}/home" class="<%= "home".equals(activeTab) ? "active":""%>">Trang chủ</a></li>
-                <li><a href="${pageContext.request.contextPath}/product" class="<%= "product".equals(activeTab) ? "active":""%>">Sản phẩm</a></li>
-                <li><a href="${pageContext.request.contextPath}/customer/pages/Voucher.jsp" class="<%= "voucher".equals(activeTab) ? "active":""%>">Khuyến mãi</a></li>
-                <li><a href="${pageContext.request.contextPath}/customer/pages/Blog.jsp" class="<%= "blog".equals(activeTab) ? "active":""%>">Cẩm nang</a></li>
-                <li><a href="${pageContext.request.contextPath}/customer/pages/Contact.jsp" class="<%= "contact".equals(activeTab) ? "active":""%>">Liên hệ</a></li>
-                <li><a href="${pageContext.request.contextPath}/customer/pages/About.jsp" class="<%= "about".equals(activeTab) ? "active":""%>">về cửa hàng</a></li>
+                <li><a href="${pageContext.request.contextPath}/home" class="${activeTab eq 'home' ? 'active' : ''}">Trang chủ</a></li>
+                <li><a href="${pageContext.request.contextPath}/product" class="${activeTab eq 'product' ? 'active' : ''}">Sản phẩm</a></li>
+                <li><a href="${pageContext.request.contextPath}/customer/pages/Voucher.jsp" class="${activeTab eq 'voucher' ? 'active' : ''}">Khuyến mãi</a></li>
+                <li><a href="${pageContext.request.contextPath}/customer/pages/Blog.jsp" class="${activeTab eq 'blog' ? 'active' : ''}">Cẩm nang</a></li>
+                <li><a href="${pageContext.request.contextPath}/customer/pages/Contact.jsp" class="${activeTab eq 'contact' ? 'active' : ''}">Liên hệ</a></li>
+                <li><a href="${pageContext.request.contextPath}/customer/pages/About.jsp" class="${activeTab eq 'about' ? 'active' : ''}">về cửa hàng</a></li>
             </ul>
         </div>
     </nav>

@@ -5,6 +5,8 @@
 
 <%
     request.setAttribute("activeTab", "product");
+    String keyword = (String)request.getAttribute("searchKeyword");
+    request.setAttribute("searchKeyword", keyword);
 %>
 
 <!DOCTYPE html>
@@ -99,13 +101,16 @@
                         </li>
                     </c:forEach>
                 </ul>
-                
 
-                <div class="pagination">
+                <div style="display: ${empty products ? 'flex':'none'}; flex-direction: column; margin: 0 auto; text-align: center; padding: 60px 20px; border-radius: 8px; width: 1000px;">
+                    <h2 style="font-size: 24px; color: var(--c6); margin-bottom: 12px; font-weight: 600;">Sản phẩm bạn tìm kiếm không tồn tại</h2>
+                    <p style="font-size: 16px; color: var(--c3); margin: 0;">Hãy tìm kiếm sản phẩm khác</p>
+                </div>
 
+                <div class="pagination" style="display: ${empty products ? 'none':'flex'}">
                     <c:choose>
                         <c:when test="${currentPage > 1}">
-                            <a href="${pageContext.request.contextPath}/product?page=${currentPage - 1}" class="pagination__btn">
+                            <a href="${pageContext.request.contextPath}/product?page=${currentPage - 1}&search=${searchKeyword}" class="pagination__btn">
                                 <i class="fa-solid fa-chevron-left"></i>
                             </a>
                         </c:when>
@@ -119,7 +124,7 @@
                     <div class="pagination__numbers">
                         <c:forEach var="i" begin="${currentPage - 1}" end="${currentPage + 1}">
                             <c:if test="${i >= 1 && i <= totalPages}">
-                                <a href="${pageContext.request.contextPath}/product?page=${i}" 
+                                <a href="${pageContext.request.contextPath}/product?page=${i}&search=${searchKeyword}"
                                    class="pagination__number ${i == currentPage ? 'pagination__number--active' : ''}">
                                    ${i}
                                 </a>
@@ -127,14 +132,14 @@
                         </c:forEach>
 
                         <c:if test="${currentPage + 1 < totalPages}">
-                            <a href="${pageContext.request.contextPath}/product?page=${currentPage + 1}" 
+                            <a href="${pageContext.request.contextPath}/product?page=${currentPage + 1}&search=${searchKeyword}"
                                class="pagination__dots">...</a>
                         </c:if>
                     </div>
 
                     <c:choose>
                         <c:when test="${currentPage < totalPages}">
-                            <a href="${pageContext.request.contextPath}/product?page=${currentPage + 1}" class="pagination__btn">
+                            <a href="${pageContext.request.contextPath}/product?page=${currentPage + 1}&search=${searchKeyword}" class="pagination__btn">
                                  <i class="fa-solid fa-chevron-right"></i>
                             </a>
                         </c:when>
@@ -153,7 +158,7 @@
     <jsp:include page="/customer/components/Footer.jsp"/>
 
 <script type="module" src="${pageContext.request.contextPath}/customer/scripts/main.js"></script>
-<script type="module" src="${pageContext.request.contextPath}/customer/scripts/product/product.js"></script>
+<script type="module" src="${pageContext.request.contextPath}/customer/scripts/product/Products.js"></script>
 <%--<script src="${pageContext.request.contextPath}/customer/scripts/Products.js" type="module"></script>--%>
 </body>
 </html>

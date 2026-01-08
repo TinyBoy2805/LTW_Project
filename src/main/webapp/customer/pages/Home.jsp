@@ -83,7 +83,7 @@
                 <button class="right-btn">></button>
                 <ul data-total="${categories.size()}">
                     <c:forEach var="c" items="${categories}">
-                        <li><i class="fa-solid fa-icons"></i><a href="${pageContext.request.contextPath}/customer/pages/Products.jsp" title="Sữa bột">${c}</a></li>
+                        <li><i class="fa-solid fa-icons"></i><a href="${pageContext.request.contextPath}/product?category=${c}" title="Sữa bột">${c}</a></li>
                     </c:forEach>
                 </ul>
             </div>

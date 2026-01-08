@@ -34,4 +34,9 @@ public class ProductService
     {
         return this.productDAO.getProductsByName(productName);
     }
+
+    public List<ProductCard> getProductsByCategory(String categoryParam)
+    {
+        return this.productDAO.getProductsByCategory(categoryParam);
+    }
 }

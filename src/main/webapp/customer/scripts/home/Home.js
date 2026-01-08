@@ -303,6 +303,7 @@ tabs.forEach((tab, index)=>
 
         reviewForm.appendChild(succesInform)
 
+        //CAUTION: don't need to delete this code
         //reset after send
         // setTimeout(()=>
         // {

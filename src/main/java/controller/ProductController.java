@@ -30,20 +30,22 @@ public class ProductController extends HttpServlet
             return;
         }
 
-        String action = pathInfo.substring(1);
-        System.out.println("action: " + action);
-
-        switch (action)
-        {
-            case "search":
-                this.searchProductsByName(request, response);
-                return;
-            default:
-                response.sendError(HttpServletResponse.SC_NOT_FOUND);
-                return;
-        }
+//        String action = pathInfo.substring(1);
+//        System.out.println("action: " + action);
+//
+//        switch (action)
+//        {
+//            case "search":
+//                this.searchProductsByName(request, response);
+//                return;
+//            default:
+//                response.sendError(HttpServletResponse.SC_NOT_FOUND);
+//                return;
+//        }
 
     }
+
+
 
 
     @Override
@@ -72,6 +74,8 @@ public class ProductController extends HttpServlet
     private void showProductByPage(HttpServletRequest request, HttpServletResponse response)
     {
         String pageParam = request.getParameter("page");
+        String searchParam = request.getParameter("search");
+        String categoryParam = request.getParameter("category");
         int page = 1;
 
         if (pageParam != null && !pageParam.isEmpty())
@@ -88,20 +92,63 @@ public class ProductController extends HttpServlet
 
         try
         {
-            List<ProductCard> products = productService.getProductByPage(page, PAGE_SIZE);
+            List<ProductCard> products;
+            int totalProducts;
+
+            if(searchParam != null && !searchParam.trim().isEmpty())
+            {
+                products = this.productService.getProductsByName(searchParam);
+                totalProducts = products.size();
+
+                int fromIndex = (page - 1) * PAGE_SIZE;
+                int toIndex = Math.min(fromIndex + PAGE_SIZE, totalProducts);
+                if(fromIndex < totalProducts)
+                {
+                    products = products.subList(fromIndex, toIndex);
+                }
+            }else if(categoryParam != null && !categoryParam.trim().isEmpty())
+            {
+                products = this.productService.getProductsByCategory(categoryParam);
+                totalProducts = products.size();
+
+                int fromIndex = (page - 1) * PAGE_SIZE;
+                int toIndex = Math.min(fromIndex + PAGE_SIZE, totalProducts);
+                if(fromIndex < totalProducts)
+                {
+                    products = products.subList(fromIndex, toIndex);
+                }
+            }else
+            {
+                products = this.productService.getProductByPage(page, PAGE_SIZE);
+                totalProducts = this.productService.getTotalProducts();
+            }
 
             for(ProductCard pc: products)
             {
                 pc.setAvg_rating(Math.floor(pc.getAvg_rating()));
             }
 
-            int totalProducts = productService.getTotalProducts();
             int totalPages = (int) Math.ceil((double) totalProducts / PAGE_SIZE);
 
             if (page > totalPages && totalPages > 0)
             {
                 page = totalPages;
-                products = productService.getProductByPage(page, PAGE_SIZE);
+                if (searchParam != null && !searchParam.trim().isEmpty())
+                {
+                    products = this.productService.getProductsByName(searchParam);
+                    int fromIndex = (page - 1) * PAGE_SIZE;
+                    int toIndex = Math.min(fromIndex + PAGE_SIZE, products.size());
+                    products = products.subList(fromIndex, toIndex);
+                }else if(categoryParam != null && !categoryParam.trim().isEmpty())
+                {
+                    products = this.productService.getProductsByCategory(categoryParam);
+                    int fromIndex = (page - 1) * PAGE_SIZE;
+                    int toIndex = Math.min(fromIndex + PAGE_SIZE, products.size());
+                    products = products.subList(fromIndex, toIndex);
+                }else
+                {
+                    products = this.productService.getProductByPage(page, PAGE_SIZE);
+                }
                 for(ProductCard pc: products)
                 {
                     pc.setAvg_rating(Math.floor(pc.getAvg_rating()));
@@ -111,6 +158,7 @@ public class ProductController extends HttpServlet
             request.setAttribute("products", products);
             request.setAttribute("currentPage", page);
             request.setAttribute("totalPages", totalPages);
+            request.setAttribute("searchKeyword", searchParam);
 
             request.getRequestDispatcher("/customer/pages/Products.jsp").forward(request, response);
         } catch (SQLException e)

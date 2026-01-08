@@ -1,7 +1,10 @@
-import product from './product/product.js'
 
 
-document.addEventListener("DOMContentLoaded", ()=>
+
+
+window.addEventListener("DOMContentLoaded", ()=>
 {
-    product.clickProductItem()
+    const products = sessionStorage.getItem('searchResults')
+    console.log("Content is loaded", products)
 })
+
