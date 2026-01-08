@@ -234,6 +234,7 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-top: 150px;
+    min-width: 1020px;
 }
 
 .welcome-section {
@@ -263,6 +264,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    min-width: 580px;
 }
 
 .product-showcase__banner-image {
@@ -279,7 +281,6 @@ body {
     text-align: center;
 }
 
-/* Form Section */
 .form-section {
     flex: 1;
     min-width: 300px;
@@ -288,21 +289,12 @@ body {
     justify-content: center;
 }
 
-/* Password reset page: lower / vertically center the forms in the right column
-   so they align better with the banner on the left. */
 .password-reset-section {
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 12px;
     padding-left: 18px;
-}
-
-@media (max-width: 900px) {
-    .password-reset-section {
-        justify-content: flex-start;
-        padding-top: 20px;
-    }
 }
 
 .tab-list {
@@ -338,13 +330,23 @@ body {
     background-color: var(--c6);
 }
 
-/* Form Styles */
 .auth-form {
     padding: 10px 0;
+    min-width: 340px;
 }
 
 .auth-form--hidden {
     display: none;
+}
+
+.text-danger{
+    color: #ed2222;
+    font-size: 14px ;
+    font-weight: 200 ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 0 4px 0;
 }
 
 .auth-form__title {
@@ -356,12 +358,15 @@ body {
 
 .input-group {
     margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
 .input-group__label {
     display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+    margin-bottom: 4px;
+    font-weight: lighter !important;
     font-size: 14px;
 }
 
@@ -370,6 +375,27 @@ body {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 16px;
+    position: relative;
+}
+
+.password-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 15px;
+    top: 36px;
+    transform: translateY(0);
+    cursor: pointer;
+    color: var(--c4);
+    z-index: 10;
+}
+
+.password-wrapper .input-group__input{
+    padding-right: 45px;
 }
 
 .small-checkbox {
@@ -388,7 +414,6 @@ body {
     margin: 0;
 }
 
-/* ensure checkbox and forgot-password align within the same flex row */
 .auth-form__row {
     display: flex;
     align-items: center;
@@ -431,7 +456,6 @@ body {
     background-color: #e35a9a;
 }
 
-/* Footer copied from customer site styles (Block: site-footer) */
 .site-footer {
     width: 100%;
     background-color: var(--c10);

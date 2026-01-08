@@ -6,9 +6,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MiChiShop</title>
-  <link rel="stylesheet" href="../styles/components/sidebar.css" />
-  <link rel="stylesheet" href="../styles/components/header.css" />
-  <link rel="stylesheet" href="../styles/pages/CaiDat.css" />
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/styles/components/sidebar.css" />
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/styles/components/header.css" />
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/styles/pages/CaiDat.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
@@ -17,141 +17,12 @@
 <body>
   <div class="CaiDat main">
     <aside class="sidebar">
-      <!-- header inclue shop's logo and shop's name -->
-      <div class="sidebar__header">
-        <img src="../imgs/logo.png" alt="Logo">
-        <h2>MiChiShop</h2>
-      </div>
-      <!-- list item of sidebar -->
-      <div class="sidebar__list">
-        <ul class="list">
-          <li class="list__item">
-            <a href="dashboard.jsp">
-              <div class="section">
-                <div class="icon"><i class="fa-solid fa-chart-line"></i></div>
-                <p class="title">Thống kê</p>
-              </div>
-            </a>
-          </li>
-          <li class="list__item">
-            <a href="order.jsp">
-              <div class="section">
-                <div class="icon"><i class="fa-solid fa-shopping-cart"></i></div>
-                <p class="title">Đơn hàng</p>
-              </div>
-            </a>
-          </li>
-          <li class="list__item">
-            <a href="categories.jsp">
-              <div class="section">
-                <div class="icon"><i class="fa-solid fa-box"></i></div>
-                <p class="title">Kho hàng</p>
-              </div>
-            </a>
-          </li>
-          <li class="list__item">
-            <a href="KhachHang.jsp">
-              <div class="section">
-                <div class="icon"><i class="fa-solid fa-users"></i></div>
-                <p class="title">Khách hàng</p>
-              </div>
-            </a>
-          </li>
-          <li class="list__item">
-            <a href="UuDai.jsp">
-              <div class="section">
-                <div class="icon"><i class="fa-solid fa-gift"></i></div>
-                <p class="title">Ưu đãi</p>
-              </div>
-            </a>
-          </li>
-          <li class="list__item">
-            <a href="Blog.jsp">
-              <div class="section">
-                <div class="icon"><i class=" fa-solid fa-blog"></i></div>
-                <p class="title">Bài Viết</p>
-              </div>
-            </a>
-          </li>
-          <li class="list__item">
-            <a href="Email.jsp">
-              <div class="section">
-                <div class="icon"><i class="fa-solid fa-envelope"></i></div>
-                <p class="title">Thông Báo</p>
-              </div>
-              <div class="badge">+99</div>
-            </a>
-          </li>
-          <li class="list__item">
-            <a href="./CaiDat.jsp" class="active">
-              <div class="section">
-                <div class="icon"><i class="fa-solid fa-cog"></i></div>
-                <p class="title">Cài đặt</p>
-              </div>
-            </a>
-          </li>
-        </ul>
-      </div>
-      <!-- bottom has exit button -->
-      <div class="sidebar__bottom">
-        <a href="../../../../../index.html">
-          <div class="icon"><ion-icon name="exit-outline"></ion-icon></div>
-          <p class="title">Đăng xuất</p>
-        </a>
-      </div>
+      <% request.setAttribute("activePage", "caidat"); %>
+      <%@ include file="../components/sidebar.jsp" %>
     </aside>
-
     <div class="container">
-      <div class="container__header">
-        <!-- header left has sidebar expand button and hello message -->
-        <div class="header__left">
-          <div class="icon" id="menu__action"><ion-icon name="menu-outline"></ion-icon></div>
-          <h3>Chào mừng trở lại, <span>MiChi Admin</span></h3>
-        </div>
-
-        <div class="header__right">
-
-          <div class="notification__wrapper">
-            <div class="icon" id="notification__icon">
-              <ion-icon name="notifications-outline"></ion-icon>
-              <span class="notification__badge">3</span>
-            </div>
-
-            <div class="notification__frame">
-              <h4 class="notification__title">🔔 Thông báo mới</h4>
-              <div class="notification__list">
-
-                <div class="notification__item new">
-                  <div class="item__icon"><ion-icon name="bag-check-outline"></ion-icon></div>
-                  <div class="item__content">
-                    <p class="item__text"><strong>Đơn hàng mới:</strong> Mã O-250725 vừa được tạo.</p>
-                    <span class="item__time">Vài giây trước</span>
-                  </div>
-                </div>
-
-                <div class="notification__item new">
-                  <div class="item__icon alert"><ion-icon name="alert-circle-outline"></ion-icon></div>
-                  <div class="item__content">
-                    <p class="item__text"><strong>Cảnh báo tồn kho:</strong> Sữa Bột GrowPro chỉ còn 10 sản phẩm.</p>
-                    <span class="item__time">5 phút trước</span>
-                  </div>
-                </div>
-
-                <div class="notification__item">
-                  <div class="item__icon review"><ion-icon name="star-outline"></ion-icon></div>
-                  <div class="item__content">
-                    <p class="item__text">Có <strong>1 đánh giá 5 sao</strong> mới cho Váng sữa.</p>
-                    <span class="item__time">1 giờ trước</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="avatar"><img src="../imgs/logo.png" alt="Avatar" /></div>
-        </div>
-      </div>
-
-
+      <%@ include file="../components/header.jsp" %>
+      
       <!-- Main content -->
       <main class="content" aria-labelledby="settings-title">
         <h3 class="content__title">Cài đặt</h3>

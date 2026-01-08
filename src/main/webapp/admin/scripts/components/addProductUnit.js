@@ -3,12 +3,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const addUnitButton = document.getElementById('add-unit-btn');
     const unitTemplate = document.getElementById('unit-item-template');
 
-    let unitIdCounter = 2; // Bắt đầu đếm từ 2 vì item mặc định là 1
+    let unitIdCounter = 2;
 
-    /**
-     * Gắn sự kiện xóa cho nút và thêm tính năng ẩn/hiện nút xóa.
-     * @param {HTMLElement} item - Phần tử unit-item.
-     */
+
     const setupRemoveHandler = (item) => {
         const removeButton = item.querySelector('.unit-item__remove-btn');
         if (removeButton) {

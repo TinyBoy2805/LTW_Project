@@ -54,17 +54,19 @@ body {
 
     position: sticky;
     top: 0;
-    /* Đảm bảo nó dính ngay tại mép trên của vùng cuộn (container__content) */
     z-index: 10;
     background-color: #f8f8f8;
 
-    /* Thêm padding-top đã bị xóa ở phần tử cha vào đây */
     padding: 36px 24px 24px 12px;
 }
 
 .content__header a {
     text-decoration: none;
     font-size: 20px;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .content__title {
@@ -158,19 +160,18 @@ body {
     width: 24px;
     height: 24px;
     color: #858585;
-    margin-bottom: 8px; /* Căn chỉnh với input */
+    margin-bottom: 8px;
     transition: color 0.2s;
 }
 
 .unit-item__remove-btn:hover {
-    color: #ff4d4f; /* Màu đỏ khi hover */
+    color: #ff4d4f;
 }
 
 .unit-item__remove-btn ion-icon {
     font-size: 24px;
 }
 
-/* Nút Thêm đơn vị */
 .product-units__add-btn {
     display: flex;
     align-items: center;
@@ -197,7 +198,6 @@ body {
     font-size: 18px;
 }
 
-/* Định dạng chung cho label trong form */
 .form__label {
     font-size: 13px;
     font-weight: 400;

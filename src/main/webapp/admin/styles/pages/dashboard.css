@@ -69,11 +69,10 @@ body {
     width: 100%;
     
     position: sticky;
-    top: 0; /* Đảm bảo nó dính ngay tại mép trên của vùng cuộn (container__content) */
+    top: 0;
     z-index: 10;
     background-color: #f8f8f8;
-    
-    /* Thêm padding-top đã bị xóa ở phần tử cha vào đây */
+
     padding: 24px 24px 24px 12px;
     margin-bottom: -24px;
 }
@@ -131,8 +130,8 @@ body {
     flex-direction: column;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
     border-radius: 12px;
-    flex: 1; /* Cho phép các thẻ con mở rộng và thu hẹp bằng nhau */
-    min-width: 0; /* Đảm bảo nó có thể thu nhỏ */
+    flex: 1;
+    min-width: 0;
 }
 
 .highlight {
@@ -145,8 +144,8 @@ body {
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
     border-radius: 12px;
     background: linear-gradient(to right, #F564A9, #FFA3CF);
-    flex: 1; /* Cho phép các thẻ con mở rộng và thu hẹp bằng nhau */
-    min-width: 0; /* Đảm bảo nó có thể thu nhỏ */
+    flex: 1;
+    min-width: 0;
 }
 
 .card__header__highlight {
@@ -356,33 +355,6 @@ body {
     border-radius: 12px;
 }
 
-.table__header {
-    display: flex;
-    justify-content: end;
-    align-items: center;
-    width: 100%;
-    height: 32px;
-}
-
-.filter {
-    display: flex;
-    width: auto;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-    font-size: 13px;
-    background-color: #f8f8f8;
-    border-radius: 30px;
-    padding: 8px 12px;
-    border: solid 1px #868686;
-    cursor: pointer;
-}
-
-.filter:hover {
-    text-decoration: underline;
-    background-color: #f3f3f3;
-}
-
 table {
     width: 100%;
     border-collapse: collapse;
@@ -413,7 +385,7 @@ table tbody tr:hover {
 
 .numerical {
     font-weight: bold;
-    color: #F654a9;
+    color: #666666;
 }
 
 .id {
@@ -425,8 +397,6 @@ table tbody tr:hover {
     border-radius: 12px;
     font-weight: bold;
 }
-
-
 
 .table__bottom {
     width: 100%;
