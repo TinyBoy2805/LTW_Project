@@ -216,28 +216,27 @@
           <!-- Tạo bài viết -->
           <div class="tab-panel" data-panel="create">
             <div class="content__body">
-              <div class="form-wrap">
+              <form class="form-wrap" action="${pageContext.request.contextPath}/blog" method="post">
                 <section class="left-panel">
                   <div class="card-form">
-                    <label class="label">Tiêu đề</label>
-                    <input id="blog-title" class="input" type="text" placeholder="Nhập tiêu đề" required>
+                    <label class="label">Tiêu đề</label> 
+                    <input name="title" class="input" type="text" placeholder="Nhập tiêu đề" required>
 
                     <label class="label">Link bài viết</label>
-                    <input id="blog-link" class="input" type="url" placeholder="https://...">
+                    <input name="url" class="input" type="url" placeholder="https://...">
 
                     <div class="row two">
                       <div>
                         <label class="label">Ngày đăng</label>
-                        <input id="blog-date" class="input" type="date">
+                        <input name="created_at" class="input" type="date">
                       </div>
                     </div>
 
                     <label class="label">Nội dung (mô tả ngắn)</label>
-                    <textarea id="blog-content" class="input textarea" rows="3"
-                      placeholder="Tóm tắt, đoạn mô tả sẽ hiển thị trên card"></textarea>
+                    <textarea name="content" class="input textarea" rows="3" placeholder="Tóm tắt, đoạn mô tả sẽ hiển thị trên card"></textarea>
                   </div>
+                  
                 </section>
-
                 <aside class="right-panel">
                   <div class="images-card">
                     <h4>Hình ảnh</h4>
@@ -246,21 +245,20 @@
                     </div>
                   </div>
                 </aside>
-              </div>
-              <!-- Actions row -->
-              <div class="actions-row">
-                <div class="actions-left">
-                  <p class="note">Đảm bảo nội dung tuân thủ chính sách và không vi phạm quy định.</p>
-                </div>
-                <div class="actions-right">
-                  <div class="panel-actions">
-                    <div class="actions">
-                      <button id="cancel-blog" class="btn ghost" type="button">Hủy</button>
-                      <button id="publish-blog" class="btn primary" type="button">Đăng bài</button>
+                <div class="actions-row">
+                  <div class="actions-left">
+                    <p class="note">Đảm bảo nội dung tuân thủ chính sách và không vi phạm quy định.</p>
+                  </div>
+                  <div class="actions-right">
+                    <div class="panel-actions">
+                      <div class="actions">
+                        <button class="btn ghost" type="reset">Hủy</button>
+                        <button class="btn primary" type="submit">Đăng bài</button>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </form>
             </div>
           </div>
 
