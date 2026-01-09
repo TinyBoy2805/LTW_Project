@@ -40,29 +40,6 @@
                   aria-label="Tìm kiếm bài viết theo tiêu đề hoặc nội dung">
                 <div class="search__box">
                   <ion-icon name="search-outline" class="search__icon"></ion-icon>
-                  <div class="line"></div>
-                  <div class="filter__wrapper">
-                    <button class="filter__button" id="blog__filter__btn">
-                      <ion-icon name="funnel-outline"></ion-icon>
-                      Lọc
-                    </button>
-                    <div class="filter__frame hidden" id="blog__filter__frame">
-                      <h4 class="filter__frame__title">Bộ Lọc Bài Viết</h4>
-                      <div class="filter__group">
-                        <label for="filter__blog__status">Trạng thái:</label>
-                        <select id="filter__blog__status">
-                          <option value="all">Tất cả</option>
-                          <option value="published">Đã đăng</option>
-                          <option value="draft">Bản nháp</option>
-                        </select>
-                      </div>
-                      <!-- 'Chủ đề' filter removed as requested -->
-                      <div class="filter__actions">
-                        <button class="clear__button">Xóa lọc</button>
-                        <button class="apply__button">Áp dụng</button>
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -75,7 +52,6 @@
                     alt="Sữa công thức">
                 </figure>
                 <div class="card-content">
-                  <span class="card-badge">Đã đăng</span>
                   <h4 class="card-title">Sữa công thức: Hướng dẫn chọn cho bé 0–12 tháng</h4>
                   <p class="card-meta">Ngày: 12/11/2025</p>
                   <p class="card-link" style="display:none">http://michishop.local/blog/sua-cong-thuc-abc</p>
@@ -89,7 +65,6 @@
                     alt="Thực phẩm dinh dưỡng">
                 </figure>
                 <div class="card-content">
-                  <span class="card-badge">Đã đăng</span>
                   <h4 class="card-title">Thực phẩm bổ sung cho trẻ: Khi nào cần và loại nào an toàn?</h4>
                   <p class="card-meta">Ngày: 01/11/2025</p>
                   <p class="card-link" style="display:none">http://michishop.local/blog/thuc-pham-bo-sung</p>
@@ -104,7 +79,6 @@
                     alt="Sữa cho trẻ em">
                 </figure>
                 <div class="card-content">
-                  <span class="card-badge">Đã đăng</span>
                   <h4 class="card-title">So sánh các loại sữa cho trẻ 1–3 tuổi</h4>
                   <p class="card-meta">Ngày: 28/10/2025</p>
                   <p class="card-link" style="display:none">http://michishop.local/blog/so-sanh-sua-1-3</p>
@@ -119,7 +93,6 @@
                     alt="Dinh dưỡng trẻ">
                 </figure>
                 <div class="card-content">
-                  <span class="card-badge">Đã đăng</span>
                   <h4 class="card-title">Bữa ăn cho bé 6–12 tháng: Mẹo kết hợp dinh dưỡng</h4>
                   <p class="card-meta">Ngày: 18/10/2025</p>
                   <p class="card-link" style="display:none">http://michishop.local/blog/bua-an-6-12-thang</p>
@@ -133,7 +106,6 @@
                     src="https://nreci.org/wp-content/uploads/2023/01/hinh-anh-thap-dinh-duong-cho-tre-mam-non-1.webp"
                     alt="Ăn dặm"></figure>
                 <div class="card-content">
-                  <span class="card-badge">Đã đăng</span>
                   <h4 class="card-title">Ăn dặm an toàn: Các loại thực phẩm cần tránh</h4>
                   <p class="card-meta">Ngày: 05/10/2025</p>
                   <p class="card-link" style="display:none">http://michishop.local/blog/an-dam-an-toan</p>
@@ -148,7 +120,6 @@
                     alt="Sức khỏe trẻ em">
                 </figure>
                 <div class="card-content">
-                  <span class="card-badge">Đã đăng</span>
                   <h4 class="card-title">Giữ hệ tiêu hóa khỏe mạnh cho trẻ: Probiotics và prebiotics</h4>
                   <p class="card-meta">Ngày: 22/09/2025</p>
                   <p class="card-link" style="display:none">http://michishop.local/blog/he-tieu-hoa</p>
@@ -162,7 +133,6 @@
                     src="https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/17/sua-16606738764131624047533.jpg"
                     alt="Sữa hữu cơ"></figure>
                 <div class="card-content">
-                  <span class="card-badge">Đã đăng</span>
                   <h4 class="card-title">Sữa hữu cơ với sữa thường: Có đáng đầu tư?</h4>
                   <p class="card-meta">Ngày: 10/09/2025</p>
                   <p class="card-link" style="display:none">http://michishop.local/blog/sua-huu-co-vs-thuong</p>
@@ -177,7 +147,6 @@
                     alt="Dinh dưỡng bé">
                 </figure>
                 <div class="card-content">
-                  <span class="card-badge">Đã đăng</span>
                   <h4 class="card-title">Vitamin cần thiết cho trẻ sơ sinh: Liều lượng và nguồn thực phẩm</h4>
                   <p class="card-meta">Ngày: 01/09/2025</p>
                   <p class="card-link" style="display:none">http://michishop.local/blog/vitamin-so-sinh</p>
@@ -192,7 +161,6 @@
                     alt="Bản nháp 1">
                 </figure>
                 <div class="card-content">
-                  <span class="card-badge draft">Bản nháp</span>
                   <h4 class="card-title">Cách chọn sữa cho bé sinh non</h4>
                   <p class="card-meta">Ngày: 21/11/2025</p>
                   <p class="card-link" style="display:none">http://michishop.local/blog/sua-sinh-non</p>
@@ -207,7 +175,6 @@
                     alt="Bản nháp 2">
                 </figure>
                 <div class="card-content">
-                  <span class="card-badge draft">Bản nháp</span>
                   <h4 class="card-title">Thực đơn ăn dặm tuần đầu cho bé 6 tháng</h4>
                   <p class="card-meta">Ngày: 19/11/2025</p>
                   <p class="card-link" style="display:none">http://michishop.local/blog/thuc-don-an-dam-tuan-dau</p>
@@ -222,7 +189,6 @@
                     alt="Bản nháp 3">
                 </figure>
                 <div class="card-content">
-                  <span class="card-badge draft">Bản nháp</span>
                   <h4 class="card-title">Chế độ dinh dưỡng cho trẻ em theo từng độ tuổi</h4>
                   <p class="card-meta">Ngày: 17/11/2025</p>
                   <p class="card-link" style="display:none">http://michishop.local/blog/che-do-dinh-duong-tre-em</p>
@@ -237,7 +203,6 @@
                     alt="Bản nháp 4">
                 </figure>
                 <div class="card-content">
-                  <span class="card-badge draft">Bản nháp</span>
                   <h4 class="card-title">Mẹo cho con biếng ăn: thực đơn đơn giản</h4>
                   <p class="card-meta">Ngày: 22/11/2025</p>
                   <p class="card-link" style="display:none">http://michishop.local/blog/meo-beo-an</p>
@@ -291,7 +256,6 @@
                   <div class="panel-actions">
                     <div class="actions">
                       <button id="cancel-blog" class="btn ghost" type="button">Hủy</button>
-                      <button id="save-draft-blog" class="btn secondary" type="button">Lưu bản nháp</button>
                       <button id="publish-blog" class="btn primary" type="button">Đăng bài</button>
                     </div>
                   </div>
@@ -302,8 +266,6 @@
 
 
         </div> <!-- .content__panel -->
-
-
       </main>
     </div>
   </div> <!-- .main -->
@@ -311,5 +273,4 @@
   <script src="../scripts/page/Blog.js"></script>
   <script src="../scripts/components/filter.js"></script>
 </body>
-
 </html>
