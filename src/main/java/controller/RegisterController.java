@@ -77,7 +77,7 @@ public class RegisterController extends HttpServlet {
         String otp = String.format("%06d", new java.util.Random().nextInt(999999));
 
         //call service to send otp to user
-        EmailStatus status = mailService.sendOTP(email, otp); //fake otp to check valid email
+        EmailStatus status = mailService.sendOTP(email, otp);
 
         if (status == EmailStatus.SENT) {
 

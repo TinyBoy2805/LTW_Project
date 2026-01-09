@@ -37,12 +37,6 @@
                 </div>
                 <div class="nav__top-actions">
                     <ul>
-                        <li><a href="${pageContext.request.contextPath}/home" class="">Trang chủ</a></li>
-                        <li><a href="customer/pages/Products.jsp">Sản phẩm</a></li>
-                        <li><a href="customer/pages/Voucher.jsp">Khuyến mãi</a></li>
-                        <li><a href="customer/pages/Blog.jsp">Cẩm nang</a></li>
-                        <li><a href="customer/pages/Contact.jsp">Liên hệ</a></li>
-                        <li><a href="customer/pages/About.jsp">về cửa hàng</a></li>
                         <li class="hovercart">
                             <a href="#" class="--color4"><i class="fa-solid fa-cart-shopping --size20"></i></a>
                         </li>
