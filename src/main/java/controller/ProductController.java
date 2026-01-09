@@ -28,20 +28,23 @@ public class ProductController extends HttpServlet
         {
             this.showProductByPage(request, response);
             return;
-        }
+    }
 
-//        String action = pathInfo.substring(1);
-//        System.out.println("action: " + action);
-//
-//        switch (action)
-//        {
-//            case "search":
-//                this.searchProductsByName(request, response);
-//                return;
-//            default:
-//                response.sendError(HttpServletResponse.SC_NOT_FOUND);
-//                return;
-//        }
+        String action = pathInfo.substring(1);
+        System.out.println("action: " + action);
+
+        switch (action)
+        {
+            case "search":
+                this.searchProductsByName(request, response);
+                return;
+            case "filter":
+                this.filterProducts(request, response);
+                return;
+            default:
+                response.sendError(HttpServletResponse.SC_NOT_FOUND);
+                return;
+        }
 
     }
 
@@ -64,6 +67,78 @@ public class ProductController extends HttpServlet
         String json = gson.toJson(products);
         System.out.println(json);
 
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
+    }
+
+    private void filterProducts(HttpServletRequest request, HttpServletResponse response) throws IOException
+    {
+        Gson gson = new Gson();
+        
+        // Đọc JSON từ request body
+        StringBuilder sb = new StringBuilder();
+        String line;
+        while ((line = request.getReader().readLine()) != null)
+        {
+            sb.append(line);
+        }
+        String jsonData = sb.toString();
+        
+        System.out.println("============ FILTER DATA ============");
+        System.out.println("Raw JSON: " + jsonData);
+        
+        // Parse JSON thành object
+        @SuppressWarnings("unchecked")
+        java.util.Map<String, java.util.List<String>> filterData = gson.fromJson(jsonData, java.util.Map.class);
+        
+        // Lấy filter data
+        List<String> brands = filterData.get("brands");
+        List<String> types = filterData.get("types");
+        List<String> ratingStrings = filterData.get("ratings");
+        
+        // Convert rating strings to integers
+        List<Integer> ratings = null;
+        if (ratingStrings != null && !ratingStrings.isEmpty()) {
+            ratings = new java.util.ArrayList<>();
+            for (String ratingStr : ratingStrings) {
+                try {
+                    ratings.add(Integer.parseInt(ratingStr));
+                } catch (NumberFormatException e) {
+                    System.err.println("Invalid rating value: " + ratingStr);
+                }
+            }
+        }
+        
+        System.out.println("\n----- Brands -----");
+        if (brands != null) {
+            brands.forEach(brand -> System.out.println("  - " + brand));
+        }
+        
+        System.out.println("\n----- Types -----");
+        if (types != null) {
+            types.forEach(type -> System.out.println("  - " + type));
+        }
+        
+        System.out.println("\n----- Ratings -----");
+        if (ratings != null) {
+            ratings.forEach(rating -> System.out.println("  - " + rating));
+        }
+        
+        System.out.println("====================================\n");
+        
+        // Gọi service để lấy products
+        List<ProductCard> products = this.productService.getFilteredProducts(brands, types, ratings);
+        
+        // Làm tròn rating
+        for(ProductCard pc: products) {
+            pc.setAvg_rating(Math.floor(pc.getAvg_rating()));
+        }
+        
+        System.out.println("Found " + products.size() + " products");
+        
+        // Trả về JSON response
+        String json = gson.toJson(products);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(json);

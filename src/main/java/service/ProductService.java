@@ -39,4 +39,9 @@ public class ProductService
     {
         return this.productDAO.getProductsByCategory(categoryParam);
     }
+
+    public List<ProductCard> getFilteredProducts(List<String> brands, List<String> types, List<Integer> ratings)
+    {
+        return this.productDAO.getFilteredProducts(brands, types, ratings);
+    }
 }

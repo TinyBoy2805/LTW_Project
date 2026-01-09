@@ -15,12 +15,14 @@ public class LoginController extends HttpServlet {
     private AuthService authService;
 
     @Override
-    public void init() {
-        authService = new AuthService();
+    public void init()
+    {
+        this.authService = new AuthService();
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    {
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 

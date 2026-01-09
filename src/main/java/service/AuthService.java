@@ -6,19 +6,23 @@ import exception.RegisterError;
 import model.Role;
 import model.User;
 
-public class AuthService {
-    AuthDao authDao = new AuthDao();
+public class AuthService
+{
+    private AuthDao authDao = new AuthDao();
 
-    public LoginError checkLogin(String input, String password) {
-        User u = authDao.getUserByEmailOrPhone(input);
+    public LoginError checkLogin(String input, String password)
+    {
+        User u = this.authDao.getUserByEmailOrPhone(input);
 
-        if (u == null) {
+        if (u == null)
+        {
             return LoginError.INVALID_USERNAME; //Wrong username -> Login failed
         }
 
         //hash input password with salt of user to check
         String hashInput = HashPassword.hashPasswordWithSalt(password, u.getSalt());
-        if (!hashInput.equals(u.getPassword_hashed())) {
+        if (!hashInput.equals(u.getPassword_hashed()))
+        {
             return LoginError.WRONG_PASSWORD; //Wrong password -> Login failed
         }
 
@@ -27,10 +31,13 @@ public class AuthService {
         return LoginError.NONE;
     }
 
-    public User getUserData(String input) {
-        if (isValidEmail(input) || isValidPhonenumber(input)) {
+    public User getUserData(String input)
+    {
+        if (isValidEmail(input) || isValidPhonenumber(input))
+        {
             User u = authDao.getUserByEmailOrPhone(input);
-            if (u != null) {
+            if (u != null)
+            {
                 //not fail -> set hashpass to null to avoid session include the hashpass
                 //u.setPassword_hashed(null);
                 return u;
@@ -39,31 +46,29 @@ public class AuthService {
         return null;
     }
 
-    public boolean isValidEmail(String email) {
-        return email != null && email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$");
+    public boolean isValidEmail(String email)
+    {
         /*  ^ : start of the string
             [A-Za-z0-9+_.-] : approve upcase / lowcase character, number, special character
             + : at least one character long
             @ : an email identify
             $ : end of string
          */
+        return email != null && email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$");
     }
 
-    public boolean isValidPhonenumber(String phone) {
-        return phone != null && phone.matches("^[0-9]{10}$");
+    public boolean isValidPhonenumber(String phone)
+    {
         /*  ^ : start of the string
             [0-9] : approve only number
             {10}} : exactly 10 digit
             $ : end of string
          */
+        return phone != null && phone.matches("^[0-9]{10}$");
     }
 
-    public boolean isStrongPassword(String password) {
-        if (password != null) {
-            return (password.length() >= 8) &&
-                    password.matches("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[^A-Za-z0-9]).+$");
-        } else
-            return false;
+    public boolean isStrongPassword(String password)
+    {
         /*  ^ : start of the string
             (?=.*[A-Za-z]) : obligatory at least one alphabet character
             (?=.*\d) : obligatory at least one digit
@@ -71,30 +76,40 @@ public class AuthService {
             .+ : have at least one random character
             $ : end of string
          */
+        if (password != null)
+        {
+            return (password.length() >= 8) && password.matches("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[^A-Za-z0-9]).+$");
+        } else return false;
     }
 
     public RegisterError validate(String name,
                                   String email,
                                   String phone,
                                   String password,
-                                  String confirmPassword){
-        if (!password.equals(confirmPassword)) {
+                                  String confirmPassword)
+    {
+        if (!password.equals(confirmPassword))
+        {
             return RegisterError.PASSWORD_MISMATCH;
         }
 
-        if (authDao.existsByEmail(email)) {
+        if (authDao.existsByEmail(email))
+        {
             return RegisterError.EMAIL_EXIST;
         }
 
-        if (!isValidEmail(email)) {
+        if (!isValidEmail(email))
+        {
             return RegisterError.INVALID_EMAIL_FORMAT;
         }
 
-        if (!isStrongPassword(password) || !isStrongPassword(confirmPassword)) {
+        if (!isStrongPassword(password) || !isStrongPassword(confirmPassword))
+        {
             return RegisterError.WEAK_PASSWORD;
         }
 
-        if (!isValidPhonenumber(phone)) {
+        if (!isValidPhonenumber(phone))
+        {
             return RegisterError.PHONE_ISVALID;
         }
         return RegisterError.NONE;
@@ -104,10 +119,8 @@ public class AuthService {
                                   String email,
                                   String phone,
                                   String password,
-                                  String confirmPassword) {
-
-
-
+                                  String confirmPassword)
+    {
         //generate salt then hash the password to store to database
         String salt = HashPassword.generateSalt();
         String hashPassword = HashPassword.hashPasswordWithSalt(password, salt);
@@ -126,19 +139,23 @@ public class AuthService {
     }
 
     //when user submit info -> controller call to service to activate account
-    public void activateAccount(String email) {
+    public void activateAccount(String email)
+    {
         authDao.activateAccount(email);
     }
 
-    public boolean updateUserEmail(String oldEmail, String newEmail) {
+    public boolean updateUserEmail(String oldEmail, String newEmail)
+    {
 
         //check format first
-        if (!isValidEmail(newEmail)) {
+        if (!isValidEmail(newEmail))
+        {
             return false;
         }
 
         //check if new email already taken by another user
-        if (authDao.existsByEmail(newEmail)) {
+        if (authDao.existsByEmail(newEmail))
+        {
             return false;
         }
 
@@ -147,17 +164,21 @@ public class AuthService {
         return true;
     }
 
-    public boolean existsByEmail(String newEmail) {
+    public boolean existsByEmail(String newEmail)
+    {
         return authDao.existsByEmail(newEmail);
     }
 
-    public void updatePassword(String email, String password) {
-        if (email == null) {
+    public void updatePassword(String email, String password)
+    {
+        if (email == null)
+        {
             throw new IllegalArgumentException("Email null khi update password");
         }
 
         User u = authDao.getUserByEmailOrPhone(email);
-        if (u == null) {
+        if (u == null)
+        {
             throw new IllegalStateException("Không tìm thấy user với email: " + email);
         }
 

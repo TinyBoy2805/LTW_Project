@@ -20,13 +20,15 @@ public class AuthDao extends BaseDao {
                 .orElse(null));
     }
 
-    public User getUserByEmailOrPhone(String value) {
+    public User getUserByEmailOrPhone(String value)
+    {
         return get().withHandle(h -> //get() : get connection to db from BaseDao
                         //lambda function that return User
                         h.createQuery("SELECT * FROM users WHERE email = :v OR phone_number = :v")
                                 .bind("v", value)
                                 //bind variable v into SQL with input info (value)
-                                .map((rs, ctx) -> {
+                                .map((rs, ctx) ->
+                                {
                                     //user mapping function -> Change a single line into User
                                     User u = new User();
                                     u.setId(rs.getInt("id"));
@@ -47,7 +49,8 @@ public class AuthDao extends BaseDao {
         );
     }
 
-    public boolean existsByEmail(String email) {
+    public boolean existsByEmail(String email)
+    {
         return get().withHandle(h ->
                 h.createQuery("SELECT 1 FROM users WHERE email = :email")
                         .bind("email", email)
@@ -57,7 +60,8 @@ public class AuthDao extends BaseDao {
         );
     }
 
-    public void insert(User user) {
+    public void insert(User user)
+    {
         get().useHandle(h ->
                 h.createUpdate("""
                                     INSERT INTO users(name, email, role, password_hashed, phone_number, salt, verified)
