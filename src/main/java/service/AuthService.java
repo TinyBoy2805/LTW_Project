@@ -150,4 +150,18 @@ public class AuthService {
     public boolean existsByEmail(String newEmail) {
         return authDao.existsByEmail(newEmail);
     }
+
+    public void updatePassword(String email, String password) {
+        if (email == null) {
+            throw new IllegalArgumentException("Email null khi update password");
+        }
+
+        User u = authDao.getUserByEmailOrPhone(email);
+        if (u == null) {
+            throw new IllegalStateException("Không tìm thấy user với email: " + email);
+        }
+
+        String hashPassword = HashPassword.hashPasswordWithSalt(password, u.getSalt());
+        authDao.updatePassword(email, hashPassword);
+    }
 }
