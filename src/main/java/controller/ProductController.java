@@ -28,7 +28,7 @@ public class ProductController extends HttpServlet
         {
             this.showProductByPage(request, response);
             return;
-    }
+        }
 
         String action = pathInfo.substring(1);
         System.out.println("action: " + action);
