@@ -6,27 +6,7 @@ import java.util.*;
 
 
 public class BlogDao extends BaseDao {
-            public Blog getBlogById(int id) {
-                String sql = "SELECT * FROM blogs WHERE id = :id";
-                return get().withHandle(h ->
-                    h.createQuery(sql)
-                        .bind("id", id)
-                        .map((rs, ctx) -> {
-                            Blog blog = new Blog();
-                            blog.setId(rs.getInt("id"));
-                            blog.setUserId(rs.getInt("user_id"));
-                            blog.setTitle(rs.getString("title"));
-                            blog.setContent(rs.getString("content"));
-                            blog.setThumbnail(rs.getString("thumbnail"));
-                            blog.setUrl(rs.getString("url"));
-                            blog.setCreatedAt(rs.getTimestamp("created_at"));
-                            blog.setUpdatedAt(rs.getTimestamp("updated_at"));
-                            return blog;
-                        })
-                        .findOne()
-                        .orElse(null)
-                );
-            }
+
         public List<Blog> getAllBlogs() {
             String sql = "SELECT * FROM blogs ORDER BY created_at DESC";
             return get().withHandle(h ->
@@ -50,7 +30,7 @@ public class BlogDao extends BaseDao {
         String sql = "INSERT INTO blogs (user_id, title, content, thumbnail, url, created_at, updated_at) VALUES (:userId, :title, :content, :thumbnail, :url, :createdAt, :updatedAt)";
         int rows = get().withHandle(h ->
             h.createUpdate(sql)
-                .bind("userId", blog.getUserId()) // blog.getUserId() giờ là int
+                .bind("userId", blog.getUserId()) 
                 .bind("title", blog.getTitle())
                 .bind("content", blog.getContent())
                 .bind("thumbnail", blog.getThumbnail())
@@ -61,5 +41,35 @@ public class BlogDao extends BaseDao {
         );
         return rows > 0;
     }
+     public Blog getBlogById(int id) {
+            String sql = "SELECT * FROM blogs WHERE id = :id";
+            return get().withHandle(h ->
+             h.createQuery(sql)
+           .bind("id", id)
+           .map((rs, ctx) -> {
+                  Blog blog = new Blog();
+                   blog.setId(rs.getInt("id"));
+                   blog.setUserId(rs.getInt("user_id"));
+                   blog.setTitle(rs.getString("title"));
+                   blog.setContent(rs.getString("content"));
+                   blog.setThumbnail(rs.getString("thumbnail"));
+                   blog.setUrl(rs.getString("url"));
+                   blog.setCreatedAt(rs.getTimestamp("created_at"));
+                   blog.setUpdatedAt(rs.getTimestamp("updated_at"));
+                    return blog;
+                        })
+                        .findOne()
+                        .orElse(null)
+                );
+            }
+         public boolean deleteBlogById(int id) {
+                    String sql = "DELETE FROM blogs WHERE id = :id";
+                    int rows = get().withHandle(h ->
+                        h.createUpdate(sql)
+                            .bind("id", id)
+                            .execute()
+                    );
+                    return rows > 0;
+                }
 
 }

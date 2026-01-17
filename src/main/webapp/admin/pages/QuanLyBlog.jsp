@@ -80,7 +80,11 @@
                 <div class="panel-actions">
                   <div class="actions">
                     <button id="cancel-blog" class="btn ghost" type="button">Hủy</button>
-                    <button id="btn-delete" class="btn danger" type="button">Xóa</button>
+                    <form id="delete-form" method="post" action="${pageContext.request.contextPath}/admin/pages/quanlyblog" style="display:inline;">
+                      <input type="hidden" name="id" value="${blog.id}" />
+                      <input type="hidden" name="action" value="delete" />
+                      <button id="btn-delete" class="btn danger" type="submit" onclick="return confirm('Bạn có chắc muốn xóa bài viết này?');">Xóa</button>
+                    </form>
                     <button id="btn-update" class="btn primary" type="button">Cập Nhật</button>
                   </div>
                 </div>
