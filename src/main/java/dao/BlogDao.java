@@ -8,7 +8,7 @@ import java.util.*;
 public class BlogDao extends BaseDao {
 
         public List<Blog> getAllBlogs() {
-            String sql = "SELECT * FROM blogs ORDER BY created_at DESC";
+            String sql = "SELECT * FROM blogs ORDER BY id ASC";
             return get().withHandle(h ->
                 h.createQuery(sql)
                     .map((rs, ctx) -> {
