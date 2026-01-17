@@ -3,8 +3,8 @@ package model;
 import java.sql.Timestamp;
 
 public class Blog {
-    private long id;
-    private long userId;
+    private int id;
+    private int userId;
     private String title;
     private String content;
     private String thumbnail;
@@ -14,7 +14,7 @@ public class Blog {
 
     public Blog() {}
 
-    public Blog(long id, long userId, String title, String content, String thumbnail, String url, Timestamp createdAt, Timestamp updatedAt) {
+    public Blog(int id, int userId, String title, String content, String thumbnail, String url, Timestamp createdAt, Timestamp updatedAt) {
         this.id = id;
         this.userId = userId;
         this.title = title;
@@ -25,10 +25,10 @@ public class Blog {
         this.updatedAt = updatedAt;
     }
 
-    public long getId() { return id; }
-    public void setId(long id) { this.id = id; }
-    public long getUserId() { return userId; }
-    public void setUserId(long userId) { this.userId = userId; }
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+    public int getUserId() { return userId; }
+    public void setUserId(int userId) { this.userId = userId; }
     public String getTitle() { return title; }
     public void setTitle(String title) { this.title = title; }
     public String getContent() { return content; }

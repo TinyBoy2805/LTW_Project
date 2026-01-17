@@ -23,9 +23,9 @@ public class BlogController extends HttpServlet {
         String thumbnail = request.getParameter("thumbnail");
         String url = request.getParameter("url");
         String userIdStr = request.getParameter("user_id");
-        long userId = 0;
+        int userId = 0;
         if (userIdStr != null && !userIdStr.isEmpty()) {
-            userId = Long.parseLong(userIdStr);
+            userId = Integer.parseInt(userIdStr);
         } else {
             // Lấy user admin từ session, nếu chưa có thì mặc định là 1
             jakarta.servlet.http.HttpSession session = request.getSession(false);
@@ -68,7 +68,10 @@ public class BlogController extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.sendRedirect(request.getContextPath() + "/admin/pages/Blog.jsp");
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        java.util.List<Blog> blogs = blogDao.getAllBlogs();
+        request.setAttribute("blogs", blogs);
+        request.getRequestDispatcher("/admin/pages/Blog.jsp").forward(request, response);
     }
 }

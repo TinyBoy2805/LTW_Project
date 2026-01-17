@@ -6,11 +6,30 @@ import java.util.*;
 
 
 public class BlogDao extends BaseDao {
+        public List<Blog> getAllBlogs() {
+            String sql = "SELECT * FROM blogs ORDER BY created_at DESC";
+            return get().withHandle(h ->
+                h.createQuery(sql)
+                    .map((rs, ctx) -> {
+                        Blog blog = new Blog();
+                        blog.setId(rs.getInt("id"));
+                        blog.setUserId(rs.getInt("user_id"));
+                        blog.setTitle(rs.getString("title"));
+                        blog.setContent(rs.getString("content"));
+                        blog.setThumbnail(rs.getString("thumbnail"));
+                        blog.setUrl(rs.getString("url"));
+                        blog.setCreatedAt(rs.getTimestamp("created_at"));
+                        blog.setUpdatedAt(rs.getTimestamp("updated_at"));
+                        return blog;
+                    })
+                    .list()
+            );
+        }
     public boolean insertBlog(Blog blog) {
         String sql = "INSERT INTO blogs (user_id, title, content, thumbnail, url, created_at, updated_at) VALUES (:userId, :title, :content, :thumbnail, :url, :createdAt, :updatedAt)";
         int rows = get().withHandle(h ->
             h.createUpdate(sql)
-                .bind("userId", blog.getUserId())
+                .bind("userId", blog.getUserId()) // blog.getUserId() giờ là int
                 .bind("title", blog.getTitle())
                 .bind("content", blog.getContent())
                 .bind("thumbnail", blog.getThumbnail())
@@ -22,5 +41,4 @@ public class BlogDao extends BaseDao {
         return rows > 0;
     }
 
-    // Có thể bổ sung các hàm lấy danh sách, xóa, sửa blog ở đây
 }
