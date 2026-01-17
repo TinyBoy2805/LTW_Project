@@ -6,6 +6,27 @@ import java.util.*;
 
 
 public class BlogDao extends BaseDao {
+            public Blog getBlogById(int id) {
+                String sql = "SELECT * FROM blogs WHERE id = :id";
+                return get().withHandle(h ->
+                    h.createQuery(sql)
+                        .bind("id", id)
+                        .map((rs, ctx) -> {
+                            Blog blog = new Blog();
+                            blog.setId(rs.getInt("id"));
+                            blog.setUserId(rs.getInt("user_id"));
+                            blog.setTitle(rs.getString("title"));
+                            blog.setContent(rs.getString("content"));
+                            blog.setThumbnail(rs.getString("thumbnail"));
+                            blog.setUrl(rs.getString("url"));
+                            blog.setCreatedAt(rs.getTimestamp("created_at"));
+                            blog.setUpdatedAt(rs.getTimestamp("updated_at"));
+                            return blog;
+                        })
+                        .findOne()
+                        .orElse(null)
+                );
+            }
         public List<Blog> getAllBlogs() {
             String sql = "SELECT * FROM blogs ORDER BY created_at DESC";
             return get().withHandle(h ->

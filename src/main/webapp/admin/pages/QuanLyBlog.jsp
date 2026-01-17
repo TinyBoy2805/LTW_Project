@@ -35,25 +35,25 @@
                 <div class="card-form">
                   <label class="label">Tiêu đề</label>
                   <div class="input-with-icon">
-                    <input id="edit-title" class="input" type="text" placeholder="Nhập tiêu đề" value="Sữa công thức: Hướng dẫn chọn cho bé 0–12 tháng">
+                    <input id="edit-title" class="input" type="text" placeholder="Nhập tiêu đề" value="${blog.title}">
                     <i class="fa-solid fa-pen input-icon"></i>
                   </div>
 
                   <label class="label">Link bài viết</label>
                   <div class="input-with-icon">
-                    <input id="edit-link" class="input" type="url" placeholder="https://..." value="http://michishop.local/blog/sua-cong-thuc-abc">
+                    <input id="edit-link" class="input" type="url" placeholder="https://..." value="${blog.url}">
                     <i class="fa-solid fa-pen input-icon"></i>
                   </div>
 
                   <label class="label">Ngày đăng</label>
                   <div class="input-with-icon">
-                    <input id="edit-date" class="input" type="date" value="2025-11-12">
+                    <input id="edit-date" class="input" type="date" value="${fn:substring(blog.createdAt, 0, 10)}">
                     <i class="fa-solid fa-pen input-icon"></i>
                   </div>
 
                   <label class="label">Nội dung (mô tả ngắn)</label>
                   <div class="input-with-icon">
-                    <textarea id="edit-content" class="input textarea" rows="3" placeholder="Tóm tắt, đoạn mô tả sẽ hiển thị trên card">Bài viết hướng dẫn lựa chọn sữa công thức phù hợp theo độ tuổi, thành phần dinh dưỡng cần chú ý và mẹo chuyển đổi khi thay sữa.</textarea>
+                    <textarea id="edit-content" class="input textarea" rows="3" placeholder="Tóm tắt, đoạn mô tả sẽ hiển thị trên card">${blog.content}</textarea>
                     <i class="fa-solid fa-pen input-icon"></i>
                   </div>
                 </div>
@@ -66,7 +66,7 @@
                     <i class="fa-solid fa-pen input-icon"></i>
                   </div>
                   <div class="thumbs">
-                    <img id="blog-image" class="blog-thumb-image visible" src="https://media.vietnamplus.vn/images/ed1918d4cf848798286fdbd286ae25b434bfe5fe1202c90591deb8e201814798f805af93601147e13a81d0f60f99424f/thuc-pham-bo-sung4.jpg" alt="Hình ảnh bài viết">
+                    <img id="blog-image" class="blog-thumb-image visible" src="${empty blog.thumbnail ? 'https://via.placeholder.com/200x120?text=No+Image' : blog.thumbnail}" alt="Hình ảnh bài viết">
                   </div>
                 </div>
               </aside>

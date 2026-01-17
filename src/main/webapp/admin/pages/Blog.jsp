@@ -48,7 +48,7 @@
             <div class="blog-list" role="list" aria-label="Danh sách bài viết">
               <%-- Hiển thị danh sách blog từ database --%>
               <c:forEach var="blog" items="${blogs}">
-                <article class="blog-card blog-clickable" role="button" tabindex="0">
+                <article class="blog-card blog-clickable" role="button" tabindex="0" onclick="window.location.href='${pageContext.request.contextPath}/admin/pages/quanlyblog?id=${blog.id}'">
                   <figure class="card__figure">
                     <img src="${empty blog.thumbnail ? 'https://via.placeholder.com/200x120?text=No+Image' : blog.thumbnail}" alt="${blog.title}" style="object-fit:cover;width:200px;height:120px;">
                   </figure>
