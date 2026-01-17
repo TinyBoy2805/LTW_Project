@@ -54,7 +54,6 @@
                   </figure>
                   <div class="card-content">
                     <h4 class="card-title">${blog.title}</h4>
-                    <p class="card-meta">Ngày: <fmt:formatDate value="${blog.createdAt}" pattern="dd/MM/yyyy"/></p>
                     <p class="card-link" style="display:none">${blog.url}</p>
                     <p class="card-excerpt">${blog.content}</p>
                   </div>

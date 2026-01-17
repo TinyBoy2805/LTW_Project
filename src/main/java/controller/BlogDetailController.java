@@ -26,8 +26,42 @@ public class BlogDetailController extends HttpServlet {
                     }
                     return;
                 } catch (NumberFormatException ignored) {}
+            } else if ("update".equals(action) && idStr != null) {
+                try {
+                    int id = Integer.parseInt(idStr);
+                    String title = request.getParameter("title");
+                    String url = request.getParameter("url");
+                    String createdAt = request.getParameter("created_at");
+                    String content = request.getParameter("content");
+                    String thumbnail = request.getParameter("thumbnail");
+                    java.sql.Timestamp createdAtTs = null;
+                    try {
+                        createdAtTs = java.sql.Timestamp.valueOf(createdAt + " 00:00:00");
+                    } catch (Exception e) {
+                        createdAtTs = new java.sql.Timestamp(System.currentTimeMillis());
+                    }
+                    java.sql.Timestamp updatedAtTs = new java.sql.Timestamp(System.currentTimeMillis());
+                    Blog blog = blogDao.getBlogById(id);
+                    if (blog != null) {
+                        blog.setTitle(title);
+                        blog.setUrl(url);
+                        blog.setCreatedAt(createdAtTs);
+                        blog.setContent(content);
+                        blog.setThumbnail(thumbnail);
+                        blog.setUpdatedAt(updatedAtTs);
+                        boolean updated = blogDao.updateBlog(blog);
+                        if (updated) {
+                            response.sendRedirect(request.getContextPath() + "/blog?msg=updated");
+                        } else {
+                            response.sendRedirect(request.getContextPath() + "/blog?msg=updatefail");
+                        }
+                        return;
+                    }
+                } catch (Exception ignored) {}
+                response.sendRedirect(request.getContextPath() + "/blog?msg=updatefail");
+                return;
             }
-            response.sendRedirect(request.getContextPath() + "/admin/pages/Blog.jsp?msg=invalid");
+            response.sendRedirect(request.getContextPath() + "/blog?msg=invalid");
         }
     private final BlogDao blogDao = new BlogDao();
 

@@ -24,40 +24,41 @@
       <!-- content -->
       <div class="container__content">
         <h3 class="content__title">
-          <a href="./Blog.jsp" class="back-icon">
+          <a href="${pageContext.request.contextPath}/blog" class="back-icon">
             <i class="fa-solid fa-chevron-left"></i>
           </a>
           Quản lý bài viết
         </h3>
         <div class="content__body">
             <div class="form-wrap">
-              <section class="left-panel">
-                <div class="card-form">
-                  <label class="label">Tiêu đề</label>
-                  <div class="input-with-icon">
-                    <input id="edit-title" class="input" type="text" placeholder="Nhập tiêu đề" value="${blog.title}">
-                    <i class="fa-solid fa-pen input-icon"></i>
-                  </div>
+              <form id="update-form" method="post" action="${pageContext.request.contextPath}/admin/pages/quanlyblog" style="display:flex; width:100%;">
+                <section class="left-panel" style="flex:1;">
+                  <div class="card-form">
+                    <label class="label">Tiêu đề</label>
+                    <div class="input-with-icon">
+                      <input id="edit-title" name="title" class="input" type="text" placeholder="Nhập tiêu đề" value="${blog.title}">
+                      <i class="fa-solid fa-pen input-icon"></i>
+                    </div>
 
-                  <label class="label">Link bài viết</label>
-                  <div class="input-with-icon">
-                    <input id="edit-link" class="input" type="url" placeholder="https://..." value="${blog.url}">
-                    <i class="fa-solid fa-pen input-icon"></i>
-                  </div>
+                    <label class="label">Link bài viết</label>
+                    <div class="input-with-icon">
+                      <input id="edit-link" name="url" class="input" type="url" placeholder="https://..." value="${blog.url}">
+                      <i class="fa-solid fa-pen input-icon"></i>
+                    </div>
 
-                  <label class="label">Ngày đăng</label>
-                  <div class="input-with-icon">
-                    <input id="edit-date" class="input" type="date" value="${fn:substring(blog.createdAt, 0, 10)}">
-                    <i class="fa-solid fa-pen input-icon"></i>
-                  </div>
+                    <label class="label">Ngày đăng</label>
+                    <div class="input-with-icon">
+                      <input id="edit-date" name="created_at" class="input" type="date" value="${fn:substring(blog.createdAt, 0, 10)}">
+                      <i class="fa-solid fa-pen input-icon"></i>
+                    </div>
 
-                  <label class="label">Nội dung (mô tả ngắn)</label>
-                  <div class="input-with-icon">
-                    <textarea id="edit-content" class="input textarea" rows="3" placeholder="Tóm tắt, đoạn mô tả sẽ hiển thị trên card">${blog.content}</textarea>
-                    <i class="fa-solid fa-pen input-icon"></i>
+                    <label class="label">Nội dung (mô tả ngắn)</label>
+                    <div class="input-with-icon">
+                      <textarea id="edit-content" name="content" class="input textarea" rows="3" placeholder="Tóm tắt, đoạn mô tả sẽ hiển thị trên card">${blog.content}</textarea>
+                      <i class="fa-solid fa-pen input-icon"></i>
+                    </div>
                   </div>
-                </div>
-              </section>
+                </section>
 
               <aside class="right-panel">
                 <div class="images-card">
@@ -70,31 +71,34 @@
                   </div>
                 </div>
               </aside>
-            </div>
-
-            <div class="actions-row">
-              <div class="actions-left">
-                <p class="note">Đảm bảo nội dung tuân thủ chính sách và không vi phạm quy định.</p>
-              </div>
-              <div class="actions-right">
-                <div class="panel-actions">
-                  <div class="actions">
-                    <button id="cancel-blog" class="btn ghost" type="button">Hủy</button>
-                    <form id="delete-form" method="post" action="${pageContext.request.contextPath}/admin/pages/quanlyblog" style="display:inline;">
-                      <input type="hidden" name="id" value="${blog.id}" />
-                      <input type="hidden" name="action" value="delete" />
-                      <button id="btn-delete" class="btn danger" type="submit" onclick="return confirm('Bạn có chắc muốn xóa bài viết này?');">Xóa</button>
-                    </form>
-                    <button id="btn-update" class="btn primary" type="button">Cập Nhật</button>
+                <input type="hidden" name="action" value="update" />
+                <input type="hidden" name="id" value="${blog.id}" />
+                <input type="hidden" name="thumbnail" id="update-thumbnail" value="${blog.thumbnail}" />
+                <div class="actions-row">
+                  <div class="actions-left">
+                    <p class="note">Đảm bảo nội dung tuân thủ chính sách và không vi phạm quy định.</p>
+                  </div>
+                  <div class="actions-right">
+                    <div class="panel-actions">
+                      <div class="actions">
+                        <button id="cancel-blog" class="btn ghost" type="button">Hủy</button>
+                        <form id="delete-form" method="post" action="${pageContext.request.contextPath}/admin/pages/quanlyblog" style="display:inline;">
+                          <input type="hidden" name="id" value="${blog.id}" />
+                          <input type="hidden" name="action" value="delete" />
+                          <button id="btn-delete" class="btn danger" type="submit" onclick="return confirm('Bạn có chắc muốn xóa bài viết này?');">Xóa</button>
+                        </form>
+                        <button id="btn-update" class="btn primary" type="submit">Cập Nhật</button>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
+              </form>
         </div>
       </div>
     </div>
 
   <script src="../scripts/components/extendSidebar.js"></script>
+<script src="../scripts/page/BlogDetail.js"></script>
 </body>
 
 </html>
