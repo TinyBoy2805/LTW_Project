@@ -72,8 +72,8 @@
 
           </div> <!-- .panel-header -->
 
-          <div class="mail-list" role="list" aria-label="Danh sách email">
 
+          <div class="mail-list" role="list" aria-label="Danh sách email">
             <c:forEach var="email" items="${emails}">
               <article class="mail-row${email.isImportant ? ' selected' : ''}" data-toggle="detail" data-target=".mail-detail">
                 <div class="row-left">
@@ -89,35 +89,36 @@
             </c:forEach>
           </div> <!-- .mail-list -->
 
-          <!--Xem chi tiết email hoặc phản hồi-->
-          <aside class="mail-detail" role="dialog" aria-hidden="true" aria-label="Chi tiết email">
-            <header class="detail-header">
-              <div class="detail-left">
-                <h4 class="detail-subject">Yêu cầu hoàn tiền</h4>
-                <div class="detail-meta"><span class="detail-sender">Khoa Bruh</span></div>
-              </div>
-              <div class="detail-right">
-                <div class="detail-date">11/10/2025</div>
-                <button class="detail-star star" aria-pressed="false"><i class="fa-regular fa-star"></i></button>
-                <button class="detail-close" aria-label="Đóng chi tiết"><i class="fa-solid fa-xmark"></i></button>
-              </div>
-            </header>
+      </div> <!-- .content__panel -->
 
-            <div class="detail-body" tabindex="0">
-              <p class="detail-message">Tôi muốn được hoàn lại tiền cho sản phẩm bị hỏng khi giao, mong shop xử lý và
-                hướng dẫn thủ tục hoàn tiền.</p>
-            </div>
+      <!--Xem chi tiết email hoặc phản hồi-->
+      <aside class="mail-detail" role="dialog" aria-hidden="true" aria-label="Chi tiết email">
+        <header class="detail-header">
+          <div class="detail-left">
+            <h4 class="detail-subject"></h4>
+            <div class="detail-meta"><span class="detail-sender"></span></div>
+          </div>
+          <div class="detail-right">
+            <div class="detail-date"></div>
+            <button class="detail-star star" aria-pressed="false"><i class="fa-regular fa-star"></i></button>
+            <button class="detail-close" aria-label="Đóng chi tiết"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+        </header>
 
-            <form class="detail-reply" action="#" onsubmit="return false;">
-              <label class="label">Trả lời</label>
-              <textarea class="input textarea reply-text" rows="3" placeholder="Viết phản hồi..."></textarea>
-              <div class="detail-actions">
-                <button type="button" class="btn primary reply-send">Gửi</button>
-                <button type="button" class="btn ghost reply-cancel">Hủy</button>
-                <button type="button" class="btn danger reply-delete">Xóa</button>
-              </div>
-            </form>
-          </aside>
+        <div class="detail-body" tabindex="0">
+          <p class="detail-message"></p>
+        </div>
+
+        <form class="detail-reply" action="#" onsubmit="return false;">
+          <label class="label">Trả lời</label>
+          <textarea class="input textarea reply-text" rows="3" placeholder="Viết phản hồi..."></textarea>
+          <div class="detail-actions">
+            <button type="button" class="btn primary reply-send">Gửi</button>
+            <button type="button" class="btn ghost reply-cancel">Hủy</button>
+            <button type="button" class="btn danger reply-delete">Xóa</button>
+          </div>
+        </form>
+      </aside>
 
       </main>
     </div>

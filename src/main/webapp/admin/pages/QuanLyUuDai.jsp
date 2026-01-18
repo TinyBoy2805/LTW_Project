@@ -138,7 +138,6 @@
 
       </main>
       <script src="../scripts/components/extendSidebar.js"></script>
-      <script src="${pageContext.request.contextPath}/admin/scripts/page/Quanlyuudai.js"></script>
 </body>
 
 </html>
