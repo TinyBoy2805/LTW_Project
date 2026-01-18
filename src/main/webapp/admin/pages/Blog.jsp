@@ -48,7 +48,7 @@
             <div class="blog-list" role="list" aria-label="Danh sách bài viết">
               <%-- Hiển thị danh sách blog từ database --%>
               <c:forEach var="blog" items="${blogs}">
-                <article class="blog-card blog-clickable" role="button" tabindex="0" onclick="window.location.href='${pageContext.request.contextPath}/admin/pages/quanlyblog?id=${blog.id}'">
+                <article class="blog-card blog-clickable" role="button" tabindex="0" onclick="window.location.href='${pageContext.request.contextPath}/blog-detail?id=${blog.id}'">
                   <figure class="card__figure">
                     <img src="${empty blog.thumbnail ? 'https://via.placeholder.com/200x120?text=No+Image' : blog.thumbnail}" alt="${blog.title}" style="object-fit:cover;width:200px;height:120px;">
                   </figure>
@@ -66,7 +66,7 @@
           <!-- Tạo bài viết -->
           <div class="tab-panel" data-panel="create">
             <div class="content__body">
-              <form class="form-wrap" action="${pageContext.request.contextPath}/blog" method="post">
+              <form class="form-wrap" action="${pageContext.request.contextPath}/blog" method="post" enctype="multipart/form-data">
                 <section class="left-panel">
                   <div class="card-form">
                     <label class="label">Tiêu đề</label> 
@@ -91,7 +91,9 @@
                   <div class="images-card">
                     <h4>Hình ảnh</h4>
                     <div class="thumbs">
-                      <div class="add-thumb">+</div>
+                      <!-- Thay nút + bằng input file -->
+                      <input type="file" name="thumbnail" accept="image/*" class="input" style="margin-bottom:10px;">
+                      <div style="font-size:13px;color:#888">Chọn ảnh đại diện cho bài viết</div>
                     </div>
                   </div>
                 </aside>
@@ -118,7 +120,7 @@
     </div>
   </div> <!-- .main -->
   <script src="../scripts/components/extendSidebar.js"></script>
-  <script src="../scripts/page/Blog.js"></script>
-  <script src="../scripts/components/filter.js"></script>
+  <script src="${pageContext.request.contextPath}/admin/scripts/page/Blog.js"></script>
+    </script>
 </body>
 </html>
