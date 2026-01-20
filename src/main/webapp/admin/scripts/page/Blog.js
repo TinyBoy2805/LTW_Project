@@ -10,7 +10,7 @@ if (blogSearchInput) {
   });
 }
 
-// Script preview ảnh đại diện
+// Preview ảnh đại diện
 function setupBlogImagePreview() {
   var input = document.querySelector('input[name="thumbnail"]');
   var thumbs = document.querySelector('.thumbs');
@@ -34,7 +34,7 @@ function setupBlogImagePreview() {
   }
 }
 
-// Script chuyển tab cho blog
+// Chuyển tab
 function setupBlogTabs() {
   var tabBtns = document.querySelectorAll('.tab-btn');
   var tabPanels = document.querySelectorAll('.tab-panel');

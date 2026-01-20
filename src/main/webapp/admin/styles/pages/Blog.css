@@ -148,7 +148,6 @@ main.content {
   z-index: 5;
   width: 100%;
   position: absolute;
-  left: 24px;
   right: 24px;
   bottom: 24px;
 }
@@ -311,8 +310,10 @@ input {
 
 }
 
+
 .blog-card {
   display: flex;
+  flex-direction: column;
   background-color: #ffffff;
   border-radius: 10px;
   overflow: hidden;
@@ -320,6 +321,8 @@ input {
   cursor: pointer;
   border: 1px solid #e0e0e0;
   transition: all 0.25s ease-out;
+  height: 350px;
+  min-width: 0;
 }
 
 .blog-card:hover {
@@ -331,14 +334,16 @@ input {
   display: none;
 }
 
+
 .card__figure {
-  width: 200px;
-  min-width: 120px;
-  height: 200px;
+  width: 100%;
+  height: 230px;
   margin: 0;
   display: block;
   overflow: hidden;
+  flex-shrink: 0;
 }
+
 
 .card__figure img {
   width: 100%;
@@ -347,12 +352,15 @@ input {
   display: block;
 }
 
+
 .card-content {
-  padding: 12px;
-  width: 72%;
+  padding: 14px 16px 0 16px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 6px;
+  flex: 1 1 auto;
+  justify-content: flex-start;
 }
 
 .card-badge {
@@ -362,7 +370,7 @@ input {
   font-size: 11px;
   padding: 4px 8px;
   border-radius: 10px;
-  font-weight: 600;
+  padding: 16px 16px 2px 16px;
   width: fit-content;
 }
 
@@ -402,11 +410,11 @@ input {
 .form-wrap {
   display: flex;
   gap: 24px;
-  padding: 24px;
   flex-grow: 1;
   min-width: 0;
   width: 100%;
   align-items: flex-start;
+  margin: 0 auto;
 }
 
 .left-panel {
@@ -416,8 +424,8 @@ input {
 }
 
 .right-panel {
-  flex: 0 0 400px;
-  width: 400px;
+  flex: 0 0 360px;
+  width: 360px;
   min-width: 0;
 }
 
@@ -664,7 +672,6 @@ input {
 /* --- Action Row dưới cùng --- */
 .actions-row {
   display: none;
-  /* Mặc định ẩn, chỉ hiện khi ở tab "Tạo Blog" */
   justify-content: space-between;
   align-items: center;
   padding: 20px 24px 0 24px;
@@ -951,4 +958,19 @@ input {
   justify-content: space-between;
   align-items: center;
   gap: 12px;
+}
+
+/* Chỉnh lại box hình ảnh đại diện cho bài viết */
+.image-upload-box {
+  border: 2px dashed #f3c1d8;
+  border-radius: 12px;
+  padding: 16px 8px;
+  text-align: center;
+  color: #b71c5c;
+  background: #fff0fa;
+  margin-bottom: 12px;
+  transition: border 0.2s;
+  max-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
 }

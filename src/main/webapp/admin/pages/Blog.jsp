@@ -50,7 +50,7 @@
               <c:forEach var="blog" items="${blogs}">
                 <a class="blog-card blog-clickable" href="${pageContext.request.contextPath}/quanlyblog?id=${blog.id}" style="display:block;text-decoration:none;color:inherit;">
                   <figure class="card__figure">
-                    <img src="${empty blog.thumbnail ? 'https://via.placeholder.com/200x120?text=No+Image' : blog.thumbnail}" alt="${blog.title}" style="object-fit:cover;width:200px;height:120px;">
+                    <img src="${empty blog.thumbnail ? 'https://via.placeholder.com/200x120?text=No+Image' : blog.thumbnail}" alt="${blog.title}" >
                   </figure>
                   <div class="card-content">
                     <h4 class="card-title">${blog.title}</h4>
