@@ -66,14 +66,20 @@ public class BlogDao extends BaseDao {
             }
 
          public boolean deleteBlogById(int id) {
-                    String sql = "DELETE FROM blogs WHERE id = :id";
-                    int rows = get().withHandle(h ->
-                        h.createUpdate(sql)
-                            .bind("id", id)
-                            .execute()
-                    );
-                    return rows > 0;
-                }
+            String sql = "DELETE FROM blogs WHERE id = :id";
+            int rows = 0;
+            try {
+                rows = get().withHandle(h ->
+                    h.createUpdate(sql)
+                        .bind("id", id)
+                        .execute()
+                );
+                System.out.println("[BlogDao] Delete blog id=" + id + ", affected rows=" + rows);
+            } catch (Exception e) {
+                System.out.println("[BlogDao] Exception: " + e.getMessage());
+            }
+            return rows > 0;
+        }
     
     public boolean updateBlog(Blog blog) {
         String sql = "UPDATE blogs SET title = :title, content = :content, thumbnail = :thumbnail, url = :url, created_at = :createdAt, updated_at = :updatedAt WHERE id = :id";

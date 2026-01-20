@@ -3,66 +3,76 @@ package controller;
 import dao.BlogDao;
 import model.Blog;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
 import java.io.IOException;
+import java.io.File;
 
-@WebServlet("/admin/pages/quanlyblog")
+@WebServlet("/quanlyblog")
+@MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 5 * 1024 * 1024, maxRequestSize = 10 * 1024 * 1024)
 public class BlogDetailController extends HttpServlet {
-        @Override
-        protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-            String action = request.getParameter("action");
-            String idStr = request.getParameter("id");
-            if ("delete".equals(action) && idStr != null) {
-                try {
-                    int id = Integer.parseInt(idStr);
-                    boolean deleted = blogDao.deleteBlogById(id);
-                    if (deleted) {
-                        response.sendRedirect(request.getContextPath() + "/blog?msg=deleted");
-                    } else {
-                        response.sendRedirect(request.getContextPath() + "/blog?msg=deletefail");
-                    }
-                    return;
-                } catch (NumberFormatException ignored) {}
-            } else if ("update".equals(action) && idStr != null) {
-                try {
-                    int id = Integer.parseInt(idStr);
-                    String title = request.getParameter("title");
-                    String url = request.getParameter("url");
-                    String createdAt = request.getParameter("created_at");
-                    String content = request.getParameter("content");
-                    String thumbnail = request.getParameter("thumbnail");
-                    java.sql.Timestamp createdAtTs = null;
-                    try {
-                        createdAtTs = java.sql.Timestamp.valueOf(createdAt + " 00:00:00");
-                    } catch (Exception e) {
-                        createdAtTs = new java.sql.Timestamp(System.currentTimeMillis());
-                    }
-                    java.sql.Timestamp updatedAtTs = new java.sql.Timestamp(System.currentTimeMillis());
-                    Blog blog = blogDao.getBlogById(id);
-                    if (blog != null) {
-                        blog.setTitle(title);
-                        blog.setUrl(url);
-                        blog.setCreatedAt(createdAtTs);
-                        blog.setContent(content);
-                        blog.setThumbnail(thumbnail);
-                        blog.setUpdatedAt(updatedAtTs);
-                        boolean updated = blogDao.updateBlog(blog);
-                        if (updated) {
-                            response.sendRedirect(request.getContextPath() + "/blog?msg=updated");
-                        } else {
-                            response.sendRedirect(request.getContextPath() + "/blog?msg=updatefail");
-                        }
-                        return;
-                    }
-                } catch (Exception ignored) {}
-                response.sendRedirect(request.getContextPath() + "/blog?msg=updatefail");
-                return;
-            }
-            response.sendRedirect(request.getContextPath() + "/blog?msg=invalid");
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        String action = request.getParameter("action");
+        String idStr = request.getParameter("id");
+        if ("delete".equals(action)) {
+            try {
+                int id = Integer.parseInt(idStr);
+                blogDao.deleteBlogById(id);
+            } catch (NumberFormatException ignored) {}
+            response.sendRedirect(request.getContextPath() + "/blog");
+            return;
         }
+        if ("update".equals(action)) {
+            try {
+                int id = Integer.parseInt(idStr);
+                String title = request.getParameter("title");
+                String url = request.getParameter("url");
+                String createdAt = request.getParameter("created_at");
+                String content = request.getParameter("content");
+                String thumbnailOld = request.getParameter("thumbnail_old");
+                String thumbnail = thumbnailOld;
+
+                // Xử lý upload file ảnh
+                Part filePart = request.getPart("image");
+                if (filePart != null && filePart.getSize() > 0 && filePart.getSubmittedFileName() != null && !filePart.getSubmittedFileName().isEmpty()) {
+                    String uploadsDir = getServletContext().getRealPath("/uploads");
+                    File uploadsFolder = new File(uploadsDir);
+                    if (!uploadsFolder.exists()) uploadsFolder.mkdirs();
+                    String fileName = System.currentTimeMillis() + "_" + filePart.getSubmittedFileName();
+                    String filePath = uploadsDir + File.separator + fileName;
+                    filePart.write(filePath);
+                    thumbnail = request.getContextPath() + "/uploads/" + fileName;
+                }
+
+                java.sql.Timestamp createdAtTs = null;
+                try {
+                    createdAtTs = java.sql.Timestamp.valueOf(createdAt + " 00:00:00");
+                } catch (Exception e) {
+                    createdAtTs = new java.sql.Timestamp(System.currentTimeMillis());
+                }
+                java.sql.Timestamp updatedAtTs = new java.sql.Timestamp(System.currentTimeMillis());
+                Blog blog = blogDao.getBlogById(id);
+                if (blog != null) {
+                    blog.setTitle(title);
+                    blog.setUrl(url);
+                    blog.setCreatedAt(createdAtTs);
+                    blog.setContent(content);
+                    blog.setThumbnail(thumbnail);
+                    blog.setUpdatedAt(updatedAtTs);
+                    blogDao.updateBlog(blog);
+                }
+            } catch (Exception ignored) {}
+            response.sendRedirect(request.getContextPath() + "/blog");
+            return;
+        }
+        response.sendRedirect(request.getContextPath() + "/blog");
+    }
     private final BlogDao blogDao = new BlogDao();
 
     @Override
@@ -76,7 +86,7 @@ public class BlogDetailController extends HttpServlet {
             } catch (NumberFormatException ignored) {}
         }
         if (blog == null) {
-            response.sendRedirect("/admin/pages/Blog.jsp?msg=notfound");
+            response.sendRedirect(request.getContextPath() + "/blog?msg=notfound");
             return;
         }
         request.setAttribute("blog", blog);

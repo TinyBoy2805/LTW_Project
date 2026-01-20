@@ -31,74 +31,79 @@
         </h3>
         <div class="content__body">
             <div class="form-wrap">
-              <form id="update-form" method="post" action="${pageContext.request.contextPath}/admin/pages/quanlyblog" style="display:flex; width:100%;">
-                <section class="left-panel" style="flex:1;">
-                  <div class="card-form">
-                    <label class="label">Tiêu đề</label>
-                    <div class="input-with-icon">
-                      <input id="edit-title" name="title" class="input" type="text" placeholder="Nhập tiêu đề" value="${blog.title}">
-                      <i class="fa-solid fa-pen input-icon"></i>
-                    </div>
-
-                    <label class="label">Link bài viết</label>
-                    <div class="input-with-icon">
-                      <input id="edit-link" name="url" class="input" type="url" placeholder="https://..." value="${blog.url}">
-                      <i class="fa-solid fa-pen input-icon"></i>
-                    </div>
-
-                    <label class="label">Ngày đăng</label>
-                    <div class="input-with-icon">
-                      <input id="edit-date" name="created_at" class="input" type="date" value="${fn:substring(blog.createdAt, 0, 10)}">
-                      <i class="fa-solid fa-pen input-icon"></i>
-                    </div>
-
-                    <label class="label">Nội dung (mô tả ngắn)</label>
-                    <div class="input-with-icon">
-                      <textarea id="edit-content" name="content" class="input textarea" rows="3" placeholder="Tóm tắt, đoạn mô tả sẽ hiển thị trên card">${blog.content}</textarea>
-                      <i class="fa-solid fa-pen input-icon"></i>
-                    </div>
+              <section class="left-panel" style="flex:1;">
+                <div class="card-form">
+                  <label class="label">Tiêu đề</label>
+                  <div class="input-with-icon">
+                    <input id="edit-title" name="title" class="input" type="text" placeholder="Nhập tiêu đề" value="${blog.title}" form="updateForm">
+                    <i class="fa-solid fa-pen input-icon"></i>
                   </div>
-                </section>
+
+                  <label class="label">Link bài viết</label>
+                  <div class="input-with-icon">
+                    <input id="edit-link" name="url" class="input" type="url" placeholder="https://..." value="${blog.url}" form="updateForm">
+                    <i class="fa-solid fa-pen input-icon"></i>
+                  </div>
+
+                  <label class="label">Ngày đăng</label>
+                  <div class="input-with-icon">
+                    <input id="edit-date" name="created_at" class="input" type="date" value="${fn:substring(blog.createdAt, 0, 10)}" form="updateForm">
+                    <i class="fa-solid fa-pen input-icon"></i>
+                  </div>
+
+                  <label class="label">Nội dung (mô tả ngắn)</label>
+                  <div class="input-with-icon">
+                    <textarea id="edit-content" name="content" class="input textarea" rows="3" placeholder="Tóm tắt, đoạn mô tả sẽ hiển thị trên card" form="updateForm">${blog.content}</textarea>
+                    <i class="fa-solid fa-pen input-icon"></i>
+                  </div>
+                </div>
+              </section>
 
               <aside class="right-panel">
                 <div class="images-card">
                   <div class="images-card-header">
                     <h4>Hình ảnh</h4>
-                    <i class="fa-solid fa-pen input-icon"></i>
                   </div>
                   <div class="thumbs">
-                    <img id="blog-image" class="blog-thumb-image visible" src="${empty blog.thumbnail ? 'https://via.placeholder.com/200x120?text=No+Image' : blog.thumbnail}" alt="Hình ảnh bài viết">
+                    <img id="blog-image" class="blog-thumb-image visible" src="${empty blog.thumbnail ? 'https://via.placeholder.com/200x120?text=No+Image' : blog.thumbnail}" alt="Hình ảnh bài viết" style="max-width: 100%; max-height: 180px; display: block; margin-bottom: 10px;">
+                    <input type="file" id="image-upload" name="image" form="updateForm" accept="image/*" style="margin-top: 8px;">
                   </div>
                 </div>
               </aside>
-                <input type="hidden" name="action" value="update" />
-                <input type="hidden" name="id" value="${blog.id}" />
-                <input type="hidden" name="thumbnail" id="update-thumbnail" value="${blog.thumbnail}" />
-                <div class="actions-row">
-                  <div class="actions-left">
-                    <p class="note">Đảm bảo nội dung tuân thủ chính sách và không vi phạm quy định.</p>
-                  </div>
-                  <div class="actions-right">
-                    <div class="panel-actions">
-                      <div class="actions">
-                        <button id="cancel-blog" class="btn ghost" type="button">Hủy</button>
-                        <form id="delete-form" method="post" action="${pageContext.request.contextPath}/admin/pages/quanlyblog" style="display:inline;">
-                          <input type="hidden" name="id" value="${blog.id}" />
-                          <input type="hidden" name="action" value="delete" />
-                          <button id="btn-delete" class="btn danger" type="submit" onclick="return confirm('Bạn có chắc muốn xóa bài viết này?');">Xóa</button>
-                        </form>
-                        <button id="btn-update" class="btn primary" type="submit">Cập Nhật</button>
-                      </div>
-                    </div>
-                  </div>
+              <div class="actions-row">
+                <div class="actions-left">
+                  <p class="note">Đảm bảo nội dung tuân thủ chính sách và không vi phạm quy định.</p>
                 </div>
-              </form>
+                <div class="actions-right">
+                  <button class="btn ghost" type="button" onclick="window.location.href='${pageContext.request.contextPath}/quanlyblog?id=${blog.id}'">Hủy</button>
+                  <form action="${pageContext.request.contextPath}/quanlyblog" method="post" style="display:inline-flex; gap:12px; align-items:center;">
+                    <input type="hidden" name="action" value="delete" />
+                    <input type="hidden" name="id" value="${blog.id}" />
+                    <button class="btn danger" type="submit" onclick="return confirm('Bạn có chắc muốn xóa bài viết này?');">Xóa</button>
+                  </form>
+                  <form id="updateForm" action="${pageContext.request.contextPath}/quanlyblog" method="post" enctype="multipart/form-data" style="display:inline-flex; gap:12px; align-items:center;">
+                    <input type="hidden" name="action" value="update" />
+                    <input type="hidden" name="id" value="${blog.id}" />
+                    <input type="hidden" name="thumbnail_old" value="${blog.thumbnail}" />
+                    <button class="btn primary" type="submit">Cập Nhật</button>
+                  </form>
+                </div>
+              </div>
         </div>
       </div>
     </div>
 
   <script src="../scripts/components/extendSidebar.js"></script>
-<script src="../scripts/page/BlogDetail.js"></script>
+  <script>
+    // Preview ảnh trước khi upload
+    document.getElementById('image-upload').addEventListener('change', function(event) {
+      const [file] = event.target.files;
+      if (file) {
+        const img = document.getElementById('blog-image');
+        img.src = URL.createObjectURL(file);
+      }
+    });
+  </script>
 </body>
 
 </html>
