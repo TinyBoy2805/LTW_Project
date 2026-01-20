@@ -36,7 +36,7 @@
 
             <div class="controls">
               <div class="search__filter">
-                <input type="text" placeholder="Tìm kiếm bài viết (Tiêu đề, Nội dung)" id="blog__search__input"
+                <input type="text" placeholder="Tìm kiếm bài viết..." id="blog__search__input"
                   aria-label="Tìm kiếm bài viết theo tiêu đề hoặc nội dung">
                 <div class="search__box">
                   <ion-icon name="search-outline" class="search__icon"></ion-icon>

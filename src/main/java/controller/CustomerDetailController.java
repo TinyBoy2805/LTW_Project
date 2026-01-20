@@ -10,6 +10,7 @@ import jakarta.servlet.annotation.*;
 import java.io.IOException;
 
 @WebServlet(name = "CustomerDetailController", value = "/quanlykhachhang")
+@MultipartConfig
 public class CustomerDetailController extends HttpServlet {
     private final AuthDao authDao = new AuthDao();
     private final AddressDao addressDao = new AddressDao();
@@ -43,10 +44,13 @@ public class CustomerDetailController extends HttpServlet {
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         String action = request.getParameter("action");
         String idParam = request.getParameter("id");
         int id = Integer.parseInt(idParam);
-        
+
+
+
         // Xử lý xóa tài khoản
         if ("delete".equals(action)) {
             addressDao.deleteAddressByUserId(id);
@@ -54,7 +58,7 @@ public class CustomerDetailController extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/khachhang");
             return;
         }
-        
+
         // Xử lý cập nhật thông tin
         String name = request.getParameter("name");
         String email = request.getParameter("email");
@@ -65,17 +69,39 @@ public class CustomerDetailController extends HttpServlet {
         String road = "";
         String district = "";
         String city = "";
+        String hamlet = "";
+        String ward = "";
         if (addressFull != null) {
             String[] parts = addressFull.split(",");
             if (parts.length > 0) houseNumber = parts[0].trim();
             if (parts.length > 1) road = parts[1].trim();
             if (parts.length > 2) district = parts[2].trim();
             if (parts.length > 3) city = parts[3].trim();
+            if (parts.length > 4) hamlet = parts[4].trim();
+            if (parts.length > 5) ward = parts[5].trim();
         }
 
-        authDao.updateUserInfo(id, name, email, phone);
-        addressDao.updateAddress(id, houseNumber, road, district, city);
-
-        response.sendRedirect(request.getContextPath() + "/quanlykhachhang?id=" + id);
+        // Lấy avt_url hiện tại nếu không upload mới
+        String avtUrl = null;
+        User currentUser = authDao.getUserById(id);
+        if (currentUser != null) {
+            avtUrl = currentUser.getAvt_url();
+        }
+        Part filePart = null;
+        try {
+            filePart = request.getPart("avatar");
+        } catch (Exception ignored) {}
+        if (filePart != null && filePart.getSize() > 0) {
+            String fileName = System.currentTimeMillis() + "_" + filePart.getSubmittedFileName();
+            String uploadPath = request.getServletContext().getRealPath("/libraries/ckfinder/userfiles/");
+            java.io.File uploadDir = new java.io.File(uploadPath);
+            if (!uploadDir.exists()) uploadDir.mkdirs();
+            String filePath = uploadPath + java.io.File.separator + fileName;
+            filePart.write(filePath);
+            avtUrl = request.getContextPath() + "/libraries/ckfinder/userfiles/" + fileName;
+        }
+        authDao.updateUserInfo(id, name, email, phone, avtUrl);
+        addressDao.updateAddress(id, houseNumber, road, district, city, hamlet, ward);
+        response.sendRedirect(request.getContextPath() + "/khachhang");
     }
 }

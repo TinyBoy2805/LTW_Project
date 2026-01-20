@@ -33,7 +33,7 @@
           Quản lý khách hàng
         </h3>
         
-        <form id="customer-edit-form" method="post" action="${pageContext.request.contextPath}/quanlykhachhang?id=${customer.id}">
+        <form id="customer-edit-form" method="post" action="${pageContext.request.contextPath}/quanlykhachhang?id=${customer.id}" enctype="multipart/form-data">
         <div class="content__body">
           <div class="form-wrap">
             <!-- Left Panel: Form -->
@@ -46,7 +46,8 @@
             <div class="profile-field">
               <label>Họ và tên:</label>
               <div class="field-content">
-                <input type="text" class="field-input" name="name" id="name" value="${customer.name}" readonly>
+                <input type="text" class="field-input" name="name_display" id="name" value="${customer.name}">
+                <input type="hidden" name="name" id="name_hidden" value="${customer.name}">
                 <i class="fa-solid fa-pen input-icon" title="Chỉnh sửa họ tên"></i>
               </div>
             </div>
@@ -54,7 +55,8 @@
             <div class="profile-field">
               <label>Email:</label>
               <div class="field-content">
-                <input type="email" class="field-input" name="email" id="email" value="${customer.email}" readonly>
+                <input type="email" class="field-input" name="email_display" id="email" value="${customer.email}">
+                <input type="hidden" name="email" id="email_hidden" value="${customer.email}">
                 <i class="fa-solid fa-pen input-icon" title="Chỉnh sửa email"></i>
               </div>
             </div>
@@ -62,7 +64,20 @@
             <div class="profile-field">
               <label>Số điện thoại:</label>
               <div class="field-content">
-                <input type="text" class="field-input" name="phone_number" id="phone_number" value="${customer.phone_number}" readonly>
+                <input type="text" class="field-input" name="phone_number_display" id="phone_number" value="${customer.phone_number}">
+                <input type="hidden" name="phone_number" id="phone_number_hidden" value="${customer.phone_number}">
+                  <script>
+                    // Luôn đồng bộ giá trị input hidden với input hiển thị khi người dùng thay đổi
+                    document.getElementById('name').addEventListener('input', function() {
+                      document.getElementById('name_hidden').value = this.value;
+                    });
+                    document.getElementById('email').addEventListener('input', function() {
+                      document.getElementById('email_hidden').value = this.value;
+                    });
+                    document.getElementById('phone_number').addEventListener('input', function() {
+                      document.getElementById('phone_number_hidden').value = this.value;
+                    });
+                  </script>
                 <i class="fa-solid fa-pen input-icon" title="Chỉnh sửa số điện thoại"></i>
               </div>
             </div>
@@ -73,12 +88,12 @@
                 <c:choose>
                   <c:when test="${not empty address}">
                     <input type="text" class="field-input" name="address_full" id="address_full"
-                      value="${address.houseNumber}, ${address.road}, ${address.district}, ${address.city}"
-                      readonly placeholder="Số nhà, Đường, Quận/Huyện, Tỉnh/TP">
+                      value="${address.houseNumber}, ${address.road}, ${address.district}, ${address.city}, ${address.hamlet}, ${address.ward}"
+                      readonly placeholder="Số nhà, Đường, Quận/Huyện, Tỉnh/TP, Khu phố, Phường/Xã">
                   </c:when>
                   <c:otherwise>
                     <input type="text" class="field-input" name="address_full" id="address_full"
-                      value="" readonly placeholder="Số nhà, Đường, Quận/Huyện, Tỉnh/TP">
+                      value="" readonly placeholder="Số nhà, Đường, Quận/Huyện, Tỉnh/TP, Khu phố, Phường/Xã">
                   </c:otherwise>
                 </c:choose>
                 <i class="fa-solid fa-pen input-icon" title="Chỉnh sửa địa chỉ"></i>
@@ -118,12 +133,21 @@
             <aside class="right-panel">
               <div class="profile-avatar-card">
                 <div class="avatar-container">
-                  <img src="${empty customer.avt_url ? '../imgs/logo.png' : customer.avt_url}" alt="User Avatar">
+                  <img id="avatar-preview" src="${empty customer.avt_url ? '../imgs/logo.png' : customer.avt_url}" alt="User Avatar" style="max-width:120px;max-height:120px;border-radius:50%;object-fit:cover;">
                 </div>
-                <button class="edit-avatar-btn" type="button">
+                <label class="edit-avatar-btn" style="cursor:pointer;">
                   <i class="fa-solid fa-pen"></i> Đổi ảnh đại diện
-                </button>
+                  <input type="file" name="avatar" id="avatar" accept="image/*" style="display:none;" onchange="previewAvatar(event)">
+                </label>
               </div>
+              <script>
+                function previewAvatar(event) {
+                  const [file] = event.target.files;
+                  if (file) {
+                    document.getElementById('avatar-preview').src = URL.createObjectURL(file);
+                  }
+                }
+              </script>
             </aside>
           </div>
         </div>
@@ -138,14 +162,13 @@
           </button>
         </div>
         </form>
-   </main>
+      </main>
     </div>
   </div>
-  <!-- Form để xóa tài khoản khách hàng -->
-              <form id="hidden-delete-form" method="post" action="${pageContext.request.contextPath}/quanlykhachhang" style="display:none;">
-              <input type="hidden" name="id" id="delete-id">
-              <input type="hidden" name="action" value="delete">
-            </form>
+  <form id="hidden-delete-form" method="post" action="${pageContext.request.contextPath}/quanlykhachhang" style="display:none;">
+    <input type="hidden" name="id" id="delete-id">
+    <input type="hidden" name="action" value="delete">
+  </form>
   <script src="${pageContext.request.contextPath}/admin/scripts/components/extendSidebar.js"></script>
   <script src="${pageContext.request.contextPath}/admin/scripts/page/Quanlykhachhang.js"></script>
 </body>

@@ -154,21 +154,32 @@ public class AuthDao extends BaseDao {
             .list()
         );
     }
-    // Cập nhật thông tin khách hàng
-    public void updateUserInfo(int id, String name, String email, String phoneNumber) {
+       // Cập nhật thông tin khách hàng 
+        public void updateUserInfo(int id, String name, String email, String phoneNumber, String avtUrl) {
+            get().useHandle(h ->
+                h.createUpdate("""
+                    UPDATE users
+                    SET name = :name,
+                        email = :email,
+                        phone_number = :phoneNumber,
+                        avt_url = :avtUrl
+                    WHERE id = :id
+                """)
+                .bind("id", id)
+                .bind("name", name)
+                .bind("email", email)
+                .bind("phoneNumber", phoneNumber)
+                .bind("avtUrl", avtUrl)
+                .execute()
+            );
+        }
+    // Cập nhật đường dẫn ảnh đại diện
+    public void updateAvatar(int id, String avtUrl) {
         get().useHandle(h ->
-            h.createUpdate("""
-                UPDATE users
-                SET name = :name,
-                    email = :email,
-                    phone_number = :phoneNumber
-                WHERE id = :id
-            """)
-            .bind("id", id)
-            .bind("name", name)
-            .bind("email", email)
-            .bind("phoneNumber", phoneNumber)
-            .execute()
+            h.createUpdate("UPDATE users SET avt_url = :avtUrl WHERE id = :id")
+                .bind("id", id)
+                .bind("avtUrl", avtUrl)
+                .execute()
         );
     }
     

@@ -6,18 +6,20 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class AddressDao extends BaseDao {
-    public Address getAddressByUserId(long userId) {
+    public Address getAddressByUserId(int userId) {
         String sql = "SELECT * FROM addresses WHERE user_id = :userId LIMIT 1";
         return get().withHandle(handle ->
             handle.createQuery(sql)
                 .bind("userId", userId)
                 .map((rs, ctx) -> new Address(
-                    rs.getLong("id"),
-                    rs.getLong("user_id"),
+                    rs.getInt("id"),
+                    rs.getInt("user_id"),
                     rs.getString("house_number"),
                     rs.getString("road"),
                     rs.getString("district"),
-                    rs.getString("city")
+                    rs.getString("city"),
+                    rs.getString("hamlet"),
+                    rs.getString("ward")
                 ))
                 .findOne()
                 .orElse(null)
@@ -25,7 +27,7 @@ public class AddressDao extends BaseDao {
     }
 
     // Xóa địa chỉ gắn với người dùng
-    public void deleteAddressByUserId(long userId) {
+    public void deleteAddressByUserId(int userId) {
         get().useHandle(h ->
             h.createUpdate("DELETE FROM addresses WHERE user_id = :userId")
                 .bind("userId", userId)
@@ -33,14 +35,16 @@ public class AddressDao extends BaseDao {
         );
     }
     // Cập nhật địa chỉ khách hàng
-    public void updateAddress(long userId, String houseNumber, String road, String district, String city) {
+    public void updateAddress(int userId, String houseNumber, String road, String district, String city, String hamlet, String ward) {
         int updated = get().withHandle(h ->
             h.createUpdate("""
                 UPDATE addresses
                 SET house_number = :houseNumber,
                     road = :road,
                     district = :district,
-                    city = :city
+                    city = :city,
+                    hamlet = :hamlet,
+                    ward = :ward
                 WHERE user_id = :userId
             """)
             .bind("userId", userId)
@@ -48,20 +52,24 @@ public class AddressDao extends BaseDao {
             .bind("road", road)
             .bind("district", district)
             .bind("city", city)
+            .bind("hamlet", hamlet)
+            .bind("ward", ward)
             .execute()
         );
         if (updated == 0) {
             // Nếu chưa có địa chỉ thì insert mới
             get().useHandle(h ->
                 h.createUpdate("""
-                    INSERT INTO addresses (user_id, house_number, road, district, city)
-                    VALUES (:userId, :houseNumber, :road, :district, :city)
+                    INSERT INTO addresses (user_id, house_number, road, district, city, hamlet, ward)
+                    VALUES (:userId, :houseNumber, :road, :district, :city, :hamlet, :ward)
                 """)
                 .bind("userId", userId)
                 .bind("houseNumber", houseNumber)
                 .bind("road", road)
                 .bind("district", district)
                 .bind("city", city)
+                .bind("hamlet", hamlet)
+                .bind("ward", ward)
                 .execute()
             );
         }

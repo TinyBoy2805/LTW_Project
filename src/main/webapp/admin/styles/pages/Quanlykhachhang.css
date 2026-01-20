@@ -37,7 +37,6 @@ body {
   background-color: #f8f8f8;
   padding: 24px 24px 0 24px;
   height: 100%;
-  overflow-y: auto;
 }
 
 .content__title {
