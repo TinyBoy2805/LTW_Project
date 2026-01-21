@@ -7,11 +7,14 @@ import model.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.util.List;
 
-public class AuthDao extends BaseDao {
+public class AuthDao extends BaseDao
+{
 
-    public User getUserByName(String name) {
+    public User getUserByName(String name)
+    {
         return get().withHandle(h -> h.createQuery("SELECT * FROM users WHERE name = :name")
                 .bind("name", name)
                 .mapToBean(User.class)
@@ -77,8 +80,30 @@ public class AuthDao extends BaseDao {
         );
     }
 
+    public int insertAndGetId(String name, String email, String role, String password_hashed, String phone_number, String salt)
+    {
+        return get().withHandle(h ->
+                h.createUpdate("""
+                    INSERT INTO users(name, email, role, password_hashed, phone_number, salt, verified)
+                    VALUES (:name, :email, :role, :password, :phone, :salt, 0)
+                """)
+                        .bind("name", name)
+                        .bind("email", email)
+                        .bind("role", role)
+                        .bind("password", password_hashed)
+                        .bind("phone", phone_number)
+                        .bind("salt", salt)
+                        .executeAndReturnGeneratedKeys("id")
+                        .mapTo(Integer.class)
+                        .one()
+        );
+    }
+
+
+
     //service continue to call DAO to activate account into db
-    public void activateAccount(String email) {
+    public void activateAccount(String email)
+    {
         get().useHandle(h ->
                 h.createUpdate("UPDATE users SET verified = 1 WHERE email = :email")
                         .bind("email", email)
@@ -87,7 +112,8 @@ public class AuthDao extends BaseDao {
     }
 
     //update email for user
-    public void updateEmail(String oldEmail, String newEmail) {
+    public void updateEmail(String oldEmail, String newEmail)
+    {
         get().useHandle(h ->
                 h.createUpdate("UPDATE users SET email = :new, verified = 0 WHERE email = :old")
                         .bind("old", oldEmail)
@@ -118,7 +144,8 @@ public class AuthDao extends BaseDao {
 //    }
 
     // Lấy danh sách tất cả người dùng có vai trò là khách hàng
-    public List<User> getAllCustomers() {
+    public List<User> getAllCustomers()
+    {
         return get().withHandle(handle ->
                 handle.createQuery("""
                                 SELECT id, name, email, phone_number,
@@ -133,7 +160,8 @@ public class AuthDao extends BaseDao {
     }
 
     // Lấy chi tiết 1 khách hàng theo ID
-    public User getUserById(int id) {
+    public User getUserById(int id)
+    {
         return get().withHandle(handle ->
                 handle.createQuery("""
                                 SELECT id, name, email, role, phone_number, avt_url
@@ -148,7 +176,8 @@ public class AuthDao extends BaseDao {
     }
 
     // Tìm kiếm khách hàng theo tên
-    public List<User> searchCustomersByName(String keyword) {
+    public List<User> searchCustomersByName(String keyword)
+    {
         return get().withHandle(handle ->
                 handle.createQuery("""
                                     SELECT id, name, email, phone_number, avt_url, role
@@ -162,7 +191,8 @@ public class AuthDao extends BaseDao {
     }
 
     // Cập nhật thông tin khách hàng
-    public void updateUserInfo(int id, String name, String email, String phoneNumber) {
+    public void updateUserInfo(int id, String name, String email, String phoneNumber)
+    {
         get().useHandle(h ->
                 h.createUpdate("""
                                     UPDATE users
@@ -179,7 +209,8 @@ public class AuthDao extends BaseDao {
         );
     }
 
-    public void updatePassword(String email, String hashPassword) {
+    public void updatePassword(String email, String hashPassword)
+    {
         get().useHandle(h ->
                 h.createUpdate("""
                                 UPDATE users
@@ -189,6 +220,103 @@ public class AuthDao extends BaseDao {
                         .bind("password", hashPassword)
                         .bind("email", email)
                         .execute()
+        );
+    }
+
+    public void createTokenAndExpiredTime(int userId, String token, Timestamp expirationTime)
+    {
+        get().useHandle(h ->
+                h.createUpdate("""
+                INSERT INTO verification_tokens(user_id, token, type, expires_at, used)
+                VALUES (:userId, :token, 'VERIFY_EMAIL', :expiresAt, 0)
+            """)
+                        .bind("userId", userId)
+                        .bind("token", token)
+                        .bind("expiresAt", expirationTime)
+                        .execute()
+        );
+    }
+
+    public boolean checkToken(String token)
+    {
+        return get().withHandle(h ->
+                h.createQuery("SELECT COUNT(*) FROM verification_tokens WHERE token = :token")
+                        .bind("token", token)
+                        .mapTo(Integer.class)
+                        .one() > 0
+        );
+    }
+
+    public boolean checkTokenExpired(String token)
+    {
+        return get().withHandle(h ->
+                h.createQuery("""
+                SELECT COUNT(*) FROM verification_tokens 
+                WHERE token = :token 
+                AND expires_at > NOW()
+            """)
+                        .bind("token", token)
+                        .mapTo(Integer.class)
+                        .one() > 0
+        );
+    }
+    public boolean checkTokenNotUsed(String token)
+    {
+        return get().withHandle(h ->
+                h.createQuery("""
+                SELECT COUNT(*) FROM verification_tokens 
+                WHERE token = :token 
+                AND used = 0
+            """)
+                        .bind("token", token)
+                        .mapTo(Integer.class)
+                        .one() > 0
+        );
+    }
+
+    public void setTokenUsed(String token)
+    {
+        get().useHandle(h ->
+                h.createUpdate("UPDATE verification_tokens SET used = 1 WHERE token = :token")
+                        .bind("token", token)
+                        .execute()
+        );
+    }
+
+    public int getUserIdFromVerifyToken(String token)
+    {
+        return get().withHandle(h ->
+                h.createQuery("SELECT user_id FROM verification_tokens WHERE token = :token")
+                        .bind("token", token)
+                        .mapTo(Integer.class)
+                        .findOne()
+                        .orElse(-1) // Trả về -1 nếu không tìm thấy
+        );
+    }
+
+    public boolean setVerifyUser(int userId)
+    {
+        int rowsAffected = get().withHandle(h ->
+                h.createUpdate("UPDATE users SET verified = 1 WHERE id = :userId")
+                        .bind("userId", userId)
+                        .execute()
+        );
+
+        return rowsAffected > 0;
+    }
+
+    public User findByEmailOrPhone(String input)
+    {
+        return get().withHandle(h ->
+                h.createQuery("""
+                SELECT * FROM users 
+                WHERE email = :input OR phone_number = :input
+                LIMIT 1
+            """)
+                        .bind("input", input)
+                        .mapToBean(User.class)
+                        .findOne()
+                        .orElse(null)
         );
     }
 }

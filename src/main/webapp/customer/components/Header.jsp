@@ -3,9 +3,13 @@
 
 
 
-<%--<%--%>
-<%--    String activeTab = (String)request.getAttribute("activeTab");--%>
-<%--%>--%>
+<%
+    boolean isLoggedIn = session.getAttribute("isLoggedIn") != null
+                        ? (Boolean) session.getAttribute("isLoggedIn")
+                        : false;
+
+    String username = isLoggedIn ? (String) session.getAttribute("username") : "";
+%>
 
 
 
@@ -29,70 +33,80 @@
             </div>
             <div class="nav__top-actions">
                 <ul>
-                    <li class="hovercart">
-                        <a href="Cart.jsp" class="--color4"><i class="fa-solid fa-cart-shopping --size20"></i></a>
-                        <div class="header-cart">
-                            <ul>
-                                <li>
-                                    <div class="item">
-                                        <div class="img-container">
-                                            <img src="https://i.pinimg.com/1200x/4b/bb/02/4bbb0223ba678e97772d02949e5f89ca.jpg" alt="">
+                    <% if (isLoggedIn) { %>
+                        <!-- User đã login: hiện cart, bell, avatar -->
+                        <li class="hovercart">
+                            <a href="Cart.jsp" class="--color4"><i class="fa-solid fa-cart-shopping --size20"></i></a>
+                            <div class="header-cart">
+                                <ul>
+                                    <li>
+                                        <div class="item">
+                                            <div class="img-container">
+                                                <img src="https://i.pinimg.com/1200x/4b/bb/02/4bbb0223ba678e97772d02949e5f89ca.jpg" alt="">
+                                            </div>
+                                            <p>Sữa chua hy lạp</p>
+                                            <p class="--weight600 --color6">199.000₫</p>
                                         </div>
-                                        <p>Sữa chua hy lạp</p>
-                                        <p class="--weight600 --color6">199.000₫</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="item">
-                                        <div class="img-container">
-                                            <img src="https://i.pinimg.com/1200x/4b/bb/02/4bbb0223ba678e97772d02949e5f89ca.jpg" alt="">
+                                    </li>
+                                    <li>
+                                        <div class="item">
+                                            <div class="img-container">
+                                                <img src="https://i.pinimg.com/1200x/4b/bb/02/4bbb0223ba678e97772d02949e5f89ca.jpg" alt="">
+                                            </div>
+                                            <p>Sữa chua hy lạp</p>
+                                            <p class="--weight600 --color6">199.000₫</p>
                                         </div>
-                                        <p>Sữa chua hy lạp</p>
-                                        <p class="--weight600 --color6">199.000₫</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="item">
-                                        <div class="img-container">
-                                            <img src="https://i.pinimg.com/1200x/4b/bb/02/4bbb0223ba678e97772d02949e5f89ca.jpg" alt="">
+                                    </li>
+                                    <li>
+                                        <div class="item">
+                                            <div class="img-container">
+                                                <img src="https://i.pinimg.com/1200x/4b/bb/02/4bbb0223ba678e97772d02949e5f89ca.jpg" alt="">
+                                            </div>
+                                            <p>Sữa chua hy lạp</p>
+                                            <p class="--weight600 --color6">199.000₫</p>
                                         </div>
-                                        <p>Sữa chua hy lạp</p>
-                                        <p class="--weight600 --color6">199.000₫</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="item">
-                                        <div class="img-container">
-                                            <img src="https://i.pinimg.com/1200x/4b/bb/02/4bbb0223ba678e97772d02949e5f89ca.jpg" alt="">
+                                    </li>
+                                    <li>
+                                        <div class="item">
+                                            <div class="img-container">
+                                                <img src="https://i.pinimg.com/1200x/4b/bb/02/4bbb0223ba678e97772d02949e5f89ca.jpg" alt="">
+                                            </div>
+                                            <p>Sữa chua hy lạp</p>
+                                            <p class="--weight600 --color6">199.000₫</p>
                                         </div>
-                                        <p>Sữa chua hy lạp</p>
-                                        <p class="--weight600 --color6">199.000₫</p>
-                                    </div>
-                                </li>
-                            </ul>
-                            <div class="sub-info">
-                                <p>36 sản phẩm</p>
-                                <a href="Cart.jsp">Xem giỏ hàng</a>
+                                    </li>
+                                </ul>
+                                <div class="sub-info">
+                                    <p>36 sản phẩm</p>
+                                    <a href="Cart.jsp">Xem giỏ hàng</a>
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                    <li><a href="Inform.jsp" class="--color4"><i class="fa-solid fa-bell --size20"></i></a><div class="notif-count">2</div></li>
-                    <li class="hover-avt">
-                        <div class="container">
-                            <a href="Profile.jsp" class="--color4"><i class="fa-solid fa-user-ninja --size20"></i></a>
-                            <ul class="avt-options">
-                                <li onclick="window.location.href='Profile.jsp'">
-                                    <div class="avt-container">
-                                        <img src="https://i.pinimg.com/736x/5f/83/3d/5f833de6a6b1d8032037b6a24a5321b6.jpg" alt="">
-                                    </div>
-                                    <h4>Nguyễn Văn A</h4>
-                                </li>
-                                <li>
-                                    <button onclick="window.location.href='../../index.jsp'">Đăng xuất</button>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
+                        </li>
+                        <li><a href="Inform.jsp" class="--color4"><i class="fa-solid fa-bell --size20"></i></a><div class="notif-count">2</div></li>
+                        <li class="hover-avt">
+                            <div class="container">
+                                <a href="Profile.jsp" class="--color4"><i class="fa-solid fa-user-ninja --size20"></i></a>
+                                <ul class="avt-options">
+                                    <li onclick="window.location.href='Profile.jsp'">
+                                        <div class="avt-container">
+                                            <img src="https://i.pinimg.com/736x/5f/83/3d/5f833de6a6b1d8032037b6a24a5321b6.jpg" alt="">
+                                        </div>
+                                        <h4><%= username %></h4>
+                                    </li>
+                                    <li>
+                                        <button onclick="window.location.href='${pageContext.request.contextPath}/auth/logout'">Đăng xuất</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    <% } else { %>
+                        <!-- User chưa login: chỉ hiện nút Đăng nhập -->
+                        <li class="login-btn">
+                            <a href="${pageContext.request.contextPath}/index.jsp" style="display: inline-block; padding: 8px 20px; background: #F564A9; color: white; text-decoration: none; border-radius: 6px; font-weight: 500; transition: all 0.3s;">
+                                Đăng nhập
+                            </a>
+                        </li>
+                    <% } %>
                 </ul>
             </div>
         </div>
