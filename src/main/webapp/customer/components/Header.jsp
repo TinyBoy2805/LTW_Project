@@ -37,66 +37,225 @@
                         <!-- User đã login: hiện cart, bell, avatar -->
                         <li class="hovercart">
                             <a href="Cart.jsp" class="--color4"><i class="fa-solid fa-cart-shopping --size20"></i></a>
-                            <div class="header-cart">
-                                <ul>
-                                    <li>
-                                        <div class="item">
-                                            <div class="img-container">
-                                                <img src="https://i.pinimg.com/1200x/4b/bb/02/4bbb0223ba678e97772d02949e5f89ca.jpg" alt="">
-                                            </div>
-                                            <p>Sữa chua hy lạp</p>
-                                            <p class="--weight600 --color6">199.000₫</p>
+                            <div class="header-cart-modern">
+                                <div class="cart-header">
+                                    <div class="cart-title">
+                                        <i class="fa-solid fa-cart-shopping"></i>
+                                        <h3>Giỏ hàng của tôi</h3>
+                                    </div>
+                                    <span class="cart-count-badge">4 sản phẩm</span>
+                                </div>
+
+                                <div class="cart-items-list">
+                                    <div class="cart-item">
+                                        <div class="cart-item-img">
+                                            <img src="https://i.pinimg.com/1200x/4b/bb/02/4bbb0223ba678e97772d02949e5f89ca.jpg" alt="">
                                         </div>
-                                    </li>
-                                    <li>
-                                        <div class="item">
-                                            <div class="img-container">
-                                                <img src="https://i.pinimg.com/1200x/4b/bb/02/4bbb0223ba678e97772d02949e5f89ca.jpg" alt="">
-                                            </div>
-                                            <p>Sữa chua hy lạp</p>
-                                            <p class="--weight600 --color6">199.000₫</p>
+                                        <div class="cart-item-info">
+                                            <h4>Sữa chua hy lạp</h4>
+                                            <p class="cart-item-qty">x2</p>
                                         </div>
-                                    </li>
-                                    <li>
-                                        <div class="item">
-                                            <div class="img-container">
-                                                <img src="https://i.pinimg.com/1200x/4b/bb/02/4bbb0223ba678e97772d02949e5f89ca.jpg" alt="">
-                                            </div>
-                                            <p>Sữa chua hy lạp</p>
-                                            <p class="--weight600 --color6">199.000₫</p>
+                                        <div class="cart-item-price">
+                                            <span>199.000₫</span>
                                         </div>
-                                    </li>
-                                    <li>
-                                        <div class="item">
-                                            <div class="img-container">
-                                                <img src="https://i.pinimg.com/1200x/4b/bb/02/4bbb0223ba678e97772d02949e5f89ca.jpg" alt="">
-                                            </div>
-                                            <p>Sữa chua hy lạp</p>
-                                            <p class="--weight600 --color6">199.000₫</p>
+                                    </div>
+                                    <div class="cart-item">
+                                        <div class="cart-item-img">
+                                            <img src="https://i.pinimg.com/1200x/4b/bb/02/4bbb0223ba678e97772d02949e5f89ca.jpg" alt="">
                                         </div>
-                                    </li>
-                                </ul>
-                                <div class="sub-info">
-                                    <p>36 sản phẩm</p>
-                                    <a href="Cart.jsp">Xem giỏ hàng</a>
+                                        <div class="cart-item-info">
+                                            <h4>Sữa chua hy lạp</h4>
+                                            <p class="cart-item-qty">x1</p>
+                                        </div>
+                                        <div class="cart-item-price">
+                                            <span>199.000₫</span>
+                                        </div>
+                                    </div>
+                                    <div class="cart-item">
+                                        <div class="cart-item-img">
+                                            <img src="https://i.pinimg.com/1200x/4b/bb/02/4bbb0223ba678e97772d02949e5f89ca.jpg" alt="">
+                                        </div>
+                                        <div class="cart-item-info">
+                                            <h4>Sữa chua hy lạp</h4>
+                                            <p class="cart-item-qty">x3</p>
+                                        </div>
+                                        <div class="cart-item-price">
+                                            <span>199.000₫</span>
+                                        </div>
+                                    </div>
+                                    <div class="cart-item">
+                                        <div class="cart-item-img">
+                                            <img src="https://i.pinimg.com/1200x/4b/bb/02/4bbb0223ba678e97772d02949e5f89ca.jpg" alt="">
+                                        </div>
+                                        <div class="cart-item-info">
+                                            <h4>Sữa chua hy lạp</h4>
+                                            <p class="cart-item-qty">x1</p>
+                                        </div>
+                                        <div class="cart-item-price">
+                                            <span>199.000₫</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="cart-footer">
+                                    <div class="cart-total">
+                                        <span>Tổng cộng</span>
+                                        <span class="total-price">1.194.000₫</span>
+                                    </div>
+                                    <button class="view-cart-btn" onclick="window.location.href='Cart.jsp'">
+                                        <span>Xem giỏ hàng</span>
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                    </button>
                                 </div>
                             </div>
                         </li>
-                        <li><a href="Inform.jsp" class="--color4"><i class="fa-solid fa-bell --size20"></i></a><div class="notif-count">2</div></li>
+                        
+                        <li class="hover-notification">
+                            <a href="Inform.jsp" class="--color4"><i class="fa-solid fa-bell --size20"></i></a>
+                            <div class="notif-count">2</div>
+                            
+                            <div class="notification-dropdown">
+                                <div class="notification-header">
+                                    <h3>Thông báo</h3>
+                                    <a href="Inform.jsp" class="mark-all-read">Đánh dấu đã đọc</a>
+                                </div>
+
+                                <div class="notification-list">
+                                    <div class="notification-item unread">
+                                        <div class="notification-icon order">
+                                            <i class="fa-solid fa-box"></i>
+                                        </div>
+                                        <div class="notification-content">
+                                            <p class="notification-text">Đơn hàng #DH123456 của bạn đã được giao thành công</p>
+                                            <span class="notification-time">5 phút trước</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="notification-item unread">
+                                        <div class="notification-icon promo">
+                                            <i class="fa-solid fa-fire"></i>
+                                        </div>
+                                        <div class="notification-content">
+                                            <p class="notification-text">Flash sale đang diễn ra - Giảm giá lên đến 50%</p>
+                                            <span class="notification-time">2 giờ trước</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="notification-item">
+                                        <div class="notification-icon system">
+                                            <i class="fa-solid fa-circle-info"></i>
+                                        </div>
+                                        <div class="notification-content">
+                                            <p class="notification-text">Hệ thống đã cập nhật điều khoản sử dụng mới</p>
+                                            <span class="notification-time">1 ngày trước</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="notification-item">
+                                        <div class="notification-icon order">
+                                            <i class="fa-solid fa-truck"></i>
+                                        </div>
+                                        <div class="notification-content">
+                                            <p class="notification-text">Đơn hàng #DH123455 đang được vận chuyển</p>
+                                            <span class="notification-time">2 ngày trước</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="notification-footer">
+                                    <a href="Inform.jsp" class="view-all-notifications">
+                                        <span>Xem tất cả</span>
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                        
                         <li class="hover-avt">
                             <div class="container">
-                                <a href="Profile.jsp" class="--color4"><i class="fa-solid fa-user-ninja --size20"></i></a>
-                                <ul class="avt-options">
-                                    <li onclick="window.location.href='Profile.jsp'">
+                                <a href="${pageContext.request.contextPath}/profile" class="--color4"><i class="fa-solid fa-user-ninja --size20"></i></a>
+                                <div class="avt-options">
+                                    <div class="avt-profile-card">
                                         <div class="avt-container">
                                             <img src="https://i.pinimg.com/736x/5f/83/3d/5f833de6a6b1d8032037b6a24a5321b6.jpg" alt="">
+                                            <div class="online-status"></div>
                                         </div>
-                                        <h4><%= username %></h4>
-                                    </li>
-                                    <li>
-                                        <button onclick="window.location.href='${pageContext.request.contextPath}/auth/logout'">Đăng xuất</button>
-                                    </li>
-                                </ul>
+                                        <div class="profile-info">
+                                            <h4><%= username %></h4>
+                                            <p>@<%= username.toLowerCase().replace(" ", "") %></p>
+                                        </div>
+                                        <button class="view-profile-btn" onclick="window.location.href='${pageContext.request.contextPath}/profile'">
+                                            <i class="fa-solid fa-arrow-right"></i>
+                                        </button>
+                                    </div>
+                                    
+                                    <div class="quick-stats">
+                                        <div class="stat-item">
+                                            <i class="fa-solid fa-box"></i>
+                                            <div>
+                                                <span class="stat-number">12</span>
+                                                <span class="stat-label">Đơn hàng</span>
+                                            </div>
+                                        </div>
+                                        <div class="stat-item">
+                                            <i class="fa-solid fa-ticket"></i>
+                                            <div>
+                                                <span class="stat-number">5</span>
+                                                <span class="stat-label">Voucher</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <ul class="avt-menu-modern">
+                                        <li onclick="window.location.href='${pageContext.request.contextPath}/profile'">
+                                            <div class="menu-icon">
+                                                <i class="fa-regular fa-user"></i>
+                                            </div>
+                                            <div class="menu-content">
+                                                <span class="menu-title">Tài khoản</span>
+                                                <span class="menu-desc">Quản lý thông tin cá nhân</span>
+                                            </div>
+                                            <i class="fa-solid fa-chevron-right menu-arrow"></i>
+                                        </li>
+                                        <li onclick="window.location.href='${pageContext.request.contextPath}/profile'">
+                                            <div class="menu-icon">
+                                                <i class="fa-solid fa-receipt"></i>
+                                            </div>
+                                            <div class="menu-content">
+                                                <span class="menu-title">Đơn hàng</span>
+                                                <span class="menu-desc">Theo dõi đơn hàng</span>
+                                            </div>
+                                            <i class="fa-solid fa-chevron-right menu-arrow"></i>
+                                        </li>
+                                        <li onclick="window.location.href='${pageContext.request.contextPath}/customer/pages/Inform.jsp'">
+                                            <div class="menu-icon">
+                                                <i class="fa-solid fa-bell"></i>
+                                            </div>
+                                            <div class="menu-content">
+                                                <span class="menu-title">Thông báo</span>
+                                                <span class="menu-desc">Cập nhật mới nhất</span>
+                                            </div>
+                                            <span class="notification-badge">2</span>
+                                        </li>
+                                        <li onclick="window.location.href='${pageContext.request.contextPath}/profile'">
+                                            <div class="menu-icon">
+                                                <i class="fa-solid fa-gear"></i>
+                                            </div>
+                                            <div class="menu-content">
+                                                <span class="menu-title">Cài đặt</span>
+                                                <span class="menu-desc">Bảo mật & quyền riêng tư</span>
+                                            </div>
+                                            <i class="fa-solid fa-chevron-right menu-arrow"></i>
+                                        </li>
+                                    </ul>
+
+                                    <div class="avt-footer-modern">
+                                        <button class="logout-btn-modern" onclick="window.location.href='${pageContext.request.contextPath}/auth/logout'">
+                                            <i class="fa-solid fa-right-from-bracket"></i>
+                                            <span>Đăng xuất</span>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </li>
                     <% } else { %>
@@ -118,7 +277,7 @@
                 <li><a href="${pageContext.request.contextPath}/customer/pages/Voucher.jsp" class="${activeTab eq 'voucher' ? 'active' : ''}">Khuyến mãi</a></li>
                 <li><a href="${pageContext.request.contextPath}/blog" class="${activeTab eq 'blog' ? 'active' : ''}">Cẩm nang</a></li>
                 <li><a href="${pageContext.request.contextPath}/customer/pages/Contact.jsp" class="${activeTab eq 'contact' ? 'active' : ''}">Liên hệ</a></li>
-                <li><a href="${pageContext.request.contextPath}/customer/pages/About.jsp" class="${activeTab eq 'about' ? 'active' : ''}">về cửa hàng</a></li>
+                <li><a href="${pageContext.request.contextPath}/about" class="${activeTab eq 'about' ? 'active' : ''}">về cửa hàng</a></li>
             </ul>
         </div>
     </nav>

@@ -34,7 +34,6 @@ public class User implements Serializable
 
     public User() {}
 
-
     public boolean checkVerified()
     {
         return this.verified == 1;

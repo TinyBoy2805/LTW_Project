@@ -147,6 +147,7 @@ public class AuthController extends HttpServlet
 
                 // 5. Login thành công - Tạo session
                 HttpSession session = request.getSession();
+//                session.setAttribute("user", user);
                 session.setAttribute("userId", user.getId());
                 session.setAttribute("username", user.getName());
                 session.setAttribute("email", user.getEmail());
