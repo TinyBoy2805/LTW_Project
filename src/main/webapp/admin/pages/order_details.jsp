@@ -22,7 +22,7 @@
     </aside>
     <div class="container">
         <%@ include file="../components/header.jsp" %>
-    
+
         <!-- contert -->
         <div class="container__content">
             <!-- header incules name of section and the back button -->

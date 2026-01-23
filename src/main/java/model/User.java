@@ -29,6 +29,16 @@ public class User implements Serializable {
 
     public User() {}
 
+        public void setRegisterInfo(String name, String email, String phone_number, Role role, String password_hashed, String salt, int verified) {
+            this.name = name;
+            this.email = email;
+            this.phone_number = phone_number;
+            this.role = role;
+            this.password_hashed = password_hashed;
+            this.salt = salt;
+            this.verified = verified;
+        }
+
         public int getId() {
             return id;
         }

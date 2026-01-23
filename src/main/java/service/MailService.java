@@ -11,7 +11,7 @@ public class MailService {
     public MailService() {
     }
 
-    public EmailStatus sendOTP(String to, String otp) {
+    public EmailStatus sendOtp(String to, String otp) {
 
 //        final String username = "23130041@st.hcmuaf.edu.vn"; //the email that send otp to user
 //        final String password = "uvdlltzktezrbyog"; //app password for send email with smtp
@@ -128,9 +128,4 @@ public class MailService {
             return EmailStatus.ERROR;
         }
     }
-
-//    public static void main(String[] args) {
-//        EmailStatus St = sendOTP("test@gmail.com", "123456");
-//        System.out.println(St);
-//    }
 }

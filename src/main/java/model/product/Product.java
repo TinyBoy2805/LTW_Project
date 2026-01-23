@@ -19,6 +19,7 @@ public class Product implements Serializable
     private Date startDate;
     private Date endDate;
     private boolean isActive;
+    private ProductVariant productVariant;
 
     public Product(){}
 

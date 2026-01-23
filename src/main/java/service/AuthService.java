@@ -101,10 +101,10 @@ public class AuthService {
     }
 
     public void register(String name,
-                                  String email,
-                                  String phone,
-                                  String password,
-                                  String confirmPassword) {
+                         String email,
+                         String phone,
+                         String password,
+                         String confirmPassword) {
 
 
 
@@ -122,7 +122,7 @@ public class AuthService {
         user.setVerified(0);
 
         authDao.insert(user);
-    
+
     }
 
     //when user submit info -> controller call to service to activate account

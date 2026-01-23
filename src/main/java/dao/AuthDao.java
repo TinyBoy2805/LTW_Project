@@ -1,6 +1,6 @@
 package dao;
 
-import com.oracle.wls.shaded.org.apache.xpath.objects.XString;
+import exception.LoginError;
 import model.Role;
 import model.User;
 
@@ -11,35 +11,21 @@ import java.util.List;
 
 public class AuthDao extends BaseDao {
 
+    //login
     public User getUserByName(String name) {
         return get().withHandle(h -> h.createQuery("SELECT * FROM users WHERE name = :name")
                 .bind("name", name)
                 .mapToBean(User.class)
-                .stream()
-                .findFirst()
-                .orElse(null));
+                .one());
     }
 
     public User getUserByEmailOrPhone(String value) {
         return get().withHandle(h -> //get() : get connection to db from BaseDao
                         //lambda function that return User
-                        h.createQuery("SELECT * FROM users WHERE email = :v OR phone_number = :v")
-                                .bind("v", value)
+                        h.createQuery("SELECT * FROM users WHERE email = :value OR phone_number = :value")
+                                .bind("value", value)
                                 //bind variable v into SQL with input info (value)
-                                .map((rs, ctx) -> {
-                                    //user mapping function -> Change a single line into User
-                                    User u = new User();
-                                    u.setId(rs.getInt("id"));
-                                    u.setName(rs.getString("name"));
-                                    u.setEmail(rs.getString("email"));
-                                    u.setRole(Role.valueOf(rs.getString("role")));
-                                    u.setPassword_hashed(rs.getString("password_hashed"));
-                                    u.setPhone_number(rs.getString("phone_number"));
-                                    u.setAvt_url(rs.getString("avt_url"));
-                                    u.setSalt(rs.getString("salt"));
-                                    u.setVerified(rs.getInt("verified"));
-                                    return u;
-                                })
+                                .mapToBean(User.class)
                                 .findFirst()
                                 //take the first record that be found
                                 .orElse(null)
@@ -57,32 +43,59 @@ public class AuthDao extends BaseDao {
         );
     }
 
+    /**
+     * insert user moi vao database
+     * @param user
+     */
     public void insert(User user) {
+        String query = """
+                    INSERT INTO users(name, email, role, password_hashed, phone_number, salt, verified)
+                                    VALUES (:name, :email, :role, :password_hashed, :phone, :salt, 0)
+                """;
         get().useHandle(h ->
-                h.createUpdate("""
-                                    INSERT INTO users(name, email, role, password_hashed, phone_number, salt, verified)
-                                    VALUES (:name, :email, :role, :password, :phone, :salt, 0)
-                                """)
-                        .bind("name", user.getName())
-                        .bind("email", user.getEmail())
-                        .bind("role", user.getRole().name())
-                        .bind("password", user.getPassword_hashed())
-                        .bind("phone", user.getPhone_number())
-                        .bind("salt", user.getSalt())
+                h.createUpdate(query)
+                        .bindBean(user)
                         .execute()
         );
     }
+//                        .bind("name", user.getName())
+//                        .bind("email", user.getEmail())
+//                        .bind("role", user.getRole().name())
+//                        .bind("password_hashed", user.getPassword_hashed())
+//                        .bind("phone", user.getPhone_number())
+//                        .bind("salt", user.getSalt())
 
     //service continue to call DAO to activate account into db
     public void activateAccount(String email) {
+        String query = """
+                UPDATE users SET verified = 1 WHERE email = :email
+                """;
         get().useHandle(h ->
-                h.createUpdate("UPDATE users SET verified = 1 WHERE email = :email")
+                h.createUpdate(query)
                         .bind("email", email)
                         .execute()
         );
     }
 
-    //update email for user
+    public void updatePassword(String email, String hashPassword) {
+        String query = """
+                                UPDATE users
+                                SET password_hashed = :password
+                                WHERE email = :email
+                                """;
+        get().useHandle(h ->
+                h.createUpdate(query)
+                        .bind("password", hashPassword)
+                        .bind("email", email)
+                        .execute()
+        );
+    }
+
+    /**
+     *
+     * @param oldEmail
+     * @param newEmail
+     */
     public void updateEmail(String oldEmail, String newEmail) {
         get().useHandle(h ->
                 h.createUpdate("UPDATE users SET email = :new, verified = 0 WHERE email = :old")
@@ -91,27 +104,6 @@ public class AuthDao extends BaseDao {
                         .execute()
         );
     }
-
-
-//    public void saveOTP(String email, String otp) {
-//        String sql = "UPDATE users SET otp=:otp WHERE email=:email";
-//        get().withHandle(h -> h.createUpdate(sql)
-//                .bind("otp", otp).bind("email", email).execute());
-//    }
-//
-//    public String getOTP(String email) {
-//        String sql = "SELECT otp FROM users WHERE email=:email";
-//        return get().withHandle(h ->
-//                h.createQuery(sql).bind("email", email)
-//                        .mapTo(String.class).findOne().orElse(null)
-//        );
-//    }
-//
-//    public void updateVerified(String email) {
-//        String sql = "UPDATE users SET verified=1, otp=NULL WHERE email=:email";
-//        get().withHandle(h -> h.createUpdate(sql)
-//                .bind("email", email).execute());
-//    }
 
     // Lấy danh sách tất cả người dùng có vai trò là khách hàng
     public List<User> getAllCustomers() {
@@ -171,19 +163,6 @@ public class AuthDao extends BaseDao {
                         .bind("name", name)
                         .bind("email", email)
                         .bind("phoneNumber", phoneNumber)
-                        .execute()
-        );
-    }
-
-    public void updatePassword(String email, String hashPassword) {
-        get().useHandle(h ->
-                h.createUpdate("""
-                                UPDATE users
-                                SET password_hashed = :password
-                                WHERE email = :email
-                                """)
-                        .bind("password", hashPassword)
-                        .bind("email", email)
                         .execute()
         );
     }

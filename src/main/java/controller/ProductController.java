@@ -15,10 +15,9 @@ import java.util.List;
 @WebServlet(name = "ProductController", value = "/product/*")
 public class ProductController extends HttpServlet
 {
-
     private ProductService productService = new ProductService();
     private final int PAGE_SIZE = 16;
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {

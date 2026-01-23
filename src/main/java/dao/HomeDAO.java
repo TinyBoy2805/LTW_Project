@@ -38,7 +38,6 @@ public class HomeDAO extends BaseDao
                 h.createQuery(query)
                         .mapTo(String.class)
                         .list()
-
         );
     }
 
@@ -61,7 +60,7 @@ public class HomeDAO extends BaseDao
                 "from vouchers v \n" +
                 "join categories c on c.id = v.category_id";
 
-        return  get().withHandle(h->
+        return  get().withHandle(h ->
                     h.createQuery(query)
                             .mapToBean(Voucher.class)
                             .list()

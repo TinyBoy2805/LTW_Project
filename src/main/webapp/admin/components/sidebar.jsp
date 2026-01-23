@@ -7,7 +7,7 @@
 <div class="sidebar__list">
   <ul class="list">
     <li class="list__item">
-      <a href="dashboard.jsp" class="<%= "dashboard".equals(request.getAttribute("activePage")) ? "active" : "" %>">
+      <a href="${pageContext.request.contextPath}/dashboard" class="<%= "dashboard".equals(request.getAttribute("activePage")) ? "active" : "" %>">
         <div class="section">
           <div class="icon"><i class="fa-solid fa-chart-line"></i></div>
           <p class="title">Thống kê</p>
@@ -15,7 +15,7 @@
       </a>
     </li>
     <li class="list__item">
-      <a href="order.jsp" class="<%= "order".equals(request.getAttribute("activePage")) ? "active" : "" %>">
+      <a href="${pageContext.request.contextPath}/order" class="<%= "order".equals(request.getAttribute("activePage")) ? "active" : "" %>">
         <div class="section">
           <div class="icon"><i class="fa-solid fa-shopping-cart"></i></div>
           <p class="title">Đơn hàng</p>
