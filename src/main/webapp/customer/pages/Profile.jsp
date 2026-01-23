@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <%
@@ -14,6 +15,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" 
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" 
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script>
+        window.APP_CONTEXT_PATH = `${pageContext.request.contextPath}`;
+    </script>
 </head>
 <body>
     <div class="scroll-to-top-btn"><i class="fa-solid fa-circle-up"></i></div>
@@ -62,7 +66,8 @@
                     <div class="profile-main-card">
                         <div class="avatar-wrapper">
                             <div class="avatar-container">
-                                <img src="https://i.pinimg.com/1200x/00/b5/b4/00b5b48568a9e2f49fed5cab79863303.jpg" alt="Avatar" class="avatar-image">
+                                <img src="https://i.pinimg.com/1200x/00/b5/b4/00b5b48568a9e2f49fed5cab79863303.jpg"
+                                     alt="Avatar" class="avatar-image" id="avatar-img">
                                 <div class="status-badge">
                                     <i class="fa-solid fa-circle"></i>
                                 </div>
@@ -77,15 +82,15 @@
                             <div class="detail-row">
                                 <label>Họ và tên</label>
                                 <div class="detail-value">
-                                    <span>Nguyễn Văn A</span>
-                                    <button class="edit-btn"><i class="fa-solid fa-pen"></i></button>
+                                    <span id="user-name">${userProfile.name}</span>
+                                    <button class="edit-btn" id="edit-name-btn"><i class="fa-solid fa-pen"></i></button>
                                 </div>
                             </div>
 
                             <div class="detail-row">
                                 <label>Email</label>
                                 <div class="detail-value">
-                                    <span>taisaodattenlaikhovay@gmail.com</span>
+                                    <span id="user-email">${userProfile.email}</span>
                                     <span class="verified-badge"><i class="fa-solid fa-circle-check"></i> Đã xác minh</span>
                                 </div>
                             </div>
@@ -93,33 +98,11 @@
                             <div class="detail-row">
                                 <label>Số điện thoại</label>
                                 <div class="detail-value">
-                                    <span>0931415926</span>
-                                    <button class="edit-btn"><i class="fa-solid fa-pen"></i></button>
+                                    <span id="user-phone">${userProfile.phone_number}</span>
+                                    <button class="edit-btn" id="edit-phone-btn"><i class="fa-solid fa-pen"></i></button>
                                 </div>
                             </div>
 
-                            <div class="detail-row">
-                                <label>Giới tính</label>
-                                <div class="detail-value">
-                                    <span><i class="fa-solid fa-mars" style="color: var(--c9);"></i> Nam</span>
-                                    <button class="edit-btn"><i class="fa-solid fa-pen"></i></button>
-                                </div>
-                            </div>
-
-                            <div class="detail-row">
-                                <label>Ngày sinh</label>
-                                <div class="detail-value">
-                                    <span>2/12/2003</span>
-                                    <button class="edit-btn"><i class="fa-solid fa-pen"></i></button>
-                                </div>
-                            </div>
-
-                            <div class="detail-row">
-                                <label>Thành viên từ</label>
-                                <div class="detail-value">
-                                    <span>30/2/2024</span>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     
@@ -234,57 +217,53 @@
                         <p class="subtitle">Quản lý địa chỉ giao hàng của bạn</p>
                     </div>
 
-                    <button class="add-address-btn">
+                    <button class="add-address-btn" id="add-address-btn">
                         <i class="fa-solid fa-plus"></i>
                         Thêm địa chỉ mới
                     </button>
 
-                    <div class="address-list">
-                        <div class="address-card">
-                            <div class="address-card-header">
-                                <div class="address-name">
-                                    <h4>Nguyễn Văn A</h4>
-                                    <span class="default-badge">Mặc định</span>
+                    <div class="address-list" id="address-list">
+                        <!-- Địa chỉ sẽ được load bằng JavaScript -->
+<%--                        <p style="text-align: center; color: #666;">Đang tải...</p>--%>
+                        <c:forEach var="ad" items="${userProfile.myAddresses}">
+                            <div class="address-card" data-id="${ad.id}">
+                                <div class="address-card-header">
+                                    <div class="address-name">
+                                        <h4>Địa chỉ ${ad.id}</h4>
+                                        <c:if test="${ad.isDefault}">
+                                            <span class="default-badge">Mặc định</span>
+                                        </c:if>
+                                    </div>
+                                    <button class="address-edit-btn">
+                                        <i class="fa-solid fa-pen"></i>
+                                    </button>
                                 </div>
-                                <button class="address-edit-btn"><i class="fa-solid fa-pen"></i></button>
-                            </div>
-                            <div class="address-card-body">
-                                <div class="address-detail">
-                                    <i class="fa-solid fa-phone"></i>
-                                    <span>0931415926</span>
-                                </div>
-                                <div class="address-detail">
-                                    <i class="fa-solid fa-location-dot"></i>
-                                    <span>36/18, Khu phố 12, Phường Tăng Nhơn Phú, Quận Thủ Đức, TP. Hồ Chí Minh</span>
-                                </div>
-                            </div>
-                            <div class="address-card-footer">
-                                <button class="btn-text">Xóa</button>
-                            </div>
-                        </div>
 
-                        <div class="address-card">
-                            <div class="address-card-header">
-                                <div class="address-name">
-                                    <h4>Nguyễn Văn A</h4>
+                                <div class="address-card-body">
+                                    <div class="address-detail">
+                                        <i class="fa-solid fa-location-dot"></i>
+                                        <span>
+                                            ${ad.houseNumber}${not empty ad.road ? ', ' : ''}${ad.road}
+                                            ${not empty ad.hamlet ? ', ' : ''}${ad.hamlet}
+                                            ${not empty ad.ward ? ', ' : ''}${ad.ward}
+                                            ${not empty ad.district ? ', ' : ''}${ad.district}
+                                            ${not empty ad.city ? ', ' : ''}${ad.city}
+                                        </span>
+                                    </div>
                                 </div>
-                                <button class="address-edit-btn"><i class="fa-solid fa-pen"></i></button>
-                            </div>
-                            <div class="address-card-body">
-                                <div class="address-detail">
-                                    <i class="fa-solid fa-phone"></i>
-                                    <span>0931415926</span>
-                                </div>
-                                <div class="address-detail">
-                                    <i class="fa-solid fa-location-dot"></i>
-                                    <span>123 Nguyễn Văn Linh, Phường 10, Quận 1, TP. Hồ Chí Minh</span>
+
+                                <div class="address-card-footer">
+                                    <c:if test="${!ad.isDefault}">
+                                        <button class="btn-text-secondary">
+                                            Đặt làm mặc định
+                                        </button>
+                                    </c:if>
+                                    <button class="btn-text" >Xóa</button>
                                 </div>
                             </div>
-                            <div class="address-card-footer">
-                                <button class="btn-text-secondary">Đặt làm mặc định</button>
-                                <button class="btn-text">Xóa</button>
-                            </div>
-                        </div>
+                        </c:forEach>
+
+
                     </div>
                 </article>
 
@@ -359,7 +338,7 @@
                                     <p>Thay đổi mật khẩu thường xuyên để bảo mật tài khoản</p>
                                 </div>
                             </div>
-                            <button class="btn-secondary">Đổi mật khẩu</button>
+                            <button class="btn-secondary" id="change-password-btn">Đổi mật khẩu</button>
                         </div>
 
                         <div class="security-item">
@@ -367,12 +346,14 @@
                                 <i class="fa-solid fa-envelope"></i>
                                 <div>
                                     <h4>Email xác minh</h4>
-                                    <p>taisaodattenlaikhovay@gmail.com</p>
+                                    <p id="security-email">${userProfile.email}</p>
                                 </div>
                             </div>
                             <span class="verified-badge"><i class="fa-solid fa-circle-check"></i> Đã xác minh</span>
                         </div>
 
+                        <%-- Tạm ẩn 2FA --%>
+                        <%--
                         <div class="security-item">
                             <div class="security-info">
                                 <i class="fa-solid fa-shield-halved"></i>
@@ -383,6 +364,7 @@
                             </div>
                             <button class="btn-secondary">Bật</button>
                         </div>
+                        --%>
 
                         <div class="security-item danger-zone">
                             <div class="security-info">
@@ -393,11 +375,11 @@
                                 </div>
                             </div>
                             <div class="danger-actions">
-                                <button class="btn-outline" onclick="location.href='../../index.jsp'">
+                                <button class="btn-outline" id="logout-btn">
                                     <i class="fa-solid fa-right-from-bracket"></i>
                                     Đăng xuất
                                 </button>
-                                <button class="btn-danger">
+                                <button class="btn-danger" id="delete-account-btn">
                                     <i class="fa-solid fa-trash"></i>
                                     Xóa tài khoản
                                 </button>
@@ -420,7 +402,7 @@
 
     
 <script type="module" src="${pageContext.request.contextPath}/customer/scripts/main.js"></script>
-<script src="${pageContext.request.contextPath}/customer/scripts/Profile.js"></script>
-<script src="${pageContext.request.contextPath}/customer/scripts/Order.js"></script>
+<script type="module" src="${pageContext.request.contextPath}/customer/scripts/Profile.js"></script>
+<%--<script src="${pageContext.request.contextPath}/customer/scripts/Order.js"></script>--%>
 </body>
 </html>
