@@ -24,7 +24,32 @@
 {
     width: 100%;
     height: 40%;
+    position: relative;
 }
+
+
+
+.product__top .product__top-cart
+{
+    width: 100%;
+    height: 100%;
+    background: rgba(245, 100, 169, 0.56);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    color: var(--c10);
+    font-size: 32px;
+    cursor: pointer;
+}
+
+
+.product__top:hover .product__top-cart
+{
+    display: flex;
+}
+
+
 
 .product__top .product__image
 {
@@ -143,23 +168,23 @@
     justify-content: space-between;
 }
 
-.product__bottom-actions button:nth-child(1)
-{
-    background-color: transparent;
-    border: none;
-    outline: none;
-    color: var(--c6);
-    cursor: pointer;
-}
+/*.product__bottom-actions button:nth-child(1)*/
+/*{*/
+/*    background-color: transparent;*/
+/*    border: none;*/
+/*    outline: none;*/
+/*    color: var(--c6);*/
+/*    cursor: pointer;*/
+/*}*/
 
 
-.product__bottom-actions button:nth-child(1) i
-{
-    font-size: 24px;
-    font-weight: bold;
-}
+/*.product__bottom-actions button:nth-child(1) i*/
+/*{*/
+/*    font-size: 24px;*/
+/*    font-weight: bold;*/
+/*}*/
 
-.product__bottom-actions button:nth-child(2)
+.product__bottom-actions .buy-now
 {
     flex: 1;
     background-color: var(--c6);
@@ -173,7 +198,7 @@
     transition: .1s ease;
 }
 
-.product__bottom-actions button:nth-child(2):hover 
+.product__bottom-actions .buy-now:hover
 {
     background-color: var(--c10);
     color: var(--c6);

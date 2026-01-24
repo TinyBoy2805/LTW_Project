@@ -112,6 +112,28 @@ public class ProductDAO extends BaseDao
     }
 
 
+    public ProductCard getProductCard(int productId)
+    {
+        String query = "SELECT p.id, p.name, p.price, p.buy_count, avg(r.rating) as avg_rating, p.is_active, pi.img_url\n" +
+                "FROM products p \n" +
+                "left join product_images pi on pi.product_id = p.id\n" +
+                "left join reviews r on r.product_id = p.id \n" +
+                "WHERE p.id like :id\n" +
+                "GROUP BY p.id";
+
+
+        return get().withHandle(h->
+                    h.createQuery(query)
+                            .bind("id", productId)
+                            .mapToBean(ProductCard.class)
+                            .first()
+                );
+
+    }
+
+
+
+
     public List<ProductCard> getProductsByName(String productName)
     {
         String query = "SELECT p.id, p.name, p.price, p.buy_count, avg(r.rating) as avg_rating, p.is_active, pi.img_url\n" +

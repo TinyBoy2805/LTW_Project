@@ -24,6 +24,8 @@
 </head>
 <body>
 
+    <div class="toast-container"></div>
+
     <jsp:include page="/customer/components/ProductCard.jsp"/>
     
     <div class="scroll-to-top-btn"><i class="fa-solid fa-circle-up"></i></div>
@@ -217,9 +219,10 @@
     <jsp:include page="/customer/components/Footer.jsp"/>
 
 
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script type="module" src="${pageContext.request.contextPath}/customer/scripts/main.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" defer></script>
+    <script type="module" src="${pageContext.request.contextPath}/customer/scripts/main.js" defer></script>
     <script type="module" src="${pageContext.request.contextPath}/customer/scripts/home/Home.js" defer></script>
+    <script type="module" src="${pageContext.request.contextPath}/customer/scripts/product/addToCart.js" defer></script>
 </body>
 
 </html>

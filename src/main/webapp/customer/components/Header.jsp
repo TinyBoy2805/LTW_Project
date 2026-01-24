@@ -1,14 +1,37 @@
-
+<%@ page import="model.cart.Cart" %>
+<%@ page import="model.cart.CartItem" %>
+<%@ page import="java.util.Map" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-
+<%@ page import="java.text.DecimalFormat, java.text.DecimalFormatSymbols" %>
+<%
+    DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+    symbols.setGroupingSeparator('.');
+    symbols.setDecimalSeparator(',');
+    DecimalFormat df = new DecimalFormat("#,###", symbols);
+%>
 
 <%
+
     boolean isLoggedIn = session.getAttribute("isLoggedIn") != null
                         ? (Boolean) session.getAttribute("isLoggedIn")
                         : false;
 
     String username = isLoggedIn ? (String) session.getAttribute("username") : "";
+
+    Cart myCart = (Cart) session.getAttribute("cart");
+
+    if(myCart == null) myCart = new Cart();
+
+    double total = 0;
+    if (myCart != null)
+    {
+        for (CartItem item : myCart.getCart().values())
+        {
+            total += item.getPrice() * item.getQuantity();
+        }
+    }
+
 %>
 
 
@@ -36,73 +59,50 @@
                     <% if (isLoggedIn) { %>
                         <!-- User đã login: hiện cart, bell, avatar -->
                         <li class="hovercart">
-                            <a href="Cart.jsp" class="--color4"><i class="fa-solid fa-cart-shopping --size20"></i></a>
+                            <a href="${pageContext.request.contextPath}/cart" class="--color4" id="cart-icon"><i class="fa-solid fa-cart-shopping --size20"></i></a>
                             <div class="header-cart-modern">
                                 <div class="cart-header">
                                     <div class="cart-title">
                                         <i class="fa-solid fa-cart-shopping"></i>
                                         <h3>Giỏ hàng của tôi</h3>
                                     </div>
-                                    <span class="cart-count-badge">4 sản phẩm</span>
+                                    <span class="cart-count-badge"><%= myCart.getCart().size()%> sản phẩm</span>
                                 </div>
 
                                 <div class="cart-items-list">
+
+                                    <%
+                                        // myCart là Map<Integer, CartItem>
+                                        for (Map.Entry<Integer, CartItem> entry : myCart.getCart().entrySet())
+                                        {
+                                            CartItem item = entry.getValue();
+                                    %>
                                     <div class="cart-item">
                                         <div class="cart-item-img">
-                                            <img src="https://i.pinimg.com/1200x/4b/bb/02/4bbb0223ba678e97772d02949e5f89ca.jpg" alt="">
+                                            <img src="<%= item.getProduct().getImg_url() %>" alt="">
                                         </div>
                                         <div class="cart-item-info">
-                                            <h4>Sữa chua hy lạp</h4>
-                                            <p class="cart-item-qty">x2</p>
+                                            <h4><%= item.getProduct().getName() %></h4>
+                                            <p class="cart-item-qty">x<%= item.getQuantity() %></p>
                                         </div>
                                         <div class="cart-item-price">
-                                            <span>199.000₫</span>
+                                            <span><%= df.format(item.getPrice()) %>₫</span>
                                         </div>
                                     </div>
-                                    <div class="cart-item">
-                                        <div class="cart-item-img">
-                                            <img src="https://i.pinimg.com/1200x/4b/bb/02/4bbb0223ba678e97772d02949e5f89ca.jpg" alt="">
-                                        </div>
-                                        <div class="cart-item-info">
-                                            <h4>Sữa chua hy lạp</h4>
-                                            <p class="cart-item-qty">x1</p>
-                                        </div>
-                                        <div class="cart-item-price">
-                                            <span>199.000₫</span>
-                                        </div>
-                                    </div>
-                                    <div class="cart-item">
-                                        <div class="cart-item-img">
-                                            <img src="https://i.pinimg.com/1200x/4b/bb/02/4bbb0223ba678e97772d02949e5f89ca.jpg" alt="">
-                                        </div>
-                                        <div class="cart-item-info">
-                                            <h4>Sữa chua hy lạp</h4>
-                                            <p class="cart-item-qty">x3</p>
-                                        </div>
-                                        <div class="cart-item-price">
-                                            <span>199.000₫</span>
-                                        </div>
-                                    </div>
-                                    <div class="cart-item">
-                                        <div class="cart-item-img">
-                                            <img src="https://i.pinimg.com/1200x/4b/bb/02/4bbb0223ba678e97772d02949e5f89ca.jpg" alt="">
-                                        </div>
-                                        <div class="cart-item-info">
-                                            <h4>Sữa chua hy lạp</h4>
-                                            <p class="cart-item-qty">x1</p>
-                                        </div>
-                                        <div class="cart-item-price">
-                                            <span>199.000₫</span>
-                                        </div>
-                                    </div>
+                                    <%
+                                        } // kết thúc for loop
+                                    %>
+
+
+
                                 </div>
 
                                 <div class="cart-footer">
                                     <div class="cart-total">
                                         <span>Tổng cộng</span>
-                                        <span class="total-price">1.194.000₫</span>
+                                        <span class="total-price"><%= df.format(total)%>₫</span>
                                     </div>
-                                    <button class="view-cart-btn" onclick="window.location.href='Cart.jsp'">
+                                    <button class="view-cart-btn" onclick="window.location.href='${pageContext.request.contextPath}/cart'">
                                         <span>Xem giỏ hàng</span>
                                         <i class="fa-solid fa-arrow-right"></i>
                                     </button>

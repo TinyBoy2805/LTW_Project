@@ -36,12 +36,10 @@
                         <input type="hidden" value="" name="product_id" id="product__id">
                     </form>
                     <c:forEach var="p" items="${products}">
-                        <li class="main__products-ul-li" onclick="
-                               document.querySelector('#product__id').value = ${p.id}
-                               document.querySelector('#product__form').submit()
-                           ">
+                        <li class="main__products-ul-li">
                             <div class="product" title="${p.name}">
                                 <div class="product__top">
+                                    <div class="product__top-cart" onclick="()=>addToCart(${p.id})"><i class="fa-solid fa-cart-plus"></i></div>
                                     <div class="product__image">
                                         <img src="${p.img_url}" alt="">
                                     </div>
@@ -90,10 +88,13 @@
 
                                 <div class="product__bottom">
                                     <div class="product__bottom-actions">
-                                        <button><i class="fa-solid fa-cart-plus"></i></button>
+<%--                                        <button><i class="fa-solid fa-cart-plus"></i></button>--%>
                                         <form action="${pageContext.request.contextPath}/product-detail" method="post" style="width: 100%; position:relative;">
                                             <input type="hidden" name="product_id" value="${p.id}" style="position:absolute;">
-                                            <button type="submit" style="width: 100%;">Mua ngay</button>
+                                            <button type="submit" style="width: 100%;" onclick="
+                                                    document.querySelector('#product__id').value = ${p.id}
+                                                    document.querySelector('#product__form').submit()
+                                                    " class="buy-now">Mua ngay</button>
                                         </form>
                                     </div>
                                 </div>
@@ -157,8 +158,8 @@
 
     <jsp:include page="/customer/components/Footer.jsp"/>
 
-<script type="module" src="${pageContext.request.contextPath}/customer/scripts/main.js"></script>
-<script type="module" src="${pageContext.request.contextPath}/customer/scripts/product/Products.js"></script>
-<%--<script src="${pageContext.request.contextPath}/customer/scripts/Products.js" type="module"></script>--%>
+<script type="module" src="${pageContext.request.contextPath}/customer/scripts/main.js" defer></script>
+<script type="module" src="${pageContext.request.contextPath}/customer/scripts/product/addToCart.js" defer></script>
+<script type="module" src="${pageContext.request.contextPath}/customer/scripts/product/Products.js" defer></script>
 </body>
 </html>

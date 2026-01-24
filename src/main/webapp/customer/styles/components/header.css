@@ -15,7 +15,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1000;
+    z-index: 10000;
     box-shadow: var(--bx1);
 }
 
@@ -677,7 +677,7 @@
     background: var(--c6);
     color: var(--c10);
     font-weight: 700;
-    min-width: 18px;
+    width: 18px;
     height: 18px;
     padding: 0 5px;
     font-size: 11px;
