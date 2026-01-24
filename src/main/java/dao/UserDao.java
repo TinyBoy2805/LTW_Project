@@ -21,4 +21,17 @@ public class UserDao extends BaseDao {
                 .orElse(null)
         );
     }
+
+    // Thêm phương thức cập nhật mật khẩu
+    public void updatePassword(int id, String passwordHashed, String salt) {
+        get().useHandle(h ->
+            h.createUpdate("""
+                UPDATE users SET password_hashed = :password, salt = :salt WHERE id = :id
+            """)
+            .bind("id", id)
+            .bind("password", passwordHashed)
+            .bind("salt", salt)
+            .execute()
+        );
+    }
 }

@@ -7,6 +7,20 @@ import model.Role;
 import model.User;
 
 public class AuthService {
+        // Đổi mật khẩu cho user bởi admin (không cần mật khẩu cũ)
+        public boolean adminChangeUserPassword(int userId, String newPassword, String confirmPassword) {
+            if (!newPassword.equals(confirmPassword)) {
+                return false;
+            }
+            if (!isStrongPassword(newPassword)) {
+                return false;
+            }
+            String salt = HashPassword.generateSalt();
+            String hashPassword = HashPassword.hashPasswordWithSalt(newPassword, salt);
+            dao.UserDao userDao = new dao.UserDao();
+            userDao.updatePassword(userId, hashPassword, salt);
+            return true;
+        }
     AuthDao authDao = new AuthDao();
 
     public LoginError checkLogin(String input, String password) {

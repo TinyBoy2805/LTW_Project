@@ -49,7 +49,20 @@ public class CustomerDetailController extends HttpServlet {
         String idParam = request.getParameter("id");
         int id = Integer.parseInt(idParam);
 
-
+        // Xử lý đổi mật khẩu bởi admin
+        if ("change_password".equals(action)) {
+            String newPassword = request.getParameter("new_password");
+            String confirmPassword = request.getParameter("confirm_password");
+            service.AuthService authService = new service.AuthService();
+            boolean success = authService.adminChangeUserPassword(id, newPassword, confirmPassword);
+            if (success) {
+                request.setAttribute("message", "Đổi mật khẩu thành công!");
+            } else {
+                request.setAttribute("error", "Mật khẩu không hợp lệ hoặc xác nhận không khớp!");
+            }
+            doGet(request, response);
+            return;
+        }
 
         // Xử lý xóa tài khoản
         if ("delete".equals(action)) {
@@ -80,7 +93,6 @@ public class CustomerDetailController extends HttpServlet {
             if (parts.length > 4) hamlet = parts[4].trim();
             if (parts.length > 5) ward = parts[5].trim();
         }
-
         // Lấy avt_url hiện tại nếu không upload mới
         String avtUrl = null;
         User currentUser = authDao.getUserById(id);

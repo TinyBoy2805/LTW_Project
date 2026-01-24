@@ -115,9 +115,39 @@
               </div>
 
               <div class="action-group">
-                <button class="reset-btn" type="button">
+                <button class="reset-btn" type="button" onclick="showChangePasswordModal()">
                   <i class="fa-solid fa-question-circle"></i> Đổi mật khẩu
                 </button>
+                        <!-- Modal đổi mật khẩu -->
+                        <div id="changePasswordModal" class="modal" style="display:none;position:fixed;z-index:9999;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,0.3);align-items:center;justify-content:center;">
+                          <div style="background:#fff;padding:32px 24px;border-radius:8px;min-width:320px;max-width:90vw;box-shadow:0 2px 16px #0002;position:relative;">
+                            <h3>Đổi mật khẩu cho khách hàng</h3>
+                            <form id="change-password-form" method="post" action="${pageContext.request.contextPath}/quanlykhachhang?id=${customer.id}">
+                              <input type="hidden" name="action" value="change_password" />
+                              <div style="margin-bottom:12px;">
+                                <label>Mật khẩu mới:</label><br>
+                                <input type="password" name="new_password" required style="width:100%;padding:8px;margin-top:4px;">
+                              </div>
+                              <div style="margin-bottom:12px;">
+                                <label>Xác nhận mật khẩu mới:</label><br>
+                                <input type="password" name="confirm_password" required style="width:100%;padding:8px;margin-top:4px;">
+                              </div>
+                              <div style="display:flex;gap:8px;justify-content:flex-end;">
+                                <button type="button" onclick="hideChangePasswordModal()" style="padding:6px 16px;">Hủy</button>
+                                <button type="submit" style="padding:6px 16px;background:#007bff;color:#fff;border:none;border-radius:4px;">Đổi mật khẩu</button>
+                              </div>
+                            </form>
+                            <button onclick="hideChangePasswordModal()" style="position:absolute;top:8px;right:12px;background:none;border:none;font-size:20px;">&times;</button>
+                          </div>
+                        </div>
+                        <script>
+                          function showChangePasswordModal() {
+                            document.getElementById('changePasswordModal').style.display = 'flex';
+                          }
+                          function hideChangePasswordModal() {
+                            document.getElementById('changePasswordModal').style.display = 'none';
+                          }
+                        </script>
                 <button class="delete-btn" type="button" onclick="handleDelete('${customer.id}', '${customer.name}')">
                   <i class="fa-solid fa-trash"></i> Xóa tài khoản
                 </button>
@@ -154,6 +184,12 @@
 
         <!-- Update Info Section -->
         <div class="update-info-section">
+                  <c:if test="${not empty message}">
+                    <div style="color:green;margin-bottom:10px;">${message}</div>
+                  </c:if>
+                  <c:if test="${not empty error}">
+                    <div style="color:red;margin-bottom:10px;">${error}</div>
+                  </c:if>
           <button class="cancel-btn" type="button">
             <i class="fa-solid fa-times"></i> Hủy
           </button>
