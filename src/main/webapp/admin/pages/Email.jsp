@@ -124,8 +124,9 @@
     </div>
   </div> <!-- .Email.main -->
   <script src="../scripts/components/extendSidebar.js"></script>
-  <script src="../scripts/components/modalDetail.js"></script>
-  <script src="../scripts/components/filter.js"></script>
+  <script src="${pageContext.request.contextPath}/admin/scripts/components/extendSidebar.js"></script>
+  <script src="${pageContext.request.contextPath}/admin/scripts/components/modalDetail.js"></script>
+  <script src="${pageContext.request.contextPath}/admin/scripts/components/filter.js"></script>
   <script>
     // Ngăn checkbox trigger modal
     document.querySelectorAll('.check-wrap, .check-wrap input, .star').forEach(el => {
