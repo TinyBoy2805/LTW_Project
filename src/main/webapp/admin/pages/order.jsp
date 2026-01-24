@@ -99,6 +99,23 @@
                     </div>
                 </div>
             </template>
+            <!-- Pagination -->
+            <div class="pagination-bounding">
+                <div class="pagination">
+                    <button id="page-prev" class="page-btn">
+                        Trang trước
+                    </button>
+                    <input
+                            id="page-input"
+                            min="1"
+                            value="1"
+                            class="page-input"
+                    />
+                    <button id="page-next" class="page-btn">
+                        Trang sau
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -106,7 +123,7 @@
 <!-- link to javascript for burger button -->
 <script src="${pageContext.request.contextPath}/admin/scripts/components/extendSidebar.js"></script>
 <script src="${pageContext.request.contextPath}/admin/scripts/components/filter.js"></script>
-<script src="${pageContext.request.contextPath}/admin/scripts/order/order2.js"></script>
+<script src="${pageContext.request.contextPath}/admin/scripts/order/order.js"></script>
 </body>
 
 </html>
