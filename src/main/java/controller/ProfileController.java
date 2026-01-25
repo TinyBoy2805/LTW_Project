@@ -26,7 +26,7 @@ public class ProfileController extends HttpServlet
         HttpSession session =  request.getSession(false);
         if(session == null)
         {
-            response.sendRedirect(request.getContextPath() + "/index.jsp");
+            response.sendRedirect(request.getContextPath() + "/customer/pages/NotFoundPage.jsp");
             return;
         }
 
@@ -34,7 +34,7 @@ public class ProfileController extends HttpServlet
 
         if(userId == null)
         {
-            response.sendRedirect(request.getContextPath() + "/index.jsp");
+            response.sendRedirect(request.getContextPath() + "/customer/pages/NotFoundPage.jsp");
             return;
         }
 

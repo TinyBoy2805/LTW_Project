@@ -99,4 +99,23 @@ public class CartController extends HttpServlet
         response.getWriter().flush();
 
     }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
+    {
+
+        int cartItemId = Integer.parseInt(req.getParameter("cartItemId"));
+
+        HttpSession session = req.getSession(false);
+        Cart myCart = (Cart) session.getAttribute("cart");
+
+        boolean success = myCart.deleteItemById(cartItemId);
+
+        session.setAttribute("cart", myCart);
+
+        resp.setContentType("application/json");
+        resp.setCharacterEncoding("UTF-8");
+        resp.getWriter().write("{\"status\":\"success\"}");
+
+    }
 }

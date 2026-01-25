@@ -173,7 +173,7 @@
                         
                         <li class="hover-avt">
                             <div class="container">
-                                <a href="${pageContext.request.contextPath}/profile" class="--color4"><i class="fa-solid fa-user-ninja --size20"></i></a>
+                                <a href="${pageContext.request.contextPath}/profile" class="--color4"><i class="fa-solid fa-user --size20"></i></a>
                                 <div class="avt-options">
                                     <div class="avt-profile-card">
                                         <div class="avt-container">

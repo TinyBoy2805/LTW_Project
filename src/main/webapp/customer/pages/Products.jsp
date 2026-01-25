@@ -23,6 +23,9 @@
 </head>
 <body>
 
+
+
+    <div class="toast-container"></div>
     <div class="scroll-to-top-btn"><i class="fa-solid fa-circle-up"></i></div>
     <jsp:include page="/customer/components/Header.jsp"/>
     <main class="main">
@@ -39,7 +42,7 @@
                         <li class="main__products-ul-li">
                             <div class="product" title="${p.name}">
                                 <div class="product__top">
-                                    <div class="product__top-cart" onclick="()=>addToCart(${p.id})"><i class="fa-solid fa-cart-plus"></i></div>
+                                    <div class="product__top-cart" id="${p.id}"><i class="fa-solid fa-cart-plus"></i></div>
                                     <div class="product__image">
                                         <img src="${p.img_url}" alt="">
                                     </div>
@@ -161,5 +164,31 @@
 <script type="module" src="${pageContext.request.contextPath}/customer/scripts/main.js" defer></script>
 <script type="module" src="${pageContext.request.contextPath}/customer/scripts/product/addToCart.js" defer></script>
 <script type="module" src="${pageContext.request.contextPath}/customer/scripts/product/Products.js" defer></script>
+<script type="module">
+    function blinkCartIcon()
+    {
+        const cartIcon = document.querySelector("#cart-icon"); // class icon giỏ hàng của bạn
+        if (!cartIcon) return;
+
+        cartIcon.classList.add("cart-blink");
+
+        // Xóa class sau khi animation kết thúc để lần sau còn chạy lại
+        cartIcon.addEventListener("animationend", () =>
+        {
+            cartIcon.classList.remove("cart-blink");
+        }, { once: true });
+    }
+
+    document.addEventListener("click", (e) =>
+    {
+        const btn = e.target.closest(".product__top-cart");
+        if (!btn) return;
+
+        const id = btn.id;
+        console.log(id)
+        addToCart(id);
+        blinkCartIcon()
+    });
+</script>
 </body>
 </html>

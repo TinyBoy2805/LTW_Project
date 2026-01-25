@@ -110,6 +110,7 @@ function renderProducts(products) {
                 ">
                     <div class="product" title="${escapeHtml(product.name)}">
                         <div class="product__top">
+                            <div class="product__top-cart"><i class="fa-solid fa-cart-plus"></i></div>
                             <div class="product__image">
                                 <img src="${product.img_url || ''}" alt="${escapeHtml(product.name)}">
                             </div>
@@ -134,8 +135,8 @@ function renderProducts(products) {
                             <div class="product__bottom-actions">
                                 <button><i class="fa-solid fa-cart-plus"></i></button>
                                 <form action="${contextPath}/product-detail" method="post" style="width: 100%; position:relative;">
-                                    <input type="hidden" name="product_id" value="${product.id}" style="position:absolute;">
-                                    <button type="submit" style="width: 100%;">Mua ngay</button>
+<!--                                    <input type="hidden" name="product_id" value="${product.id}" style="position:absolute;">-->
+                                    <button type="submit" style="width: 100%;" class="buy-now">Mua ngay</button>
                                 </form>
                             </div>
                         </div>

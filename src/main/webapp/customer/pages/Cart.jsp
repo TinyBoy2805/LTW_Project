@@ -18,10 +18,15 @@
 
 <%
 
-//    boolean isLoggedIn = session.getAttribute("isLoggedIn") != null
-//            ? (Boolean) session.getAttribute("isLoggedIn")
-//            : false;
+    boolean isLoggedIn = session.getAttribute("isLoggedIn") != null
+            ? (Boolean) session.getAttribute("isLoggedIn")
+            : false;
 
+    if (!isLoggedIn)
+    {
+        response.sendRedirect(request.getContextPath() + "/customer/pages/NotFoundPage.jsp");
+        return;
+    }
 //    String username = isLoggedIn ? (String) session.getAttribute("username") : "";
 
     Cart myCart = (Cart) session.getAttribute("cart");
@@ -36,9 +41,9 @@
             total += item.getPrice() * item.getQuantity();
         }
     }
+    System.out.println("My cart: " + myCart);
 
 %>
-
 
 
 
@@ -52,6 +57,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" 
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" 
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script>
+        window.APP_CONTEXT_PATH = `${pageContext.request.contextPath}`;
+    </script>
+
 </head>
 <body>
 
@@ -84,10 +93,10 @@
                         for(Map.Entry<Integer, CartItem> entry: myCart.getCart().entrySet())
                         {
                     %>
-                    <tr class="cart__row">
+                    <tr class="cart__row" id="<%= entry.getKey()%>">
 
                         <td class="cart__select --text-center">
-                            <input type="checkbox" class="cart__select-input" aria-label="Chọn sản phẩm">
+                            <input type="checkbox" class="cart__select-input" aria-label="Chọn sản phẩm" id="<%= entry.getKey()%>">
                         </td>
 
                         <td class="cart__product --text-left">
@@ -130,7 +139,7 @@
                         <td></td>
                         <td></td>
                         <td class="cart__actions">
-                            <button onclick="location.href='Payment.jsp'">Thanh toán</button>
+                            <button class="pay-btn">Thanh toán</button>
                         </td>
                     </tr>
                 </tfoot>

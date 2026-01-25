@@ -30,7 +30,8 @@ function formatPrice(price)
 
 
 
-export const addToCart = async (productId) => {
+export const addToCart = async (productId) =>
+{
     const url = `${window.APP_CONTEXT_PATH}/cart`;
 
     try
@@ -89,3 +90,8 @@ export const addToCart = async (productId) => {
         createNotification("Đăng nhập để thêm sản phẩm!");
     }
 };
+window.addToCart = addToCart;
+
+
+
+

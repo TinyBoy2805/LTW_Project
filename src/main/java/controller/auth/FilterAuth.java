@@ -31,7 +31,7 @@ public class FilterAuth extends HttpServlet implements Filter
         HttpSession session = ((HttpServletRequest) request).getSession(false);
         if(session == null || session.getAttribute("user") == null)
         {
-            ((HttpServletResponse) response).sendRedirect(((HttpServletRequest) request).getContextPath() + "/auth/login");
+            ((HttpServletResponse) response).sendRedirect(((HttpServletRequest) request).getContextPath() + "/customer/pages/NotFoundPage.jsp");
             return;
         }
 

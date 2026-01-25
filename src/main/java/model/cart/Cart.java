@@ -51,4 +51,11 @@ public class Cart
             cart.put(productId, newItem);
         }
     }
+
+    public boolean deleteItemById(int id)
+    {
+        return this.cart.remove(id) != null;
+    }
+
+
 }
