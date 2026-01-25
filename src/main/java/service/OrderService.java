@@ -30,7 +30,7 @@ public class OrderService {
         infor.setData(data);
         infor.setPageIndex(pageIndex);
         infor.setPageSize(PAGE_SIZE);
-        infor.setTotalOrders(totalOrders);
+        infor.setTotalItems(totalOrders);
         infor.setTotalPage(totalPage);
 
         return infor;
@@ -46,7 +46,7 @@ public class OrderService {
         infor.setData(data);
         infor.setPageIndex(pageIndex);
         infor.setPageSize(PAGE_SIZE);
-        infor.setTotalOrders(totalOrders);
+        infor.setTotalItems(totalOrders);
         infor.setTotalPage(totalPage);
 
         return infor;
@@ -73,7 +73,7 @@ public class OrderService {
         infor.setData(data);
         infor.setPageIndex(pageIndex);
         infor.setPageSize(PAGE_SIZE);
-        infor.setTotalOrders(totalOrders);
+        infor.setTotalItems(totalOrders);
         infor.setTotalPage(totalPage);
 
         return infor;

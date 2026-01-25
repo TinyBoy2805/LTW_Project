@@ -95,7 +95,7 @@ function handleNaviagtionPage(state) {
             status: document.getElementById("filter__order__status").value === "all" ? null : document.getElementById("filter__order__status").value,
             orderDate: document.getElementById("filter__order__date__from").value || null,
             from: document.getElementById("filter__price__min").value || "0",
-            to: document.getElementById("filter__price__max").value || "999999999" // Tránh để 0 để không bị list rỗng
+            to: document.getElementById("filter__price__max").value || "0"
         };
         fetchPromise = fetchOrderByFilter(dataFilter, newPageIndex);
     }else {

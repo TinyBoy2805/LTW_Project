@@ -1,7 +1,11 @@
 package model.product;
 
 import java.io.Serializable;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class ProductCard implements Serializable
 {
     private int id;
@@ -11,10 +15,11 @@ public class ProductCard implements Serializable
     private double avg_rating;
     private boolean is_active;
     private String img_url;
+    private int quantity;
 
     public ProductCard(){}
 
-    public ProductCard(int id, String name, double price, int buy_count, double avg_rating, boolean is_active, String img_url)
+    public ProductCard(int id, String name, double price, int buy_count, double avg_rating, boolean is_active, String img_url, int quantity)
     {
         this.id = id;
         this.name = name;
@@ -23,6 +28,7 @@ public class ProductCard implements Serializable
         this.avg_rating = avg_rating;
         this.is_active = is_active;
         this.img_url = img_url;
+        this.quantity = quantity;
     }
 
     public int getId() {
@@ -79,5 +85,20 @@ public class ProductCard implements Serializable
 
     public void setImg_url(String img_url) {
         this.img_url = img_url;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("ProductCard{");
+        sb.append("id=").append(id);
+        sb.append(", name='").append(name).append('\'');
+        sb.append(", price=").append(price);
+        sb.append(", buy_count=").append(buy_count);
+        sb.append(", avg_rating=").append(avg_rating);
+        sb.append(", is_active=").append(is_active);
+        sb.append(", img_url='").append(img_url).append('\'');
+        sb.append(", quantity=").append(quantity);
+        sb.append('}');
+        return sb.toString();
     }
 }

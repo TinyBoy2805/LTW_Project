@@ -27,7 +27,7 @@
 <%--            <div class="container__content">--%>
 <%--                <div class="content__header">--%>
 <%--                    <div class="header__title">--%>
-<%--                        <a href="categories.jsp" class="back__button"><ion-icon--%>
+<%--                        <a href="product.jsp" class="back__button"><ion-icon--%>
 <%--                                name="chevron-back-outline"></ion-icon></a>--%>
 <%--                        <h2 class="content__title">Chi tiết sản phẩm</h2>--%>
 <%--                    </div>--%>
@@ -123,7 +123,7 @@
             <div class="container__content">
                 <div class="content__header">
                     <div class="header__title">
-                        <a href="categories.jsp"><ion-icon name="chevron-back-outline"></ion-icon></a>
+                        <a href="product.jsp"><ion-icon name="chevron-back-outline"></ion-icon></a>
                         <h2 class="content__title">Chi tiết sản phẩm</h2>
                     </div>
                     <div class="header__actions">

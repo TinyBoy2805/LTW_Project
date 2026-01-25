@@ -150,7 +150,7 @@
                         </tbody>
                     </table>
                     <div class="table__bottom">
-                        <a href="categories.jsp"><button class="viewmore">Xem đầy đủ</button></a>
+                        <a href="product.jsp"><button class="viewmore">Xem đầy đủ</button></a>
                     </div>
                 </div>
             </div>

@@ -28,7 +28,7 @@
             <!-- contert -->
             <div class="container__content">
                 <div class="content__header">
-                    <a href="categories.jsp"><ion-icon name="chevron-back-outline"></ion-icon></a>
+                    <a href="product.jsp"><ion-icon name="chevron-back-outline"></ion-icon></a>
                     <h2 class="content__title">Thêm sản phẩm mới</h2>
                 </div>
                 <div class="content__body">
@@ -165,8 +165,8 @@
                 <div class="content__bottom">
                     <p class="bottom__title">Đảm bảo rằng sản phẩm của bạn là hợp pháp và không gây hậu quả nào</p>
                     <div class="bottom__button">
-                        <a href="categories.jsp" class="cancel">Huỷ</a>
-                        <a href="categories.jsp" class="add">Đưa vào danh sách</a>
+                        <a href="product.jsp" class="cancel">Huỷ</a>
+                        <a href="product.jsp" class="add">Đưa vào danh sách</a>
                     </div>
                 </div>
             </div>
