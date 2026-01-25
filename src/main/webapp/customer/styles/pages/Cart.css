@@ -12,8 +12,6 @@
     accent-color: var(--c6);
 }
 
-
-
 .cart__header 
 {
   display: flex;
@@ -204,4 +202,21 @@
 .cart__empty .cart__btn 
 {
   padding: 10px 20px;
+}
+
+
+
+
+.cart-blink
+{
+    animation: cartBlink 0.6s ease-in-out 2;
+}
+
+@keyframes cartBlink
+{
+    0%   { transform: scale(1);   opacity: 1; color: var(--c6)}
+    25%  { transform: scale(1.2); opacity: 0.6; }
+    50%  { transform: scale(1);   opacity: 1; }
+    75%  { transform: scale(1.2); opacity: 0.6; }
+    100% { transform: scale(1);   opacity: 1; color: var(--c4)}
 }

@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <%
     request.setAttribute("activeTab", "about");
@@ -11,7 +13,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../styles/index.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/customer/styles/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" 
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" 
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -308,133 +310,48 @@
         <!-- 7. TESTIMONIALS -->
         <section class="testimonials">
             <h2 class="testimonials__title">Khách hàng nói gì?</h2>
-            <div class="testimonials__grid">
-                <div class="testimonials__card">
-                    <div class="card__top">
-                        <div class="img-container">
-                            <img src="https://i.pinimg.com/474x/28/36/ed/2836ed60aa938a17992f5212f9a0c416.jpg" alt="">
-                        </div>
-                        <div class="card__info">
-                            <h4>Nguyễn Văn A</h4>
-                            <div class="card__star">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
+            <div class="testimonials__grid" id="reviewsContainer">
+                <c:forEach var="review" items="${reviews}">
+                    <div class="testimonials__card">
+                        <div class="card__top">
+                            <div class="img-container">
+                                <c:choose>
+                                    <c:when test="${not empty review.userAvatar}">
+                                        <img src="${review.userAvatar}" alt="${review.userName}">
+                                    </c:when>
+                                    <c:otherwise>
+                                        <img src="https://i.pinimg.com/474x/28/36/ed/2836ed60aa938a17992f5212f9a0c416.jpg" alt="${review.userName}">
+                                    </c:otherwise>
+                                </c:choose>
+                            </div>
+                            <div class="card__info">
+                                <h4><c:out value="${review.userName}"/></h4>
+                                <div class="card__star">
+                                    <c:forEach begin="1" end="${review.rating}">
+                                        <i class="fa-solid fa-star"></i>
+                                    </c:forEach>
+                                    <c:forEach begin="1" end="${5 - review.rating}">
+                                        <i class="fa-regular fa-star"></i>
+                                    </c:forEach>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card__bottom">
-                        <p>Cửa hàng tư vấn nhiệt tình, sản phẩm chất lượng. Con tôi uống sữa rất thích, phát triển tốt hơn hẳn.</p>
-                    </div>
-                </div>
-
-                <div class="testimonials__card">
-                    <div class="card__top">
-                        <div class="img-container">
-                            <img src="https://i.pinimg.com/474x/98/51/1e/98511ee82f39e8956ca83f1b3e175e45.jpg" alt="">
-                        </div>
-                        <div class="card__info">
-                            <h4>Trần Thị B</h4>
-                            <div class="card__star">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                            </div>
+                        <div class="card__bottom">
+                            <p><c:out value="${review.comment}"/></p>
                         </div>
                     </div>
-                    <div class="card__bottom">
-                        <p>Giao hàng nhanh, đóng gói cẩn thận. Giá cả hợp lý, chắc chắn sẽ quay lại mua tiếp.</p>
-                    </div>
-                </div>
-
-                <div class="testimonials__card">
-                    <div class="card__top">
-                        <div class="img-container">
-                            <img src="https://i.pinimg.com/736x/5c/7c/e8/5c7ce8ed53f36b83c89159252f9b829f.jpg" alt="">
-                        </div>
-                        <div class="card__info">
-                            <h4>Lê Văn C</h4>
-                            <div class="card__star">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card__bottom">
-                        <p>Sản phẩm đa dạng, nhân viên tư vấn tận tâm. Rất hài lòng với chất lượng dịch vụ.</p>
-                    </div>
-                </div>
-
-                <div class="testimonials__card">
-                    <div class="card__top">
-                        <div class="img-container">
-                            <img src="https://i.pinimg.com/736x/07/33/ba/0733ba760b29378474dea0fdbcb97107.jpg" alt="">
-                        </div>
-                        <div class="card__info">
-                            <h4>Phạm Thị D</h4>
-                            <div class="card__star">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card__bottom">
-                        <p>Mua hàng ở đây yên tâm vì sản phẩm chính hãng 100%. Bé nhà tôi rất khoẻ mạnh.</p>
-                    </div>
-                </div>
-
-                <div class="testimonials__card">
-                    <div class="card__top">
-                        <div class="img-container">
-                            <img src="https://i.pinimg.com/736x/d2/02/4e/d2024e101baadd79bd66e6e24b3c7b79.jpg" alt="">
-                        </div>
-                        <div class="card__info">
-                            <h4>Hoàng Văn E</h4>
-                            <div class="card__star">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card__bottom">
-                        <p>Dịch vụ tốt, giao hàng đúng hẹn. Shop luôn có chương trình khuyến mãi hấp dẫn.</p>
-                    </div>
-                </div>
-
-                <div class="testimonials__card">
-                    <div class="card__top">
-                        <div class="img-container">
-                            <img src="https://i.pinimg.com/736x/46/e3/35/46e335769126de5163d3de170ab42b24.jpg" alt="">
-                        </div>
-                        <div class="card__info">
-                            <h4>Vũ Thị F</h4>
-                            <div class="card__star">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card__bottom">
-                        <p>Giá tốt nhất thị trường, chất lượng đảm bảo. Nhân viên tư vấn rất chuyên nghiệp và nhiệt tình.</p>
-                    </div>
-                </div>
+                </c:forEach>
             </div>
+            
+            <!-- Nút Xem thêm -->
+            <c:if test="${hasMore}">
+                <div class="testimonials__load-more">
+                    <button id="loadMoreBtn" class="load-more-btn">
+                        <span>Xem thêm đánh giá</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                </div>
+            </c:if>
         </section>
 
     </main>
@@ -442,8 +359,108 @@
 
     <jsp:include page="/customer/components/Footer.jsp"/>
 
+<script>
+// Xử lý nút "Xem thêm" reviews
+(function() {
+    const loadMoreBtn = document.getElementById('loadMoreBtn');
+    if (!loadMoreBtn) return;
+    
+    let currentPage = 1; // Đã load page 0 (6 reviews đầu)
+    let isLoading = false;
+    
+    loadMoreBtn.addEventListener('click', async function() {
+        if (isLoading) return;
+        
+        isLoading = true;
+        const btnText = this.querySelector('span');
+        const btnIcon = this.querySelector('i');
+        const originalText = btnText.textContent;
+        
+        // Hiển thị trạng thái loading
+        btnText.textContent = 'Đang tải...';
+        btnIcon.className = 'fa-solid fa-spinner fa-spin';
+        this.disabled = true;
+        
+        try {
+            const response = await fetch('${pageContext.request.contextPath}/about?action=loadMore&page=' + currentPage);
+            const data = await response.json();
+            
+            if (data.success && data.reviews.length > 0) {
+                const container = document.getElementById('reviewsContainer');
+                
+                // Thêm reviews mới vào container
+                data.reviews.forEach(review => {
+                    const card = createReviewCard(review);
+                    container.appendChild(card);
+                });
+                
+                currentPage = data.nextPage;
+                
+                // Ẩn nút nếu không còn reviews
+                if (!data.hasMore) {
+                    this.parentElement.remove();
+                }
+            } else {
+                alert('Không còn đánh giá để hiển thị');
+                this.parentElement.remove();
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Có lỗi xảy ra khi tải đánh giá');
+        } finally {
+            isLoading = false;
+            btnText.textContent = originalText;
+            btnIcon.className = 'fa-solid fa-chevron-down';
+            this.disabled = false;
+        }
+    });
+    
+    // Tạo HTML cho review card
+    function createReviewCard(review) {
+        const card = document.createElement('div');
+        card.className = 'testimonials__card';
+        
+        // Tạo stars HTML
+        let starsHTML = '';
+        for (let i = 0; i < review.rating; i++) {
+            starsHTML += '<i class="fa-solid fa-star"></i>';
+        }
+        for (let i = review.rating; i < 5; i++) {
+            starsHTML += '<i class="fa-regular fa-star"></i>';
+        }
+        
+        // Avatar URL (default nếu null)
+        const avatarUrl = review.userAvatar || 'https://i.pinimg.com/474x/28/36/ed/2836ed60aa938a17992f5212f9a0c416.jpg';
+        const userName = escapeHtml(review.userName);
+        const comment = escapeHtml(review.comment);
+        
+        card.innerHTML = '<div class="card__top">' +
+            '<div class="img-container">' +
+                '<img src="' + avatarUrl + '" alt="' + userName + '">' +
+            '</div>' +
+            '<div class="card__info">' +
+                '<h4>' + userName + '</h4>' +
+                '<div class="card__star">' +
+                    starsHTML +
+                '</div>' +
+            '</div>' +
+        '</div>' +
+        '<div class="card__bottom">' +
+            '<p>' + comment + '</p>' +
+        '</div>';
+        
+        return card;
+    }
+    
+    // Escape HTML để tránh XSS
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+})();
+</script>
 
-
+<script type="module" src="${pageContext.request.contextPath}/customer/scripts/main.js"></script>
 </body>
-<script type="module" src="../scripts/main.js"></script>
 </html>

@@ -1,7 +1,7 @@
     import {getDataByTrending} from "./home-trending.js";
     import {getProductsByPage} from "./home-product.js";
     import {sendReviewToServer} from "./home-store-review.js";
-
+    import {addToCart} from "../product/addToCart.js";
 
     const $ = document.querySelector.bind(document)
     const $$ = document.querySelectorAll.bind(document)
@@ -140,7 +140,17 @@ tabs.forEach((tab, index)=>
         const productCards = container.querySelectorAll('li.main__trending-content-ul-li')
         productCards.forEach((card, index) =>
         {
-            card.addEventListener('click', () =>
+            const cardBtn = card.querySelector("button")
+            const cartBtn = card.querySelector(".product__top-cart")
+
+            cartBtn.addEventListener('click', ()=>
+            {
+                // sessionStorage.setItem("scrollPos", window.scrollY);
+                addToCart(data[index].id)
+                blinkCartIcon()
+            })
+
+            cardBtn.addEventListener('click', () =>
             {
                 const productId = data[index].id
                 productDetailIdHolder.value = productId
@@ -149,6 +159,21 @@ tabs.forEach((tab, index)=>
         })
 
     }
+
+    function blinkCartIcon()
+    {
+        const cartIcon = document.querySelector("#cart-icon"); // class icon giỏ hàng của bạn
+        if (!cartIcon) return;
+
+        cartIcon.classList.add("cart-blink");
+
+        // Xóa class sau khi animation kết thúc để lần sau còn chạy lại
+        cartIcon.addEventListener("animationend", () =>
+        {
+            cartIcon.classList.remove("cart-blink");
+        }, { once: true });
+    }
+
 
     function formatPrice(price)
     {
@@ -303,6 +328,7 @@ tabs.forEach((tab, index)=>
 
         reviewForm.appendChild(succesInform)
 
+        //CAUTION: don't need to delete this code
         //reset after send
         // setTimeout(()=>
         // {

@@ -1,22 +1,28 @@
 package model.cart;
 
+import lombok.Getter;
+import lombok.Setter;
 import model.product.Product;
+import model.product.ProductCard;
 
 import java.io.Serializable;
 
+
+
+@Getter
+@Setter
 public class CartItem implements Serializable
 {
-    private Product product;
+    private ProductCard product;
     private int quantity;
     private double price;
 
-    public CartItem(Product product, int quantity, double price)
+    public CartItem(ProductCard product, int quantity, double price)
     {
         this.product = product;
         this.quantity = quantity;
         this.price = price;
     }
-
 
 
     public void updateQuantity(int newQuantity)
@@ -39,34 +45,5 @@ public class CartItem implements Serializable
     {
         return this.quantity * this.price;
     }
-
-
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-
-
 
 }

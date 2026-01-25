@@ -64,7 +64,6 @@ public class CustomerDetailController extends HttpServlet {
         }
 
         authDao.updateUserInfo(id, name, email, phone);
-        addressDao.updateAddress(id, houseNumber, road, district, city);
 
         response.sendRedirect(request.getContextPath() + "/quanlykhachhang?id=" + id);
     }
