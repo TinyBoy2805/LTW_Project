@@ -42,78 +42,113 @@ public class CustomerDetailController extends HttpServlet {
         request.setAttribute("address", address);
         request.getRequestDispatcher("admin/pages/Quanlykhachhang.jsp").forward(request, response);
     }
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+@Override
+protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    try {
         request.setCharacterEncoding("UTF-8");
-        String action = request.getParameter("action");
+        // Lấy ID từ parameter (cố gắng an toàn hơn: từ parameter hoặc query string)
         String idParam = request.getParameter("id");
-        int id = Integer.parseInt(idParam);
-
-        // Xử lý đổi mật khẩu bởi admin
-        if ("change_password".equals(action)) {
-            String newPassword = request.getParameter("new_password");
-            String confirmPassword = request.getParameter("confirm_password");
-            service.AuthService authService = new service.AuthService();
-            boolean success = authService.adminChangeUserPassword(id, newPassword, confirmPassword);
-            if (success) {
-                request.setAttribute("message", "Đổi mật khẩu thành công!");
-            } else {
-                request.setAttribute("error", "Mật khẩu không hợp lệ hoặc xác nhận không khớp!");
+        if (idParam == null || idParam.isEmpty()) {
+            String qs = request.getQueryString();
+            if (qs != null) {
+                for (String part : qs.split("&")) {
+                    if (part.startsWith("id=")) {
+                        idParam = part.substring(3);
+                        break;
+                    }
+                }
             }
-            doGet(request, response);
-            return;
         }
+        if (idParam == null || idParam.isEmpty()) {
+            throw new IllegalArgumentException("Missing id parameter");
+        }
+        int id = Integer.parseInt(idParam);
+        String action = request.getParameter("action");
 
-        // Xử lý xóa tài khoản
-        if ("delete".equals(action)) {
-            addressDao.deleteAddressByUserId(id);
-            authDao.deleteUser(id);
+            // Xử lý đổi mật khẩu bởi admin
+            if ("change_password".equals(action)) {
+                String newPassword = request.getParameter("new_password");
+                String confirmPassword = request.getParameter("confirm_password");
+                service.AuthService authService = new service.AuthService();
+                boolean success = authService.adminChangeUserPassword(id, newPassword, confirmPassword);
+                if (success) {
+                    request.setAttribute("message", "Đổi mật khẩu thành công!");
+                } else {
+                    request.setAttribute("error", "Mật khẩu không hợp lệ hoặc xác nhận không khớp!");
+                }
+                doGet(request, response);
+                return;
+            }
+
+            // Xử lý xóa tài khoản
+            if ("delete".equals(action)) {
+                addressDao.deleteAddressByUserId(id);
+                authDao.deleteUser(id);
+                response.sendRedirect(request.getContextPath() + "/khachhang");
+                return;
+            }
+
+            // Xử lý cập nhật thông tin
+            String name = request.getParameter("name");
+            String email = request.getParameter("email");
+            String phone = request.getParameter("phone_number");
+            String houseNumber = request.getParameter("house_number");
+            String road = request.getParameter("road");
+            String district = request.getParameter("district");
+            String city = request.getParameter("city");
+            String hamlet = request.getParameter("hamlet");
+            String ward = request.getParameter("ward");
+
+            // Lấy avt_url hiện tại nếu không upload mới
+            String avtUrl = null;
+            User currentUser = authDao.getUserById(id);
+            if (currentUser != null) {
+                avtUrl = currentUser.getAvt_url();
+            }
+            // Nếu một số parameter không có (ví dụ do client không gửi), giữ giá trị hiện tại
+            if (currentUser != null) {
+                if (name == null || name.isEmpty()) name = currentUser.getName();
+                if (email == null || email.isEmpty()) email = currentUser.getEmail();
+                if (phone == null || phone.isEmpty()) phone = currentUser.getPhone_number();
+            }
+            model.Address currentAddress = addressDao.getAddressByUserId(id);
+            if (currentAddress != null) {
+                if (houseNumber == null) houseNumber = currentAddress.getHouseNumber();
+                if (road == null) road = currentAddress.getRoad();
+                if (district == null) district = currentAddress.getDistrict();
+                if (city == null) city = currentAddress.getCity();
+                if (hamlet == null) hamlet = currentAddress.getHamlet();
+                if (ward == null) ward = currentAddress.getWard();
+            }
+            Part filePart = null;
+            try {
+                filePart = request.getPart("avatar");
+            } catch (Exception ignored) {}
+            if (filePart != null && filePart.getSize() > 0) {
+                try {
+                    String submitted = filePart.getSubmittedFileName();
+                    String fileName = System.currentTimeMillis() + (submitted != null ? "_" + submitted : "");
+                    String uploadPath = request.getServletContext().getRealPath("/libraries/ckfinder/userfiles/");
+                    if (uploadPath != null) {
+                        java.io.File uploadDir = new java.io.File(uploadPath);
+                        if (!uploadDir.exists()) uploadDir.mkdirs();
+                        String filePath = uploadPath + java.io.File.separator + fileName;
+                        filePart.write(filePath);
+                        avtUrl = request.getContextPath() + "/libraries/ckfinder/userfiles/" + fileName;
+                    } else {
+                        System.out.println("[WARN] uploadPath is null, skipping avatar write");
+                    }
+                } catch (Exception e) {
+                    System.out.println("[WARN] Failed to save uploaded avatar: " + e.getMessage());
+                }
+            }
+
+            authDao.updateUserInfo(id, name, email, phone, avtUrl);
+            addressDao.updateAddress(id, houseNumber, road, district, city, hamlet, ward);
             response.sendRedirect(request.getContextPath() + "/khachhang");
-            return;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Lỗi xử lý cập nhật khách hàng: " + ex.getMessage());
         }
-
-        // Xử lý cập nhật thông tin
-        String name = request.getParameter("name");
-        String email = request.getParameter("email");
-        String phone = request.getParameter("phone_number");
-
-        String addressFull = request.getParameter("address_full");
-        String houseNumber = "";
-        String road = "";
-        String district = "";
-        String city = "";
-        String hamlet = "";
-        String ward = "";
-        if (addressFull != null) {
-            String[] parts = addressFull.split(",");
-            if (parts.length > 0) houseNumber = parts[0].trim();
-            if (parts.length > 1) road = parts[1].trim();
-            if (parts.length > 2) district = parts[2].trim();
-            if (parts.length > 3) city = parts[3].trim();
-            if (parts.length > 4) hamlet = parts[4].trim();
-            if (parts.length > 5) ward = parts[5].trim();
-        }
-        // Lấy avt_url hiện tại nếu không upload mới
-        String avtUrl = null;
-        User currentUser = authDao.getUserById(id);
-        if (currentUser != null) {
-            avtUrl = currentUser.getAvt_url();
-        }
-        Part filePart = null;
-        try {
-            filePart = request.getPart("avatar");
-        } catch (Exception ignored) {}
-        if (filePart != null && filePart.getSize() > 0) {
-            String fileName = System.currentTimeMillis() + "_" + filePart.getSubmittedFileName();
-            String uploadPath = request.getServletContext().getRealPath("/libraries/ckfinder/userfiles/");
-            java.io.File uploadDir = new java.io.File(uploadPath);
-            if (!uploadDir.exists()) uploadDir.mkdirs();
-            String filePath = uploadPath + java.io.File.separator + fileName;
-            filePart.write(filePath);
-            avtUrl = request.getContextPath() + "/libraries/ckfinder/userfiles/" + fileName;
-        }
-        authDao.updateUserInfo(id, name, email, phone, avtUrl);
-        addressDao.updateAddress(id, houseNumber, road, district, city, hamlet, ward);
-        response.sendRedirect(request.getContextPath() + "/khachhang");
     }
 }

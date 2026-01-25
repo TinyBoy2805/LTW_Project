@@ -37,6 +37,8 @@ body {
   background-color: #f8f8f8;
   padding: 24px 24px 0 24px;
   height: 100%;
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .content__title {
@@ -350,6 +352,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  align-items: center;
 }
 
 .reset-btn,
@@ -366,6 +369,8 @@ body {
   justify-content: center;
   gap: 8px;
   transition: all 0.2s;
+  width: 320px;
+  max-width: 100%;
 }
 
 .reset-btn {
@@ -416,8 +421,8 @@ body {
 
 .cancel-btn {
   background: white;
-  color: #666;
-  border: 2px solid #e0e0e0;
+  color: #f564a9;
+  border: 2px solid #f564a9;
   padding: 10px 24px;
   border-radius: 6px;
   font-size: 14px;
@@ -431,14 +436,15 @@ body {
 }
 
 .cancel-btn:hover {
-  border-color: #ccc;
-  background: #f8f8f8;
+  border-color: #e14d95;
+  background: #fff0f6;
+  box-shadow: 0 6px 18px rgba(245,100,169,0.12);
 }
 
 .update-info-btn {
-  background: linear-gradient(135deg, #f564a9 0%, #d63f8a 100%);
+  background: #f564a9;
   color: white;
-  border: none;
+  border: 2px solid #f564a9;
   padding: 10px 24px;
   border-radius: 6px;
   font-size: 14px;
@@ -486,7 +492,23 @@ body {
 
 .update-info-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(245, 100, 169, 0.3);
+  box-shadow: 0 8px 24px rgba(245,100,169,0.18);
+}
+
+/* Make update button slightly more prominent */
+.update-info-btn {
+  box-shadow: 0 6px 18px rgba(245,100,169,0.08);
+  border-radius: 8px;
+}
+
+/* Responsive: revert fixed width on small screens */
+@media (max-width: 768px) {
+  .reset-btn,
+  .delete-btn,
+  .email-btn {
+    width: 100%;
+    min-width: 0;
+  }
 }
 @media (max-width: 1200px) {
   .left-panel {
@@ -505,6 +527,56 @@ body {
   }
 }
 
+/* Page-specific overrides for the bottom action buttons */
+.update-info-section .btn {
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.update-info-section .btn.ghost {
+  background: white;
+  color: #f564a9;
+  border: 2px solid #f564a9;
+}
+
+.update-info-section .btn.ghost:hover {
+  background: #fff0f6;
+  border-color: #e14d95;
+  box-shadow: 0 6px 18px rgba(245,100,169,0.12);
+}
+
+.update-info-section .btn.primary {
+  background: #f564a9;
+  color: white;
+  border: 2px solid #f564a9;
+}
+
+.update-info-section .btn.primary:hover {
+  background: #e14d95;
+  box-shadow: 0 8px 24px rgba(245,100,169,0.18);
+}
+
+/* Ensure avatar image fills and centers within the circular container */
+.avatar-container {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 50% 30%, #fff, transparent 30%);
+}
+
+.avatar-container img,
+#avatar-preview {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block;
+}
 @media (max-width: 768px) {
   .content__body {
     flex-direction: column;
