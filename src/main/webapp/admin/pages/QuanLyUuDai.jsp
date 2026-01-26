@@ -27,7 +27,7 @@
       <!-- Main content -->
       <main class="content" aria-labelledby="quan-ly-uu-dai-title">
         <h3 class="content__title" id="quan-ly-uu-dai-title">
-          <a href="${pageContext.request.contextPath}/uudai" class="back-icon" aria-label="Quay lại ưu đãi"><i class="fa-solid fa-chevron-left"></i></a>
+          <a href="${pageContext.request.contextPath}/admin/voucher" class="back-icon" aria-label="Quay lại ưu đãi"><i class="fa-solid fa-chevron-left"></i></a>
           Quản lý ưu đãi
         </h3>
         <div class="content__panel managing">
@@ -119,13 +119,13 @@
                 <p class="note">Đảm bảo rằng sản phẩm của bạn là hợp pháp và không gây hậu quả nào</p>
               </div>
               <div class="actions-right">
-                <button class="btn ghost" type="button" onclick="window.location.href='${pageContext.request.contextPath}/quanlyuudai?id=${voucher.id}'">Hủy</button>
-                <form action="${pageContext.request.contextPath}/quanlyuudai" method="post" style="display:inline-flex; gap:12px; align-items:center;">
+                <button class="btn ghost" type="button" onclick="window.location.href='${pageContext.request.contextPath}/admin/voucher?id=${voucher.id}'">Hủy</button>
+                <form action="${pageContext.request.contextPath}/admin/manage_voucher" method="post" style="display:inline-flex; gap:12px; align-items:center;">
                   <input type="hidden" name="action" value="delete" />
                   <input type="hidden" name="id" value="${voucher.id}" />
                   <button class="btn danger" type="submit">Xóa</button>
                 </form>
-                <form id="updateForm" action="${pageContext.request.contextPath}/quanlyuudai" method="post" style="display:inline-flex; gap:12px; align-items:center;">
+                <form id="updateForm" action="${pageContext.request.contextPath}/admin/manage_voucher" method="post" style="display:inline-flex; gap:12px; align-items:center;">
                   <input type="hidden" name="action" value="update" />
                   <input type="hidden" name="id" value="${voucher.id}" />
                   <button class="btn primary" type="submit">Cập nhật</button>
@@ -134,7 +134,7 @@
             </div>
           </div>
 
-        </div> <!-- .content__panel -->
+        </div> 
 
       </main>
       <script src="../scripts/components/extendSidebar.js"></script>

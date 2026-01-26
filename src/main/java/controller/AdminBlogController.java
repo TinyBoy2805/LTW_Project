@@ -13,13 +13,13 @@ import java.sql.Timestamp;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.Part;
 
-@WebServlet("/blog")
+@WebServlet("/admin/blog")
 @jakarta.servlet.annotation.MultipartConfig(
-    fileSizeThreshold = 1024 * 1024 * 1, // 1 MB
-    maxFileSize = 1024 * 1024 * 10,      // 10 MB
-    maxRequestSize = 1024 * 1024 * 15    // 15 MB
+    fileSizeThreshold = 1024 * 1024 * 1, 
+    maxFileSize = 1024 * 1024 * 10,      
+    maxRequestSize = 1024 * 1024 * 15    
 )
-public class BlogController extends HttpServlet {
+public class AdminBlogController extends HttpServlet {
     private final BlogDao blogDao = new BlogDao();
 
     @Override
@@ -88,13 +88,13 @@ public class BlogController extends HttpServlet {
         try {
             boolean success = blogDao.insertBlog(blog);
             if (success) {
-                response.sendRedirect(request.getContextPath() + "/blog");
+                response.sendRedirect(request.getContextPath() + "/admin/blog");
             } else {
-                response.sendRedirect(request.getContextPath() + "/blog");
+                response.sendRedirect(request.getContextPath() + "/admin/blog");
             }
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendRedirect(request.getContextPath() + "/blog");
+            response.sendRedirect(request.getContextPath() + "/admin/blog");
         }
     }
 

@@ -8,7 +8,7 @@ import jakarta.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "AdminCustomerController", value = "/khachhang")
+@WebServlet(name = "AdminCustomerController", value = "/admin/customer")
 public class AdminCustomerController extends HttpServlet {
     private AuthDao authDao = new AuthDao();
 

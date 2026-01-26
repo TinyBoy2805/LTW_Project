@@ -48,7 +48,7 @@
             <div class="blog-list" role="list" aria-label="Danh sách bài viết">
               <%-- Hiển thị danh sách blog từ database --%>
               <c:forEach var="blog" items="${blogs}">
-                <a class="blog-card blog-clickable" href="${pageContext.request.contextPath}/quanlyblog?id=${blog.id}" style="display:block;text-decoration:none;color:inherit;">
+                <a class="blog-card blog-clickable" href="${pageContext.request.contextPath}/admin/manage_blog?id=${blog.id}" style="display:block;text-decoration:none;color:inherit;">
                   <figure class="card__figure">
                     <img src="${empty blog.thumbnail ? 'https://via.placeholder.com/200x120?text=No+Image' : blog.thumbnail}" alt="${blog.title}" >
                   </figure>
@@ -66,7 +66,7 @@
           <!-- Tạo bài viết -->
           <div class="tab-panel" data-panel="create">
             <div class="content__body">
-              <form class="form-wrap" action="${pageContext.request.contextPath}/blog" method="post" enctype="multipart/form-data">
+              <form class="form-wrap" action="${pageContext.request.contextPath}/admin/blog" method="post" enctype="multipart/form-data">
                 <section class="left-panel">
                   <div class="card-form">
                     <label class="label">Tiêu đề</label> 

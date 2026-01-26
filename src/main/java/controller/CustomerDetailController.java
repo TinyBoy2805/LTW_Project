@@ -9,7 +9,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "CustomerDetailController", value = "/quanlykhachhang")
+@WebServlet(name = "CustomerDetailController", value = "/admin/manage_customer")
 @MultipartConfig
 public class CustomerDetailController extends HttpServlet {
     private final AuthDao authDao = new AuthDao();
@@ -19,7 +19,7 @@ public class CustomerDetailController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String idParam = request.getParameter("id");
         if (idParam == null) {
-            response.sendRedirect("admin-customers");
+            response.sendRedirect(request.getContextPath() + "/admin/customer");
             return;
         }
 
@@ -27,13 +27,13 @@ public class CustomerDetailController extends HttpServlet {
         try {
             id = Integer.parseInt(idParam);
         } catch (NumberFormatException ex) {
-            response.sendRedirect("admin-customers");
+            response.sendRedirect(request.getContextPath() + "/admin/customer");
             return;
         }
 
         User customer = authDao.getUserById(id);
         if (customer == null) {
-            response.sendRedirect("admin-customers");
+            response.sendRedirect(request.getContextPath() + "/admin/customer");
             return;
         }
 
@@ -84,7 +84,7 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
             if ("delete".equals(action)) {
                 addressDao.deleteAddressByUserId(id);
                 authDao.deleteUser(id);
-                response.sendRedirect(request.getContextPath() + "/khachhang");
+                response.sendRedirect(request.getContextPath() + "/admin/customer");
                 return;
             }
 
@@ -145,7 +145,7 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 
             authDao.updateUserInfo(id, name, email, phone, avtUrl);
             addressDao.updateAddress(id, houseNumber, road, district, city, hamlet, ward);
-            response.sendRedirect(request.getContextPath() + "/khachhang");
+            response.sendRedirect(request.getContextPath() + "/admin/customer");
         } catch (Exception ex) {
             ex.printStackTrace();
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Lỗi xử lý cập nhật khách hàng: " + ex.getMessage());

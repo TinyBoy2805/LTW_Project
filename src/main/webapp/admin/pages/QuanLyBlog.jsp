@@ -24,7 +24,7 @@
       <!-- content -->
       <div class="container__content">
         <h3 class="content__title">
-          <a href="${pageContext.request.contextPath}/blog" class="back-icon">
+          <a href="${pageContext.request.contextPath}/admin/blog" class="back-icon">
             <i class="fa-solid fa-chevron-left"></i>
           </a>
           Quản lý bài viết
@@ -75,13 +75,13 @@
                   <p class="note">Đảm bảo nội dung tuân thủ chính sách và không vi phạm quy định.</p>
                 </div>
                 <div class="actions-right">
-                  <button class="btn ghost" type="button" onclick="window.location.href='${pageContext.request.contextPath}/quanlyblog?id=${blog.id}'">Hủy</button>
-                  <form action="${pageContext.request.contextPath}/quanlyblog" method="post" style="display:inline-flex; gap:12px; align-items:center;">
+                  <button class="btn ghost" type="button" onclick="window.location.href='${pageContext.request.contextPath}/admin/manage_blog?id=${blog.id}'">Hủy</button>
+                  <form action="${pageContext.request.contextPath}/admin/manage_blog" method="post" style="display:inline-flex; gap:12px; align-items:center;">
                     <input type="hidden" name="action" value="delete" />
                     <input type="hidden" name="id" value="${blog.id}" />
                     <button class="btn danger" type="submit" onclick="return confirm('Bạn có chắc muốn xóa bài viết này?');">Xóa</button>
                   </form>
-                  <form id="updateForm" action="${pageContext.request.contextPath}/quanlyblog" method="post" enctype="multipart/form-data" style="display:inline-flex; gap:12px; align-items:center;">
+                  <form id="updateForm" action="${pageContext.request.contextPath}/admin/manage_blog" method="post" enctype="multipart/form-data" style="display:inline-flex; gap:12px; align-items:center;">
                     <input type="hidden" name="action" value="update" />
                     <input type="hidden" name="id" value="${blog.id}" />
                     <input type="hidden" name="thumbnail_old" value="${blog.thumbnail}" />

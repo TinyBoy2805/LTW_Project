@@ -15,22 +15,22 @@ import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.List;
 
-@WebServlet(name = "VoucherController", urlPatterns = {"/uudai", "/themuudai", "/quanlyuudai"})
-public class VoucherController extends HttpServlet {
+@WebServlet(name = "AdminVoucherController", urlPatterns = {"/admin/voucher", "/admin/add_voucher", "/admin/manage_voucher"})
+public class AdminVoucherController extends HttpServlet {
     private final VoucherDao voucherDao = new VoucherDao();
     private final CategoryDao categoryDao = new CategoryDao();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String servletPath = request.getServletPath();
-        if ("/themuudai".equals(servletPath)) {
+        if ("/admin/add_voucher".equals(servletPath)) {
             List<Category> categories = categoryDao.findAll();
             request.setAttribute("categories", categories);
             request.getRequestDispatcher("admin/pages/ThemUuDai.jsp").forward(request, response);
             return;
         }
 
-        if ("/quanlyuudai".equals(servletPath)) {
+        if ("/admin/manage_voucher".equals(servletPath)) {
             String idParam = request.getParameter("id");
             Voucher voucher = null;
             if (idParam != null && !idParam.isEmpty()) {
@@ -55,14 +55,14 @@ public class VoucherController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         String servletPath = request.getServletPath();
-        if ("/uudai".equals(servletPath)) {
+        if ("/admin/voucher".equals(servletPath)) {
             Voucher voucher = parseVoucher(request);
             voucherDao.insert(voucher);
-            response.sendRedirect(request.getContextPath() + "/uudai");
+            response.sendRedirect(request.getContextPath() + "/admin/voucher");
             return;
         }
 
-        if ("/quanlyuudai".equals(servletPath)) {
+        if ("/admin/manage_voucher".equals(servletPath)) {
             String action = request.getParameter("action");
             if ("delete".equals(action)) {
                 String idParam = request.getParameter("id");
@@ -70,7 +70,7 @@ public class VoucherController extends HttpServlet {
                     int id = Integer.parseInt(idParam);
                     voucherDao.deleteById(id);
                 } catch (NumberFormatException ignored) { }
-                response.sendRedirect(request.getContextPath() + "/uudai");
+                response.sendRedirect(request.getContextPath() + "/admin/voucher");
                 return;
             }
 
@@ -106,12 +106,12 @@ public class VoucherController extends HttpServlet {
                 }
                 voucher.setVoucher_type(type);
                 voucherDao.update(voucher);
-                response.sendRedirect(request.getContextPath() + "/uudai");
+                response.sendRedirect(request.getContextPath() + "/admin/voucher");
                 return;
             }
         }
 
-        response.sendRedirect(request.getContextPath() + "/uudai");
+        response.sendRedirect(request.getContextPath() + "/admin/voucher");
     }
 
     private Voucher parseVoucher(HttpServletRequest request) {

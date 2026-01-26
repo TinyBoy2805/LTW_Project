@@ -26,13 +26,13 @@
    
       <!-- Main content -->
       <main class="content" aria-labelledby="them-uu-dai-title">
-        <a href="${pageContext.request.contextPath}/uudai">
+        <a href="${pageContext.request.contextPath}/admin/voucher">
           <h3 class="content__title"><i class="fa-solid fa-chevron-left"></i>Thêm Ưu Đãi</h3>
         </a>
         <div class="content__panel creating">
           <div class="panel-header"></div>
 
-          <form method="post" action="${pageContext.request.contextPath}/uudai">
+          <form method="post" action="${pageContext.request.contextPath}/admin/voucher">
             <div class="content__body">
               <div class="form-wrap">
                 <section class="left-panel">
@@ -106,7 +106,7 @@
                 <div class="actions-right">
                   <div class="panel-actions">
                     <div class="actions">
-                      <a href="${pageContext.request.contextPath}/uudai" class="btn ghost" style="text-decoration:none; display:inline-block; text-align:center;">Hủy</a>
+                      <a href="${pageContext.request.contextPath}/admin/voucher" class="btn ghost" style="text-decoration:none; display:inline-block; text-align:center;">Hủy</a>
                       <button class="btn primary" type="submit">Đăng ưu đãi</button>
                     </div>
                   </div>

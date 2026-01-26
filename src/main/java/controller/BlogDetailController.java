@@ -12,7 +12,7 @@ import jakarta.servlet.http.Part;
 import java.io.IOException;
 import java.io.File;
 
-@WebServlet("/quanlyblog")
+@WebServlet("/admin/manage_blog")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 5 * 1024 * 1024, maxRequestSize = 10 * 1024 * 1024)
 public class BlogDetailController extends HttpServlet {
     @Override
@@ -25,7 +25,7 @@ public class BlogDetailController extends HttpServlet {
                 int id = Integer.parseInt(idStr);
                 blogDao.deleteBlogById(id);
             } catch (NumberFormatException ignored) {}
-            response.sendRedirect(request.getContextPath() + "/blog");
+            response.sendRedirect(request.getContextPath() + "/admin/blog");
             return;
         }
         if ("update".equals(action)) {
@@ -68,10 +68,10 @@ public class BlogDetailController extends HttpServlet {
                     blogDao.updateBlog(blog);
                 }
             } catch (Exception ignored) {}
-            response.sendRedirect(request.getContextPath() + "/blog");
+            response.sendRedirect(request.getContextPath() + "/admin/blog");
             return;
         }
-        response.sendRedirect(request.getContextPath() + "/blog");
+        response.sendRedirect(request.getContextPath() + "/admin/blog");
     }
     private final BlogDao blogDao = new BlogDao();
 
@@ -86,7 +86,7 @@ public class BlogDetailController extends HttpServlet {
             } catch (NumberFormatException ignored) {}
         }
         if (blog == null) {
-            response.sendRedirect(request.getContextPath() + "/blog?msg=notfound");
+            response.sendRedirect(request.getContextPath() + "/admin/blog?msg=notfound");
             return;
         }
         request.setAttribute("blog", blog);

@@ -27,7 +27,7 @@
             <!-- Main content -->
             <main class="content" aria-labelledby="customer-title">
               <h3 class="content__title">
-                <a href="${pageContext.request.contextPath}/khachhang" class="back-icon">
+                <a href="${pageContext.request.contextPath}/admin/customer" class="back-icon">
                   <i class="fa-solid fa-chevron-left"></i>
                 </a>
                 Quản lý khách hàng
@@ -154,7 +154,7 @@
                                 }
                               }
                             </script>
-                            <form action="${pageContext.request.contextPath}/quanlykhachhang" method="post" style="display:inline-flex; align-items:center; gap:8px;">
+                            <form action="${pageContext.request.contextPath}/admin/manage_customer" method="post" style="display:inline-flex; align-items:center; gap:8px;">
                               <input type="hidden" name="action" value="delete" />
                               <input type="hidden" name="id" value="${customer.id}" />
                               <button class="delete-btn" type="submit" onclick="return confirm('Bạn có chắc chắn muốn xóa tài khoản &quot;${customer.name}&quot;?');">
@@ -194,11 +194,11 @@
                     <div style="color:red;">${error}</div>
                   </c:if>
                   <div style="display:inline-flex;gap:12px;align-items:center;">
-                    <button class="btn ghost" type="button" onclick="window.location.href='${pageContext.request.contextPath}/quanlykhachhang?id=${customer.id}'">Hủy</button>
+                    <button class="btn ghost" type="button" onclick="window.location.href='${pageContext.request.contextPath}/admin/manage_customer?id=${customer.id}'">Hủy</button>
 
                     <!-- delete moved to the action-group above -->
 
-                    <form id="updateForm" action="${pageContext.request.contextPath}/quanlykhachhang" method="post" enctype="multipart/form-data" style="display:inline-flex; gap:12px; align-items:center;">
+                    <form id="updateForm" action="${pageContext.request.contextPath}/admin/manage_customer" method="post" enctype="multipart/form-data" style="display:inline-flex; gap:12px; align-items:center;">
                       <input type="hidden" name="action" value="update" />
                       <input type="hidden" name="id" value="${customer.id}" />
                       <button class="btn primary" type="submit">Cập Nhật</button>
@@ -211,7 +211,7 @@
       </div>
 
         <!-- Hidden form for change-password (moved outside main form to avoid nesting) -->
-        <form id="change-password-form" method="post" action="${pageContext.request.contextPath}/quanlykhachhang" style="display:none;">
+        <form id="change-password-form" method="post" action="${pageContext.request.contextPath}/admin/manage_customer" style="display:none;">
           <input type="hidden" name="action" value="change_password" />
           <input type="hidden" name="id" id="change_password_id_hidden" />
           <input type="hidden" name="new_password" id="new_password_hidden" />

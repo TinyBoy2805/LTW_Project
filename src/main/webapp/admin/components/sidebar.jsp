@@ -34,7 +34,7 @@
       </a>
     </li>
     <li class="list__item">
-      <a href="${pageContext.request.contextPath}/khachhang" class="${fn:contains(uri, '/khachhang') || fn:contains(uri, '/quanlykhachhang') || fn:contains(uri, '/admin/pages/KhachHang.jsp') || fn:contains(uri, '/admin/pages/Quanlykhachhang.jsp')  ? 'active' : ''}">
+      <a href="${pageContext.request.contextPath}/admin/customer" class="${fn:contains(uri, '/admin/customer') || fn:contains(uri, '/admin/manage_customer') || fn:contains(uri, '/admin/pages/KhachHang.jsp') || fn:contains(uri, '/admin/pages/Quanlykhachhang.jsp')  ? 'active' : ''}">
         <div class="section">
           <div class="icon"><i class="fa-solid fa-users"></i></div>
           <p class="title">Khách hàng</p>
@@ -42,7 +42,7 @@
       </a>
     </li>
     <li class="list__item">
-      <a href="${pageContext.request.contextPath}/uudai" class="${fn:contains(uri, '/uudai') || fn:contains(uri, '/quanlyuudai') || fn:contains(uri, '/themuudai') || fn:contains(uri, '/admin/pages/UuDai.jsp') || fn:contains(uri, '/admin/pages/ThemUuDai.jsp') || fn:contains(uri, '/admin/pages/QuanLyUuDai.jsp')  ? 'active' : ''}">
+      <a href="${pageContext.request.contextPath}/admin/voucher" class="${fn:contains(uri, '/admin/voucher') || fn:contains(uri, '/admin/manage_voucher') || fn:contains(uri, '/admin/add_voucher') || fn:contains(uri, '/admin/pages/UuDai.jsp') || fn:contains(uri, '/admin/pages/ThemUuDai.jsp') || fn:contains(uri, '/admin/pages/QuanLyUuDai.jsp')  ? 'active' : ''}">
         <div class="section">
           <div class="icon"><i class="fa-solid fa-gift"></i></div>
           <p class="title">Ưu đãi</p>
@@ -50,7 +50,7 @@
       </a>
     </li>
     <li class="list__item">
-      <a href="${pageContext.request.contextPath}/blog" class="${fn:contains(uri, '/blog') || fn:contains(uri, '/quanlyblog') || fn:contains(uri, '/thembai') || fn:contains(uri, '/admin/pages/Blog.jsp') || fn:contains(uri, '/admin/pages/QuanLyBlog.jsp')  ? 'active' : ''}">
+      <a href="${pageContext.request.contextPath}/admin/blog" class="${fn:contains(uri, '/admin/blog') || fn:contains(uri, '/admin/manage_blog') || fn:contains(uri, '/admin/add_blog') || fn:contains(uri, '/admin/pages/Blog.jsp') || fn:contains(uri, '/admin/pages/QuanLyBlog.jsp')  ? 'active' : ''}">
         <div class="section">
           <div class="icon"><i class=" fa-solid fa-blog"></i></div>
           <p class="title">Bài Viết</p>
@@ -58,7 +58,7 @@
       </a>
     </li>
     <li class="list__item">
-      <a href="${pageContext.request.contextPath}/email" class="${fn:contains(uri, '/admin/pages/Email.jsp') ? 'active' : ''}">
+      <a href="${pageContext.request.contextPath}/admin/email" class="${fn:contains(uri, '/admin/pages/Email.jsp') || fn:contains(uri, '/admin/email') ? 'active' : ''}">
         <div class="section">
           <div class="icon"><i class="fa-solid fa-envelope"></i></div>
           <p class="title">Thông Báo</p>

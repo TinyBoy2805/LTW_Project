@@ -30,7 +30,7 @@
         <div class="content__panel">
           <div class="panel-header">
             <div class="toolbar">
-              <a href="${pageContext.request.contextPath}/themuudai"><button class="new-btn" type="button">+ Ưu đãi mới</button></a>
+              <a href="${pageContext.request.contextPath}/admin/add_voucher"><button class="new-btn" type="button">+ Ưu đãi mới</button></a>
             </div>
           </div>
 
@@ -40,7 +40,7 @@
             </c:if>
 
             <c:forEach items="${vouchers}" var="voucher">
-              <a class="card-link" href="${pageContext.request.contextPath}/quanlyuudai?id=${voucher.id}" title="Quản lý ưu đãi">
+              <a class="card-link" href="${pageContext.request.contextPath}/admin/manage_voucher?id=${voucher.id}" title="Quản lý ưu đãi">
               <article class="card" role="listitem" data-promo="${voucher.voucher_type}">
                 <figure class="card__figure">
                   <c:choose>

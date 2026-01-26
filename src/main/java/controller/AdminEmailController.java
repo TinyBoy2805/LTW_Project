@@ -8,9 +8,9 @@ import jakarta.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "EmailController", value = "/email")
+@WebServlet(name = "AdminEmailController", value = "/admin/email")
 
-public class EmailController extends HttpServlet {
+public class AdminEmailController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EmailDao emailDao = new EmailDao();
         List<Email> emails = emailDao.getAllEmails();
