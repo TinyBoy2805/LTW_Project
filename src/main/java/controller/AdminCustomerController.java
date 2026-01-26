@@ -23,6 +23,6 @@ public class AdminCustomerController extends HttpServlet {
             customers = authDao.getAllCustomers();
         }
         request.setAttribute("customers", customers);
-        request.getRequestDispatcher("admin/pages/KhachHang.jsp").forward(request, response);
+        request.getRequestDispatcher("/admin/pages/KhachHang.jsp").forward(request, response);
     }
 }

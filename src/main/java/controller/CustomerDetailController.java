@@ -40,7 +40,7 @@ public class CustomerDetailController extends HttpServlet {
         Address address = addressDao.getAddressByUserId(id);
         request.setAttribute("customer", customer);
         request.setAttribute("address", address);
-        request.getRequestDispatcher("admin/pages/Quanlykhachhang.jsp").forward(request, response);
+        request.getRequestDispatcher("/admin/pages/Quanlykhachhang.jsp").forward(request, response);
     }
 @Override
 protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

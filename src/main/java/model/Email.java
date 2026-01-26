@@ -3,35 +3,42 @@ package model;
 import java.sql.Timestamp;
 
 public class Email {
-    private long id;
-    private long userId;
+    private int id;
+    private int userId;
     private String userName;
     private String title;
     private String message;
+    private String userEmail;
         public String getUserName() {
             return userName;
         }
-
+        public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
         public void setUserName(String userName) {
             this.userName = userName;
         }
+
+        public String getUserEmail() {
+        return userEmail;
+    }
     private boolean isRead;
     private boolean isImportant;
     private Timestamp createdAt;
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public long getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 

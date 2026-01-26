@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,6 +16,15 @@
 </head>
 
 <body>
+  <%-- Hiển thị thông báo gửi email thành công/thất bại --%>
+  <c:if test="${not empty sessionScope.message}">
+    <div class="alert alert-success" style="margin: 16px 0; color: green; font-weight: bold; text-align: center;">${sessionScope.message}</div>
+    <% session.removeAttribute("message"); %>
+  </c:if>
+  <c:if test="${not empty sessionScope.error}">
+    <div class="alert alert-danger" style="margin: 16px 0; color: red; font-weight: bold; text-align: center;">${sessionScope.error}</div>
+    <% session.removeAttribute("error"); %>
+  </c:if>
   <div class="Email main">
     <aside class="sidebar">
       <% request.setAttribute("activePage", "email"); %>
@@ -75,7 +85,7 @@
 
           <div class="mail-list" role="list" aria-label="Danh sách email">
             <c:forEach var="email" items="${emails}">
-              <article class="mail-row${email.isImportant ? ' selected' : ''}" data-toggle="detail" data-target=".mail-detail">
+              <article class="mail-row${email.isImportant ? ' selected' : ''}" data-toggle="detail" data-target=".mail-detail" data-email-id="${email.id}">
                 <div class="row-left">
                   <label class="check-wrap"><input type="checkbox" /><span class="check-custom"></span></label>
                   <button class="star" aria-pressed="${email.isImportant}" title="${email.isImportant ? 'Đã đánh dấu quan trọng' : 'Đánh dấu quan trọng'}">
@@ -109,15 +119,27 @@
           <p class="detail-message"></p>
         </div>
 
-        <form class="detail-reply" action="#" onsubmit="return false;">
+        <form class="detail-reply" method="post" action="${pageContext.request.contextPath}/admin/email/reply">
+          <input type="hidden" name="emailId" class="reply-email-id" value="" />
           <label class="label">Trả lời</label>
-          <textarea class="input textarea reply-text" rows="3" placeholder="Viết phản hồi..."></textarea>
+          <textarea class="input textarea reply-text" name="replyContent" rows="3" placeholder="Viết phản hồi..." required></textarea>
           <div class="detail-actions">
-            <button type="button" class="btn primary reply-send">Gửi</button>
+            <button type="submit" class="btn primary">Gửi</button>
             <button type="button" class="btn ghost reply-cancel">Hủy</button>
             <button type="button" class="btn danger reply-delete">Xóa</button>
           </div>
         </form>
+        <script>
+        // Khi mở chi tiết email, điền id vào input hidden
+        document.addEventListener('DOMContentLoaded', function() {
+          document.querySelectorAll('.mail-row').forEach(function(row, idx) {
+            row.addEventListener('click', function() {
+              var emailId = row.getAttribute('data-email-id') || '';
+              document.querySelector('.reply-email-id').value = emailId;
+            });
+          });
+        });
+        </script>
       </aside>
 
       </main>

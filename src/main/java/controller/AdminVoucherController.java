@@ -26,7 +26,7 @@ public class AdminVoucherController extends HttpServlet {
         if ("/admin/add_voucher".equals(servletPath)) {
             List<Category> categories = categoryDao.findAll();
             request.setAttribute("categories", categories);
-            request.getRequestDispatcher("admin/pages/ThemUuDai.jsp").forward(request, response);
+            request.getRequestDispatcher("/admin/pages/ThemUuDai.jsp").forward(request, response);
             return;
         }
 
@@ -42,13 +42,13 @@ public class AdminVoucherController extends HttpServlet {
             List<Category> categories = categoryDao.findAll();
             request.setAttribute("voucher", voucher);
             request.setAttribute("categories", categories);
-            request.getRequestDispatcher("admin/pages/QuanLyUuDai.jsp").forward(request, response);
+            request.getRequestDispatcher("/admin/pages/QuanLyUuDai.jsp").forward(request, response);
             return;
         }
 
         List<Voucher> vouchers = voucherDao.findAll();
         request.setAttribute("vouchers", vouchers);
-        request.getRequestDispatcher("admin/pages/UuDai.jsp").forward(request, response);
+        request.getRequestDispatcher("/admin/pages/UuDai.jsp").forward(request, response);
     }
 
     @Override
@@ -86,7 +86,7 @@ public class AdminVoucherController extends HttpServlet {
                     request.setAttribute("voucher", voucher);
                     request.setAttribute("categories", categories);
                     request.setAttribute("error", "Thiếu dữ liệu bắt buộc. Vui lòng kiểm tra lại.");
-                    request.getRequestDispatcher("admin/pages/QuanLyUuDai.jsp").forward(request, response);
+                    request.getRequestDispatcher("/admin/pages/QuanLyUuDai.jsp").forward(request, response);
                     return;
                 }
 
