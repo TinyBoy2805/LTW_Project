@@ -43,21 +43,24 @@
                         <div class="profile-field">
                           <label>Họ và tên:</label>
                           <div class="field-content">
-                            <input type="text" class="field-input" name="name" value="${customer.name}" form="updateForm">
+                            <input type="text" class="field-input" name="name" value="${customer.name}"
+                              form="updateForm">
                             <i class="fa-solid fa-pen input-icon"></i>
                           </div>
                         </div>
                         <div class="profile-field">
                           <label>Email:</label>
                           <div class="field-content">
-                            <input type="email" class="field-input" name="email" value="${customer.email}" form="updateForm">
+                            <input type="email" class="field-input" name="email" value="${customer.email}"
+                              form="updateForm">
                             <i class="fa-solid fa-pen input-icon"></i>
                           </div>
                         </div>
                         <div class="profile-field">
                           <label>Số điện thoại:</label>
                           <div class="field-content">
-                            <input type="text" class="field-input" name="phone_number" value="${customer.phone_number}" form="updateForm">
+                            <input type="text" class="field-input" name="phone_number" value="${customer.phone_number}"
+                              form="updateForm">
                             <i class="fa-solid fa-pen input-icon"></i>
                           </div>
                         </div>
@@ -79,7 +82,7 @@
                           </div>
                         </div>
                       </div>
-                       <!-- Account Status Section -->
+                      <!-- Account Status Section -->
                       <div class="profile-section">
                         <h3 class="section-title">Trạng thái tài khoản</h3>
 
@@ -96,6 +99,39 @@
                             <button class="reset-btn" type="button" onclick="showChangePasswordModal()">
                               <i class="fa-solid fa-question-circle"></i> Đổi mật khẩu
                             </button>
+                            <button class="email-btn" type="button" id="openSendEmailModal">
+                              <i class="fa-solid fa-envelope"></i> Gửi Email
+                            </button>
+                            <!-- Modal gửi email cho khách hàng -->
+                            <div id="sendEmailModal" class="modal"
+                              style="display:none;position:fixed;z-index:9999;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,0.3);align-items:center;justify-content:center;">
+                              <div
+                                style="background:#fff;padding:32px 24px;border-radius:8px;min-width:320px;max-width:90vw;box-shadow:0 2px 16px #0002;position:relative;">
+                                <h3>Gửi Email cho khách hàng</h3>
+                                <form id="sendEmailForm" method="post"
+                                  action="${pageContext.request.contextPath}/admin/email/send">
+                                  <input type="hidden" name="to" value="${customer.email}" />
+                                  <div style="margin-bottom:12px;">
+                                    <label>Tiêu đề:</label><br>
+                                    <input type="text" name="subject" required
+                                      style="width:100%;padding:8px;margin-top:4px;">
+                                  </div>
+                                  <div style="margin-bottom:12px;">
+                                    <label>Nội dung:</label><br>
+                                    <textarea name="content" rows="4" required
+                                      style="width:100%;padding:8px;margin-top:4px;"></textarea>
+                                  </div>
+                                  <div style="display:flex;gap:8px;justify-content:flex-end;">
+                                    <button type="button" onclick="hideSendEmailModal()"
+                                      style="padding:6px 16px;">Hủy</button>
+                                    <button type="submit"
+                                      style="padding:6px 16px;background:#007bff;color:#fff;border:none;border-radius:4px;">Gửi</button>
+                                  </div>
+                                </form>
+                                <button onclick="hideSendEmailModal()"
+                                  style="position:absolute;top:8px;right:12px;background:none;border:none;font-size:20px;">&times;</button>
+                              </div>
+                            </div>
                             <!-- Modal đổi mật khẩu -->
                             <div id="changePasswordModal" class="modal"
                               style="display:none;position:fixed;z-index:9999;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,0.3);align-items:center;justify-content:center;">
@@ -126,6 +162,28 @@
                               </div>
                             </div>
                             <script>
+                              // Modal gửi email
+                              function showSendEmailModal() {
+                                document.getElementById('sendEmailModal').style.display = 'flex';
+                              }
+                              function hideSendEmailModal() {
+                                document.getElementById('sendEmailModal').style.display = 'none';
+                              }
+                              document.addEventListener('DOMContentLoaded', function () {
+                                var openBtn = document.getElementById('openSendEmailModal');
+                                if (openBtn) openBtn.onclick = showSendEmailModal;
+                                // Đóng modal khi nhấn Esc
+                                document.addEventListener('keydown', function (e) {
+                                  if (e.key === 'Escape') hideSendEmailModal();
+                                });
+                                // Đóng modal khi click ra ngoài
+                                var modal = document.getElementById('sendEmailModal');
+                                if (modal) {
+                                  modal.addEventListener('click', function (e) {
+                                    if (e.target === modal) hideSendEmailModal();
+                                  });
+                                }
+                              });
                               function showChangePasswordModal() {
                                 document.getElementById('changePasswordModal').style.display = 'flex';
                               }
@@ -154,21 +212,20 @@
                                 }
                               }
                             </script>
-                            <form action="${pageContext.request.contextPath}/admin/manage_customer" method="post" style="display:inline-flex; align-items:center; gap:8px;">
+                            <form action="${pageContext.request.contextPath}/admin/manage_customer" method="post"
+                              style="display:inline-flex; align-items:center; gap:8px;">
                               <input type="hidden" name="action" value="delete" />
                               <input type="hidden" name="id" value="${customer.id}" />
-                              <button class="delete-btn" type="submit" onclick="return confirm('Bạn có chắc chắn muốn xóa tài khoản &quot;${customer.name}&quot;?');">
+                              <button class="delete-btn" type="submit"
+                                onclick="return confirm('Bạn có chắc chắn muốn xóa tài khoản &quot;${customer.name}&quot;?');">
                                 <i class="fa-solid fa-trash"></i> Xóa tài khoản
                               </button>
                             </form>
-                            <button class="email-btn" type="button">
-                              <i class="fa-solid fa-envelope"></i> Gửi Email
-                            </button>
                           </div>
                         </div>
                       </div>
                     </section>
-                    
+
 
                     <aside class="right-panel">
                       <div class="profile-avatar-card">
@@ -179,7 +236,8 @@
                         </div>
                         <label class="edit-avatar-btn" style="cursor:pointer;">
                           <i class="fa-solid fa-pen"></i> Đổi ảnh đại diện
-                          <input type="file" name="avatar" id="avatar" accept="image/*" style="display:none;" form="updateForm">
+                          <input type="file" name="avatar" id="avatar" accept="image/*" style="display:none;"
+                            form="updateForm">
                         </label>
                       </div>
                     </aside>
@@ -187,18 +245,24 @@
                 </div>
 
                 <div class="update-info-section">
-                  <c:if test="${not empty message}">
-                    <div style="color:green;">${message}</div>
+                  <%-- Hiển thị và xóa thông báo gửi email thành công/thất bại từ session --%>
+                  <c:if test="${not empty sessionScope.message}">
+                    <div style="color:green; text-align:center; font-weight:bold; margin-bottom:8px;">${sessionScope.message}</div>
+                    <% session.removeAttribute("message"); %>
                   </c:if>
-                  <c:if test="${not empty error}">
-                    <div style="color:red;">${error}</div>
+                  <c:if test="${not empty sessionScope.error}">
+                    <div style="color:red; text-align:center; font-weight:bold; margin-bottom:8px;">${sessionScope.error}</div>
+                    <% session.removeAttribute("error"); %>
                   </c:if>
                   <div style="display:inline-flex;gap:12px;align-items:center;">
-                    <button class="btn ghost" type="button" onclick="window.location.href='${pageContext.request.contextPath}/admin/manage_customer?id=${customer.id}'">Hủy</button>
+                    <button class="btn ghost" type="button"
+                      onclick="window.location.href='${pageContext.request.contextPath}/admin/manage_customer?id=${customer.id}'">Hủy</button>
 
                     <!-- delete moved to the action-group above -->
 
-                    <form id="updateForm" action="${pageContext.request.contextPath}/admin/manage_customer" method="post" enctype="multipart/form-data" style="display:inline-flex; gap:12px; align-items:center;">
+                    <form id="updateForm" action="${pageContext.request.contextPath}/admin/manage_customer"
+                      method="post" enctype="multipart/form-data"
+                      style="display:inline-flex; gap:12px; align-items:center;">
                       <input type="hidden" name="action" value="update" />
                       <input type="hidden" name="id" value="${customer.id}" />
                       <button class="btn primary" type="submit">Cập Nhật</button>
@@ -210,13 +274,14 @@
         </div>
       </div>
 
-        <!-- Hidden form for change-password (moved outside main form to avoid nesting) -->
-        <form id="change-password-form" method="post" action="${pageContext.request.contextPath}/admin/manage_customer" style="display:none;">
-          <input type="hidden" name="action" value="change_password" />
-          <input type="hidden" name="id" id="change_password_id_hidden" />
-          <input type="hidden" name="new_password" id="new_password_hidden" />
-          <input type="hidden" name="confirm_password" id="confirm_password_hidden" />
-        </form>
+      <!-- Hidden form for change-password (moved outside main form to avoid nesting) -->
+      <form id="change-password-form" method="post" action="${pageContext.request.contextPath}/admin/manage_customer"
+        style="display:none;">
+        <input type="hidden" name="action" value="change_password" />
+        <input type="hidden" name="id" id="change_password_id_hidden" />
+        <input type="hidden" name="new_password" id="new_password_hidden" />
+        <input type="hidden" name="confirm_password" id="confirm_password_hidden" />
+      </form>
 
 
       <script src="${pageContext.request.contextPath}/admin/scripts/components/extendSidebar.js"></script>

@@ -119,7 +119,7 @@
       </main>
     </div>
   </div> <!-- .main -->
-  <script src="../scripts/components/extendSidebar.js"></script>
+  <script src="${pageContext.request.contextPath}/admin/scripts/components/extendSidebar.js"></script>
   <script src="${pageContext.request.contextPath}/admin/scripts/page/Blog.js"></script>
     </script>
 </body>

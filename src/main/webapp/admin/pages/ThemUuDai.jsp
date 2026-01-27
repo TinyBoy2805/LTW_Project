@@ -118,8 +118,8 @@
         </div>
 
       </main>
-      <script src="../scripts/components/extendSidebar.js"></script>
-      <script src="../scripts/page/ThemUuDai.js"></script>
+      <script src="${pageContext.request.contextPath}/admin/scripts/components/extendSidebar.js"></script>
+      <script src="${pageContext.request.contextPath}/admin/scripts/page/ThemUuDai.js"></script>
 </body>
 
 </html>

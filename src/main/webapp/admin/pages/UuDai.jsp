@@ -80,7 +80,7 @@
       </main>
     </div>
   </div> 
-  <script src="../scripts/components/extendSidebar.js"></script>
+  <script src="${pageContext.request.contextPath}/admin/scripts/components/extendSidebar.js"></script>
 </body>
 
 </html>

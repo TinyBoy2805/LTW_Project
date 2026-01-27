@@ -93,7 +93,7 @@
       </div>
     </div>
 
-  <script src="../scripts/components/extendSidebar.js"></script>
+  <script src="${pageContext.request.contextPath}/admin/scripts/components/extendSidebar.js"></script>
   <script>
     // Preview ảnh trước khi upload
     document.getElementById('image-upload').addEventListener('change', function(event) {

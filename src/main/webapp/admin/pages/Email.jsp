@@ -17,14 +17,17 @@
 
 <body>
   <%-- Hiển thị thông báo gửi email thành công/thất bại --%>
-  <c:if test="${not empty sessionScope.message}">
-    <div class="alert alert-success" style="margin: 16px 0; color: green; font-weight: bold; text-align: center;">${sessionScope.message}</div>
-    <% session.removeAttribute("message"); %>
-  </c:if>
-  <c:if test="${not empty sessionScope.error}">
-    <div class="alert alert-danger" style="margin: 16px 0; color: red; font-weight: bold; text-align: center;">${sessionScope.error}</div>
-    <% session.removeAttribute("error"); %>
-  </c:if>
+  <div id="notifyModal" class="modal notify-modal" style="display:none;">
+    <div class="modal-content notify-modal-content">
+      <div id="notifyMessage" class="notify-message"></div>
+      <button id="notifyOkBtn" class="notify-ok-btn">OK</button>
+    </div>
+  </div>
+  <script>
+    window.contextPath = '${pageContext.request.contextPath}';
+    window.notifyMsg = "${requestScope.message != null ? requestScope.message : ''}";
+    window.notifyErr = "${requestScope.error != null ? requestScope.error : ''}";
+  </script>
   <div class="Email main">
     <aside class="sidebar">
       <% request.setAttribute("activePage", "email"); %>
@@ -37,80 +40,38 @@
       <main class="content" aria-labelledby="email-title">
         <h3 class="content__title">Thông Báo</h3>
         <div class="content__panel">
-          <div class="panel-header">
-            <div class="compose-left">
-              <button type="button" class="compose-btn" id="compose__btn">
-                <i class="fa-solid fa-pen-to-square"></i>
-                Soạn thư
-              </button>
-            </div>
-
-            <div class="controls controls--right">
-              <div class="search__filter">
-                <input type="text" placeholder="Tìm kiếm email (Tiêu đề, Người gửi,...)">
-                <div class="search__box">
-                  <ion-icon name="search-outline" class="search__icon"></ion-icon>
-                  <div class="line"></div>
-                  <div class="filter__wrapper">
-                    <button class="filter__button" id="email__filter__btn">
-                      <ion-icon name="funnel-outline"></ion-icon>
-                      Lọc
-                    </button>
-                    <div class="filter__frame hidden" id="email__filter__frame">
-                      <h4 class="filter__frame__title">Bộ Lọc Thông Báo</h4>
-
-                      <div class="filter__group">
-                        <label for="filter__email__status">Trạng thái:</label>
-                        <select id="filter__email__status">
-                          <option value="all">Tất cả</option>
-                          <option value="unread">Chưa đọc</option>
-                          <option value="read">Đã đọc</option>
-                          <option value="important">Quan trọng</option>
-                        </select>
-                      </div>
-
-                      <div class="filter__actions">
-                        <button class="clear__button">Xóa lọc</button>
-                        <button class="apply__button">Áp dụng</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-
-          </div> <!-- .panel-header -->
-
+          <div class="panel-header" style="justify-content: space-between;">
+            <button type="button" class="all-notify-btn" id="allNotifyBtn">
+              Tất cả thông báo
+            </button>
+          </div>
 
           <div class="mail-list" role="list" aria-label="Danh sách email">
             <c:forEach var="email" items="${emails}">
-              <article class="mail-row${email.isImportant ? ' selected' : ''}" data-toggle="detail" data-target=".mail-detail" data-email-id="${email.id}">
-                <div class="row-left">
-                  <label class="check-wrap"><input type="checkbox" /><span class="check-custom"></span></label>
-                  <button class="star" aria-pressed="${email.isImportant}" title="${email.isImportant ? 'Đã đánh dấu quan trọng' : 'Đánh dấu quan trọng'}">
-                    <i class="${email.isImportant ? 'fa-solid fa-star' : 'fa-regular fa-star'}"></i>
-                  </button>
+              <article class="mail-row${email.isRead ? ' read' : ' unread'}" data-toggle="detail" data-target=".mail-detail" data-email-id="${email.id}">
+                <div class="mail-sender email-meta">${email.name}</div>
+                <div class="mail-subject">
+                  <span class="email-title">${email.topic}</span>
+                  <span class="preview">${email.message}</span>
                 </div>
-                <div class="mail-sender">${email.userName}</div>
-                <div class="mail-subject"><strong>${email.title}</strong> <span class="preview">${email.message}</span></div>
-                <div class="mail-date">${email.createdAt}</div>
+                <div class="mail-date email-meta">${email.createdAt}</div>
               </article>
             </c:forEach>
-          </div> <!-- .mail-list -->
+          </div> 
 
-      </div> <!-- .content__panel -->
+      </div> 
+
+
 
       <!--Xem chi tiết email hoặc phản hồi-->
       <aside class="mail-detail" role="dialog" aria-hidden="true" aria-label="Chi tiết email">
         <header class="detail-header">
           <div class="detail-left">
             <h4 class="detail-subject"></h4>
-            <div class="detail-meta"><span class="detail-sender"></span></div>
+            <div class="detail-meta"><span class="detail-sender sender-highlight"></span></div>
           </div>
           <div class="detail-right">
             <div class="detail-date"></div>
-            <button class="detail-star star" aria-pressed="false"><i class="fa-regular fa-star"></i></button>
             <button class="detail-close" aria-label="Đóng chi tiết"><i class="fa-solid fa-xmark"></i></button>
           </div>
         </header>
@@ -119,44 +80,30 @@
           <p class="detail-message"></p>
         </div>
 
-        <form class="detail-reply" method="post" action="${pageContext.request.contextPath}/admin/email/reply">
+        <form class="detail-reply" method="post" action="${pageContext.request.contextPath}/admin/contact/reply">
           <input type="hidden" name="emailId" class="reply-email-id" value="" />
           <label class="label">Trả lời</label>
           <textarea class="input textarea reply-text" name="replyContent" rows="3" placeholder="Viết phản hồi..." required></textarea>
-          <div class="detail-actions">
-            <button type="submit" class="btn primary">Gửi</button>
-            <button type="button" class="btn ghost reply-cancel">Hủy</button>
-            <button type="button" class="btn danger reply-delete">Xóa</button>
-          </div>
-        </form>
-        <script>
-        // Khi mở chi tiết email, điền id vào input hidden
-        document.addEventListener('DOMContentLoaded', function() {
-          document.querySelectorAll('.mail-row').forEach(function(row, idx) {
-            row.addEventListener('click', function() {
-              var emailId = row.getAttribute('data-email-id') || '';
-              document.querySelector('.reply-email-id').value = emailId;
-            });
-          });
-        });
-        </script>
+          <div class="detail-actions-row" style="display:flex; justify-content:flex-end; gap:10px; margin-top:8px;">
+            <form method="post" action="${pageContext.request.contextPath}/admin/contact/reply" style="display:inline;">
+              <input type="hidden" name="emailId" class="reply-email-id" value="" />
+              <button type="submit" class="btn primary">Gửi</button>
+            </form>
+            <form class="delete-email-form" method="post" action="${pageContext.request.contextPath}/admin/contact/delete" style="display:inline;">
+              <input type="hidden" name="id" class="delete-email-id" value="" />
+              <button class="btn danger" type="submit" onclick="return confirm('Bạn có chắc muốn xóa email này?');">Xóa</button>
+            </form>
+          </div> 
+
       </aside>
 
       </main>
     </div>
-  </div> <!-- .Email.main -->
-  <script src="../scripts/components/extendSidebar.js"></script>
+  </div> 
   <script src="${pageContext.request.contextPath}/admin/scripts/components/extendSidebar.js"></script>
   <script src="${pageContext.request.contextPath}/admin/scripts/components/modalDetail.js"></script>
   <script src="${pageContext.request.contextPath}/admin/scripts/components/filter.js"></script>
-  <script>
-    // Ngăn checkbox trigger modal
-    document.querySelectorAll('.check-wrap, .check-wrap input, .star').forEach(el => {
-      el.addEventListener('click', function(e) {
-        e.stopPropagation();
-      });
-    });
-  </script>
+  <script src="${pageContext.request.contextPath}/admin/scripts/page/Email.js"></script>
 </body>
 
 </html>

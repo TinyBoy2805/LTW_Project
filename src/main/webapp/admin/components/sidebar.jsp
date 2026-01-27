@@ -58,12 +58,11 @@
       </a>
     </li>
     <li class="list__item">
-      <a href="${pageContext.request.contextPath}/admin/email" class="${fn:contains(uri, '/admin/pages/Email.jsp') || fn:contains(uri, '/admin/email') ? 'active' : ''}">
+      <a href="${pageContext.request.contextPath}/admin/contact" class="${fn:contains(uri, '/admin/pages/Email.jsp') || fn:contains(uri, '/admin/contact') ? 'active' : ''}">
         <div class="section">
           <div class="icon"><i class="fa-solid fa-envelope"></i></div>
           <p class="title">Thông Báo</p>
         </div>
-        <div class="badge">+99</div>
       </a>
     </li>
     <li class="list__item">

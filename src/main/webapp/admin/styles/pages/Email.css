@@ -1,4 +1,131 @@
-/* Hiển thị modal chi tiết email khi có class show */
+.btn.primary {
+  background: #f564a9;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  padding: 7px 22px;
+  font-size: 16px;
+  transition: background 0.15s;
+}
+.btn.primary:hover {
+  background: #e04d97;
+}
+.btn.danger {
+  background: #e74c3c;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  padding: 7px 22px;
+  font-size: 16px;
+  transition: background 0.15s;
+}
+.btn.danger:hover {
+  background: #c0392b;
+}
+.sender-highlight {
+  color: #f564a9 !important;
+  font-weight: bold;
+  font-size: 17px;
+}
+.detail-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 8px;
+}
+.detail-actions .btn {
+  min-width: 72px;
+}
+.delete-email-form {
+  display: inline-flex;
+  align-items: center;
+}
+
+.all-notify-btn {
+  padding: 8px 16px;
+  border: none;
+  background-color: #F564A9;
+  cursor: pointer;
+  font-weight: 600;
+  color: white;
+  border-radius: 20px;
+  box-shadow: 0 2px 5px rgba(245, 100, 169, 0.5);
+  font-size: 17px;
+  letter-spacing: 0.01em;
+  transition: box-shadow 0.18s, filter 0.15s;
+  outline: none;
+}
+.all-notify-btn:focus {
+  filter: brightness(1.04);
+}
+.all-notify-btn:hover {
+  box-shadow: 0 4px 12px rgba(245, 100, 169, 0.3);
+  filter: brightness(1.04);
+}
+.all-notify-btn:active {
+  filter: brightness(0.98);
+  box-shadow: 0 2px 5px rgba(245, 100, 169, 0.5);
+}
+.mail-sender.email-meta {
+  color: #f564a9 !important;
+}
+.mail-row.read .mail-sender.email-meta {
+  color: #aaa !important;
+}
+/* Modal thông báo thành công/thất bại */
+.notify-modal {
+  display: none;
+  position: fixed;
+  z-index: 99999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.18);
+  align-items: center;
+  justify-content: center;
+}
+.notify-modal-content {
+  background: #fff;
+  border-radius: 12px;
+  padding: 32px 28px;
+  min-width: 320px;
+  max-width: 90vw;
+  box-shadow: 0 4px 32px #0002;
+  text-align: center;
+}
+.notify-message {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 24px;
+}
+.notify-ok-btn {
+  padding: 8px 32px;
+  background: #f564a9;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.email-title, .mail-subject .preview, .email-meta {
+  font-weight: bold;
+  color: #222 !important;
+}
+.mail-row.read .email-title,
+.mail-row.read .mail-subject .preview,
+.mail-row.read .email-meta {
+  font-weight: normal;
+  color: #aaa !important;
+}
+.read-label {
+  color: #007bff;
+  font-size: 12px;
+  margin-left: 8px;
+}
 .mail-detail {
   display: none;
   position: fixed;
@@ -29,15 +156,23 @@
 
 body {
   height: 100vh;
+  overflow-x: hidden;
+}
+
+html {
+  overflow-x: hidden;
 }
 
 /* KHỐI BAO NGOÀI CÙNG */
+/* Prevent horizontal scroll and extra space */
 .Email.main {
   display: flex;
   flex-direction: row;
   height: 100vh;
-  width: 100%;
-  overflow: hidden;
+  width: 100vw;
+  max-width: 100vw;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 /* KHỐI CHỨA HEADER VÀ NỘI DUNG */
@@ -64,12 +199,15 @@ main.content {
 
 /* Khối nội dung chính (Content) */
 .content {
-  width: 100%;
-  background-color: #f8f8f8;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  height: 100%;  scrollbar-gutter: stable;}
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    background-color: #f8f8f8;
+    padding: 24px 24px 0 24px;
+    height: 100%;
+    overflow: hidden;
+}
 
 .content__header{
     display: flex;
@@ -95,54 +233,30 @@ main.content {
 
 /* ===== NỘI DUNG CHÍNH TRANG EMAIL ===== */
 .content__panel {
-  background-color: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
-  width: calc(100% - 48px) !important;
-  margin: 0 24px !important;
-  padding: 0;
-  position: relative;
-  padding-bottom: 0px !important;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    min-height: 0;
+    width: calc(100% - 48px) !important;
+    margin: 0 24px 24px 24px !important;
+    padding: 15px !important; 
+    position: relative;
+    overflow: hidden;
 }
 
 .panel-header {
-  display: flex;
-  flex-shrink: 0;
-  align-items: center;
-  margin-bottom: 12px;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 12px 24px 24px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 10px 24px;
+    flex-shrink: 0;
 }
 
-/* Compose (Soạn thư) button */
-.compose-left { display: flex; align-items: center; }
-.compose-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 14px;
-  background-color: #F564A9;
-  color: #fff;
-  border: none;
-  border-radius: 24px;
-  font-weight: 600;
-  font-size: 14px;
-  cursor: pointer;
-  box-shadow: 0 2px 5px rgba(245, 100, 169, 0.4);
-  white-space: nowrap;
-}
-.compose-btn i { font-size: 14px; }
-.compose-btn:hover { filter: brightness(0.95); }
-.compose-btn:active { transform: translateY(1px); }
-
-/* Ensure right-side controls don't occupy full width inside header */
 .panel-header .controls { width: auto; flex: 1 1 auto; justify-content: flex-end; }
-
 
 .tabs {
   display: flex;
@@ -225,7 +339,7 @@ input{
     align-items: center;
     outline: none;
     border: none;
-    font-size: 13px;
+    font-size: 15px;
     padding: 8px, 12px;
     width: 100%;
     color: #626262;
@@ -354,8 +468,7 @@ input{
 .mail-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding: 0 24px 24px 24px;
+  padding: 0 32px 32px 32px;
   flex: 1 1 auto;
   min-height: 0;
   overflow-y: auto;
@@ -369,16 +482,19 @@ input{
   display: none !important;
 }
 
+/* Card email: tên | tiêu đề+nội dung | thời gian trên cùng 1 dòng, cân đối */
 .mail-row {
   display: grid;
-  grid-template-columns: 72px 160px 1fr 120px;
   align-items: center;
-  gap: 12px;
-  padding: 12px 18px;
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 14px rgba(16, 24, 40, 0.03);
-  transition: transform 120ms ease, box-shadow 120ms ease;
+  gap: 2px;
+  padding: 14px 20px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px 0 rgba(245,100,169,0.08), 0 1px 3px 0 rgba(0,0,0,0.03);
+  border: 1.5px solid #f7e6f0;
+  cursor: pointer;
+  min-width: 0;
+  margin-bottom: 8px;
 }
 
 .row-left {
@@ -454,49 +570,30 @@ input{
   opacity: 1;
 }
 
-.star {
-  background: transparent;
-  border: none;
-  color: #e6e6ea;
-  font-size: 16px;
-  cursor: pointer;
-  padding: 6px;
-  border-radius: 6px;
-}
-
-.star i {
-  color: #e6e6ea;
-  transition: color 120ms ease, transform 120ms ease;
-}
-
-.mail-row.selected .star i {
-  color: #ffd166;
-}
-
-.star:active i {
-  color: #ffd166;
-}
-
 .mail-sender {
   font-weight: 700;
-  color: #111827;
-}
-
-.mail-subject {
-  color: #111827;
-  display: flex;
-  gap: 8px;
-  align-items: center;
+  color: #f564a9;
+  font-size: 1.08em;
+  letter-spacing: 0.01em;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.mail-subject {
+  color: #222;
+  display: flex;
+  gap: 10px;
+  align-items: center;
   min-width: 0;
+  font-size: 1.01em;
+  overflow: hidden;
 }
 
 .mail-subject .preview {
-  color: #6b7280;
+  color: #868686;
   font-weight: 500;
-  margin-left: 8px;
+  margin-left: 10px;
   flex: 1 1 auto;
   min-width: 0;
   white-space: nowrap;
@@ -506,8 +603,12 @@ input{
 
 .mail-date {
   text-align: right;
-  color: #6b7280;
+  color: #b7b7b7;
   font-weight: 600;
+  font-size: 0.98em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 @media (max-width: 1000px) {
@@ -605,7 +706,7 @@ input{
   margin-top: 12px;
   color: #111827;
   line-height: 1.5;
-  min-height: 180px;
+  min-height: 150px;
   outline: none;
   border: none;
 }
@@ -760,15 +861,21 @@ textarea.reply-text:focus {
    width: 208px;
    z-index: 40;
 }
+/* Prevent container from overflowing viewport */
 .Email .container {
-   margin-left: 208px;
+  margin-left: 208px;
+  max-width: calc(100vw - 208px);
+  width: 100%;
 }
 /* When sidebar is collapsed (via toggle), reduce container margin accordingly */
 .Email.main.collapsed .sidebar {
    width: 72px;
 }
+/* Prevent container from overflowing viewport when sidebar is collapsed */
 .Email.main.collapsed .container {
-   margin-left: 72px;
+  margin-left: 72px;
+  max-width: calc(100vw - 72px);
+  width: 100%;
 }
 
 .Email .content__panel {
