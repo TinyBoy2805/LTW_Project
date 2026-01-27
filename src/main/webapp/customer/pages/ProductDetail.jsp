@@ -702,6 +702,6 @@
 
     
 <script type="module" src="${pageContext.request.contextPath}/customer/scripts/main.js"></script>
-<script type="module" src="${pageContext.request.contextPath}/customer/scripts/header.js"></script>
+<script type="module" src="${pageContext.request.contextPath}/customer/scripts/headerScript/header.js"></script>
 </body>
 </html>

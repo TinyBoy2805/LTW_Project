@@ -11,12 +11,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MichiShop</title>
-    <link rel="stylesheet" href="../styles/index.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/customer/styles/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script>
+        window.APP_CONTEXT_PATH = `${pageContext.request.contextPath}`;
+    </script>
 </head>
 <body>
-    <div class="scroll-to-top-btn"><i class="fa-solid fa-circle-up"></i></div>
     <jsp:include page="/customer/components/Header.jsp"/>
+    <div class="scroll-to-top-btn"><i class="fa-solid fa-circle-up"></i></div>
 
     <main class="main">
         <!-- Hero Banner -->
@@ -332,12 +335,11 @@
     </main>
 
 
-    <jsp:include page="/customer/components/Header.jsp"/>
+    <jsp:include page="/customer/components/Footer.jsp"/>
 
 
 
     
-</body>
 <script>
     // Copy voucher code
     function copyCode(code) {
@@ -357,5 +359,6 @@
         });
     }
 </script>
-<script type="module" src="../scripts/main.js"></script>
+<script type="module" src="${pageContext.request.contextPath}/customer/scripts/main.js"></script>
+</body>
 </html>

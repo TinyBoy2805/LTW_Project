@@ -109,61 +109,36 @@
                                 </div>
                             </div>
                         </li>
-                        
+
+<%--                        //INFORM BUTTON--%>
                         <li class="hover-notification">
-                            <a href="Inform.jsp" class="--color4"><i class="fa-solid fa-bell --size20"></i></a>
+                            <a href="${pageContext.request.contextPath}/notification/detail" class="--color4"><i class="fa-solid fa-bell --size20"></i></a>
+<%--                            //count new inform and unread--%>
                             <div class="notif-count">2</div>
                             
                             <div class="notification-dropdown">
                                 <div class="notification-header">
                                     <h3>Thông báo</h3>
-                                    <a href="Inform.jsp" class="mark-all-read">Đánh dấu đã đọc</a>
+                                    <a href="${pageContext.request.contextPath}/notification/detail" class="mark-all-read">Đánh dấu đã đọc</a>
                                 </div>
 
-                                <div class="notification-list">
+                                <template id="inform_template">
                                     <div class="notification-item unread">
                                         <div class="notification-icon order">
                                             <i class="fa-solid fa-box"></i>
                                         </div>
                                         <div class="notification-content">
-                                            <p class="notification-text">Đơn hàng #DH123456 của bạn đã được giao thành công</p>
-                                            <span class="notification-time">5 phút trước</span>
+                                            <p class="notification-text">title</p>
+                                            <span class="notification-time">timestamp</span>
                                         </div>
                                     </div>
+                                </template>
+                                <div class="notification-list">
 
-                                    <div class="notification-item unread">
-                                        <div class="notification-icon promo">
-                                            <i class="fa-solid fa-fire"></i>
-                                        </div>
-                                        <div class="notification-content">
-                                            <p class="notification-text">Flash sale đang diễn ra - Giảm giá lên đến 50%</p>
-                                            <span class="notification-time">2 giờ trước</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="notification-item">
-                                        <div class="notification-icon system">
-                                            <i class="fa-solid fa-circle-info"></i>
-                                        </div>
-                                        <div class="notification-content">
-                                            <p class="notification-text">Hệ thống đã cập nhật điều khoản sử dụng mới</p>
-                                            <span class="notification-time">1 ngày trước</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="notification-item">
-                                        <div class="notification-icon order">
-                                            <i class="fa-solid fa-truck"></i>
-                                        </div>
-                                        <div class="notification-content">
-                                            <p class="notification-text">Đơn hàng #DH123455 đang được vận chuyển</p>
-                                            <span class="notification-time">2 ngày trước</span>
-                                        </div>
-                                    </div>
                                 </div>
 
                                 <div class="notification-footer">
-                                    <a href="Inform.jsp" class="view-all-notifications">
+                                    <a href="${pageContext.request.contextPath}/notification/detail" class="view-all-notifications">
                                         <span>Xem tất cả</span>
                                         <i class="fa-solid fa-arrow-right"></i>
                                     </a>
@@ -282,6 +257,6 @@
         </div>
     </nav>
 </header>
-
-<script src="${pageContext.request.contextPath}/customer/scripts/header.js" defer></script>
+<script src="${pageContext.request.contextPath}/customer/scripts/headerScript/header.js" defer></script>
+<script src="${pageContext.request.contextPath}/customer/scripts/headerScript/getInform.js" defer></script>
 
