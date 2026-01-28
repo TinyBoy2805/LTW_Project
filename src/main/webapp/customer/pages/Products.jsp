@@ -92,7 +92,7 @@
                                 <div class="product__bottom">
                                     <div class="product__bottom-actions">
 <%--                                        <button><i class="fa-solid fa-cart-plus"></i></button>--%>
-                                        <form action="${pageContext.request.contextPath}/product-detail" method="post" style="width: 100%; position:relative;">
+                                        <form action="${pageContext.request.contextPath}/product-detail" method="get" style="width: 100%; position:relative;">
                                             <input type="hidden" name="product_id" value="${p.id}" style="position:absolute;">
                                             <button type="submit" style="width: 100%;" onclick="
                                                     document.querySelector('#product__id').value = ${p.id}

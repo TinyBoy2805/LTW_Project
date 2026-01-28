@@ -104,13 +104,10 @@ function renderProducts(products) {
             const contextPath = window.APP_CONTEXT_PATH || '';
             
             productsHTML += `
-                <li class="main__products-ul-li" onclick="
-                    document.querySelector('#product__id').value = ${product.id};
-                    document.querySelector('#product__form').submit();
-                ">
+                <li class="main__products-ul-li">
                     <div class="product" title="${escapeHtml(product.name)}">
                         <div class="product__top">
-                            <div class="product__top-cart"><i class="fa-solid fa-cart-plus"></i></div>
+                            <div class="product__top-cart" data-id="${product.id}"><i class="fa-solid fa-cart-plus"></i></div>
                             <div class="product__image">
                                 <img src="${product.img_url || ''}" alt="${escapeHtml(product.name)}">
                             </div>
@@ -133,9 +130,8 @@ function renderProducts(products) {
 
                         <div class="product__bottom">
                             <div class="product__bottom-actions">
-                                <button><i class="fa-solid fa-cart-plus"></i></button>
                                 <form action="${contextPath}/product-detail" method="post" style="width: 100%; position:relative;">
-<!--                                    <input type="hidden" name="product_id" value="${product.id}" style="position:absolute;">-->
+                                    <input type="hidden" name="product_id" value="${product.id}">
                                     <button type="submit" style="width: 100%;" class="buy-now">Mua ngay</button>
                                 </form>
                             </div>
@@ -218,6 +214,14 @@ function setupFormHandler() {
             console.log('Products from server:', products);
             console.log('Number of products:', products.length);
             renderProducts(products);
+            productsContainer.querySelectorAll('.product__top-cart').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation(); // tránh click lan ra card
+                    const id = btn.dataset.id;
+                    addToCart(id);
+                });
+            });
+
         })
         .catch(error => {
             console.error('Detailed error:', error);

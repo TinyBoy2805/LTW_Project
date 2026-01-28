@@ -34,3 +34,5 @@
 .--active { color: rgb(19, 224, 19); }
 .--male { color: var(--c9);}
 .--female { color: var(--c6);}
+.filled { color: #f5a623; }  /* sao vàng */
+.empty  { color: #ddd; }     /* sao xám */

@@ -577,3 +577,35 @@
         width: 100%;
     }
 }
+
+/* Voucher Color Theme cho Discount */
+.voucher__card.discount {
+    --voucher-color-1: #f97316; /* cam đậm */
+    --voucher-color-2: #fb923c; /* cam nhạt */
+}
+
+/* Icon */
+.voucher__card.discount .voucher__icon i {
+    color: var(--c10); /* giữ trắng nổi trên nền gradient */
+}
+
+/* Badge */
+.voucher__card.discount .voucher__badge {
+    background: linear-gradient(135deg, #f97316 0%, #fb923c 100%);
+    color: var(--c10);
+    box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+}
+
+/* Copy button cho discount */
+.voucher__card.discount .code__copy {
+    background: var(--voucher-color-1);
+}
+
+.voucher__card.discount .code__copy:hover {
+    background: var(--voucher-color-2);
+}
+
+/* Nút "Dùng ngay" */
+.voucher__card.discount .voucher__btn {
+    background: linear-gradient(135deg, var(--voucher-color-1) 0%, var(--voucher-color-2) 100%);
+}

@@ -529,7 +529,7 @@
 
 .main__rating-form 
 {
-    width: 450px;
+    width: fit-content;
     padding: 16px;
     background: var(--c10);
     border-radius: 10px;
@@ -586,7 +586,7 @@
 .main__rating-form textarea 
 {
     width: 100%;
-    min-height: 100px;
+    min-height: 200px;
     resize: none;
     border-radius: 10px;
     border: 2px solid var(--c5);

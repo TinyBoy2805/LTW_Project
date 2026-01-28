@@ -9,10 +9,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../styles/index.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/customer/styles/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" 
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" 
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script>
+        window.APP_CONTEXT_PATH = `${pageContext.request.contextPath}`;
+    </script>
 </head>
 <body>
     <div class="scroll-to-top-btn"><i class="fa-solid fa-circle-up"></i></div>
@@ -22,56 +25,42 @@
 
             <header class="notifications-header">
                 <h2>Thông báo của bạn</h2>
-                <button class="btn-mark-all">Đánh dấu tất cả đã đọc</button>
+                <form action="${pageContext.request.contextPath}/notification/mark" method="post">
+                    <button class="btn-mark-all" id="markAll" type="submit">Đánh dấu tất cả đã đọc</button>
+                </form>
             </header>
+
+
+            <template id="inform_article_template">
+                <article class="notification">
+                    <div class="icon --order">
+                        <i class="fa-regular fa-bell"></i>
+                    </div>
+                    <div class="content" style="display: flex; flex-direction: column; gap: 12px;">
+                        <h4 class="notif-title"></h4>
+                        <p class="notif-message"></p>
+                        <span class="time notif-timestamp"></span>
+                    </div>
+                </article>
+            </template>
 
             <div class="notifications-list">
 
+
                 <!-- 1 item -->
-                <article class="notification active">
-                    <div class="icon --order">
-                        <i class="fa-solid fa-box"></i>
-                    </div>
-                    <div class="content">
-                        <h4>Đơn hàng #DH2031 đang được giao</h4>
-                        <p>Đơn hàng của bạn đã rời kho và đang trên đường đến bạn!</p>
-                        <span class="time">2 giờ trước</span>
-                    </div>
-                </article>
 
-                <article class="notification">
-                    <div class="icon --promo">
-                        <i class="fa-solid fa-gift"></i>
-                    </div>
-                    <div class="content">
-                        <h4>Ưu đãi thành viên VIP 🎁</h4>
-                        <p>Giảm 15% cho tất cả sản phẩm dinh dưỡng trẻ nhỏ, hết hạn sau 3 ngày.</p>
-                        <span class="time">1 ngày trước</span>
-                    </div>
-                </article>
-
-                <article class="notification">
-                    <div class="icon --security">
-                        <i class="fa-solid fa-shield-halved"></i>
-                    </div>
-                    <div class="content">
-                        <h4>Đổi mật khẩu thành công</h4>
-                        <p>Bạn đã thay đổi mật khẩu tài khoản lúc 18:36.</p>
-                        <span class="time">3 ngày trước</span>
-                    </div>
-                </article>
 
             </div>
 
+                <button id="more-notif" class="--size16 --color4" style="max-width: 200px; padding: 8px 16px; margin: auto; background: transparent; border: none; cursor: pointer;">Xem thêm</button>
             </section>
 
     </main>
 
     <jsp:include page="/customer/components/Footer.jsp"/>
 
+<script type="module" src="${pageContext.request.contextPath}/customer/scripts/informPage/getInformForPage.js"></script>
+<script src="${pageContext.request.contextPath}/customer/scripts/main.js"></script>
 
-
-    
 </body>
-<script type="module" src="../scripts/main.js"></script>
 </html>

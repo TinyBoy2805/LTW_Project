@@ -431,18 +431,32 @@
     transition: all 0.2s ease;
 }
 
+
+.view-all-notifications span
+{
+    color: var(--c6);
+}
+
+
 .view-all-notifications:hover {
     background: var(--c6);
     color: var(--c10);
 }
 
+.view-all-notifications:hover span
+{
+    color: var(--c10);
+}
+
 .view-all-notifications i {
+    color: var(--c6);
     font-size: 13px;
     transition: transform 0.3s ease;
 }
 
 .view-all-notifications:hover i {
     transform: translateX(4px);
+    color: var(--c10);
 }
 
 /* ========================================
@@ -795,7 +809,7 @@
     width: 56px;
     height: 56px;
     border-radius: 50%;
-    overflow: hidden;
+    /*overflow: hidden;*/
     flex-shrink: 0;
     background: linear-gradient(135deg, var(--c6), var(--c7));
     padding: 3px;

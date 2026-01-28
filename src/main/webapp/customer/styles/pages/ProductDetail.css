@@ -1,4 +1,4 @@
-.main__product-detail 
+.main__product-detail
 {
     width: 100%;
     display: flex;
@@ -10,7 +10,7 @@
 {
     width: 100%;
 }
-.main__product-detail-breadcrumb ul 
+.main__product-detail-breadcrumb ul
 {
     width: 100%;
     display: flex;
@@ -19,13 +19,12 @@
     padding: 8px 8px 0 8px;
 }
 
-.main__product-detail-section1 
+.main__product-detail-section1
 {
     display: flex;
     width: 100%;
     height: 350px;
     padding: 24px;
-    /* height: fit-content; */
 }
 
 
@@ -54,26 +53,36 @@
     background-color: rgba(0, 0, 0, 0.3);
     padding: 8px 12px;
     border-radius: 8px;
+    z-index: 10; /* ✅ Thêm z-index */
 }
 
-.carousel-counter div 
+.carousel-counter div
 {
     width: 10px;
     height: 10px;
     border-radius: 100px;
     background-color: var(--c3);
+    cursor: pointer; /* ✅ Thêm cursor */
+    transition: all 0.3s ease; /* ✅ Thêm transition */
 }
 
-.carousel-counter div.active 
+.carousel-counter div:hover
+{
+    background-color: var(--c8); /* ✅ Hover effect */
+    transform: scale(1.2);
+}
+
+.carousel-counter div.active
 {
     background-color: var(--c10);
+    width: 24px; /* ✅ Active dot dài hơn */
+    border-radius: 5px;
 }
 
 
-.carousel button 
+.carousel button
 {
-    position:absolute;
-    /* height: 100%; */
+    position: absolute;
     width: 30px;
     height: 30px;
     padding: 12px;
@@ -87,11 +96,20 @@
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
+    z-index: 10; /* ✅ Thêm z-index */
+    transition: all 0.3s ease; /* ✅ Thêm transition */
 }
 
-.carousel button:hover
+.carousel button:hover:not(:disabled) /* ✅ Không hover khi disabled */
 {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6);
+    transform: translateY(-50%) scale(1.1); /* ✅ Scale effect */
+}
+
+.carousel button:disabled /* ✅ Style cho disabled state */
+{
+    opacity: 0.3;
+    cursor: not-allowed;
 }
 
 .carousel button:nth-child(1)
@@ -112,23 +130,28 @@
 {
     width: 100%;
     height: 100%;
+    overflow: hidden; /* ✅ Quan trọng! Ẩn phần ảnh thừa */
+    border-radius: 10px; /* ✅ Di chuyển border-radius lên container */
 }
 
-.img-container .img-slider 
+.img-container .img-slider
 {
     width: 100%;
     height: 100%;
+    display: flex; /* ✅ QUAN TRỌNG! Để ảnh xếp ngang */
     background-color: var(--c4);
     border: 2px solid var(--c10);
     box-shadow: var(--bx1);
     border-radius: 10px;
-    overflow: hidden;
+    transition: transform 0.3s ease-in-out; /* ✅ QUAN TRỌNG! Smooth animation */
 }
 
-.img-slider img 
+.img-slider img
 {
     width: 100%;
     height: 100%;
+    min-width: 100%; /* ✅ QUAN TRỌNG! Mỗi ảnh chiếm full width */
+    flex-shrink: 0; /* ✅ QUAN TRỌNG! Không cho ảnh co lại */
     object-fit: cover;
 }
 
@@ -143,14 +166,14 @@
     justify-content: center;
 }
 
-.section1-right h3 
+.section1-right h3
 {
     width: 100%;
     text-align: left;
     font-size: 24px;
 }
 
-.section1-right .price 
+.section1-right .price
 {
     font-size: 32px;
     font-weight: 650;
@@ -165,7 +188,7 @@
     gap: 24px;
 }
 
-.section1-right ul:nth-child(2) li 
+.section1-right ul:nth-child(2) li
 {
     font-size: 16px;
     color: var(--c4);
@@ -179,7 +202,7 @@
     gap: 24px;
 }
 
-.section1-right ul:nth-child(4) li 
+.section1-right ul:nth-child(4) li
 {
     font-size: 16px;
     color: var(--c4);
@@ -192,15 +215,17 @@
     font-size: 16px;
 }
 
-.section1-right ul:nth-child(4) li:nth-child(2) p 
+.section1-right ul:nth-child(4) li:nth-child(2) p
 {
     padding: 4px 12px;
     border-top: 1px solid var(--c4);
     border-bottom: 1px solid var(--c4);
     color: var(--c1);
+    min-width: 40px; /* ✅ Đảm bảo có width tối thiểu */
+    text-align: center;
 }
 
-.section1-right ul:nth-child(4) li:nth-child(2) button 
+.section1-right ul:nth-child(4) li:nth-child(2) button
 {
     padding: 4px 8px;
     background-color: transparent;
@@ -208,11 +233,19 @@
     font-size: 16px;
     color: var(--c4);
     cursor: pointer;
+    transition: all 0.2s ease; /* ✅ Thêm transition */
 }
 
-.section1-right ul:nth-child(4) li:nth-child(2) button:hover 
+.section1-right ul:nth-child(4) li:nth-child(2) button:hover:not(:disabled) /* ✅ Không hover khi disabled */
 {
     color: var(--c1);
+    background-color: var(--c5);
+}
+
+.section1-right ul:nth-child(4) li:nth-child(2) button:disabled /* ✅ Style cho disabled */
+{
+    opacity: 0.3;
+    cursor: not-allowed;
 }
 
 
@@ -221,16 +254,16 @@
     font-size: 13px;
 }
 
-.section1-right .actions 
+.section1-right .actions
 {
     width: 100%;
     display: flex;
     gap: 24px;
 }
 
-.section1-right .actions button 
+.section1-right .actions button
 {
-    padding: 4px 8px;
+    padding: 8px 16px; /* ✅ Tăng padding */
     font-size: 14px;
     cursor: pointer;
     display: flex;
@@ -239,6 +272,7 @@
     border: 1px solid var(--c6);
     border-radius: 8px;
     font-weight: 600;
+    transition: all 0.3s ease; /* ✅ Thêm transition */
 }
 
 .section1-right .actions button:nth-child(1)
@@ -247,25 +281,28 @@
     color: var(--c6);
 }
 
-.section1-right .actions button:nth-child(1):hover 
+.section1-right .actions button:nth-child(1):hover
 {
     background-color: var(--c6);
     color: var(--c10);
+    transform: translateY(-2px); /* ✅ Lift effect */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .section1-right .actions button:nth-child(2)
 {
     border: none;
-    background-color: var(--c10);
-    color: var(--c6);
-    font-size: 24px;
-    font-weight: bolder;
+    background-color: var(--c6);
+    color: var(--c10);
+    font-size: 16px; /* ✅ Giảm font-size cho hợp lý */
+    font-weight: 700;
 }
 
-.section1-right .actions button:nth-child(2):hover 
+.section1-right .actions button:nth-child(2):hover
 {
-    background-color: var(--c10);
-    color: var(--c6);
+    background-color: var(--c7);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .main__product-description
@@ -286,12 +323,12 @@
     gap: 12px;
 }
 
-.main__product-description .product-description-header h3 
+.main__product-description .product-description-header h3
 {
     font-size: 20px;
 }
 
- 
+
 .title-line
 {
     flex: 1;
@@ -304,32 +341,33 @@
     display: flex;
     flex-direction: column;
     gap: 4px;
+    line-height: 1.6; /* ✅ Thêm line-height */
 }
 
-.main__product-rating 
+.main__product-rating
 {
     width: 100%;
     display: flex;
     flex-direction: column;
     padding: 24px;
-    
+
 }
 
-.main__product-rating .main__product-rating-header 
+.main__product-rating .main__product-rating-header
 {
     width: 100%;
     display: flex;
     align-items: center;
-    gap: 12px;  
+    gap: 12px;
 }
 
-.main__product-rating-header h3 
+.main__product-rating-header h3
 {
     font-size: 20px;
 }
 
 
-.main__product-rating .main__product-rating-filter 
+.main__product-rating .main__product-rating-filter
 {
     width: 100%;
     display: flex;
@@ -345,19 +383,19 @@
     gap: 4px;
 }
 
-.filter-left p 
+.filter-left p
 {
     font-size: 14px;
     color: var(--c6);
 }
 
-.filter-left ul 
+.filter-left ul
 {
     display: flex;
     gap: 4px;
 }
 
-.filter-left ul li 
+.filter-left ul li
 {
     font-size: 11px;
 }
@@ -366,30 +404,40 @@
 
 .main__product-rating-filter .filter-right
 {
-    
+    flex: 1; /* ✅ Chiếm hết không gian còn lại */
 }
-.filter-right ul 
+.filter-right ul
 {
     display: flex;
-    gap: 24px;
+    gap: 12px; /* ✅ Giảm gap */
+    flex-wrap: wrap; /* ✅ Wrap khi hết chỗ */
 }
 
 .filter-right ul li button
 {
     display: flex;
     gap: 10px;
-    padding: 4px 12px;
+    padding: 6px 12px; /* ✅ Tăng padding dọc */
     font-size: 13px;
     background-color: var(--c10);
     border: 1px solid var(--c4);
     color: var(--c4);
     cursor: pointer;
+    border-radius: 6px; /* ✅ Thêm border-radius */
+    transition: all 0.2s ease; /* ✅ Thêm transition */
 }
 
-.filter-right ul li button.active 
+.filter-right ul li button:hover
+{
+    border-color: var(--c6);
+    color: var(--c6);
+}
+
+.filter-right ul li button.active
 {
     color: var(--c6);
     border: 1px solid var(--c6);
+    background-color: var(--c5); /* ✅ Thêm background khi active */
 }
 
 .main__comment
@@ -399,14 +447,15 @@
     flex-direction: column;
 }
 
-.main__comment .comment-more-button 
+.main__comment .comment-more-button
 {
     width: 100%;
     display: flex;
     justify-content: center;
+    padding: 16px 0; /* ✅ Thêm padding */
 }
 
-.main__comment .main__today-suggestion-more 
+.main__comment .main__today-suggestion-more
 {
     padding: 8px 20px;
     border-radius: 6px;
@@ -416,29 +465,31 @@
     background-color: var(--c5);
     cursor: pointer;
     margin-bottom: 16px;
-    transition: .1s ease;
+    transition: all 0.2s ease; /* ✅ Sửa transition */
 }
 
-.main__comment .main__today-suggestion-more:hover 
+.main__comment .main__today-suggestion-more:hover
 {
-    background-color: var(--c10);
-    color: var(--c1);
+    background-color: var(--c6);
+    color: var(--c10);
+    border-color: var(--c6);
 }
 
-.comment-item 
+.comment-item
 {
     display: flex;
     border-top: 1px solid var(--c5);
+    padding: 12px 0; /* ✅ Thêm padding */
 }
 
 
-.comment-left 
+.comment-left
 {
     height: fit-content;
-    padding: 12px 0;
+    padding: 12px;
 }
 
-.avt 
+.avt
 {
     width: 40px;
     height: 40px;
@@ -447,14 +498,14 @@
     overflow: hidden;
 }
 
-.avt img 
+.avt img
 {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.comment-right 
+.comment-right
 {
     display: flex;
     flex-direction: column;
@@ -473,15 +524,16 @@
 .comment-right-sub1 .name
 {
     font-size: 16px;
+    font-weight: 600; /* ✅ Thêm font-weight */
 }
 
-.comment-right-sub1 ul 
+.comment-right-sub1 ul
 {
     display: flex;
     gap: 4px;
 }
 
-.comment-right-sub1 ul li 
+.comment-right-sub1 ul li
 {
     font-size: 11px;
 }
@@ -493,26 +545,35 @@
 }
 
 
-.comment-right-sub2 
+.comment-right-sub2
 {
     width: 100%;
-    font-size: 18px;
+    font-size: 14px; /* ✅ Giảm font-size */
+    line-height: 1.5; /* ✅ Thêm line-height */
 }
 
-.comment-right-sub3 
+.comment-right-sub3
 {
     display: flex;
     gap: 12px;
 }
 
-.comment-right-sub3 .img-container 
+.comment-right-sub3 .img-container
 {
     width: 100px;
     height: 100px;
     overflow: hidden;
     border-radius: 10px;
     border: 1px solid var(--c5);
+    cursor: pointer; /* ✅ Thêm cursor */
+    transition: transform 0.2s ease; /* ✅ Thêm transition */
 }
+
+.comment-right-sub3 .img-container:hover
+{
+    transform: scale(1.05); /* ✅ Zoom effect */
+}
+
 .comment-right-sub3 .img-container img
 {
     width: 100%;
@@ -520,7 +581,7 @@
     object-fit: cover;
 }
 
-.comment-right-sub4 
+.comment-right-sub4
 {
     width: 100%;
     display: flex;
@@ -528,27 +589,38 @@
     justify-content: space-between;
 }
 
-.comment-right-sub4 button 
+.comment-right-sub4 button
 {
     font-size: 13px;
     background-color: transparent;
     border: none;
     color: var(--c4);
     cursor: pointer;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    padding: 6px 12px; /* ✅ Thêm padding */
+    border-radius: 6px; /* ✅ Thêm border-radius */
+    transition: all 0.2s ease; /* ✅ Thêm transition */
 }
 
-.comment-right-sub4 button i.active 
+.comment-right-sub4 button:hover
+{
+    background-color: var(--c5);
+}
+
+.comment-right-sub4 button i.active
 {
     color: var(--c6);
 }
 
-.main__another 
+.main__another
 {
     width: 100%;
     padding: 24px;
 }
 
-.main__another .anothers 
+.main__another .anothers
 {
     width: 100%;
     display: flex;
@@ -568,12 +640,12 @@
     justify-content: center;
 }
 
-.another-header h3 
+.another-header h3
 {
     font-size: 20px;
 }
 
-.anothers .another-list 
+.anothers .another-list
 {
     display: flex;
     flex-wrap: wrap;
@@ -592,11 +664,74 @@
     background-color: var(--c5);
     cursor: pointer;
     margin-bottom: 16px;
-    transition: .1s ease;
+    transition: all 0.2s ease;
 }
 
-.anothers .anothers-more:hover 
+.anothers .anothers-more:hover
 {
-    background-color: var(--c10);
+    background-color: var(--c6);
+    color: var(--c10);
+    border-color: var(--c6);
+}
+
+/* ✅ Style cho single image */
+.carousel.single-image .img-slider {
+    display: block; /* Không dùng flex khi chỉ có 1 ảnh */
+    transform: none !important;
+}
+
+.carousel.single-image .nav,
+.carousel.single-image .carousel-counter {
+    display: none !important;
+}
+
+
+.review-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+
+.review-label {
+    font-size: 20px;
+    font-weight: 600;
     color: var(--c1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.review-label i {
+    color: var(--c6);
+    font-size: 18px;
+}
+
+.review-textarea {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 15px;
+    font-family: inherit;
+    line-height: 1.6;
+    border: 2px solid var(--c5);
+    border-radius: 8px;
+    resize: vertical;
+    min-height: 120px;
+    transition: all 0.3s ease;
+    background-color: var(--c10);
+}
+
+.review-textarea::placeholder {
+    color: var(--c4);
+    font-style: italic;
+}
+
+.review-textarea:focus {
+    outline: none;
+    border-color: var(--c6);
+    box-shadow: 0 0 0 3px rgba(var(--c6), 0.1);
+}
+
+.review-textarea:hover {
+    border-color: var(--c4);
 }

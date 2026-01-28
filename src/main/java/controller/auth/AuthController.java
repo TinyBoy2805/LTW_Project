@@ -1,5 +1,6 @@
 package controller.auth;
 
+import com.google.gson.Gson;
 import exception.PasswordStrength;
 import exception.RegisterError;
 import jakarta.servlet.*;
@@ -10,10 +11,13 @@ import model.ValidateObject;
 import service.AuthService;
 import service.MailService;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Timestamp;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 @WebServlet(name = "AuthController", value = "/auth/*")
@@ -60,7 +64,6 @@ public class AuthController extends HttpServlet
                     session.invalidate();
                 }
                 response.sendRedirect(request.getContextPath() + "/index.jsp");
-                return;
             }
             case "register" ->
             {
@@ -74,15 +77,28 @@ public class AuthController extends HttpServlet
             }
             case "forgot-pass" ->
             {
-
+                this.handleForgotPassword(request, response);
             }
             case "verify"->
             {
                 this.handleVerifyAccount(request, response);
             }
+            case "change-pass"->
+            {
+                this.verifyForgotPassword(request, response);
+            }
+            case "reset-pass"->
+            {
+                try {
+                    this.handleResetPass(request, response);
+                } catch (NoSuchAlgorithmException e) {
+                    throw new RuntimeException(e);
+                }
+            }
         }
 
     }
+
 
 
 
@@ -135,7 +151,7 @@ public class AuthController extends HttpServlet
 
                 // Hash password user nhập vào với salt từ DB
                 String inputHash = this.authService.hashPasswordUsingMD5(password, salt, pepper);
-
+                System.out.println("inputHash: " + inputHash);
                 // 4. So sánh hash
                 if (!inputHash.equals(storedHash))
                 {
@@ -154,8 +170,15 @@ public class AuthController extends HttpServlet
                 session.setAttribute("role", user.getRole());
                 session.setAttribute("isLoggedIn", true);
 
+                System.out.println(user.getRole());
                 // 6. Redirect
-                response.sendRedirect(request.getContextPath() + "/home");
+                if("customer".equalsIgnoreCase(user.getRole().toString()))
+                {
+                    response.sendRedirect(request.getContextPath() + "/home");
+                }else
+                {
+                    response.sendRedirect(request.getContextPath() + "/admin/dashboard");
+                }
 
             }
         }
@@ -233,7 +256,7 @@ public class AuthController extends HttpServlet
                 int minutes = 10;
                 Timestamp expirationTime = this.mailService.createExpirationTime(minutes);
 
-                this.authService.createTokenAndExpiredTime(userId, token, expirationTime); //luu vao db
+                this.authService.createTokenAndExpiredTime(userId, token, expirationTime, "VERIFY_EMAIL"); //luu vao db
 
                 this.mailService.sendVerifyLink(email, username, verifyLink, minutes);
 
@@ -248,7 +271,7 @@ public class AuthController extends HttpServlet
 
         String token = request.getParameter("token");
 
-        boolean valid = this.authService.checkToken(token);
+        boolean valid = this.authService.checkToken(token, "VERIFY_EMAIL");
         System.out.println("valid: " + valid);
         if(!valid) response.sendRedirect(request.getContextPath()+"/index.jsp");
 
@@ -304,6 +327,190 @@ public class AuthController extends HttpServlet
             """.formatted(contextPath, contextPath));
 
 
+    }
+
+
+    private void handleForgotPassword(HttpServletRequest request, HttpServletResponse response) throws IOException
+    {
+        String email = request.getParameter("email");
+
+        System.out.println("email: "+email);
+
+        User user = this.authService.findByEmailOrPhone(email);
+
+        String emptyTokenLink = this.mailService.createVerifyForgotPassLink(request);
+        String token = this.mailService.createVerifyToken();
+
+        String verifyLink = emptyTokenLink+token;
+        int minutes = 10;
+        Timestamp expirationTime = this.mailService.createExpirationTime(minutes);
+
+        this.authService.createTokenAndExpiredTime(user.getId(), token, expirationTime, "FORGOT_PASS"); //luu vao db
+
+        boolean success = this.mailService.sendVerifyPasswordResetLink(email, user.getName(), verifyLink, minutes);
+
+
+
+        Map<String, Object> res = new HashMap<>();
+        res.put("success", success); // true nếu gửi email ok
+        String json = new Gson().toJson(res);
+
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
+        response.setStatus(HttpServletResponse.SC_OK);
+
+    }
+
+    private void verifyForgotPassword(HttpServletRequest request, HttpServletResponse response) throws IOException
+    {
+        String token = request.getParameter("token");
+
+        boolean valid = this.authService.checkToken(token, "FORGOT_PASS");
+        if (!valid)
+        {
+            response.sendRedirect(request.getContextPath() + "/index.jsp");
+            return;
+        }
+
+        int userId = this.authService.getUserIdFromVerifyToken(token);
+        if (userId == -1)
+        {
+            response.sendRedirect(request.getContextPath() + "/index.jsp");
+            return;
+        }
+
+        response.setContentType("text/html; charset=UTF-8");
+        PrintWriter writer = response.getWriter();
+        String contextPath = request.getContextPath();
+
+        writer.println("""
+        <!DOCTYPE html>
+        <html lang="vi">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Đặt mật khẩu mới - MiChiShop</title>
+            <style>
+                body { margin:0; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+                       background:#F564A9; min-height:100vh; display:flex; align-items:center; justify-content:center; padding:20px; }
+                .container { background:#fff; border-radius:24px; max-width:420px; width:100%%; padding:48px 32px; text-align:center;
+                             box-shadow:0 20px 60px rgba(0,0,0,.15);}
+                input { width:100%%; padding:12px 16px; margin:8px 0; border:1px solid #ccc; border-radius:8px; font-size:14px; }
+                button { background:#F564A9; color:#fff; border:none; padding:14px 32px; border-radius:12px; font-size:15px;
+                         font-weight:500; cursor:pointer; margin-top:16px; }
+                .msg { margin-top:16px; font-size:14px; color:red; }
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                <h1 style="color:#F564A9;">Đặt mật khẩu mới</h1>
+                <p>Vui lòng nhập mật khẩu mới cho tài khoản của bạn.</p>
+                <form id="reset-pass-form">
+                    <input type="password" id="new-pass" placeholder="Mật khẩu mới" required>
+                    <input type="password" id="confirm-pass" placeholder="Xác nhận mật khẩu" required>
+                    <input type="hidden" id="token" value="%s">
+                    <button type="submit">Đổi mật khẩu</button>
+                    <p class="msg" id="msg"></p>
+                </form>
+            </div>
+            <script>
+                const form = document.getElementById("reset-pass-form");
+                const msg = document.getElementById("msg");
+
+                form.addEventListener("submit", async (e) => {
+                    e.preventDefault();
+                    const pass = document.getElementById("new-pass").value.trim();
+                    const confirm = document.getElementById("confirm-pass").value.trim();
+                    const token = document.getElementById("token").value;
+
+                    if(pass.length < 6) {
+                        msg.textContent = "Mật khẩu tối thiểu 6 ký tự";
+                        return;
+                    }
+                    if(pass !== confirm) {
+                        msg.textContent = "Mật khẩu xác nhận không khớp";
+                        return;
+                    }
+
+                    try {
+                        const res = await fetch("%s/auth/reset-pass", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ token, password: pass })
+                        });
+                        const data = await res.json();
+                        if(data.success){
+                            msg.style.color = "green";
+                            msg.textContent = "Đổi mật khẩu thành công! Chuyển hướng đến đăng nhập...";
+                            setTimeout(()=>{ window.location.href="%s/index.jsp"; }, 3000);
+                        } else {
+                            msg.style.color = "red";
+                            msg.textContent = data.message || "Có lỗi xảy ra!";
+                        }
+                    } catch(err) {
+                        console.error(err);
+                        msg.style.color = "red";
+                        msg.textContent = "Có lỗi xảy ra!";
+                    }
+                });
+            </script>
+        </body>
+        </html>
+    """.formatted(token, contextPath, contextPath));
+    }
+
+    private void handleResetPass(HttpServletRequest request, HttpServletResponse response) throws NoSuchAlgorithmException, IOException
+    {
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        Gson gson = new Gson();
+
+        try {
+            // Đọc JSON từ request body
+            BufferedReader reader = request.getReader();
+            StringBuilder sb = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) sb.append(line);
+
+            Map<String, String> body = gson.fromJson(sb.toString(), Map.class);
+            String password = body.get("password");
+            String token = body.get("token");
+
+            if(password == null || token == null) {
+                out.write(gson.toJson(Map.of("success", false, "message", "Dữ liệu không hợp lệ")));
+                return;
+            }
+
+            // Lấy userId từ token
+            int userId = this.authService.getUserIdFromVerifyToken(token);
+            if(userId == -1){
+                out.write(gson.toJson(Map.of("success", false, "message", "Token không hợp lệ")));
+                return;
+            }
+
+            // Tạo salt và hash password
+            String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            Random ran = new Random();
+            StringBuilder salt = new StringBuilder();
+            for (int i = 0; i < 16; i++){
+                salt.append(CHARACTERS.charAt(ran.nextInt(CHARACTERS.length())));
+            }
+            String hashed_password = this.authService.hashPasswordUsingMD5(password, salt.toString(), pepper);
+
+            boolean success = this.authService.setNewPassword(userId, hashed_password, salt);
+
+            if(success){
+                out.write(gson.toJson(Map.of("success", true)));
+            } else {
+                out.write(gson.toJson(Map.of("success", false, "message", "Không thể cập nhật mật khẩu")));
+            }
+
+        } catch(Exception e){
+            e.printStackTrace();
+            out.write(gson.toJson(Map.of("success", false, "message", "Có lỗi xảy ra!")));
+        }
     }
 
 

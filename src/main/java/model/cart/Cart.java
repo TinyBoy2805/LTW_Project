@@ -45,7 +45,7 @@ public class Cart
         if(this.cart.containsKey(productId))
         {
             CartItem exist = this.cart.get(productId);
-            exist.increaseQuantity();
+            exist.increaseQuantity(newItem.getQuantity());
         }else
         {
             cart.put(productId, newItem);
@@ -58,4 +58,19 @@ public class Cart
     }
 
 
+    public boolean updateQuantity(int productId, int quantity)
+    {
+        if(this.cart.containsKey(productId))
+        {
+            this.cart.get(productId).setQuantity(quantity);
+            return true;
+        }
+        return false;
+    }
+
+    public double getTotalAmount() {
+        return cart.values().stream()
+                .mapToDouble(item -> item.getPrice() * item.getQuantity())
+                .sum();
+    }
 }
