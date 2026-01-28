@@ -117,7 +117,7 @@
                             <a href="${pageContext.request.contextPath}/notification/detail" class="--color4"><i class="fa-solid fa-bell --size20"></i></a>
 <%--                            //count new inform and unread--%>
                             <div class="notif-count">2</div>
-                            
+
                             <div class="notification-dropdown">
                                 <div class="notification-header">
                                     <h3>Thông báo</h3>
@@ -147,7 +147,7 @@
                                 </div>
                             </div>
                         </li>
-                        
+
                         <li class="hover-avt">
                             <div class="container">
                                 <a href="${pageContext.request.contextPath}/profile" class="--color4"><i class="fa-solid fa-user --size20"></i></a>
@@ -165,19 +165,25 @@
                                             <i class="fa-solid fa-arrow-right"></i>
                                         </button>
                                     </div>
-                                    
+
                                     <div class="quick-stats">
+                                        <%
+                                            service.OrderService headerOrderService = new service.OrderService();
+                                            service.VoucherService headerVoucherService = new service.VoucherService();
+                                            int orderCount = headerOrderService.getOrdersByUser(user.getId()).size();
+                                            int voucherCount = headerVoucherService.getUserVouchers(user.getId()).size();
+                                        %>
                                         <div class="stat-item">
                                             <i class="fa-solid fa-box"></i>
                                             <div>
-                                                <span class="stat-number">12</span>
+                                                <span class="stat-number"><%= orderCount %></span>
                                                 <span class="stat-label">Đơn hàng</span>
                                             </div>
                                         </div>
                                         <div class="stat-item">
                                             <i class="fa-solid fa-ticket"></i>
                                             <div>
-                                                <span class="stat-number">5</span>
+                                                <span class="stat-number"><%= voucherCount %></span>
                                                 <span class="stat-label">Voucher</span>
                                             </div>
                                         </div>
