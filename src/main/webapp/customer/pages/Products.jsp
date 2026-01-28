@@ -5,6 +5,8 @@
 
 <%
     request.setAttribute("activeTab", "product");
+    String keyword = (String)request.getAttribute("searchKeyword");
+    request.setAttribute("searchKeyword", keyword);
 %>
 
 <!DOCTYPE html>
@@ -21,6 +23,9 @@
 </head>
 <body>
 
+
+
+    <div class="toast-container"></div>
     <div class="scroll-to-top-btn"><i class="fa-solid fa-circle-up"></i></div>
     <jsp:include page="/customer/components/Header.jsp"/>
     <main class="main">
@@ -34,12 +39,10 @@
                         <input type="hidden" value="" name="product_id" id="product__id">
                     </form>
                     <c:forEach var="p" items="${products}">
-                        <li class="main__products-ul-li" onclick="
-                               document.querySelector('#product__id').value = ${p.id}
-                               document.querySelector('#product__form').submit()
-                           ">
+                        <li class="main__products-ul-li">
                             <div class="product" title="${p.name}">
                                 <div class="product__top">
+                                    <div class="product__top-cart" id="${p.id}"><i class="fa-solid fa-cart-plus"></i></div>
                                     <div class="product__image">
                                         <img src="${p.img_url}" alt="">
                                     </div>
@@ -88,10 +91,13 @@
 
                                 <div class="product__bottom">
                                     <div class="product__bottom-actions">
-                                        <button><i class="fa-solid fa-cart-plus"></i></button>
+<%--                                        <button><i class="fa-solid fa-cart-plus"></i></button>--%>
                                         <form action="${pageContext.request.contextPath}/product-detail" method="post" style="width: 100%; position:relative;">
                                             <input type="hidden" name="product_id" value="${p.id}" style="position:absolute;">
-                                            <button type="submit" style="width: 100%;">Mua ngay</button>
+                                            <button type="submit" style="width: 100%;" onclick="
+                                                    document.querySelector('#product__id').value = ${p.id}
+                                                    document.querySelector('#product__form').submit()
+                                                    " class="buy-now">Mua ngay</button>
                                         </form>
                                     </div>
                                 </div>
@@ -99,13 +105,16 @@
                         </li>
                     </c:forEach>
                 </ul>
-                
 
-                <div class="pagination">
+                <div style="display: ${empty products ? 'flex':'none'}; flex-direction: column; margin: 0 auto; text-align: center; padding: 60px 20px; border-radius: 8px; width: 1000px;">
+                    <h2 style="font-size: 24px; color: var(--c6); margin-bottom: 12px; font-weight: 600;">Sản phẩm bạn tìm kiếm không tồn tại</h2>
+                    <p style="font-size: 16px; color: var(--c3); margin: 0;">Hãy tìm kiếm sản phẩm khác</p>
+                </div>
 
+                <div class="pagination" style="display: ${empty products ? 'none':'flex'}">
                     <c:choose>
                         <c:when test="${currentPage > 1}">
-                            <a href="${pageContext.request.contextPath}/product?page=${currentPage - 1}" class="pagination__btn">
+                            <a href="${pageContext.request.contextPath}/product?page=${currentPage - 1}&search=${searchKeyword}" class="pagination__btn">
                                 <i class="fa-solid fa-chevron-left"></i>
                             </a>
                         </c:when>
@@ -119,7 +128,7 @@
                     <div class="pagination__numbers">
                         <c:forEach var="i" begin="${currentPage - 1}" end="${currentPage + 1}">
                             <c:if test="${i >= 1 && i <= totalPages}">
-                                <a href="${pageContext.request.contextPath}/product?page=${i}" 
+                                <a href="${pageContext.request.contextPath}/product?page=${i}&search=${searchKeyword}"
                                    class="pagination__number ${i == currentPage ? 'pagination__number--active' : ''}">
                                    ${i}
                                 </a>
@@ -127,14 +136,14 @@
                         </c:forEach>
 
                         <c:if test="${currentPage + 1 < totalPages}">
-                            <a href="${pageContext.request.contextPath}/product?page=${currentPage + 1}" 
+                            <a href="${pageContext.request.contextPath}/product?page=${currentPage + 1}&search=${searchKeyword}"
                                class="pagination__dots">...</a>
                         </c:if>
                     </div>
 
                     <c:choose>
                         <c:when test="${currentPage < totalPages}">
-                            <a href="${pageContext.request.contextPath}/product?page=${currentPage + 1}" class="pagination__btn">
+                            <a href="${pageContext.request.contextPath}/product?page=${currentPage + 1}&search=${searchKeyword}" class="pagination__btn">
                                  <i class="fa-solid fa-chevron-right"></i>
                             </a>
                         </c:when>
@@ -152,8 +161,34 @@
 
     <jsp:include page="/customer/components/Footer.jsp"/>
 
-<script type="module" src="${pageContext.request.contextPath}/customer/scripts/main.js"></script>
-<script type="module" src="${pageContext.request.contextPath}/customer/scripts/product/product.js"></script>
-<%--<script src="${pageContext.request.contextPath}/customer/scripts/Products.js" type="module"></script>--%>
+<script type="module" src="${pageContext.request.contextPath}/customer/scripts/main.js" defer></script>
+<script type="module" src="${pageContext.request.contextPath}/customer/scripts/product/addToCart.js" defer></script>
+<script type="module" src="${pageContext.request.contextPath}/customer/scripts/product/Products.js" defer></script>
+<script type="module">
+    function blinkCartIcon()
+    {
+        const cartIcon = document.querySelector("#cart-icon"); // class icon giỏ hàng của bạn
+        if (!cartIcon) return;
+
+        cartIcon.classList.add("cart-blink");
+
+        // Xóa class sau khi animation kết thúc để lần sau còn chạy lại
+        cartIcon.addEventListener("animationend", () =>
+        {
+            cartIcon.classList.remove("cart-blink");
+        }, { once: true });
+    }
+
+    document.addEventListener("click", (e) =>
+    {
+        const btn = e.target.closest(".product__top-cart");
+        if (!btn) return;
+
+        const id = btn.id;
+        console.log(id)
+        addToCart(id);
+        blinkCartIcon()
+    });
+</script>
 </body>
 </html>

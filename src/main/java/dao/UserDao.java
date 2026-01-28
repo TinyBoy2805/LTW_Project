@@ -2,9 +2,46 @@ package dao;
 
 import model.User;
 import model.Role;
-import java.util.*;
+import model.UserProfile;
 
-public class UserDao extends BaseDao {
+public class UserDAO extends BaseDao
+{
+        // Cập nhật mật khẩu
+        public boolean updatePassword(int userId, String newPasswordHash) {
+            String sql = "UPDATE users SET password_hashed = :password WHERE id = :userId";
+            int updated = get().withHandle(handle ->
+                handle.createUpdate(sql)
+                    .bind("userId", userId)
+                    .bind("password", newPasswordHash)
+                    .execute()
+            );
+            return updated > 0;
+        }
+    // Cập nhật avatar
+    public boolean updateAvatar(int userId, String avtUrl) {
+        String sql = "UPDATE users SET avt_url = :avtUrl WHERE id = :userId";
+        int updated = get().withHandle(handle ->
+            handle.createUpdate(sql)
+                .bind("userId", userId)
+                .bind("avtUrl", avtUrl)
+                .execute()
+        );
+        return updated > 0;
+    }
+
+    // Cập nhật email
+    public boolean updateEmail(int userId, String email) {
+        String sql = "UPDATE users SET email = :email WHERE id = :userId";
+        int updated = get().withHandle(handle ->
+            handle.createUpdate(sql)
+                .bind("userId", userId)
+                .bind("email", email)
+                .execute()
+        );
+        return updated > 0;
+    }
+    
+    // Lấy user theo ID
     public User getUserById(int userId) {
         String sql = "SELECT * FROM users WHERE id = :userId";
         return get().withHandle(handle ->
@@ -26,16 +63,38 @@ public class UserDao extends BaseDao {
         );
     }
     
-    // Thêm phương thức cập nhật mật khẩu
-    public void updatePassword(int id, String passwordHashed, String salt) {
-        get().useHandle(h ->
-            h.createUpdate("""
-                UPDATE users SET password_hashed = :password, salt = :salt WHERE id = :id
-            """)
-            .bind("id", id)
-            .bind("password", passwordHashed)
-            .bind("salt", salt)
-            .execute()
+    // Cập nhật tên
+    public boolean updateName(int userId, String newName) {
+        String sql = "UPDATE users SET name = :name WHERE id = :userId";
+        int updated = get().withHandle(handle ->
+            handle.createUpdate(sql)
+                .bind("userId", userId)
+                .bind("name", newName)
+                .execute()
         );
+        return updated > 0;
+    }
+    
+    // Cập nhật số điện thoại
+    public boolean updatePhone(int userId, String newPhone) {
+        String sql = "UPDATE users SET phone_number = :phone WHERE id = :userId";
+        int updated = get().withHandle(handle ->
+            handle.createUpdate(sql)
+                .bind("userId", userId)
+                .bind("phone", newPhone)
+                .execute()
+        );
+        return updated > 0;
+    }
+    
+    // Xóa tài khoản
+    public boolean deleteUser(int userId) {
+        String sql = "DELETE FROM users WHERE id = :userId";
+        int deleted = get().withHandle(handle ->
+            handle.createUpdate(sql)
+                .bind("userId", userId)
+                .execute()
+        );
+        return deleted > 0;
     }
 }

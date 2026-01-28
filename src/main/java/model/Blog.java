@@ -1,8 +1,14 @@
 package model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.sql.Timestamp;
 
-public class Blog {
+@Getter
+@Setter
+public class Blog
+{
     private int id;
     private int userId;
     private String title;
@@ -41,5 +47,20 @@ public class Blog {
     public void setCreatedAt(Timestamp createdAt) { this.createdAt = createdAt; }
     public Timestamp getUpdatedAt() { return updatedAt; }
     public void setUpdatedAt(Timestamp updatedAt) { this.updatedAt = updatedAt; }
+
+    @Override
+    public String toString()
+    {
+        return "Blog{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", thumbnail='" + thumbnail + '\'' +
+                ", url='" + url + '\'' +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                '}';
+    }
 }
 

@@ -1,20 +1,27 @@
 package model;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import java.io.Serializable;
 
-public class Address implements Serializable {
-    private int id;
-    private int userId;
+
+public class Address implements Serializable
+{
+    private long id;
+    private long userId;
     private String houseNumber;
     private String road;
     private String district;
     private String city;
     private String hamlet;
     private String ward;
+    private boolean isDefault;
 
     public Address() {}
-
-    public Address(int id, int userId, String houseNumber, String road, String district, String city, String hamlet, String ward) {
+    
+    public Address(long id, long userId, String houseNumber, String road, String district, String city, String hamlet, String ward, boolean isDefault) {
         this.id = id;
         this.userId = userId;
         this.houseNumber = houseNumber;
@@ -23,13 +30,18 @@ public class Address implements Serializable {
         this.city = city;
         this.hamlet = hamlet;
         this.ward = ward;
+        this.isDefault = isDefault;
     }
 
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    public boolean getIsDefault()
+    {
+        return this.isDefault;
+    }
 
-    public int getUserId() { return userId; }
-    public void setUserId(int userId) { this.userId = userId; }
+    public long getId() { return id; }
+    public void setId(long id) { this.id = id; }
+    public long getUserId() { return userId; }
+    public void setUserId(long userId) { this.userId = userId; }
 
     public String getHouseNumber() { return houseNumber; }
     public void setHouseNumber(String houseNumber) { this.houseNumber = houseNumber; }
@@ -48,4 +60,5 @@ public class Address implements Serializable {
 
     public String getWard() { return ward; }
     public void setWard(String ward) { this.ward = ward; }
+
 }

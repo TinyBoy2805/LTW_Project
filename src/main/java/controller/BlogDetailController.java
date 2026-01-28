@@ -1,6 +1,6 @@
 package controller;
 
-import dao.BlogDao;
+import dao.BlogDAO;
 import model.Blog;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -23,7 +23,7 @@ public class BlogDetailController extends HttpServlet {
         if ("delete".equals(action)) {
             try {
                 int id = Integer.parseInt(idStr);
-                blogDao.deleteBlogById(id);
+                BlogDAO.deleteBlogById(id);
             } catch (NumberFormatException ignored) {}
             response.sendRedirect(request.getContextPath() + "/admin/blog");
             return;
@@ -57,7 +57,7 @@ public class BlogDetailController extends HttpServlet {
                     createdAtTs = new java.sql.Timestamp(System.currentTimeMillis());
                 }
                 java.sql.Timestamp updatedAtTs = new java.sql.Timestamp(System.currentTimeMillis());
-                Blog blog = blogDao.getBlogById(id);
+                Blog blog = BlogDAO.getBlogById(id);
                 if (blog != null) {
                     blog.setTitle(title);
                     blog.setUrl(url);
@@ -65,7 +65,7 @@ public class BlogDetailController extends HttpServlet {
                     blog.setContent(content);
                     blog.setThumbnail(thumbnail);
                     blog.setUpdatedAt(updatedAtTs);
-                    blogDao.updateBlog(blog);
+                    BlogDAO.updateBlog(blog);
                 }
             } catch (Exception ignored) {}
             response.sendRedirect(request.getContextPath() + "/admin/blog");
@@ -73,7 +73,7 @@ public class BlogDetailController extends HttpServlet {
         }
         response.sendRedirect(request.getContextPath() + "/admin/blog");
     }
-    private final BlogDao blogDao = new BlogDao();
+    private final BlogDAO blogDao = new BlogDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -82,7 +82,7 @@ public class BlogDetailController extends HttpServlet {
         if (idStr != null) {
             try {
                 int id = Integer.parseInt(idStr);
-                blog = blogDao.getBlogById(id);
+                blog = BlogDAO.getBlogById(id);
             } catch (NumberFormatException ignored) {}
         }
         if (blog == null) {

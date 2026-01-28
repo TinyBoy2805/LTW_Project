@@ -66,7 +66,7 @@
       </a>
     </li>
     <li class="list__item">
-      <a href="CaiDat.jsp" class="${fn:contains(uri, '/admin/pages/CaiDat.jsp') ? 'active' : ''}">
+      <a href="${pageContext.request.contextPath}/admin/setting" class="${fn:contains(uri, '/admin/pages/CaiDat.jsp') || fn:contains(uri, '/admin/setting') ? 'active' : ''}">
         <div class="section">
           <div class="icon"><i class="fa-solid fa-cog"></i></div>
           <p class="title">Cài đặt</p>

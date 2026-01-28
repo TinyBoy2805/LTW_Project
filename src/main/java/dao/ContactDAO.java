@@ -1,10 +1,37 @@
 package dao;
-
 import model.Contact;
 import java.util.*;
 import java.sql.*;
 
-public class ContactDAO extends BaseDao {
+public class ContactDAO extends BaseDao
+{
+    public boolean sendMessage(int userId, String name, String email, String phone, String subject, String message)
+    {
+        String sql = """
+            INSERT INTO contacts (user_id, name, email, phone, topic, message, status, admin_id, created_at)
+            VALUES (:userId, :name, :email, :phone, :topic, :message, 'pending', 1, NOW())
+        """;
+
+        try
+        {
+            get().useHandle(handle ->
+            {
+                handle.createUpdate(sql)
+                        .bind("userId", userId)
+                        .bind("name", name)
+                        .bind("email", email)
+                        .bind("phone", phone)
+                        .bind("topic", subject)
+                        .bind("message", message)
+                        .execute();
+            });
+            return true;
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+            return false;
+        }
+    }
     public List<Contact> getAllContacts() {
         String sql = "SELECT * FROM contacts ORDER BY created_at DESC";
         return get().withHandle(h ->
@@ -70,4 +97,5 @@ public class ContactDAO extends BaseDao {
         c.setIsRead(rs.getBoolean("is_read"));
         return c;
     }
+
 }

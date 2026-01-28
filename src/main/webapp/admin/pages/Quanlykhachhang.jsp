@@ -66,161 +66,82 @@
                         </div>
                         <div class="profile-field">
                           <label>Địa chỉ:</label>
-                          <div class="field-content" style="display: flex; flex-wrap: wrap; gap: 8px;">
-                            <input type="text" class="field-input" name="house_number" value="${address.houseNumber}"
-                              placeholder="Số nhà" form="updateForm">
-                            <input type="text" class="field-input" name="road" value="${address.road}"
-                              placeholder="Đường" form="updateForm">
-                            <input type="text" class="field-input" name="district" value="${address.district}"
-                              placeholder="Quận/Huyện" form="updateForm">
-                            <input type="text" class="field-input" name="city" value="${address.city}"
-                              placeholder="Tỉnh/TP" form="updateForm">
-                            <input type="text" class="field-input" name="hamlet" value="${address.hamlet}"
-                              placeholder="Khu phố" form="updateForm">
-                            <input type="text" class="field-input" name="ward" value="${address.ward}"
-                              placeholder="Phường/Xã" form="updateForm">
+                          <div class="field-content address-grid">
+                            <input type="text" class="field-input" name="house_number" value="${address.houseNumber}" placeholder="Số nhà" form="updateForm">
+                            <input type="text" class="field-input" name="road" value="${address.road}" placeholder="Đường" form="updateForm">
+                            <input type="text" class="field-input" name="district" value="${address.district}" placeholder="Quận/Huyện" form="updateForm">
+                            <input type="text" class="field-input" name="city" value="${address.city}" placeholder="Tỉnh/TP" form="updateForm">
+                            <input type="text" class="field-input" name="hamlet" value="${address.hamlet}" placeholder="Khu phố" form="updateForm">
+                            <input type="text" class="field-input" name="ward" value="${address.ward}" placeholder="Phường/Xã" form="updateForm">
                           </div>
                         </div>
                       </div>
                       <!-- Account Status Section -->
                       <div class="profile-section">
-                        <h3 class="section-title">Trạng thái tài khoản</h3>
+                        <h3 class="section-title">Cài đặt tài khoản</h3>
 
-                        <div class="status-row">
-                          <div class="status-field">
-                            <label>Khóa Tài Khoản</label>
-                            <div class="toggle-switch">
-                              <input type="checkbox" class="toggle-input">
-                              <span class="toggle-slider"></span>
-                            </div>
-                          </div>
-
-                          <div class="action-group">
-                            <button class="reset-btn" type="button" onclick="showChangePasswordModal()">
-                              <i class="fa-solid fa-question-circle"></i> Đổi mật khẩu
+                        <div class="status-row" style="display: flex; flex-direction: column; align-items: flex-end; gap: 12px;">
+                          <button class="reset-btn" type="button" onclick="showChangePasswordModal()" style="width: 300px;">
+                            <i class="fa-solid fa-question-circle"></i> Đổi mật khẩu
+                          </button>
+                          <form action="${pageContext.request.contextPath}/admin/manage_customer" method="post" style="width: 300px;">
+                            <input type="hidden" name="action" value="delete" />
+                            <input type="hidden" name="id" value="${customer.id}" />
+                            <button class="delete-btn" type="submit"
+                              style="width: 100%;"
+                              onclick="return confirm('Bạn có chắc chắn muốn xóa tài khoản &quot;${customer.name}&quot;?');">
+                              <i class="fa-solid fa-trash"></i> Xóa tài khoản
                             </button>
-                            <button class="email-btn" type="button" id="openSendEmailModal">
-                              <i class="fa-solid fa-envelope"></i> Gửi Email
-                            </button>
-                            <!-- Modal gửi email cho khách hàng -->
-                            <div id="sendEmailModal" class="modal"
-                              style="display:none;position:fixed;z-index:9999;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,0.3);align-items:center;justify-content:center;">
-                              <div
-                                style="background:#fff;padding:32px 24px;border-radius:8px;min-width:320px;max-width:90vw;box-shadow:0 2px 16px #0002;position:relative;">
-                                <h3>Gửi Email cho khách hàng</h3>
-                                <form id="sendEmailForm" method="post"
-                                  action="${pageContext.request.contextPath}/admin/email/send">
-                                  <input type="hidden" name="to" value="${customer.email}" />
-                                  <div style="margin-bottom:12px;">
-                                    <label>Tiêu đề:</label><br>
-                                    <input type="text" name="subject" required
-                                      style="width:100%;padding:8px;margin-top:4px;">
-                                  </div>
-                                  <div style="margin-bottom:12px;">
-                                    <label>Nội dung:</label><br>
-                                    <textarea name="content" rows="4" required
-                                      style="width:100%;padding:8px;margin-top:4px;"></textarea>
-                                  </div>
-                                  <div style="display:flex;gap:8px;justify-content:flex-end;">
-                                    <button type="button" onclick="hideSendEmailModal()"
-                                      style="padding:6px 16px;">Hủy</button>
-                                    <button type="submit"
-                                      style="padding:6px 16px;background:#007bff;color:#fff;border:none;border-radius:4px;">Gửi</button>
-                                  </div>
-                                </form>
-                                <button onclick="hideSendEmailModal()"
-                                  style="position:absolute;top:8px;right:12px;background:none;border:none;font-size:20px;">&times;</button>
-                              </div>
-                            </div>
-                            <!-- Modal đổi mật khẩu -->
-                            <div id="changePasswordModal" class="modal"
-                              style="display:none;position:fixed;z-index:9999;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,0.3);align-items:center;justify-content:center;">
-                              <div
-                                style="background:#fff;padding:32px 24px;border-radius:8px;min-width:320px;max-width:90vw;box-shadow:0 2px 16px #0002;position:relative;">
-                                <h3>Đổi mật khẩu cho khách hàng</h3>
-                                <div id="change-password-fields">
-                                  <div style="margin-bottom:12px;">
-                                    <label>Mật khẩu mới:</label><br>
-                                    <input type="password" id="new_password_modal" required
-                                      style="width:100%;padding:8px;margin-top:4px;">
-                                  </div>
-                                  <div style="margin-bottom:12px;">
-                                    <label>Xác nhận mật khẩu mới:</label><br>
-                                    <input type="password" id="confirm_password_modal" required
-                                      style="width:100%;padding:8px;margin-top:4px;">
-                                  </div>
-                                  <div style="display:flex;gap:8px;justify-content:flex-end;">
-                                    <button type="button" onclick="hideChangePasswordModal()"
-                                      style="padding:6px 16px;">Hủy</button>
-                                    <button type="button" onclick="submitChangePassword()"
-                                      style="padding:6px 16px;background:#007bff;color:#fff;border:none;border-radius:4px;">Đổi
-                                      mật khẩu</button>
-                                  </div>
+                          </form>
+                          <!-- Modal đổi mật khẩu -->
+                          <div id="changePasswordModal" class="modal"
+                            style="display:none;position:fixed;z-index:9999;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,0.3);align-items:center;justify-content:center;">
+                            <div
+                              style="background:#fff;padding:40px 36px 32px 36px;border-radius:16px;min-width:400px;max-width:98vw;box-shadow:0 4px 32px #0003;position:relative;">
+                              <h3 style="color:#f564a9;font-weight:700;font-size:1.35rem;margin-bottom:24px;text-align:center;letter-spacing:0.5px;">Đổi mật khẩu cho khách hàng</h3>
+                              <div id="change-password-fields">
+                                <div style="margin-bottom:12px;position:relative;">
+                                  <label style="font-weight:500;">Mật khẩu mới:</label><br>
+                                  <input type="password" id="new_password_modal" required
+                                    style="width:100%;padding:10px 40px 10px 12px;margin-top:6px;border-radius:8px;border:1.5px solid #e0e0e0;font-size:1rem;transition:border 0.2s;outline:none;">
+                                  <span onclick="togglePassword('new_password_modal', this)" style="position:absolute;top:38px;right:16px;cursor:pointer;font-size:20px;color:#f564a9;">
+                                    <i class="fa fa-eye-slash"></i>
+                                  </span>
                                 </div>
-                                <button onclick="hideChangePasswordModal()"
-                                  style="position:absolute;top:8px;right:12px;background:none;border:none;font-size:20px;">&times;</button>
+                                <div style="margin-bottom:12px;position:relative;">
+                                  <label style="font-weight:500;">Xác nhận mật khẩu mới:</label><br>
+                                  <input type="password" id="confirm_password_modal" required
+                                    style="width:100%;padding:10px 40px 10px 12px;margin-top:6px;border-radius:8px;border:1.5px solid #e0e0e0;font-size:1rem;transition:border 0.2s;outline:none;">
+                                  <span onclick="togglePassword('confirm_password_modal', this)" style="position:absolute;top:38px;right:16px;cursor:pointer;font-size:20px;color:#f564a9;">
+                                    <i class="fa fa-eye-slash"></i>
+                                  </span>
+                                </div>
+                                <div style="display:flex;gap:8px;justify-content:flex-end;">
+                                  <button type="button" onclick="hideChangePasswordModal()"
+                                    style="padding:8px 24px;background:#fff;color:#f564a9;border:1.5px solid #f564a9;border-radius:6px;font-weight:500;font-size:1rem;transition:background 0.2s;">Hủy</button>
+                                  <button type="button" onclick="submitChangePassword()"
+                                    style="padding:8px 24px;background:#f564a9;color:#fff;border:none;border-radius:6px;font-weight:500;font-size:1rem;box-shadow:0 2px 8px #f564a97a;transition:background 0.2s;">Đổi mật khẩu</button>
+                                </div>
                               </div>
+                              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+                              <script>
+                              function togglePassword(inputId, iconSpan) {
+                                var input = document.getElementById(inputId);
+                                var icon = iconSpan.querySelector('i');
+                                if (input.type === 'password') {
+                                  input.type = 'text';
+                                  icon.classList.remove('fa-eye-slash');
+                                  icon.classList.add('fa-eye');
+                                } else {
+                                  input.type = 'password';
+                                  icon.classList.remove('fa-eye');
+                                  icon.classList.add('fa-eye-slash');
+                                }
+                              }
+                              </script>
+                              <button onclick="hideChangePasswordModal()"
+                                style="position:absolute;top:12px;right:18px;background:none;border:none;font-size:22px;color:#f564a9;">&times;</button>
                             </div>
-                            <script>
-                              // Modal gửi email
-                              function showSendEmailModal() {
-                                document.getElementById('sendEmailModal').style.display = 'flex';
-                              }
-                              function hideSendEmailModal() {
-                                document.getElementById('sendEmailModal').style.display = 'none';
-                              }
-                              document.addEventListener('DOMContentLoaded', function () {
-                                var openBtn = document.getElementById('openSendEmailModal');
-                                if (openBtn) openBtn.onclick = showSendEmailModal;
-                                // Đóng modal khi nhấn Esc
-                                document.addEventListener('keydown', function (e) {
-                                  if (e.key === 'Escape') hideSendEmailModal();
-                                });
-                                // Đóng modal khi click ra ngoài
-                                var modal = document.getElementById('sendEmailModal');
-                                if (modal) {
-                                  modal.addEventListener('click', function (e) {
-                                    if (e.target === modal) hideSendEmailModal();
-                                  });
-                                }
-                              });
-                              function showChangePasswordModal() {
-                                document.getElementById('changePasswordModal').style.display = 'flex';
-                              }
-                              function hideChangePasswordModal() {
-                                document.getElementById('changePasswordModal').style.display = 'none';
-                              }
-                              function submitChangePassword() {
-                                // copy modal inputs into hidden form and submit (avoid nested forms)
-                                try {
-                                  const newPwd = document.getElementById('new_password_modal').value;
-                                  const confirmPwd = document.getElementById('confirm_password_modal').value;
-                                  const hiddenNew = document.getElementById('new_password_hidden');
-                                  const hiddenConfirm = document.getElementById('confirm_password_hidden');
-                                  const hiddenId = document.getElementById('change_password_id_hidden');
-                                  if (hiddenNew && hiddenConfirm) {
-                                    hiddenNew.value = newPwd;
-                                    hiddenConfirm.value = confirmPwd;
-                                  }
-                                  if (hiddenId) hiddenId.value = '${customer.id}';
-                                  const hiddenForm = document.getElementById('change-password-form');
-                                  if (hiddenForm) {
-                                    hiddenForm.submit();
-                                  }
-                                } catch (e) {
-                                  console.error('submitChangePassword error', e);
-                                }
-                              }
-                            </script>
-                            <form action="${pageContext.request.contextPath}/admin/manage_customer" method="post"
-                              style="display:inline-flex; align-items:center; gap:8px;">
-                              <input type="hidden" name="action" value="delete" />
-                              <input type="hidden" name="id" value="${customer.id}" />
-                              <button class="delete-btn" type="submit"
-                                onclick="return confirm('Bạn có chắc chắn muốn xóa tài khoản &quot;${customer.name}&quot;?');">
-                                <i class="fa-solid fa-trash"></i> Xóa tài khoản
-                              </button>
-                            </form>
                           </div>
                         </div>
                       </div>
@@ -245,29 +166,28 @@
                 </div>
 
                 <div class="update-info-section">
-                  <%-- Hiển thị và xóa thông báo gửi email thành công/thất bại từ session --%>
-                  <c:if test="${not empty sessionScope.message}">
-                    <div style="color:green; text-align:center; font-weight:bold; margin-bottom:8px;">${sessionScope.message}</div>
-                    <% session.removeAttribute("message"); %>
-                  </c:if>
-                  <c:if test="${not empty sessionScope.error}">
-                    <div style="color:red; text-align:center; font-weight:bold; margin-bottom:8px;">${sessionScope.error}</div>
-                    <% session.removeAttribute("error"); %>
-                  </c:if>
-                  <div style="display:inline-flex;gap:12px;align-items:center;">
-                    <button class="btn ghost" type="button"
-                      onclick="window.location.href='${pageContext.request.contextPath}/admin/manage_customer?id=${customer.id}'">Hủy</button>
+                    <c:if test="${not empty sessionScope.message}">
+                      <div data-success-message style="display:none;">${sessionScope.message}</div>
+                      <% session.removeAttribute("message"); %>
+                    </c:if>
+                    <c:if test="${not empty sessionScope.error}">
+                      <div data-error-message style="display:none;">${sessionScope.error}</div>
+                      <% session.removeAttribute("error"); %>
+                    </c:if>
+                    <div style="display:inline-flex;gap:12px;align-items:center;">
+                      <button class="btn ghost" type="button"
+                        onclick="window.location.href='${pageContext.request.contextPath}/admin/manage_customer?id=${customer.id}'">Hủy</button>
 
-                    <!-- delete moved to the action-group above -->
+                      <!-- delete moved to the action-group above -->
 
-                    <form id="updateForm" action="${pageContext.request.contextPath}/admin/manage_customer"
-                      method="post" enctype="multipart/form-data"
-                      style="display:inline-flex; gap:12px; align-items:center;">
-                      <input type="hidden" name="action" value="update" />
-                      <input type="hidden" name="id" value="${customer.id}" />
-                      <button class="btn primary" type="submit">Cập Nhật</button>
-                    </form>
-                  </div>
+                      <form id="updateForm" action="${pageContext.request.contextPath}/admin/manage_customer"
+                        method="post" enctype="multipart/form-data"
+                        style="display:inline-flex; gap:12px; align-items:center;">
+                        <input type="hidden" name="action" value="update" />
+                        <input type="hidden" name="id" value="${customer.id}" />
+                        <button class="btn primary" type="submit">Cập Nhật</button>
+                      </form>
+                    </div>
                 </div>
               </div>
             </main>
@@ -285,6 +205,13 @@
 
 
       <script src="${pageContext.request.contextPath}/admin/scripts/components/extendSidebar.js"></script>
+        <!-- Modal thông báo thành công/lỗi -->
+        <div id="notifyModal" style="display:none;position:fixed;z-index:9999;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,0.3);align-items:center;justify-content:center;">
+          <div style="background:#fff;padding:32px 24px;border-radius:8px;min-width:320px;max-width:90vw;box-shadow:0 2px 16px #0002;position:relative;text-align:center;">
+            <div id="notifyMessage" style="font-size:18px;margin-bottom:16px;"></div>
+            <button id="notifyOkBtn" style="padding:8px 32px;background:#f564a9;color:#fff;border:none;border-radius:6px;font-size:16px;font-weight:500;box-shadow:0 2px 8px #f564a97a;transition:background 0.2s;">OK</button>
+          </div>
+        </div>
       <script src="${pageContext.request.contextPath}/admin/scripts/page/Quanlykhachhang.js"></script>
     </body>
 

@@ -32,91 +32,90 @@
 
           <div class="tab-panel-wrapper">
             <div class="settings-grid tab-panel active" data-panel="account">
-              <!-- Left column: stack avatar panel + password panel -->
+              <!-- Left column: avatar + password -->
               <div class="left-column">
                 <div class="panel avatar-panel">
-                  <h4>Thay đổi hồ sơ</h4>
+                  <h4>Ảnh đại diện</h4>
                   <div class="panel-sub">Thay đổi ảnh đại diện của bạn tại đây</div>
-                  <div class="avatar-wrap">
-                    <img class="avatar" src="../imgs/logo.png" alt="avatar">
-                    <div class="avatar-actions">
-                      <button class="btn primary" type="button">Tải lên</button>
-                      <button class="btn ghost" type="button">Đặt lại</button>
+                  <form method="post" action="${pageContext.request.contextPath}/admin/upload-avatar" enctype="multipart/form-data" style="display: flex; flex-direction: column; align-items: center; gap: 12px; width: 100%;">
+                    <div class="avatar-wrap">
+                      <img class="avatar" id="avatarPreview" src="${adminProfile.avt_url != null ? adminProfile.avt_url : '../imgs/logo.png'}" alt="avatar" style="width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 2px solid #eee;">
                     </div>
-                  </div>
-                  <div class="panel-sub small-sub">Cho phép JPG, GIF hoặc PNG. Kích thước tối đa 800K</div>
-                </div>
-
-                <div class="panel password-panel">
-                  <h4>Đổi mật khẩu</h4>
-                  <div class="panel-sub">Đổi mật khẩu để bảo vệ tài khoản của bạn</div>
-                  <form class="mt-6">
-                    <div class="form-grid">
-                      <div class="form-row">
-                        <div class="label">Mật khẩu hiện tại</div>
-                        <input type="password" name="current_password" placeholder="Mật khẩu hiện tại"
-                          autocomplete="current-password">
-                      </div>
-                      <div class="form-row">
-                        <div class="label">Mật khẩu mới</div>
-                        <input type="password" name="new_password" placeholder="Mật khẩu mới"
-                          autocomplete="new-password">
-                      </div>
-                      <div class="form-row">
-                        <div class="label">Xác nhận mật khẩu</div>
-                        <input type="password" name="confirm_password" placeholder="Xác nhận mật khẩu"
-                          autocomplete="new-password">
-                      </div>
-                    </div>
-                    <div class="form-message mt-8 hidden"></div>
-                    <div class="form-actions mt-8">
-                      <button class="btn primary save-password" type="button">Lưu mật khẩu</button>
+                    <input type="file" name="avatar" accept="image/*" style="display:none;" id="avatarInput" onchange="previewAvatar(this)">
+                    <div style="display: flex; width: 100%; justify-content: flex-end; gap: 8px;">
+                      <button class="btn ghost" type="button" style="background: #fff; color: #e91e63; border: 1px solid #e91e63; min-width: 90px;" onclick="document.getElementById('avatarInput').click();return false;">Chọn ảnh</button>
+                      <button class="btn primary" type="submit" style="min-width: 90px;">Lưu ảnh</button>
                     </div>
                   </form>
+                  <script>
+                  function previewAvatar(input) {
+                    if (input.files && input.files[0]) {
+                      var reader = new FileReader();
+                      reader.onload = function(e) {
+                        document.getElementById('avatarPreview').src = e.target.result;
+                      };
+                      reader.readAsDataURL(input.files[0]);
+                    }
+                  }
+                  </script>
                 </div>
               </div>
 
-              <!-- Right column: personal details -->
+              <!-- Right column: admin profile info -->
               <div class="panel account-panel">
-                <h4>Thông tin cá nhân</h4>
-                <div class="panel-sub">Để thay đổi thông tin cá nhân, chỉnh sửa và lưu tại đây</div>
-                <form class="mt-12">
+                <h4>Hồ sơ Admin</h4>
+                <div class="panel-sub">Chỉnh sửa thông tin hồ sơ admin</div>
+                <form class="mt-12" method="post" action="${pageContext.request.contextPath}/admin/update-profile" enctype="multipart/form-data">
                   <div class="form-grid">
-
                     <div class="form-row">
-                      <div class="label">Tên cửa hàng</div>
-                      <input type="text" value="MichiShop">
+                      <div class="label">Họ và tên</div>
+                      <input type="text" name="name" value="${adminProfile.name}" required>
                     </div>
-
                     <div class="form-row">
                       <div class="label">Email</div>
-                      <input type="email" value="michishop@beyeu123.com">
+                      <input type="email" name="email" value="${adminProfile.email}" required>
                     </div>
                     <div class="form-row">
                       <div class="label">Số điện thoại</div>
-                      <input type="text" value="+84912345678">
+                      <input type="text" name="phone" value="${adminProfile.phone_number}" required>
                     </div>
-
-                    <div class="panel-grid-full">
-                      <div class="form-row">
-                        <div class="label">Địa chỉ</div>
-                        <input type="text" value="123 Nguyễn Văn Cừ, TP.HCM">
-                      </div>
+                    <div class="form-row">
+                      <div class="label">Số nhà</div>
+                      <input type="text" name="houseNumber" value="${not empty adminProfile.myAddresses ? adminProfile.myAddresses[0].houseNumber : ''}" required>
+                    </div>
+                    <div class="form-row">
+                      <div class="label">Đường</div>
+                      <input type="text" name="road" value="${not empty adminProfile.myAddresses ? adminProfile.myAddresses[0].road : ''}" required>
+                    </div>
+                    <div class="form-row">
+                      <div class="label">Phường/Xã</div>
+                      <input type="text" name="ward" value="${not empty adminProfile.myAddresses ? adminProfile.myAddresses[0].ward : ''}" required>
+                    </div>
+                    <div class="form-row">
+                    <div class="label">Thôn/Xóm</div>
+                    <input type="text" name="hamlet" value="${not empty adminProfile.myAddresses ? adminProfile.myAddresses[0].hamlet : ''}" required>
+                  </div>
+                    <div class="form-row">
+                      <div class="label">Quận/Huyện</div>
+                      <input type="text" name="district" value="${not empty adminProfile.myAddresses ? adminProfile.myAddresses[0].district : ''}" required>
+                    </div>
+                    <div class="form-row">
+                      <div class="label">Thành phố/Tỉnh</div>
+                      <input type="text" name="city" value="${not empty adminProfile.myAddresses ? adminProfile.myAddresses[0].city : ''}" required>
                     </div>
                   </div>
-
                   <div class="form-actions">
-                    <button type="button" class="btn primary">Lưu</button>
-                    <button type="button" class="btn ghost">Hủy</button>
+                    <button type="submit" class="btn primary">Lưu</button>
+                    <button type="reset" class="btn ghost" onclick="window.location.reload();return false;">Hủy</button>
                   </div>
                 </form>
               </div>
-            </div> <!-- /.settings-grid (account) -->
-          </div> <!-- /.tab-panel-wrapper -->
-        </div> <!-- /.content__panel -->
+            </div> 
+          </div> 
+        </div> 
       </main>
-    </div> <!-- .container -->
-  </div> <!-- .CaiDat.main -->
+    </div> 
+  </div> 
   <script src="${pageContext.request.contextPath}/admin/scripts/components/extendSidebar.js"></script>
 </body>
 

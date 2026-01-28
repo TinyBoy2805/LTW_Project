@@ -112,7 +112,7 @@
                     <label for="new-email" class="input-group__label">Email mới</label>
                     <input type="hidden" name="oldEmail" value="${sessionScope.otp_email}">
                     <input type="text" id="new-email" name="newEmail" placeholder=""
-                           class="input-group__input" class="input-group__input" required>
+                           class="input-group__input" autocomplete="off" required>
                 </div>
 
                 <c:if test="${not empty emailError}">

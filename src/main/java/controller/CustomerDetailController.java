@@ -37,7 +37,7 @@ public class CustomerDetailController extends HttpServlet {
             return;
         }
 
-        Address address = addressDao.getAddressByUserId(id);
+        Address address = addressDao.getDefaultAddressByUserId((long) id);
         request.setAttribute("customer", customer);
         request.setAttribute("address", address);
         request.getRequestDispatcher("/admin/pages/Quanlykhachhang.jsp").forward(request, response);
@@ -46,7 +46,6 @@ public class CustomerDetailController extends HttpServlet {
 protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     try {
         request.setCharacterEncoding("UTF-8");
-        // Lấy ID từ parameter (cố gắng an toàn hơn: từ parameter hoặc query string)
         String idParam = request.getParameter("id");
         if (idParam == null || idParam.isEmpty()) {
             String qs = request.getQueryString();
@@ -65,28 +64,23 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
         int id = Integer.parseInt(idParam);
         String action = request.getParameter("action");
 
-            // Xử lý đổi mật khẩu bởi admin
+
+        // Xử lý đổi mật khẩu bởi admin
             if ("change_password".equals(action)) {
                 String newPassword = request.getParameter("new_password");
                 String confirmPassword = request.getParameter("confirm_password");
                 service.AuthService authService = new service.AuthService();
                 boolean success = authService.adminChangeUserPassword(id, newPassword, confirmPassword);
+                HttpSession session = request.getSession();
                 if (success) {
-                    request.setAttribute("message", "Đổi mật khẩu thành công!");
+                    session.setAttribute("message", "Đổi mật khẩu thành công!");
                 } else {
-                    request.setAttribute("error", "Mật khẩu không hợp lệ hoặc xác nhận không khớp!");
+                    session.setAttribute("error", "Mật khẩu không hợp lệ hoặc xác nhận không khớp!");
                 }
-                doGet(request, response);
+                response.sendRedirect(request.getContextPath() + "/admin/manage_customer?id=" + id);
                 return;
             }
 
-            // Xử lý xóa tài khoản
-            if ("delete".equals(action)) {
-                addressDao.deleteAddressByUserId(id);
-                authDao.deleteUser(id);
-                response.sendRedirect(request.getContextPath() + "/admin/customer");
-                return;
-            }
 
             // Xử lý cập nhật thông tin
             String name = request.getParameter("name");
@@ -105,20 +99,20 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
             if (currentUser != null) {
                 avtUrl = currentUser.getAvt_url();
             }
-            // Nếu một số parameter không có (ví dụ do client không gửi), giữ giá trị hiện tại
+            // Nếu không đổi gì, giữ nguyên giá trị cũ
             if (currentUser != null) {
                 if (name == null || name.isEmpty()) name = currentUser.getName();
                 if (email == null || email.isEmpty()) email = currentUser.getEmail();
                 if (phone == null || phone.isEmpty()) phone = currentUser.getPhone_number();
             }
-            model.Address currentAddress = addressDao.getAddressByUserId(id);
+            model.Address currentAddress = addressDao.getDefaultAddressByUserId((long) id);
             if (currentAddress != null) {
-                if (houseNumber == null) houseNumber = currentAddress.getHouseNumber();
-                if (road == null) road = currentAddress.getRoad();
-                if (district == null) district = currentAddress.getDistrict();
-                if (city == null) city = currentAddress.getCity();
-                if (hamlet == null) hamlet = currentAddress.getHamlet();
-                if (ward == null) ward = currentAddress.getWard();
+                if (houseNumber == null || houseNumber.isEmpty()) houseNumber = currentAddress.getHouseNumber();
+                if (road == null || road.isEmpty()) road = currentAddress.getRoad();
+                if (district == null || district.isEmpty()) district = currentAddress.getDistrict();
+                if (city == null || city.isEmpty()) city = currentAddress.getCity();
+                if (hamlet == null || hamlet.isEmpty()) hamlet = currentAddress.getHamlet();
+                if (ward == null || ward.isEmpty()) ward = currentAddress.getWard();
             }
             Part filePart = null;
             try {
@@ -144,7 +138,14 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
             }
 
             authDao.updateUserInfo(id, name, email, phone, avtUrl);
-            addressDao.updateAddress(id, houseNumber, road, district, city, hamlet, ward);
+            boolean isDefault = true;
+            if (currentAddress == null) {
+                // Thêm mới địa chỉ mặc định
+                addressDao.addAddress(id, houseNumber, road, district, city, hamlet, ward, isDefault);
+            } else {
+                // Cập nhật địa chỉ hiện tại
+                addressDao.updateAddress(currentAddress.getId(), houseNumber, road, district, city, hamlet, ward, isDefault, id);
+            }
             response.sendRedirect(request.getContextPath() + "/admin/customer");
         } catch (Exception ex) {
             ex.printStackTrace();

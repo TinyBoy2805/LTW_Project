@@ -1,7 +1,6 @@
 package controller;
 
-
-import dao.BlogDao;
+import dao.BlogDAO;
 import model.Blog;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -10,17 +9,16 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Timestamp;
-import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.Part;
 
 @WebServlet("/admin/blog")
 @jakarta.servlet.annotation.MultipartConfig(
-    fileSizeThreshold = 1024 * 1024 * 1, 
-    maxFileSize = 1024 * 1024 * 10,      
-    maxRequestSize = 1024 * 1024 * 15    
+        fileSizeThreshold = 1024 * 1024 * 1,
+        maxFileSize = 1024 * 1024 * 10,
+        maxRequestSize = 1024 * 1024 * 15
 )
 public class AdminBlogController extends HttpServlet {
-    private final BlogDao blogDao = new BlogDao();
+    private final BlogDAO blogDao = new BlogDAO();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -50,7 +48,7 @@ public class AdminBlogController extends HttpServlet {
             jakarta.servlet.http.HttpSession session = request.getSession(false);
             if (session != null && session.getAttribute("user") != null) {
                 model.User user = (model.User) session.getAttribute("user");
-                if (user.getRole() == model.Role.admin) {
+                if (user.getRole() == model.Role.ADMIN) {
                     userId = user.getId();
                 } else {
                     // Nếu không phải admin, có thể trả về lỗi hoặc gán mặc định
@@ -64,26 +62,26 @@ public class AdminBlogController extends HttpServlet {
         }
         Timestamp now = new Timestamp(System.currentTimeMillis());
 
-            // Lấy ngày đăng từ form, nếu có
-            String createdAtStr = request.getParameter("created_at");
-            Timestamp createdAt = now;
-            if (createdAtStr != null && !createdAtStr.isEmpty()) {
-                try {
-                    java.sql.Date date = java.sql.Date.valueOf(createdAtStr);
-                    createdAt = new Timestamp(date.getTime());
-                } catch (Exception ex) {
-                    // Nếu lỗi format, giữ nguyên now
-                }
+        // Lấy ngày đăng từ form, nếu có
+        String createdAtStr = request.getParameter("created_at");
+        Timestamp createdAt = now;
+        if (createdAtStr != null && !createdAtStr.isEmpty()) {
+            try {
+                java.sql.Date date = java.sql.Date.valueOf(createdAtStr);
+                createdAt = new Timestamp(date.getTime());
+            } catch (Exception ex) {
+                // Nếu lỗi format, giữ nguyên now
             }
+        }
 
-            Blog blog = new Blog();
-            blog.setUserId(userId);
-            blog.setTitle(title);
-            blog.setContent(content);
-            blog.setThumbnail(thumbnailPath);
-            blog.setUrl(url);
-            blog.setCreatedAt(createdAt);
-            blog.setUpdatedAt(now);
+        Blog blog = new Blog();
+        blog.setUserId(userId);
+        blog.setTitle(title);
+        blog.setContent(content);
+        blog.setThumbnail(thumbnailPath);
+        blog.setUrl(url);
+        blog.setCreatedAt(createdAt);
+        blog.setUpdatedAt(now);
 
         try {
             boolean success = blogDao.insertBlog(blog);

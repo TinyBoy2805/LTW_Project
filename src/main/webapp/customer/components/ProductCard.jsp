@@ -14,6 +14,7 @@
 <%--     <input type="hidden" value="" id="holder">--%>
         <div class="product">
             <div class="product__top">
+                <div class="product__top-cart"><i class="fa-solid fa-cart-plus"></i></div>
                 <div class="product__image">
                     <img src="https://i.pinimg.com/1200x/79/df/0d/79df0de0a96063735aca1c5d5c80ca26.jpg" alt="" loading="lazy">
                 </div>
@@ -36,8 +37,8 @@
 
             <div class="product__bottom">
                 <div class="product__bottom-actions">
-                    <button><i class="fa-solid fa-cart-plus"></i></button>
-                    <button>Mua ngay</button>
+<%--                    <button style="z-index: 10000" onclick="console.log('add')"><i class="fa-solid fa-cart-plus"></i></button>--%>
+                    <button class="buy-now">Mua ngay</button>
                 </div>
             </div>
         </div>

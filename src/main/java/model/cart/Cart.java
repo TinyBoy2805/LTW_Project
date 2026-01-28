@@ -1,10 +1,17 @@
 package model.cart;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import model.product.Product;
+import model.product.ProductCard;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Getter
+@Setter
+@ToString
 public class Cart
 {
     private HashMap<Integer, CartItem> cart;
@@ -14,57 +21,41 @@ public class Cart
         this.cart = new HashMap<>();
     }
 
-
-    public void addItem(Product item, int quantity)
+    public CartItem isExist(ProductCard new_product)
     {
-        if(quantity <= 0) quantity = 1;
-        if(item == null) return;
-
-        if(!this.cart.containsKey(item.getId()))
+        for(Map.Entry<Integer, CartItem> entry : cart.entrySet())
         {
-            this.cart.put(item.getId(), new CartItem(item, quantity, item.getPrice()));
+            if(entry.getValue().getProduct() != null)
+            {
+                ProductCard product_in_cart = entry.getValue().getProduct();
+                if(new_product.getId() == product_in_cart.getId())
+                {
+                    return entry.getValue();
+                }
+            }
+        }
+
+        return null;
+    }
+
+
+    public void addNewItem(CartItem newItem)
+    {
+        int productId = newItem.getProduct().getId();
+        if(this.cart.containsKey(productId))
+        {
+            CartItem exist = this.cart.get(productId);
+            exist.increaseQuantity();
         }else
         {
-            CartItem ci = this.cart.get(item.getId());
-            ci.updateQuantity(quantity);
-            this.cart.put(item.getId(), ci);
+            cart.put(productId, newItem);
         }
     }
 
-
-    public boolean deleteItem(int id)
+    public boolean deleteItemById(int id)
     {
-        if(!this.cart.containsKey(id)) return false;
-        this.cart.remove(this.cart.get(id));
-        return true;
+        return this.cart.remove(id) != null;
     }
-
-
-    public void deleteAllItem()
-    {
-        this.cart.clear();
-    }
-
-
-    public double getTotalCartPrice()
-    {
-        double price = 0;
-        for(Map.Entry<Integer, CartItem> entry: this.cart.entrySet())
-        {
-            CartItem ci = entry.getValue();
-            price += ci.getTotalPrice();
-        }
-        return price;
-    }
-
-
-
-    public void updateCartItem()
-    {
-
-    }
-
-
 
 
 }

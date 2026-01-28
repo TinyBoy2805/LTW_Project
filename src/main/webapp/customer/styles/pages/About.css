@@ -1314,3 +1314,38 @@
         padding: 60px 24px;
     }
 }
+
+/* Load More Button */
+.testimonials__load-more 
+{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.load-more-btn 
+{
+    padding: 12px 32px;
+    background: var(--c6);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.load-more-btn:hover 
+{
+    background: #ff8fab;
+    transform: translateY(-2px);
+}
+
+.load-more-btn:disabled 
+{
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+

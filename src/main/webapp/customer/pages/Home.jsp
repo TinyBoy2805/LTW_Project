@@ -24,6 +24,8 @@
 </head>
 <body>
 
+    <div class="toast-container"></div>
+
     <jsp:include page="/customer/components/ProductCard.jsp"/>
     
     <div class="scroll-to-top-btn"><i class="fa-solid fa-circle-up"></i></div>
@@ -83,7 +85,7 @@
                 <button class="right-btn">></button>
                 <ul data-total="${categories.size()}">
                     <c:forEach var="c" items="${categories}">
-                        <li><i class="fa-solid fa-icons"></i><a href="${pageContext.request.contextPath}/customer/pages/Products.jsp" title="Sữa bột">${c}</a></li>
+                        <li><i class="fa-solid fa-icons"></i><a href="${pageContext.request.contextPath}/product?category=${c}" title="Sữa bột">${c}</a></li>
                     </c:forEach>
                 </ul>
             </div>
@@ -217,9 +219,10 @@
     <jsp:include page="/customer/components/Footer.jsp"/>
 
 
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script type="module" src="${pageContext.request.contextPath}/customer/scripts/main.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" defer></script>
+    <script type="module" src="${pageContext.request.contextPath}/customer/scripts/main.js" defer></script>
     <script type="module" src="${pageContext.request.contextPath}/customer/scripts/home/Home.js" defer></script>
+    <script type="module" src="${pageContext.request.contextPath}/customer/scripts/product/addToCart.js" defer></script>
 </body>
 
 </html>

@@ -1,13 +1,30 @@
 package dao;
 
 import model.Blog;
-import java.sql.*;
-import java.util.*;
 
+import java.util.List;
 
-public class BlogDao extends BaseDao {
+public class BlogDAO extends BaseDao
+{
+    public List<Blog> getBlogs(int page, int pageSize)
+    {
+        int offset = (page-1) * pageSize;
 
-        public List<Blog> getAllBlogs() {
+        String query = "SELECT id, user_id AS userId, title, content, thumbnail, url, created_at AS createdAt, updated_at AS updatedAt " +
+                      "FROM blogs " +
+                      "ORDER BY created_at DESC " +
+                      "LIMIT :limit OFFSET :offset";
+
+        return get().withHandle(h->
+        {
+           return h.createQuery(query)
+                   .bind("limit", pageSize)
+                   .bind("offset", offset)
+                   .mapToBean(Blog.class)
+                   .list();
+        });
+    }
+            public List<Blog> getAllBlogs() {
             String sql = "SELECT * FROM blogs ORDER BY id ASC";
             return get().withHandle(h ->
                 h.createQuery(sql)
@@ -43,7 +60,7 @@ public class BlogDao extends BaseDao {
         return rows > 0;
     }
 
-     public Blog getBlogById(int id) {
+     public static Blog getBlogById(int id) {
             String sql = "SELECT * FROM blogs WHERE id = :id";
             return get().withHandle(h ->
              h.createQuery(sql)
@@ -65,7 +82,7 @@ public class BlogDao extends BaseDao {
                 );
             }
 
-         public boolean deleteBlogById(int id) {
+         public static boolean deleteBlogById(int id) {
             String sql = "DELETE FROM blogs WHERE id = :id";
             int rows = 0;
             try {
@@ -81,7 +98,7 @@ public class BlogDao extends BaseDao {
             return rows > 0;
         }
     
-    public boolean updateBlog(Blog blog) {
+    public static boolean updateBlog(Blog blog) {
         String sql = "UPDATE blogs SET title = :title, content = :content, thumbnail = :thumbnail, url = :url, created_at = :createdAt, updated_at = :updatedAt WHERE id = :id";
         int rows = get().withHandle(h ->
             h.createUpdate(sql)
