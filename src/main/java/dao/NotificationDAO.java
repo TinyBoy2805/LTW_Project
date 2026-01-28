@@ -14,9 +14,9 @@ public class NotificationDAO extends BaseDao
         System.out.println("DB được gọi nè");
         int offset = (page - 1) * pageSize;
 
-        String query = "SELECT * FROM notifications " +
-                "WHERE user_id = :userId " +
-                "ORDER BY created_at DESC " +
+        String query = "SELECT * FROM notifications\n" +
+                "WHERE user_id = :userId\n" +
+                "ORDER BY is_read ASC, created_at DESC\n" +
                 "LIMIT " + pageSize + " OFFSET " + offset;
 
 
@@ -39,4 +39,18 @@ public class NotificationDAO extends BaseDao
     }
 
 
+    public boolean markAllRead(int userId)
+    {
+        String query = "update notifications\n" +
+                        "set is_read = 1\n" +
+                        "where user_id = :userId";
+
+        int rows = get().withHandle(h->
+                            h.createUpdate(query)
+                            .bind("userId", userId)
+                            .execute()
+                );
+
+        return rows > 0;
+    }
 }

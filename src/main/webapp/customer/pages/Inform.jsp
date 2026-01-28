@@ -25,16 +25,18 @@
 
             <header class="notifications-header">
                 <h2>Thông báo của bạn</h2>
-                <button class="btn-mark-all">Đánh dấu tất cả đã đọc</button>
+                <form action="${pageContext.request.contextPath}/notification/mark" method="post">
+                    <button class="btn-mark-all" id="markAll" type="submit">Đánh dấu tất cả đã đọc</button>
+                </form>
             </header>
 
 
             <template id="inform_article_template">
-                <article class="notification active">
+                <article class="notification">
                     <div class="icon --order">
                         <i class="fa-regular fa-bell"></i>
                     </div>
-                    <div class="content">
+                    <div class="content" style="display: flex; flex-direction: column; gap: 12px;">
                         <h4 class="notif-title"></h4>
                         <p class="notif-message"></p>
                         <span class="time notif-timestamp"></span>
@@ -43,6 +45,7 @@
             </template>
 
             <div class="notifications-list">
+
 
                 <!-- 1 item -->
 
@@ -56,8 +59,8 @@
 
     <jsp:include page="/customer/components/Footer.jsp"/>
 
-<script type="module" src="${pageContext.request.contextPath}/customer/scripts/main.js"></script>
 <script type="module" src="${pageContext.request.contextPath}/customer/scripts/informPage/getInformForPage.js"></script>
+<script src="${pageContext.request.contextPath}/customer/scripts/main.js"></script>
 
 </body>
 </html>

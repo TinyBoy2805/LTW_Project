@@ -119,7 +119,7 @@
                             <div class="notification-dropdown">
                                 <div class="notification-header">
                                     <h3>Thông báo</h3>
-                                    <a href="${pageContext.request.contextPath}/notification/detail" class="mark-all-read">Đánh dấu đã đọc</a>
+                                    <a href="${pageContext.request.contextPath}/notification/mark" class="mark-all-read">Đánh dấu đã đọc</a>
                                 </div>
 
                                 <template id="inform_template">

@@ -23,4 +23,8 @@ public class NotificationService
     }
 
 
+    public boolean markAllRead(int userId)
+    {
+        return this.notificationDAO.markAllRead(userId);
+    }
 }

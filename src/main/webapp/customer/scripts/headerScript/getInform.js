@@ -33,8 +33,8 @@ window.addEventListener("DOMContentLoaded", async ()=>
 
     for (const notif of notifs)
     {
-        console.log(notif);
-
+       //  console.log(notif);
+       //
        console.log(notif.id)
        console.log(notif.title)
        console.log(notif.message)
@@ -45,8 +45,6 @@ window.addEventListener("DOMContentLoaded", async ()=>
         const clone = inform_template.content.cloneNode(true);
 
 
-
-
         const item = clone.querySelector(".notification-item")
         const textEl = clone.querySelector(".notification-text");
         const timeEl = clone.querySelector(".notification-time");
@@ -54,7 +52,7 @@ window.addEventListener("DOMContentLoaded", async ()=>
         if (textEl) textEl.innerText = notif.title;
         if (timeEl) timeEl.innerText = notif.created_at;
 
-        if(notif.read) item.classList.remove("unread")
+        if(notif.is_read === 1) item.classList.remove("unread")
         else
         {
             item.classList.add("unread");
@@ -66,6 +64,14 @@ window.addEventListener("DOMContentLoaded", async ()=>
 
     }
 
-    notif_count.innerText = countUnread
+    console.log(countUnread)
+    if(countUnread > 0)
+    {
+        notif_count.innerText = countUnread
+        notif_count.style = 'display: flex;'
+    }else
+    {
+        notif_count.style = 'display: none;'
+    }
 
 })

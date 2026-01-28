@@ -8,7 +8,9 @@ import model.Notification;
 import service.NotificationService;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 //for customer
@@ -80,6 +82,7 @@ public class NotificationController extends HttpServlet
 
                     Gson gson = new Gson();
                     String json = gson.toJson(userNotifications);
+                    System.out.println("Notifs: " + userNotifications);
 
                     response.setContentType("application/json");
                     response.setCharacterEncoding("UTF-8");
@@ -91,7 +94,14 @@ public class NotificationController extends HttpServlet
                     request.getRequestDispatcher("/customer/pages/Inform.jsp").forward(request, response);
                 }
             }
+            case "mark"->
+            {
+                boolean success = this.notificationService.markAllRead(userId);
+
+                response.sendRedirect(request.getContextPath() + "/notification/detail");
+            }
         }
+
 
 
 
@@ -101,6 +111,6 @@ public class NotificationController extends HttpServlet
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-
+        doGet(request, response);
     }
 }
