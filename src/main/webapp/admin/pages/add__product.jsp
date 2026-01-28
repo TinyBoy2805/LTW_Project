@@ -16,6 +16,8 @@
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/libraries/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/libraries/ckfinder/ckfinder.js"></script>
 </head>
 
 <body>
@@ -36,7 +38,8 @@
                 <h2 class="content__title">Thêm sản phẩm mới</h2>
             </div>
             <div class="content__body">
-                <form class="add__product__form">
+                <form class="add__product__form" action="${pageContext.request.contextPath}/admin/products/add-product"
+                      method="post">
                     <div class="form__input">
                         <p class="product__name">Tên sản phẩm</p>
                         <input type="text" id="product__name" name="product-name"
@@ -46,36 +49,42 @@
                         <div class="form__input">
                             <p class="category">Danh mục</p>
                             <select id="category" name="category">
-                                <%--                                <option value="milk">Sữa bột/tươi</option>--%>
-                                <%--                                <option value="food">Thực phẩm ăn dặm</option>--%>
-                                <%--                                <option value="supplement">Thực phẩm bổ sung</option>--%>
-                                <c:forEach var="name" items="${categoryNames}">
-                                    <option value="${name}">${name}</option>
-                                </c:forEach>
+                                <option value="Sữa bột công thức">Sữa bột công thức</option>
+                                <option value="Sữa tươi tiệt trùng">Sữa tươi tiệt trùng</option>
+                                <option value="Sữa đặc">Sữa đặc</option>
+                                <option value="Sữa chua uống">Sữa chua uống</option>
+                                <option value="Thực phẩm ăn dặm">Thực phẩm ăn dặm</option>
                             </select>
                         </div>
                         <div class="form__input">
                             <p class="brand">Thương hiệu</p>
                             <select id="brand" name="brand">
-                                <%--                                <option value="milk">Sữa bột/tươi</option>--%>
-                                <%--                                <option value="food">Thực phẩm ăn dặm</option>--%>
-                                <%--                                <option value="supplement">Thực phẩm bổ sung</option>--%>
-                                <c:forEach var="name" items="${brandNames}">
-                                    <option value="${name}">${name}</option>
-                                </c:forEach>
+                                <option value="Meiji">Meiji</option>
+                                <option value="Aptamil">Aptamil</option>
+                                <option value="Nutifood">Nutifood</option>
+                                <option value="Friso">Friso</option>
+                                <option value="Enfamil">Enfamil</option>
+                                <option value="Similac">Similac</option>
+                                <option value="Vinamilk">Vinamilk</option>
+                                <option value="Abbott">Abbott</option>
+                                <option value="Morinaga">Morinaga</option>
+                                <option value="Nestlé">Nestlé</option>
                             </select>
                         </div>
                     </div>
 
                     <div class="product-units">
                         <div class="product-units__list" id="unit-input-list">
-
+                            <div class="form__input unit-item__qty">
+                                <p class="form__label">Số lượng</p>
+                                <input type="number" name="unit-qty[]" id="unit-quantity" placeholder="Số lượng" value="1" min="1">
+                            </div>
+                            <div class="form__input unit-item__price">
+                                <p class="form__label">Giá nhập (VNĐ)</p>
+                                <input type="text" name="unit-price[]" id="unit-import-price" placeholder="Giá nhập"
+                                       autocomplete="off">
+                            </div>
                         </div>
-
-                        <button type="button" id="add-unit-btn" class="product-units__add-btn">
-                            <ion-icon name="add-circle-outline"></ion-icon>
-                            Thêm đơn vị nhập khác
-                        </button>
                     </div>
 
                     <div class="two__column__input">
@@ -96,40 +105,45 @@
                         <textarea type="" id="product__description" name="product-description"
                                   autocomplete="off"></textarea>
                     </div>
+
+                    <input type="hidden" id="main-image-input" name="mainImage">
+
+                    <div id="secondary-images-inputs-container"></div>
                 </form>
                 <div class="choose__product__img">
                     <p class="choose__product__img__title">Thêm ảnh cho sản phẩm</p>
                     <div class="img-group__main">
                         <p class="img-group__title">1. Chọn ảnh chính cho sản phẩm (Tối đa 1)</p>
-                        <div class="main-group__item">
-                            <img src="../imgs/milk__powder.webp" alt="Sữa bột GrowPro (Ảnh chính)">
+                        <div class="main-group__item img-group__item">
+                            <img src="" alt="" >
                         </div>
+                        <button id="add-main-image" class="add-img" type="button">Thêm ảnh chính</button>
                     </div>
 
                     <div class="img-group__secondary">
                         <p class="img-group__title">2. Chọn ảnh phụ cho sản phẩm (Tối đa 4)</p>
                         <div class="img-group__container">
                             <div class="img-group__item secondary-item">
-                                <img src="../imgs/cereal.webp" alt="Bột ăn dặm Rau Củ">
+                                <img src="" alt="" >
                             </div>
                             <div class="img-group__item secondary-item">
-                                <img src="../imgs/cracker.webp" alt="Bánh ăn dặm Chuối Dẹt">
+                                <img src="" alt="" >
                             </div>
                             <div class="img-group__item secondary-item">
-                                <img src="../imgs/fresh__cheese.webp" alt="Phô mai tươi">
+                                <img src="" alt="" >
                             </div>
-                            <div class="add__img">
-                                <ion-icon name="add-outline"></ion-icon>
+                            <div class="add__img img-group__item secondary-item">
+                                <img src="" alt="" >
                             </div>
                         </div>
+                        <button id="add-secondary-image" class="add-img">Thêm ảnh phụ</button>
                     </div>
                 </div>
             </div>
             <div class="content__bottom">
                 <p class="bottom__title">Đảm bảo rằng sản phẩm của bạn là hợp pháp và không gây hậu quả nào</p>
                 <div class="bottom__button">
-                    <button id="cancel-move-to-list" class="cancel">Huỷ</button>
-                    <button id="move-to-list" class="add">Đưa vào danh sách</button>
+                    <button id="move-to-list" class="add" type="submit">Đưa vào danh sách</button>
                 </div>
             </div>
         </div>
@@ -137,35 +151,12 @@
 </div>
 
 
-<template id="unit-item-template">
-    <div class="unit-item" data-unit-id="1">
-        <button type="button" class="unit-item__remove-btn" style="display: none;">
-            <ion-icon name="close-circle-outline"></ion-icon>
-        </button>
-        <div class="form__input unit-item__unit">
-            <p class="form__label">Đơn vị</p>
-            <select name="unit-type[]" class="unit-item__select">
-                <c:forEach var="name" items="${variantNames}">
-                    <option value="${name}">${name}</option>
-                </c:forEach>
-            </select>
-        </div>
-        <div class="form__input unit-item__qty">
-            <p class="form__label">Số lượng</p>
-            <input type="number" name="unit-qty[]" id="unit-quantity" placeholder="Số lượng" value="1" min="1">
-        </div>
-        <div class="form__input unit-item__price">
-            <p class="form__label">Giá nhập (VNĐ)</p>
-            <input type="text" name="unit-price[]" id="unit-import-price" placeholder="Giá nhập"
-                   autocomplete="off">
-        </div>
-    </div>
-</template>
-
-
+<script>
+    const contextPath = '${pageContext.request.contextPath}';
+</script>
 <!-- link to javascript for burger button -->
 <script src="${pageContext.request.contextPath}/admin/scripts/components/extendSidebar.js"></script>
-<script type="module" src="${pageContext.request.contextPath}/admin/scripts/product/addProduct.js"></script>
+<script src="${pageContext.request.contextPath}/admin/scripts/product/addProduct.js"></script>
 </body>
 
 </html>

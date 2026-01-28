@@ -15,7 +15,6 @@ public class OrderItem {
     private String img_url;
     private int quantity;
     private double priceAtPurchase;
-    private String unit;
     private String orderStatus;
 
     public OrderItem() {}
@@ -28,7 +27,6 @@ public class OrderItem {
         sb.append(", img_url='").append(img_url).append('\'');
         sb.append(", quantity=").append(quantity);
         sb.append(", priceAtPurchase=").append(priceAtPurchase);
-        sb.append(", unit='").append(unit).append('\'');
         sb.append(", orderStatus=").append(orderStatus);
         sb.append('}');
         return sb.toString();

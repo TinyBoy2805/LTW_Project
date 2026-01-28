@@ -42,20 +42,6 @@ async function fetchOrderByFilter(filterData, page) {
     }
 }
 
-/**
- * Fetch order details by orderID
- */
-async function fetchOrderDetails(orderID) {
-    try {
-        // Fetch API with axios
-        return await axios.post()
-            .then(response => response.data)
-            .catch(error => console.error("Fail to fetch data:", error))
-    } catch (error) {
-        console.error("Fail to execute:" + error)
-    }
-}
-
 const orderList = document.querySelector('.order__list');
 
 //hiển thị danh sách đơn hàng từ data
@@ -201,12 +187,6 @@ document.addEventListener("DOMContentLoaded", () => {
         fetchOrderByFilter(dataFilter, 1).then(updateUI)
     })
 })
-
-// function handleShowDetail(id) {
-//     axios.post("/LTW_Project_war_exploded/admin/orders/details", null, { params: { orderId: id } })
-//         .then(resp => console.log("Posted:", resp))
-//         .catch(e => console.error(e))
-// }
 
 function handleShowDetail(id) {
     const form = document.createElement("form");

@@ -10,12 +10,12 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.orders.PageInformation;
-import model.product.AdminProductCard;
-import model.product.ProductCard;
+import model.product.*;
 import service.ProductService;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -40,11 +40,38 @@ public class AdminProductController extends HttpServlet {
         String pathInfo = req.getPathInfo();
 
         if (pathInfo == null || pathInfo.equals("/")) {
-            List<String> categoryNames = productService.getAllCategoryNames();
-            req.setAttribute("categoryNames", categoryNames);
 
             req.getRequestDispatcher("/admin/pages/product.jsp")
                     .forward(req, resp);
+            return;
+        }
+
+        if (pathInfo.equals("/add-product")) {
+            req.getRequestDispatcher("/admin/pages/add__product.jsp")
+                    .forward(req, resp);
+            return;
+        }
+
+        if (pathInfo.equals("/edit-product")) {
+            String productIDStr = req.getParameter("productID");
+            if (productIDStr != null && !productIDStr.isEmpty()) {
+                try {
+                    int productID = Integer.parseInt(productIDStr);
+
+                    // Gọi service để lấy dữ liệu sản phẩm
+                    Product product = this.productService.getProductByID(productID);
+                    List<ProductImage> images = this.productService.getImagesByID(productID);
+
+                    // Đưa dữ liệu vào request attribute để JSP có thể hiển thị
+                    req.setAttribute("product", product);
+                    req.setAttribute("images", images);
+
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                }
+            }
+            // Forward sang trang chi tiết
+            req.getRequestDispatcher("/admin/pages/product__details.jsp").forward(req, resp);
             return;
         }
 
@@ -85,21 +112,6 @@ public class AdminProductController extends HttpServlet {
             }
             this.getFilterProduct(req, resp, page);
         }
-
-//        if (action.contains("new-products")) {
-//            String jsonBody = req.getReader().lines().collect(Collectors.joining());
-//            System.out.println(jsonBody);
-//
-//            Type type = new TypeToken<HashMap<String, Object>>() {}.getType();
-//            Map<String, Object> map = gson.fromJson(jsonBody, type);
-//
-//            map.forEach((k, v) -> System.out.println(k + " -> " + v));
-//
-//            resp.getWriter().write("""
-//                      { "status": "1234" }\s
-//                   \s""");
-//            this.addNewProduct(req, resp);
-//        }
     }
 
 
@@ -108,14 +120,23 @@ public class AdminProductController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String pathInfo = req.getPathInfo();
 
-        if (pathInfo != null && pathInfo.equals("/details")) {
+        if (pathInfo != null && pathInfo.equals("/add-product")) {
             this.addNewProduct(req, resp);
+            return;
+        }
+
+        if (pathInfo != null && pathInfo.equals("/edit-product")) {
+            this.editProduct(req, resp);
+            return;
+        }
+
+        if (pathInfo != null && pathInfo.equals("/delete-product")) {
+            this.deleteProduct(req, resp);
             return;
         }
 
         this.doGet(req, resp);
     }
-
 
     private void getProductCards(HttpServletRequest request, HttpServletResponse response, int pageIndex) throws IOException {
         PageInformation<AdminProductCard> page = this.productService.getProduct(pageIndex);
@@ -127,9 +148,6 @@ public class AdminProductController extends HttpServlet {
 
     private void getSearchProduct(HttpServletRequest request, HttpServletResponse response, int pageIndex) throws IOException {
         PageInformation<AdminProductCard> searchProductCards = this.productService.searchProduct(request.getParameter("name"), pageIndex);
-        System.out.println("Search name is");
-        System.out.println(request.getParameter("name"));
-
 
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
@@ -150,8 +168,121 @@ public class AdminProductController extends HttpServlet {
         response.getWriter().write(gson.toJson(filterProducts));
     }
 
-    private void addNewProduct(HttpServletRequest req, HttpServletResponse resp) {
+    private void addNewProduct(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String productName = req.getParameter("product-name");
+        String category = req.getParameter("category");
+        String brand = req.getParameter("brand");
+        String startDate = req.getParameter("product-receipt-day");
+        String endDate = req.getParameter("product-expire-day");
+        String description = req.getParameter("product-description");
+        int quantity = Integer.parseInt(req.getParameter("unit-qty[]"));
+        int price = Integer.parseInt(req.getParameter("unit-price[]"));
+
+        Product product = new Product();
+        product.setName(productName);
+        product.setBrand(brand);
+        product.setCategory(category);
+        product.setDescription(description);
+        product.setStartDate(Date.valueOf(startDate));
+        product.setEndDate(Date.valueOf(endDate));
+        product.setPrice(price);
+        product.setQuantity(quantity);
 
 
+        List<ProductImage> productImage = new ArrayList<>();
+
+        String mainImage = req.getParameter("mainImage");
+        if (mainImage != null && !mainImage.isBlank()) {
+            productImage.add(new ProductImage(mainImage, 1));
+        }
+
+        // ảnh phụ
+        String[] secondaryImages = req.getParameterValues("secondaryImages[]");
+        if (secondaryImages != null) {
+            for (String url : secondaryImages) {
+                if (url != null && !url.isBlank()) {
+                    productImage.add(new ProductImage(url, 0));
+                }
+            }
+        }
+
+        int productID = this.productService.addNewProduct(product, productImage);
+        System.out.println(productID);
+        resp.sendRedirect(req.getContextPath() + "/admin/products");
+    }
+
+    private void editProduct(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String productID = req.getParameter("productID");
+        if (productID == null || productID.isBlank()) {
+            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Missing productID");
+            return;
+        }
+
+        String productName = req.getParameter("product-name");
+        String category = req.getParameter("category");
+        String brand = req.getParameter("brand");
+        String startDate = req.getParameter("product-receipt-day");
+        String endDate = req.getParameter("product-expire-day");
+        String description = req.getParameter("product-description");
+        int quantity = Integer.parseInt(req.getParameter("unit-qty[]"));
+        int price = Integer.parseInt(req.getParameter("unit-price[]"));
+
+        Product productEdit = new Product();
+        productEdit.setName(productName);
+        productEdit.setBrand(brand);
+        productEdit.setCategory(category);
+        productEdit.setDescription(description);
+        if (startDate != null && !startDate.isEmpty()) {
+            productEdit.setStartDate(Date.valueOf(startDate));
+        }
+        if (endDate != null && !endDate.isEmpty()) {
+            productEdit.setEndDate(Date.valueOf(endDate));
+        }
+        productEdit.setQuantity(quantity);
+        productEdit.setPrice(price);
+
+
+        List<ProductImage> productImage = new ArrayList<>();
+
+        String mainImage = req.getParameter("mainImage");
+        if (mainImage != null && !mainImage.isBlank()) {
+            productImage.add(new ProductImage(mainImage, 1));
+        }
+
+        // ảnh phụ
+        String[] secondaryImages = req.getParameterValues("secondaryImages[]");
+        if (secondaryImages != null) {
+            for (String url : secondaryImages) {
+                if (url != null && !url.isBlank()) {
+                    productImage.add(new ProductImage(url, 0));
+                }
+            }
+        }
+
+        this.productService.updateProduct(productEdit, productImage, Integer.parseInt(productID));
+
+        resp.sendRedirect(req.getContextPath() + "/admin/products");
+    }
+
+    private void deleteProduct(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String productIDStr = req.getParameter("productID");
+
+        if (productIDStr != null && !productIDStr.isEmpty()) {
+            try {
+                int productID = Integer.parseInt(productIDStr);
+
+                // Gọi service để xóa (Bạn cần đảm bảo Service có hàm này)
+                boolean isDeleted = this.productService.deleteProduct(productID);
+
+                if (isDeleted) {
+                    resp.setStatus(HttpServletResponse.SC_OK);
+                    resp.getWriter().write("Success");
+                } else {
+                    resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Không thể xóa sản phẩm");
+                }
+            } catch (NumberFormatException | IOException e) {
+                resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "ID sản phẩm không hợp lệ");
+            }
+        }
     }
 }

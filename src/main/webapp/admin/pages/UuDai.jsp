@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,167 +31,51 @@
         <div class="content__panel">
           <div class="panel-header">
             <div class="toolbar">
-              <a href="ThemUuDai.jsp"><button class="new-btn" type="button">+ Ưu đãi mới</button></a>
+              <a href="${pageContext.request.contextPath}/admin/add_voucher"><button class="new-btn" type="button">+ Ưu đãi mới</button></a>
             </div>
           </div>
 
           <div class="offers">
-            <a class="card-link" href="QuanLyUuDai.jsp" aria-label="Xem chi tiết ưu đãi dành cho sữa bột">
-              <article class="card" role="listitem" data-category="sua" data-customer="tat-ca" data-promo="discount">
+            <c:if test="${empty vouchers}">
+              <p class="muted" style="padding: 16px;">Chưa có ưu đãi nào. Hãy tạo ưu đãi mới.</p>
+            </c:if>
+
+            <c:forEach items="${vouchers}" var="voucher">
+              <a class="card-link" href="${pageContext.request.contextPath}/admin/manage_voucher?id=${voucher.id}" title="Quản lý ưu đãi">
+              <article class="card" role="listitem" data-promo="${voucher.voucher_type}">
                 <figure class="card__figure">
-                  <div class="promo-icon promo-discount" aria-hidden="true"><i class="fa-solid fa-credit-card"></i></div>
+                  <c:choose>
+                    <c:when test="${voucher.voucher_type.name() == 'SHIPPING'}">
+                      <div class="promo-icon promo-shipping" aria-hidden="true"><i class="fa-solid fa-truck"></i></div>
+                    </c:when>
+                    <c:otherwise>
+                      <div class="promo-icon promo-discount" aria-hidden="true"><i class="fa-solid fa-credit-card"></i></div>
+                    </c:otherwise>
+                  </c:choose>
                 </figure>
                 <div class="info">
-                  <h4>Ưu đãi dành cho sữa bột</h4>
-                  <p>Giảm 15% cho các sản phẩm sữa bột chọn lọc, áp dụng kèm mã giảm giá.</p>
-                  <p class="muted">Áp dụng cho đơn từ: 200.000đ</p>
-                  <p class="muted">Hạn sử dụng: 30/11/2025</p>
-                  <button class="time-pill" type="button">Thời hạn ưu đãi còn: 2 ngày</button>
+                  <h4>${voucher.code != null ? voucher.code : 'Ưu đãi'}</h4>
+                  <p>${voucher.description}</p>
+                  <p class="muted">Loại: ${voucher.voucher_type.name() == 'SHIPPING' ? 'Giảm giá ship' : 'Giảm giá sản phẩm'}</p>
+                  <c:if test="${voucher.min_order_value != null}">
+                    <p class="muted">Áp dụng cho đơn từ: <fmt:formatNumber value="${voucher.min_order_value}" type="number" groupingUsed="true"/> ₫</p>
+                  </c:if>
+                  <c:if test="${voucher.end_date != null}">
+                    <p class="muted">Hạn sử dụng: ${voucher.end_date}</p>
+                  </c:if>
+                  <c:if test="${voucher.usage_limt != null}">
+                    <p class="muted">Số lượng: ${voucher.usage_limt}</p>
+                  </c:if>
                 </div>
               </article>
-            </a>
-
-            <a class="card-link" href="QuanLyUuDai.jsp" aria-label="Xem chi tiết ưu đãi vận chuyển miễn phí">
-              <article class="card" role="listitem" data-category="sua" data-customer="tat-ca" data-promo="shipping">
-                <figure class="card__figure">
-                  <div class="promo-icon promo-shipping" aria-hidden="true"><i class="fa-solid fa-truck"></i></div>
-                </figure>
-                <div class="info">
-                  <h4>Ưu đãi vận chuyển miễn phí</h4>
-                  <p>Miễn phí giao hàng cho đơn hàng sữa bột và hàng mẹ bé trong khu vực nội thành.</p>
-                  <p class="muted">Áp dụng cho đơn từ: 300.000đ</p>
-                  <p class="muted">Hạn sử dụng: 30/11/2025</p>
-                  <button class="time-pill" type="button">Thời hạn ưu đãi còn: 3 ngày</button>
-                </div>
-              </article>
-            </a>
-
-            <a class="card-link" href="QuanLyUuDai.jsp" aria-label="Xem chi tiết ưu đãi vận chuyển nhanh">
-              <article class="card" role="listitem" data-category="all" data-customer="tat-ca" data-promo="shipping">
-                <figure class="card__figure">
-                  <div class="promo-icon promo-shipping" aria-hidden="true"><i class="fa-solid fa-truck"></i></div>
-                </figure>
-                <div class="info">
-                  <h4>Ưu đãi vận chuyển nhanh</h4>
-                  <p>Giảm phí vận chuyển nhanh 50% cho đơn hàng nội thành khi dùng mã <strong>SHIP50</strong>.</p>
-                  <p class="muted">Áp dụng cho đơn từ: 150.000đ</p>
-                  <p class="muted">Hạn sử dụng: 30/12/2025</p>
-                  <button class="time-pill" type="button">Thời hạn ưu đãi còn: 1 tháng</button>
-                </div>
-              </article>
-            </a>
-
-            <a class="card-link" href="QuanLyUuDai.jsp" aria-label="Xem chi tiết ưu đãi miễn phí vận chuyển cho đơn đầu">
-              <article class="card" role="listitem" data-category="all" data-customer="tat-ca" data-promo="shipping">
-                <figure class="card__figure">
-                  <div class="promo-icon promo-shipping" aria-hidden="true"><i class="fa-solid fa-truck"></i></div>
-                </figure>
-                <div class="info">
-                  <h4>Miễn phí vận chuyển cho đơn đầu</h4>
-                  <p>Tặng miễn phí giao hàng cho khách hàng lần đầu mua khi sử dụng mã <strong>FREESHIP1</strong>.</p>
-                  <p class="muted">Áp dụng cho đơn từ: 0đ</p>
-                  <p class="muted">Hạn sử dụng: 31/01/2026</p>
-                  <button class="time-pill" type="button">Thời hạn ưu đãi còn: 2 tháng</button>
-                </div>
-              </article>
-            </a>
-
-            <a class="card-link" href="QuanLyUuDai.jsp" aria-label="Xem chi tiết ưu đãi combo ăn dặm">
-              <article class="card" role="listitem" data-category="an-dam" data-customer="tat-ca" data-promo="discount">
-                <figure class="card__figure">
-                  <div class="promo-icon promo-discount" aria-hidden="true"><i class="fa-solid fa-credit-card"></i></div>
-                </figure>
-                <div class="info">
-                  <h4>Ưu đãi combo ăn dặm</h4>
-                  <p>Combo đồ ăn dặm giảm 20% khi mua theo set, thích hợp cho bé 6–12 tháng.</p>
-                  <p class="muted">Áp dụng cho đơn từ: 250.000đ</p>
-                  <p class="muted">Hạn sử dụng: 31/12/2025</p>
-                  <button class="time-pill" type="button">Thời hạn ưu đãi còn: 2 tháng</button>
-                </div>
-              </article>
-            </a>
-
-            <a class="card-link" href="QuanLyUuDai.jsp" aria-label="Xem chi tiết ưu đãi miễn phí vận chuyển toàn quốc">
-              <article class="card" role="listitem" data-category="sua" data-customer="tat-ca" data-promo="shipping">
-                <figure class="card__figure">
-                  <div class="promo-icon promo-shipping" aria-hidden="true"><i class="fa-solid fa-truck"></i></div>
-                </figure>
-                <div class="info">
-                  <h4>Miễn phí vận chuyển toàn quốc</h4>
-                  <p>Miễn phí giao hàng cho đơn hàng sữa bột và sản phẩm dinh dưỡng cho bé.</p>
-                  <p class="muted">Áp dụng cho đơn từ: 299.000đ</p>
-                  <p class="muted">Hạn sử dụng: 30/11/2025</p>
-                  <button class="time-pill" type="button">Thời hạn ưu đãi còn: 2 ngày</button>
-                </div>
-              </article>
-            </a>
-
-            <a class="card-link" href="QuanLyUuDai.jsp" aria-label="Xem chi tiết ưu đãi Flash Sale">
-              <article class="card" role="listitem" data-category="sua" data-customer="tat-ca" data-promo="discount">
-                <figure class="card__figure">
-                  <div class="promo-icon promo-discount" aria-hidden="true"><i class="fa-solid fa-credit-card"></i></div>
-                </figure>
-                <div class="info">
-                  <h4>Ưu đãi Flash Sale</h4>
-                  <p>Giảm giá đặc biệt - chỉ trong hôm nay.</p>
-                  <p class="muted">Áp dụng cho đơn từ: 500.000đ</p>
-                  <p class="muted">Hạn sử dụng: 10/11/2025</p>
-                  <button class="time-pill" type="button">Thời hạn: 1 ngày</button>
-                </div>
-              </article>
-            </a>
-
-            <a class="card-link" href="QuanLyUuDai.jsp" aria-label="Xem chi tiết voucher giảm giá 30%">
-              <article class="card" role="listitem" data-category="sua" data-customer="tat-ca" data-promo="discount">
-                <figure class="card__figure">
-                  <div class="promo-icon promo-discount" aria-hidden="true"><i class="fa-solid fa-credit-card"></i></div>
-                </figure>
-                <div class="info">
-                  <h4>Voucher giảm giá 30%</h4>
-                  <p>Voucher giảm 30% dành cho khách hàng thân thiết.</p>
-                  <p class="muted">Áp dụng cho đơn từ: 1 sản phẩm</p>
-                  <p class="muted">Hạn sử dụng: 20/11/2025</p>
-                  <button class="time-pill" type="button">Thời hạn: 5 ngày</button>
-                </div>
-              </article>
-            </a>
-
-            <a class="card-link" href="QuanLyUuDai.jsp" aria-label="Xem chi tiết ưu đãi giảm 50% phí ship">
-              <article class="card" role="listitem" data-category="sua" data-customer="tat-ca" data-promo="shipping">
-                <figure class="card__figure">
-                  <div class="promo-icon promo-shipping" aria-hidden="true"><i class="fa-solid fa-truck"></i></div>
-                </figure>
-                <div class="info">
-                  <h4>Giảm 50% phí ship</h4>
-                  <p>Giảm 50% phí vận chuyển khi đặt mua online.</p>
-                  <p class="muted">Áp dụng cho đơn từ: 300.000đ</p>
-                  <p class="muted">Hạn sử dụng: 01/12/2025</p>
-                  <button class="time-pill" type="button">Thời hạn: 21 ngày</button>
-                </div>
-              </article>
-            </a>
-
-            <a class="card-link" href="QuanLyUuDai.jsp" aria-label="Xem chi tiết ưu đãi giảm giá đơn hàng">
-              <article class="card" role="listitem" data-category="sua" data-customer="tat-ca" data-promo="discount">
-                <figure class="card__figure">
-                  <div class="promo-icon promo-discount" aria-hidden="true"><i class="fa-solid fa-credit-card"></i></div>
-                </figure>
-                <div class="info">
-                  <h4>Giảm giá đơn hàng</h4>
-                  <p>Ưu đãi giảm giá dành cho mọi khách hàng.</p>
-                  <p class="muted">Áp dụng cho đơn từ: 150.000đ</p>
-                  <p class="muted">Hạn sử dụng: 31/12/2025</p>
-                  <button class="time-pill" type="button">Thời hạn: 60 ngày</button>
-                </div>
-              </article>
-            </a>
-
-          </div> 
-        </div> 
+              </a>
+            </c:forEach>
+          </div>
+        </div>
       </main>
     </div>
   </div> 
-  <script src="../scripts/components/extendSidebar.js"></script>
+  <script src="${pageContext.request.contextPath}/admin/scripts/components/extendSidebar.js"></script>
 </body>
 
 </html>

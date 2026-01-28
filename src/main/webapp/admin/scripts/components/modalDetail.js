@@ -10,6 +10,22 @@
     const trigger = e.target.closest('[data-toggle="detail"]');
     if (trigger) {
       const modal = document.querySelector(trigger.dataset.target || '.mail-detail');
+      // Lấy thông tin từ card
+      const subject = trigger.querySelector('.mail-subject strong')?.textContent || '';
+      const sender = trigger.querySelector('.mail-sender')?.textContent || '';
+      const date = trigger.querySelector('.mail-date')?.textContent || '';
+      const message = trigger.querySelector('.preview')?.textContent || '';
+      // Gán vào modal
+      if (modal) {
+        const modalSubject = modal.querySelector('.detail-subject');
+        const modalSender = modal.querySelector('.detail-sender');
+        const modalDate = modal.querySelector('.detail-date');
+        const modalMessage = modal.querySelector('.detail-message');
+        if (modalSubject) modalSubject.textContent = subject;
+        if (modalSender) modalSender.textContent = sender;
+        if (modalDate) modalDate.textContent = date;
+        if (modalMessage) modalMessage.textContent = message;
+      }
       toggle(modal, true);
       return;
     }

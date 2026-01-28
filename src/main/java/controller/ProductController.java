@@ -37,12 +37,17 @@ public class ProductController extends HttpServlet
             case "search":
                 this.searchProductsByName(request, response);
                 return;
+            case "filter":
+                this.filterProducts(request, response);
+                return;
             default:
                 response.sendError(HttpServletResponse.SC_NOT_FOUND);
                 return;
         }
 
     }
+
+
 
 
     @Override
@@ -66,11 +71,85 @@ public class ProductController extends HttpServlet
         response.getWriter().write(json);
     }
 
+    private void filterProducts(HttpServletRequest request, HttpServletResponse response) throws IOException
+    {
+        Gson gson = new Gson();
+        
+        // Đọc JSON từ request body
+        StringBuilder sb = new StringBuilder();
+        String line;
+        while ((line = request.getReader().readLine()) != null)
+        {
+            sb.append(line);
+        }
+        String jsonData = sb.toString();
+        
+        System.out.println("============ FILTER DATA ============");
+        System.out.println("Raw JSON: " + jsonData);
+        
+        // Parse JSON thành object
+        @SuppressWarnings("unchecked")
+        java.util.Map<String, java.util.List<String>> filterData = gson.fromJson(jsonData, java.util.Map.class);
+        
+        // Lấy filter data
+        List<String> brands = filterData.get("brands");
+        List<String> types = filterData.get("types");
+        List<String> ratingStrings = filterData.get("ratings");
+        
+        // Convert rating strings to integers
+        List<Integer> ratings = null;
+        if (ratingStrings != null && !ratingStrings.isEmpty()) {
+            ratings = new java.util.ArrayList<>();
+            for (String ratingStr : ratingStrings) {
+                try {
+                    ratings.add(Integer.parseInt(ratingStr));
+                } catch (NumberFormatException e) {
+                    System.err.println("Invalid rating value: " + ratingStr);
+                }
+            }
+        }
+        
+        System.out.println("\n----- Brands -----");
+        if (brands != null) {
+            brands.forEach(brand -> System.out.println("  - " + brand));
+        }
+        
+        System.out.println("\n----- Types -----");
+        if (types != null) {
+            types.forEach(type -> System.out.println("  - " + type));
+        }
+        
+        System.out.println("\n----- Ratings -----");
+        if (ratings != null) {
+            ratings.forEach(rating -> System.out.println("  - " + rating));
+        }
+        
+        System.out.println("====================================\n");
+        
+        // Gọi service để lấy products
+        List<ProductCard> products = this.productService.getFilteredProducts(brands, types, ratings);
+        
+        // Làm tròn rating
+        for(ProductCard pc: products) {
+            pc.setAvg_rating(Math.floor(pc.getAvg_rating()));
+        }
+        
+        System.out.println("Found " + products.size() + " products");
+        
+        // Trả về JSON response
+        String json = gson.toJson(products);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
+    }
+
 
 
     private void showProductByPage(HttpServletRequest request, HttpServletResponse response)
     {
         String pageParam = request.getParameter("page");
+        String searchParam = request.getParameter("search");
+        String categoryParam = request.getParameter("category");
         int page = 1;
 
         if (pageParam != null && !pageParam.isEmpty())
@@ -87,20 +166,63 @@ public class ProductController extends HttpServlet
 
         try
         {
-            List<ProductCard> products = productService.getProductByPage(page, PAGE_SIZE);
+            List<ProductCard> products;
+            int totalProducts;
+
+            if(searchParam != null && !searchParam.trim().isEmpty())
+            {
+                products = this.productService.getProductsByName(searchParam);
+                totalProducts = products.size();
+
+                int fromIndex = (page - 1) * PAGE_SIZE;
+                int toIndex = Math.min(fromIndex + PAGE_SIZE, totalProducts);
+                if(fromIndex < totalProducts)
+                {
+                    products = products.subList(fromIndex, toIndex);
+                }
+            }else if(categoryParam != null && !categoryParam.trim().isEmpty())
+            {
+                products = this.productService.getProductsByCategory(categoryParam);
+                totalProducts = products.size();
+
+                int fromIndex = (page - 1) * PAGE_SIZE;
+                int toIndex = Math.min(fromIndex + PAGE_SIZE, totalProducts);
+                if(fromIndex < totalProducts)
+                {
+                    products = products.subList(fromIndex, toIndex);
+                }
+            }else
+            {
+                products = this.productService.getProductByPage(page, PAGE_SIZE);
+                totalProducts = this.productService.getTotalProducts();
+            }
 
             for(ProductCard pc: products)
             {
                 pc.setAvg_rating(Math.floor(pc.getAvg_rating()));
             }
 
-            int totalProducts = productService.getTotalProducts();
             int totalPages = (int) Math.ceil((double) totalProducts / PAGE_SIZE);
 
             if (page > totalPages && totalPages > 0)
             {
                 page = totalPages;
-                products = productService.getProductByPage(page, PAGE_SIZE);
+                if (searchParam != null && !searchParam.trim().isEmpty())
+                {
+                    products = this.productService.getProductsByName(searchParam);
+                    int fromIndex = (page - 1) * PAGE_SIZE;
+                    int toIndex = Math.min(fromIndex + PAGE_SIZE, products.size());
+                    products = products.subList(fromIndex, toIndex);
+                }else if(categoryParam != null && !categoryParam.trim().isEmpty())
+                {
+                    products = this.productService.getProductsByCategory(categoryParam);
+                    int fromIndex = (page - 1) * PAGE_SIZE;
+                    int toIndex = Math.min(fromIndex + PAGE_SIZE, products.size());
+                    products = products.subList(fromIndex, toIndex);
+                }else
+                {
+                    products = this.productService.getProductByPage(page, PAGE_SIZE);
+                }
                 for(ProductCard pc: products)
                 {
                     pc.setAvg_rating(Math.floor(pc.getAvg_rating()));
@@ -110,6 +232,7 @@ public class ProductController extends HttpServlet
             request.setAttribute("products", products);
             request.setAttribute("currentPage", page);
             request.setAttribute("totalPages", totalPages);
+            request.setAttribute("searchKeyword", searchParam);
 
             request.getRequestDispatcher("/customer/pages/Products.jsp").forward(request, response);
         } catch (SQLException e)

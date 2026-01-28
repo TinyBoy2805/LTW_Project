@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="../styles/index.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/customer/styles/index.css">
     <script>
         window.APP_CONTEXT_PATH = `${pageContext.request.contextPath}`;
     </script>
@@ -93,15 +93,31 @@
                 </div>
 
                 <!-- Right Side - Form -->
-                <form action="" class="main__contact-form">
+                <form action="${pageContext.request.contextPath}/contact" method="post" class="main__contact-form">
                     <div class="form-header">
                         <h3>Gửi tin nhắn cho chúng tôi</h3>
                         <p>Điền thông tin bên dưới và chúng tôi sẽ liên hệ lại sớm nhất</p>
                     </div>
 
+                    <%-- Thông báo gửi tin nhắn --%>
+                    <% Boolean sendStatus = (Boolean) request.getAttribute("send_status"); %>
+                    <% if (sendStatus != null) { %>
+                        <% if (sendStatus) { %>
+                            <div class="contact-alert contact-alert-success">
+                                <i class="fa-solid fa-circle-check"></i>
+                                <span>Gửi tin nhắn thành công! Chúng tôi sẽ phản hồi bạn sớm nhất.</span>
+                            </div>
+                        <% } else { %>
+                            <div class="contact-alert contact-alert-error">
+                                <i class="fa-solid fa-circle-xmark"></i>
+                                <span>Gửi tin nhắn thất bại! Vui lòng thử lại sau.</span>
+                            </div>
+                        <% } %>
+                    <% } %>
+
                     <div class="form-group">
                         <label>Họ và tên <span class="required">*</span></label>
-                        <input type="text" name="fullname" placeholder="Nguyễn Văn A" required>
+                        <input type="text" name="username" placeholder="Nguyễn Văn A" required>
                     </div>
 
                     <div class="form-row">

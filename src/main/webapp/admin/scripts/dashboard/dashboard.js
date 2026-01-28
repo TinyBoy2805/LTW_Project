@@ -13,16 +13,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     const dashboardData = await fetchData("/LTW_Project_war_exploded/admin/dashboard/api")
         .then(data => data);
 
-    const todayRevenue = query("#today-revenue");
+    const todayRevenue = query("#today-revenue")
     const monthRevenue = query("#month-revenue")
     const yearRevenue = query("#year-revenue")
 
-    todayRevenue.innerHTML = dashboardData["dayRevenue"]
-    monthRevenue.innerHTML = dashboardData["monthRevenue"]
-    yearRevenue.innerHTML = dashboardData["yearRevenue"]
-    console.log(todayRevenue);
-    console.log(monthRevenue);
-    console.log(yearRevenue);
+    todayRevenue.innerHTML = dashboardData["dayRevenue"].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + "đ"
+    monthRevenue.innerHTML = dashboardData["monthRevenue"].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + "đ"
+    yearRevenue.innerHTML = dashboardData["yearRevenue"].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + "đ"
+
 
     const chartPie = query("#pie");
 
@@ -99,15 +97,15 @@ document.addEventListener("DOMContentLoaded", async () => {
             },
             series: [
                 {
-                    data: revenues, // Dữ liệu giả định
+                    data: revenues,
                     type: 'bar',
                     itemStyle: {
-                        // Thiết lập màu sắc cột (gradient)
+
                         color: new echarts.graphic.LinearGradient(
                             0, 0, 0, 1,
                             [
-                                { offset: 0, color: '#F654a9' }, // Màu hồng đậm ở trên
-                                { offset: 1, color: '#ffc8e2' }  // Màu hồng nhạt ở dưới
+                                { offset: 0, color: '#F654a9' },
+                                { offset: 1, color: '#ffc8e2' }
                             ]
                         ),
                         borderRadius: [4, 4, 0, 0]
@@ -124,15 +122,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 })
 
 
-const renderPieChart = (element, data) => {
-
-}
-
-
-const renderBarChart = (element, data) => {
-
-}
-
 const renderTable = (dashboardData) => {
     const topInventories = dashboardData["topInventory"];
     let order = 1;
@@ -146,7 +135,7 @@ const renderTable = (dashboardData) => {
             inventory["name"],
             inventory["brand"],
             inventory["quantity"],
-            inventory["price"]
+            inventory["price"].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + "đ"
         )
         order++;
         tr.innerHTML = columnString;

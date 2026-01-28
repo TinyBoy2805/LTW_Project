@@ -117,8 +117,8 @@
                                 <th>Thứ tự</th>
                                 <th>Mã sản phẩm</th>
                                 <th>Tên sản phẩm</th>
-                                <th>Xuất xứ</th>
-                                <th>Trạng thái</th>
+                                <th>Thương hiệu</th>
+                                <th>Số lượng</th>
                                 <th>Đơn giá</th>
                             </tr>
                         </thead>
@@ -150,7 +150,7 @@
                         </tbody>
                     </table>
                     <div class="table__bottom">
-                        <a href="product.jsp"><button class="viewmore">Xem đầy đủ</button></a>
+                        <a href="${pageContext.request.contextPath}/admin/products"><button class="viewmore">Xem đầy đủ</button></a>
                     </div>
                 </div>
             </div>

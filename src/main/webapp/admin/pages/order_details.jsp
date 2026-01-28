@@ -22,7 +22,7 @@
 <body>
 <div class="order_details main">
     <aside class="sidebar">
-        <% request.setAttribute("activePage", "order"); %>
+        <% request.setAttribute("activePage", "orders"); %>
         <%@ include file="../components/sidebar.jsp" %>
     </aside>
     <div class="container">
@@ -51,7 +51,6 @@
                             <div class="order-sumary">
                                 <div class="order-sumary__details">
                                     <p class="orders__price">Số lượng: ${item.quantity}</p>
-                                    <p class="orders__price">Phân loại: ${item.unit}</p>
                                     <p class="orders__price">Giá: <fmt:formatNumber value="${item.priceAtPurchase}"
                                                                                     type="number"
                                                                                     groupingUsed="true"/>đ</p>

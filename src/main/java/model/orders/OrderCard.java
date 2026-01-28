@@ -15,7 +15,6 @@ public class OrderCard {
     private String order_status;
     private double total_price;
     private LocalDateTime created_at;
-//    private Date created_att;
 
     public OrderCard() {};
 

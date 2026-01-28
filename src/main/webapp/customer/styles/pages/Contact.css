@@ -434,4 +434,58 @@
     }
 }
 
+/* Contact Alert Messages */
+.contact-alert 
+{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 500;
+    animation: slideDown 0.4s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.contact-alert i 
+{
+    font-size: 20px;
+}
+
+.contact-alert-success 
+{
+    background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+    border: 1px solid #c3e6cb;
+    color: #155724;
+}
+
+.contact-alert-success i 
+{
+    color: #28a745;
+}
+
+.contact-alert-error 
+{
+    background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+}
+
+.contact-alert-error i 
+{
+    color: #dc3545;
+}
+
+
 

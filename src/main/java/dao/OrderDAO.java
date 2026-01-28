@@ -1,12 +1,8 @@
 package dao;
 
-import model.Date;
 import model.orders.*;
 
-import java.sql.PreparedStatement;
 import java.sql.Timestamp;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 public class OrderDAO extends BaseDao {
@@ -26,10 +22,8 @@ public class OrderDAO extends BaseDao {
                 SELECT O.order_code, PI.img_url, P.name, O.order_status, O.total_price, O.created_at, O.id
                 FROM ORDERS AS O JOIN order_items AS OI ON
                 O.id = OI.order_id
-                JOIN product_variants AS PV ON
-                OI.product_variant_id = PV.id
                 JOIN products AS P ON
-                PV.product_id = P.id
+                OI.product_id = P.id
                 JOIN product_images AS PI ON
                 P.id = PI.product_id AND PI.is_main = 1
                 GROUP BY O.order_code
@@ -45,12 +39,11 @@ public class OrderDAO extends BaseDao {
                                 .map((rs, ctx) -> {
                                     OrderCard orderCard = new OrderCard();
 
-                                    orderCard.setOrder_code(rs.getString("O.order_code"));
-                                    orderCard.setName(rs.getString("P.name"));
-                                    orderCard.setUrl(rs.getString("PI.img_url"));
-                                    orderCard.setTotal_price(rs.getDouble("O.total_price"));
-                                    String status = rs.getString("order_status");
-                                    orderCard.setOrder_status(OrderStatus.valueOf(status.trim().toUpperCase()).getStatus());
+                                    orderCard.setOrder_code(rs.getString("order_code"));
+                                    orderCard.setName(rs.getString("name"));
+                                    orderCard.setUrl(rs.getString("img_url"));
+                                    orderCard.setTotal_price(rs.getDouble("total_price"));
+                                    orderCard.setOrder_status(rs.getString("order_status"));
                                     Timestamp ts = rs.getTimestamp("created_at");
                                     orderCard.setCreated_at(ts.toLocalDateTime());
                                     orderCard.setOrderID(rs.getInt("id"));
@@ -67,10 +60,8 @@ public class OrderDAO extends BaseDao {
                 SELECT O.order_code, PI.img_url, P.name, O.order_status, O.total_price, O.created_at, O.id
                 FROM ORDERS AS O JOIN order_items AS OI ON
                 O.id = OI.order_id
-                JOIN product_variants AS PV ON
-                OI.product_variant_id = PV.id
                 JOIN products AS P ON
-                PV.product_id = P.id
+                OI.product_id = P.id
                 JOIN product_images AS PI ON
                 P.id = PI.product_id AND PI.is_main = 1
                 WHERE P.name like :name
@@ -90,8 +81,7 @@ public class OrderDAO extends BaseDao {
                             orderCard.setName(rs.getString("P.name"));
                             orderCard.setUrl(rs.getString("PI.img_url"));
                             orderCard.setTotal_price(rs.getDouble("O.total_price"));
-                            String status = rs.getString("order_status");
-                            orderCard.setOrder_status(OrderStatus.valueOf(status.trim().toUpperCase()).getStatus());
+                            orderCard.setOrder_status(rs.getString("order_status"));
 
                             Timestamp ts = rs.getTimestamp("created_at");
                             orderCard.setCreated_at(ts.toLocalDateTime());
@@ -109,8 +99,7 @@ public class OrderDAO extends BaseDao {
                     SELECT COUNT(DISTINCT O.id)
                     FROM ORDERS O
                     JOIN order_items OI ON O.id = OI.order_id
-                    JOIN product_variants PV ON OI.product_variant_id = PV.id
-                    JOIN products P ON PV.product_id = P.id
+                    JOIN products P ON OI.product_id = P.id
                     WHERE P.name LIKE :name
                 """;
 
@@ -127,8 +116,7 @@ public class OrderDAO extends BaseDao {
                 SELECT O.order_code, PI.img_url, P.name, O.order_status, O.total_price, O.created_at, O.id
                 FROM ORDERS AS O 
                 JOIN order_items AS OI ON O.id = OI.order_id
-                JOIN product_variants AS PV ON OI.product_variant_id = PV.id
-                JOIN products AS P ON PV.product_id = P.id
+                JOIN products AS P ON OI.product_id = P.id
                 JOIN product_images AS PI ON P.id = PI.product_id AND PI.is_main = 1
                 WHERE 1 = 1
                 """);
@@ -174,8 +162,7 @@ public class OrderDAO extends BaseDao {
                         orderCard.setName(rs.getString("P.name"));
                         orderCard.setUrl(rs.getString("PI.img_url"));
                         orderCard.setTotal_price(rs.getDouble("O.total_price"));
-                        String status = rs.getString("order_status");
-                        orderCard.setOrder_status(OrderStatus.valueOf(status.trim().toUpperCase()).getStatus());
+                        orderCard.setOrder_status(rs.getString("order_status"));
 
                         Timestamp ts = rs.getTimestamp("created_at");
                         orderCard.setCreated_at(ts.toLocalDateTime());
@@ -194,8 +181,7 @@ public class OrderDAO extends BaseDao {
                     SELECT COUNT(DISTINCT O.id)
                     FROM ORDERS O
                     JOIN order_items OI ON O.id = OI.order_id
-                    JOIN product_variants PV ON OI.product_variant_id = PV.id
-                    JOIN products P ON PV.product_id = P.id
+                    JOIN products P ON OI.product_id = P.id
                     WHERE 1=1
                 """);
 
@@ -223,13 +209,11 @@ public class OrderDAO extends BaseDao {
 
     public List<OrderItem> getOrderItemByID(String orderID) {
         String query = """
-                SELECT CONCAT(pv.unit_type, ' - ', pv.unit_value) as unit, oi.quantity, oi.price_at_purchase, 
+                SELECT oi.quantity, oi.price_at_purchase, 
                 p.name, pi.img_url, o.order_status, o.order_code
-                from product_variants pv
-                join order_items oi
-                on oi.product_variant_id = pv.id
+                from order_items oi
                 JOIN products p
-                on p.id = pv.product_id
+                on p.id = oi.product_id
                 JOIN product_images pi
                 ON pi.product_id = p.id
                 JOIN orders o
@@ -245,10 +229,8 @@ public class OrderDAO extends BaseDao {
                             orderItem.setName(rs.getString("name"));
                             orderItem.setImg_url(rs.getString("img_url"));
                             orderItem.setQuantity(rs.getInt("quantity"));
-                            orderItem.setUnit(rs.getString("unit"));
                             orderItem.setPriceAtPurchase(rs.getDouble("price_at_purchase"));
-                            String status = rs.getString("order_status");
-                            orderItem.setOrderStatus(OrderStatus.valueOf(status.trim().toUpperCase()).getStatus());
+                            orderItem.setOrderStatus(rs.getString("order_status"));
                             return orderItem;
                         })
                         .list()

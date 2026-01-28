@@ -44,13 +44,26 @@ const productList = document.querySelector('.content__grid__product');
 function renderCard(productCard) {
     const cardClone = document.querySelector("#card-template").content.cloneNode(true);
     const cardCloneQuery = cardClone.querySelector.bind(cardClone);
-    const url = productCard.url != null ? productCard.url : ""
-    cardCloneQuery(".product__img img").setAttribute("src", url);
+    let rawUrl = productCard.img_url;
+    let finalUrl = "";
+
+    if (rawUrl) {
+        if (rawUrl.startsWith('http') || rawUrl.startsWith('/LTW_Project_war_exploded')) {
+            finalUrl = rawUrl;
+        } else {
+            finalUrl = '/LTW_Project_war_exploded' + (rawUrl.startsWith('/') ? rawUrl : '/' + rawUrl);
+        }
+    }
+
+    cardCloneQuery(".product__img img").setAttribute("src", finalUrl);
     cardCloneQuery(".product__img img").setAttribute("alt", productCard.name);
     cardCloneQuery(".product__name").innerHTML = productCard.name;
     cardCloneQuery(".product__badge").innerHTML = `Số lượng: ${productCard.quantity}`
     cardCloneQuery(".product__price").innerHTML = productCard.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + "đ";
     cardCloneQuery(".product__buy").innerHTML = `Đã bán: ${productCard.buy_count}`;
+    const deleteBtn = cardCloneQuery(".delete-button");
+    deleteBtn.addEventListener('click', () => handleDeleteProduct(productCard.id));
+    cardCloneQuery(".edit-button").addEventListener('click', () => handleEditProduct(productCard.id));
     productList.append(cardClone);
 }
 
@@ -171,3 +184,58 @@ document.addEventListener("DOMContentLoaded", () => {
         fetchProductByFilter(dataFilter, 1).then(updateUI)
     })
 })
+
+function handleEditProduct(productId) {
+    window.location.href = `/LTW_Project_war_exploded/admin/products/edit-product?productID=${productId}`;
+}
+
+// Hàm xử lý xóa sản phẩm
+async function handleDeleteProduct(productId) {
+    const isConfirmed = confirm("Bạn có chắc chắn muốn xóa sản phẩm này không? Dữ liệu ảnh liên quan cũng sẽ bị xóa!");
+
+    if (isConfirmed) {
+        try {
+            const params = new URLSearchParams();
+            params.append('productID', productId);
+
+            const response = await axios.post(`/LTW_Project_war_exploded/admin/products/delete-product`, params);
+
+            if (response.status === 200) {
+                alert("Xóa sản phẩm thành công!");
+
+                refreshList();
+            }
+        } catch (error) {
+            console.error("Lỗi khi xóa sản phẩm:", error);
+            if (error.response && error.response.status === 500) {
+                alert("Không thể xóa sản phẩm này (có thể do ràng buộc dữ liệu đơn hàng).");
+            } else {
+                alert("Có lỗi xảy ra khi xóa sản phẩm. Vui lòng thử lại!");
+            }
+        }
+    }
+}
+
+/**
+ * Hàm hỗ trợ tải lại danh sách dựa trên chế độ đang xem
+ */
+function refreshList() {
+    const currentPage = Number(navigationPage.value) || 1;
+    let fetchPromise;
+
+    if (currentMode === 'SEARCH') {
+        const searchWord = document.getElementById('search_input').value;
+        fetchPromise = fetchProductBySearch(searchWord, currentPage);
+    } else if (currentMode === 'FILTER') {
+        const dataFilter = {
+            category: document.getElementById("filter__category").value === "all" ? null : document.getElementById("filter__category").value,
+            status: document.getElementById("filter__status").value || "active",
+            quantity: document.getElementById("filter__stock").value || "0",
+        };
+        fetchPromise = fetchProductByFilter(dataFilter, currentPage);
+    } else {
+        fetchPromise = fetchAllProductCard(currentPage);
+    }
+
+    fetchPromise.then(updateUI);
+}

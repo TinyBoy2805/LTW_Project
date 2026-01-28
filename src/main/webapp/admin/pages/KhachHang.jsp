@@ -28,26 +28,22 @@
       <main class="content" aria-labelledby="customer-title">
         <h3 class="content__title">Khách hàng</h3>
         <div class="content__panel">
-          <div class="panel-header">
-            <div class="tabs" role="tablist" aria-label="Lọc khách hàng">
-              <form method="get" action="${pageContext.request.contextPath}/khachhang" style="display:inline;">
-                <button type="submit" class="tab-btn" aria-selected="true">Tất cả khách hàng</button>
-              </form>
-            </div>
-            <div class="search__filter">
-              <form method="get" action="${pageContext.request.contextPath}/khachhang" class="search__box search__box--form">
-                <input type="text" name="search" id="customer-search" placeholder="Tìm kiếm khách hàng" value="${search != null ? search : ''}" class="search__input" />
-                <button type="submit" class="search__submit">
-                  <i class="fa-solid fa-search"></i>
-                </button>
-              </form>
-            </div>
-          </div>
+        <div class="panel-header">
+        <div class="tabs" role="tablist" aria-label="Lọc khách hàng">
+      <button type="button" class="tab-btn" aria-selected="true" onclick="window.location.href='${pageContext.request.contextPath}/admin/customer'">Tất cả khách hàng</button>
+      </div>
+      <div class="search__filter">
+      <form method="get" action="${pageContext.request.contextPath}/admin/customer" class="search__box search__box--form">
+       <input type="text" name="search" id="customer-search" placeholder="Tìm kiếm khách hàng" value="${search != null ? search : ''}" class="search__input" />
+       <button type="submit" class="search__submit">
+       <i class="fa-solid fa-search"></i>
+      </button>
+      </form>
+      </div>
+      </div>
 
-          <!-- Radio inputs must be siblings of the customers containers for CSS ~ selector to work -->
-          <input type="radio" name="kh_tab" id="kh_tab_all" checked hidden>
-
-          <!-- All customers (default) -->
+      <input type="radio" name="kh_tab" id="kh_tab_all" checked hidden>
+      
           <div class="customers customers-all" role="list">
             <c:choose>
               <c:when test="${not empty customers}">
@@ -61,7 +57,7 @@
                       <p><i class="fa-solid fa-envelope"></i> ${customer.email}</p>
                       <p><i class="fa-solid fa-phone"></i> ${customer.phone_number}</p>
                       <button class="detail-btn" type="button"
-                              onclick="window.location.href='${pageContext.request.contextPath}/quanlykhachhang?id=${customer.id}'">
+                              onclick="window.location.href='${pageContext.request.contextPath}/admin/manage_customer?id=${customer.id}'">
                         Chi tiết
                       </button>
                     </div>
@@ -72,10 +68,10 @@
                 <p>Chưa có khách hàng nào.</p>
               </c:otherwise>
             </c:choose>
-          </div> <!-- .customers -->
-        </div> <!-- .content__panel -->
-    </div> <!-- .content -->
-    <script src="../scripts/components/extendSidebar.js"></script>
+          </div> 
+        </div> 
+    </div> 
+    <script src="${pageContext.request.contextPath}/admin/scripts/components/extendSidebar.js"></script>
 </body>
 
 </html>

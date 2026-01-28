@@ -59,14 +59,11 @@ public class OrderController extends HttpServlet {
         if (action.contains("search")) {
             String pageParam = req.getParameter("page");
             int page = 1;
-            if(pageParam != null && !pageParam.isEmpty())
-            {
-                try
-                {
+            if (pageParam != null && !pageParam.isEmpty()) {
+                try {
                     page = Integer.parseInt(pageParam);
                     if (page < 1) page = 1;
-                } catch (NumberFormatException e)
-                {
+                } catch (NumberFormatException e) {
                     page = 1;
                 }
             }
@@ -76,23 +73,16 @@ public class OrderController extends HttpServlet {
         if (action.contains("filter")) {
             String pageParam = req.getParameter("page");
             int page = 1;
-            if(pageParam != null && !pageParam.isEmpty())
-            {
-                try
-                {
+            if (pageParam != null && !pageParam.isEmpty()) {
+                try {
                     page = Integer.parseInt(pageParam);
                     if (page < 1) page = 1;
-                } catch (NumberFormatException e)
-                {
+                } catch (NumberFormatException e) {
                     page = 1;
                 }
             }
             this.getFilterOrders(req, resp, page);
         }
-//        if (action.contains("details")){
-//            this.getOrderDetails(req, resp);
-//            return;
-//        }
     }
 
     @Override

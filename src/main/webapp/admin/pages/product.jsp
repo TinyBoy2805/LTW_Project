@@ -75,11 +75,11 @@
                         </div>
                     </div>
                     <div class="action__btn">
-                        <button class="stock-history-button" id="stock__history__btn">
-                            <ion-icon name="time-outline"></ion-icon>
-                            Lịch sử nhập kho
-                        </button>
-                        <a href="${pageContext.request.contextPath}/admin/products/add">
+<%--                        <button class="stock-history-button" id="stock__history__btn">--%>
+<%--                            <ion-icon name="time-outline"></ion-icon>--%>
+<%--                            Lịch sử nhập kho--%>
+<%--                        </button>--%>
+                        <a href="${pageContext.request.contextPath}/admin/products/add-product">
                             <button class="add__button">
                                 <ion-icon name="add-outline"></ion-icon>
                                 Sản phẩm mới
@@ -104,7 +104,10 @@
                                 <p class="product__price">749.000đ</p>
                                 <p class="product__buy">Đã bán 0</p>
                             </div>
-                                <button class="detail-button">Chi tiết</button>
+                            <div class="button">
+                                <button class="delete-button">Xoá</button>
+                                <button class="edit-button">Chỉnh sửa</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -128,64 +131,64 @@
             </div>
         </div>
 
-        <div class="stock-history-overlay hidden" id="stock__history__overlay">
-            <div class="stock-history-modal">
-                <div class="stock-history-modal__header">
-                    <h3 class="stock-history-modal__title">Lịch sử nhập kho</h3>
-                    <div class="stock-history-modal__close" id="stock__history__close">
-                        <ion-icon name="close-outline"></ion-icon>
-                    </div>
-                </div>
-                <div class="stock-history-modal__content">
-                    <table class="history-table">
-                        <thead class="history-table__header">
-                        <tr>
-                            <th>#</th>
-                            <th>Mã SP</th>
-                            <th>Sản phẩm</th>
-                            <th>Số lượng nhập</th>
-                            <th>Ngày nhập</th>
-                        </tr>
-                        </thead>
-                        <tbody class="history-table__body">
-                        <tr>
-                            <td>1</td>
-                            <td>SP001</td>
-                            <td>Sữa bột GrowPro (1-3 tuổi)</td>
-                            <td>+50</td>
-                            <td>20/11/2025</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>SP005</td>
-                            <td>Bánh ăn dặm Chuối Dẹt (9M+)</td>
-                            <td>+100</td>
-                            <td>15/11/2025</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>SP003</td>
-                            <td>Sữa tươi Organic không đường (Thùng)</td>
-                            <td>+40</td>
-                            <td>10/11/2025</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>SP007</td>
-                            <td>Yến sào chưng sẵn cho bé</td>
-                            <td>+60</td>
-                            <td>05/11/2025</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <div class="history-table__pagination">
-                        <button class="pagination__btn disabled">Trước</button>
-                        <span class="pagination__info">Trang 1/5</span>
-                        <button class="pagination__btn">Sau</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+<%--        <div class="stock-history-overlay hidden" id="stock__history__overlay">--%>
+<%--            <div class="stock-history-modal">--%>
+<%--                <div class="stock-history-modal__header">--%>
+<%--                    <h3 class="stock-history-modal__title">Lịch sử nhập kho</h3>--%>
+<%--                    <div class="stock-history-modal__close" id="stock__history__close">--%>
+<%--                        <ion-icon name="close-outline"></ion-icon>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--                <div class="stock-history-modal__content">--%>
+<%--                    <table class="history-table">--%>
+<%--                        <thead class="history-table__header">--%>
+<%--                        <tr>--%>
+<%--                            <th>#</th>--%>
+<%--                            <th>Mã SP</th>--%>
+<%--                            <th>Sản phẩm</th>--%>
+<%--                            <th>Số lượng nhập</th>--%>
+<%--                            <th>Ngày nhập</th>--%>
+<%--                        </tr>--%>
+<%--                        </thead>--%>
+<%--                        <tbody class="history-table__body">--%>
+<%--                        <tr>--%>
+<%--                            <td>1</td>--%>
+<%--                            <td>SP001</td>--%>
+<%--                            <td>Sữa bột GrowPro (1-3 tuổi)</td>--%>
+<%--                            <td>+50</td>--%>
+<%--                            <td>20/11/2025</td>--%>
+<%--                        </tr>--%>
+<%--                        <tr>--%>
+<%--                            <td>2</td>--%>
+<%--                            <td>SP005</td>--%>
+<%--                            <td>Bánh ăn dặm Chuối Dẹt (9M+)</td>--%>
+<%--                            <td>+100</td>--%>
+<%--                            <td>15/11/2025</td>--%>
+<%--                        </tr>--%>
+<%--                        <tr>--%>
+<%--                            <td>3</td>--%>
+<%--                            <td>SP003</td>--%>
+<%--                            <td>Sữa tươi Organic không đường (Thùng)</td>--%>
+<%--                            <td>+40</td>--%>
+<%--                            <td>10/11/2025</td>--%>
+<%--                        </tr>--%>
+<%--                        <tr>--%>
+<%--                            <td>4</td>--%>
+<%--                            <td>SP007</td>--%>
+<%--                            <td>Yến sào chưng sẵn cho bé</td>--%>
+<%--                            <td>+60</td>--%>
+<%--                            <td>05/11/2025</td>--%>
+<%--                        </tr>--%>
+<%--                        </tbody>--%>
+<%--                    </table>--%>
+<%--                    <div class="history-table__pagination">--%>
+<%--                        <button class="pagination__btn disabled">Trước</button>--%>
+<%--                        <span class="pagination__info">Trang 1/5</span>--%>
+<%--                        <button class="pagination__btn">Sau</button>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
     </div>
 </div>
 
