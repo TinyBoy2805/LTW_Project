@@ -1,9 +1,12 @@
 package model.product;
 
+import lombok.ToString;
+
 import java.io.Serializable;
 import java.sql.Date;
 import java.time.LocalDate;
-
+import java.util.List;
+@ToString
 public class Product implements Serializable
 {
     private int id;
@@ -19,6 +22,7 @@ public class Product implements Serializable
     private Date startDate;
     private Date endDate;
     private boolean isActive;
+    private List<ProductImage> images;
 
     public Product(){}
 
@@ -37,6 +41,15 @@ public class Product implements Serializable
         this.endDate = endDate;
         this.quantity = quantity;
         this.isActive = isActive;
+    }
+
+
+    public List<ProductImage> getImages() {
+        return images;
+    }
+
+    public void setImages(List<ProductImage> images) {
+        this.images = images;
     }
 
     public int getId() {
@@ -143,22 +156,5 @@ public class Product implements Serializable
         isActive = active;
     }
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id + '\n'+
-                ", productId=" + productId + '\n'+
-                ", name='" + name + '\n' +
-                ", description='" + description + '\n' +
-                ", price=" + price +
-                ", url='" + url + '\n' +
-                ", brand='" + brand + '\n' +
-                ", category='" + category + '\n' +
-                ", buyCount=" + buyCount + '\n'+
-                ", quantity=" + quantity + '\n'+
-                ", startDate=" + startDate + '\n'+
-                ", endDate=" + endDate + '\n'+
-                ", isActive=" + isActive + '\n'+
-                '}';
-    }
+
 }

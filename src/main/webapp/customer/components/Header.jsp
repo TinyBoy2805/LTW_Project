@@ -36,7 +36,7 @@
 
 
 
-<header class="header">
+<header class="header ${activeTab eq 'product_detail' ? 'active' : ''}">
     <nav class="nav">
         <div class="nav__top">
             <a class="nav__top-logo" href="${pageContext.request.contextPath}/customer/pages/Home.jsp">
@@ -244,8 +244,8 @@
                 </ul>
             </div>
         </div>
-        <div class="nav__line"></div>
-        <div class="nav__bottom">
+        <div class="nav__line" style="display: ${activeTab eq 'product_detail' ? 'none' : 'block'}"></div>
+        <div class="nav__bottom" style="display: ${activeTab eq 'product_detail' ? 'none' : 'block'}">
             <ul>
                 <li><a href="${pageContext.request.contextPath}/home" class="${activeTab eq 'home' ? 'active' : ''}">Trang chủ</a></li>
                 <li><a href="${pageContext.request.contextPath}/product" class="${activeTab eq 'product' ? 'active' : ''}">Sản phẩm</a></li>

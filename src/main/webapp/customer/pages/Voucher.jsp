@@ -45,7 +45,7 @@
                     </li>
                     <li class="filter__tab" data-filter="freeship">
                         <i class="fa-solid fa-truck-fast"></i>
-                        <span>Freeship</span>
+                        <span>Freeshipping</span>
                     </li>
                     <li class="filter__tab" data-filter="percent">
                         <i class="fa-solid fa-percent"></i>

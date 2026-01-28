@@ -1,15 +1,38 @@
 package dao;
 
+import model.ProductReview;
 import model.product.Product;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import model.product.ProductCard;
+import model.product.ProductImage;
 import org.jdbi.v3.core.statement.PreparedBatch;
 
 public class ProductDAO extends BaseDao
 {
+    public List<ProductImage> getImagesByProductId(int productId)
+    {
+        String sql = """
+                SELECT *
+                FROM product_images
+                WHERE product_id = :pid
+            """;
+
+        return get().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("pid", productId)
+                        .mapToBean(ProductImage.class)
+                        .list()
+        );
+    }
+
 
     public List<ProductCard> getProductByPage(int page, int pageSize)
     {
@@ -230,5 +253,73 @@ public class ProductDAO extends BaseDao
 
             return q.mapToBean(ProductCard.class).list();
         });
+    }
+
+    public List<ProductReview> getProductReviewsByProductId(int id)
+    {
+        String query = """
+                    select r.id,u.name, u.avt_url,  r.rating, r.comment, r.created_at
+                    from users u\s
+                    join reviews r \s
+                    on r.user_id = u.id
+                    where r.product_id = :pid;
+                """;
+
+        return get().withHandle(h ->
+                    h.createQuery(query)
+                            .bind("pid", id)
+                            .mapToBean(ProductReview.class)
+                            .list()
+                );
+    }
+
+    public List<ProductReview> getProductReviewsByProductIdHasPagination(int id, int pageReview, int pageReviewSize)
+    {
+
+        int offset = (pageReview - 1) * pageReviewSize;
+
+        String query = """
+                    select r.id,u.name, u.avt_url,  r.rating, r.comment, r.created_at
+                    from users u\s
+                    join reviews r \s
+                    on r.user_id = u.id
+                    where r.product_id = :pid \s 
+                    limit :limit offset :offset;
+                    
+                """;
+
+        return get().withHandle(h ->
+                h.createQuery(query)
+                        .bind("pid", id)
+                        .bind("limit", pageReviewSize)
+                        .bind("offset", offset)
+                        .mapToBean(ProductReview.class)
+                        .list()
+        );
+    }
+
+    public List<ProductCard> getProductsByCategoryHasPagination(String category, int pageProduct, int pageProductSize)
+    {
+        int offset = (pageProduct - 1) * pageProductSize;
+
+        String query = "SELECT p.id, p.name, p.price, p.buy_count, avg(r.rating) as avg_rating, p.is_active, pi.img_url\n" +
+                "FROM products p \n" +
+                "left join product_images pi on pi.product_id = p.id\n" +
+                "left join reviews r on r.product_id = p.id \n" +
+                "join categories c on p.category_id = c.id \n"+
+                "WHERE p.name like :category\n" +
+                "GROUP BY p.id\n"+
+                "limit :limit offset :offset"
+                ;
+
+
+        return get().withHandle(h->
+                h.createQuery(query)
+                        .bind("category", "%"+category+"%")
+                        .bind("limit", pageProductSize)
+                        .bind("offset", offset)
+                        .mapToBean(ProductCard.class)
+                        .list()
+        );
     }
 }

@@ -45,7 +45,7 @@ public class Cart
         if(this.cart.containsKey(productId))
         {
             CartItem exist = this.cart.get(productId);
-            exist.increaseQuantity();
+            exist.increaseQuantity(newItem.getQuantity());
         }else
         {
             cart.put(productId, newItem);

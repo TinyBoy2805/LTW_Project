@@ -24,6 +24,7 @@
 </head>
 <body>
 
+
     <div class="toast-container"></div>
 
     <jsp:include page="/customer/components/ProductCard.jsp"/>
@@ -169,7 +170,7 @@
             <h3 class="main__today-suggestion-heading">Gợi ý hôm nay</h3>
             <div class="main__today-suggestion-list">
                 <ul class="main__today-suggestion-list-ul">
-                    <form action="${pageContext.request.contextPath}/product-detail" method="post" style="display: none;" id="product__form">
+                    <form action="${pageContext.request.contextPath}/product-detail" method="get" style="display: none;" id="product__form">
                         <input type="hidden" value="" name="product_id" id="product__id">
                     </form>
                 </ul>

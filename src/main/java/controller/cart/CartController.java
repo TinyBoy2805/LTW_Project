@@ -54,13 +54,12 @@ public class CartController extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         int productId = Integer.parseInt(request.getParameter("productId"));
-        int quantity = 1;
+        int quantity = (request.getParameter("quantity") != null || request.getParameter("quantity").isEmpty()) ? Integer.parseInt(request.getParameter("quantity")) : 1;
 
         HttpSession session = request.getSession(false);
         Cart myCart = (Cart) session.getAttribute("cart");
 
         if(myCart == null) myCart = new Cart();
-
 
         ProductCard productCard = this.cartService.getProductCard(productId);
 
@@ -69,7 +68,7 @@ public class CartController extends HttpServlet
         boolean success = false;
         if(exist != null)
         {
-            exist.increaseQuantity();
+            exist.increaseQuantity(quantity);
             success = true;
         }else
         {

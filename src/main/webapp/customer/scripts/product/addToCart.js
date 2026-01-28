@@ -9,7 +9,7 @@ const cartCounter = document.querySelector('.cart-count-badge')
 
 
 
-function createNotification(text)
+export function createNotification(text)
 {
     const div = document.createElement("div");
     div.classList.add("toast");
@@ -21,7 +21,7 @@ function createNotification(text)
     }, 3000);
 }
 
-function formatPrice(price)
+export function formatPrice(price)
 {
     return new Intl.NumberFormat('vi-VN').format(price)
 }
@@ -30,7 +30,7 @@ function formatPrice(price)
 
 
 
-export const addToCart = async (productId) =>
+export const addToCart = async (productId, quantity=1) =>
 {
     const url = `${window.APP_CONTEXT_PATH}/cart`;
 
@@ -43,7 +43,10 @@ export const addToCart = async (productId) =>
             {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            body: `productId=${encodeURIComponent(productId)}`
+            body: new URLSearchParams({
+                productId: productId,
+                quantity: quantity
+            })
         });
 
         if (res.ok)

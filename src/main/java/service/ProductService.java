@@ -1,8 +1,10 @@
 package service;
 
 import dao.ProductDAO;
+import model.ProductReview;
 import model.product.Product;
 import model.product.ProductCard;
+import model.product.ProductImage;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -43,5 +45,36 @@ public class ProductService
     public List<ProductCard> getFilteredProducts(List<String> brands, List<String> types, List<Integer> ratings)
     {
         return this.productDAO.getFilteredProducts(brands, types, ratings);
+    }
+
+    public List<ProductImage> getImagesByProductId(int productId)
+    {
+        return this.productDAO.getImagesByProductId(productId);
+    }
+
+    public List<ProductReview> getProductReviewsByProductId(int id)
+    {
+        return this.productDAO.getProductReviewsByProductId(id);
+    }
+
+    public double getAvgRating(List<ProductReview> reviews)
+    {
+        double total = 0;
+        for(ProductReview r: reviews)
+        {
+            total += r.getRating();
+        }
+
+        return Math.ceil((double)(total/reviews.size()));
+    }
+
+    public List<ProductReview> getProductReviewsByProductIdHasPagination(int id, int pageReview, int pageReviewSize)
+    {
+        return this.productDAO.getProductReviewsByProductIdHasPagination(id, pageReview, pageReviewSize);
+    }
+
+    public List<ProductCard> getProductsByCategoryHasPagination(String category, int pageProduct, int pageProductSize)
+    {
+        return this.productDAO.getProductsByCategoryHasPagination(category, pageProduct, pageProductSize);
     }
 }

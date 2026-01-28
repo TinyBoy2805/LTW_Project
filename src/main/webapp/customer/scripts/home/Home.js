@@ -140,7 +140,7 @@ tabs.forEach((tab, index)=>
         const productCards = container.querySelectorAll('li.main__trending-content-ul-li')
         productCards.forEach((card, index) =>
         {
-            const cardBtn = card.querySelector("button")
+            const cardBtn = card.querySelector(".buy-now")
             const cartBtn = card.querySelector(".product__top-cart")
 
             cartBtn.addEventListener('click', ()=>
