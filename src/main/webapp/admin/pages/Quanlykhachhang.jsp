@@ -81,18 +81,9 @@
                         <h3 class="section-title">Cài đặt tài khoản</h3>
 
                         <div class="status-row" style="display: flex; flex-direction: column; align-items: flex-end; gap: 12px;">
-                          <button class="reset-btn" type="button" onclick="showChangePasswordModal()" style="width: 300px;">
-                            <i class="fa-solid fa-question-circle"></i> Đổi mật khẩu
+                          <button class="reset-btn" type="button" onclick="showChangePasswordModal()" style="width: 300px; background: #fff; color: #f564a9; border: 2px solid #f564a9; border-radius: 6px; font-weight: 500; font-size: 1rem; box-shadow: 0 2px 8px #f564a93a;">
+                            <i class="fa-solid fa-key" style="color:#f564a9;"></i> Đổi mật khẩu
                           </button>
-                          <form action="${pageContext.request.contextPath}/admin/manage_customer" method="post" style="width: 300px;">
-                            <input type="hidden" name="action" value="delete" />
-                            <input type="hidden" name="id" value="${customer.id}" />
-                            <button class="delete-btn" type="submit"
-                              style="width: 100%;"
-                              onclick="return confirm('Bạn có chắc chắn muốn xóa tài khoản &quot;${customer.name}&quot;?');">
-                              <i class="fa-solid fa-trash"></i> Xóa tài khoản
-                            </button>
-                          </form>
                           <!-- Modal đổi mật khẩu -->
                           <div id="changePasswordModal" class="modal"
                             style="display:none;position:fixed;z-index:9999;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,0.3);align-items:center;justify-content:center;">
@@ -178,7 +169,6 @@
                       <button class="btn ghost" type="button"
                         onclick="window.location.href='${pageContext.request.contextPath}/admin/manage_customer?id=${customer.id}'">Hủy</button>
 
-                      <!-- delete moved to the action-group above -->
 
                       <form id="updateForm" action="${pageContext.request.contextPath}/admin/manage_customer"
                         method="post" enctype="multipart/form-data"

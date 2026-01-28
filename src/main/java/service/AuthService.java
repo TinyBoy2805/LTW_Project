@@ -237,20 +237,4 @@ public class AuthService
         // Cập nhật mật khẩu
         return this.authDao.updateUserPassword(id, hashedPassword);
     }
-
-         // Xác thực token xác thực email
-    public boolean verifyEmailToken(String token) {
-        dao.AuthDao authDao = new dao.AuthDao();
-        // Kiểm tra token hợp lệ, chưa dùng, chưa hết hạn
-        boolean valid = authDao.checkToken(token) && authDao.checkTokenNotUsed(token) && authDao.checkTokenExpired(token);
-        if (valid) {
-            int userId = authDao.getUserIdFromVerifyToken(token);
-            if (userId > 0) {
-                authDao.setVerifyUser(userId);
-                authDao.setTokenUsed(token);
-                return true;
-            }
-        }
-        return false;
-    }
 }
