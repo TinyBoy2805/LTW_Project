@@ -3,6 +3,10 @@ package service;
 import dao.ProductDAO;
 import model.product.*;
 import model.orders.PageInformation;
+import model.ProductReview;
+import model.product.Product;
+import model.product.ProductCard;
+import model.product.ProductImage;
 
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -126,5 +130,38 @@ public class ProductService
 
     public boolean deleteProduct(int productID) {
         return this.productDAO.deleteProduct(productID);
+    public List<ProductImage> getImagesByProductId(int productId)
+    {
+        return this.productDAO.getImagesByProductId(productId);
+    }
+
+    public List<ProductReview> getProductReviewsByProductId(int id)
+    {
+        return this.productDAO.getProductReviewsByProductId(id);
+    }
+
+    public double getAvgRating(List<ProductReview> reviews)
+    {
+        double total = 0;
+        for(ProductReview r: reviews)
+        {
+            total += r.getRating();
+        }
+
+        return Math.ceil((double)(total/reviews.size()));
+    }
+
+    public List<ProductReview> getProductReviewsByProductIdHasPagination(int id, int pageReview, int pageReviewSize)
+    {
+        return this.productDAO.getProductReviewsByProductIdHasPagination(id, pageReview, pageReviewSize);
+    }
+
+    public List<ProductCard> getProductsByCategoryHasPagination(String category, int pageProduct, int pageProductSize)
+    {
+        return this.productDAO.getProductsByCategoryHasPagination(category, pageProduct, pageProductSize);
+    }
+
+    public void saveReview(int userId, int productId, int rating, String comment) {
+        this.productDAO.saveReview(userId, productId, rating, comment);
     }
 }

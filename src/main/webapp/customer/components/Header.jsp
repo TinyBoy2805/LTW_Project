@@ -4,6 +4,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%@ page import="java.text.DecimalFormat, java.text.DecimalFormatSymbols" %>
+<%@ page import="model.User" %>
 <%
     DecimalFormatSymbols symbols = new DecimalFormatSymbols();
     symbols.setGroupingSeparator('.');
@@ -18,6 +19,7 @@
                         : false;
 
     String username = isLoggedIn ? (String) session.getAttribute("username") : "";
+    User user = isLoggedIn ? (User) session.getAttribute("user") : null;
 
     Cart myCart = (Cart) session.getAttribute("cart");
 
@@ -36,10 +38,10 @@
 
 
 
-<header class="header">
+<header class="header ${activeTab eq 'product_detail' ? 'active' : ''}">
     <nav class="nav">
         <div class="nav__top">
-            <a class="nav__top-logo" href="${pageContext.request.contextPath}/customer/pages/Home.jsp">
+            <a class="nav__top-logo" href="${pageContext.request.contextPath}/home">
                 <div class="nav__logo-img">
                     <img src="${pageContext.request.contextPath}/customer/imgs/Gemini_Generated_Image_c648fqc648fqc648.png" alt="">
                 </div>
@@ -109,75 +111,50 @@
                                 </div>
                             </div>
                         </li>
-                        
+
+<%--                        //INFORM BUTTON--%>
                         <li class="hover-notification">
-                            <a href="Inform.jsp" class="--color4"><i class="fa-solid fa-bell --size20"></i></a>
+                            <a href="${pageContext.request.contextPath}/notification/detail" class="--color4"><i class="fa-solid fa-bell --size20"></i></a>
+<%--                            //count new inform and unread--%>
                             <div class="notif-count">2</div>
-                            
+
                             <div class="notification-dropdown">
                                 <div class="notification-header">
                                     <h3>Thông báo</h3>
-                                    <a href="Inform.jsp" class="mark-all-read">Đánh dấu đã đọc</a>
+                                    <a href="${pageContext.request.contextPath}/notification/mark" class="mark-all-read">Đánh dấu đã đọc</a>
                                 </div>
 
-                                <div class="notification-list">
+                                <template id="inform_template">
                                     <div class="notification-item unread">
                                         <div class="notification-icon order">
                                             <i class="fa-solid fa-box"></i>
                                         </div>
                                         <div class="notification-content">
-                                            <p class="notification-text">Đơn hàng #DH123456 của bạn đã được giao thành công</p>
-                                            <span class="notification-time">5 phút trước</span>
+                                            <p class="notification-text">title</p>
+                                            <span class="notification-time">timestamp</span>
                                         </div>
                                     </div>
+                                </template>
+                                <div class="notification-list">
 
-                                    <div class="notification-item unread">
-                                        <div class="notification-icon promo">
-                                            <i class="fa-solid fa-fire"></i>
-                                        </div>
-                                        <div class="notification-content">
-                                            <p class="notification-text">Flash sale đang diễn ra - Giảm giá lên đến 50%</p>
-                                            <span class="notification-time">2 giờ trước</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="notification-item">
-                                        <div class="notification-icon system">
-                                            <i class="fa-solid fa-circle-info"></i>
-                                        </div>
-                                        <div class="notification-content">
-                                            <p class="notification-text">Hệ thống đã cập nhật điều khoản sử dụng mới</p>
-                                            <span class="notification-time">1 ngày trước</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="notification-item">
-                                        <div class="notification-icon order">
-                                            <i class="fa-solid fa-truck"></i>
-                                        </div>
-                                        <div class="notification-content">
-                                            <p class="notification-text">Đơn hàng #DH123455 đang được vận chuyển</p>
-                                            <span class="notification-time">2 ngày trước</span>
-                                        </div>
-                                    </div>
                                 </div>
 
                                 <div class="notification-footer">
-                                    <a href="Inform.jsp" class="view-all-notifications">
+                                    <a href="${pageContext.request.contextPath}/notification/detail" class="view-all-notifications">
                                         <span>Xem tất cả</span>
                                         <i class="fa-solid fa-arrow-right"></i>
                                     </a>
                                 </div>
                             </div>
                         </li>
-                        
+
                         <li class="hover-avt">
                             <div class="container">
                                 <a href="${pageContext.request.contextPath}/profile" class="--color4"><i class="fa-solid fa-user --size20"></i></a>
                                 <div class="avt-options">
                                     <div class="avt-profile-card">
                                         <div class="avt-container">
-                                            <img src="https://i.pinimg.com/736x/5f/83/3d/5f833de6a6b1d8032037b6a24a5321b6.jpg" alt="">
+                                            <img src="<%= user.getAvt_url()%>" alt="">
                                             <div class="online-status"></div>
                                         </div>
                                         <div class="profile-info">
@@ -188,19 +165,25 @@
                                             <i class="fa-solid fa-arrow-right"></i>
                                         </button>
                                     </div>
-                                    
+
                                     <div class="quick-stats">
+                                        <%
+                                            service.OrderService headerOrderService = new service.OrderService();
+                                            service.VoucherService headerVoucherService = new service.VoucherService();
+                                            int orderCount = headerOrderService.getOrdersByUser(user.getId()).size();
+                                            int voucherCount = headerVoucherService.getUserVouchers(user.getId()).size();
+                                        %>
                                         <div class="stat-item">
                                             <i class="fa-solid fa-box"></i>
                                             <div>
-                                                <span class="stat-number">12</span>
+                                                <span class="stat-number"><%= orderCount %></span>
                                                 <span class="stat-label">Đơn hàng</span>
                                             </div>
                                         </div>
                                         <div class="stat-item">
                                             <i class="fa-solid fa-ticket"></i>
                                             <div>
-                                                <span class="stat-number">5</span>
+                                                <span class="stat-number"><%= voucherCount %></span>
                                                 <span class="stat-label">Voucher</span>
                                             </div>
                                         </div>
@@ -269,12 +252,12 @@
                 </ul>
             </div>
         </div>
-        <div class="nav__line"></div>
-        <div class="nav__bottom">
+        <div class="nav__line" style="display: ${activeTab eq 'product_detail' ? 'none' : 'block'}"></div>
+        <div class="nav__bottom" style="display: ${activeTab eq 'product_detail' ? 'none' : 'block'}">
             <ul>
                 <li><a href="${pageContext.request.contextPath}/home" class="${activeTab eq 'home' ? 'active' : ''}">Trang chủ</a></li>
                 <li><a href="${pageContext.request.contextPath}/product" class="${activeTab eq 'product' ? 'active' : ''}">Sản phẩm</a></li>
-                <li><a href="${pageContext.request.contextPath}/customer/pages/Voucher.jsp" class="${activeTab eq 'voucher' ? 'active' : ''}">Khuyến mãi</a></li>
+                <li><a href="${pageContext.request.contextPath}/voucher" class="${activeTab eq 'voucher' ? 'active' : ''}">Khuyến mãi</a></li>
                 <li><a href="${pageContext.request.contextPath}/blog" class="${activeTab eq 'blog' ? 'active' : ''}">Cẩm nang</a></li>
                 <li><a href="${pageContext.request.contextPath}/customer/pages/Contact.jsp" class="${activeTab eq 'contact' ? 'active' : ''}">Liên hệ</a></li>
                 <li><a href="${pageContext.request.contextPath}/about" class="${activeTab eq 'about' ? 'active' : ''}">về cửa hàng</a></li>
@@ -282,6 +265,6 @@
         </div>
     </nav>
 </header>
-
-<script src="${pageContext.request.contextPath}/customer/scripts/header.js" defer></script>
+<script src="${pageContext.request.contextPath}/customer/scripts/headerScript/header.js" defer></script>
+<script src="${pageContext.request.contextPath}/customer/scripts/headerScript/getInform.js" defer></script>
 

@@ -258,16 +258,17 @@ public class AuthDao extends BaseDao {
         );
     }
 
-    public void createTokenAndExpiredTime(int userId, String token, Timestamp expirationTime)
+    public void createTokenAndExpiredTime(int userId, String token, Timestamp expirationTime, String type)
     {
         get().useHandle(h ->
                 h.createUpdate("""
                 INSERT INTO verification_tokens(user_id, token, type, expires_at, used)
-                VALUES (:userId, :token, 'VERIFY_EMAIL', :expiresAt, 0)
+                VALUES (:userId, :token, :type, :expiresAt, 0)
             """)
                         .bind("userId", userId)
                         .bind("token", token)
                         .bind("expiresAt", expirationTime)
+                        .bind("type", type)
                         .execute()
         );
     }
@@ -379,6 +380,34 @@ public class AuthDao extends BaseDao {
         String sql = "UPDATE users SET verified=1, otp=NULL WHERE email=:email";
         get().withHandle(h -> h.createUpdate(sql)
                 .bind("email", email).execute());
+    }
+    public boolean checkType(String type)
+    {
+        String query = """
+                SELECT COUNT(*) FROM verification_tokens\s
+                                WHERE type = :type AND used = 0
+                """;
+
+        return get().withHandle(h ->
+                h.createQuery(query)
+                        .bind("type", type)
+                        .mapTo(Integer.class)
+                        .one() > 0
+        );
+
+    }
+
+    public boolean setNewPassword(int userId, String hashedPassword, StringBuilder salt)
+    {
+        String sql = "UPDATE users SET password_hashed = :pwd, salt = :salt WHERE id = :uid";
+        int rows = get().withHandle(h ->
+                h.createUpdate(sql)
+                        .bind("pwd", hashedPassword)
+                        .bind("salt", salt)
+                        .bind("uid", userId)
+                        .execute()
+        );
+        return rows > 0;
     }
 }
 

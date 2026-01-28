@@ -1,177 +1,97 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
-<%
-    request.setAttribute("activeTab", "");
-%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MichiShop</title>
-    <link rel="stylesheet" href="../styles/index.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" 
-        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" 
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Chi tiết đơn hàng | MichiShop</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/customer/styles/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
 </head>
 <body>
-        <div class="scroll-to-top-btn"><i class="fa-solid fa-circle-up"></i></div>
-        <jsp:include page="/customer/components/Header.jsp"/>
 
+    <jsp:include page="/customer/components/Header.jsp"/>
 
-    <main class="main">
+    <main class="main" style="background: #f8f9fa; padding: 40px 0;">
+        <div class="container" style="max-width: 900px; margin: 0 auto; padding: 0 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h2 style="font-weight: 700;">Chi tiết đơn hàng #${order.orderCode}</h2>
+                <a href="${pageContext.request.contextPath}/profile?tab=purchase-info" style="color: var(--c6); text-decoration: none;">&larr; Quay lại danh sách đơn hàng</a>
+            </div>
 
-            <section class="order__header">
-                <h2 class="order__title --color9">Chi tiết đơn hàng</h2>
-                <p class="order__subtitle">Theo dõi trạng thái & thông tin thanh toán</p>
-            </section>
+            <div class="card-modern" style="padding: 30px; background: white; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
 
-            <section class="payment__user-info --p24">
-                <h3 class="--color6">Thông tin giao hàng</h3>
-                <ul class="payment__customer-info">
-                    <li>
-                        <p class="--color3">Số điện thoại</p>
-                        <p class="--color1">0931415926</p>
-                        <input type="hidden" name="phone" value="0931415926">
-                    </li>
-                    <li>
-                        <p class="--color3">Địa chỉ</p>
-                        <p class="--color1">36C, 18 Lái Thiêu, Khu Phố Hoà Long, TP. Thuận An, TPHCM</p>
-                        <input type="hidden" name="address" value="36C, 18 Lái Thiêu, Khu Phố Hoà Long, TP. Thuận An, TPHCM">
-                    </li>
-                    <li>
-                        <p class="--color3">Email</p>
-                        <p class="--color1">tonguyenhoangphuc67@gmail.com</p>
-                        <input type="hidden" name="email" value="tonguyenhoangphuc67@gmail.com">
-                    </li>
-                </ul>
-            </section>
+                <!-- Order Header -->
+                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 20px; margin-bottom: 20px;">
+                    <div>
+                        <p style="color: #666; margin-bottom: 5px;">Ngày đặt hàng:</p>
+                        <p style="font-weight: 600;"><fmt:formatDate value="${order.createdAt}" pattern="dd/MM/yyyy HH:mm"/></p>
+                    </div>
+                    <div>
+                        <p style="color: #666; text-align: right; margin-bottom: 5px;">Trạng thái:</p>
+                        <span class="order-status-badge ${order.orderStatus.toLowerCase()}">
+                            <c:choose>
+                                <c:when test="${order.orderStatus eq 'PENDING'}">Chờ xác nhận</c:when>
+                                <c:when test="${order.orderStatus eq 'DELIVERED'}">Đã giao</c:when>
+                                <c:otherwise>${order.orderStatus}</c:otherwise>
+                            </c:choose>
+                        </span>
+                    </div>
+                </div>
 
-
-            <!-- 2️⃣ Giỏ hàng -->
-            <section class="cart">
-                <table class="cart__table" aria-label="Giỏ hàng">
-                    <thead class="cart__table-head">
-                    <tr class="cart__row cart__row--head">
-                        <th class="--text-left">Sản phẩm</th>
-                        <th class="--text-center">Đơn giá</th>
-                        <th class="--text-center">Số lượng</th>
-                        <th class="--text-center">Thành tiền</th>
-                    </tr>
-                    </thead>
-
-                    <tbody class="cart__table-body">
-                    <tr class="cart__row">
-                        <td class="cart__product --text-left">
-                        <img src="https://i.pinimg.com/1200x/4b/bb/02/4bbb0223ba678e97772d02949e5f89ca.jpg" alt="Tên sản phẩm" class="cart__product-thumb" width="60" height="60">
-                        <div class="cart__product-info">
-                            <div class="cart__product-name">Sữa chua Hy Lạp</div>
-                            <div class="cart__product-variant">Vị: Nho • Loại: chai</div>
-                            <input type="hidden" name="product_name[]" value="Sữa chua Hy Lạp - Vị Nho - Chai">
+                <!-- Product List -->
+                <div style="margin-bottom: 20px;">
+                    <h3 style="margin-bottom: 15px;">Sản phẩm</h3>
+                    <c:forEach var="item" items="${order.items}">
+                        <div style="display: flex; gap: 20px; padding: 15px 0; border-bottom: 1px solid #f0f0f0;">
+                            <img src="${item.productUrl}" alt="${item.productName}" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+                            <div style="flex: 1;">
+                                <h4 style="margin: 0; font-size: 1.1rem;">${item.productName}</h4>
+                                <p style="color: #666; margin: 5px 0;">Số lượng: ${item.quantity}</p>
+                            </div>
+                            <div style="text-align: right;">
+                                <p style="font-weight: 600; color: var(--c6);"><fmt:formatNumber value="${item.priceAtPurchase}" pattern="#,###"/>₫</p>
+                                <p style="font-weight: 700; margin-top: 5px;">Thành tiền: <fmt:formatNumber value="${item.priceAtPurchase * item.quantity}" pattern="#,###"/>₫</p>
+                            </div>
                         </div>
-                        </td>
-                        <td class="cart__price --text-center">199.000₫</td>
-                        <td class="cart__quantity --text-center">
-                        <input type="number" class="cart__quantity-input" name="product_quantity[]" min="1" value="1" aria-label="Số lượng sản phẩm" readonly>
-                        </td>
-                        <td class="cart__subtotal --text-center">199.000₫</td>
-                    </tr>
+                    </c:forEach>
+                </div>
 
-                    <tr class="cart__row">
-                        <td class="cart__product --text-left">
-                        <img src="https://i.pinimg.com/1200x/4b/bb/02/4bbb0223ba678e97772d02949e5f89ca.jpg" alt="Tên sản phẩm" class="cart__product-thumb" width="60" height="60">
-                        <div class="cart__product-info">
-                            <div class="cart__product-name">Sữa chua Hy Lạp</div>
-                            <div class="cart__product-variant">Vị: Nho • Loại: chai</div>
-                            <input type="hidden" name="product_name[]" value="Sữa chua Hy Lạp - Vị Nho - Chai">
+                <!-- Totals Section -->
+                <div style="border-top: 2px solid #ddd; padding-top: 20px; display: grid; grid-template-columns: 2fr 1fr; gap: 10px;">
+                    <div> <!-- empty div for spacing --> </div>
+                    <div style="display: flex; flex-direction: column; gap: 15px;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <span style="color: #666;">Tạm tính</span>
+                            <span style="font-weight: 600;"><fmt:formatNumber value="${order.totalPrice}" pattern="#,###"/>₫</span>
                         </div>
-                        </td>
-                        <td class="cart__price --text-center">199.000₫</td>
-                        <td class="cart__quantity --text-center">
-                        <input type="number" class="cart__quantity-input" name="product_quantity[]" min="1" value="1" readonly>
-                        </td>
-                        <td class="cart__subtotal --text-center">199.000₫</td>
-                    </tr>
-
-                    <tr class="cart__row">
-                        <td class="cart__product --text-left">
-                        <img src="https://i.pinimg.com/1200x/4b/bb/02/4bbb0223ba678e97772d02949e5f89ca.jpg" alt="Tên sản phẩm" class="cart__product-thumb" width="60" height="60">
-                        <div class="cart__product-info">
-                            <div class="cart__product-name">Sữa chua Hy Lạp</div>
-                            <div class="cart__product-variant">Vị: Nho • Loại: chai</div>
-                            <input type="hidden" name="product_name[]" value="Sữa chua Hy Lạp - Vị Nho - Chai">
+                        <div style="display: flex; justify-content: space-between;">
+                            <span style="color: #666;">Phí vận chuyển</span>
+                            <span style="font-weight: 600;"><fmt:formatNumber value="${order.shippingFee}" pattern="#,###"/>₫</span>
                         </div>
-                        </td>
-                        <td class="cart__price --text-center">199.000₫</td>
-                        <td class="cart__quantity --text-center">
-                        <input type="number" class="cart__quantity-input" name="product_quantity[]" min="1" value="1" readonly>
-                        </td>
-                        <td class="cart__subtotal --text-center">199.000₫</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </section>
-
-        <section class="order__info-card">
-            <div class="order__row">
-                <span class="order__label --color4">Mã đơn hàng:</span>
-                <span class="order__value ">#ORD-983122</span>
-            </div>
-
-            <div class="order__row">
-                <span class="order__label --color4">Ngày tạo:</span>
-                <span class="order__value">2025-11-26 14:32</span>
-            </div>
-
-            <div class="order__row">
-                <span class="order__label --color4">Địa chỉ giao hàng:</span>
-                <span class="order__value">123 Nguyễn Văn Cừ, Q5, TP.HCM</span>
-            </div>
-
-            <div class="order__row">
-                <span class="order__label --color4">Trạng thái đơn hàng:</span>
-                <span class="order__status --star">Đang xử lý</span>
-            </div>
-
-            <div class="order__row">
-                <span class="order__label --color4">Thanh toán:</span>
-                <span class="order__status --active">Đã thanh toán</span>
-            </div>
-        </section>
-
-        <section class="order__summary">
-            <h2 class="order__section-title --color6">Tóm tắt thanh toán</h2>
-
-            <div class="order__summary-list">
-                <div class="order__summary-row">
-                    <span class="order__summary-label">Tổng tiền hàng:</span>
-                    <span class="order__summary-value">350.000đ</span>
+                        <c:if test="${order.discountAmount > 0}">
+                            <div style="display: flex; justify-content: space-between; color: var(--c6);">
+                                <span style="font-weight: 600;">Giảm giá</span>
+                                <span style="font-weight: 700;">-<fmt:formatNumber value="${order.discountAmount}" pattern="#,###"/>₫</span>
+                            </div>
+                        </c:if>
+                        <div style="margin-top: 10px; padding-top: 15px; border-top: 2px solid #000; display: flex; justify-content: space-between; align-items: baseline;">
+                            <span style="font-size: 1.2rem; font-weight: 700;">Tổng cộng</span>
+                            <span style="font-size: 1.8rem; font-weight: 800; color: var(--c6);">
+                                <fmt:formatNumber value="${order.finalAmount}" pattern="#,###"/>₫
+                            </span>
+                        </div>
+                    </div>
                 </div>
-                <div class="order__summary-row">
-                    <span class="order__summary-label">Phí vận chuyển:</span>
-                    <span class="order__summary-value">25.000đ</span>
-                </div>
-                <div class="order__summary-row">
-                    <span class="order__summary-label">Giảm phí vận chuyển:</span>
-                    <span class="order__summary-value">-25.000đ</span>
-                </div>
-                <div class="order__summary-row">
-                    <span class="order__summary-label">Tổng giảm giá:</span>
-                    <span class="order__summary-value">-50.000đ</span>
-                </div>
-                <div class="order__summary-row ">
-                    <span class="order__summary-label">Thành tiền:</span>
-                    <span class="order__summary-final">300.000đ</span>
-                </div>
+
             </div>
-        </section>
+        </div>
     </main>
 
-
-        <jsp:include page="/customer/components/Footer.jsp"/>
-
+    <jsp:include page="/customer/components/Footer.jsp"/>
 
 </body>
-<script type="module" src="../scripts/main.js"></script>
 </html>

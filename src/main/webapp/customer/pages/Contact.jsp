@@ -149,7 +149,7 @@
 
                     <div class="form-group">
                         <label>Lời nhắn <span class="required">*</span></label>
-                        <textarea name="message" placeholder="Nhập nội dung tin nhắn của bạn..." required></textarea>
+                        <textarea name="message" placeholder="Nhập nội dung tin nhắn của bạn..." required id="message-textarea"></textarea>
                     </div>
 
                     <button type="submit" class="form-submit">
@@ -169,7 +169,14 @@
 
     <jsp:include page="/customer/components/Footer.jsp"/>
 
-
-<script type="module" src="../scripts/main.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+    <script type="module" src="${pageContext.request.contextPath}/customer/scripts/main.js"></script>
+    <script type="module">
+        import {initCKEditor} from "${pageContext.request.contextPath}/customer/scripts/utils/initCkeditor.js";
+        window.addEventListener("DOMContentLoaded", () =>
+        {
+            initCKEditor("#message-textarea");
+        });
+    </script>
 </body>
 </html>

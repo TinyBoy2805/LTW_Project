@@ -1,9 +1,13 @@
 package model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 
-
+@Getter
+@Setter
 public class Voucher implements Serializable
 {
     private int id;
@@ -15,14 +19,14 @@ public class Voucher implements Serializable
     private double discount_percentage;
     private LocalDate start_date;
     private LocalDate end_date;
-    private  int usage_limt;
+    private  int usage_limit;
     private  int current_amount;
     private double min_order_value;
     private VoucherType voucher_type;
 
     public Voucher() {}
 
-    public Voucher(int id, String category_name, String name, String code, String description, double discount_amount, double discount_percentage, LocalDate start_date, LocalDate end_date, int usage_limt, int current_amount, double min_order_value, VoucherType voucher_type)
+    public Voucher(int id, String category_name, String name, String code, String description, double discount_amount, double discount_percentage, LocalDate start_date, LocalDate end_date, int usage_limit, int current_amount, double min_order_value, VoucherType voucher_type)
     {
         this.id = id;
         this.category_name = category_name;
@@ -33,7 +37,7 @@ public class Voucher implements Serializable
         this.discount_percentage = discount_percentage;
         this.start_date = start_date;
         this.end_date = end_date;
-        this.usage_limt = usage_limt;
+        this.usage_limit = usage_limit;
         this.current_amount = current_amount;
         this.min_order_value = min_order_value;
         this.voucher_type = voucher_type;
@@ -111,12 +115,12 @@ public class Voucher implements Serializable
         this.end_date = end_date;
     }
 
-    public int getUsage_limt() {
-        return usage_limt;
+    public int getUsage_limit() {
+        return usage_limit;
     }
 
-    public void setUsage_limt(int usage_limt) {
-        this.usage_limt = usage_limt;
+    public void setUsage_limit(int usage_limit) {
+        this.usage_limit = usage_limit;
     }
 
     public int getCurrent_amount() {

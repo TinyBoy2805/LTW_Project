@@ -164,24 +164,25 @@ public class AuthService
         return errors;
     }
 
-    public void createTokenAndExpiredTime(int userId, String token, Timestamp expirationTime)
+    public void createTokenAndExpiredTime(int userId, String token, Timestamp expirationTime, String type)
     {
-        this.authDao.createTokenAndExpiredTime(userId, token, expirationTime);
+        this.authDao.createTokenAndExpiredTime(userId, token, expirationTime, type);
     }
 
-    public boolean checkToken(String token)
+    public boolean checkToken(String token, String type)
     {
         boolean hasToken = this.authDao.checkToken(token);
         boolean hasTime = this.authDao.checkTokenExpired(token);
         boolean hasNotUsed = this.authDao.checkTokenNotUsed(token);
+        boolean hasType = this.authDao.checkType(type);
 
 
-        if(hasToken && hasTime && hasNotUsed)
+        if(hasToken && hasTime && hasNotUsed && hasType)
         {
             this.authDao.setTokenUsed(token);
         }
 
-        return hasToken && hasTime && hasNotUsed;
+        return hasToken && hasTime && hasNotUsed && hasType;
     }
 
     public int getUserIdFromVerifyToken(String token)
@@ -236,5 +237,10 @@ public class AuthService
         }
         // Cập nhật mật khẩu
         return this.authDao.updateUserPassword(id, hashedPassword);
+    }
+}
+    public boolean setNewPassword(int userId, String hashedPassword, StringBuilder salt)
+    {
+        return this.authDao.setNewPassword(userId, hashedPassword, salt);
     }
 }

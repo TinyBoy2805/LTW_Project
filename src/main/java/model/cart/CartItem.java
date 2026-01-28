@@ -34,9 +34,9 @@ public class CartItem implements Serializable
     {
         this.quantity--;
     }
-    public void increaseQuantity()
+    public void increaseQuantity(int newQuantity)
     {
-        this.quantity++;
+        this.quantity+=newQuantity;
     }
 
 

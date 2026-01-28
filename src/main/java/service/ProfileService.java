@@ -1,23 +1,28 @@
 package service;
 
 import dao.AddressDao;
+import dao.AuthDao;
 import dao.UserDAO;
 import model.Address;
 import model.User;
 import model.UserProfile;
-
-import java.util.ArrayList;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
+import java.util.UUID;
 
 public class ProfileService
 {
     private UserDAO userDAO;
     private AddressDao addressDao;
+    private AuthService authService;
+    private AuthDao authDao;
 
     public ProfileService()
     {
         this.userDAO = new UserDAO();
         this.addressDao = new AddressDao();
+        this.authService = new AuthService();
+        this.authDao = new AuthDao();
     }
 
 
@@ -48,5 +53,51 @@ public class ProfileService
             ok4 = userDAO.updateAvatar(userId, avtUrl);
         }
         return ok1 && ok2 && ok3 && ok4;
+    public boolean changeAvt(Integer userId, String avtUrl)
+    {
+        return this.userDAO.changeAvt(userId, avtUrl);
+    }
+
+    public boolean deleteAccount(int userId)
+    {
+        return this.userDAO.deleteAccount(userId);
+    }
+
+    public long addAddress(int userId, String houseNumber, String road, String district, String city, String hamlet, String ward, boolean isDefault) {
+        return this.addressDao.addAddress(userId, houseNumber, road, district, city, hamlet, ward, isDefault);
+    }
+
+    public boolean deleteAddress(long addressId) {
+        return this.addressDao.deleteAddress(addressId);
+    }
+
+    public boolean setDefaultAddress(int userId, long addressId) {
+        return this.addressDao.setDefaultAddress(userId, addressId);
+    }
+
+    public boolean updateAddress(long addressId, String houseNumber, String road, String district, String city, String hamlet, String ward) {
+        return this.addressDao.updateAddress(addressId, houseNumber, road, district, city, hamlet, ward);
+    }
+
+    public boolean updateName(int userId, String newName) {
+        return this.userDAO.updateName(userId, newName);
+    }
+
+    public boolean updatePhone(int userId, String newPhone) {
+        return this.userDAO.updatePhone(userId, newPhone);
+    }
+
+    public boolean updatePassword(int userId, String oldPassword, String newPassword) throws NoSuchAlgorithmException {
+        User user = this.userDAO.getUserById(userId);
+        if (user == null) return false;
+
+        String hashedOld = authService.hashPasswordUsingMD5(oldPassword, user.getSalt(), "");
+        if (!hashedOld.equals(user.getPassword_hashed())) {
+            return false;
+        }
+
+        String newSalt = UUID.randomUUID().toString();
+        String hashedNew = authService.hashPasswordUsingMD5(newPassword, newSalt, "");
+        return authDao.setNewPassword(userId, hashedNew, new StringBuilder(newSalt));
     }
 }
