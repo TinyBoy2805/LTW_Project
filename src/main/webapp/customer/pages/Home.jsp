@@ -191,7 +191,7 @@
                 </fieldset>
                 <fieldset>
                     <h4>Nhận xét</h4>
-                    <textarea name="" id=""></textarea>
+                    <textarea name="" id="review-textarea"></textarea>
                 </fieldset>
                 <button>Gửi đánh giá</button>
             </form>
@@ -219,10 +219,17 @@
     <jsp:include page="/customer/components/Footer.jsp"/>
 
 
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" defer></script>
     <script type="module" src="${pageContext.request.contextPath}/customer/scripts/main.js" defer></script>
     <script type="module" src="${pageContext.request.contextPath}/customer/scripts/home/Home.js" defer></script>
     <script type="module" src="${pageContext.request.contextPath}/customer/scripts/product/addToCart.js" defer></script>
+    <script type="module">
+        import {initCKEditor} from "${pageContext.request.contextPath}/customer/scripts/utils/initCkeditor.js";
+        window.addEventListener("DOMContentLoaded", () => {
+            initCKEditor("#review-textarea");
+        });
+    </script>
 </body>
 
 </html>

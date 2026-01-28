@@ -249,7 +249,7 @@
             <ul>
                 <li><a href="${pageContext.request.contextPath}/home" class="${activeTab eq 'home' ? 'active' : ''}">Trang chủ</a></li>
                 <li><a href="${pageContext.request.contextPath}/product" class="${activeTab eq 'product' ? 'active' : ''}">Sản phẩm</a></li>
-                <li><a href="${pageContext.request.contextPath}/customer/pages/Voucher.jsp" class="${activeTab eq 'voucher' ? 'active' : ''}">Khuyến mãi</a></li>
+                <li><a href="${pageContext.request.contextPath}/voucher" class="${activeTab eq 'voucher' ? 'active' : ''}">Khuyến mãi</a></li>
                 <li><a href="${pageContext.request.contextPath}/blog" class="${activeTab eq 'blog' ? 'active' : ''}">Cẩm nang</a></li>
                 <li><a href="${pageContext.request.contextPath}/customer/pages/Contact.jsp" class="${activeTab eq 'contact' ? 'active' : ''}">Liên hệ</a></li>
                 <li><a href="${pageContext.request.contextPath}/about" class="${activeTab eq 'about' ? 'active' : ''}">về cửa hàng</a></li>
