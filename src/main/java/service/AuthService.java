@@ -6,7 +6,6 @@ import exception.RegisterError;
 import model.User;
 import model.ValidateObject;
 import org.apache.commons.validator.routines.EmailValidator;
-
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -15,6 +14,7 @@ import java.sql.Timestamp;
 
 
 public class AuthService
+
 {
     private AuthDao authDao = new AuthDao();
 
@@ -195,11 +195,50 @@ public class AuthService
         return this.authDao.setVerifyUser(userId);
     }
 
+    public void setVerified(String email) {
+        AuthDao authDao = new AuthDao();
+        authDao.updateVerified(email);
+    }
+
     public User findByEmailOrPhone(String input)
     {
         return this.authDao.findByEmailOrPhone(input);
     }
 
+        /**
+     * Đổi mật khẩu cho khách hàng bởi admin
+     * @param id ID người dùng
+     * @param newPassword mật khẩu mới
+     * @param confirmPassword xác nhận mật khẩu
+     * @return true nếu đổi thành công, false nếu xác nhận không khớp hoặc yếu
+     */
+    public boolean adminChangeUserPassword(int id, String newPassword, String confirmPassword) {
+        if (!isMatch(newPassword, confirmPassword)) {
+            return false;
+        }
+        PasswordStrength strength = checkPasswordStrength(newPassword);
+        if (strength.isWeak()) {
+            return false;
+        }
+        // Lấy salt của user
+        String salt;
+        try {
+            salt = this.authDao.getSaltByUserId(id);
+        } catch (Exception e) {
+            return false;
+        }
+        if (salt == null) return false;
+        String pepper = "TOI IU NLU-FIT";
+        String hashedPassword;
+        try {
+            hashedPassword = hashPasswordUsingMD5(newPassword, salt, pepper);
+        } catch (Exception e) {
+            return false;
+        }
+        // Cập nhật mật khẩu
+        return this.authDao.updateUserPassword(id, hashedPassword);
+    }
+}
     public boolean setNewPassword(int userId, String hashedPassword, StringBuilder salt)
     {
         return this.authDao.setNewPassword(userId, hashedPassword, salt);

@@ -11,7 +11,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
           crossorigin="anonymous">
-    <link rel="stylesheet" href="admin/styles/pages/verify.css?v=1.1">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/styles/pages/verify.css?v=1.1">
 </head>
 
 <body data-verifiedsuccess="${verifiedSuccess}" data-emailchanged="${emailChangeSuccess}">
@@ -46,7 +46,7 @@
                         <li class="hover-avt --is-login">
                             <a href="#" class="--color4"><i class="fa-solid fa-user-ninja --size20"></i></a>
                         </li>
-                        <li class="login-btn --is-not-login"><a href="./index.jsp">Đăng nhập</a></li>
+                        <li class="login-btn --is-not-login"><a href="${pageContext.request.contextPath}/auth/login">Đăng nhập</a></li>
                     </ul>
                 </div>
             </div>
@@ -78,7 +78,8 @@
 
         <div class="form-section">
 
-            <form id="verify-step-1" class="reset-form reset-form--active" action="verify" method="post">
+            <form id="verify-step-1" class="reset-form reset-form--active" action="${pageContext.request.contextPath}/auth" method="post">
+                <input type="hidden" name="action" value="verify"/>
                 <h2 class="reset-form__title">Nhập mã OTP</h2>
                 <p class="reset-form__instruction">Nhập 6 số OTP được gửi tới email của bạn.</p>
 
@@ -105,7 +106,8 @@
                 </p>
             </form>
 
-            <form id="verify-step-2" class="reset-form reset-form--hidden" action="change-email" method="post">
+            <form id="verify-step-2" class="reset-form reset-form--hidden" action="${pageContext.request.contextPath}/auth" method="post">
+                <input type="hidden" name="action" value="change_email"/>
                 <h2 class="reset-form__title">Cập nhật lại email</h2>
 
                 <div class="input-group">

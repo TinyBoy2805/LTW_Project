@@ -1,7 +1,11 @@
 package model.product;
 
 import java.io.Serializable;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class ProductCard implements Serializable
 {
     private int id;
@@ -80,4 +84,5 @@ public class ProductCard implements Serializable
     public void setImg_url(String img_url) {
         this.img_url = img_url;
     }
+
 }

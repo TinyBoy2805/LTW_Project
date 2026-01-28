@@ -3,15 +3,13 @@ package dao;
 import com.oracle.wls.shaded.org.apache.xpath.objects.XString;
 import model.Role;
 import model.User;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.List;
 
-public class AuthDao extends BaseDao
-{
+public class AuthDao extends BaseDao {
 
     public User getUserByName(String name)
     {
@@ -123,19 +121,19 @@ public class AuthDao extends BaseDao
     }
 
 
-//    public void saveOTP(String email, String otp) {
-//        String sql = "UPDATE users SET otp=:otp WHERE email=:email";
-//        get().withHandle(h -> h.createUpdate(sql)
-//                .bind("otp", otp).bind("email", email).execute());
-//    }
-//
-//    public String getOTP(String email) {
-//        String sql = "SELECT otp FROM users WHERE email=:email";
-//        return get().withHandle(h ->
-//                h.createQuery(sql).bind("email", email)
-//                        .mapTo(String.class).findOne().orElse(null)
-//        );
-//    }
+    public void saveOTP(String email, String otp) {
+        String sql = "UPDATE users SET otp=:otp WHERE email=:email";
+        get().withHandle(h -> h.createUpdate(sql)
+                .bind("otp", otp).bind("email", email).execute());
+    }
+
+    public String getOTP(String email) {
+        String sql = "SELECT otp FROM users WHERE email=:email";
+        return get().withHandle(h ->
+                h.createQuery(sql).bind("email", email)
+                        .mapTo(String.class).findOne().orElse(null)
+        );
+    }
 //
 //    public void updateVerified(String email) {
 //        String sql = "UPDATE users SET verified=1, otp=NULL WHERE email=:email";
@@ -172,6 +170,43 @@ public class AuthDao extends BaseDao
                         .mapToBean(User.class)
                         .findOne()
                         .orElse(null)
+        );
+    }
+       // Cập nhật thông tin khách hàng 
+        public void updateUserInfo(int id, String name, String email, String phoneNumber, String avtUrl) {
+            get().useHandle(h ->
+                h.createUpdate("""
+                    UPDATE users
+                    SET name = :name,
+                        email = :email,
+                        phone_number = :phoneNumber,
+                        avt_url = :avtUrl
+                    WHERE id = :id
+                """)
+                .bind("id", id)
+                .bind("name", name)
+                .bind("email", email)
+                .bind("phoneNumber", phoneNumber)
+                .bind("avtUrl", avtUrl)
+                .execute()
+            );
+        }
+    // Cập nhật đường dẫn ảnh đại diện
+    public void updateAvatar(int id, String avtUrl) {
+        get().useHandle(h ->
+            h.createUpdate("UPDATE users SET avt_url = :avtUrl WHERE id = :id")
+                .bind("id", id)
+                .bind("avtUrl", avtUrl)
+                .execute()
+        );
+    }
+    
+    // Xóa tài khoản người dùng
+    public void deleteUser(int id) {
+        get().useHandle(h ->
+            h.createUpdate("DELETE FROM users WHERE id = :id")
+            .bind("id", id)
+            .execute()
         );
     }
 
@@ -321,6 +356,31 @@ public class AuthDao extends BaseDao
         );
     }
 
+    public String getSaltByUserId(int id) {
+        return get().withHandle(h ->
+            h.createQuery("SELECT salt FROM users WHERE id = :id")
+                .bind("id", id)
+                .mapTo(String.class)
+                .findOne()
+                .orElse(null)
+        );
+    }
+
+    public boolean updateUserPassword(int id, String hashedPassword) {
+        int rows = get().withHandle(h ->
+            h.createUpdate("UPDATE users SET password_hashed = :pwd WHERE id = :id")
+                .bind("pwd", hashedPassword)
+                .bind("id", id)
+                .execute()
+        );
+        return rows > 0;
+    }
+
+    public void updateVerified(String email) {
+        String sql = "UPDATE users SET verified=1, otp=NULL WHERE email=:email";
+        get().withHandle(h -> h.createUpdate(sql)
+                .bind("email", email).execute());
+    }
     public boolean checkType(String type)
     {
         String query = """

@@ -22,7 +22,6 @@ public class HomeController extends HttpServlet
 
         String pathInfo = request.getPathInfo(); // Lấy phần sau /home/
 
-//        System.out.println(pathInfo);
         if (pathInfo == null || pathInfo.equals("/"))
         {
             this.setHomeData(request);
@@ -70,7 +69,6 @@ public class HomeController extends HttpServlet
         request.setAttribute("avg_rating", this.homeService.getAvgRating());
         request.setAttribute("categories", this.homeService.getCategories());
         request.setAttribute("vouchers", this.homeService.getVouchers());
-
     }
 
 

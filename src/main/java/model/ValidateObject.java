@@ -28,4 +28,14 @@ public class ValidateObject
                 phoneError != null || passwordError != null ||
                 confirmPasswordError != null;
     }
+
+        public String getErrorMessage() {
+        StringBuilder sb = new StringBuilder();
+        if (usernameError != null) sb.append(usernameError).append("\n");
+        if (emailError != null) sb.append(emailError).append("\n");
+        if (phoneError != null) sb.append(phoneError).append("\n");
+        if (passwordError != null) sb.append(passwordError).append("\n");
+        if (confirmPasswordError != null) sb.append(confirmPasswordError).append("\n");
+        return sb.toString().trim();
+    }
 }

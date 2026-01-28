@@ -12,16 +12,16 @@ import org.jdbi.v3.core.Jdbi;
 import com.mysql.cj.jdbc.MysqlDataSource;
 
 public abstract class BaseDao {
-    Jdbi jdbi;
+    static Jdbi jdbi;
 
-    protected Jdbi get() {
+    protected static Jdbi get() {
         if (jdbi == null) {
            connect();
         }
         return jdbi;
     }
 
-    private void connect() {
+    private static void connect() {
         MysqlDataSource dataSource = new MysqlDataSource();
         System.out.println("jdbc:mysql://" + DBProperties.host + ":" + DBProperties.port + "/" + DBProperties.dbname);
         dataSource.setURL("jdbc:mysql://" + DBProperties.host + ":" + DBProperties.port + "/" + DBProperties.dbname);

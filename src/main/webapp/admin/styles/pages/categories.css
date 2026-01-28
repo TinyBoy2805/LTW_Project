@@ -151,7 +151,7 @@ input{
 /* gird product */
 .content__grid__product{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 12px;
     width: 100%;
     padding: 0 24px 24px 12px;
@@ -163,6 +163,7 @@ input{
     border-radius: 12px;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
     height: 272px;
+    width: 100% ;
 }
 
 .product__img{
@@ -190,7 +191,7 @@ input{
     position: absolute;
     padding: 2px 6px;
     border-radius: 12px;
-    font-size: 16px;
+    font-size: 13px;
     font-weight: 500;
     color: white;
     background-color: #f564a9;
@@ -232,11 +233,31 @@ input{
     color: #f564a9;
 }
 
-.product__button button{
+.button{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.product__button .edit-button{
     border: none;
     padding: 8px 12px;
     background-color: #f564a9;
     color: white;
+    width: 100%;
+    height: 28px;
+    border-radius: 24px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.product__button .delete-button{
+    padding: 8px 12px;
+    background-color: #fae5e5;
+    border: solid 1px #e3b0c5;
+    color: #817b7b;
     width: 100%;
     height: 28px;
     border-radius: 24px;
@@ -527,4 +548,65 @@ input{
 .pagination__info {
     font-size: 13px;
     color: #626262;
+}
+
+.pagination-bounding {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.pagination{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+.page-btn{
+    outline: none;
+    background: #f564a9;
+    color: white;
+    font-weight: 600;
+    padding: 8px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+.page-input{
+    outline: none;
+    background: none;
+    color: black;
+    font-weight: 500;
+    text-align: center;
+    appearance: none;
+    width: 44px;
+    border: 2px solid #9c9c9c;
+    border-radius: 8px;
+    padding: 8px;
+    transition: .3s;
+}
+.page-input:focus {
+    border: 2px solid #f564a9;
+}
+
+#page-prev:disabled, #page-next:disabled {
+    background: #7e7e7e;
+    cursor: context-menu;
+}
+
+.product__button-top{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product__buy{
+    font-size: 12px;
+    color: #7e7e7e;
+    font-weight: 500;
+    text-align: center;
 }

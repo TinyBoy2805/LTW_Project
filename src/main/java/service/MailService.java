@@ -185,6 +185,9 @@ public class MailService
         }
     }
 
+        public static boolean sendEmail(String to, String subject, String content) {
+        final String username = "23130041@st.hcmuaf.edu.vn";
+        final String password = "uvdlltzktezrbyog";
     public boolean sendVerifyPasswordResetLink(String to, String name, String link, int minutes)
     {
         Properties props = new Properties();
@@ -192,6 +195,39 @@ public class MailService
         props.put("mail.smtp.port", "587");
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.sendpartial", "false");
+        props.put("mail.smtp.reportsuccess", "true");
+        props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+        props.put("mail.smtp.ssl.protocols", "TLSv1.2");
+        Session session = Session.getInstance(props,
+                new Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(username, password);
+                    }
+                });
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(username));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
+            message.setSubject(subject);
+            message.setContent(content, "text/html; charset=UTF-8");
+            Transport.send(message);
+            System.out.println("Email sent successfully to: " + to);
+            return true;
+        } catch (Exception e) {
+            // Nếu là SMTPAddressSucceededException thì vẫn coi là gửi thành công
+            Throwable cause = e.getCause();
+            if (cause instanceof com.sun.mail.smtp.SMTPAddressSucceededException) {
+                System.out.println("Email sent successfully (detected via SMTPAddressSucceededException)");
+                return true;
+            }
+            // Nếu message chứa mã 250 thì cũng coi là gửi thành công
+            String errorMsg = e.getMessage();
+            if (errorMsg != null && (errorMsg.contains("250 2.0.0 OK") || errorMsg.contains("250 2.1.5 OK"))) {
+                System.out.println("Email sent successfully (detected via 250 code)");
+                return true;
+            }
+            System.err.println("Send email failed: " + e.getMessage());
         props.put("mail.smtp.sendpartial", "false"); // Error handling if the recipient does not exist.
         props.put("mail.smtp.reportsuccess", "true");
         props.put("mail.smtp.ssl.trust", "smtp.gmail.com");

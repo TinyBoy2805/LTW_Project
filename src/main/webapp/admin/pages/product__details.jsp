@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,206 +8,156 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MiChiShop</title>
-    <link rel="stylesheet" href="../styles/pages/product__details.css">
-    <link rel="stylesheet" href="../styles/components/header.css">
-    <link rel="stylesheet" href="../styles/components/sidebar.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/styles/pages/add__product.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/styles/components/header.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/styles/components/sidebar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/libraries/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/libraries/ckfinder/ckfinder.js"></script>
 </head>
 
 <body>
-    <div class="product_details main">
-        <aside class="sidebar">
-            <% request.setAttribute("activePage", "categories"); %>
-            <%@ include file="../components/sidebar.jsp" %>
-        </aside>
-        <div class="container">
-            <%@ include file="../components/header.jsp" %>
-             
-            <!-- contert -->
-<%--            <div class="container__content">--%>
-<%--                <div class="content__header">--%>
-<%--                    <div class="header__title">--%>
-<%--                        <a href="categories.jsp" class="back__button"><ion-icon--%>
-<%--                                name="chevron-back-outline"></ion-icon></a>--%>
-<%--                        <h2 class="content__title">Chi tiết sản phẩm</h2>--%>
-<%--                    </div>--%>
-<%--                    <div class="header__actions">--%>
-<%--                        <button class="action__button delete__button" id="delete__product__btn">Xóa sản phẩm</button>--%>
-<%--                        <button class="action__button edit__button" id="edit__mode__btn">Chỉnh sửa</button>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
+<div class="categories__add__product main">
+    <aside class="sidebar">
+        <% request.setAttribute("activePage", "product"); %>
+        <%@ include file="../components/sidebar.jsp" %>
+    </aside>
+    <div class="container">
+        <%@ include file="../components/header.jsp" %>
 
-<%--                <div class="detail__content__grid">--%>
-<%--                    <div class="main__details__card card">--%>
-<%--                        <h3 class="card__title">Thông Tin Cơ Bản</h3>--%>
-<%--                        <form id="product__form" class="product__form">--%>
-<%--                            <div class="product__gallery" data-disabled="true">--%>
-<%--                                <div class="thumbnail__list">--%>
-<%--                                    <img src="../imgs/milk__powder.webp" class="thumbnail active"--%>
-<%--                                         data-img-src="../imgs/milk__powder.webp" alt="Thumbnail 1">--%>
-<%--                                    <img src="../imgs/cereal.webp" class="thumbnail" data-img-src="../imgs/cereal.webp"--%>
-<%--                                         alt="Thumbnail 2">--%>
-<%--                                    <div class="thumbnail add__thumbnail disabled" id="add__image__btn">--%>
-<%--                                        <ion-icon name="add-outline"></ion-icon>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-
-<%--                            <div class="form__input">--%>
-<%--                                <p class="label">Tên sản phẩm</p>--%>
-<%--                                <input type="text" id="product__name" value="Sữa bột GrowPro (1-3 tuổi)"--%>
-<%--                                    autocomplete="off" disabled>--%>
-<%--                            </div>--%>
-<%--                            <div class="form__input">--%>
-<%--                                <p class="label">Mã SKU / Bar code</p>--%>
-<%--                                <input type="text" id="product__sku" value="SP-MP-023" autocomplete="off" disabled>--%>
-<%--                            </div>--%>
-<%--                            <div class="two__column__input">--%>
-<%--                                <div class="form__input">--%>
-<%--                                    <p class="label">Danh mục</p>--%>
-<%--                                    <select id="product__category" disabled>--%>
-<%--                                        <option value="milk">Sữa bột/tươi</option>--%>
-<%--                                        <option value="food">Thực phẩm ăn dặm</option>--%>
-<%--                                    </select>--%>
-<%--                                </div>--%>
-<%--                                <div class="form__input">--%>
-<%--                                    <p class="label">Giá bán (VNĐ)</p>--%>
-<%--                                    <input type="text" id="product__price" value="749.000" autocomplete="off" disabled>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-<%--                            <div class="form__input description">--%>
-<%--                                <p class="label">Mô tả sản phẩm</p>--%>
-<%--                                <textarea id="product__description" rows="5"--%>
-<%--                                    disabled>Sữa GrowPro giúp phát triển chiều cao và trí não cho trẻ từ 1 đến 3 tuổi. Cung cấp đầy đủ vitamin và khoáng chất thiết yếu.</textarea>--%>
-<%--                            </div>--%>
-<%--                        </form>--%>
-<%--                    </div>--%>
-
-<%--                    <div class="extra__details__column">--%>
-
-<%--                        <div class="inventory__card card">--%>
-<%--                            <h3 class="card__title">Quản Lý Kho Hàng</h3>--%>
-<%--                            <div class="form__input">--%>
-<%--                                <p class="label">Số lượng Tồn kho</p>--%>
-<%--                                <input type="number" id="product__quantity" value="10" autocomplete="off" disabled>--%>
-<%--                            </div>--%>
-<%--                            <div class="form__input">--%>
-<%--                                <p class="label">Vị trí Lưu trữ</p>--%>
-<%--                                <input type="text" id="product__location" value="Kệ A, Khu 3" autocomplete="off"--%>
-<%--                                    disabled>--%>
-<%--                            </div>--%>
-<%--                            <div class="two__column__input">--%>
-<%--                                <div class="form__input">--%>
-<%--                                    <p class="label">Ngày Nhập Kho</p>--%>
-<%--                                    <input type="date" id="product__receipt__day" value="2025-01-01" autocomplete="off"--%>
-<%--                                        disabled>--%>
-<%--                                </div>--%>
-<%--                                <div class="form__input">--%>
-<%--                                    <p class="label">Ngày Hết Hạn (EXP)</p>--%>
-<%--                                    <input type="date" id="product__expire__day" value="2026-01-01" autocomplete="off"--%>
-<%--                                        disabled>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-<%--                            <div class="form__input">--%>
-<%--                                <p class="label">Trạng thái Sản phẩm</p>--%>
-<%--                                <select id="product__status" disabled>--%>
-<%--                                    <option value="active">Đang bán</option>--%>
-<%--                                    <option value="outofstock">Hết hàng</option>--%>
-<%--                                    <option value="inactive">Ngừng kinh doanh</option>--%>
-<%--                                </select>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-            <div class="container__content">
-                <div class="content__header">
-                    <div class="header__title">
-                        <a href="categories.jsp"><ion-icon name="chevron-back-outline"></ion-icon></a>
-                        <h2 class="content__title">Chi tiết sản phẩm</h2>
+        <!-- contert -->
+        <div class="container__content">
+            <div class="content__header">
+                <a href="${pageContext.request.contextPath}/admin/products">
+                    <ion-icon name="chevron-back-outline"></ion-icon>
+                </a>
+                <h2 class="content__title">Chỉnh sửa sản phẩm</h2>
+            </div>
+            <div class="content__body">
+                <form class="add__product__form" action="${pageContext.request.contextPath}/admin/products/edit-product"
+                      method="post">
+                    <input type="hidden" name="productID" value="${product.id}">
+                    <div class="form__input">
+                        <p class="product__name">Tên sản phẩm</p>
+                        <input type="text" id="product__name" name="product-name" value="${product.name}"
+                               placeholder="Ví dụ: Sữa bột GrowPro" autocomplete="off">
                     </div>
-                    <div class="header__actions">
-                        <a class="action__button delete__button">Xoá</a>
-                        <a class="action__button edit__button">Chỉnh sửa</a>
+                    <div class="brand-category">
+                        <div class="form__input">
+                            <p class="category">Danh mục</p>
+                            <select id="category" name="category">
+                                <option value="Sữa bột công thức">Sữa bột công thức</option>
+                                <option value="Sữa tươi tiệt trùng">Sữa tươi tiệt trùng</option>
+                                <option value="Sữa đặc">Sữa đặc</option>
+                                <option value="Sữa chua uống">Sữa chua uống</option>
+                                <option value="Thực phẩm ăn dặm">Thực phẩm ăn dặm</option>
+                            </select>
+                        </div>
+                        <div class="form__input">
+                            <p class="brand">Thương hiệu</p>
+                            <select id="brand" name="brand">
+                                <option value="Meiji">Meiji</option>
+                                <option value="Aptamil">Aptamil</option>
+                                <option value="Nutifood">Nutifood</option>
+                                <option value="Friso">Friso</option>
+                                <option value="Enfamil">Enfamil</option>
+                                <option value="Similac">Similac</option>
+                                <option value="Vinamilk">Vinamilk</option>
+                                <option value="Abbott">Abbott</option>
+                                <option value="Morinaga">Morinaga</option>
+                                <option value="Nestlé">Nestlé</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="product-units">
+                        <div class="product-units__list" id="unit-input-list">
+                            <div class="form__input unit-item__qty">
+                                <p class="form__label">Số lượng</p>
+                                <input type="number" name="unit-qty[]" id="unit-quantity" placeholder="Số lượng" value="${product.quantity}" min="1">
+                            </div>
+                            <div class="form__input unit-item__price">
+                                <p class="form__label">Giá nhập (VNĐ)</p>
+                                <input type="text" name="unit-price[]" id="unit-import-price" placeholder="Giá nhập" value="${product.price}"
+                                       autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="two__column__input">
+                        <div class="form__input">
+                            <p class="product__receipt__day">Ngày nhập kho</p>
+                            <input type="date" id="product__receipt__day" name="product-receipt-day"
+                                   autocomplete="off">
+                        </div>
+                        <div class="form__input">
+                            <p class="product__expire__day">Ngày hết hạn</p>
+                            <input type="date" id="product__expire__day" name="product-expire-day"
+                                   autocomplete="off">
+                        </div>
+                    </div>
+
+                    <div class="form__input description">
+                        <p class="product__description">Mô tả sản phẩm</p>
+                        <textarea type="" id="product__description" name="product-description"
+                                  autocomplete="off">${product.description}</textarea>
+                    </div>
+
+                    <input type="hidden" id="main-image-input" name="mainImage">
+
+                    <div id="secondary-images-inputs-container"></div>
+                </form>
+                <div class="choose__product__img">
+                    <p class="choose__product__img__title">Thay đổi ảnh sản phẩm</p>
+                    <div class="img-group__main">
+                        <p class="img-group__title">1. Chọn ảnh chính cho sản phẩm (Tối đa 1)</p>
+                        <div class="main-group__item img-group__item">
+                            <img src="" alt="" >
+                        </div>
+                        <button id="add-main-image" class="add-img" type="button">Thêm ảnh chính</button>
+                    </div>
+
+                    <div class="img-group__secondary">
+                        <p class="img-group__title">2. Chọn ảnh phụ cho sản phẩm (Tối đa 4)</p>
+                        <div class="img-group__container">
+                            <div class="img-group__item secondary-item">
+                                <img src="" alt="" >
+                            </div>
+                            <div class="img-group__item secondary-item">
+                                <img src="" alt="" >
+                            </div>
+                            <div class="img-group__item secondary-item">
+                                <img src="" alt="" >
+                            </div>
+                            <div class="add__img img-group__item secondary-item">
+                                <img src="" alt="" >
+                            </div>
+                        </div>
+                        <button id="add-secondary-image" class="add-img">Thêm ảnh phụ</button>
                     </div>
                 </div>
-
-                <div class="detail__content__grid">
-                    <div class="card basic__info">
-                        <h3 class="card__title">Thông tin cơ bản</h3>
-
-                        <div class="product__gallery">
-                            <img id="main__product__img" src="../imgs/milk__powder.webp">
-                            <div class="thumbnail__list">
-                                <img class="thumbnail active" src="../imgs/milk__powder.webp">
-                                <img class="thumbnail" src="../imgs/cereal.webp">
-                                <img class="thumbnail" src="../imgs/cracker.webp">
-                                <img class="thumbnail" src="../imgs/fresh__cheese.webp">
-                            </div>
-                        </div>
-
-                        <div class="form__input">
-                            <span class="label">Tên sản phẩm</span>
-                            <input disabled value="Sữa tươi Organic không đường">
-                        </div>
-
-                        <div class="two__column__input">
-                            <div class="form__input">
-                                <span class="label">Danh mục</span>
-                                <input disabled value="Sữa tươi">
-                            </div>
-                            <div class="form__input">
-                                <span class="label">Trạng thái</span>
-                                <input disabled value="Đang kinh doanh">
-                            </div>
-                        </div>
-
-                        <div class="form__input">
-                            <span class="label">Mô tả</span>
-                            <textarea disabled>Sữa tươi organic không đường, phù hợp cho trẻ em.</textarea>
-                        </div>
-                    </div>
-
-                    <div class="card stock__management">
-                        <h3 class="card__title">Quản lý kho hàng</h3>
-
-                        <table class="stock__table">
-                            <thead>
-                            <tr>
-                                <th>Số lô</th>
-                                <th>Ngày nhập</th>
-                                <th>Ngày hết hạn</th>
-                                <th>Số lượng</th>
-                                <th>Giá nhập</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>LO-001</td>
-                                <td>01/01/2025</td>
-                                <td>01/06/2025</td>
-                                <td>20</td>
-                                <td>280.000đ</td>
-                            </tr>
-                            <tr>
-                                <td>LO-002</td>
-                                <td>01/02/2025</td>
-                                <td>01/08/2025</td>
-                                <td>15</td>
-                                <td>290.000đ</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
+            </div>
+            <div class="content__bottom">
+                <p class="bottom__title">Đảm bảo rằng sản phẩm của bạn là hợp pháp và không gây hậu quả nào</p>
+                <div class="bottom__button">
+                    <button id="move-to-list" class="add" type="submit">Lưu</button>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- link to javascript for burger button -->
-    <script src="../scripts/components/ExtendSidebar.js"></script>
+<script>
+    const contextPath = '${pageContext.request.contextPath}';
+</script>
+<!-- link to javascript for burger button -->
+<script src="${pageContext.request.contextPath}/admin/scripts/components/extendSidebar.js"></script>
+<script src="${pageContext.request.contextPath}/admin/scripts/product/addProduct.js"></script>
+<script src="${pageContext.request.contextPath}/admin/scripts/product/product.js"></script>
+
 </body>
 
 </html>

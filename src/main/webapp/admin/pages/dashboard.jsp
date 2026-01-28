@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -6,9 +8,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MiChiShop</title>
-    <link rel="stylesheet" href="../styles/pages/dashboard.css">
-    <link rel="stylesheet" href="../styles/components/header.css">
-    <link rel="stylesheet" href="../styles/components/sidebar.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/styles/pages/dashboard.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/styles/components/header.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/styles/components/sidebar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -42,7 +44,10 @@
                                 <ion-icon name="cash-outline" class="icon__highlight"></ion-icon>
                             </div>
                             <div class="card__data">
-                                <p class="value__highlight">12,5 Triệu</p>
+                                <p id="today-revenue" class="value__highlight">
+
+<%--                                12,5 Triệu--%>
+                                </p>
                                 <div class="text__highlight">
                                     <p class="increase__highlight">↑ 15%</p>
                                     <span>So với ngày hôm qua</span>
@@ -56,7 +61,9 @@
                                 <ion-icon name="cash-outline" class="icon"></ion-icon>
                             </div>
                             <div class="card__data">
-                                <p class="value">360,36 Triệu</p>
+                                <p id="month-revenue" class="value">
+<%--                                360,36 Triệu--%>
+                                </p>
                                 <div class="text">
                                     <p class="decrease">↓ 36%</p>
                                     <span>So với tháng trước</span>
@@ -70,7 +77,10 @@
                                 <ion-icon name="cash-outline" class="icon"></ion-icon>
                             </div>
                             <div class="card__data">
-                                <p class="value">12,4 Tỷ</p>
+                                <p id="year-revenue" class="value">
+                                    ${yearRevenue}
+<%--                                    12,4 Tỷ--%>
+                                </p>
                                 <div class="text">
                                     <p class="increase">↑ 7.4%</p>
                                     <span>So với quý trước</span>
@@ -107,40 +117,40 @@
                                 <th>Thứ tự</th>
                                 <th>Mã sản phẩm</th>
                                 <th>Tên sản phẩm</th>
-                                <th>Xuất xứ</th>
-                                <th>Trạng thái</th>
+                                <th>Thương hiệu</th>
+                                <th>Số lượng</th>
                                 <th>Đơn giá</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td class="numerical">1</td>
-                                <td class="id">#614232</td>
-                                <td class="name">Sữa tươi Vinamilk tiệt trùng</td>
-                                <td class="origin"><img src="https://flagcdn.com/w40/vn.png" alt="Việt Nam"></td>
-                                <td><span class="status status__instock --instock">Còn hàng</span></td>
-                                <td class="price">245.000đ</td>
-                            </tr>
-                            <tr>
-                                <td class="numerical">2</td>
-                                <td class="id">#614246</td>
-                                <td class="name">Sữa bột Gold IQ+</td>
-                                <td class="origin"><img src="https://flagcdn.com/w40/us.png" alt="Mỹ"></td>
-                                <td><span class="status status__instock --instock">Còn hàng</span></td>
-                                <td>360.000đ</td>
-                            </tr>
-                            <tr>
-                                <td class="numerical">3</td>
-                                <td class="id">#614510</td>
-                                <td class="name">Váng sữa hương Vani</td>
-                                <td class="origin"><img src="https://flagcdn.com/w40/ru.png" alt="Nga"></td>
-                                <td><span class="status status__waiting --pending">Chờ nhập hàng</span></td>
-                                <td>120.000đ</td>
-                            </tr>
+                        <tbody class="tbody-table">
+<%--                            <tr>--%>
+<%--                                <td class="numerical">1</td>--%>
+<%--                                <td class="id">#614232</td>--%>
+<%--                                <td class="name">Sữa tươi Vinamilk tiệt trùng</td>--%>
+<%--                                <td class="origin"><img src="https://flagcdn.com/w40/vn.png" alt="Việt Nam"></td>--%>
+<%--                                <td><span class="status status__instock --instock">Còn hàng</span></td>--%>
+<%--                                <td class="price">245.000đ</td>--%>
+<%--                            </tr>--%>
+<%--                            <tr>--%>
+<%--                                <td class="numerical">2</td>--%>
+<%--                                <td class="id">#614246</td>--%>
+<%--                                <td class="name">Sữa bột Gold IQ+</td>--%>
+<%--                                <td class="origin"><img src="https://flagcdn.com/w40/us.png" alt="Mỹ"></td>--%>
+<%--                                <td><span class="status status__instock --instock">Còn hàng</span></td>--%>
+<%--                                <td>360.000đ</td>--%>
+<%--                            </tr>--%>
+<%--                            <tr>--%>
+<%--                                <td class="numerical">3</td>--%>
+<%--                                <td class="id">#614510</td>--%>
+<%--                                <td class="name">Váng sữa hương Vani</td>--%>
+<%--                                <td class="origin"><img src="https://flagcdn.com/w40/ru.png" alt="Nga"></td>--%>
+<%--                                <td><span class="status status__waiting --pending">Chờ nhập hàng</span></td>--%>
+<%--                                <td>120.000đ</td>--%>
+<%--                            </tr>--%>
                         </tbody>
                     </table>
                     <div class="table__bottom">
-                        <a href="categories.jsp"><button class="viewmore">Xem đầy đủ</button></a>
+                        <a href="${pageContext.request.contextPath}/admin/products"><button class="viewmore">Xem đầy đủ</button></a>
                     </div>
                 </div>
             </div>
@@ -148,8 +158,9 @@
     </div>
 
     <!-- link to javascript for burger button -->
-    <script src="../scripts/components/ExtendSidebar.js"></script>
-    <script src="../scripts/components/chart.js"></script>
+    <script src="${pageContext.request.contextPath}/admin/scripts/components/extendSidebar.js" defer></script>
+    <script src="${pageContext.request.contextPath}/admin/scripts/dashboard/dashboard.js" defer></script>
+<%--    <script src="${pageContext.request.contextPath}/admin/scripts/components/chart.js"></script>--%>
 </body>
 
 </html>

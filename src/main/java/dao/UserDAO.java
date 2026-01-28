@@ -4,6 +4,43 @@ import model.User;
 import model.Role;
 import model.UserProfile;
 
+public class UserDAO extends BaseDao
+{
+        // Cập nhật mật khẩu
+        public boolean updatePassword(int userId, String newPasswordHash) {
+            String sql = "UPDATE users SET password_hashed = :password WHERE id = :userId";
+            int updated = get().withHandle(handle ->
+                handle.createUpdate(sql)
+                    .bind("userId", userId)
+                    .bind("password", newPasswordHash)
+                    .execute()
+            );
+            return updated > 0;
+        }
+    // Cập nhật avatar
+    public boolean updateAvatar(int userId, String avtUrl) {
+        String sql = "UPDATE users SET avt_url = :avtUrl WHERE id = :userId";
+        int updated = get().withHandle(handle ->
+            handle.createUpdate(sql)
+                .bind("userId", userId)
+                .bind("avtUrl", avtUrl)
+                .execute()
+        );
+        return updated > 0;
+    }
+
+    // Cập nhật email
+    public boolean updateEmail(int userId, String email) {
+        String sql = "UPDATE users SET email = :email WHERE id = :userId";
+        int updated = get().withHandle(handle ->
+            handle.createUpdate(sql)
+                .bind("userId", userId)
+                .bind("email", email)
+                .execute()
+        );
+        return updated > 0;
+    }
+    
 public class UserDAO extends BaseDao {
 
     // Lấy user theo ID

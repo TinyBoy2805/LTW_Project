@@ -4,10 +4,11 @@ import model.Address;
 import java.util.List;
 
 public class AddressDao extends BaseDao {
-    
-    // Lấy MỘT địa chỉ đầu tiên của user (backward compatibility)
-    public Address getAddressByUserId(long userId) {
-        String sql = "SELECT * FROM addresses WHERE user_id = :userId LIMIT 1";
+
+    // Lấy địa chỉ mặc định của user
+    // Lấy địa chỉ mặc định (is_default=1) của user
+    public Address getDefaultAddressByUserId(long userId) {
+        String sql = "SELECT * FROM addresses WHERE user_id = :userId AND is_default = 1 LIMIT 1";
         return get().withHandle(handle ->
             handle.createQuery(sql)
                 .bind("userId", userId)
@@ -24,6 +25,15 @@ public class AddressDao extends BaseDao {
                 ))
                 .findOne()
                 .orElse(null)
+        );
+    }
+
+    // Xóa địa chỉ gắn với người dùng
+    public void deleteAddressByUserId(long userId) {
+        get().useHandle(h ->
+            h.createUpdate("DELETE FROM addresses WHERE user_id = :userId")
+                .bind("userId", userId)
+                .execute()
         );
     }
     
@@ -101,7 +111,10 @@ public class AddressDao extends BaseDao {
     
     // Cập nhật địa chỉ
     public boolean updateAddress(long addressId, String houseNumber, String road, String district, 
-                                String city, String hamlet, String ward) {
+                                String city, String hamlet, String ward, boolean isDefault, long userId) {
+        if (isDefault) {
+            clearDefaultAddress(userId);
+        }
         String sql = """
             UPDATE addresses
             SET house_number = :houseNumber,
@@ -109,10 +122,10 @@ public class AddressDao extends BaseDao {
                 district = :district,
                 city = :city,
                 hamlet = :hamlet,
-                ward = :ward
+                ward = :ward,
+                is_default = :isDefault
             WHERE id = :addressId
         """;
-        
         int updated = get().withHandle(handle ->
             handle.createUpdate(sql)
                 .bind("addressId", addressId)
@@ -122,9 +135,9 @@ public class AddressDao extends BaseDao {
                 .bind("city", city)
                 .bind("hamlet", hamlet)
                 .bind("ward", ward)
+                .bind("isDefault", isDefault ? 1 : 0)
                 .execute()
         );
-        
         return updated > 0;
     }
     

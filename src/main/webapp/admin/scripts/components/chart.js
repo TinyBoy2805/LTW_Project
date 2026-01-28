@@ -45,6 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const barChartDom = document.getElementById('bar');
     if (barChartDom) {
         const revenueBarChart = echarts.init(barChartDom);
+
         const barOption = {
             grid: {
                 left: '3%',
