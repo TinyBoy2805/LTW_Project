@@ -17,6 +17,24 @@
 
 <body>
   <div class="ThemUuDai main">
+    <!-- Modal thông báo lỗi -->
+    <c:if test="${not empty error}">
+      <div id="errorModal" class="modal-error" style="display: flex;">
+        <div class="modal-content-error">
+          <span class="modal-message">${error}</span>
+          <button class="modal-ok-btn" onclick="closeErrorModal()">OK</button>
+        </div>
+      </div>
+      <script>
+        function closeErrorModal() {
+          document.getElementById('errorModal').style.display = 'none';
+        }
+        // Đảm bảo modal hiển thị khi có lỗi
+        document.addEventListener('DOMContentLoaded', function() {
+          document.getElementById('errorModal').style.display = 'flex';
+        });
+      </script>
+    </c:if>
     <aside class="sidebar">
       <% request.setAttribute("activePage", "uudai"); %>
       <%@ include file="../components/sidebar.jsp" %>
@@ -58,8 +76,8 @@
                       <div>
                         <label class="label">Giảm tiền (vnđ)</label>
                         <div class="inline currency-wrap">
-                          <input type="number" class="input currency-input" name="discount_amount" min="0" step="1000" value="0"
-                            aria-label="Giảm tiền" />
+                          <input type="text" class="input currency-input" name="discount_amount" min="0" step="1000" value="0"
+                            aria-label="Giảm tiền" autocomplete="off" inputmode="numeric" />
                         </div>
                       </div>
                       <div>
@@ -72,8 +90,8 @@
                       <div>
                         <label class="label">Áp dụng cho đơn từ (vnđ)</label>
                         <div class="inline currency-wrap">
-                          <input type="number" class="input currency-input" name="min_order_value" min="0" step="1000" value="0"
-                            aria-label="Áp dụng cho đơn giá từ" />
+                          <input type="text" class="input currency-input" name="min_order_value" min="0" step="1000" value="0"
+                            aria-label="Áp dụng cho đơn giá từ" autocomplete="off" inputmode="numeric" />
                         </div>
                       </div>
                       <div>

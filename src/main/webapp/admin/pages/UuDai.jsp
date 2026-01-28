@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -57,13 +58,7 @@
                   <p>${voucher.description}</p>
                   <p class="muted">Loại: ${voucher.voucher_type.name() == 'SHIPPING' ? 'Giảm giá ship' : 'Giảm giá sản phẩm'}</p>
                   <c:if test="${voucher.min_order_value != null}">
-                    <p class="muted">Áp dụng cho đơn từ: ${voucher.min_order_value}</p>
-                  </c:if>
-                  <c:if test="${voucher.discount_amount != null}">
-                    <p class="muted">Giảm tiền: ${voucher.discount_amount}</p>
-                  </c:if>
-                  <c:if test="${voucher.discount_percentage != null}">
-                    <p class="muted">Giảm %: ${voucher.discount_percentage}%</p>
+                    <p class="muted">Áp dụng cho đơn từ: <fmt:formatNumber value="${voucher.min_order_value}" type="number" groupingUsed="true"/> ₫</p>
                   </c:if>
                   <c:if test="${voucher.end_date != null}">
                     <p class="muted">Hạn sử dụng: ${voucher.end_date}</p>

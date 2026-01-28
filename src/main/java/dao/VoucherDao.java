@@ -23,7 +23,7 @@ public class VoucherDao extends BaseDao {
                         .map((rs, ctx) -> {
                             Voucher v = new Voucher();
                             v.setId(rs.getInt("id"));
-                            v.setCategory_name(null); // hoặc lấy từ category nếu cần
+                            v.setCategory_name(rs.getString("category_id"));
                             v.setCode(rs.getString("code"));
                             v.setDescription(rs.getString("description"));
                             v.setDiscount_amount(rs.getDouble("discount_amount"));
@@ -93,7 +93,7 @@ public class VoucherDao extends BaseDao {
             .map((rs, ctx) -> {
                 Voucher v = new Voucher();
                 v.setId(rs.getInt("id"));
-                v.setCategory_name(null); // hoặc lấy từ category nếu cần
+                v.setCategory_name(rs.getString("category_id"));
                 v.setCode(rs.getString("code"));
                 v.setDescription(rs.getString("description"));
                 v.setDiscount_amount(rs.getDouble("discount_amount"));

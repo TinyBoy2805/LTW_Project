@@ -57,9 +57,25 @@ public class AdminVoucherController extends HttpServlet {
         String servletPath = request.getServletPath();
         if ("/admin/voucher".equals(servletPath)) {
             Voucher voucher = parseVoucher(request);
-            voucherDao.insert(voucher);
-            response.sendRedirect(request.getContextPath() + "/admin/voucher");
-            return;
+            try {
+                voucherDao.insert(voucher);
+                response.sendRedirect(request.getContextPath() + "/admin/voucher");
+                return;
+            } catch (Exception e) {
+                // Kiểm tra lỗi trùng code
+                String errorMsg = null;
+                if (e.getMessage() != null && e.getMessage().contains("Duplicate entry")) {
+                    errorMsg = "Mã ưu đãi đã tồn tại. Vui lòng chọn mã khác.";
+                } else {
+                    errorMsg = "Đã xảy ra lỗi khi thêm ưu đãi. Vui lòng thử lại.";
+                }
+                List<model.Category> categories = categoryDao.findAll();
+                request.setAttribute("categories", categories);
+                request.setAttribute("error", errorMsg);
+                request.setAttribute("voucher", voucher);
+                request.getRequestDispatcher("/admin/pages/ThemUuDai.jsp").forward(request, response);
+                return;
+            }
         }
 
         if ("/admin/manage_voucher".equals(servletPath)) {
