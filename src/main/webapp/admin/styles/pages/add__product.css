@@ -120,12 +120,27 @@ body {
     gap: 12px;
 }
 
+.brand-category{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.brand-category.form__input{
+    flex: 1;
+}
+
 .unit-item {
     display: flex;
-    align-items: flex-end; 
+    justify-content: start;
+    align-items: center;
     width: 100%;
     gap: 12px;
-    margin-bottom: 4px;
+}
+
+.unit-item:hover > .unit-item__remove-btn {
+    display: block;
 }
 
 .unit-item__unit {
@@ -161,7 +176,8 @@ body {
     height: 24px;
     color: #858585;
     margin-bottom: 8px;
-    transition: color 0.2s;
+    transition: .2s;
+    transition-property: all;
 }
 
 .unit-item__remove-btn:hover {
@@ -409,6 +425,7 @@ textarea:focus {
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
     padding: 12px 24px;
     color: black;
+    border: none;
 }
 
 .add {
@@ -419,6 +436,7 @@ textarea:focus {
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
     padding: 12px 24px;
     color: white;
+    border: none;
 }
 
 .cancel:hover {

@@ -1,5 +1,15 @@
 package model.orders;
 
 public enum Payment {
-    PAID, PENDING, FAILED
+    PAID("Tiền mặt"), PENDING("Chờ nhận hàng"), FAILED("Ngân hàng");
+
+    private String status;
+
+    Payment(String status) {
+        this.status = status;
+    }
+
+    public String getStatus() {
+        return status;
+    }
 }

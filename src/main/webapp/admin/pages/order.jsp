@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -91,9 +93,9 @@
                             <p class="order__delivery">Ngày đặt hàng: 12/10/2025</p>
                             <div class="order__actions">
                                 <p class="price">749.000đ</p>
-                                <a href="order_details.jsp">
-                                    <button class="detail__button">Chi tiết</button>
-                                </a>
+                                    <button class="detail__button">
+                                        Chi tiết
+                                    </button>
                             </div>
                         </div>
                     </div>
@@ -123,7 +125,7 @@
 <!-- link to javascript for burger button -->
 <script src="${pageContext.request.contextPath}/admin/scripts/components/extendSidebar.js"></script>
 <script src="${pageContext.request.contextPath}/admin/scripts/components/filter.js"></script>
-<script src="${pageContext.request.contextPath}/admin/scripts/order/order.js"></script>
+<script type="module" src="${pageContext.request.contextPath}/admin/scripts/order/order.js"></script>
 </body>
 
 </html>

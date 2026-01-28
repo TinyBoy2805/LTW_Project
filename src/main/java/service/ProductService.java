@@ -1,6 +1,7 @@
 package service;
 
 import dao.ProductDAO;
+import model.product.AdminProductCard;
 import model.product.FilterRequest;
 import model.orders.PageInformation;
 import model.product.Product;
@@ -38,14 +39,15 @@ public class ProductService
         return this.productDAO.getProductsByName(productName);
     }
 
-    public PageInformation<ProductCard> getProduct(int pageIndex) {
+    //admin service
+    public PageInformation<AdminProductCard> getProduct(int pageIndex) {
         int PAGE_SIZE = 12;
         int totalProduct = this.productDAO.getTotalProducts();
         int totalPage = (totalProduct % PAGE_SIZE != 0) ? (totalProduct / PAGE_SIZE) + 1 : totalProduct / PAGE_SIZE;
 
-        List<ProductCard> data = this.productDAO.getProducts(pageIndex, PAGE_SIZE);
+        List<AdminProductCard> data = this.productDAO.getProducts(pageIndex, PAGE_SIZE);
 
-        PageInformation<ProductCard> information = new PageInformation<>();
+        PageInformation<AdminProductCard> information = new PageInformation<>();
         information.setData(data);
         information.setPageIndex(pageIndex);
         information.setPageSize(PAGE_SIZE);
@@ -55,14 +57,14 @@ public class ProductService
         return information;
     }
 
-    public PageInformation<ProductCard> searchProduct(String productName, int pageIndex) {
+    public PageInformation<AdminProductCard> searchProduct(String productName, int pageIndex) {
         int PAGE_SIZE = 12;
         int totalProduct = this.productDAO.countSearchProduct(productName);
         int totalPage = (totalProduct % PAGE_SIZE != 0) ? (totalProduct / PAGE_SIZE) + 1 : totalProduct / PAGE_SIZE;
 
-        List<ProductCard> data = this.productDAO.searchSearch(productName, pageIndex, PAGE_SIZE);
+        List<AdminProductCard> data = this.productDAO.searchProduct(productName, pageIndex, PAGE_SIZE);
 
-        PageInformation<ProductCard> infor = new PageInformation<>();
+        PageInformation<AdminProductCard> infor = new PageInformation<>();
         infor.setData(data);
         infor.setPageIndex(pageIndex);
         infor.setPageSize(PAGE_SIZE);
@@ -72,7 +74,7 @@ public class ProductService
         return infor;
     }
 
-    public PageInformation<ProductCard> filterProducts(HashMap<String, Object> filterRaw, int pageIndex) {
+    public PageInformation<AdminProductCard> filterProducts(HashMap<String, Object> filterRaw, int pageIndex) {
         int PAGE_SIZE = 12;
 
         // lấy trạng thái trên filter
@@ -87,9 +89,9 @@ public class ProductService
         int totalProduct = this.productDAO.countFilterProducts(fr);
         int totalPage = (totalProduct % PAGE_SIZE != 0) ? (totalProduct / PAGE_SIZE) + 1 : totalProduct / PAGE_SIZE;
 
-        List<ProductCard> data = this.productDAO.filterProduct(fr, pageIndex, PAGE_SIZE);
+        List<AdminProductCard> data = this.productDAO.filterProduct(fr, pageIndex, PAGE_SIZE);
 
-        PageInformation<ProductCard> infor = new PageInformation<>();
+        PageInformation<AdminProductCard> infor = new PageInformation<>();
         infor.setData(data);
         infor.setPageIndex(pageIndex);
         infor.setPageSize(PAGE_SIZE);
@@ -102,9 +104,13 @@ public class ProductService
     public List<String> getAllCategoryNames() {
         return this.productDAO.getAllCategoryNames();
     }
+//
+//    public List<String> getAllVariantNames() {
+//        return this.productDAO.getAllVariantNames();
+//    }
+//
+//    public List<String> getAllBrandNames() {
+//        return this.productDAO.getAllBrandNames();
+//    }
 
-    public static void main(String[] args) {
-        var list = new ProductDAO().getAllCategoryNames();
-        list.forEach(System.out::println);
-    }
 }

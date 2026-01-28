@@ -1,9 +1,7 @@
 package dao;
 
 import model.Date;
-import model.orders.FilterRequest;
-import model.orders.OrderCard;
-import model.orders.OrderStatus;
+import model.orders.*;
 
 import java.sql.PreparedStatement;
 import java.sql.Timestamp;
@@ -13,19 +11,19 @@ import java.util.List;
 
 public class OrderDAO extends BaseDao {
 
-    public int countOrders(){
+    public int countOrders() {
         String query = """
                 SELECT Count(DISTINCT id) from orders
                 """;
         return get().withHandle(h ->
-            h.createQuery(query).mapTo(int.class).one()
+                h.createQuery(query).mapTo(int.class).one()
         );
     }
 
     public List<OrderCard> getOrders(int pageIndex, int pageSize) {
 
         String query = """
-                SELECT O.order_code, PI.img_url, P.name, O.order_status, O.total_price, O.created_at\s
+                SELECT O.order_code, PI.img_url, P.name, O.order_status, O.total_price, O.created_at, O.id
                 FROM ORDERS AS O JOIN order_items AS OI ON
                 O.id = OI.order_id
                 JOIN product_variants AS PV ON
@@ -55,6 +53,7 @@ public class OrderDAO extends BaseDao {
                                     orderCard.setOrder_status(OrderStatus.valueOf(status.trim().toUpperCase()).getStatus());
                                     Timestamp ts = rs.getTimestamp("created_at");
                                     orderCard.setCreated_at(ts.toLocalDateTime());
+                                    orderCard.setOrderID(rs.getInt("id"));
 
 
                                     return orderCard;
@@ -65,7 +64,7 @@ public class OrderDAO extends BaseDao {
 
     public List<OrderCard> searchOrders(String orderName, int pageIndex, int pageSize) {
         String query = """
-                SELECT O.order_code, PI.img_url, P.name, O.order_status, O.total_price, O.created_at
+                SELECT O.order_code, PI.img_url, P.name, O.order_status, O.total_price, O.created_at, O.id
                 FROM ORDERS AS O JOIN order_items AS OI ON
                 O.id = OI.order_id
                 JOIN product_variants AS PV ON
@@ -97,6 +96,8 @@ public class OrderDAO extends BaseDao {
                             Timestamp ts = rs.getTimestamp("created_at");
                             orderCard.setCreated_at(ts.toLocalDateTime());
 
+                            orderCard.setOrderID(rs.getInt("id"));
+
                             return orderCard;
                         })
                         .list());
@@ -105,13 +106,13 @@ public class OrderDAO extends BaseDao {
 
     public int countSearchOrders(String orderName) {
         String sql = """
-        SELECT COUNT(DISTINCT O.id)
-        FROM ORDERS O
-        JOIN order_items OI ON O.id = OI.order_id
-        JOIN product_variants PV ON OI.product_variant_id = PV.id
-        JOIN products P ON PV.product_id = P.id
-        WHERE P.name LIKE :name
-    """;
+                    SELECT COUNT(DISTINCT O.id)
+                    FROM ORDERS O
+                    JOIN order_items OI ON O.id = OI.order_id
+                    JOIN product_variants PV ON OI.product_variant_id = PV.id
+                    JOIN products P ON PV.product_id = P.id
+                    WHERE P.name LIKE :name
+                """;
 
         return get().withHandle(h ->
                 h.createQuery(sql)
@@ -123,7 +124,7 @@ public class OrderDAO extends BaseDao {
 
     public List<OrderCard> filterOrder(FilterRequest filter, int pageIndex, int pageSize) {
         StringBuilder sql = new StringBuilder("""
-                SELECT O.order_code, PI.img_url, P.name, O.order_status, O.total_price, O.created_at 
+                SELECT O.order_code, PI.img_url, P.name, O.order_status, O.total_price, O.created_at, O.id
                 FROM ORDERS AS O 
                 JOIN order_items AS OI ON O.id = OI.order_id
                 JOIN product_variants AS PV ON OI.product_variant_id = PV.id
@@ -179,6 +180,7 @@ public class OrderDAO extends BaseDao {
                         Timestamp ts = rs.getTimestamp("created_at");
                         orderCard.setCreated_at(ts.toLocalDateTime());
 
+                        orderCard.setOrderID(rs.getInt("id"));
 
                         return orderCard;
                     })
@@ -189,13 +191,13 @@ public class OrderDAO extends BaseDao {
 
     public int countFilterOrders(FilterRequest f) {
         StringBuilder sql = new StringBuilder("""
-        SELECT COUNT(DISTINCT O.id)
-        FROM ORDERS O
-        JOIN order_items OI ON O.id = OI.order_id
-        JOIN product_variants PV ON OI.product_variant_id = PV.id
-        JOIN products P ON PV.product_id = P.id
-        WHERE 1=1
-    """);
+                    SELECT COUNT(DISTINCT O.id)
+                    FROM ORDERS O
+                    JOIN order_items OI ON O.id = OI.order_id
+                    JOIN product_variants PV ON OI.product_variant_id = PV.id
+                    JOIN products P ON PV.product_id = P.id
+                    WHERE 1=1
+                """);
 
         if (f.getStatus() != null)
             sql.append(" AND O.order_status = :status");
@@ -219,17 +221,83 @@ public class OrderDAO extends BaseDao {
         });
     }
 
-//    public static void main(String[] args) {
-//        LocalDate ld = null;
-//        FilterRequest fr = new FilterRequest(null, ld, 100000, 1000000);
-//        List<OrderCard> orders = new OrderDAO().filterOrder(fr);
-//        orders.forEach(System.out::println);
-//    }
+    public List<OrderItem> getOrderItemByID(String orderID) {
+        String query = """
+                SELECT CONCAT(pv.unit_type, ' - ', pv.unit_value) as unit, oi.quantity, oi.price_at_purchase, 
+                p.name, pi.img_url, o.order_status, o.order_code
+                from product_variants pv
+                join order_items oi
+                on oi.product_variant_id = pv.id
+                JOIN products p
+                on p.id = pv.product_id
+                JOIN product_images pi
+                ON pi.product_id = p.id
+                JOIN orders o
+                on o.id = oi.order_id
+                WHERE oi.order_id = :id AND pi.is_main = 1
+                """;
+        return get().withHandle(h ->
+                h.createQuery(query)
+                        .bind("id", Integer.parseInt(orderID))
+                        .map((rs, ctx) -> {
+                            OrderItem orderItem = new OrderItem();
+                            orderItem.setOrderCode(rs.getString("order_code"));
+                            orderItem.setName(rs.getString("name"));
+                            orderItem.setImg_url(rs.getString("img_url"));
+                            orderItem.setQuantity(rs.getInt("quantity"));
+                            orderItem.setUnit(rs.getString("unit"));
+                            orderItem.setPriceAtPurchase(rs.getDouble("price_at_purchase"));
+                            String status = rs.getString("order_status");
+                            orderItem.setOrderStatus(OrderStatus.valueOf(status.trim().toUpperCase()).getStatus());
+                            return orderItem;
+                        })
+                        .list()
+        );
+    }
 
-//    public static void main(String[] args) {
-//        var data = new OrderDAO().searchOrders("an dam", 0, 8);
-//        data.forEach(System.out::println);
-//        int order = new OrderDAO().countSearchOrders("an dam");
-//        System.out.println(order);
-//    }
+    public CustomerInfo getCustomerInfoByOrder(String orderID) {
+        String query = """
+                SELECT u.name, u.email, u.phone_number, CONCAT(a.house_number, ', ', a.road, ', ', a.hamlet, ', ',
+                 a.ward, ', ', a.district, ', ', a.city) as address, o.payment_status, o.created_at
+                FROM users u
+                JOIN orders o
+                on u.id = o.user_id
+                join adresses a
+                ON u.id = a.user_id
+                WHERE o.id = :id
+                """;
+        return get().withHandle(h ->
+                h.createQuery(query)
+                        .bind("id", Integer.parseInt(orderID))
+                        .map((rs, ctx) -> {
+                            CustomerInfo info = new CustomerInfo();
+                            info.setName(rs.getString("name"));
+                            info.setEmail(rs.getString("email"));
+                            info.setAddress(rs.getString("address"));
+                            info.setPhoneNumber(rs.getString("phone_number"));
+                            String paymentStatus = rs.getString("payment_status");
+                            info.setPaymentMethod(Payment.valueOf(paymentStatus.trim().toUpperCase()).getStatus());
+                            Timestamp ts = rs.getTimestamp("created_at");
+                            info.setOrderCreateAt(ts.toLocalDateTime());
+                            return info;
+                        })
+                        .one()
+        );
+    }
+
+    public Order getTotalPriceByOrder(String orderID){
+        String query = """
+                SELECT o.total_price, o.shipping_fee, o.discount_amount, o.final_amount
+                From orders o
+                where o.id = :id
+                GROUP BY o.order_code
+                """;
+        return get().withHandle(h ->
+                h.createQuery(query)
+                        .bind("id", Integer.parseInt(orderID))
+                        .mapToBean(Order.class)
+                        .one()
+                );
+    }
+
 }

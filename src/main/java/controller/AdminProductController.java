@@ -1,24 +1,25 @@
 package controller;
 
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSerializer;
+import io.leangen.geantyref.TypeToken;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.orders.OrderCard;
 import model.orders.PageInformation;
+import model.product.AdminProductCard;
 import model.product.ProductCard;
 import service.ProductService;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @WebServlet(name = "AdminProductController", value = "/admin/products/*")
@@ -58,12 +59,10 @@ public class AdminProductController extends HttpServlet {
             int page = 1;
             if(pageParam != null && !pageParam.isEmpty())
             {
-                try
-                {
+                try {
                     page = Integer.parseInt(pageParam);
                     if (page < 1) page = 1;
-                } catch (NumberFormatException e)
-                {
+                } catch (NumberFormatException e) {
                     page = 1;
                 }
             }
@@ -86,16 +85,40 @@ public class AdminProductController extends HttpServlet {
             }
             this.getFilterProduct(req, resp, page);
         }
+
+//        if (action.contains("new-products")) {
+//            String jsonBody = req.getReader().lines().collect(Collectors.joining());
+//            System.out.println(jsonBody);
+//
+//            Type type = new TypeToken<HashMap<String, Object>>() {}.getType();
+//            Map<String, Object> map = gson.fromJson(jsonBody, type);
+//
+//            map.forEach((k, v) -> System.out.println(k + " -> " + v));
+//
+//            resp.getWriter().write("""
+//                      { "status": "1234" }\s
+//                   \s""");
+//            this.addNewProduct(req, resp);
+//        }
     }
+
+
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String pathInfo = req.getPathInfo();
+
+        if (pathInfo != null && pathInfo.equals("/details")) {
+            this.addNewProduct(req, resp);
+            return;
+        }
+
         this.doGet(req, resp);
     }
 
 
     private void getProductCards(HttpServletRequest request, HttpServletResponse response, int pageIndex) throws IOException {
-        PageInformation<ProductCard> page = this.productService.getProduct(pageIndex);
+        PageInformation<AdminProductCard> page = this.productService.getProduct(pageIndex);
 
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
@@ -103,7 +126,7 @@ public class AdminProductController extends HttpServlet {
     }
 
     private void getSearchProduct(HttpServletRequest request, HttpServletResponse response, int pageIndex) throws IOException {
-        PageInformation<ProductCard> searchProductCards = this.productService.searchProduct(request.getParameter("name"), pageIndex);
+        PageInformation<AdminProductCard> searchProductCards = this.productService.searchProduct(request.getParameter("name"), pageIndex);
         System.out.println("Search name is");
         System.out.println(request.getParameter("name"));
 
@@ -120,10 +143,15 @@ public class AdminProductController extends HttpServlet {
 
         java.util.HashMap<String, Object> filterMap = gson.fromJson(jsonString, type);
 
-        PageInformation<ProductCard> filterProducts = this.productService.filterProducts(filterMap, pageIndex);
+        PageInformation<AdminProductCard> filterProducts = this.productService.filterProducts(filterMap, pageIndex);
 
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(gson.toJson(filterProducts));
+    }
+
+    private void addNewProduct(HttpServletRequest req, HttpServletResponse resp) {
+
+
     }
 }

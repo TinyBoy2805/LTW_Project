@@ -1,5 +1,6 @@
 package dao;
 
+import model.product.AdminProductCard;
 import model.product.FilterRequest;
 import model.product.Product;
 
@@ -122,7 +123,9 @@ public class ProductDAO extends BaseDao {
         );
     }
 
-    public List<ProductCard> getProducts(int pageIndex, int pageSize) {
+
+    //admin DAO cho product
+    public List<AdminProductCard> getProducts(int pageIndex, int pageSize) {
         int offset = (pageIndex - 1) * pageSize;
         String query = """
                 SELECT p.id, p.name, p.price, p.buy_count, pi.img_url, p.quantity, p.is_active
@@ -136,7 +139,7 @@ public class ProductDAO extends BaseDao {
                 h.createQuery(query)
                         .bind("limit", pageSize)
                         .bind("offset", offset)
-                        .mapToBean(ProductCard.class)
+                        .mapToBean(AdminProductCard.class)
                         .list()
         );
     }
@@ -155,7 +158,7 @@ public class ProductDAO extends BaseDao {
         );
     }
 
-    public List<ProductCard> searchSearch(String productName, int pageIndex, int pageSize) {
+    public List<AdminProductCard> searchProduct(String productName, int pageIndex, int pageSize) {
         String query = """
                 SELECT p.id, p.name, p.price, p.buy_count, pi.img_url, p.quantity, p.is_active
                                 FROM products p
@@ -169,7 +172,7 @@ public class ProductDAO extends BaseDao {
                         .bind("name", "%" + productName + "%")
                         .bind("limit", pageSize)
                         .bind("offset", (pageIndex - 1) * pageSize)
-                        .mapToBean(ProductCard.class)
+                        .mapToBean(AdminProductCard.class)
                         .list());
         return data;
     }
@@ -219,7 +222,7 @@ public class ProductDAO extends BaseDao {
         });
     }
 
-    public List<ProductCard> filterProduct(FilterRequest filter, int pageIndex, int pageSize) {
+    public List<AdminProductCard> filterProduct(FilterRequest filter, int pageIndex, int pageSize) {
 
         StringBuilder sql = new StringBuilder("""
                     SELECT
@@ -275,13 +278,13 @@ public class ProductDAO extends BaseDao {
             query.bind("offset", (pageIndex - 1) * pageSize);
 
             return query.map((rs, ctx) -> {
-                ProductCard p = new ProductCard();
+                AdminProductCard p = new AdminProductCard();
                 p.setId(rs.getInt("id"));
                 p.setName(rs.getString("name"));
                 p.setPrice(rs.getDouble("price"));
                 p.setQuantity(rs.getInt("quantity"));
                 p.setBuy_count(rs.getInt("buy_count"));
-                p.setIs_active(rs.getBoolean("is_active"));
+                p.set_active(rs.getBoolean("is_active"));
                 p.setImg_url(rs.getString("img_url"));
                 return p;
             }).list();
@@ -296,4 +299,22 @@ public class ProductDAO extends BaseDao {
                         .list()
         );
     }
+
+//    public List<String> getAllVariantNames() {
+//        String query = "SELECT DISTINCT CONCAT(unit_type, ' - ', unit_value) as unit_name FROM product_variants";
+//        return get().withHandle(h ->
+//                h.createQuery(query)
+//                        .mapTo(String.class)
+//                        .list()
+//        );
+//    }
+//
+//    public List<String> getAllBrandNames() {
+//        String query = "SELECT DISTINCT name FROM brands";
+//        return get().withHandle(h ->
+//                h.createQuery(query)
+//                        .mapTo(String.class)
+//                        .list()
+//        );
+//    }
 }

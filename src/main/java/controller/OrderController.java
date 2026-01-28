@@ -18,6 +18,7 @@ import model.orders.PageInformation;
 import service.OrderService;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -88,10 +89,22 @@ public class OrderController extends HttpServlet {
             }
             this.getFilterOrders(req, resp, page);
         }
+//        if (action.contains("details")){
+//            this.getOrderDetails(req, resp);
+//            return;
+//        }
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        String pathInfo = req.getPathInfo();
+
+        if (pathInfo != null && pathInfo.equals("/details")) {
+            getOrderDetails(req, resp);
+            return;
+        }
+
         this.doGet(req, resp);
     }
 
@@ -105,9 +118,6 @@ public class OrderController extends HttpServlet {
 
     private void getSearchOrder(HttpServletRequest req, HttpServletResponse resp, int pageIndex) throws IOException {
         PageInformation<OrderCard> searchOrderCards = orderService.searchOrder(req.getParameter("name"), pageIndex);
-        System.out.println("Search name is");
-        System.out.println(req.getParameter("name"));
-
 
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
@@ -128,4 +138,31 @@ public class OrderController extends HttpServlet {
         resp.getWriter().write(gson.toJson(filterOrders));
     }
 
+    private void getOrderDetails(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        try {
+            String orderId = req.getParameter("orderId");
+            if (orderId == null || orderId.isBlank()) {
+                resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Missing orderId");
+                return;
+            }
+
+            var orderItems = orderService.getOrderItemByID(orderId);
+            var customerInfo = orderService.getCustomerInfoByOrder(orderId);
+            var totalPrice = orderService.getTotalPriceByOrder(orderId);
+
+            req.setAttribute("orderItems", orderItems);
+            req.setAttribute("customer", customerInfo);
+            req.setAttribute("totalPrice", totalPrice);
+
+            req.getRequestDispatcher("/admin/pages/order_details.jsp")
+                    .forward(req, resp);
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            resp.getWriter().write("""
+                    { "Error": %s }
+                    """.formatted(e.toString()));
+        }
+    }
 }

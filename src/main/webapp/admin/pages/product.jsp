@@ -21,7 +21,7 @@
 <body>
 <div class="categories main">
     <aside class="sidebar">
-        <% request.setAttribute("activePage", "categories"); %>
+        <% request.setAttribute("activePage", "product"); %>
         <%@ include file="../components/sidebar.jsp" %>
     </aside>
     <div class="container">
@@ -79,7 +79,7 @@
                             <ion-icon name="time-outline"></ion-icon>
                             Lịch sử nhập kho
                         </button>
-                        <a href="add__product.jsp">
+                        <a href="${pageContext.request.contextPath}/admin/products/add">
                             <button class="add__button">
                                 <ion-icon name="add-outline"></ion-icon>
                                 Sản phẩm mới
@@ -104,9 +104,7 @@
                                 <p class="product__price">749.000đ</p>
                                 <p class="product__buy">Đã bán 0</p>
                             </div>
-                            <a href="product__details.jsp">
                                 <button class="detail-button">Chi tiết</button>
-                            </a>
                         </div>
                     </div>
                 </div>

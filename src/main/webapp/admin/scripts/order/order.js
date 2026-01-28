@@ -1,3 +1,5 @@
+import {postData} from "../api/api.js";
+
 /**
  * Fetch all order card
  */
@@ -40,6 +42,19 @@ async function fetchOrderByFilter(filterData, page) {
     }
 }
 
+/**
+ * Fetch order details by orderID
+ */
+async function fetchOrderDetails(orderID) {
+    try {
+        // Fetch API with axios
+        return await axios.post()
+            .then(response => response.data)
+            .catch(error => console.error("Fail to fetch data:", error))
+    } catch (error) {
+        console.error("Fail to execute:" + error)
+    }
+}
 
 const orderList = document.querySelector('.order__list');
 
@@ -50,12 +65,22 @@ function renderCard(orderCard) {
     cardCloneQuery(".order__img img").setAttribute("src", orderCard.url);
     cardCloneQuery(".order__img img").setAttribute("alt", orderCard.name);
     cardCloneQuery(".order__name").innerHTML = orderCard.name;
-    cardCloneQuery(".order__id").innerHTML = orderCard.order_code;
+    cardCloneQuery(".order__id").innerHTML = `Mã đơn hàng: ${orderCard.order_code}`;
     cardCloneQuery(".order__status").innerHTML = orderCard.order_status;
     cardCloneQuery(".price").innerHTML = orderCard.total_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + "đ";
-    cardCloneQuery(".order__delivery").innerHTML = `Ngày đặt hàng: ${orderCard.created_at}`;
+    cardCloneQuery(".order__delivery").innerHTML = `Ngày đặt hàng: ${formatDateTime(orderCard.created_at)}`;
+    cardCloneQuery(".detail__button").addEventListener('click', () => handleShowDetail(orderCard.orderID));
     orderList.append(cardClone);
 }
+
+//format thời gian đặt hàng
+function formatDateTime(datetimeStr) {
+    const [datePart, timePart] = datetimeStr.split(" ");
+    const [year, month, day] = datePart.split("-");
+
+    return `${timePart} ${day}/${month}/${year}`;
+}
+
 
 //cờ đánh dấu trạng thái của trang
 let currentMode = 'ALL'; // ALL, SEARCH và FILTER
@@ -176,3 +201,24 @@ document.addEventListener("DOMContentLoaded", () => {
         fetchOrderByFilter(dataFilter, 1).then(updateUI)
     })
 })
+
+// function handleShowDetail(id) {
+//     axios.post("/LTW_Project_war_exploded/admin/orders/details", null, { params: { orderId: id } })
+//         .then(resp => console.log("Posted:", resp))
+//         .catch(e => console.error(e))
+// }
+
+function handleShowDetail(id) {
+    const form = document.createElement("form");
+    form.method = "POST";
+    form.action = "/LTW_Project_war_exploded/admin/orders/details";
+
+    const input = document.createElement("input");
+    input.type = "hidden";
+    input.name = "orderId";
+    input.value = id;
+
+    form.appendChild(input);
+    document.body.appendChild(form);
+    form.submit();
+}

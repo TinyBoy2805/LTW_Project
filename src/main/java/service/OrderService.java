@@ -1,15 +1,13 @@
 package service;
 
 import dao.OrderDAO;
-import model.orders.FilterRequest;
-import model.orders.OrderCard;
+import model.orders.*;
 
 import java.time.LocalDate;
 import java.util.*;
 
 import lombok.Getter;
 import lombok.Setter;
-import model.orders.PageInformation;
 
 @Getter
 @Setter
@@ -79,6 +77,17 @@ public class OrderService {
         return infor;
     }
 
+    public List<OrderItem> getOrderItemByID(String orderID){
+        return this.orderDAO.getOrderItemByID(orderID);
+    }
+
+    public CustomerInfo getCustomerInfoByOrder(String orderID){
+        return this.orderDAO.getCustomerInfoByOrder(orderID);
+    }
+
+    public Order getTotalPriceByOrder(String orderID){
+        return this.orderDAO.getTotalPriceByOrder(orderID);
+    }
 
 
 }
