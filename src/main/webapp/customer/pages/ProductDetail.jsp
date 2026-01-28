@@ -46,7 +46,7 @@
             </div>
 
             <section class="main__product-detail-section1">
-                
+
                 <div class="section1-left">
                     <c:set var="subImageCount" value="${product.images != null ? fn:length(product.images) : 0}" />
                     <c:set var="totalImages" value="${1 + subImageCount}" />
@@ -104,7 +104,7 @@
                     </div>
 
 
-                
+
                 </div>
             </section>
 
@@ -188,26 +188,52 @@
                             <button class="main__today-suggestion-more" id="more-reviews">Xem thêm</button>
                         </div>
 
-                    <div class="review-form-group">
-                        <label for="comment" class="review-label">
-                            <i class="fa-solid fa-pen"></i>
-                            Để lại đánh giá của bạn
-                        </label>
-                        <textarea
-                                name="comment"
-                                id="comment"
-                                class="review-textarea"
-                                placeholder="Chia sẻ trải nghiệm của bạn về sản phẩm..."
-                                rows="6"
-                        ></textarea>
-                    </div>
+                    <c:if test="${canReview}">
+                        <div class="review-form-group" style="border: 1px solid #eee; padding: 20px; border-radius: 8px; margin-top: 20px;">
+                            <h4 style="margin-bottom: 15px;">Viết đánh giá của bạn</h4>
+
+                            <div class="rating-input" style="margin-bottom: 15px;">
+                                <label style="display: block; margin-bottom: 5px; font-weight: 600;">Bạn cảm thấy thế nào về sản phẩm?</label>
+                                <div class="stars-selector" style="display: flex; gap: 5px; cursor: pointer;">
+                                    <i class="fa-regular fa-star star-input" data-value="1" style="font-size: 20px; color: orange;"></i>
+                                    <i class="fa-regular fa-star star-input" data-value="2" style="font-size: 20px; color: orange;"></i>
+                                    <i class="fa-regular fa-star star-input" data-value="3" style="font-size: 20px; color: orange;"></i>
+                                    <i class="fa-regular fa-star star-input" data-value="4" style="font-size: 20px; color: orange;"></i>
+                                    <i class="fa-regular fa-star star-input" data-value="5" style="font-size: 20px; color: orange;"></i>
+                                </div>
+                                <input type="hidden" id="review-rating" value="5">
+                            </div>
+
+                            <label for="comment" class="review-label">
+                                <i class="fa-solid fa-pen"></i>
+                                Nội dung đánh giá
+                            </label>
+                            <textarea
+                                    name="comment"
+                                    id="comment"
+                                    class="review-textarea"
+                                    placeholder="Chia sẻ trải nghiệm của bạn về sản phẩm..."
+                                    rows="4"
+                                    style="width: 100%; border: 1px solid #ddd; padding: 10px; border-radius: 6px; margin-bottom: 15px;"
+                            ></textarea>
+
+                            <div style="text-align: right;">
+                                <button id="submit-review-btn" class="btn-primary" style="padding: 10px 20px;">Gửi đánh giá</button>
+                            </div>
+                        </div>
+                    </c:if>
+                    <c:if test="${!canReview}">
+                        <div style="margin-top: 20px; padding: 15px; background: #f9f9f9; border-radius: 8px; text-align: center; color: #666;">
+                            <i class="fa-solid fa-lock"></i> Bạn cần mua sản phẩm này để viết đánh giá.
+                        </div>
+                    </c:if>
                 </div>
 
 
 
 
             </section>
-            
+
             <section class="main__another">
                 <div class="anothers">
                     <div class="another-header">
@@ -246,6 +272,29 @@
         window.addEventListener("DOMContentLoaded", () => {
             initCKEditor("#comment");
         });
+    </script>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyD_tCMGDpFQsIe25GLr7qaGFS7l38-JclI",
+            authDomain: "michishop-18bac.firebaseapp.com",
+            projectId: "michishop-18bac",
+            storageBucket: "michishop-18bac.firebasestorage.app",
+            messagingSenderId: "1009456806149",
+            appId: "1:1009456806149:web:eb6992f59bb2c2b6de5f6c",
+            measurementId: "G-S4PXC4QE24"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
     </script>
 </body>
 </html>

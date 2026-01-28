@@ -77,4 +77,8 @@ public class ProductService
     {
         return this.productDAO.getProductsByCategoryHasPagination(category, pageProduct, pageProductSize);
     }
+
+    public void saveReview(int userId, int productId, int rating, String comment) {
+        this.productDAO.saveReview(userId, productId, rating, comment);
+    }
 }

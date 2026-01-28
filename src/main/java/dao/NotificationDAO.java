@@ -53,4 +53,18 @@ public class NotificationDAO extends BaseDao
 
         return rows > 0;
     }
+
+    public boolean createNotification(int userId, String title, String message) {
+        String sql = """
+            INSERT INTO notifications (user_id, title, message, is_read, created_at)
+            VALUES (:userId, :title, :message, 0, NOW())
+        """;
+        return get().withHandle(handle ->
+            handle.createUpdate(sql)
+                .bind("userId", userId)
+                .bind("title", title)
+                .bind("message", message)
+                .execute() > 0
+        );
+    }
 }

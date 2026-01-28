@@ -54,8 +54,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MichiShop</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/customer/styles/index.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" 
-        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script>
         window.APP_CONTEXT_PATH = `${pageContext.request.contextPath}`;
@@ -67,7 +67,7 @@
     <div class="scroll-to-top-btn"><i class="fa-solid fa-circle-up"></i></div>
 
     <jsp:include page="/customer/components/Header.jsp"/>
-    
+
     <main class="main">
 
         <div class="cart">
@@ -110,7 +110,7 @@
                         <td class="cart__price --text-center"><%= df.format(entry.getValue().getPrice())%>₫</td>
 
                         <td class="cart__quantity --text-center">
-                            <input type="number" class="cart__quantity-input" min="1" value="<%= entry.getValue().getQuantity()%>" aria-label="Số lượng sản phẩm A">
+                            <input type="number" class="cart__quantity-input" min="1" data-id="<%= entry.getKey() %>" value="<%= entry.getValue().getQuantity()%>" aria-label="Số lượng sản phẩm A">
                         </td>
 
                         <td class="cart__subtotal --text-center"><%= df.format(entry.getValue().getPrice() * entry.getValue().getQuantity())%>₫</td>
@@ -139,7 +139,7 @@
                         <td></td>
                         <td></td>
                         <td class="cart__actions">
-                            <button class="pay-btn">Thanh toán</button>
+                            <a href="${pageContext.request.contextPath}/payment" class="pay-btn" style="text-decoration: none; display: inline-block; text-align: center;">Thanh toán</a>
                         </td>
                     </tr>
                 </tfoot>
@@ -162,5 +162,7 @@
 
 <script type="module" src="${pageContext.request.contextPath}/customer/scripts/main.js"></script>
 <script type="module" src="${pageContext.request.contextPath}/customer/scripts/cart/CartHandler.js"></script>
+<script type="module" src="${pageContext.request.contextPath}/customer/scripts/cart/updateCart.js"></script>
+
 </body>
 </html>

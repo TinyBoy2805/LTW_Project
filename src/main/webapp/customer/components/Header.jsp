@@ -4,6 +4,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%@ page import="java.text.DecimalFormat, java.text.DecimalFormatSymbols" %>
+<%@ page import="model.User" %>
 <%
     DecimalFormatSymbols symbols = new DecimalFormatSymbols();
     symbols.setGroupingSeparator('.');
@@ -18,6 +19,7 @@
                         : false;
 
     String username = isLoggedIn ? (String) session.getAttribute("username") : "";
+    User user = isLoggedIn ? (User) session.getAttribute("user") : null;
 
     Cart myCart = (Cart) session.getAttribute("cart");
 
@@ -39,7 +41,7 @@
 <header class="header ${activeTab eq 'product_detail' ? 'active' : ''}">
     <nav class="nav">
         <div class="nav__top">
-            <a class="nav__top-logo" href="${pageContext.request.contextPath}/customer/pages/Home.jsp">
+            <a class="nav__top-logo" href="${pageContext.request.contextPath}/home">
                 <div class="nav__logo-img">
                     <img src="${pageContext.request.contextPath}/customer/imgs/Gemini_Generated_Image_c648fqc648fqc648.png" alt="">
                 </div>
@@ -152,7 +154,7 @@
                                 <div class="avt-options">
                                     <div class="avt-profile-card">
                                         <div class="avt-container">
-                                            <img src="https://i.pinimg.com/736x/5f/83/3d/5f833de6a6b1d8032037b6a24a5321b6.jpg" alt="">
+                                            <img src="<%= user.getAvt_url()%>" alt="">
                                             <div class="online-status"></div>
                                         </div>
                                         <div class="profile-info">

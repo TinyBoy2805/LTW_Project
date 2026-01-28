@@ -41,6 +41,16 @@ const renderVoucher = (template, data, container) => {
         if (voucherTypeElem) voucherTypeElem.textContent = v.voucher_type || '';
         if (title) title.textContent = v.name || 'Voucher';
         if (desc) desc.textContent = `Áp dụng cho đơn hàng từ ${v.min_order_value}đ`;
+        const actionBtn = clone.querySelector('.voucher__btn');
+        if (actionBtn) {
+            const vId = v.id || v.voucher_id || v.voucherId;
+            if (!vId) {
+                console.error("CRITICAL: Voucher data missing ID property!", v);
+            } else {
+                actionBtn.setAttribute('data-voucher-id', vId);
+                // console.log(`Set ID ${vId} for voucher ${v.name}`);
+            }
+        }
 
         const usedPercent = v.usage_limit > 0 ? Math.round(((v.usage_limit - v.current_amount) / v.usage_limit) * 100) : 0;
         if (progressFill) progressFill.style.width = usedPercent + '%';

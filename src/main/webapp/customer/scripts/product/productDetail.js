@@ -466,6 +466,130 @@ document.addEventListener("DOMContentLoaded", async ()=>
 
 })
 
+// ==================== REVIEW SUBMISSION ====================
+// ==================== REVIEW SUBMISSION ====================
+const initReviewSystem = () => {
+    console.log("Initializing Review System...");
+    const starInputs = document.querySelectorAll(".star-input");
+    const ratingInput = document.getElementById("review-rating");
+    const submitBtn = document.getElementById("submit-review-btn");
+    const commentInput = document.getElementById("comment");
+    const productIdHolder = document.getElementById("productIdHolder");
 
+    if (!starInputs.length) {
+        console.warn("Review system: Star inputs not found (User might not be allowed to review or not logged in)");
+        return;
+    }
+    if (!ratingInput || !submitBtn || !commentInput) {
+        console.warn("Review system: Missing inputs");
+        return;
+    }
 
+    // Handle Star Selection
+    // Use Array.from to work with forEach more safely if needed, though NodeList is fine.
+    const freshStars = Array.from(starInputs);
 
+    // Star Update Helper
+    const updateStars = (value) => {
+        freshStars.forEach(s => {
+            const sVal = parseInt(s.getAttribute("data-value"));
+            if (sVal <= value) {
+                s.classList.remove("fa-regular");
+                s.classList.add("fa-solid");
+            } else {
+                s.classList.remove("fa-solid");
+                s.classList.add("fa-regular");
+            }
+        });
+    };
+
+    freshStars.forEach(star => {
+        // Use onclick to avoid duplicate listeners if re-initialized
+        star.onclick = () => {
+            const value = parseInt(star.getAttribute("data-value"));
+            console.log("Star clicked:", value);
+            ratingInput.value = value;
+            updateStars(value);
+        };
+
+        star.onmouseover = () => {
+            const value = parseInt(star.getAttribute("data-value"));
+            updateStars(value);
+        };
+
+        star.onmouseout = () => {
+            const value = parseInt(ratingInput.value);
+            updateStars(value);
+        };
+    });
+
+    // Set initial stars (default 5)
+    updateStars(5);
+
+    // Handle Submit
+    submitBtn.onclick = async (e) => {
+        e.preventDefault();
+        console.log("Submit review clicked");
+
+        let comment = commentInput.value;
+
+        // Try to get data from CKEditor if available
+        if (window.editor) {
+             console.log("Getting data from CKEditor window.editor");
+             comment = window.editor.getData();
+        } else {
+            // Fallback for custom instances
+            const editorElement = document.querySelector('.ck-editor__editable');
+            if (editorElement && editorElement.ckeditorInstance) {
+                 console.log("Getting data from CKEditor DOM instance");
+                 comment = editorElement.ckeditorInstance.getData();
+            }
+        }
+
+        const rating = parseInt(ratingInput.value);
+        const productId = parseInt(productIdHolder.value);
+
+        console.log("Review Data:", { productId, rating, comment });
+
+        if (!comment || comment.trim() === "") {
+             createNotification("Vui lòng nhập nội dung đánh giá!");
+             return;
+        }
+
+        try {
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Đang gửi...';
+
+            const res = await fetch(`${window.APP_CONTEXT_PATH}/product-detail/save-review`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    productId: productId,
+                    rating: rating,
+                    comment: comment
+                })
+            });
+
+            const data = await res.json();
+            if (data.success) {
+                createNotification("Đánh giá thành công!");
+                setTimeout(() => location.reload(), 1000);
+            } else {
+                createNotification(data.message || "Lỗi khi gửi đánh giá");
+                submitBtn.disabled = false;
+                submitBtn.innerText = "Gửi đánh giá";
+            }
+        } catch (e) {
+            console.error(e);
+            createNotification("Có lỗi xảy ra, vui lòng thử lại sau.");
+            submitBtn.disabled = false;
+            submitBtn.innerText = "Gửi đánh giá";
+        }
+    };
+};
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initReviewSystem);
+} else {
+    initReviewSystem();
+}

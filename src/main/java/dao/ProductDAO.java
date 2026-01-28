@@ -283,9 +283,9 @@ public class ProductDAO extends BaseDao
                     from users u\s
                     join reviews r \s
                     on r.user_id = u.id
-                    where r.product_id = :pid \s 
+                    where r.product_id = :pid \s
                     limit :limit offset :offset;
-                    
+
                 """;
 
         return get().withHandle(h ->
@@ -320,6 +320,42 @@ public class ProductDAO extends BaseDao
                         .bind("offset", offset)
                         .mapToBean(ProductCard.class)
                         .list()
+        );
+    }
+
+    public boolean updateQuantity(int productId, int quantity) {
+        String sql = "UPDATE products SET quantity = quantity - :qty WHERE id = :id AND quantity >= :qty";
+        int updated = get().withHandle(handle ->
+            handle.createUpdate(sql)
+                .bind("qty", quantity)
+                .bind("id", productId)
+                .execute()
+        );
+        return updated > 0;
+    }
+
+    public void increaseBuyCount(int productId, int quantity) {
+        String sql = "UPDATE products SET buy_count = buy_count + :qty WHERE id = :id";
+        get().useHandle(handle ->
+            handle.createUpdate(sql)
+                .bind("qty", quantity)
+                .bind("id", productId)
+                .execute()
+        );
+    }
+
+    public void saveReview(int userId, int productId, int rating, String comment) {
+        String sql = """
+            INSERT INTO reviews (user_id, product_id, rating, comment, created_at)
+            VALUES (:userId, :productId, :rating, :comment, NOW())
+        """;
+        get().useHandle(handle ->
+            handle.createUpdate(sql)
+                .bind("userId", userId)
+                .bind("productId", productId)
+                .bind("rating", rating)
+                .bind("comment", comment)
+                .execute()
         );
     }
 }

@@ -28,7 +28,7 @@
     <div class="toast-container"></div>
 
     <jsp:include page="/customer/components/ProductCard.jsp"/>
-    
+
     <div class="scroll-to-top-btn"><i class="fa-solid fa-circle-up"></i></div>
 
 
@@ -36,7 +36,7 @@
 
     <main class="main">
 
-        <section class="main__hero-banner"> 
+        <section class="main__hero-banner">
 
             <div class="main__hero-banner-content">
 
@@ -51,7 +51,7 @@
                 </div>
 
                 <div class="main__hero-banner-content-line"></div>
-                
+
                 <div class="main__hero-banner-content-sub2">
                     <ul>
                         <li>
@@ -110,7 +110,7 @@
                                 <c:set var="voucher_text" value="phí ship"/>
                                 <c:set var="voucher_icon" value="fa-regular fa-truck"/>
                                 <c:if test="${v.voucher_type == 'DISCOUNT'}">
-                                    <c:set var="voucher_color" value="background: var(--c7)" scope="page"/>
+                                    <c:set var="voucher_color" value="background: var(--c6)" scope="page"/>
                                     <c:set var="voucher_text" value="giảm giá"/>
                                     <c:set var="voucher_icon" value="fa-solid fa-money-bill"/>
                                 </c:if>
@@ -128,7 +128,7 @@
                                     <p class="left__info">còn lại: ${v.current_amount}</p>
                                 </div>
                                 <div class="voucher__right">
-                                    <button type="button" onclick="">Nhận ưu đãi</button>
+                                    <button type="button" data-voucher-id="${v.id}">Nhận ưu đãi</button>
                                     <p>HSD: ${v.end_date}</p>
                                 </div>
                             </div>
@@ -164,7 +164,7 @@
             </div>
 
         </section>
-        
+
         <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
         <section class="main__today-suggestion">
             <h3 class="main__today-suggestion-heading">Gợi ý hôm nay</h3>
@@ -199,7 +199,7 @@
         </section>
 
 
-        
+
         <section class="main__contact">
             <h3>Các vấn đề thường gặp</h3>
             <div class="main__contact-list">
@@ -225,6 +225,7 @@
     <script type="module" src="${pageContext.request.contextPath}/customer/scripts/main.js" defer></script>
     <script type="module" src="${pageContext.request.contextPath}/customer/scripts/home/Home.js" defer></script>
     <script type="module" src="${pageContext.request.contextPath}/customer/scripts/product/addToCart.js" defer></script>
+    <script type="module" src="${pageContext.request.contextPath}/customer/scripts/voucherPage/useVoucher.js" defer></script>
     <script type="module">
         import {initCKEditor} from "${pageContext.request.contextPath}/customer/scripts/utils/initCkeditor.js";
         window.addEventListener("DOMContentLoaded", () => {

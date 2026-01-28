@@ -4,15 +4,19 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializer;
+import dao.VoucherDAO;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import model.User;
 import model.Voucher;
 import service.VoucherService;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(name = "VoucherController", value = "/voucher")
 public class VoucherController extends HttpServlet
@@ -70,8 +74,46 @@ public class VoucherController extends HttpServlet
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException
     {
-        doGet(request, response);
+        resp.setContentType("application/json");
+        resp.setCharacterEncoding("UTF-8");
+        Gson gson = new Gson();
+        PrintWriter out = resp.getWriter();
+
+        try {
+            // Lấy user từ session
+            HttpSession session = req.getSession(false);
+            User user = (session != null) ? (User) session.getAttribute("user") : null;
+
+            if (user == null) {
+                out.write(gson.toJson(Map.of("success", false, "message", "Bạn chưa đăng nhập")));
+                return;
+            }
+
+            // Đọc body JSON
+            @SuppressWarnings("unchecked")
+            Map<String, Object> body = gson.fromJson(req.getReader(), Map.class);
+            Object vIdObj = body.get("voucherId");
+            int voucherId = 0;
+            if (vIdObj instanceof Number) {
+                voucherId = ((Number) vIdObj).intValue();
+            } else if (vIdObj instanceof String) {
+                voucherId = Integer.parseInt((String) vIdObj);
+            }
+
+            boolean added = this.voucherService.addVoucherToUser(user.getId(), voucherId);
+
+            if (added) {
+                out.write(gson.toJson(Map.of("success", true)));
+            } else {
+                out.write(gson.toJson(Map.of("success", false, "message", "Bạn đã nhận voucher này rồi")));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            out.write(gson.toJson(Map.of("success", false, "message", "Lỗi server")));
+        }
     }
+
 }

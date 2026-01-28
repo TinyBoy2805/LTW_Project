@@ -27,4 +27,8 @@ public class NotificationService
     {
         return this.notificationDAO.markAllRead(userId);
     }
+
+    public boolean createNotification(int userId, String title, String message) {
+        return this.notificationDAO.createNotification(userId, title, message);
+    }
 }

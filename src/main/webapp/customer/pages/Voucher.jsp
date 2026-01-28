@@ -19,6 +19,7 @@
     </script>
 </head>
 <body>
+    <div class="toast-container"></div>
     <jsp:include page="/customer/components/Header.jsp"/>
     <div class="scroll-to-top-btn"><i class="fa-solid fa-circle-up"></i></div>
 
@@ -70,27 +71,27 @@
                     <div class="voucher__icon">
                         <i class="fa-solid fa-truck-fast"></i>
                     </div>
-                    <span class="voucher__type">${v.voucher_type}</span>
+                    <span class="voucher__type"></span>
                 </div>
                 <div class="voucher__body">
-                    <h3 class="voucher__title">Miễn phí vận chuyển</h3>
-                    <p class="voucher__desc">Áp dụng cho đơn hàng từ ${v.min_order_value}đ</p>
+                    <h3 class="voucher__title"></h3>
+                    <p class="voucher__desc"></p>
                     <div class="voucher__progress">
                         <div class="progress__bar">
-                            <div class="progress__fill" style="width: ${100*((v.usage_limit-v.current_amount)/v.usage_limit)}%"></div>
+                            <div class="progress__fill" style="width: 0%"></div>
                         </div>
-                        <span class="progress__text">Đã dùng ${100*((v.usage_limit-v.current_amount)/v.usage_limit)}%</span>
+                        <span class="progress__text">Đã dùng 0%</span>
                     </div>
                 </div>
                 <div class="voucher__footer">
                     <div class="voucher__code">
-                        <span class="code__text">${v.code}</span>
-                        <button class="code__copy" onclick="copyCode(this, '${v.code}')">
+                        <span class="code__text"></span>
+                        <button class="code__copy">
                             <i class="fa-solid fa-copy"></i>
                         </button>
                     </div>
                     <div class="voucher__actions">
-                        <span class="voucher__expiry">HSD: ${v.end_date}</span>
+                        <span class="voucher__expiry"></span>
                         <button class="voucher__btn">Dùng ngay</button>
                     </div>
                 </div>
@@ -115,5 +116,6 @@
 
 <script type="module" src="${pageContext.request.contextPath}/customer/scripts/main.js"></script>
     <script src="${pageContext.request.contextPath}/customer/scripts/voucherPage/getVoucher.js"></script>
+    <script type="module" src="${pageContext.request.contextPath}/customer/scripts/voucherPage/useVoucher.js" defer></script>
 </body>
 </html>

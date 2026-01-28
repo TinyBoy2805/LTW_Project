@@ -809,7 +809,7 @@
     width: 56px;
     height: 56px;
     border-radius: 50%;
-    overflow: hidden;
+    /*overflow: hidden;*/
     flex-shrink: 0;
     background: linear-gradient(135deg, var(--c6), var(--c7));
     padding: 3px;
