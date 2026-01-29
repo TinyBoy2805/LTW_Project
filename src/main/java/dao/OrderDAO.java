@@ -225,16 +225,7 @@ public class OrderDAO extends BaseDao {
         return get().withHandle(h ->
                 h.createQuery(query)
                         .bind("id", Integer.parseInt(orderID))
-                        .map((rs, ctx) -> {
-                            OrderItem orderItem = new OrderItem();
-                            orderItem.setOrderCode(rs.getString("order_code"));
-                            orderItem.setName(rs.getString("name"));
-                            orderItem.setImg_url(rs.getString("img_url"));
-                            orderItem.setQuantity(rs.getInt("quantity"));
-                            orderItem.setPriceAtPurchase(rs.getDouble("price_at_purchase"));
-                            orderItem.setOrderStatus(rs.getString("order_status"));
-                            return orderItem;
-                        })
+                        .mapToBean(OrderItem.class)
                         .list()
         );
     }

@@ -77,8 +77,9 @@ public class ProfileService
         return this.addressDao.setDefaultAddress(userId, addressId);
     }
 
-    public boolean updateAddress(long addressId, String houseNumber, String road, String district, String city, String hamlet, String ward) {
-        return this.addressDao.updateAddress(addressId, houseNumber, road, district, city, hamlet, ward);
+    public boolean updateAddress(long addressId, String houseNumber, String road, String district, String city, String hamlet, String ward, boolean is_default, int userId)
+    {
+        return this.addressDao.updateAddress(addressId, houseNumber, road, district, city, hamlet, ward, is_default, userId);
     }
 
     public boolean updateName(int userId, String newName) {

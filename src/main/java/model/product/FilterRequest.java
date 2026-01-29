@@ -1,10 +1,5 @@
 package model.product;
 
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
 public class FilterRequest {
     private String category;
     private String status;
@@ -18,13 +13,21 @@ public class FilterRequest {
         this.quantity = quantity;
     }
 
+    public String getCategory() { return category; }
+    public void setCategory(String category) { this.category = category; }
+
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
+
+    public int getQuantity() { return quantity; }
+    public void setQuantity(int quantity) { this.quantity = quantity; }
+
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("FilterRequest{");
-        sb.append("category='").append(category).append('\'');
-        sb.append(", status='").append(status).append('\'');
-        sb.append(", quantity=").append(quantity);
-        sb.append('}');
-        return sb.toString();
+        return "FilterRequest{" +
+                "category='" + category + '\'' +
+                ", status='" + status + '\'' +
+                ", quantity=" + quantity +
+                '}';
     }
 }

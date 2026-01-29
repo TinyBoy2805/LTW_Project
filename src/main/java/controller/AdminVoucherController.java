@@ -144,7 +144,7 @@ public class AdminVoucherController extends HttpServlet {
         voucher.setStart_date(sqlStartDate != null ? sqlStartDate.toLocalDate() : null);
         voucher.setEnd_date(sqlEndDate != null ? sqlEndDate.toLocalDate() : null);
         Integer usageLimit = parseInt(request.getParameter("usage_limit"));
-        if (usageLimit != null) voucher.setUsage_limt(usageLimit);
+        if (usageLimit != null) voucher.setUsage_limit(usageLimit);
         voucher.setCurrent_amount(usageLimit != null ? usageLimit : 0);
         Double minOrderValue = parseDouble(request.getParameter("min_order_value"));
         if (minOrderValue != null) voucher.setMin_order_value(minOrderValue);

@@ -1,17 +1,12 @@
 package model.orders;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import java.util.List;
 
-@Getter
-@Setter
 public class PageInformation<T>{
     private List<T> data; //danh sách sau khi query
     private int pageIndex; //số trang đang được hiển thị
     private int pageSize; //kích thước hiển thị 1 trang
-    private int totalItems; //tổng số lượng của 1 query
+    private int totalItems; //tổng số lợng của 1 query
     private int totalPage; //tổng số trang
 
     public PageInformation() {}
@@ -24,15 +19,29 @@ public class PageInformation<T>{
         this.totalPage = totalPage;
     }
 
+    public List<T> getData() { return data; }
+    public void setData(List<T> data) { this.data = data; }
+
+    public int getPageIndex() { return pageIndex; }
+    public void setPageIndex(int pageIndex) { this.pageIndex = pageIndex; }
+
+    public int getPageSize() { return pageSize; }
+    public void setPageSize(int pageSize) { this.pageSize = pageSize; }
+
+    public int getTotalItems() { return totalItems; }
+    public void setTotalItems(int totalItems) { this.totalItems = totalItems; }
+
+    public int getTotalPage() { return totalPage; }
+    public void setTotalPage(int totalPage) { this.totalPage = totalPage; }
+
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("PageInformation{");
-        sb.append("data=").append(data);
-        sb.append(", pageIndex=").append(pageIndex);
-        sb.append(", pageSize=").append(pageSize);
-        sb.append(", totalItems=").append(totalItems);
-        sb.append(", totalPage=").append(totalPage);
-        sb.append('}');
-        return sb.toString();
+        return "PageInformation{" +
+                "data=" + data +
+                ", pageIndex=" + pageIndex +
+                ", pageSize=" + pageSize +
+                ", totalItems=" + totalItems +
+                ", totalPage=" + totalPage +
+                '}';
     }
 }

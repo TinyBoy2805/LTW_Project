@@ -1,11 +1,5 @@
 package model.product;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.Setter;
-
-@Setter
-@Getter
 public class AdminProductCard {
     private int id;
     private String name;
@@ -17,17 +11,37 @@ public class AdminProductCard {
 
     public AdminProductCard() {}
 
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+
+    public double getPrice() { return price; }
+    public void setPrice(double price) { this.price = price; }
+
+    public int getBuy_count() { return buy_count; }
+    public void setBuy_count(int buy_count) { this.buy_count = buy_count; }
+
+    public boolean is_active() { return is_active; }
+    public void set_active(boolean is_active) { this.is_active = is_active; }
+
+    public String getImg_url() { return img_url; }
+    public void setImg_url(String img_url) { this.img_url = img_url; }
+
+    public int getQuantity() { return quantity; }
+    public void setQuantity(int quantity) { this.quantity = quantity; }
+
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("AdminProductCard{");
-        sb.append("id=").append(id);
-        sb.append(", name='").append(name).append('\'');
-        sb.append(", price=").append(price);
-        sb.append(", buy_count=").append(buy_count);
-        sb.append(", is_active=").append(is_active);
-        sb.append(", img_url='").append(img_url).append('\'');
-        sb.append(", quantity=").append(quantity);
-        sb.append('}');
-        return sb.toString();
+        return "AdminProductCard{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", buy_count=" + buy_count +
+                ", is_active=" + is_active +
+                ", img_url='" + img_url + '\'' +
+                ", quantity=" + quantity +
+                '}';
     }
 }

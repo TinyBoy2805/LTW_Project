@@ -127,8 +127,9 @@ public class ProfileController extends HttpServlet
                 String ward = (String) body.get("ward");
                 String district = (String) body.get("district");
                 String city = (String) body.get("city");
+                boolean isDefault = body.get("isDefault") != null && (boolean) body.get("isDefault");
 
-                boolean success = this.profileService.updateAddress(addressId, houseNumber, road, district, city, hamlet, ward);
+                boolean success = this.profileService.updateAddress(addressId, houseNumber, road, district, city, hamlet, ward, isDefault, userId);
 
                 response.setContentType("application/json");
                 response.setCharacterEncoding("UTF-8");

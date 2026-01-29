@@ -1,34 +1,23 @@
 package dao;
 
 import model.Voucher;
-
 import java.util.List;
 
 public class VoucherDAO extends BaseDao
 {
-    public List<Voucher> getVouchers(int page, int pageSize)
-    {
-        int offset = (page-1) * pageSize;
-        String query = "select \n" +
-                "v.id,\n" +
-                "c.name as category_name,\n" +
-                "v.code,\n" +
-                "v.description,\n" +
-                "v.discount_amount,\n" +
-                "v.discount_percentage,\n" +
-                "v.start_date,\n" +
-                "v.end_date,\n" +
-                "v.usage_limit,\n" +
-                "v.current_amount,\n" +
-                "v.min_order_value,\n" +
-                "v.voucher_type\n" +
-                "from vouchers v \n" +
-                "join categories c on c.id = v.category_id\n"+
-                "limit :limit offset :offset"
-                ;
 
-        return  get().withHandle(h->
-                h.createQuery(query)
+    public List<Voucher> getVouchers(int page, int pageSize) {
+        int offset = (page - 1) * pageSize;
+        String sql = """
+                SELECT * FROM vouchers
+                WHERE current_amount > 0
+                AND start_date <= CURDATE()
+                AND end_date >= CURDATE()
+                ORDER BY id DESC
+                LIMIT :limit OFFSET :offset
+                """;
+        return get().withHandle(h ->
+                h.createQuery(sql)
                         .bind("limit", pageSize)
                         .bind("offset", offset)
                         .mapToBean(Voucher.class)
@@ -37,102 +26,174 @@ public class VoucherDAO extends BaseDao
     }
 
     public boolean addVoucherToUser(int userId, int voucherId) {
-        String checkSql = """
-            SELECT COUNT(*) FROM user_vouchers
-            WHERE user_id = :uid AND voucher_id = :vid AND used_at IS NULL
-        """;
+        try {
+            return get().inTransaction(handle -> {
+                Integer exists = handle.createQuery("SELECT COUNT(*) FROM user_vouchers WHERE user_id = :uid AND voucher_id = :vid")
+                        .bind("uid", userId)
+                        .bind("vid", voucherId)
+                        .mapTo(Integer.class)
+                        .one();
 
-        String insertSql = """
-            INSERT INTO user_vouchers(user_id, voucher_id, used_at)
-            VALUES(:uid, :vid, NULL)
-        """;
+                if (exists > 0) return false;
 
-        return get().withHandle(handle -> {
-            int count = handle.createQuery(checkSql)
-                    .bind("uid", userId)
-                    .bind("vid", voucherId)
-                    .mapTo(Integer.class)
-                    .one();
+                Integer currentAmount = handle.createQuery("SELECT current_amount FROM vouchers WHERE id = :vid")
+                        .bind("vid", voucherId)
+                        .mapTo(Integer.class)
+                        .findOne()
+                        .orElse(0);
 
-            if (count > 0) return false; // đã nhận rồi
+                if (currentAmount <= 0) return false;
 
-            int rows = handle.createUpdate(insertSql)
-                    .bind("uid", userId)
-                    .bind("vid", voucherId)
-                    .execute();
+                int updated = handle.createUpdate("UPDATE vouchers SET current_amount = current_amount - 1 WHERE id = :vid AND current_amount > 0")
+                        .bind("vid", voucherId)
+                        .execute();
 
-            return rows > 0;
-        });
+                if (updated == 0) return false;
+
+                handle.createUpdate("INSERT INTO user_vouchers(user_id, voucher_id) VALUES (:uid, :vid)")
+                        .bind("uid", userId)
+                        .bind("vid", voucherId)
+                        .execute();
+
+                return true;
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     public List<Voucher> getUserVouchers(int userId) {
-        String query = """
-            SELECT
-                v.id,
-                c.name as category_name,
-                v.code,
-                v.description,
-                v.discount_amount,
-                v.discount_percentage,
-                v.start_date,
-                v.end_date,
-                v.usage_limit,
-                v.current_amount,
-                v.min_order_value,
-                v.voucher_type
-            FROM vouchers v
-            JOIN user_vouchers uv ON uv.voucher_id = v.id
-            JOIN categories c ON c.id = v.category_id
-            WHERE uv.user_id = :userId AND uv.used_at IS NULL
-        """;
-
+        String sql = """
+                SELECT v.*
+                FROM vouchers v
+                JOIN user_vouchers uv ON v.id = uv.voucher_id
+                WHERE uv.user_id = :uid
+                AND v.end_date >= CURDATE()
+                """;
         return get().withHandle(h ->
-                h.createQuery(query)
-                        .bind("userId", userId)
+                h.createQuery(sql)
+                        .bind("uid", userId)
                         .mapToBean(Voucher.class)
                         .list()
         );
     }
+
+    public boolean markVoucherAsUsed(int userId, int voucherId) {
+        try {
+            int rows = get().withHandle(h ->
+                    h.createUpdate("DELETE FROM user_vouchers WHERE user_id = :uid AND voucher_id = :vid")
+                            .bind("uid", userId)
+                            .bind("vid", voucherId)
+                            .execute()
+            );
+            return rows > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     public Voucher getVoucherByCode(String code) {
-        String query = """
-            SELECT
-                v.id,
-                c.name as category_name,
-                v.code,
-                v.description,
-                v.discount_amount,
-                v.discount_percentage,
-                v.start_date,
-                v.end_date,
-                v.usage_limit,
-                v.current_amount,
-                v.min_order_value,
-                v.voucher_type
-            FROM vouchers v
-            JOIN categories c ON c.id = v.category_id
-            WHERE v.code = :code
-        """;
         return get().withHandle(h ->
-            h.createQuery(query)
-                .bind("code", code)
-                .mapToBean(Voucher.class)
-                .findFirst()
-                .orElse(null)
+                h.createQuery("SELECT * FROM vouchers WHERE code = :code")
+                        .bind("code", code)
+                        .mapToBean(Voucher.class)
+                        .findOne()
+                        .orElse(null)
         );
     }
 
-    public boolean markVoucherAsUsed(int userId, int voucherId) {
-        String query = """
-            UPDATE user_vouchers
-            SET used_at = CURRENT_TIMESTAMP
-            WHERE user_id = :userId AND voucher_id = :voucherId AND used_at IS NULL
-        """;
-        int rows = get().withHandle(h ->
-            h.createUpdate(query)
-                .bind("userId", userId)
-                .bind("voucherId", voucherId)
-                .execute()
+    public List<Voucher> findAll() {
+        return get().withHandle(h ->
+                h.createQuery("SELECT * FROM vouchers ORDER BY id DESC")
+                        .mapToBean(Voucher.class)
+                        .list()
         );
-        return rows > 0;
+    }
+
+    public void insert(Voucher voucher) {
+        String sql = """
+                INSERT INTO vouchers(
+                    category_id, code, description,
+                    discount_amount, discount_percentage,
+                    start_date, end_date,
+                    usage_limit, current_amount,
+                    min_order_value, voucher_type
+                ) VALUES (
+                    :categoryId, :code, :description,
+                    :discountAmount, :discountPercentage,
+                    :startDate, :endDate,
+                    :usageLimit, :currentAmount,
+                    :minOrderValue, :voucherType
+                )
+                """;
+        get().useHandle(h ->
+                h.createUpdate(sql)
+                        .bind("categoryId", voucher.getCategory_name())
+                        .bind("code", voucher.getCode())
+                        .bind("description", voucher.getDescription())
+                        .bind("discountAmount", voucher.getDiscount_amount())
+                        .bind("discountPercentage", voucher.getDiscount_percentage())
+                        .bind("startDate", voucher.getStart_date())
+                        .bind("endDate", voucher.getEnd_date())
+                        .bind("usageLimit", voucher.getUsage_limit())
+                        .bind("currentAmount", voucher.getCurrent_amount())
+                        .bind("minOrderValue", voucher.getMin_order_value())
+                        .bind("voucherType", voucher.getVoucher_type() != null ? voucher.getVoucher_type().name() : null)
+                        .execute()
+        );
+    }
+
+    public Voucher findById(int id) {
+        return get().withHandle(h ->
+                h.createQuery("SELECT * FROM vouchers WHERE id = :id")
+                        .bind("id", id)
+                        .mapToBean(Voucher.class)
+                        .findOne()
+                        .orElse(null)
+        );
+    }
+
+    public int deleteById(int id) {
+        return get().withHandle(h ->
+                h.createUpdate("DELETE FROM vouchers WHERE id = :id")
+                        .bind("id", id)
+                        .execute()
+        );
+    }
+
+    public int update(Voucher voucher) {
+        String sql = """
+                UPDATE vouchers SET
+                    category_id = :categoryId,
+                    code = :code,
+                    description = :description,
+                    discount_amount = :discountAmount,
+                    discount_percentage = :discountPercentage,
+                    start_date = :startDate,
+                    end_date = :endDate,
+                    usage_limit = :usageLimit,
+                    current_amount = :currentAmount,
+                    min_order_value = :minOrderValue,
+                    voucher_type = :voucherType
+                WHERE id = :id
+                """;
+        return get().withHandle(h ->
+                h.createUpdate(sql)
+                        .bind("categoryId", voucher.getCategory_name())
+                        .bind("code", voucher.getCode())
+                        .bind("description", voucher.getDescription())
+                        .bind("discountAmount", voucher.getDiscount_amount())
+                        .bind("discountPercentage", voucher.getDiscount_percentage())
+                        .bind("startDate", voucher.getStart_date())
+                        .bind("endDate", voucher.getEnd_date())
+                        .bind("usageLimit", voucher.getUsage_limit())
+                        .bind("currentAmount", voucher.getCurrent_amount())
+                        .bind("minOrderValue", voucher.getMin_order_value())
+                        .bind("voucherType", voucher.getVoucher_type() != null ? voucher.getVoucher_type().name() : null)
+                        .bind("id", voucher.getId())
+                        .execute()
+        );
     }
 }

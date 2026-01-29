@@ -1,12 +1,7 @@
 package model.orders;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import java.time.LocalDate;
 
-@Getter
-@Setter
 public class FilterRequest {
     private String status;
     private LocalDate orderDate;
@@ -22,14 +17,25 @@ public class FilterRequest {
         this.to = to;
     }
 
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
+
+    public LocalDate getOrderDate() { return orderDate; }
+    public void setOrderDate(LocalDate orderDate) { this.orderDate = orderDate; }
+
+    public double getFrom() { return from; }
+    public void setFrom(double from) { this.from = from; }
+
+    public double getTo() { return to; }
+    public void setTo(double to) { this.to = to; }
+
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("FilterRequest{");
-        sb.append("status='").append(status).append('\'');
-        sb.append(", orderDate=").append(orderDate);
-        sb.append(", from=").append(from);
-        sb.append(", to=").append(to);
-        sb.append('}');
-        return sb.toString();
+        return "FilterRequest{" +
+                "status='" + status + '\'' +
+                ", orderDate=" + orderDate +
+                ", from=" + from +
+                ", to=" + to +
+                '}';
     }
 }
