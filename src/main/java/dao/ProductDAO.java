@@ -1,26 +1,17 @@
 package dao;
 
 import model.product.*;
-
 import model.ProductReview;
 import model.product.Product;
-
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-import org.jdbi.v3.core.statement.PreparedBatch;
-
-public class ProductDAO extends BaseDao {
 import model.product.ProductCard;
 import model.product.ProductImage;
-import org.jdbi.v3.core.statement.PreparedBatch;
 
-public class ProductDAO extends BaseDao
-{
+import org.jdbi.v3.core.statement.PreparedBatch;
+import java.util.List;
+import java.util.HashMap;
+
+public class ProductDAO extends BaseDao {
+
     public List<ProductImage> getImagesByProductId(int productId)
     {
         String sql = """
@@ -488,7 +479,7 @@ public class ProductDAO extends BaseDao
 
     public Product getProductByID(int productID) {
         String query = """
-                SELECT p.name, p.price, p.id, p.description, b.name as brand, c.name as category, p.quantity, p.start_date, p.end_date, p.is_active 
+                SELECT p.name, p.price, p.id, p.description, b.name as brand, c.name as category, p.quantity, p.start_date, p.end_date, p.is_active
                 From products p
                 join brands b on p.brand_id = b.id
                 join categories c on p.category_id = c.id
@@ -503,7 +494,8 @@ public class ProductDAO extends BaseDao
     }
 
 
-    public List<ProductImage> getImagesByID(int productID) {
+    public List<ProductImage> getImagesByID(int productID)
+    {
         String query = """
                 Select pi.*
                 from product_images pi
@@ -513,12 +505,16 @@ public class ProductDAO extends BaseDao
         return get().withHandle(h ->
                 h.createQuery(query)
                         .bind("productID", productID)
-                        .map((rs, ctx) -> {
+                        .map((rs, ctx) ->
+                        {
                             ProductImage productImage = new ProductImage();
                             productImage.setUrl(rs.getString("img_url"));
                             productImage.setIsMain(rs.getInt("is_main"));
                             return productImage;
                         })
+                        .list()
+        );
+    }
     public List<ProductReview> getProductReviewsByProductId(int id)
     {
         String query = """

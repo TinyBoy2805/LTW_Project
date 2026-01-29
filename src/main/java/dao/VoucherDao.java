@@ -1,13 +1,14 @@
 package dao;
 
 import model.Voucher;
+import model.VoucherType;
 import org.jdbi.v3.core.statement.Query;
 
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.List;
 
-public class VoucherDao extends BaseDao {
+public class VoucherDAO extends BaseDao {
 
     public List<Voucher> findAll() {
         return get().withHandle(h ->
@@ -35,7 +36,7 @@ public class VoucherDao extends BaseDao {
                             v.setMin_order_value(rs.getDouble("min_order_value"));
                             String typeStr = rs.getString("voucher_type");
                             try {
-                                v.setVoucher_type(typeStr != null ? model.VoucherType.valueOf(typeStr.toUpperCase()) : null);
+                                v.setVoucher_type(typeStr != null ? VoucherType.valueOf(typeStr.toUpperCase()) : null);
                             } catch (IllegalArgumentException e) {
                                 v.setVoucher_type(null);
                             }
@@ -105,7 +106,7 @@ public class VoucherDao extends BaseDao {
                 v.setMin_order_value(rs.getDouble("min_order_value"));
                 String typeStr = rs.getString("voucher_type");
                 try {
-                v.setVoucher_type(typeStr != null ? model.VoucherType.valueOf(typeStr.toUpperCase()) : null);
+                v.setVoucher_type(typeStr != null ? VoucherType.valueOf(typeStr.toUpperCase()) : null);
                 } catch (IllegalArgumentException e) {
                 v.setVoucher_type(null);
                 }
@@ -157,4 +158,81 @@ public class VoucherDao extends BaseDao {
             .execute()
         );
     }
+
+    // Methods required by VoucherService
+
+    public List<Voucher> getVouchers(int page, int pageSize) {
+        int offset = (page - 1) * pageSize;
+        return get().withHandle(h ->
+            h.createQuery("""
+                SELECT * FROM vouchers
+                WHERE current_amount > 0
+                and start_date <= NOW()
+                and end_date >= NOW()
+                ORDER BY id DESC
+                LIMIT :limit OFFSET :offset
+                """)
+                .bind("limit", pageSize)
+                .bind("offset", offset)
+                .mapToBean(Voucher.class)
+                .list()
+        );
+    }
+
+    public boolean addVoucherToUser(int userId, int voucherId) {
+        // Check if user already has this voucher
+        Integer count = get().withHandle(h ->
+            h.createQuery("SELECT COUNT(*) FROM user_vouchers WHERE user_id = :uid AND voucher_id = :vid")
+                .bind("uid", userId)
+                .bind("vid", voucherId)
+                .mapTo(Integer.class)
+                .one()
+        );
+        if (count != null && count > 0) return false;
+
+        int rows = get().withHandle(h ->
+            h.createUpdate("INSERT INTO user_vouchers(user_id, voucher_id, is_used) VALUES (:uid, :vid, 0)")
+                .bind("uid", userId)
+                .bind("vid", voucherId)
+                .execute()
+        );
+        return rows > 0;
+    }
+
+    public List<Voucher> getUserVouchers(int userId) {
+        return get().withHandle(h ->
+            h.createQuery("""
+                SELECT v.*
+                FROM vouchers v
+                JOIN user_vouchers uv ON v.id = uv.voucher_id
+                WHERE uv.user_id = :uid
+                AND uv.is_used = 0
+                AND v.end_date >= NOW()
+                """)
+                .bind("uid", userId)
+                .mapToBean(Voucher.class)
+                .list()
+        );
+    }
+
+    public Voucher getVoucherByCode(String code) {
+        return get().withHandle(h ->
+            h.createQuery("SELECT * FROM vouchers WHERE code = :code")
+                .bind("code", code)
+                .mapToBean(Voucher.class)
+                .findOne()
+                .orElse(null)
+        );
+    }
+
+    public boolean markVoucherAsUsed(int userId, int voucherId) {
+        int rows = get().withHandle(h ->
+            h.createUpdate("UPDATE user_vouchers SET is_used = 1 WHERE user_id = :uid AND voucher_id = :vid")
+                .bind("uid", userId)
+                .bind("vid", voucherId)
+                .execute()
+        );
+        return rows > 0;
+    }
+
 }

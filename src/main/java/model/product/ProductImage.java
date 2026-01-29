@@ -1,38 +1,15 @@
 package model.product;
 
-import lombok.Setter;
-import lombok.Getter;
-
-@Setter
-@Getter
-public class ProductImage {
-    private String url;
-    private int isMain;
-
-    public ProductImage() {}
-
-    public ProductImage(String url, int isMain) {
-        this.url = url;
-        this.isMain = isMain;
-    }
-
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("ProductImage{");
-        sb.append("url='").append(url).append('\'');
-        sb.append(", isMain=").append(isMain);
-        sb.append('}');
-        return sb.toString();
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import java.io.Serializable;
+
 @Getter
 @Setter
 @ToString
-public class ProductImage implements Serializable
-{
+public class ProductImage implements Serializable {
     private int id;
     private int product_id;
     private String img_url;
@@ -40,43 +17,32 @@ public class ProductImage implements Serializable
 
     public ProductImage() {}
 
-    public ProductImage(int id, int product_id, String img_url, boolean is_main)
-    {
+    public ProductImage(int id, int product_id, String img_url, boolean is_main) {
         this.id = id;
         this.product_id = product_id;
         this.img_url = img_url;
         this.is_main = is_main;
     }
 
-    public int getId() {
-        return id;
+    public ProductImage(String img_url, int isMain) {
+        this.img_url = img_url;
+        this.is_main = (isMain == 1);
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getProduct_id() {
-        return product_id;
-    }
-
-    public void setProduct_id(int product_id) {
-        this.product_id = product_id;
-    }
-
-    public String getImg_url() {
+    // Compatibility methods for code using 'url' and 'isMain' (int)
+    public String getUrl() {
         return img_url;
     }
 
-    public void setImg_url(String img_url) {
-        this.img_url = img_url;
+    public void setUrl(String url) {
+        this.img_url = url;
     }
 
-    public boolean isIs_main() {
-        return is_main;
+    public int getIsMain() {
+        return is_main ? 1 : 0;
     }
 
-    public void setIs_main(boolean is_main) {
-        this.is_main = is_main;
+    public void setIsMain(int isMain) {
+        this.is_main = (isMain == 1);
     }
 }

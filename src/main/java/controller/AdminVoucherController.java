@@ -1,6 +1,6 @@
 package controller;
 
-import dao.VoucherDao;
+import dao.VoucherDAO;
 import dao.CategoryDao;
 import model.Voucher;
 import model.Category;
@@ -17,7 +17,7 @@ import java.util.List;
 
 @WebServlet(name = "AdminVoucherController", urlPatterns = {"/admin/voucher", "/admin/add_voucher", "/admin/manage_voucher"})
 public class AdminVoucherController extends HttpServlet {
-    private final VoucherDao voucherDao = new VoucherDao();
+    private final VoucherDAO voucherDao = new VoucherDAO();
     private final CategoryDao categoryDao = new CategoryDao();
 
     @Override

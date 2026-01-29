@@ -44,7 +44,7 @@ public class ProfileService
         return userProfile;
     }
 
-        public boolean updateAdminProfile(int userId, String name, String email, String phone, String avtUrl) {
+    public boolean updateAdminProfile(int userId, String name, String email, String phone, String avtUrl) {
         boolean ok1 = userDAO.updateName(userId, name);
         boolean ok2 = userDAO.updateEmail(userId, email);
         boolean ok3 = userDAO.updatePhone(userId, phone);
@@ -53,6 +53,8 @@ public class ProfileService
             ok4 = userDAO.updateAvatar(userId, avtUrl);
         }
         return ok1 && ok2 && ok3 && ok4;
+    }
+
     public boolean changeAvt(Integer userId, String avtUrl)
     {
         return this.userDAO.changeAvt(userId, avtUrl);

@@ -14,7 +14,6 @@ import java.sql.Timestamp;
 
 
 public class AuthService
-
 {
     private AuthDao authDao = new AuthDao();
 
@@ -238,7 +237,6 @@ public class AuthService
         // Cập nhật mật khẩu
         return this.authDao.updateUserPassword(id, hashedPassword);
     }
-}
     public boolean setNewPassword(int userId, String hashedPassword, StringBuilder salt)
     {
         return this.authDao.setNewPassword(userId, hashedPassword, salt);

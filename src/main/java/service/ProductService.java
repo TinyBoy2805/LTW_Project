@@ -130,6 +130,7 @@ public class ProductService
 
     public boolean deleteProduct(int productID) {
         return this.productDAO.deleteProduct(productID);
+    }
     public List<ProductImage> getImagesByProductId(int productId)
     {
         return this.productDAO.getImagesByProductId(productId);

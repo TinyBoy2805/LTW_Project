@@ -1,12 +1,20 @@
 package service;
 
-import com.oracle.wls.shaded.org.apache.xpath.operations.Or;
+import dao.NotificationDAO;
 import dao.OrderDAO;
-import model.orders.*;
-
+import dao.ProductDAO;
+import model.cart.Cart;
+import model.cart.CartItem;
+import model.order.Order;
+import model.order.OrderItem;
+import model.orders.CustomerInfo;
+import model.orders.FilterRequest;
+import model.orders.OrderCard;
+import model.orders.PageInformation;
 import java.time.LocalDate;
-import java.util.*;
-
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,9 +22,15 @@ import lombok.Setter;
 @Setter
 public class OrderService {
 
-    private final OrderDAO orderDAO = new OrderDAO();
+    private final OrderDAO orderDAO;
+    private final ProductDAO productDAO;
+    private final NotificationDAO notificationDAO;
     private final int PAGE_SIZE = 8;
+
     public OrderService() {
+        this.orderDAO = new OrderDAO();
+        this.productDAO = new ProductDAO();
+        this.notificationDAO = new NotificationDAO();
     }
 
     public PageInformation<OrderCard> getOrders(int pageIndex){
@@ -78,6 +92,7 @@ public class OrderService {
         return infor;
     }
 
+    // Method from first version of OrderService
     public List<OrderItem> getOrderItemByID(String orderID){
         return this.orderDAO.getOrderItemByID(orderID);
     }
@@ -90,28 +105,7 @@ public class OrderService {
         return this.orderDAO.getTotalPriceByOrder(orderID);
     }
 
-
-import dao.NotificationDAO;
-import dao.OrderDAO;
-import dao.ProductDAO;
-import model.order.Order;
-import model.order.OrderItem;
-import model.cart.Cart;
-import model.cart.CartItem;
-import java.util.List;
-import java.util.UUID;
-
-public class OrderService {
-    private OrderDAO orderDAO;
-    private ProductDAO productDAO;
-    private NotificationDAO notificationDAO;
-
-    public OrderService() {
-        this.orderDAO = new OrderDAO();
-        this.productDAO = new ProductDAO();
-        this.notificationDAO = new NotificationDAO();
-    }
-
+    // Methods from second version of OrderService
     public int placeOrder(int userId, int addressId, Cart cart, double shippingFee, double discountAmount) {
         System.out.println("OrderService.placeOrder called");
         // 1. Create Order object

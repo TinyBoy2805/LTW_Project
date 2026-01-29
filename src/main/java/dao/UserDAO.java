@@ -4,19 +4,20 @@ import model.User;
 import model.Role;
 import model.UserProfile;
 
-public class UserDAO extends BaseDao
-{
-        // Cập nhật mật khẩu
-        public boolean updatePassword(int userId, String newPasswordHash) {
-            String sql = "UPDATE users SET password_hashed = :password WHERE id = :userId";
-            int updated = get().withHandle(handle ->
-                handle.createUpdate(sql)
-                    .bind("userId", userId)
-                    .bind("password", newPasswordHash)
-                    .execute()
-            );
-            return updated > 0;
-        }
+public class UserDAO extends BaseDao {
+
+    // Cập nhật mật khẩu
+    public boolean updatePassword(int userId, String newPasswordHash) {
+        String sql = "UPDATE users SET password_hashed = :password WHERE id = :userId";
+        int updated = get().withHandle(handle ->
+            handle.createUpdate(sql)
+                .bind("userId", userId)
+                .bind("password", newPasswordHash)
+                .execute()
+        );
+        return updated > 0;
+    }
+
     // Cập nhật avatar
     public boolean updateAvatar(int userId, String avtUrl) {
         String sql = "UPDATE users SET avt_url = :avtUrl WHERE id = :userId";
@@ -40,8 +41,6 @@ public class UserDAO extends BaseDao
         );
         return updated > 0;
     }
-    
-public class UserDAO extends BaseDao {
 
     // Lấy user theo ID
     public User getUserById(int userId) {
@@ -99,8 +98,6 @@ public class UserDAO extends BaseDao {
             int rowsDeleted = get().withHandle(handle ->
                     handle.execute("DELETE FROM addresses WHERE user_id = ?", userId)
             );
-            // Log nếu cần debug
-            // System.out.println("Deleted " + rowsDeleted + " addresses for userId: " + userId);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
